@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne</title>
+<meta name="description" content="Le CMS est le premier standard unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens sur les plateformes numériques mondiales."/>
+<meta property="og:title" content="Caribbean Metadata Standard"/>
+<meta property="og:description" content="Reclaiming Digital Visibility for Caribbean Creative Industries"/>
+<meta property="og:url" content="https://caribbeanmetadata.org"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bleu: #003E6B;
+  --turquoise: #00C2C7;
+  --jaune: #FFC93C;
+  --corail: #FF6F61;
+  --vert: #3FA66B;
+  --graphite: #2A2A2A;
+  --blanc: #FFFFFF;
+  --gris: #F2F2F2;
+  --gris-mid: #8A8A8A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--blanc);
+  color: var(--graphite);
+  overflow-x: hidden;
+}
+
+/* ── MOTIF TRESSAGE ── */
+.tressage-bg {
+  background-image:
+    linear-gradient(rgba(0,194,199,0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,199,0.12) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(255,201,60,0.07) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(255,201,60,0.07) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 32px 32px, 32px 32px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(0,62,107,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,194,199,0.2);
+  transition: all 0.3s ease;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.nav-logo-symbol {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-logo-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--turquoise);
+  letter-spacing: 0.15em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--turquoise); }
+
+.nav-cta {
+  background: var(--turquoise);
+  color: var(--bleu) !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2px;
+  font-weight: 500 !important;
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  background: var(--bleu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 3rem 4rem;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,194,199,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,199,0.08) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(255,201,60,0.04) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(255,201,60,0.04) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0,194,199,0.12);
+  border: 1px solid rgba(0,194,199,0.3);
+  color: var(--turquoise);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  padding: 0.4rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--turquoise);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 900;
+  color: var(--blanc);
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.hero-title span { color: var(--turquoise); }
+
+.hero-acronym {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--jaune);
+  letter-spacing: 0.5em;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 3rem;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.btn-primary {
+  background: var(--turquoise);
+  color: var(--bleu);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--jaune);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0.9rem 2rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--turquoise);
+  color: var(--turquoise);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: fadeUp 1s 0.8s ease both;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(0,194,199,0.6), transparent);
+  animation: scrollLine 2s infinite;
+}
+
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── BANDEAU PROBLÈME ── */
+#probleme {
+  background: var(--graphite);
+  padding: 5rem 3rem;
+  text-align: center;
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--turquoise);
+  margin-bottom: 1.5rem;
+}
+
+#probleme .section-label { color: var(--corail); }
+
+.probleme-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--blanc);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.probleme-text {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+.barrières {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.barrière {
+  flex: 1;
+  min-width: 220px;
+  max-width: 280px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 3px solid var(--corail);
+  padding: 1.8rem;
+  text-align: left;
+  border-radius: 2px;
+}
+
+.barrière-lettre {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--corail);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+
+.barrière h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--blanc);
+  margin-bottom: 0.5rem;
+}
+
+.barrière p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* ── STANDARD ── */
+#standard {
+  padding: 6rem 3rem;
+  background: var(--blanc);
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.standard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.standard-text .section-label { color: var(--bleu); margin-bottom: 1rem; }
+
+.standard-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--bleu);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.standard-intro {
+  font-size: 1rem;
+  color: var(--gris-mid);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.standard-quote {
+  border-left: 3px solid var(--turquoise);
+  padding-left: 1.2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--bleu);
+  line-height: 1.6;
+}
+
+/* Familles de métadonnées */
+.familles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.famille {
+  background: var(--gris);
+  border-radius: 2px;
+  padding: 1.2rem;
+  border-left: 3px solid var(--turquoise);
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.famille:hover {
+  background: var(--bleu);
+  border-left-color: var(--jaune);
+  transform: translateX(4px);
+}
+
+.famille:hover .famille-nom { color: var(--blanc); }
+.famille:hover .famille-tags { color: rgba(255,255,255,0.6); }
+
+.famille-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--turquoise);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.3rem;
+}
+
+.famille:hover .famille-num { color: var(--jaune); }
+
+.famille-nom {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--bleu);
+  margin-bottom: 0.3rem;
+}
+
+.famille-tags {
+  font-size: 0.75rem;
+  color: var(--gris-mid);
+  line-height: 1.5;
+}
+
+/* ── BÉNÉFICES ── */
+#benefices {
+  background: var(--bleu);
+  padding: 6rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#benefices::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,194,199,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,199,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.benefices-inner {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.benefices-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--blanc);
+  margin-bottom: 0.75rem;
+}
+
+.benefices-sub {
+  color: rgba(255,255,255,0.55);
+  font-size: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.benefices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.benefice-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  padding: 2rem 1.5rem;
+  text-align: left;
+  transition: all 0.25s;
+}
+
+.benefice-card:hover {
+  background: rgba(0,194,199,0.1);
+  border-color: rgba(0,194,199,0.3);
+  transform: translateY(-4px);
+}
+
+.benefice-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+.benefice-who {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--turquoise);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.benefice-card h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--blanc);
+  margin-bottom: 0.8rem;
+}
+
+.benefice-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.benefice-list li {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.benefice-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--turquoise);
+  font-size: 0.75rem;
+}
+
+/* ── ROADMAP ── */
+#roadmap {
+  padding: 6rem 3rem;
+  background: var(--gris);
+}
+
+.roadmap-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.roadmap-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--bleu);
+  margin-bottom: 0.75rem;
+}
+
+.roadmap-sub {
+  color: var(--gris-mid);
+  margin-bottom: 3.5rem;
+}
+
+.phases {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.phases::before {
+  content: '';
+  position: absolute;
+  left: 119px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--turquoise), rgba(0,194,199,0.1));
+}
+
+.phase {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 1.5rem 0;
+  text-align: left;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.phase:hover { opacity: 1; }
+
+.phase-timing {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gris-mid);
+  width: 88px;
+  flex-shrink: 0;
+  padding-top: 0.2rem;
+  text-align: right;
+}
+
+.phase-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--turquoise);
+  border: 2px solid var(--gris);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  position: relative;
+  z-index: 1;
+}
+
+.phase-content h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--bleu);
+  margin-bottom: 0.3rem;
+}
+
+.phase-content p {
+  font-size: 0.82rem;
+  color: var(--gris-mid);
+  line-height: 1.5;
+}
+
+.phase-livrable {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--turquoise);
+  letter-spacing: 0.1em;
+}
+
+/* ── CERTIFICATION ── */
+#certification {
+  padding: 6rem 3rem;
+  background: var(--blanc);
+  text-align: center;
+}
+
+.cert-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cert-seal {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 2rem;
+}
+
+.cert-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--bleu);
+  margin-bottom: 1rem;
+}
+
+.cert-text {
+  color: var(--gris-mid);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+}
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--graphite);
+  padding: 6rem 3rem;
+  text-align: center;
+}
+
+.contact-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--blanc);
+  margin-bottom: 1rem;
+}
+
+.contact-sub {
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+}
+
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0,194,199,0.1);
+  border: 1px solid rgba(0,194,199,0.25);
+  color: var(--turquoise);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.95rem;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
+}
+
+.contact-email:hover {
+  background: rgba(0,194,199,0.2);
+  border-color: var(--turquoise);
+}
+
+.contact-lab {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bleu);
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid rgba(0,194,199,0.15);
+}
+
+.footer-left {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+}
+
+.footer-left strong { color: var(--turquoise); }
+
+.footer-bandes {
+  display: flex;
+  gap: 4px;
+}
+
+.bande {
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  #hero { padding: 7rem 1.5rem 4rem; }
+  .standard-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .benefices-grid { grid-template-columns: 1fr; }
+  .familles { grid-template-columns: 1fr; }
+  .phases::before { left: 99px; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-symbol" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 16 3 A 13 13 0 1 0 16 29" stroke="#00C2C7" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 16 3 Q 6 8 7 16 Q 8 24 16 29" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="16" cy="3" r="2.5" fill="#FFC93C"/>
+      <circle cx="16" cy="29" r="2.5" fill="#FFC93C"/>
+      <circle cx="4" cy="16" r="2" fill="#00C2C7"/>
+    </svg>
+    <span class="nav-logo-text">CMS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#standard">Le Standard</a></li>
+    <li><a href="#benefices">Bénéfices</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#certification">Certification</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Premier standard numérique caribéen — v1.0
+    </div>
+    <h1 class="hero-title">
+      Caribbean<br/><span>Metadata</span><br/>Standard
+    </h1>
+    <p class="hero-acronym">C · M · S</p>
+    <p class="hero-subtitle">
+      Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.
+    </p>
+    <div class="hero-actions">
+      <a href="#standard" class="btn-primary">Découvrir le standard</a>
+      <a href="#contact" class="btn-secondary">Rejoindre l'initiative</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- PROBLÈME -->
+<section id="probleme">
+  <p class="section-label">Le problème</p>
+  <h2 class="probleme-title">L'invisibilité numérique des créateurs caribéens</h2>
+  <p class="probleme-text">
+    Les algorithmes déterminent ce que les audiences voient, recommandent et valorisent. Pourtant, les contenus caribéens restent mal indexés, mal classifiés — ou invisibles. Parce que les systèmes de métadonnées existants ne comprennent pas nos langues, nos rythmes, nos marqueurs culturels.
+  </p>
+  <div class="barrières">
+    <div class="barrière">
+      <div class="barrière-lettre">A</div>
+      <h3>Mauvaise classification</h3>
+      <p>Les plateformes ne disposent pas de catégories pour les genres caribéens, dialectes et nuances culturelles.</p>
+    </div>
+    <div class="barrière">
+      <div class="barrière-lettre">B</div>
+      <h3>Cécité algorithmique</h3>
+      <p>Les systèmes de recommandation ne peuvent pas promouvoir ce qu'ils ne savent pas interpréter.</p>
+    </div>
+    <div class="barrière">
+      <div class="barrière-lettre">C</div>
+      <h3>Dilution culturelle</h3>
+      <p>Sans métadonnées adaptées, les contenus caribéens sont forcés dans des catégories génériques inexactes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LE STANDARD -->
+<section id="standard">
+  <div class="section-inner">
+    <div class="standard-grid">
+      <div class="standard-text">
+        <p class="section-label">Le standard</p>
+        <h2 class="standard-title">Une infrastructure culturelle et technologique</h2>
+        <p class="standard-intro">
+          Le CMS est une taxonomie structurée composée de six familles de métadonnées. Chaque famille contient des tags standardisés qui décrivent l'identité unique des contenus caribéens — pour les rendre visibles, exportables et valorisés à l'échelle mondiale.
+        </p>
+        <blockquote class="standard-quote">
+          "Le CMS est plus qu'un outil technique. C'est une déclaration de souveraineté culturelle."
+        </blockquote>
+      </div>
+      <div class="familles">
+        <div class="famille">
+          <div class="famille-num">01 —</div>
+          <div class="famille-nom">Linguistic Metadata</div>
+          <div class="famille-tags">Créole · Patois jamaïcain · Code-switching · Proverbes</div>
+        </div>
+        <div class="famille">
+          <div class="famille-num">02 —</div>
+          <div class="famille-nom">Cultural Metadata</div>
+          <div class="famille-tags">Carnaval · Spiritualité afro-caribéenne · Diaspora</div>
+        </div>
+        <div class="famille">
+          <div class="famille-num">03 —</div>
+          <div class="famille-nom">Narrative Metadata</div>
+          <div class="famille-tags">Réalisme magique · Thriller tropical · Saga familiale</div>
+        </div>
+        <div class="famille">
+          <div class="famille-num">04 —</div>
+          <div class="famille-nom">Rhythmic Metadata</div>
+          <div class="famille-tags">Dialogue syncopé · Tempo insulaire · Parole percussive</div>
+        </div>
+        <div class="famille">
+          <div class="famille-num">05 —</div>
+          <div class="famille-nom">Geographic Metadata</div>
+          <div class="famille-tags">Guadeloupe · Martinique · Haïti · Jamaïque · Trinidad</div>
+        </div>
+        <div class="famille">
+          <div class="famille-num">06 —</div>
+          <div class="famille-nom">Socio-Historical Metadata</div>
+          <div class="famille-tags">Créolisation · Migration · Mémoire · Identité postcoloniale</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BÉNÉFICES -->
+<section id="benefices">
+  <div class="benefices-inner">
+    <p class="section-label" style="color:var(--turquoise)">Pourquoi rejoindre</p>
+    <h2 class="benefices-title">Un standard qui bénéficie à tout l'écosystème</h2>
+    <p class="benefices-sub">Créateurs, plateformes, institutions — chacun y gagne.</p>
+    <div class="benefices-grid">
+      <div class="benefice-card">
+        <svg class="benefice-icon" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="14" r="8" stroke="#00C2C7" stroke-width="1.5"/>
+          <path d="M8 34c0-6.627 5.373-12 12-12h0c6.627 0 12 5.373 12 12" stroke="#00C2C7" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="benefice-who">Pour les créateurs</div>
+        <h3>Visibilité & exportabilité</h3>
+        <ul class="benefice-list">
+          <li>Meilleure classification sur les plateformes</li>
+          <li>Accès à de nouveaux marchés culturels</li>
+          <li>Opportunités d'exportation élargies</li>
+        </ul>
+      </div>
+      <div class="benefice-card">
+        <svg class="benefice-icon" viewBox="0 0 40 40" fill="none">
+          <rect x="6" y="8" width="28" height="20" rx="2" stroke="#00C2C7" stroke-width="1.5"/>
+          <path d="M14 32h12M20 28v4" stroke="#00C2C7" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M12 18l4 4 8-8" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="benefice-who">Pour les plateformes</div>
+        <h3>Indexation & recommandation</h3>
+        <ul class="benefice-list">
+          <li>Indexation plus précise des contenus</li>
+          <li>Recommandations algorithmiques améliorées</li>
+          <li>Accès à de nouveaux marchés culturels</li>
+        </ul>
+      </div>
+      <div class="benefice-card">
+        <svg class="benefice-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M20 6l3.5 7 7.5 1-5.5 5.5 1.5 7.5L20 24l-7 3 1.5-7.5L9 14l7.5-1z" stroke="#00C2C7" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <div class="benefice-who">Pour les institutions</div>
+        <h3>Préservation & leadership</h3>
+        <ul class="benefice-list">
+          <li>Préservation du patrimoine culturel numérique</li>
+          <li>Standardisation régionale Caraïbe</li>
+          <li>Développement économique et souveraineté</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="roadmap-inner">
+    <p class="section-label" style="color:var(--bleu)">Feuille de route</p>
+    <h2 class="roadmap-title">18 mois pour un standard régional</h2>
+    <p class="roadmap-sub">Cinq phases, de la fondation au déploiement international.</p>
+    <div class="phases">
+      <div class="phase">
+        <span class="phase-timing">0 – 3 mois</span>
+        <div class="phase-dot"></div>
+        <div class="phase-content">
+          <h3>Phase 1 — Foundation</h3>
+          <p>Constitution du comité linguistique & culturel. Définition des 6 familles. Rédaction du CMS v1.0.</p>
+          <span class="phase-livrable">↳ CMS v1.0 + Metadata Bible</span>
+        </div>
+      </div>
+      <div class="phase">
+        <span class="phase-timing">3 – 6 mois</span>
+        <div class="phase-dot"></div>
+        <div class="phase-content">
+          <h3>Phase 2 — Prototypage</h3>
+          <p>Développement du Metadata Tagger. Intégration dans le pipeline Caribwood. Tests sur 3 séries.</p>
+          <span class="phase-livrable">↳ Prototype + premiers datasets</span>
+        </div>
+      </div>
+      <div class="phase">
+        <span class="phase-timing">6 – 12 mois</span>
+        <div class="phase-dot"></div>
+        <div class="phase-content">
+          <h3>Phase 3 — IA & Automatisation</h3>
+          <p>Entraînement d'un modèle IA sur corpus caribéen. Détection automatique des marqueurs linguistiques.</p>
+          <span class="phase-livrable">↳ CMS AI Engine v1</span>
+        </div>
+      </div>
+      <div class="phase">
+        <span class="phase-timing">12 – 15 mois</span>
+        <div class="phase-dot"></div>
+        <div class="phase-content">
+          <h3>Phase 4 — Standardisation régionale</h3>
+          <p>Consultation Caricom / OECS. Harmonisation inter-territoires. Mise en place de la certification.</p>
+          <span class="phase-livrable">↳ CMS v2.0 + protocole régional</span>
+        </div>
+      </div>
+      <div class="phase">
+        <span class="phase-timing">15 – 18 mois</span>
+        <div class="phase-dot" style="background:var(--jaune)"></div>
+        <div class="phase-content">
+          <h3>Phase 5 — Déploiement international</h3>
+          <p>Packaging pour Netflix / Amazon / Disney+. Publication du White Paper. Présentation dans les festivals & marchés.</p>
+          <span class="phase-livrable" style="color:var(--jaune)">↳ CMS Global Release</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATION -->
+<section id="certification">
+  <div class="cert-inner">
+    <svg class="cert-seal" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="54" stroke="#003E6B" stroke-width="2"/>
+      <circle cx="60" cy="60" r="46" stroke="#FFC93C" stroke-width="0.75"/>
+      <circle cx="60" cy="60" r="38" fill="#003E6B" fill-opacity="0.05"/>
+      <path d="M60 18 A42 42 0 1 0 60 102" stroke="#003E6B" stroke-width="6" stroke-linecap="round"/>
+      <path d="M60 18 Q34 30 36 60 Q38 90 60 102" stroke="#FFC93C" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="60" cy="18" r="5" fill="#FFC93C"/>
+      <circle cx="60" cy="102" r="5" fill="#FFC93C"/>
+      <circle cx="18" cy="60" r="4" fill="#00C2C7"/>
+      <text x="60" y="66" font-family="Georgia, serif" font-size="12" fill="#003E6B" text-anchor="middle" font-weight="700">CMS</text>
+    </svg>
+    <p class="section-label" style="color:var(--turquoise)">Certification</p>
+    <h2 class="cert-title">CMS‑Compliant Content</h2>
+    <p class="cert-text">
+      Le label <strong>CMS‑Compliant Content</strong> certifie qu'un contenu audiovisuel a été indexé selon les standards du Caribbean Metadata Standard. Il garantit une meilleure visibilité sur les plateformes et atteste de l'authenticité culturelle caribéenne.
+    </p>
+    <a href="#contact" class="btn-primary" style="display:inline-block">Obtenir la certification</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label" style="color:var(--corail)">Contact</p>
+  <h2 class="contact-title">Rejoignez l'initiative</h2>
+  <p class="contact-sub">
+    Vous êtes créateur, institution, plateforme ou chercheur ?<br/>
+    Contribuez à construire le premier standard numérique caribéen.
+  </p>
+  <a href="mailto:contact@caribbeanmetadata.org" class="contact-email">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="#00C2C7" stroke-width="1.2"/>
+      <path d="M1 5l7 5 7-5" stroke="#00C2C7" stroke-width="1.2"/>
+    </svg>
+    contact@caribbeanmetadata.org
+  </a>
+  <p class="contact-lab">Caribwood Language Lab — Guadeloupe, Caraïbe</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <strong>caribbeanmetadata.org</strong> &nbsp;·&nbsp; Caribbean Metadata Standard v1.0 &nbsp;·&nbsp; Caribwood Language Lab
+  </div>
+  <div class="footer-bandes">
+    <div class="bande" style="background:#003E6B"></div>
+    <div class="bande" style="background:#00C2C7"></div>
+    <div class="bande" style="background:#FFC93C"></div>
+    <div class="bande" style="background:#FF6F61"></div>
+    <div class="bande" style="background:#3FA66B"></div>
+  </div>
+</footer>
+
+<script>
+// Smooth nav highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'var(--turquoise)'
+      : 'rgba(255,255,255,0.7)';
+  });
+});
+
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.barrière, .famille, .benefice-card, .phase').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
