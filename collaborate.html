@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Collaborer — Caribbean Metadata Standard</title>
+<meta name="description" content="Rejoignez l'initiative CMS — plateformes, institutions, universités, studios, chercheurs. Construisons ensemble le premier standard numérique caribéen."/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 30 30" fill="none">
+      <path d="M15 2.5A12.5 12.5 0 1 0 15 27.5" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M15 2.5Q5 8 6 15Q7 22 15 27.5" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="15" cy="2.5" r="2" fill="#FFC93C"/>
+      <circle cx="15" cy="27.5" r="2" fill="#FFC93C"/>
+      <circle cx="2.5" cy="15" r="1.8" fill="#00C2C7"/>
+    </svg>
+    <span class="nav-logo-text">CMS</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="families.html">Les 6 familles</a></li>
+    <li><a href="resources.html">Ressources</a></li>
+    <li><a href="lab.html">Language Lab</a></li>
+    <li><a href="collaborate.html" class="active">Collaborer</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="nav-burger" id="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section class="page-hero tressage">
+  <div class="page-hero-inner">
+    <p class="page-hero-label">Partenariats</p>
+    <h1>Construisons-le <span>ensemble</span></h1>
+    <p class="page-hero-sub">Le CMS est un standard collaboratif. Sa force dépend de la diversité et de la qualité de ceux qui le portent — créateurs, plateformes, institutions, chercheurs.</p>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label">Pour qui</p>
+    <h2 class="section-title">À qui s'adresse cette collaboration ?</h2>
+    <p class="section-sub">Chaque profil apporte une contribution spécifique à l'écosystème CMS.</p>
+    <div class="grid-3">
+
+      <div class="card anim-up" style="border-top:3px solid var(--turquoise);">
+        <div style="width:44px;height:44px;background:rgba(0,194,199,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="4" width="16" height="12" rx="2" stroke="#00C2C7" stroke-width="1.5"/>
+            <path d="M7 10l2 2 4-4" stroke="#00C2C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="tag tag--turquoise" style="margin-bottom:0.75rem;display:inline-block;">Plateformes</span>
+        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.6rem;">Netflix · Amazon · Disney+</h3>
+        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Intégrez le CMS dans vos systèmes d'indexation pour améliorer la découvrabilité des contenus caribéens et accéder à de nouveaux marchés culturels.</p>
+      </div>
+
+      <div class="card anim-up" style="border-top:3px solid var(--jaune);">
+        <div style="width:44px;height:44px;background:rgba(255,201,60,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z" stroke="#FFC93C" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="tag tag--jaune" style="margin-bottom:0.75rem;display:inline-block;">Institutions</span>
+        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.6rem;">Ministères · Collectivités · ONGs</h3>
+        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Participez à la gouvernance du standard et contribuez à l'ancrage institutionnel du CMS dans la politique culturelle caribéenne.</p>
+      </div>
+
+      <div class="card anim-up" style="border-top:3px solid var(--vert);">
+        <div style="width:44px;height:44px;background:rgba(63,166,107,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="7" r="4" stroke="#3FA66B" stroke-width="1.5"/>
+            <path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#3FA66B" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="tag tag--vert" style="margin-bottom:0.75rem;display:inline-block;">Universités</span>
+        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.6rem;">Recherche & Académie</h3>
+        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Apportez la rigueur académique nécessaire à la validation linguistique et culturelle des familles de métadonnées CMS.</p>
+      </div>
+
+      <div class="card anim-up" style="border-top:3px solid var(--corail);">
+        <div style="width:44px;height:44px;background:rgba(255,111,97,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 16V8l6-5 6 5v8" stroke="#FF6F61" stroke-width="1.5" stroke-linejoin="round"/>
+            <rect x="7" y="11" width="6" height="5" stroke="#FF6F61" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="tag tag--corail" style="margin-bottom:0.75rem;display:inline-block;">Studios</span>
+        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.6rem;">Studios · Producteurs · Créateurs</h3>
+        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Tagguez vos contenus selon le standard CMS pour améliorer leur visibilité sur les plateformes mondiales et obtenir la certification.</p>
+      </div>
+
+      <div class="card anim-up" style="border-top:3px solid var(--bleu);">
+        <div style="width:44px;height:44px;background:rgba(0,62,107,0.08);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 3c-3.9 0-7 3.1-7 7s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7z" stroke="#003E6B" stroke-width="1.5"/>
+            <path d="M3.5 10h13M10 3.5c-2 2-3 4.5-3 6.5s1 4.5 3 6.5M10 3.5c2 2 3 4.5 3 6.5s-1 4.5-3 6.5" stroke="#003E6B" stroke-width="1"/>
+          </svg>
+        </div>
+        <span class="tag tag--bleu" style="margin-bottom:0.75rem;display:inline-block;">Traducteurs</span>
+        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.6rem;">Linguistes · Traducteurs</h3>
+        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Contribuez à l'extension multilingue du standard — espagnol, néerlandais, anglais — et à la précision des définitions culturelles.</p>
+      </div>
+
+      <div class="card anim-up" style="border-top:3px solid var(--turquoise);">
+        <div style="width:44px;height:44px;background:rgba(0,194,199,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2v4M10 14v4M2 10h4M14 10h4" stroke="#00C2C7" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="10" cy="10" r="3" stroke="#00C2C7" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="tag tag--turquoise" style="margin-bottom:0.75rem;display:inline-block;">Chercheurs</span>
+        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.6rem;">Chercheurs · Data Scientists</h3>
+        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Travaillez sur les corpus caribéens, participez au développement du CMS AI Engine et publiez des travaux sur la souveraineté culturelle numérique.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CE QU'ON OFFRE -->
+<section class="section" style="background:var(--bleu);">
+  <div class="section-inner">
+    <p class="section-label">Ce que nous offrons</p>
+    <h2 class="section-title section-title--light">Ce que vous obtenez en collaborant avec le CMS</h2>
+    <div class="grid-2" style="margin-top:2.5rem;">
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.5rem;background:rgba(255,255,255,0.05);border-radius:var(--radius);" class="anim-up">
+          <span style="color:var(--turquoise);font-size:1.2rem;flex-shrink:0;">→</span>
+          <div>
+            <h4 style="color:var(--blanc);font-size:0.9rem;margin-bottom:0.3rem;">Accès anticipé au standard</h4>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.5;">Les partenaires fondateurs ont accès aux versions de travail du CMS avant publication officielle.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.5rem;background:rgba(255,255,255,0.05);border-radius:var(--radius);" class="anim-up">
+          <span style="color:var(--turquoise);font-size:1.2rem;flex-shrink:0;">→</span>
+          <div>
+            <h4 style="color:var(--blanc);font-size:0.9rem;margin-bottom:0.3rem;">Mention officielle</h4>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.5;">Votre organisation est citée dans le White Paper et sur le site officiel du CMS.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.5rem;background:rgba(255,255,255,0.05);border-radius:var(--radius);" class="anim-up">
+          <span style="color:var(--turquoise);font-size:1.2rem;flex-shrink:0;">→</span>
+          <div>
+            <h4 style="color:var(--blanc);font-size:0.9rem;margin-bottom:0.3rem;">Participation à la gouvernance</h4>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.5;">Les partenaires institutionnels participent au comité de validation du standard.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.5rem;background:rgba(255,255,255,0.05);border-radius:var(--radius);" class="anim-up">
+          <span style="color:var(--jaune);font-size:1.2rem;flex-shrink:0;">→</span>
+          <div>
+            <h4 style="color:var(--blanc);font-size:0.9rem;margin-bottom:0.3rem;">Support à l'implémentation</h4>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.5;">Le Language Lab accompagne les partenaires dans l'intégration du CMS dans leurs workflows.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.5rem;background:rgba(255,255,255,0.05);border-radius:var(--radius);" class="anim-up">
+          <span style="color:var(--jaune);font-size:1.2rem;flex-shrink:0;">→</span>
+          <div>
+            <h4 style="color:var(--blanc);font-size:0.9rem;margin-bottom:0.3rem;">Accès aux datasets</h4>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.5;">Les partenaires de recherche ont accès aux corpus caribéens construits par le Language Lab.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.5rem;background:rgba(255,255,255,0.05);border-radius:var(--radius);" class="anim-up">
+          <span style="color:var(--jaune);font-size:1.2rem;flex-shrink:0;">→</span>
+          <div>
+            <h4 style="color:var(--blanc);font-size:0.9rem;margin-bottom:0.3rem;">Label CMS‑Compliant</h4>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.5;">Les contenus certifiés affichent le sceau officiel du Caribbean Metadata Standard.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA CONTACT -->
+<section class="section tressage" style="background:var(--graphite);text-align:center;">
+  <div class="section-inner">
+    <p class="section-label" style="justify-content:center;color:var(--corail);">Première étape</p>
+    <h2 class="section-title section-title--light" style="margin:0 auto 1rem;">Prenez contact avec le Language Lab</h2>
+    <p class="section-sub section-sub--light" style="margin:0 auto 2.5rem;">Décrivez votre profil et vos objectifs — nous reviendrons vers vous dans les 48 heures pour explorer les possibilités de collaboration.</p>
+    <a href="contact.html" class="btn btn-primary">Nous contacter →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="margin-bottom:1rem;">
+        <svg viewBox="0 0 30 30" fill="none" width="24" height="24">
+          <path d="M15 2.5A12.5 12.5 0 1 0 15 27.5" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M15 2.5Q5 8 6 15Q7 22 15 27.5" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="15" cy="2.5" r="2" fill="#FFC93C"/>
+          <circle cx="15" cy="27.5" r="2" fill="#FFC93C"/>
+          <circle cx="2.5" cy="15" r="1.8" fill="#00C2C7"/>
+        </svg>
+        <span class="nav-logo-text">CMS</span>
+      </a>
+      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Le Standard</h4>
+      <ul>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="families.html">Les 6 familles</a></li>
+        <li><a href="resources.html">Documentation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Écosystème</h4>
+      <ul>
+        <li><a href="lab.html">Language Lab</a></li>
+        <li><a href="collaborate.html">Collaborer</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ressources</h4>
+      <ul>
+        <li><a href="resources.html">White Paper</a></li>
+        <li><a href="resources.html">Glossaire</a></li>
+        <li><a href="resources.html">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p><strong>caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</p>
+    <div class="footer-bandes">
+      <span style="background:#003E6B;"></span>
+      <span style="background:#00C2C7;"></span>
+      <span style="background:#FFC93C;"></span>
+      <span style="background:#FF6F61;"></span>
+      <span style="background:#3FA66B;"></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.anim-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
