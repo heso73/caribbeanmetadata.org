@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>À propos — Caribbean Metadata Standard</title>
+<meta name="description" content="Comprendre le Caribbean Metadata Standard — sa définition, sa nécessité, les problèmes qu'il résout et ses principes fondateurs."/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 2.5A12.5 12.5 0 1 0 15 27.5" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M15 2.5Q5 8 6 15Q7 22 15 27.5" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="15" cy="2.5" r="2" fill="#FFC93C"/>
+      <circle cx="15" cy="27.5" r="2" fill="#FFC93C"/>
+      <circle cx="2.5" cy="15" r="1.8" fill="#00C2C7"/>
+    </svg>
+    <span class="nav-logo-text">CMS</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html" class="active">À propos</a></li>
+    <li><a href="families.html">Les 6 familles</a></li>
+    <li><a href="resources.html">Ressources</a></li>
+    <li><a href="lab.html">Language Lab</a></li>
+    <li><a href="collaborate.html">Collaborer</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="nav-burger" id="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero tressage">
+  <div class="page-hero-inner">
+    <p class="page-hero-label">À propos du CMS</p>
+    <h1>Qu'est-ce que le <span>Caribbean Metadata Standard</span> ?</h1>
+    <p class="page-hero-sub">Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — une infrastructure à la fois culturelle et technologique.</p>
+  </div>
+</section>
+
+<!-- DÉFINITION -->
+<section class="section">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+      <div>
+        <p class="section-label">Définition</p>
+        <h2 class="section-title">Un standard culturel et technologique</h2>
+        <p style="color:var(--gris-mid);line-height:1.8;margin-bottom:1.5rem;">
+          Le <strong style="color:var(--bleu)">Caribbean Metadata Standard (CMS)</strong> est un cadre taxonomique structuré composé de six familles de métadonnées. Il a été conçu pour décrire l'identité unique des contenus audiovisuels caribéens avec précision, cohérence et authenticité.
+        </p>
+        <p style="color:var(--gris-mid);line-height:1.8;margin-bottom:1.5rem;">
+          Il s'adresse aux créateurs, aux plateformes de diffusion, aux institutions culturelles et aux chercheurs qui souhaitent indexer, archiver ou distribuer des contenus caribéens à l'échelle mondiale.
+        </p>
+        <blockquote>
+          "Le CMS est plus qu'un outil technique. C'est une déclaration de souveraineté culturelle."
+        </blockquote>
+      </div>
+      <div>
+        <div style="background:var(--gris);padding:2.5rem;border-radius:var(--radius);">
+          <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--turquoise);letter-spacing:0.2em;margin-bottom:1.5rem;">CMS EN CHIFFRES</p>
+          <div style="display:flex;flex-direction:column;gap:1.5rem;">
+            <div style="display:flex;align-items:baseline;gap:1rem;border-bottom:1px solid var(--gris-bord);padding-bottom:1.5rem;">
+              <span style="font-family:var(--font-titre);font-size:3rem;font-weight:900;color:var(--bleu);line-height:1;">6</span>
+              <span style="color:var(--gris-mid);font-size:0.9rem;">familles de métadonnées</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:1rem;border-bottom:1px solid var(--gris-bord);padding-bottom:1.5rem;">
+              <span style="font-family:var(--font-titre);font-size:3rem;font-weight:900;color:var(--turquoise);line-height:1;">50+</span>
+              <span style="color:var(--gris-mid);font-size:0.9rem;">tags standardisés</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:1rem;border-bottom:1px solid var(--gris-bord);padding-bottom:1.5rem;">
+              <span style="font-family:var(--font-titre);font-size:3rem;font-weight:900;color:var(--jaune);line-height:1;">18</span>
+              <span style="color:var(--gris-mid);font-size:0.9rem;">mois de roadmap</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:1rem;">
+              <span style="font-family:var(--font-titre);font-size:3rem;font-weight:900;color:var(--corail);line-height:1;">1er</span>
+              <span style="color:var(--gris-mid);font-size:0.9rem;">standard numérique caribéen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI -->
+<section class="section" style="background:var(--graphite);">
+  <div class="section-inner">
+    <p class="section-label" style="color:var(--corail);">Pourquoi il est nécessaire</p>
+    <h2 class="section-title section-title--light">Les contenus caribéens sont invisibles sur les plateformes mondiales</h2>
+    <p class="section-sub section-sub--light">Les algorithmes de recommandation déterminent ce que les audiences voient et valorisent. Sans métadonnées adaptées, les créateurs caribéens sont structurellement désavantagés.</p>
+    <div class="grid-3">
+      <div class="card card--dark anim-up">
+        <div style="font-family:var(--font-titre);font-size:2.5rem;font-weight:900;color:var(--corail);opacity:0.4;margin-bottom:0.75rem;">A</div>
+        <h3 style="color:var(--blanc);font-size:1rem;margin-bottom:0.6rem;">Mauvaise classification</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.6;">Les plateformes ne disposent pas de catégories pour les genres caribéens, les dialectes créoles et les nuances culturelles spécifiques à la région.</p>
+      </div>
+      <div class="card card--dark anim-up">
+        <div style="font-family:var(--font-titre);font-size:2.5rem;font-weight:900;color:var(--corail);opacity:0.4;margin-bottom:0.75rem;">B</div>
+        <h3 style="color:var(--blanc);font-size:1rem;margin-bottom:0.6rem;">Cécité algorithmique</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.6;">Les systèmes de recommandation ne peuvent pas promouvoir ce qu'ils ne savent pas interpréter. Ce qui n'est pas classifié n'est pas recommandé.</p>
+      </div>
+      <div class="card card--dark anim-up">
+        <div style="font-family:var(--font-titre);font-size:2.5rem;font-weight:900;color:var(--corail);opacity:0.4;margin-bottom:0.75rem;">C</div>
+        <h3 style="color:var(--blanc);font-size:1rem;margin-bottom:0.6rem;">Dilution culturelle</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.6;">Sans métadonnées précises, les contenus caribéens sont assignés à des catégories génériques qui effacent leur identité et réduisent leur impact économique.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPES FONDATEURS -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label">Principes fondateurs</p>
+    <h2 class="section-title">Les valeurs qui guident le CMS</h2>
+    <p class="section-sub">Quatre principes irréductibles structurent chaque décision de conception du standard.</p>
+    <div class="grid-2">
+      <div style="display:flex;gap:1.5rem;align-items:flex-start;padding:2rem;border:1px solid var(--gris-bord);border-radius:var(--radius);border-left:3px solid var(--turquoise);transition:all var(--transition);" class="anim-up">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);letter-spacing:0.2em;padding-top:0.2rem;flex-shrink:0;">01</div>
+        <div>
+          <h3 style="font-size:1rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Authenticité</h3>
+          <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">Chaque tag reflète une réalité culturelle vérifiable. Le CMS ne simplifie pas — il révèle la complexité et la richesse des identités caribéennes telles qu'elles existent.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:1.5rem;align-items:flex-start;padding:2rem;border:1px solid var(--gris-bord);border-radius:var(--radius);border-left:3px solid var(--jaune);transition:all var(--transition);" class="anim-up">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--jaune);letter-spacing:0.2em;padding-top:0.2rem;flex-shrink:0;">02</div>
+        <div>
+          <h3 style="font-size:1rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Rigueur</h3>
+          <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">Le standard est construit avec la même exigence que les standards internationaux existants — Dublin Core, TEI, VRA Core — avec lesquels il est conçu pour être interopérable.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:1.5rem;align-items:flex-start;padding:2rem;border:1px solid var(--gris-bord);border-radius:var(--radius);border-left:3px solid var(--vert);transition:all var(--transition);" class="anim-up">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--vert);letter-spacing:0.2em;padding-top:0.2rem;flex-shrink:0;">03</div>
+        <div>
+          <h3 style="font-size:1rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Accessibilité</h3>
+          <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">Le CMS est conçu pour être utilisable par des créateurs indépendants comme par de grandes institutions. Sa documentation est publique, claire et multilingue.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:1.5rem;align-items:flex-start;padding:2rem;border:1px solid var(--gris-bord);border-radius:var(--radius);border-left:3px solid var(--corail);transition:all var(--transition);" class="anim-up">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--corail);letter-spacing:0.2em;padding-top:0.2rem;flex-shrink:0;">04</div>
+        <div>
+          <h3 style="font-size:1rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Souveraineté culturelle</h3>
+          <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">Le CMS est développé par et pour la Caraïbe. Il affirme le droit des créateurs caribéens à définir leurs propres catégories, plutôt que de subir celles imposées par des systèmes extérieurs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section tressage" style="background:var(--bleu);text-align:center;">
+  <div class="section-inner">
+    <p class="section-label" style="justify-content:center;color:var(--turquoise);">Prochaine étape</p>
+    <h2 class="section-title section-title--light" style="margin:0 auto 1rem;">Découvrez les 6 familles de métadonnées</h2>
+    <p class="section-sub section-sub--light" style="margin:0 auto 2.5rem;">Chaque famille structure un aspect distinct de l'identité caribéenne — langue, culture, rythme, narration, géographie, histoire.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="families.html" class="btn btn-primary">Explorer les familles</a>
+      <a href="resources.html" class="btn btn-secondary">Télécharger le White Paper</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="margin-bottom:1rem;">
+        <svg viewBox="0 0 30 30" fill="none" width="24" height="24">
+          <path d="M15 2.5A12.5 12.5 0 1 0 15 27.5" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M15 2.5Q5 8 6 15Q7 22 15 27.5" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="15" cy="2.5" r="2" fill="#FFC93C"/>
+          <circle cx="15" cy="27.5" r="2" fill="#FFC93C"/>
+          <circle cx="2.5" cy="15" r="1.8" fill="#00C2C7"/>
+        </svg>
+        <span class="nav-logo-text">CMS</span>
+      </a>
+      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Le Standard</h4>
+      <ul>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="families.html">Les 6 familles</a></li>
+        <li><a href="resources.html">Documentation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Écosystème</h4>
+      <ul>
+        <li><a href="lab.html">Language Lab</a></li>
+        <li><a href="collaborate.html">Collaborer</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ressources</h4>
+      <ul>
+        <li><a href="resources.html">White Paper</a></li>
+        <li><a href="resources.html">Glossaire</a></li>
+        <li><a href="resources.html">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p><strong>caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</p>
+    <div class="footer-bandes">
+      <span style="background:#003E6B;"></span>
+      <span style="background:#00C2C7;"></span>
+      <span style="background:#FFC93C;"></span>
+      <span style="background:#FF6F61;"></span>
+      <span style="background:#3FA66B;"></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 100);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.anim-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
