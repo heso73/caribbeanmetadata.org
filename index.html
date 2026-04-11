@@ -5,118 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne</title>
 <meta name="description" content="Le premier standard numérique caribéen — un cadre unifié pour classifier, décrire et indexer les contenus culturels caribéens.">
+<link rel="stylesheet" href="style.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #fff; color: #1a1a1a; font-size: 16px; line-height: 1.6; }
-
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(255,255,255,0.97);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  padding: 0 6%; height: 68px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-logo { font-size: 20px; font-weight: 700; color: #003E6B; text-decoration: none; letter-spacing: 2px; }
-.nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
-.nav-links a { font-size: 13px; color: #444; text-decoration: none; transition: color .2s; }
-.nav-links a:hover { color: #003E6B; }
-.nav-links .nav-validate {
-  padding: 7px 16px; background: #00C2C7; color: #003E6B !important;
-  border-radius: 4px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px;
-}
-.nav-links .nav-validate:hover { background: #00A8AE; }
-
-/* HERO */
+/* ── HERO ACCUEIL ── */
 .hero {
-  min-height: 100vh; background: #003E6B;
+  min-height: 100vh;
+  background: var(--bleu);
   display: flex; align-items: center;
-  padding: 100px 6% 80px; position: relative; overflow: hidden;
+  padding: 9rem 3rem 5rem;
+  position: relative; overflow: hidden;
 }
-.hero::before {
-  content: ''; position: absolute; inset: 0; opacity: 0.07;
+.hero.tressage::before {
+  content: ''; position: absolute; inset: 0;
   background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(0,194,199,0.6) 24px),
-    repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(255,201,60,0.4) 24px),
-    repeating-linear-gradient(45deg, transparent, transparent 11px, rgba(0,194,199,0.3) 12px),
-    repeating-linear-gradient(-45deg, transparent, transparent 11px, rgba(255,201,60,0.2) 12px);
+    linear-gradient(rgba(0,194,199,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,199,0.07) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(255,201,60,0.05) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(255,201,60,0.05) 1px, transparent 1px);
+  background-size: 36px 36px,36px 36px,36px 36px,36px 36px;
 }
-.hero-content { position: relative; z-index: 1; max-width: 720px; }
-.hero-eyebrow {
-  font-size: 11px; letter-spacing: 3px; color: #00C2C7;
-  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
-}
-.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: #00C2C7; }
+.hero-inner { position: relative; z-index: 1; max-width: var(--max-width); margin: 0 auto; width: 100%; }
+.hero-inner .page-hero-label { margin-bottom: 1.5rem; }
 .hero h1 {
-  font-size: clamp(38px, 6vw, 76px); font-weight: 700;
-  color: #fff; line-height: 1.05; margin-bottom: 8px; letter-spacing: -1px;
+  font-family: var(--font-titre);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900; color: var(--blanc);
+  line-height: 1.05; margin-bottom: 0.5rem; letter-spacing: -1px;
 }
-.hero-cms { font-size: 14px; letter-spacing: 6px; color: rgba(255,255,255,0.3); margin-bottom: 24px; }
-.hero p { font-size: 17px; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.75; margin-bottom: 40px; }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-hero-primary {
-  padding: 14px 28px; background: #00C2C7; color: #003E6B;
-  text-decoration: none; border-radius: 4px; font-weight: 700;
-  font-size: 14px; letter-spacing: 0.5px; transition: background .2s;
+.hero-cms {
+  font-family: var(--font-mono);
+  font-size: 0.85rem; letter-spacing: 0.5em;
+  color: rgba(255,255,255,0.35); margin-bottom: 1.5rem;
 }
-.btn-hero-primary:hover { background: #00A8AE; }
-.btn-hero-secondary {
-  padding: 14px 28px; background: transparent; color: rgba(255,255,255,0.7);
-  text-decoration: none; border-radius: 4px; font-size: 14px;
-  border: 1px solid rgba(255,255,255,0.2); transition: all .2s;
+.hero-desc {
+  font-size: 1.05rem; font-weight: 300;
+  color: rgba(255,255,255,0.82);
+  max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem;
 }
-.btn-hero-secondary:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 .hero-scroll {
-  position: absolute; bottom: 32px; left: 6%;
-  font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.3);
-  display: flex; align-items: center; gap: 8px;
+  position: absolute; bottom: 2rem; left: 3rem;
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.25em; color: rgba(255,255,255,0.35);
+  display: flex; align-items: center; gap: 0.75rem;
 }
-.hero-scroll::after { content: ''; display: block; width: 40px; height: 1px; background: rgba(255,255,255,0.2); }
+.hero-scroll::after { content: ''; display: block; width: 36px; height: 1px; background: rgba(255,255,255,0.2); }
 
-/* SECTIONS */
-section { padding: 88px 6%; }
-.section-eyebrow {
-  font-size: 11px; letter-spacing: 3px; color: #00C2C7;
-  margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
-}
-.section-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: #00C2C7; }
-.section-title { font-size: clamp(24px, 3.5vw, 40px); font-weight: 700; color: #003E6B; line-height: 1.2; margin-bottom: 48px; max-width: 640px; }
-
-/* PROBLÈME */
+/* ── PROBLÈME ── */
 .problem-section { background: #f7f9fb; }
-.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(0,62,107,0.1); border-radius: 8px; overflow: hidden; }
-.problem-card { padding: 36px 28px; border-right: 1px solid rgba(0,62,107,0.1); }
-.problem-card:last-child { border-right: none; }
-.problem-letter { font-size: 11px; letter-spacing: 2px; color: #00C2C7; margin-bottom: 16px; font-weight: 700; }
-.problem-card h3 { font-size: 17px; font-weight: 700; color: #003E6B; margin-bottom: 12px; }
-.problem-card p { font-size: 14px; color: #666; line-height: 1.7; }
-
-/* FAMILLES */
-.families-section { background: #fff; }
-.quote-block {
-  font-size: 18px; font-style: italic; color: #003E6B;
-  border-left: 3px solid #00C2C7; padding-left: 20px;
-  margin-bottom: 48px; line-height: 1.6; max-width: 600px;
+.prob-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 0; border: 1px solid rgba(0,62,107,0.1);
+  border-radius: var(--radius); overflow: hidden;
 }
-.families-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(0,62,107,0.1); border-radius: 8px; overflow: hidden; margin-bottom: 36px; }
-.family-card { background: #fff; padding: 28px 24px; transition: background .2s; text-decoration: none; display: block; }
+.prob-card { padding: 2.5rem 1.75rem; background: var(--blanc); border-right: 1px solid rgba(0,62,107,0.1); }
+.prob-card:last-child { border-right: none; }
+.prob-letter { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.25em; color: var(--turquoise); margin-bottom: 1rem; }
+.prob-card h3 { font-family: var(--font-titre); font-size: 1.15rem; color: var(--bleu); margin-bottom: 0.75rem; }
+.prob-card p { font-size: 0.9rem; color: #444; line-height: 1.75; }
+
+/* ── FAMILLES ── */
+.families-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: rgba(0,62,107,0.1);
+  border-radius: var(--radius); overflow: hidden; margin-bottom: 2.5rem;
+}
+.family-card {
+  background: var(--blanc); padding: 1.75rem 1.5rem;
+  transition: background var(--transition); text-decoration: none; display: block;
+}
 .family-card:hover { background: #f7f9fb; }
-.family-num { font-size: 11px; letter-spacing: 2px; color: #00C2C7; margin-bottom: 10px; font-weight: 600; }
-.family-name { font-size: 16px; font-weight: 700; color: #003E6B; margin-bottom: 6px; }
-.family-tags { font-size: 12px; color: #888; }
+.family-num { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.25em; color: var(--turquoise); margin-bottom: 0.5rem; }
+.family-name { font-family: var(--font-titre); font-size: 1rem; font-weight: 700; color: var(--bleu); margin-bottom: 0.3rem; }
+.family-tags { font-size: 0.78rem; color: #888; }
 .families-cta { text-align: center; }
-.btn-outline {
-  display: inline-block; padding: 12px 28px;
-  border: 1px solid #003E6B; color: #003E6B;
-  text-decoration: none; border-radius: 4px; font-size: 14px;
-  font-weight: 600; transition: all .2s;
-}
-.btn-outline:hover { background: #003E6B; color: #fff; }
 
-/* DÉCLARATION */
+/* ── DÉCLARATION ── */
 .declaration-section {
-  background: #0A0A0F; padding: 88px 6%;
+  background: #0A0A0F; padding: 5rem 3rem;
   position: relative; overflow: hidden;
 }
 .declaration-section::before {
@@ -127,149 +93,117 @@ section { padding: 88px 6%; }
 }
 .declaration-inner {
   position: relative; z-index: 1;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center;
+  max-width: var(--max-width); margin: 0 auto;
 }
-.declaration-text .section-eyebrow { color: #C9A84C; }
-.declaration-text .section-eyebrow::before { background: #C9A84C; }
-.declaration-text .section-title { color: #F8F5EE; margin-bottom: 20px; }
-.declaration-text p { font-size: 15px; color: rgba(248,245,238,0.72); line-height: 1.8; margin-bottom: 32px; }
+.declaration-label {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.3em; color: #C9A84C;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+}
+.declaration-label::before { content: ''; display: block; width: 20px; height: 1px; background: #C9A84C; }
+.declaration-title {
+  font-family: var(--font-titre); font-size: clamp(1.6rem,3vw,2.4rem);
+  font-weight: 900; color: #F8F5EE; margin-bottom: 1rem; line-height: 1.15;
+}
+.declaration-desc { font-size: 0.95rem; color: rgba(248,245,238,0.72); line-height: 1.8; margin-bottom: 2rem; }
 .btn-declaration {
-  display: inline-block; padding: 13px 28px;
-  background: transparent; color: #C9A84C;
-  border: 1px solid rgba(201,168,76,0.5);
-  text-decoration: none; border-radius: 4px;
-  font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
-  transition: all .2s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.8rem 1.8rem; background: transparent;
+  color: #C9A84C; border: 1px solid rgba(201,168,76,0.5);
+  border-radius: var(--radius); font-size: 0.88rem; font-weight: 500;
+  font-family: var(--font-corps); cursor: pointer;
+  transition: all var(--transition); text-decoration: none;
 }
 .btn-declaration:hover { background: rgba(201,168,76,0.1); border-color: #C9A84C; }
-.declaration-quote {
-  border-left: 2px solid #C9A84C;
-  padding-left: 28px;
-}
-.declaration-quote blockquote {
-  font-family: Georgia, serif;
-  font-size: clamp(18px, 2.5vw, 26px);
-  font-style: italic; font-weight: 300;
-  color: rgba(248,245,238,0.88);
-  line-height: 1.75; margin-bottom: 24px;
-}
-.declaration-quote .quote-source {
-  font-size: 11px; letter-spacing: 2px;
-  color: #C9A84C; font-style: normal;
-}
-.declaration-articles {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px;
-}
+.decl-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
 .decl-pill {
-  padding: 4px 12px; border-radius: 20px;
-  font-size: 11px; color: rgba(248,245,238,0.5);
-  border: 1px solid rgba(248,245,238,0.1);
-  font-family: inherit;
+  padding: 0.25rem 0.75rem; border-radius: 20px;
+  font-family: var(--font-mono); font-size: 0.62rem;
+  color: rgba(248,245,238,0.45); border: 1px solid rgba(248,245,238,0.1);
 }
+.declaration-quote { border-left: 2px solid #C9A84C; padding-left: 1.75rem; }
+.declaration-quote blockquote {
+  font-family: var(--font-titre); font-size: clamp(1.1rem,2vw,1.5rem);
+  font-style: italic; font-weight: 400;
+  color: rgba(248,245,238,0.88); line-height: 1.75; margin-bottom: 1.5rem;
+  border: none; padding: 0;
+}
+.declaration-quote blockquote:last-of-type { font-size: clamp(0.95rem,1.6vw,1.2rem); margin-top: 1.25rem; color: rgba(248,245,238,0.7); }
+.quote-source { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; color: #C9A84C; }
 
-
-.validator-cta-section { background: #003E6B; padding: 80px 6%; }
-.validator-cta-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-  max-width: 1100px; margin: 0 auto;
+/* ── VALIDATEUR CTA ── */
+.validator-section { background: var(--bleu); padding: 5rem 3rem; }
+.validator-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  max-width: var(--max-width); margin: 0 auto;
 }
-.validator-cta-text .section-eyebrow::before { background: #00C2C7; }
-.validator-cta-text .section-eyebrow { color: #00C2C7; }
-.validator-cta-text .section-title { color: #fff; margin-bottom: 16px; }
-.validator-cta-text p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 32px; }
-.validator-cta-text .btn-validate-cta {
-  display: inline-block; padding: 14px 32px;
-  background: #00C2C7; color: #003E6B;
-  text-decoration: none; border-radius: 4px;
-  font-weight: 700; font-size: 15px; letter-spacing: 0.5px;
-  transition: background .2s;
-}
-.validator-cta-text .btn-validate-cta:hover { background: #00A8AE; }
-.validator-cta-preview {
+.validator-text .section-sub--light { margin-bottom: 2rem; }
+.validator-preview {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(0,194,199,0.2);
-  border-radius: 12px; overflow: hidden;
+  border-radius: 8px; overflow: hidden;
 }
-.vcp-header {
+.vp-head {
   background: rgba(0,194,199,0.1); border-bottom: 1px solid rgba(0,194,199,0.2);
-  padding: 16px 20px; display: flex; align-items: center; gap: 12px;
+  padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem;
 }
-.vcp-logo { width: 32px; height: 32px; }
-.vcp-header-text p:first-child { font-size: 13px; font-weight: 700; color: #fff; }
-.vcp-header-text p:last-child  { font-size: 10px; color: #00C2C7; letter-spacing: 1px; }
-.vcp-steps { display: flex; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.vcp-step { flex: 1; padding: 10px 6px; text-align: center; font-size: 10px; color: rgba(255,255,255,0.4); }
-.vcp-step.a { color: #00C2C7; border-bottom: 2px solid #00C2C7; }
-.vcp-body { padding: 20px; }
-.vcp-field { margin-bottom: 12px; }
-.vcp-label { font-size: 10px; color: rgba(255,255,255,0.4); margin-bottom: 5px; letter-spacing: 0.5px; }
-.vcp-input {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px; padding: 8px 12px; font-size: 12px; color: rgba(255,255,255,0.7);
-}
-.vcp-levels { display: flex; gap: 6px; margin-top: 16px; }
-.vcp-level {
-  flex: 1; padding: 8px 4px; border-radius: 4px; text-align: center;
-  font-size: 9px; font-weight: 700; letter-spacing: 1px;
-}
-.vcp-level.bronze  { background: rgba(200,150,20,0.2);  color: #C8960C; }
-.vcp-level.silver  { background: rgba(158,158,158,0.2); color: #9E9E9E; }
-.vcp-level.gold    { background: rgba(249,168,37,0.2);  color: #F9A825; }
-.vcp-level.plat    { background: rgba(15,110,86,0.2);   color: #3FA66B; }
+.vp-head svg { width: 28px; height: 28px; flex-shrink: 0; }
+.vp-head-text p:first-child { font-size: 0.82rem; font-weight: 700; color: #fff; }
+.vp-head-text p:last-child  { font-family: var(--font-mono); font-size: 0.62rem; color: var(--turquoise); letter-spacing: 0.1em; }
+.vp-steps { display: flex; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.vp-step { flex: 1; padding: 0.6rem 4px; text-align: center; font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.4); }
+.vp-step.on { color: var(--turquoise); border-bottom: 2px solid var(--turquoise); }
+.vp-body { padding: 1.25rem; }
+.vp-field { margin-bottom: 0.75rem; }
+.vp-lbl { font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.4); margin-bottom: 0.3rem; letter-spacing: 0.15em; }
+.vp-input { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; padding: 0.5rem 0.75rem; font-size: 0.78rem; color: rgba(255,255,255,0.7); }
+.vp-levels { display: flex; gap: 6px; margin-top: 1rem; }
+.vp-lv { flex: 1; padding: 6px 4px; border-radius: 3px; text-align: center; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; }
+.vp-lv.br { background: rgba(200,150,20,0.2); color: #C8960C; }
+.vp-lv.si { background: rgba(158,158,158,0.2); color: #9E9E9E; }
+.vp-lv.go { background: rgba(249,168,37,0.2); color: #F9A825; }
+.vp-lv.pl { background: rgba(15,110,86,0.2); color: #3FA66B; }
 
-/* BÉNÉFICIAIRES */
+/* ── BÉNÉFICES ── */
 .benefits-section { background: #f7f9fb; }
-.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.benefit-card { background: #fff; border: 1px solid rgba(0,62,107,0.08); border-radius: 8px; padding: 32px 24px; }
-.benefit-type { font-size: 10px; letter-spacing: 2px; color: #00C2C7; font-weight: 700; margin-bottom: 14px; }
-.benefit-card h3 { font-size: 17px; font-weight: 700; color: #003E6B; margin-bottom: 16px; }
+.benefit-type { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.25em; color: var(--turquoise); margin-bottom: 0.75rem; }
+.benefit-card h3 { font-family: var(--font-titre); font-size: 1.05rem; color: var(--bleu); margin-bottom: 1rem; }
 .benefit-list { list-style: none; }
-.benefit-list li { font-size: 14px; color: #555; padding: 6px 0; border-bottom: 1px solid rgba(0,62,107,0.06); display: flex; align-items: center; gap: 8px; }
-.benefit-list li::before { content: '→'; color: #00C2C7; font-weight: 700; flex-shrink: 0; }
+.benefit-list li { font-size: 0.88rem; color: #444; padding: 0.4rem 0; border-bottom: 1px solid rgba(0,62,107,0.06); display: flex; align-items: flex-start; gap: 0.5rem; }
+.benefit-list li::before { content: '→'; color: var(--turquoise); font-weight: 700; flex-shrink: 0; }
 .benefit-list li:last-child { border-bottom: none; }
 
-/* CTA FINAL */
-.final-cta { background: #fff; text-align: center; }
-.final-cta .section-title { margin: 0 auto 12px; }
-.final-cta p { font-size: 16px; color: #666; margin-bottom: 32px; }
-.final-cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.btn-solid {
-  display: inline-block; padding: 13px 28px; background: #003E6B; color: #fff;
-  text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 600;
-  transition: background .2s;
-}
-.btn-solid:hover { background: #00537A; }
+/* ── CTA FINAL ── */
+.final-cta { background: var(--blanc); padding: 5rem 3rem; text-align: center; }
+.final-cta .section-title { margin: 0 auto 1rem; }
+.final-cta .section-sub { margin: 0 auto 2.5rem; text-align: center; }
+.final-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-/* FOOTER */
-footer { background: #003E6B; padding: 56px 6% 32px; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.footer-logo { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 2px; text-decoration: none; display: block; margin-bottom: 12px; }
-.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
-.footer-col h4 { font-size: 11px; font-weight: 700; color: #00C2C7; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; }
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 8px; }
-.footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
-.footer-col a:hover { color: #fff; }
-.footer-col a.highlight { color: #00C2C7; font-weight: 600; }
-.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: rgba(255,255,255,0.35); text-align: center; }
-
-@media(max-width: 900px) {
-  .problem-grid, .families-grid, .benefits-grid { grid-template-columns: 1fr; }
-  .validator-cta-inner { grid-template-columns: 1fr; }
-  .declaration-inner { grid-template-columns: 1fr; }
-  .vcp-levels { display: none; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
+@media(max-width:900px) {
+  .prob-grid,.families-grid { grid-template-columns: 1fr; }
+  .declaration-inner,.validator-inner { grid-template-columns: 1fr; }
+  .hero { padding: 7rem 1.5rem 4rem; }
+  .declaration-section,.validator-section,.benefits-section,.final-cta { padding: 3.5rem 1.5rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="index.html">CMS</a>
-  <ul class="nav-links">
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 3 A12 12 0 1 0 15 27" fill="none" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M15 3 Q6 9 7 15 Q8 21 15 27" fill="none" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round" opacity=".9"/>
+      <circle cx="15" cy="3" r="2.5" fill="#FFC93C"/>
+      <circle cx="15" cy="27" r="2.5" fill="#FFC93C"/>
+      <circle cx="3" cy="15" r="2" fill="#00C2C7"/>
+    </svg>
+    <span class="nav-logo-text">CMS</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
     <li><a href="about.html">À propos</a></li>
     <li><a href="families.html">Les 6 familles</a></li>
     <li><a href="resources.html">Ressources</a></li>
@@ -277,225 +211,236 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
     <li><a href="collaborate.html">Collaborer</a></li>
     <li><a href="declaration.html">Déclaration</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
+    <li><a href="validator.html" class="nav-cta">Valider</a></li>
   </ul>
+  <div class="nav-burger" id="burger" onclick="document.getElementById('nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Premier standard numérique caribéen — v1.0</div>
-    <h1>Caribbean Metadata Standard</h1>
+<section class="hero tressage">
+  <div class="hero-inner">
+    <div class="page-hero-label">Premier standard numérique caribéen — v1.0</div>
+    <h1>Caribbean<br>Metadata Standard</h1>
     <p class="hero-cms">C · M · S</p>
-    <p>Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.</p>
+    <p class="hero-desc">Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.</p>
     <div class="hero-actions">
-      <a href="about.html" class="btn-hero-primary">Découvrir le standard</a>
-      <a href="collaborate.html" class="btn-hero-secondary">Rejoindre l'initiative</a>
+      <a href="about.html" class="btn btn-primary">Découvrir le standard</a>
+      <a href="collaborate.html" class="btn btn-secondary">Rejoindre l'initiative</a>
     </div>
   </div>
   <div class="hero-scroll">Scroll</div>
 </section>
 
 <!-- PROBLÈME -->
-<section class="problem-section">
-  <div class="section-eyebrow">Le problème</div>
-  <h2 class="section-title">L'invisibilité numérique des créateurs caribéens</h2>
-  <p style="font-size:16px;color:#555;max-width:620px;margin-bottom:40px;line-height:1.7;">Les algorithmes déterminent ce que les audiences voient et valorisent. Pourtant les contenus caribéens restent mal indexés, mal classifiés — ou invisibles.</p>
-  <div class="problem-grid">
-    <div class="problem-card">
-      <div class="problem-letter">A</div>
-      <h3>Mauvaise classification</h3>
-      <p>Les plateformes ne disposent pas de catégories pour les genres caribéens, dialectes et nuances culturelles.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-letter">B</div>
-      <h3>Cécité algorithmique</h3>
-      <p>Les systèmes de recommandation ne peuvent pas promouvoir ce qu'ils ne savent pas interpréter.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-letter">C</div>
-      <h3>Dilution culturelle</h3>
-      <p>Sans métadonnées adaptées, les contenus caribéens sont forcés dans des catégories génériques inexactes.</p>
+<section class="section problem-section">
+  <div class="section-inner">
+    <div class="section-label">Le problème</div>
+    <h2 class="section-title">L'invisibilité numérique des créateurs caribéens</h2>
+    <p class="section-sub">Les algorithmes déterminent ce que les audiences voient et valorisent. Pourtant les contenus caribéens restent mal indexés, mal classifiés — ou invisibles.</p>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="prob-letter">A</div>
+        <h3>Mauvaise classification</h3>
+        <p>Les plateformes ne disposent pas de catégories pour les genres caribéens, dialectes et nuances culturelles.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-letter">B</div>
+        <h3>Cécité algorithmique</h3>
+        <p>Les systèmes de recommandation ne peuvent pas promouvoir ce qu'ils ne savent pas interpréter.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-letter">C</div>
+        <h3>Dilution culturelle</h3>
+        <p>Sans métadonnées adaptées, les contenus caribéens sont forcés dans des catégories génériques inexactes.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- LES 6 FAMILLES -->
-<section class="families-section">
-  <div class="section-eyebrow">Le standard</div>
-  <h2 class="section-title">Une infrastructure culturelle et technologique</h2>
-  <blockquote class="quote-block">"Le CMS est plus qu'un outil technique. C'est une déclaration de souveraineté culturelle."</blockquote>
-  <div class="families-grid">
-    <a class="family-card" href="families.html#linguistique">
-      <div class="family-num">01 — Linguistic</div>
-      <div class="family-name">Linguistique</div>
-      <div class="family-tags">Créole · Patois · Code-switching</div>
-    </a>
-    <a class="family-card" href="families.html#culturelle">
-      <div class="family-num">02 — Cultural</div>
-      <div class="family-name">Culturelle</div>
-      <div class="family-tags">Carnaval · Spiritualité · Diaspora</div>
-    </a>
-    <a class="family-card" href="families.html#narrative">
-      <div class="family-num">03 — Narrative</div>
-      <div class="family-name">Narrative</div>
-      <div class="family-tags">Réalisme magique · Saga · Thriller</div>
-    </a>
-    <a class="family-card" href="families.html#rythmique">
-      <div class="family-num">04 — Rhythmic</div>
-      <div class="family-name">Rythmique</div>
-      <div class="family-tags">Tempo · Syncopé · Percussif</div>
-    </a>
-    <a class="family-card" href="families.html#geographique">
-      <div class="family-num">05 — Geographic</div>
-      <div class="family-name">Géographique</div>
-      <div class="family-tags">Guadeloupe · Haïti · Jamaïque</div>
-    </a>
-    <a class="family-card" href="families.html#sociohistorique">
-      <div class="family-num">06 — Socio-Historical</div>
-      <div class="family-name">Socio-historique</div>
-      <div class="family-tags">Créolisation · Migration · Mémoire</div>
-    </a>
-  </div>
-  <div class="families-cta">
-    <a href="families.html" class="btn-outline">Explorer les 6 familles →</a>
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">Le standard</div>
+    <h2 class="section-title">Une infrastructure culturelle et technologique</h2>
+    <blockquote>"Le CMS est plus qu'un outil technique. C'est une déclaration de souveraineté culturelle."</blockquote>
+    <div class="families-grid">
+      <a class="family-card" href="families.html#linguistique">
+        <div class="family-num">01 — Linguistic</div>
+        <div class="family-name">Linguistique</div>
+        <div class="family-tags">Créole · Patois · Code-switching</div>
+      </a>
+      <a class="family-card" href="families.html#culturelle">
+        <div class="family-num">02 — Cultural</div>
+        <div class="family-name">Culturelle</div>
+        <div class="family-tags">Carnaval · Spiritualité · Diaspora</div>
+      </a>
+      <a class="family-card" href="families.html#narrative">
+        <div class="family-num">03 — Narrative</div>
+        <div class="family-name">Narrative</div>
+        <div class="family-tags">Réalisme magique · Saga · Thriller</div>
+      </a>
+      <a class="family-card" href="families.html#rythmique">
+        <div class="family-num">04 — Rhythmic</div>
+        <div class="family-name">Rythmique</div>
+        <div class="family-tags">Tempo · Syncopé · Percussif</div>
+      </a>
+      <a class="family-card" href="families.html#geographique">
+        <div class="family-num">05 — Geographic</div>
+        <div class="family-name">Géographique</div>
+        <div class="family-tags">Guadeloupe · Haïti · Jamaïque</div>
+      </a>
+      <a class="family-card" href="families.html#sociohistorique">
+        <div class="family-num">06 — Socio-Historical</div>
+        <div class="family-name">Socio-historique</div>
+        <div class="family-tags">Créolisation · Migration · Mémoire</div>
+      </a>
+    </div>
+    <div class="families-cta">
+      <a href="families.html" class="btn btn-outline">Explorer les 6 familles →</a>
+    </div>
   </div>
 </section>
 
-<!-- ══ DÉCLARATION FONDATRICE ══ -->
+<!-- DÉCLARATION FONDATRICE -->
 <section class="declaration-section">
   <div class="declaration-inner">
-    <div class="declaration-text">
-      <div class="section-eyebrow">Acte fondateur</div>
-      <h2 class="section-title">La Déclaration Fondatrice</h2>
-      <p>Un texte solennel, poétique et institutionnel — l'acte de naissance numérique du Caribbean Metadata Standard et la proclamation de la souveraineté culturelle caribéenne.</p>
+    <div>
+      <div class="declaration-label">Acte fondateur</div>
+      <h2 class="declaration-title">La Déclaration Fondatrice</h2>
+      <p class="declaration-desc">Un texte solennel, poétique et institutionnel — l'acte de naissance numérique du Caribbean Metadata Standard et la proclamation de la souveraineté culturelle caribéenne.</p>
       <a href="declaration.html" class="btn-declaration">Lire la Déclaration fondatrice →</a>
-      <div class="declaration-articles">
+      <div class="decl-pills">
         <span class="decl-pill">Art. 1 — Raison d'être</span>
         <span class="decl-pill">Art. 4 — La Caraïbe comme matrice</span>
         <span class="decl-pill">Art. 6 — Droit d'exister en lumière</span>
-        <span class="decl-pill">Art. 7 — Entrée en vigueur</span>
       </div>
     </div>
     <div class="declaration-quote">
-      <blockquote>
-        "La Caraïbe n'est pas un fragment du monde :<br>
-        elle est un monde entier."
-      </blockquote>
-      <blockquote style="font-size:clamp(15px,1.8vw,20px); margin-top:20px;">
-        "La Caraïbe se définit elle-même.<br>
-        Le CMS est son alphabet."
-      </blockquote>
+      <blockquote>"La Caraïbe n'est pas un fragment du monde :<br>elle est un monde entier."</blockquote>
+      <blockquote>"La Caraïbe se définit elle-même.<br>Le CMS est son alphabet."</blockquote>
       <p class="quote-source">— Déclaration Fondatrice du CMS, 2026</p>
     </div>
   </div>
 </section>
 
-<!-- ══ SECTION VALIDATEUR — NOUVEAU ══ -->
-<section class="validator-cta-section">
-  <div class="validator-cta-inner">
-    <div class="validator-cta-text">
-      <div class="section-eyebrow">Outil officiel · Nouveau</div>
-      <h2 class="section-title">Certifiez votre contenu caribéen</h2>
-      <p>Le Validateur CMS analyse les métadonnées de votre contenu et délivre une certification officielle — Bronze, Silver, Gold ou Platinum — selon votre score d'ancrage culturel caribéen.</p>
-      <a href="validator.html" class="btn-validate-cta">Valider un contenu →</a>
+<!-- VALIDATEUR -->
+<section class="validator-section">
+  <div class="validator-inner">
+    <div class="validator-text">
+      <div class="section-label" style="color:var(--turquoise)">Outil officiel · Nouveau</div>
+      <h2 class="section-title section-title--light">Certifiez votre contenu caribéen</h2>
+      <p class="section-sub section-sub--light">Le Validateur CMS analyse les métadonnées de votre contenu et délivre une certification officielle — Bronze, Silver, Gold ou Platinum.</p>
+      <a href="validator.html" class="btn btn-primary">Valider un contenu →</a>
     </div>
-    <div class="validator-cta-preview">
-      <div class="vcp-header">
-        <svg class="vcp-logo" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 3 A13 13 0 1 0 16 29" fill="none" stroke="#00C2C7" stroke-width="3" stroke-linecap="round"/>
-          <path d="M16 3 Q6 9 8 16 Q10 23 16 29" fill="none" stroke="#FFC93C" stroke-width="1.8" stroke-linecap="round" opacity=".9"/>
-          <circle cx="16" cy="3"  r="2.5" fill="#FFC93C"/>
-          <circle cx="16" cy="29" r="2.5" fill="#FFC93C"/>
-          <circle cx="3"  cy="16" r="2"   fill="#00C2C7"/>
+    <div class="validator-preview">
+      <div class="vp-head">
+        <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 3 A11 11 0 1 0 14 25" fill="none" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M14 3 Q6 8 7 14 Q8 20 14 25" fill="none" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round" opacity=".9"/>
+          <circle cx="14" cy="3" r="2" fill="#FFC93C"/>
+          <circle cx="14" cy="25" r="2" fill="#FFC93C"/>
+          <circle cx="3" cy="14" r="1.8" fill="#00C2C7"/>
         </svg>
-        <div class="vcp-header-text">
+        <div class="vp-head-text">
           <p>Validateur CMS officiel</p>
           <p>CARIBBEAN METADATA STANDARD v1.0</p>
         </div>
       </div>
-      <div class="vcp-steps">
-        <div class="vcp-step a">1 · Identité</div>
-        <div class="vcp-step">2 · Origine</div>
-        <div class="vcp-step">3 · Langue</div>
-        <div class="vcp-step">4 · Marqueurs</div>
-        <div class="vcp-step">5 · Résultat</div>
+      <div class="vp-steps">
+        <div class="vp-step on">1 · Identité</div>
+        <div class="vp-step">2 · Origine</div>
+        <div class="vp-step">3 · Langue</div>
+        <div class="vp-step">4 · Marqueurs</div>
+        <div class="vp-step">5 · Résultat</div>
       </div>
-      <div class="vcp-body">
-        <div class="vcp-field">
-          <div class="vcp-label">TITRE ORIGINAL</div>
-          <div class="vcp-input">Ex : Anba Dlo, Morne Bleu…</div>
+      <div class="vp-body">
+        <div class="vp-field">
+          <div class="vp-lbl">TITRE ORIGINAL</div>
+          <div class="vp-input">Ex : Anba Dlo, Morne Bleu…</div>
         </div>
-        <div class="vcp-field">
-          <div class="vcp-label">TYPE DE CONTENU</div>
-          <div class="vcp-input">Audiovisuel · Musical · Littéraire · Patrimonial</div>
+        <div class="vp-field">
+          <div class="vp-lbl">TYPE DE CONTENU</div>
+          <div class="vp-input">Audiovisuel · Musical · Littéraire · Patrimonial</div>
         </div>
-        <div class="vcp-levels">
-          <div class="vcp-level bronze">BRONZE<br>≥ 20</div>
-          <div class="vcp-level silver">SILVER<br>≥ 40</div>
-          <div class="vcp-level gold">GOLD<br>≥ 65</div>
-          <div class="vcp-level plat">PLATINUM<br>≥ 85</div>
+        <div class="vp-levels">
+          <div class="vp-lv br">BRONZE<br>≥ 20</div>
+          <div class="vp-lv si">SILVER<br>≥ 40</div>
+          <div class="vp-lv go">GOLD<br>≥ 65</div>
+          <div class="vp-lv pl">PLAT.<br>≥ 85</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BÉNÉFICIAIRES -->
-<section class="benefits-section">
-  <div class="section-eyebrow">Pourquoi rejoindre</div>
-  <h2 class="section-title">Un standard qui bénéficie à tout l'écosystème</h2>
-  <div class="benefits-grid">
-    <div class="benefit-card">
-      <div class="benefit-type">CRÉATEURS</div>
-      <h3>Visibilité &amp; exportabilité</h3>
-      <ul class="benefit-list">
-        <li>Meilleure classification sur les plateformes</li>
-        <li>Accès à de nouveaux marchés</li>
-        <li>Opportunités d'exportation élargies</li>
-      </ul>
+<!-- BÉNÉFICES -->
+<section class="section benefits-section">
+  <div class="section-inner">
+    <div class="section-label">Pourquoi rejoindre</div>
+    <h2 class="section-title">Un standard qui bénéficie à tout l'écosystème</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="benefit-type">CRÉATEURS</div>
+        <h3>Visibilité &amp; exportabilité</h3>
+        <ul class="benefit-list">
+          <li>Meilleure classification sur les plateformes</li>
+          <li>Accès à de nouveaux marchés</li>
+          <li>Opportunités d'exportation élargies</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="benefit-type">PLATEFORMES</div>
+        <h3>Indexation &amp; recommandation</h3>
+        <ul class="benefit-list">
+          <li>Indexation plus précise des contenus</li>
+          <li>Recommandations améliorées</li>
+          <li>Accès à de nouveaux marchés culturels</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="benefit-type">INSTITUTIONS</div>
+        <h3>Préservation &amp; leadership</h3>
+        <ul class="benefit-list">
+          <li>Préservation du patrimoine numérique</li>
+          <li>Standardisation régionale Caraïbe</li>
+          <li>Souveraineté culturelle</li>
+        </ul>
+      </div>
     </div>
-    <div class="benefit-card">
-      <div class="benefit-type">PLATEFORMES</div>
-      <h3>Indexation &amp; recommandation</h3>
-      <ul class="benefit-list">
-        <li>Indexation plus précise des contenus</li>
-        <li>Recommandations améliorées</li>
-        <li>Accès à de nouveaux marchés culturels</li>
-      </ul>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="collaborate.html" class="btn btn-outline">Voir comment collaborer →</a>
     </div>
-    <div class="benefit-card">
-      <div class="benefit-type">INSTITUTIONS</div>
-      <h3>Préservation &amp; leadership</h3>
-      <ul class="benefit-list">
-        <li>Préservation du patrimoine numérique</li>
-        <li>Standardisation régionale Caraïbe</li>
-        <li>Souveraineté culturelle</li>
-      </ul>
-    </div>
-  </div>
-  <div style="text-align:center;margin-top:36px;">
-    <a href="collaborate.html" class="btn-outline">Voir comment collaborer →</a>
   </div>
 </section>
 
 <!-- CTA FINAL -->
 <section class="final-cta">
-  <div class="section-eyebrow" style="justify-content:center;">Rejoindre l'initiative</div>
-  <h2 class="section-title" style="text-align:center;">Construisons le premier standard numérique caribéen ensemble.</h2>
-  <p>Créateur, institution, plateforme ou chercheur — votre contribution est essentielle.</p>
-  <div class="final-cta-actions">
-    <a href="collaborate.html" class="btn-solid">Collaborer avec nous</a>
-    <a href="validator.html"   class="btn-validate-cta" style="display:inline-block;padding:13px 28px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:14px;font-weight:700;">Valider un contenu</a>
-    <a href="contact.html"     class="btn-outline">Nous contacter</a>
+  <div class="section-label" style="justify-content:center;">Rejoindre l'initiative</div>
+  <h2 class="section-title">Construisons le premier standard numérique caribéen ensemble.</h2>
+  <p class="section-sub">Créateur, institution, plateforme ou chercheur — votre contribution est essentielle.</p>
+  <div class="final-actions">
+    <a href="collaborate.html" class="btn btn-primary">Collaborer avec nous</a>
+    <a href="validator.html" class="btn btn-primary">Valider un contenu</a>
+    <a href="contact.html" class="btn btn-outline">Nous contacter</a>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
+<footer class="footer">
+  <div class="footer-main">
     <div class="footer-brand">
-      <a class="footer-logo" href="index.html">CMS</a>
+      <a href="index.html" class="nav-logo" style="margin-bottom:1rem">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 3 A12 12 0 1 0 15 27" fill="none" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M15 3 Q6 9 7 15 Q8 21 15 27" fill="none" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round" opacity=".9"/>
+          <circle cx="15" cy="3" r="2.5" fill="#FFC93C"/>
+          <circle cx="15" cy="27" r="2.5" fill="#FFC93C"/>
+          <circle cx="3" cy="15" r="2" fill="#00C2C7"/>
+        </svg>
+        <span class="nav-logo-text">CMS</span>
+      </a>
       <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
     </div>
     <div class="footer-col">
@@ -504,7 +449,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
         <li><a href="about.html">À propos</a></li>
         <li><a href="families.html">Les 6 familles</a></li>
         <li><a href="resources.html">Documentation</a></li>
-        <li><a href="declaration.html" class="highlight">Déclaration fondatrice</a></li>
+        <li><a href="declaration.html" style="color:#FFC93C">Déclaration fondatrice</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -521,14 +466,26 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
         <li><a href="resources.html">White Paper</a></li>
         <li><a href="resources.html">Glossaire</a></li>
         <li><a href="resources.html">FAQ</a></li>
-        <li><a href="validator.html" class="highlight">→ Valider un contenu</a></li>
+        <li><a href="validator.html" style="color:var(--turquoise);font-weight:500">→ Valider un contenu</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <strong style="color:rgba(255,255,255,0.5)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
+    <p><strong>caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</p>
+    <div class="footer-bandes">
+      <span style="background:#003E6B"></span>
+      <span style="background:#00C2C7"></span>
+      <span style="background:#FFC93C"></span>
+      <span style="background:#FF6F61"></span>
+      <span style="background:#3FA66B"></span>
+    </div>
   </div>
 </footer>
 
+<script>
+document.querySelectorAll('.anim-up').forEach(el => {
+  new IntersectionObserver(([e]) => { if(e.isIntersecting) e.target.classList.add('visible'); }, {threshold:0.1}).observe(el);
+});
+</script>
 </body>
 </html>
