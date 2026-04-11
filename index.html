@@ -114,7 +114,61 @@ section { padding: 88px 6%; }
 }
 .btn-outline:hover { background: #003E6B; color: #fff; }
 
-/* ── VALIDATEUR CTA — NOUVEAU ── */
+/* DÉCLARATION */
+.declaration-section {
+  background: #0A0A0F; padding: 88px 6%;
+  position: relative; overflow: hidden;
+}
+.declaration-section::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(201,168,76,0.04) 48px),
+    repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(0,194,199,0.03) 48px);
+}
+.declaration-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  max-width: 1100px; margin: 0 auto;
+}
+.declaration-text .section-eyebrow { color: #C9A84C; }
+.declaration-text .section-eyebrow::before { background: #C9A84C; }
+.declaration-text .section-title { color: #F8F5EE; margin-bottom: 20px; }
+.declaration-text p { font-size: 15px; color: rgba(248,245,238,0.72); line-height: 1.8; margin-bottom: 32px; }
+.btn-declaration {
+  display: inline-block; padding: 13px 28px;
+  background: transparent; color: #C9A84C;
+  border: 1px solid rgba(201,168,76,0.5);
+  text-decoration: none; border-radius: 4px;
+  font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
+  transition: all .2s;
+}
+.btn-declaration:hover { background: rgba(201,168,76,0.1); border-color: #C9A84C; }
+.declaration-quote {
+  border-left: 2px solid #C9A84C;
+  padding-left: 28px;
+}
+.declaration-quote blockquote {
+  font-family: Georgia, serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-style: italic; font-weight: 300;
+  color: rgba(248,245,238,0.88);
+  line-height: 1.75; margin-bottom: 24px;
+}
+.declaration-quote .quote-source {
+  font-size: 11px; letter-spacing: 2px;
+  color: #C9A84C; font-style: normal;
+}
+.declaration-articles {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px;
+}
+.decl-pill {
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 11px; color: rgba(248,245,238,0.5);
+  border: 1px solid rgba(248,245,238,0.1);
+  font-family: inherit;
+}
+
+
 .validator-cta-section { background: #003E6B; padding: 80px 6%; }
 .validator-cta-inner {
   display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
@@ -203,6 +257,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 @media(max-width: 900px) {
   .problem-grid, .families-grid, .benefits-grid { grid-template-columns: 1fr; }
   .validator-cta-inner { grid-template-columns: 1fr; }
+  .declaration-inner { grid-template-columns: 1fr; }
   .vcp-levels { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
@@ -220,6 +275,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
     <li><a href="resources.html">Ressources</a></li>
     <li><a href="lab.html">Language Lab</a></li>
     <li><a href="collaborate.html">Collaborer</a></li>
+    <li><a href="declaration.html">Déclaration</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
   </ul>
@@ -303,6 +359,35 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
   </div>
   <div class="families-cta">
     <a href="families.html" class="btn-outline">Explorer les 6 familles →</a>
+  </div>
+</section>
+
+<!-- ══ DÉCLARATION FONDATRICE ══ -->
+<section class="declaration-section">
+  <div class="declaration-inner">
+    <div class="declaration-text">
+      <div class="section-eyebrow">Acte fondateur</div>
+      <h2 class="section-title">La Déclaration Fondatrice</h2>
+      <p>Un texte solennel, poétique et institutionnel — l'acte de naissance numérique du Caribbean Metadata Standard et la proclamation de la souveraineté culturelle caribéenne.</p>
+      <a href="declaration.html" class="btn-declaration">Lire la Déclaration fondatrice →</a>
+      <div class="declaration-articles">
+        <span class="decl-pill">Art. 1 — Raison d'être</span>
+        <span class="decl-pill">Art. 4 — La Caraïbe comme matrice</span>
+        <span class="decl-pill">Art. 6 — Droit d'exister en lumière</span>
+        <span class="decl-pill">Art. 7 — Entrée en vigueur</span>
+      </div>
+    </div>
+    <div class="declaration-quote">
+      <blockquote>
+        "La Caraïbe n'est pas un fragment du monde :<br>
+        elle est un monde entier."
+      </blockquote>
+      <blockquote style="font-size:clamp(15px,1.8vw,20px); margin-top:20px;">
+        "La Caraïbe se définit elle-même.<br>
+        Le CMS est son alphabet."
+      </blockquote>
+      <p class="quote-source">— Déclaration Fondatrice du CMS, 2026</p>
+    </div>
   </div>
 </section>
 
@@ -419,6 +504,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
         <li><a href="about.html">À propos</a></li>
         <li><a href="families.html">Les 6 familles</a></li>
         <li><a href="resources.html">Documentation</a></li>
+        <li><a href="declaration.html" class="highlight">Déclaration fondatrice</a></li>
       </ul>
     </div>
     <div class="footer-col">
