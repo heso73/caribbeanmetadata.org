@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:cms="https://cms.caribwood.com/schema/v1.0"
+           targetNamespace="https://cms.caribwood.com/schema/v1.0"
+           elementFormDefault="qualified"
+           version="1.0">
+
+  <xs:annotation>
+    <xs:documentation>
+      Caribbean Metadata Standard (CMS) — Schéma XML officiel v1.0
+      Éditeur : Caribwood Language Lab
+      Date     : 2026-04-11
+      Objet    : Standardisation des métadonnées culturelles caribéennes
+                 Territoires : Caraïbe francophone, hispanophone, anglophone, créolophone
+    </xs:documentation>
+  </xs:annotation>
+
+  <!-- ============================================================ -->
+  <!-- ÉLÉMENT RACINE                                               -->
+  <!-- ============================================================ -->
+  <xs:element name="CMS_Record">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="cms_version"     type="xs:string" fixed="1.0"/>
+        <xs:element name="content_type"    type="cms:ContentTypeEnum"/>
+        <xs:element name="content_subtype" type="xs:string" minOccurs="0"/>
+        <xs:element name="identity"        type="cms:IdentityType"/>
+        <xs:element name="origin"          type="cms:OriginType"/>
+        <xs:element name="language"        type="cms:LanguageType"/>
+        <xs:element name="cultural_markers" type="cms:CulturalMarkersType"/>
+        <xs:element name="rights"          type="cms:RightsType"      minOccurs="0"/>
+        <xs:element name="technical"       type="cms:TechnicalType"   minOccurs="0"/>
+        <xs:element name="cms_compliance"  type="cms:ComplianceType"  minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ============================================================ -->
+  <!-- TYPES SIMPLES — ÉNUMÉRATIONS                                 -->
+  <!-- ============================================================ -->
+
+  <xs:simpleType name="ContentTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="audiovisual"/>
+      <xs:enumeration value="musical"/>
+      <xs:enumeration value="literary"/>
+      <xs:enumeration value="heritage"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TerritoryCodeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GP"/>  <!-- Guadeloupe -->
+      <xs:enumeration value="MQ"/>  <!-- Martinique -->
+      <xs:enumeration value="GF"/>  <!-- Guyane française -->
+      <xs:enumeration value="BL"/>  <!-- Saint-Barthélemy -->
+      <xs:enumeration value="MF"/>  <!-- Saint-Martin -->
+      <xs:enumeration value="HT"/>  <!-- Haïti -->
+      <xs:enumeration value="DO"/>  <!-- République Dominicaine -->
+      <xs:enumeration value="CU"/>  <!-- Cuba -->
+      <xs:enumeration value="PR"/>  <!-- Porto Rico -->
+      <xs:enumeration value="JM"/>  <!-- Jamaïque -->
+      <xs:enumeration value="TT"/>  <!-- Trinité-et-Tobago -->
+      <xs:enumeration value="BB"/>  <!-- Barbade -->
+      <xs:enumeration value="LC"/>  <!-- Sainte-Lucie -->
+      <xs:enumeration value="VC"/>  <!-- Saint-Vincent -->
+      <xs:enumeration value="GD"/>  <!-- Grenade -->
+      <xs:enumeration value="AG"/>  <!-- Antigua-et-Barbuda -->
+      <xs:enumeration value="DM"/>  <!-- Dominique -->
+      <xs:enumeration value="KN"/>  <!-- Saint-Kitts -->
+      <xs:enumeration value="AW"/>  <!-- Aruba -->
+      <xs:enumeration value="CW"/>  <!-- Curaçao -->
+      <xs:enumeration value="SX"/>  <!-- Sint Maarten -->
+      <xs:enumeration value="SR"/>  <!-- Suriname -->
+      <xs:enumeration value="GY"/>  <!-- Guyana -->
+      <xs:enumeration value="DIASPORA"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="LanguageCodeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="fr"/>   <!-- Français -->
+      <xs:enumeration value="en"/>   <!-- Anglais -->
+      <xs:enumeration value="es"/>   <!-- Espagnol -->
+      <xs:enumeration value="ht"/>   <!-- Créole haïtien -->
+      <xs:enumeration value="gcf"/>  <!-- Créole guadeloupéen/martiniquais -->
+      <xs:enumeration value="pap"/>  <!-- Papiamentu -->
+      <xs:enumeration value="srn"/>  <!-- Sranan Tongo (Suriname) -->
+      <xs:enumeration value="other"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ComplianceLevelEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="bronze"/>
+      <xs:enumeration value="silver"/>
+      <xs:enumeration value="gold"/>
+      <xs:enumeration value="platinum"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="LicenseEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="all_rights_reserved"/>
+      <xs:enumeration value="cc_by"/>
+      <xs:enumeration value="cc_by_sa"/>
+      <xs:enumeration value="cc_by_nc"/>
+      <xs:enumeration value="cc_by_nc_sa"/>
+      <xs:enumeration value="cc_by_nd"/>
+      <xs:enumeration value="public_domain"/>
+      <xs:enumeration value="custom"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ============================================================ -->
+  <!-- TYPE : IDENTITY                                              -->
+  <!-- ============================================================ -->
+  <xs:complexType name="IdentityType">
+    <xs:sequence>
+      <xs:element name="title">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="original" type="xs:string"/>
+            <xs:element name="fr"       type="xs:string" minOccurs="0"/>
+            <xs:element name="en"       type="xs:string" minOccurs="0"/>
+            <xs:element name="es"       type="xs:string" minOccurs="0"/>
+            <xs:element name="ht"       type="xs:string" minOccurs="0"/>
+            <xs:element name="gcf"      type="xs:string" minOccurs="0"/>
+            <xs:element name="pap"      type="xs:string" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="creators">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="creator" type="cms:CreatorType" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="year_of_creation" type="xs:gYear"    minOccurs="0"/>
+      <xs:element name="year_of_release"  type="xs:gYear"    minOccurs="0"/>
+      <xs:element name="duration_seconds" type="xs:integer"  minOccurs="0"/>
+      <xs:element name="isbn_issn_isan"   type="xs:string"   minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CreatorType">
+    <xs:sequence>
+      <xs:element name="name"        type="xs:string"/>
+      <xs:element name="role">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="director"/>
+            <xs:enumeration value="author"/>
+            <xs:enumeration value="composer"/>
+            <xs:enumeration value="performer"/>
+            <xs:enumeration value="artist"/>
+            <xs:enumeration value="archivist"/>
+            <xs:enumeration value="narrator"/>
+            <xs:enumeration value="producer"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nationality" type="xs:string"  minOccurs="0"/>
+      <xs:element name="diaspora"    type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- TYPE : ORIGIN                                                -->
+  <!-- ============================================================ -->
+  <xs:complexType name="OriginType">
+    <xs:sequence>
+      <xs:element name="territories">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="territory" type="cms:TerritoryCodeEnum" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="production_countries" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="country" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="locations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="location" type="cms:LocationType" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LocationType">
+    <xs:sequence>
+      <xs:element name="name"      type="xs:string"/>
+      <xs:element name="territory" type="xs:string"  minOccurs="0"/>
+      <xs:element name="lat"       type="xs:decimal" minOccurs="0"/>
+      <xs:element name="lon"       type="xs:decimal" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- TYPE : LANGUAGE                                              -->
+  <!-- ============================================================ -->
+  <xs:complexType name="LanguageType">
+    <xs:sequence>
+      <xs:element name="primary"        type="cms:LanguageCodeEnum"/>
+      <xs:element name="additional"     minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="lang" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="subtitles"      minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="lang" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="creole_variant" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- TYPE : CULTURAL MARKERS                                      -->
+  <!-- ============================================================ -->
+  <xs:complexType name="CulturalMarkersType">
+    <xs:sequence>
+      <xs:element name="caribbean_identity_score">
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="100"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="themes">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="theme" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cultural_expressions" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="expression" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="representation" type="cms:RepresentationType" minOccurs="0"/>
+      <xs:element name="historical_periods" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="period" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RepresentationType">
+    <xs:sequence>
+      <xs:element name="afrodescendant_lead"  type="xs:boolean" minOccurs="0"/>
+      <xs:element name="indigenous_presence"  type="xs:boolean" minOccurs="0"/>
+      <xs:element name="creole_language_use"  type="xs:boolean" minOccurs="0"/>
+      <xs:element name="female_lead"          type="xs:boolean" minOccurs="0"/>
+      <xs:element name="youth_focus"          type="xs:boolean" minOccurs="0"/>
+      <xs:element name="diaspora_perspective" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- TYPE : RIGHTS                                                -->
+  <!-- ============================================================ -->
+  <xs:complexType name="RightsType">
+    <xs:sequence>
+      <xs:element name="license"                  type="cms:LicenseEnum" minOccurs="0"/>
+      <xs:element name="rights_holder"            type="xs:string"       minOccurs="0"/>
+      <xs:element name="distribution_territories" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="territory" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="embargo_until" type="xs:date" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- TYPE : TECHNICAL                                             -->
+  <!-- ============================================================ -->
+  <xs:complexType name="TechnicalType">
+    <xs:sequence>
+      <xs:element name="format"       type="xs:string"  minOccurs="0"/>
+      <xs:element name="resolution"   type="xs:string"  minOccurs="0"/>
+      <xs:element name="file_size_mb" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="encoding"     type="xs:string"  minOccurs="0"/>
+      <xs:element name="aspect_ratio" type="xs:string"  minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- TYPE : COMPLIANCE                                            -->
+  <!-- ============================================================ -->
+  <xs:complexType name="ComplianceType">
+    <xs:sequence>
+      <xs:element name="certified"         type="xs:boolean"           minOccurs="0"/>
+      <xs:element name="certified_date"    type="xs:date"              minOccurs="0"/>
+      <xs:element name="certified_by"      type="xs:string"            minOccurs="0" default="Caribwood Language Lab"/>
+      <xs:element name="compliance_level"  type="cms:ComplianceLevelEnum" minOccurs="0"/>
+      <xs:element name="validator_version" type="xs:string"            minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

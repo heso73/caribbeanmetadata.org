@@ -1,279 +1,401 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Documentation & Ressources — Caribbean Metadata Standard</title>
-<meta name="description" content="White Paper, Guide d'implémentation, Bible des métadonnées, Glossaire et FAQ du Caribbean Metadata Standard."/>
-<link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ressources officielles — Caribbean Metadata Standard</title>
+<meta name="description" content="Documentation, White Paper, guide d'implémentation et validateur officiel du Caribbean Metadata Standard v1.0.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #fff; color: #1a1a1a; font-size: 16px; line-height: 1.6; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(255,255,255,0.97);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 0 6%; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { font-size: 20px; font-weight: 700; color: #003E6B; text-decoration: none; letter-spacing: 2px; }
+.nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+.nav-links a { font-size: 13px; color: #444; text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: #003E6B; }
+.nav-links a.active { color: #003E6B; font-weight: 700; }
+.nav-links .nav-validate {
+  padding: 7px 16px; background: #00C2C7; color: #003E6B !important;
+  border-radius: 4px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px;
+}
+.nav-links .nav-validate:hover { background: #00A8AE; }
+
+/* PAGE HEADER */
+.page-header {
+  background: #003E6B; padding: 120px 6% 64px;
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(0,194,199,0.08) 24px),
+    repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(255,201,60,0.06) 24px);
+}
+.page-header-inner { position: relative; z-index: 1; max-width: 760px; }
+.eyebrow {
+  font-size: 11px; letter-spacing: 3px; color: #00C2C7;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: #00C2C7; }
+.page-header h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 16px; }
+.page-header p { font-size: 17px; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.7; }
+
+/* MAIN */
+main { padding: 72px 6%; max-width: 1100px; margin: 0 auto; }
+
+/* SECTION TITLES */
+.section-label {
+  font-size: 11px; letter-spacing: 3px; color: #00C2C7;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+}
+.section-label::before { content: ''; display: block; width: 28px; height: 1px; background: #00C2C7; }
+.section-title { font-size: clamp(22px, 3vw, 34px); font-weight: 700; color: #003E6B; margin-bottom: 40px; line-height: 1.2; }
+
+/* DOCUMENTS */
+.docs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 72px; }
+.doc-card {
+  border: 1px solid rgba(0,62,107,0.12); border-radius: 8px;
+  padding: 28px; background: #fff; transition: box-shadow .2s;
+}
+.doc-card:hover { box-shadow: 0 4px 20px rgba(0,62,107,0.08); }
+.doc-tag {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.doc-tag.primary { background: #003E6B; color: #00C2C7; }
+.doc-tag.tech    { background: #f0f4f8; color: #003E6B; }
+.doc-tag.guide   { background: #e8f5f0; color: #0F6E56; }
+.doc-tag.faq     { background: #fff8e1; color: #BA7517; }
+.doc-tag.glossary{ background: #f9f0fb; color: #7B3FA6; }
+.doc-card h3 { font-size: 18px; font-weight: 700; color: #003E6B; margin-bottom: 10px; }
+.doc-card p  { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 20px; }
+.doc-meta { font-size: 11px; letter-spacing: 1px; color: #aaa; margin-bottom: 16px; }
+.doc-meta span { color: #00C2C7; font-weight: 600; }
+.doc-link {
+  display: inline-block; padding: 9px 20px;
+  border: 1px solid #003E6B; color: #003E6B;
+  text-decoration: none; border-radius: 4px; font-size: 13px;
+  font-weight: 600; transition: all .2s;
+}
+.doc-link:hover { background: #003E6B; color: #fff; }
+.doc-link.disabled { border-color: #ddd; color: #bbb; cursor: default; }
+.doc-link.disabled:hover { background: transparent; color: #bbb; }
+
+/* ══ VALIDATEUR HIGHLIGHT — NOUVEAU ══ */
+.validator-highlight {
+  background: linear-gradient(135deg, #003E6B 0%, #005080 100%);
+  border-radius: 12px; overflow: hidden;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 0; margin-bottom: 72px;
+  border: 1px solid rgba(0,194,199,0.3);
+}
+.vh-content { padding: 40px 40px 40px; }
+.vh-eyebrow {
+  font-size: 10px; letter-spacing: 3px; color: #00C2C7;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+.vh-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: #00C2C7; }
+.vh-content h2 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.2; }
+.vh-content p  { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 28px; max-width: 480px; }
+.vh-pills { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+.vh-pill {
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+}
+.vh-pill.b { background: rgba(200,150,20,0.25); color: #C8960C; }
+.vh-pill.s { background: rgba(158,158,158,0.25); color: #9E9E9E; }
+.vh-pill.g { background: rgba(249,168,37,0.25);  color: #F9A825; }
+.vh-pill.p { background: rgba(15,110,86,0.25);   color: #3FA66B; }
+.vh-btn {
+  display: inline-block; padding: 13px 32px;
+  background: #00C2C7; color: #003E6B;
+  text-decoration: none; border-radius: 4px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+  transition: background .2s;
+}
+.vh-btn:hover { background: #00A8AE; }
+.vh-visual {
+  background: rgba(0,0,0,0.15); padding: 32px 32px 32px 0;
+  display: flex; align-items: center; min-width: 200px;
+}
+.vh-score-demo {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: #0F6E56; border: 3px solid rgba(255,255,255,0.2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin: 0 auto;
+}
+.vh-score-num { font-size: 34px; font-weight: 700; color: #fff; line-height: 1; }
+.vh-score-lbl { font-size: 9px; color: rgba(255,255,255,0.6); letter-spacing: 1.5px; }
+.vh-level-text { font-size: 11px; font-weight: 700; color: #3FA66B; letter-spacing: 2px; margin-top: 12px; text-align: center; }
+
+/* EXEMPLE */
+.example-section { margin-bottom: 72px; }
+.example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(0,62,107,0.1); border-radius: 8px; overflow: hidden; }
+.example-source { padding: 32px; background: #f7f9fb; }
+.example-output { padding: 32px; background: #fff; }
+.example-label { font-size: 10px; letter-spacing: 2px; color: #aaa; font-weight: 700; margin-bottom: 16px; }
+.example-source h4 { font-size: 15px; font-weight: 700; color: #003E6B; margin-bottom: 8px; }
+.example-source p  { font-size: 13px; color: #666; line-height: 1.7; }
+.tag-family { margin-bottom: 14px; }
+.tag-family-name { font-size: 10px; letter-spacing: 1.5px; color: #888; margin-bottom: 6px; text-transform: uppercase; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-pill {
+  padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;
+}
+.tag-pill.ling { background: #e6f1fb; color: #185FA5; }
+.tag-pill.narr { background: #eeedfe; color: #534AB7; }
+.tag-pill.geo  { background: #eaf3de; color: #3B6D11; }
+.tag-pill.soc  { background: #faece7; color: #993C1D; }
+
+/* FAQ */
+.faq-section { margin-bottom: 72px; }
+.faq-list { border: 1px solid rgba(0,62,107,0.1); border-radius: 8px; overflow: hidden; }
+.faq-item { border-bottom: 1px solid rgba(0,62,107,0.08); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  padding: 20px 24px; font-size: 15px; font-weight: 600; color: #003E6B;
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  user-select: none;
+}
+.faq-q::after { content: '+'; font-size: 20px; color: #00C2C7; font-weight: 300; }
+.faq-q.open::after { content: '−'; }
+.faq-a { padding: 0 24px 20px; font-size: 14px; color: #555; line-height: 1.8; display: none; }
+.faq-a.open { display: block; }
+
+/* CTA FINAL */
+.cta-final {
+  background: #003E6B; border-radius: 12px;
+  padding: 48px; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.cta-final h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.cta-final p  { font-size: 15px; color: rgba(255,255,255,0.55); }
+.cta-final a  {
+  display: inline-block; padding: 12px 28px; background: #00C2C7;
+  color: #003E6B; text-decoration: none; border-radius: 4px;
+  font-size: 14px; font-weight: 700; white-space: nowrap;
+  transition: background .2s;
+}
+.cta-final a:hover { background: #00A8AE; }
+
+/* FOOTER */
+footer { background: #003E6B; padding: 56px 6% 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-logo { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 2px; text-decoration: none; display: block; margin-bottom: 12px; }
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.footer-col h4 { font-size: 11px; font-weight: 700; color: #00C2C7; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.footer-col a.highlight { color: #00C2C7; font-weight: 600; }
+.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: rgba(255,255,255,0.35); text-align: center; }
+
+@media(max-width: 900px) {
+  .docs-grid, .example-grid { grid-template-columns: 1fr; }
+  .validator-highlight { grid-template-columns: 1fr; }
+  .vh-visual { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+</style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="nav">
-  <a href="index.html" class="nav-logo">
-    <svg viewBox="0 0 30 30" fill="none">
-      <path d="M15 2.5A12.5 12.5 0 1 0 15 27.5" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M15 2.5Q5 8 6 15Q7 22 15 27.5" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="15" cy="2.5" r="2" fill="#FFC93C"/>
-      <circle cx="15" cy="27.5" r="2" fill="#FFC93C"/>
-      <circle cx="2.5" cy="15" r="1.8" fill="#00C2C7"/>
-    </svg>
-    <span class="nav-logo-text">CMS</span>
-  </a>
-  <ul class="nav-links" id="navLinks">
+<nav>
+  <a class="nav-logo" href="index.html">CMS</a>
+  <ul class="nav-links">
     <li><a href="about.html">À propos</a></li>
     <li><a href="families.html">Les 6 familles</a></li>
     <li><a href="resources.html" class="active">Ressources</a></li>
     <li><a href="lab.html">Language Lab</a></li>
     <li><a href="collaborate.html">Collaborer</a></li>
-    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
   </ul>
-  <div class="nav-burger" id="burger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
 </nav>
 
-<!-- HERO -->
-<section class="page-hero tressage">
-  <div class="page-hero-inner">
-    <p class="page-hero-label">Documentation</p>
-    <h1>Ressources <span>officielles</span></h1>
-    <p class="page-hero-sub">Tous les documents nécessaires pour comprendre, implémenter et promouvoir le Caribbean Metadata Standard.</p>
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="eyebrow">Documentation</div>
+    <h1>Ressources officielles</h1>
+    <p>Tous les documents nécessaires pour comprendre, implémenter et promouvoir le Caribbean Metadata Standard.</p>
   </div>
-</section>
+</div>
 
-<!-- DOCUMENTS PRINCIPAUX -->
-<section class="section">
-  <div class="section-inner">
-    <p class="section-label">Documents officiels</p>
-    <h2 class="section-title">Télécharger la documentation CMS</h2>
-    <p class="section-sub">Les documents fondateurs du standard — en accès libre pour tous les créateurs, institutions et plateformes.</p>
+<main>
 
-    <div class="grid-2" style="margin-bottom:3rem;">
+  <!-- Documents officiels -->
+  <div class="section-label">Documents officiels</div>
+  <h2 class="section-title">Télécharger la documentation CMS</h2>
+  <div class="docs-grid">
 
-      <!-- White Paper -->
-      <div style="background:var(--bleu);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden;" class="anim-up">
-        <div style="position:absolute;top:0;right:0;bottom:0;left:0;background-image:linear-gradient(rgba(0,194,199,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,194,199,0.07) 1px,transparent 1px);background-size:32px 32px;"></div>
-        <div style="position:relative;">
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-            <div style="background:rgba(0,194,199,0.15);border:1px solid rgba(0,194,199,0.3);width:44px;height:44px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <rect x="3" y="2" width="14" height="16" rx="1.5" stroke="#00C2C7" stroke-width="1.5"/>
-                <line x1="6" y1="7" x2="14" y2="7" stroke="#00C2C7" stroke-width="1"/>
-                <line x1="6" y1="10" x2="14" y2="10" stroke="#00C2C7" stroke-width="1"/>
-                <line x1="6" y1="13" x2="10" y2="13" stroke="#00C2C7" stroke-width="1"/>
-              </svg>
-            </div>
-            <span class="tag tag--turquoise">Document fondateur</span>
-          </div>
-          <h3 style="font-family:var(--font-titre);font-size:1.4rem;color:var(--blanc);margin-bottom:0.75rem;">White Paper CMS</h3>
-          <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:1.5rem;">
-            Le document de référence du standard — vision, doctrine, architecture des 6 familles, cadre d'implémentation et bénéfices pour l'écosystème caribéen.
-          </p>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.1);">
-            <div>
-              <p style="font-family:var(--font-mono);font-size:0.65rem;color:rgba(255,255,255,0.4);letter-spacing:0.1em;">VERSION</p>
-              <p style="font-size:0.82rem;color:var(--turquoise);">CMS v1.0 — 2026</p>
-            </div>
-            <a href="contact.html" class="btn btn-primary" style="font-size:0.82rem;padding:0.6rem 1.2rem;">
-              Demander l'accès →
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Metadata Bible -->
-      <div style="background:var(--gris);border-radius:var(--radius);padding:2.5rem;border:1px solid var(--gris-bord);" class="anim-up">
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-          <div style="background:rgba(255,201,60,0.12);border:1px solid rgba(255,201,60,0.3);width:44px;height:44px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M4 3h9l3 3v11H4V3z" stroke="#FFC93C" stroke-width="1.5"/>
-              <path d="M13 3v3h3" stroke="#FFC93C" stroke-width="1.5"/>
-              <line x1="7" y1="9" x2="13" y2="9" stroke="#FFC93C" stroke-width="1"/>
-              <line x1="7" y1="12" x2="13" y2="12" stroke="#FFC93C" stroke-width="1"/>
-            </svg>
-          </div>
-          <span class="tag tag--jaune">Référence technique</span>
-        </div>
-        <h3 style="font-family:var(--font-titre);font-size:1.4rem;color:var(--bleu);margin-bottom:0.75rem;">Bible des métadonnées</h3>
-        <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.7;margin-bottom:1.5rem;">
-          Le répertoire complet de tous les tags CMS — définitions, règles d'usage, exemples d'application et recommandations pour chacune des 6 familles.
-        </p>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1.2rem;border-top:1px solid var(--gris-bord);">
-          <div>
-            <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--gris-mid);letter-spacing:0.1em;">STATUT</p>
-            <p style="font-size:0.82rem;color:var(--jaune);">En cours de finalisation</p>
-          </div>
-          <a href="contact.html" class="btn btn-outline" style="font-size:0.82rem;padding:0.6rem 1.2rem;">
-            Être notifié →
-          </a>
-        </div>
-      </div>
+    <div class="doc-card">
+      <div class="doc-tag primary">Document fondateur</div>
+      <h3>White Paper CMS</h3>
+      <p>Le document de référence du standard — vision, doctrine, architecture des 6 familles, cadre d'implémentation et bénéfices pour l'écosystème caribéen.</p>
+      <div class="doc-meta">VERSION <span>CMS v1.0 — 2026</span></div>
+      <a href="contact.html" class="doc-link">Demander l'accès →</a>
     </div>
 
-    <!-- Autres ressources -->
-    <div class="grid-3">
-      <div class="card anim-up">
-        <div style="width:36px;height:36px;background:rgba(63,166,107,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M2 14l4-4 3 3 5-7" stroke="#3FA66B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <span class="tag tag--vert" style="margin-bottom:0.75rem;display:inline-block;">Guide</span>
-        <h3 style="font-size:1rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Guide d'implémentation</h3>
-        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;margin-bottom:1.2rem;">Comment intégrer le CMS dans votre pipeline de production, de post-production ou d'archivage.</p>
-        <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--vert);">Disponible Q3 2026</p>
-      </div>
+    <div class="doc-card">
+      <div class="doc-tag tech">Référence technique</div>
+      <h3>Bible des métadonnées</h3>
+      <p>Le répertoire complet de tous les tags CMS — définitions, règles d'usage, exemples d'application et recommandations pour chacune des 6 familles.</p>
+      <div class="doc-meta">STATUT <span>En cours de finalisation</span></div>
+      <a href="contact.html" class="doc-link">Être notifié →</a>
+    </div>
 
-      <div class="card anim-up">
-        <div style="width:36px;height:36px;background:rgba(255,111,97,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <circle cx="9" cy="9" r="7" stroke="#FF6F61" stroke-width="1.5"/>
-            <line x1="9" y1="6" x2="9" y2="9" stroke="#FF6F61" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="9" cy="12" r="0.75" fill="#FF6F61"/>
-          </svg>
-        </div>
-        <span class="tag tag--corail" style="margin-bottom:0.75rem;display:inline-block;">FAQ</span>
-        <h3 style="font-size:1rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Questions fréquentes</h3>
-        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;margin-bottom:1.2rem;">Tout ce que vous devez savoir avant d'implémenter le CMS dans vos projets — réponses claires et directes.</p>
-        <a href="#faq" class="btn btn-outline" style="font-size:0.78rem;padding:0.5rem 1rem;">Voir la FAQ</a>
-      </div>
+    <div class="doc-card">
+      <div class="doc-tag guide">Guide</div>
+      <h3>Guide d'implémentation</h3>
+      <p>Comment intégrer le CMS dans votre pipeline de production, de post-production ou d'archivage — avec exemples concrets et cas d'usage.</p>
+      <div class="doc-meta">DISPONIBILITÉ <span>Q3 2026</span></div>
+      <span class="doc-link disabled">Bientôt disponible</span>
+    </div>
 
-      <div class="card anim-up">
-        <div style="width:36px;height:36px;background:rgba(0,62,107,0.08);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <rect x="2" y="2" width="14" height="14" rx="2" stroke="#003E6B" stroke-width="1.5"/>
-            <line x1="5" y1="7" x2="13" y2="7" stroke="#003E6B" stroke-width="1"/>
-            <line x1="5" y1="10" x2="10" y2="10" stroke="#003E6B" stroke-width="1"/>
-          </svg>
+    <div class="doc-card">
+      <div class="doc-tag glossary">Glossaire</div>
+      <h3>Glossaire caribéen</h3>
+      <p>Définitions des termes culturels, linguistiques et techniques utilisés dans le standard CMS — de la créolisation au code-switching.</p>
+      <div class="doc-meta">DISPONIBILITÉ <span>Q3 2026</span></div>
+      <span class="doc-link disabled">Bientôt disponible</span>
+    </div>
+
+  </div>
+
+  <!-- ══ VALIDATEUR HIGHLIGHT — NOUVEAU ══ -->
+  <div class="section-label">Outil officiel · Nouveau</div>
+  <h2 class="section-title">Certifiez votre contenu caribéen</h2>
+
+  <div class="validator-highlight">
+    <div class="vh-content">
+      <div class="vh-eyebrow">Validateur CMS v1.0</div>
+      <h2>Obtenez votre certification officielle</h2>
+      <p>Soumettez les métadonnées de votre contenu en 4 étapes guidées. L'algorithme CMS calcule votre score d'ancrage caribéen et délivre une certification téléchargeable.</p>
+      <div class="vh-pills">
+        <span class="vh-pill b">BRONZE ≥ 20</span>
+        <span class="vh-pill s">SILVER ≥ 40</span>
+        <span class="vh-pill g">GOLD ≥ 65</span>
+        <span class="vh-pill p">PLATINUM ≥ 85</span>
+      </div>
+      <a href="validator.html" class="vh-btn">Accéder au validateur →</a>
+    </div>
+    <div class="vh-visual">
+      <div>
+        <div class="vh-score-demo">
+          <span class="vh-score-num">88</span>
+          <span class="vh-score-lbl">/ 100</span>
         </div>
-        <span class="tag tag--bleu" style="margin-bottom:0.75rem;display:inline-block;">Glossaire</span>
-        <h3 style="font-size:1rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Glossaire caribéen</h3>
-        <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;margin-bottom:1.2rem;">Définitions des termes culturels, linguistiques et techniques utilisés dans le standard CMS.</p>
-        <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--bleu);">Disponible Q3 2026</p>
+        <div class="vh-level-text">PLATINUM</div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- EXEMPLE DE TAGGING -->
-<section class="section" style="background:var(--graphite);">
-  <div class="section-inner">
-    <p class="section-label" style="color:var(--turquoise);">Exemple concret</p>
-    <h2 class="section-title section-title--light">Comment tagger un contenu avec le CMS</h2>
-    <p class="section-sub section-sub--light">Illustration avec une série Caribwood fictive — du contenu brut aux métadonnées structurées.</p>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
-      <!-- Contenu source -->
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:2rem;">
-        <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--gris-mid);letter-spacing:0.2em;margin-bottom:1.2rem;">CONTENU SOURCE</p>
-        <h4 style="color:var(--blanc);font-size:1rem;margin-bottom:0.5rem;">"Morne Bleu" — Série dramatique</h4>
-        <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.7;">
-          Une saga familiale en 6 épisodes, tournée en Guadeloupe rurale. Les personnages alternent entre créole guadeloupéen et français. L'histoire explore la transmission des savoirs agricoles, la spiritualité syncrétique et le retour d'une jeune diasporique de Paris.
-        </p>
+  <!-- Exemple concret -->
+  <div class="example-section">
+    <div class="section-label">Exemple concret</div>
+    <h2 class="section-title">Comment tagger un contenu avec le CMS</h2>
+    <div class="example-grid">
+      <div class="example-source">
+        <div class="example-label">CONTENU SOURCE</div>
+        <h4>"Morne Bleu" — Série dramatique</h4>
+        <p>Une saga familiale en 6 épisodes, tournée en Guadeloupe rurale. Les personnages alternent entre créole guadeloupéen et français. L'histoire explore la transmission des savoirs agricoles, la spiritualité syncrétique et le retour d'une jeune diasporique de Paris.</p>
       </div>
-
-      <!-- Tags CMS générés -->
-      <div style="background:rgba(0,62,107,0.4);border:1px solid rgba(0,194,199,0.2);border-radius:var(--radius);padding:2rem;">
-        <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);letter-spacing:0.2em;margin-bottom:1.2rem;">TAGS CMS GÉNÉRÉS</p>
-        <div style="display:flex;flex-direction:column;gap:0.9rem;">
-          <div>
-            <p style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Linguistique</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
-              <span class="tag tag--turquoise">Créole guadeloupéen</span>
-              <span class="tag tag--turquoise">Code-switching</span>
-            </div>
+      <div class="example-output">
+        <div class="example-label">TAGS CMS GÉNÉRÉS</div>
+        <div class="tag-family">
+          <div class="tag-family-name">Linguistique</div>
+          <div class="tag-row">
+            <span class="tag-pill ling">Créole guadeloupéen</span>
+            <span class="tag-pill ling">Code-switching</span>
           </div>
-          <div>
-            <p style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Narrative</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
-              <span class="tag tag--corail">Saga familiale</span>
-              <span class="tag tag--corail">Récit initiatique</span>
-            </div>
+        </div>
+        <div class="tag-family">
+          <div class="tag-family-name">Narrative</div>
+          <div class="tag-row">
+            <span class="tag-pill narr">Saga familiale</span>
+            <span class="tag-pill narr">Récit initiatique</span>
           </div>
-          <div>
-            <p style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Géographique</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
-              <span class="tag tag--bleu">Guadeloupe</span>
-              <span class="tag tag--bleu">Rural tropical</span>
-            </div>
+        </div>
+        <div class="tag-family">
+          <div class="tag-family-name">Géographique</div>
+          <div class="tag-row">
+            <span class="tag-pill geo">Guadeloupe</span>
+            <span class="tag-pill geo">Rural tropical</span>
           </div>
-          <div>
-            <p style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Socio-historique</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
-              <span class="tag tag--turquoise">Créolisation</span>
-              <span class="tag tag--turquoise">Retour au pays</span>
-            </div>
+        </div>
+        <div class="tag-family">
+          <div class="tag-family-name">Socio-historique</div>
+          <div class="tag-row">
+            <span class="tag-pill soc">Créolisation</span>
+            <span class="tag-pill soc">Retour au pays</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="section-inner">
-    <p class="section-label">FAQ</p>
+  <!-- FAQ -->
+  <div id="faq" class="faq-section">
+    <div class="section-label">FAQ</div>
     <h2 class="section-title">Questions fréquentes</h2>
-    <p class="section-sub">Réponses aux questions les plus courantes sur le CMS.</p>
-
-    <div style="display:flex;flex-direction:column;gap:1rem;max-width:780px;">
-
-      <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Le CMS est-il gratuit ?</h3>
-        <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">Oui. Le CMS est un standard ouvert. Sa documentation est accessible librement. Seule la certification CMS‑Compliant est soumise à un processus de validation par le Caribwood Language Lab.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Le CMS est-il gratuit ?</div>
+        <div class="faq-a">Oui. Le CMS est un standard ouvert. Sa documentation est accessible librement. Seule la certification CMS‑Compliant est soumise à un processus de validation par le Caribwood Language Lab.</div>
       </div>
-
-      <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Le CMS est-il compatible avec les standards existants ?</h3>
-        <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">Oui. Le CMS est conçu pour être interopérable avec Dublin Core, Schema.org et les formats de métadonnées utilisés par les grandes plateformes de streaming. Il s'ajoute à ces systèmes sans les remplacer.</p>
+      <div class="faq-item">
+        <div class="faq-q">Le CMS est-il compatible avec les standards existants ?</div>
+        <div class="faq-a">Oui. Le CMS est conçu pour être interopérable avec Dublin Core, Schema.org et les formats de métadonnées utilisés par les grandes plateformes de streaming. Il s'ajoute à ces systèmes sans les remplacer.</div>
       </div>
-
-      <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Qui peut utiliser le CMS ?</h3>
-        <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">Tout créateur, institution, plateforme ou chercheur travaillant avec des contenus caribéens. Le standard est conçu pour être utilisable aussi bien par un réalisateur indépendant que par une grande institution culturelle.</p>
+      <div class="faq-item">
+        <div class="faq-q">Qui peut utiliser le CMS ?</div>
+        <div class="faq-a">Tout créateur, institution, plateforme ou chercheur travaillant avec des contenus caribéens. Le standard est conçu pour être utilisable aussi bien par un réalisateur indépendant que par une grande institution culturelle.</div>
       </div>
-
-      <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Comment obtenir la certification CMS‑Compliant ?</h3>
-        <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">Le processus de certification sera ouvert à partir de la Phase 4 de la roadmap (12-15 mois). En attendant, contactez le Caribwood Language Lab pour être informé dès l'ouverture.</p>
+      <div class="faq-item">
+        <div class="faq-q">Comment obtenir la certification CMS‑Compliant ?</div>
+        <div class="faq-a">Utilisez le <a href="validator.html" style="color:#003E6B;font-weight:600;">Validateur CMS officiel</a> pour soumettre vos métadonnées et obtenir votre score d'ancrage caribéen. Le certificat téléchargeable est généré automatiquement. Pour une certification institutionnelle formelle, contactez le Caribwood Language Lab.</div>
       </div>
-
-      <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-        <h3 style="font-size:0.95rem;font-weight:500;color:var(--bleu);margin-bottom:0.5rem;">Le CMS couvre-t-il toute la Caraïbe ?</h3>
-        <p style="font-size:0.85rem;color:var(--gris-mid);line-height:1.6;">La v1.0 couvre les territoires francophones et anglophones de la Caraïbe. La v2.0 intégrera les territoires hispanophones et néerlandophones dans le cadre de la Phase 4 de standardisation régionale.</p>
+      <div class="faq-item">
+        <div class="faq-q">Le CMS couvre-t-il toute la Caraïbe ?</div>
+        <div class="faq-a">La v1.0 couvre l'ensemble des territoires caribéens — francophones, anglophones, hispanophones et créolophones — avec les langues fr, en, es, ht (créole haïtien), gcf (créole guadeloupéen/martiniquais), pap (papiamentu) et srn (sranan tongo).</div>
       </div>
-
+      <div class="faq-item">
+        <div class="faq-q">Puis-je valider mon contenu maintenant ?</div>
+        <div class="faq-a">Oui. Le validateur est disponible dès aujourd'hui à l'adresse <a href="validator.html" style="color:#003E6B;font-weight:600;">caribbeanmetadata.org/validator.html</a>. Il génère votre score, votre niveau de certification et un fichier JSON CMS téléchargeable en moins de 5 minutes.</div>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- CTA -->
-<section class="section tressage" style="background:var(--bleu);text-align:center;">
-  <div class="section-inner">
-    <p class="section-label" style="justify-content:center;">Une question ?</p>
-    <h2 class="section-title section-title--light" style="margin:0 auto 1rem;">Vous ne trouvez pas ce que vous cherchez ?</h2>
-    <p class="section-sub section-sub--light" style="margin:0 auto 2.5rem;">L'équipe du Caribwood Language Lab répond à toutes vos questions sur l'implémentation du standard.</p>
-    <a href="contact.html" class="btn btn-primary">Contacter le Language Lab</a>
+  <!-- CTA final -->
+  <div class="cta-final">
+    <div>
+      <h2>Vous ne trouvez pas ce que vous cherchez ?</h2>
+      <p>L'équipe du Caribwood Language Lab répond à toutes vos questions sur l'implémentation du standard.</p>
+    </div>
+    <a href="contact.html">Contacter le Language Lab →</a>
   </div>
-</section>
+
+</main>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-main">
+<footer>
+  <div class="footer-grid">
     <div class="footer-brand">
-      <a href="index.html" class="nav-logo" style="margin-bottom:1rem;">
-        <svg viewBox="0 0 30 30" fill="none" width="24" height="24">
-          <path d="M15 2.5A12.5 12.5 0 1 0 15 27.5" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M15 2.5Q5 8 6 15Q7 22 15 27.5" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="15" cy="2.5" r="2" fill="#FFC93C"/>
-          <circle cx="15" cy="27.5" r="2" fill="#FFC93C"/>
-          <circle cx="2.5" cy="15" r="1.8" fill="#00C2C7"/>
-        </svg>
-        <span class="nav-logo-text">CMS</span>
-      </a>
+      <a class="footer-logo" href="index.html">CMS</a>
       <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
     </div>
     <div class="footer-col">
@@ -298,31 +420,27 @@
         <li><a href="resources.html">White Paper</a></li>
         <li><a href="resources.html">Glossaire</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="validator.html" class="highlight">→ Valider un contenu</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p><strong>caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</p>
-    <div class="footer-bandes">
-      <span style="background:#003E6B;"></span>
-      <span style="background:#00C2C7;"></span>
-      <span style="background:#FFC93C;"></span>
-      <span style="background:#FF6F61;"></span>
-      <span style="background:#3FA66B;"></span>
-    </div>
+    <strong style="color:rgba(255,255,255,0.5)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
   </div>
 </footer>
 
 <script>
-function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('open');
-}
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const a = q.nextElementSibling;
+    const isOpen = q.classList.contains('open');
+    document.querySelectorAll('.faq-q.open').forEach(o => {
+      o.classList.remove('open');
+      o.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) { q.classList.add('open'); a.classList.add('open'); }
   });
-}, { threshold: 0.1 });
-document.querySelectorAll('.anim-up').forEach(el => observer.observe(el));
+});
 </script>
 </body>
 </html>

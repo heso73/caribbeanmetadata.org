@@ -1,0 +1,108 @@
+{
+  "_comment": "EXEMPLE CMS — Film audiovisuel caribéen fictif à titre de démonstration",
+  "cms_version": "1.0",
+
+  "content_type": "audiovisual",
+  "content_subtype": "film",
+
+  "identity": {
+    "title": {
+      "original": "Anba Dlo",
+      "fr": "Sous les eaux",
+      "en": "Beneath the Waters",
+      "es": "Bajo las Aguas",
+      "gcf": "Anba Dlo",
+      "ht": "Anba Dlo"
+    },
+    "creator": [
+      {
+        "name": "Marie-Cécile Bonhomme",
+        "role": "director",
+        "nationality": "GP",
+        "diaspora": false
+      },
+      {
+        "name": "Jean-Louis Théodore",
+        "role": "producer",
+        "nationality": "MQ",
+        "diaspora": false
+      }
+    ],
+    "year_of_creation": 2025,
+    "year_of_release": 2026,
+    "duration_seconds": 5820
+  },
+
+  "origin": {
+    "territory": ["GP", "MQ"],
+    "production_country": ["FR", "GP"],
+    "location_shoot": [
+      {
+        "name": "Pointe-à-Pitre",
+        "territory": "GP",
+        "lat": 16.2409,
+        "lon": -61.5332
+      },
+      {
+        "name": "Sainte-Anne",
+        "territory": "GP",
+        "lat": 16.2236,
+        "lon": -61.3803
+      }
+    ]
+  },
+
+  "language": {
+    "primary": "gcf",
+    "additional": ["fr"],
+    "subtitles": ["fr", "en", "es"],
+    "creole_variant": "guadeloupean"
+  },
+
+  "cultural_markers": {
+    "caribbean_identity_score": 88,
+    "themes": [
+      "creolization",
+      "maritime_culture",
+      "caribbean_nature",
+      "identity_language",
+      "oral_tradition"
+    ],
+    "cultural_expressions": [
+      "gwo_ka",
+      "carnival",
+      "creole_cuisine"
+    ],
+    "representation": {
+      "afrodescendant_lead": true,
+      "indigenous_presence": false,
+      "creole_language_use": true,
+      "female_lead": true,
+      "youth_focus": false,
+      "diaspora_perspective": false
+    },
+    "historical_period": ["contemporary"]
+  },
+
+  "rights": {
+    "license": "all_rights_reserved",
+    "rights_holder": "Caribwood Language Lab",
+    "distribution_territories": ["GP", "MQ", "GF", "HT", "FR", "DIASPORA"]
+  },
+
+  "technical": {
+    "format": "MP4",
+    "resolution": "4K",
+    "file_size_mb": 18400,
+    "encoding": "H.265",
+    "aspect_ratio": "2.39:1"
+  },
+
+  "cms_compliance": {
+    "certified": true,
+    "certified_date": "2026-04-11",
+    "certified_by": "Caribwood Language Lab",
+    "compliance_level": "platinum",
+    "validator_version": "1.0"
+  }
+}
