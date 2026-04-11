@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validateur CMS — Caribbean Metadata Standard</title>
+<meta name="description" content="Validez et certifiez vos contenus caribéens selon le Caribbean Metadata Standard v1.0. Obtenez votre niveau de certification : Bronze, Silver, Gold ou Platinum.">
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ── NAV — identique au site existant ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(255,255,255,0.97);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 0 6%;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-size: 20px; font-weight: 700; color: #003E6B;
+  text-decoration: none; letter-spacing: 2px;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 13px; color: #444; text-decoration: none;
+  letter-spacing: 0.3px; transition: color .2s;
+}
+.nav-links a:hover { color: #003E6B; }
+.nav-links a.active { color: #003E6B; font-weight: 600; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: #003E6B;
+  padding: 120px 6% 64px;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(0,194,199,0.08) 24px),
+    repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(255,201,60,0.06) 24px);
+}
+.page-header-inner { position: relative; z-index: 1; max-width: 760px; }
+.page-eyebrow {
+  font-size: 11px; letter-spacing: 3px; color: #00C2C7;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.page-eyebrow::before {
+  content: ''; display: block; width: 28px; height: 1px; background: #00C2C7;
+}
+.page-header h1 {
+  font-size: clamp(32px, 5vw, 56px); font-weight: 700;
+  color: #fff; line-height: 1.1; margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.page-header p {
+  font-size: 17px; color: rgba(255,255,255,0.65);
+  max-width: 560px; line-height: 1.7;
+}
+
+/* ── MAIN CONTENT ── */
+main { padding: 72px 6%; max-width: 1100px; margin: 0 auto; }
+
+/* ── INTRO BLOC ── */
+.intro-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px; margin-bottom: 64px;
+}
+.intro-card {
+  padding: 24px;
+  border: 1px solid rgba(0,62,107,0.1);
+  border-radius: 8px;
+  background: #f9fbfd;
+}
+.intro-card-num {
+  font-size: 11px; letter-spacing: 2px; color: #00C2C7;
+  margin-bottom: 10px; font-weight: 600;
+}
+.intro-card h3 { font-size: 15px; font-weight: 600; color: #003E6B; margin-bottom: 8px; }
+.intro-card p { font-size: 13px; color: #666; line-height: 1.6; }
+
+/* ── LEVEL BADGES ── */
+.levels-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 56px;
+}
+.level-card {
+  padding: 20px 16px; border-radius: 8px; text-align: center;
+  border: 1px solid transparent;
+}
+.level-card.bronze  { background: #FDF6E3; border-color: #C8960C; }
+.level-card.silver  { background: #F5F5F5; border-color: #9E9E9E; }
+.level-card.gold    { background: #FFF8E1; border-color: #F9A825; }
+.level-card.platinum{ background: #E8F5F0; border-color: #0F6E56; }
+.level-pill {
+  display: inline-block; padding: 3px 12px;
+  border-radius: 20px; font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; margin-bottom: 8px;
+}
+.bronze  .level-pill { background: #C8960C; color: #fff; }
+.silver  .level-pill { background: #9E9E9E; color: #fff; }
+.gold    .level-pill { background: #F9A825; color: #fff; }
+.platinum .level-pill { background: #0F6E56; color: #fff; }
+.level-card .score { font-size: 22px; font-weight: 700; color: #1a1a1a; }
+.level-card .score-label { font-size: 11px; color: #888; margin-bottom: 6px; }
+.level-card .level-desc { font-size: 12px; color: #555; line-height: 1.5; }
+
+/* ── SECTION TITLE ── */
+.section-label {
+  font-size: 11px; letter-spacing: 3px; color: #00C2C7;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+}
+.section-label::before {
+  content: ''; display: block; width: 28px; height: 1px; background: #00C2C7;
+}
+.section-title {
+  font-size: clamp(22px, 3vw, 32px); font-weight: 700;
+  color: #003E6B; margin-bottom: 40px; line-height: 1.2;
+}
+
+/* ── VALIDATEUR ── */
+.validator-wrap {
+  border: 1px solid rgba(0,62,107,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 72px;
+  box-shadow: 0 4px 32px rgba(0,62,107,0.06);
+}
+
+/* Header validateur */
+.val-header {
+  background: #003E6B;
+  padding: 24px 32px;
+  display: flex; align-items: center; gap: 20px;
+}
+.val-logo {
+  width: 48px; height: 48px; flex-shrink: 0;
+}
+.val-header-text h2 {
+  font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 2px;
+}
+.val-header-text p {
+  font-size: 11px; color: #00C2C7; letter-spacing: 2px;
+}
+.val-badge {
+  margin-left: auto; padding: 6px 14px;
+  border: 1px solid rgba(0,194,199,0.4);
+  border-radius: 20px; font-size: 11px; color: #00C2C7;
+  letter-spacing: 1px;
+}
+
+/* Stepper */
+.val-stepper {
+  display: flex; background: #f9fbfd;
+  border-bottom: 1px solid rgba(0,62,107,0.1);
+}
+.val-step {
+  flex: 1; padding: 14px 8px;
+  font-size: 12px; text-align: center;
+  color: #999; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all .2s; background: transparent; border-top: none;
+  border-left: none; border-right: none; font-family: inherit;
+}
+.val-step.active { color: #003E6B; border-bottom-color: #00C2C7; font-weight: 600; }
+.val-step.done   { color: #3FA66B; }
+
+/* Panels */
+.val-panel { padding: 32px; background: #fff; display: none; }
+.val-panel.visible { display: block; }
+
+/* Champs */
+.field { margin-bottom: 24px; }
+.field label {
+  display: block; font-size: 12px; color: #666;
+  margin-bottom: 7px; letter-spacing: 0.3px;
+}
+.field label .req { color: #FF6F61; margin-left: 4px; font-size: 11px; }
+.field input[type="text"],
+.field input[type="number"],
+.field select {
+  width: 100%; padding: 10px 14px;
+  border: 1px solid rgba(0,62,107,0.2);
+  border-radius: 6px; font-size: 14px;
+  background: #fff; color: #1a1a1a;
+  font-family: inherit; transition: border-color .2s;
+  appearance: auto;
+}
+.field input:focus, .field select:focus {
+  outline: none; border-color: #00C2C7;
+  box-shadow: 0 0 0 3px rgba(0,194,199,0.1);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.err { font-size: 11px; color: #FF6F61; margin-top: 5px; display: none; }
+.err.show { display: block; }
+
+/* Tags */
+.tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.tag {
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 12px; cursor: pointer;
+  border: 1px solid rgba(0,62,107,0.2);
+  background: #f9fbfd; color: #555;
+  transition: all .15s; user-select: none;
+}
+.tag:hover { border-color: #003E6B; color: #003E6B; }
+.tag.sel   { background: #003E6B; color: #00C2C7; border-color: #003E6B; }
+.tag.expr.sel { background: #FFC93C; color: #2A2A2A; border-color: #FFC93C; }
+
+/* Navigation panel */
+.val-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 28px; padding-top: 24px;
+  border-top: 1px solid rgba(0,62,107,0.08);
+}
+.val-nav-info { font-size: 12px; color: #999; }
+.btn-back {
+  padding: 10px 20px; background: transparent;
+  color: #666; border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px; font-size: 13px; cursor: pointer; font-family: inherit;
+  transition: all .2s;
+}
+.btn-back:hover { border-color: #003E6B; color: #003E6B; }
+.btn-forward {
+  padding: 10px 24px; background: #003E6B;
+  color: #fff; border: none; border-radius: 6px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: background .2s;
+  letter-spacing: 0.3px;
+}
+.btn-forward:hover { background: #00537A; }
+.btn-certify {
+  padding: 11px 28px; background: #00C2C7;
+  color: #003E6B; border: none; border-radius: 6px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  font-family: inherit; transition: background .2s;
+  letter-spacing: 0.5px;
+}
+.btn-certify:hover { background: #00A8AE; }
+
+/* ── RESULT ── */
+.result-header-block {
+  padding: 28px 32px;
+  display: flex; align-items: center; gap: 24px;
+}
+.score-circle {
+  width: 80px; height: 80px; border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 3px solid rgba(255,255,255,0.35);
+  flex-shrink: 0;
+}
+.score-num { font-size: 28px; font-weight: 700; color: #fff; line-height: 1; }
+.score-lbl { font-size: 9px; color: rgba(255,255,255,0.7); letter-spacing: 1.5px; }
+.result-meta h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.result-meta p  { font-size: 13px; color: rgba(255,255,255,0.6); }
+.result-level-badge {
+  display: inline-block; padding: 4px 14px;
+  background: rgba(255,255,255,0.2); color: #fff;
+  border-radius: 20px; font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; margin-bottom: 8px;
+}
+.result-body { padding: 28px 32px; background: #fff; }
+
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 12px; margin-bottom: 28px;
+}
+.metric-box {
+  background: #f9fbfd; border-radius: 8px;
+  padding: 16px; text-align: center;
+}
+.metric-val { font-size: 26px; font-weight: 700; color: #003E6B; }
+.metric-lbl { font-size: 11px; color: #888; margin-top: 3px; }
+
+.progress-wrap { margin: 8px 0 6px; }
+.progress-bg {
+  height: 8px; background: #f0f0f0; border-radius: 4px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; border-radius: 4px;
+  transition: width .7s cubic-bezier(.4,0,.2,1);
+}
+.progress-scale {
+  display: flex; justify-content: space-between;
+  font-size: 10px; color: #aaa; margin-top: 4px;
+}
+
+.checks-title {
+  font-size: 11px; letter-spacing: 2px; color: #999;
+  margin: 24px 0 12px; text-transform: uppercase;
+}
+.check-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 0; border-bottom: 1px solid rgba(0,62,107,0.06);
+  font-size: 13px; color: #333;
+}
+.check-item:last-child { border-bottom: none; }
+.check-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.check-dot.ok   { background: #3FA66B; }
+.check-dot.warn { background: #FFC93C; }
+.check-status {
+  margin-left: auto; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+}
+.check-status.ok   { color: #3FA66B; }
+.check-status.warn { color: #FFC93C; }
+
+.cert-footer {
+  margin-top: 20px; padding: 14px 16px;
+  background: #f9fbfd; border-radius: 8px;
+  font-size: 12px; color: #888;
+  border-left: 3px solid #00C2C7; border-radius: 0 6px 6px 0;
+}
+.cert-footer strong { color: #003E6B; }
+
+.result-actions {
+  display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap;
+  margin-top: 24px; padding-top: 20px;
+  border-top: 1px solid rgba(0,62,107,0.08);
+}
+.btn-reset {
+  padding: 10px 20px; background: transparent;
+  color: #666; border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px; font-size: 13px; cursor: pointer;
+  font-family: inherit;
+}
+.btn-export {
+  padding: 10px 22px; background: #003E6B;
+  color: #fff; border: none; border-radius: 6px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  font-family: inherit;
+}
+.btn-json {
+  padding: 10px 22px; background: #00C2C7;
+  color: #003E6B; border: none; border-radius: 6px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  font-family: inherit;
+}
+
+/* ── HOW IT WORKS ── */
+.how-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 0; margin-bottom: 72px;
+  border: 1px solid rgba(0,62,107,0.1); border-radius: 8px; overflow: hidden;
+}
+.how-step {
+  padding: 28px 20px;
+  border-right: 1px solid rgba(0,62,107,0.1);
+}
+.how-step:last-child { border-right: none; }
+.how-num {
+  font-size: 32px; font-weight: 700; color: rgba(0,62,107,0.12);
+  margin-bottom: 12px; font-variant-numeric: tabular-nums;
+}
+.how-step h4 { font-size: 14px; font-weight: 600; color: #003E6B; margin-bottom: 6px; }
+.how-step p  { font-size: 13px; color: #666; line-height: 1.6; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  background: #003E6B; border-radius: 12px;
+  padding: 48px; margin-bottom: 72px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  flex-wrap: wrap;
+}
+.cta-section h2 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.cta-section p  { font-size: 15px; color: rgba(255,255,255,0.6); }
+.cta-btn {
+  padding: 13px 28px; background: #00C2C7; color: #003E6B;
+  border: none; border-radius: 6px; font-size: 14px;
+  font-weight: 700; text-decoration: none; white-space: nowrap;
+  display: inline-block;
+}
+
+/* ── FOOTER — identique au site ── */
+footer {
+  background: #003E6B; padding: 56px 6% 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 40px;
+}
+.footer-brand .footer-logo {
+  font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 2px;
+  text-decoration: none; display: block; margin-bottom: 12px;
+}
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.footer-col h4 {
+  font-size: 11px; font-weight: 700; color: #00C2C7;
+  letter-spacing: 2px; margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a  {
+  font-size: 13px; color: rgba(255,255,255,0.5);
+  text-decoration: none; transition: color .2s;
+}
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px; color: rgba(255,255,255,0.35); text-align: center;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width: 768px){
+  .intro-grid, .levels-row { grid-template-columns: 1fr 1fr; }
+  .how-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .nav-links { display: none; }
+  .val-panel { padding: 20px; }
+  .result-header-block { flex-direction: column; text-align: center; }
+  .cta-section { text-align: center; justify-content: center; }
+}
+@media(max-width: 480px){
+  .intro-grid, .levels-row, .how-grid { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="https://caribbeanmetadata.org/index.html">CMS</a>
+  <ul class="nav-links">
+    <li><a href="https://caribbeanmetadata.org/about.html">À propos</a></li>
+    <li><a href="https://caribbeanmetadata.org/families.html">Les 6 familles</a></li>
+    <li><a href="https://caribbeanmetadata.org/resources.html">Ressources</a></li>
+    <li><a href="https://caribbeanmetadata.org/lab.html">Language Lab</a></li>
+    <li><a href="https://caribbeanmetadata.org/collaborate.html">Collaborer</a></li>
+    <li><a href="validator.html" class="active">Valider</a></li>
+    <li><a href="https://caribbeanmetadata.org/contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Outil officiel</div>
+    <h1>Validateur CMS</h1>
+    <p>Soumettez les métadonnées de votre contenu caribéen et obtenez votre certification CMS officielle — Bronze, Silver, Gold ou Platinum.</p>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- Intro cards -->
+  <div class="intro-grid" style="margin-top: 0;">
+    <div class="intro-card">
+      <div class="intro-card-num">01 — COMMENT ÇA MARCHE</div>
+      <h3>Renseignez vos métadonnées</h3>
+      <p>Identité, origine, langue et marqueurs culturels en 4 étapes guidées.</p>
+    </div>
+    <div class="intro-card">
+      <div class="intro-card-num">02 — CALCUL AUTOMATIQUE</div>
+      <h3>Votre score d'ancrage</h3>
+      <p>L'algorithme CMS évalue l'authenticité caribéenne de votre contenu sur 100 points.</p>
+    </div>
+    <div class="intro-card">
+      <div class="intro-card-num">03 — CERTIFICATION</div>
+      <h3>Exportez votre certificat</h3>
+      <p>Téléchargez votre fichier JSON CMS et votre badge de certification officiel.</p>
+    </div>
+  </div>
+
+  <!-- Niveaux de certification -->
+  <div class="section-label">Niveaux de certification</div>
+  <h2 class="section-title">Quatre niveaux, une exigence unique</h2>
+  <div class="levels-row">
+    <div class="level-card bronze">
+      <div class="level-pill">BRONZE</div>
+      <div class="score-label">Score minimum</div>
+      <div class="score">20</div>
+      <div class="level-desc">Ancrage caribéen minimal — contenu identifié comme caribéen.</div>
+    </div>
+    <div class="level-card silver">
+      <div class="level-pill">SILVER</div>
+      <div class="score-label">Score minimum</div>
+      <div class="score">40</div>
+      <div class="level-desc">Contenu caribéen identifié — thématiques et langue déclarées.</div>
+    </div>
+    <div class="level-card gold">
+      <div class="level-pill">GOLD</div>
+      <div class="score-label">Score minimum</div>
+      <div class="score">65</div>
+      <div class="level-desc">Contenu caribéen affirmé — expressions culturelles et représentation.</div>
+    </div>
+    <div class="level-card platinum">
+      <div class="level-pill">PLATINUM</div>
+      <div class="score-label">Score minimum</div>
+      <div class="score">85</div>
+      <div class="level-desc">Standard caribéen de référence — conformité totale au schéma CMS.</div>
+    </div>
+  </div>
+
+  <!-- ══ VALIDATEUR ══ -->
+  <div class="section-label">Outil de validation</div>
+  <h2 class="section-title">Certifiez votre contenu</h2>
+
+  <div class="validator-wrap">
+
+    <!-- Header -->
+    <div class="val-header">
+      <svg class="val-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 5 A19 19 0 1 0 24 43" fill="none" stroke="#00C2C7" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M24 5 Q9 14 11 24 Q13 34 24 43" fill="none" stroke="#FFC93C" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
+        <circle cx="24" cy="5"  r="3.5" fill="#FFC93C"/>
+        <circle cx="24" cy="43" r="3.5" fill="#FFC93C"/>
+        <circle cx="5"  cy="24" r="3"   fill="#00C2C7"/>
+        <circle cx="14" cy="10" r="2.5" fill="#FF6F61"/>
+        <circle cx="14" cy="38" r="2.5" fill="#3FA66B"/>
+      </svg>
+      <div class="val-header-text">
+        <h2>Validateur CMS officiel</h2>
+        <p>CARIBBEAN METADATA STANDARD — v1.0</p>
+      </div>
+      <div class="val-badge">Caribwood Language Lab</div>
+    </div>
+
+    <!-- Stepper -->
+    <div class="val-stepper">
+      <button class="val-step active" id="step-btn-0" onclick="goStep(0)">1 · Identité</button>
+      <button class="val-step"        id="step-btn-1" onclick="goStep(1)">2 · Origine</button>
+      <button class="val-step"        id="step-btn-2" onclick="goStep(2)">3 · Langue</button>
+      <button class="val-step"        id="step-btn-3" onclick="goStep(3)">4 · Marqueurs</button>
+      <button class="val-step"        id="step-btn-4">5 · Résultat</button>
+    </div>
+
+    <!-- PANEL 0 : Identité -->
+    <div class="val-panel visible" id="panel-0">
+      <div class="field">
+        <label>Titre original <span class="req">* Obligatoire</span></label>
+        <input type="text" id="f-title" placeholder="Ex : Anba Dlo, Morne Bleu, Aché…">
+        <div class="err" id="err-title">Ce champ est obligatoire.</div>
+      </div>
+      <div class="field">
+        <label>Type de contenu <span class="req">* Obligatoire</span></label>
+        <select id="f-type">
+          <option value="">— Sélectionner un type —</option>
+          <option value="audiovisual">Audiovisuel — film, série, documentaire</option>
+          <option value="musical">Musical — album, titre, enregistrement</option>
+          <option value="literary">Littéraire — livre, texte, poésie</option>
+          <option value="heritage">Patrimonial — archive, tradition, oralité</option>
+        </select>
+        <div class="err" id="err-type">Sélectionner un type de contenu.</div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Année de création</label>
+          <input type="number" id="f-year" placeholder="2025" min="1400" max="2100">
+        </div>
+        <div class="field">
+          <label>Durée (en secondes)</label>
+          <input type="number" id="f-duration" placeholder="Ex : 5820 pour 97 min" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Créateur principal <span class="req">* Obligatoire</span></label>
+        <input type="text" id="f-creator" placeholder="Nom du réalisateur, auteur, compositeur, artiste…">
+        <div class="err" id="err-creator">Ce champ est obligatoire.</div>
+      </div>
+      <div class="field">
+        <label>Rôle du créateur</label>
+        <select id="f-role">
+          <option value="director">Réalisateur</option>
+          <option value="author">Auteur</option>
+          <option value="composer">Compositeur</option>
+          <option value="performer">Interprète / Artiste</option>
+          <option value="producer">Producteur</option>
+          <option value="archivist">Archiviste</option>
+          <option value="narrator">Narrateur</option>
+        </select>
+      </div>
+      <div class="val-nav">
+        <span class="val-nav-info">Étape 1 sur 4</span>
+        <button class="btn-forward" onclick="next(0)">Étape suivante →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 1 : Origine -->
+    <div class="val-panel" id="panel-1">
+      <div class="field">
+        <label>Territoire(s) d'origine <span class="req">* Sélectionner au moins un</span></label>
+        <div class="tag-group" id="tg-territories">
+          <span class="tag" data-v="GP">Guadeloupe</span>
+          <span class="tag" data-v="MQ">Martinique</span>
+          <span class="tag" data-v="GF">Guyane française</span>
+          <span class="tag" data-v="BL">Saint-Barthélemy</span>
+          <span class="tag" data-v="MF">Saint-Martin</span>
+          <span class="tag" data-v="HT">Haïti</span>
+          <span class="tag" data-v="DO">Rép. Dominicaine</span>
+          <span class="tag" data-v="CU">Cuba</span>
+          <span class="tag" data-v="PR">Porto Rico</span>
+          <span class="tag" data-v="JM">Jamaïque</span>
+          <span class="tag" data-v="TT">Trinité-et-Tobago</span>
+          <span class="tag" data-v="BB">Barbade</span>
+          <span class="tag" data-v="LC">Sainte-Lucie</span>
+          <span class="tag" data-v="VC">Saint-Vincent</span>
+          <span class="tag" data-v="GD">Grenade</span>
+          <span class="tag" data-v="AG">Antigua-et-Barbuda</span>
+          <span class="tag" data-v="DM">Dominique</span>
+          <span class="tag" data-v="AW">Aruba</span>
+          <span class="tag" data-v="CW">Curaçao</span>
+          <span class="tag" data-v="SR">Suriname</span>
+          <span class="tag" data-v="GY">Guyana</span>
+          <span class="tag" data-v="DIASPORA">Diaspora caribéenne</span>
+        </div>
+        <div class="err" id="err-territory">Sélectionner au moins un territoire.</div>
+      </div>
+      <div class="field">
+        <label>Lieu de tournage / enregistrement principal</label>
+        <input type="text" id="f-location" placeholder="Ex : Pointe-à-Pitre, Port-au-Prince, Kingston…">
+      </div>
+      <div class="field">
+        <label>Pays de production</label>
+        <input type="text" id="f-prod-country" placeholder="Ex : France, Haïti, Jamaïque…">
+      </div>
+      <div class="val-nav">
+        <button class="btn-back" onclick="prev(1)">← Retour</button>
+        <button class="btn-forward" onclick="next(1)">Étape suivante →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 2 : Langue -->
+    <div class="val-panel" id="panel-2">
+      <div class="field">
+        <label>Langue principale du contenu <span class="req">* Obligatoire</span></label>
+        <select id="f-lang">
+          <option value="">— Sélectionner —</option>
+          <option value="fr">Français</option>
+          <option value="en">Anglais</option>
+          <option value="es">Espagnol</option>
+          <option value="ht">Créole haïtien</option>
+          <option value="gcf">Créole guadeloupéen / martiniquais (GCF)</option>
+          <option value="pap">Papiamentu (Aruba, Curaçao)</option>
+          <option value="srn">Sranan Tongo (Suriname)</option>
+          <option value="other">Autre langue caribéenne</option>
+        </select>
+        <div class="err" id="err-lang">Sélectionner la langue principale.</div>
+      </div>
+      <div class="field">
+        <label>Langues secondaires présentes dans le contenu</label>
+        <div class="tag-group" id="tg-addlangs">
+          <span class="tag" data-v="fr">Français</span>
+          <span class="tag" data-v="en">Anglais</span>
+          <span class="tag" data-v="es">Espagnol</span>
+          <span class="tag" data-v="ht">Créole haïtien</span>
+          <span class="tag" data-v="gcf">Créole GUA / MAR</span>
+          <span class="tag" data-v="pap">Papiamentu</span>
+          <span class="tag" data-v="srn">Sranan</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Sous-titrage disponible</label>
+        <div class="tag-group" id="tg-subtitles">
+          <span class="tag" data-v="fr">FR</span>
+          <span class="tag" data-v="en">EN</span>
+          <span class="tag" data-v="es">ES</span>
+          <span class="tag" data-v="ht">HT — Créole haïtien</span>
+          <span class="tag" data-v="gcf">GCF — Créole GUA/MAR</span>
+          <span class="tag" data-v="pap">PAP — Papiamentu</span>
+        </div>
+      </div>
+      <div class="val-nav">
+        <button class="btn-back" onclick="prev(2)">← Retour</button>
+        <button class="btn-forward" onclick="next(2)">Étape suivante →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 3 : Marqueurs culturels -->
+    <div class="val-panel" id="panel-3">
+      <div class="field">
+        <label>Thématiques caribéennes présentes <span class="req">* Sélectionner tout ce qui s'applique</span></label>
+        <div class="tag-group" id="tg-themes">
+          <span class="tag" data-v="creolization">Créolisation</span>
+          <span class="tag" data-v="slavery_memory">Mémoire de l'esclavage</span>
+          <span class="tag" data-v="resistance">Résistance</span>
+          <span class="tag" data-v="independence">Indépendance</span>
+          <span class="tag" data-v="diaspora">Diaspora</span>
+          <span class="tag" data-v="caribbean_nature">Nature caribéenne</span>
+          <span class="tag" data-v="traditional_knowledge">Savoirs traditionnels</span>
+          <span class="tag" data-v="oral_tradition">Tradition orale</span>
+          <span class="tag" data-v="caribbean_spirituality">Spiritualité caribéenne</span>
+          <span class="tag" data-v="social_justice">Justice sociale</span>
+          <span class="tag" data-v="identity_language">Identité et langue</span>
+          <span class="tag" data-v="pan_caribbean">Pan-caribéen</span>
+          <span class="tag" data-v="afrocaribbean">Afro-caribéen</span>
+          <span class="tag" data-v="maritime_culture">Culture maritime</span>
+          <span class="tag" data-v="carnival_culture">Culture carnaval</span>
+          <span class="tag" data-v="colonialism_critique">Critique du colonialisme</span>
+          <span class="tag" data-v="indigenous_heritage">Patrimoine amérindien</span>
+        </div>
+        <div class="err" id="err-themes">Sélectionner au moins un thème culturel.</div>
+      </div>
+      <div class="field">
+        <label>Expressions culturelles caribéennes présentes</label>
+        <div class="tag-group" id="tg-expressions">
+          <span class="tag expr" data-v="gwo_ka">Gwo Ka</span>
+          <span class="tag expr" data-v="zouk">Zouk</span>
+          <span class="tag expr" data-v="biguine">Biguine</span>
+          <span class="tag expr" data-v="compas">Compas</span>
+          <span class="tag expr" data-v="reggae">Reggae</span>
+          <span class="tag expr" data-v="soca">Soca</span>
+          <span class="tag expr" data-v="calypso">Calypso</span>
+          <span class="tag expr" data-v="salsa">Salsa</span>
+          <span class="tag expr" data-v="merengue">Merengue</span>
+          <span class="tag expr" data-v="carnival">Carnaval</span>
+          <span class="tag expr" data-v="bele">Bèlè</span>
+          <span class="tag expr" data-v="quadrille">Quadrille</span>
+          <span class="tag expr" data-v="madras">Madras</span>
+          <span class="tag expr" data-v="bakoua">Bakoua</span>
+          <span class="tag expr" data-v="creole_cuisine">Cuisine créole</span>
+          <span class="tag expr" data-v="vodou">Vodou</span>
+          <span class="tag expr" data-v="rastafari">Rastafari</span>
+          <span class="tag expr" data-v="shango">Shango</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Indicateurs de représentation</label>
+        <div class="tag-group" id="tg-representations">
+          <span class="tag" data-v="afrodescendant_lead">Personnage principal afrodescendant</span>
+          <span class="tag" data-v="creole_language_use">Usage de la langue créole</span>
+          <span class="tag" data-v="female_lead">Personnage principal féminin</span>
+          <span class="tag" data-v="youth_focus">Centré sur la jeunesse</span>
+          <span class="tag" data-v="diaspora_perspective">Perspective diaspora</span>
+          <span class="tag" data-v="indigenous_presence">Présence amérindienne</span>
+        </div>
+      </div>
+      <div class="val-nav">
+        <button class="btn-back" onclick="prev(3)">← Retour</button>
+        <button class="btn-certify" onclick="runValidation()">Certifier ce contenu →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 4 : Résultat -->
+    <div class="val-panel" id="panel-4">
+      <div id="result-header-block" class="result-header-block">
+        <div class="score-circle" id="r-circle">
+          <span class="score-num" id="r-score">—</span>
+          <span class="score-lbl">/ 100</span>
+        </div>
+        <div class="result-meta">
+          <div class="result-level-badge" id="r-badge">—</div>
+          <h3 id="r-title">—</h3>
+          <p id="r-meta">—</p>
+        </div>
+      </div>
+      <div class="result-body">
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val" id="r-fields">—</div>
+            <div class="metric-lbl">Champs renseignés</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val" id="r-themes">—</div>
+            <div class="metric-lbl">Thèmes caribéens</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val" id="r-langs">—</div>
+            <div class="metric-lbl">Langues déclarées</div>
+          </div>
+        </div>
+
+        <div style="font-size:11px;letter-spacing:2px;color:#999;margin-bottom:8px;text-transform:uppercase;">Score d'ancrage caribéen</div>
+        <div class="progress-wrap">
+          <div class="progress-bg">
+            <div class="progress-fill" id="r-bar" style="width:0%"></div>
+          </div>
+          <div class="progress-scale">
+            <span>0</span><span>Bronze 20</span><span>Silver 40</span><span>Gold 65</span><span>Platinum 85</span><span>100</span>
+          </div>
+        </div>
+
+        <div class="checks-title">Détail de conformité</div>
+        <div id="r-checks"></div>
+
+        <div class="cert-footer" id="r-cert-footer">
+          Certifié le <strong id="r-date">—</strong> · <strong>Caribwood Language Lab</strong> · CMS v1.0 · caribbeanmetadata.org
+        </div>
+
+        <div class="result-actions">
+          <button class="btn-reset" onclick="resetAll()">Nouvelle validation</button>
+          <button class="btn-export" onclick="downloadJSON()">Télécharger JSON</button>
+          <button class="btn-json" onclick="downloadCert()">Télécharger certificat</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- fin validator-wrap -->
+
+  <!-- Comment ça marche -->
+  <div class="section-label" style="margin-top:72px;">Fonctionnement</div>
+  <h2 class="section-title">Comment le score est calculé</h2>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">01</div>
+      <h4>Complétude</h4>
+      <p>Chaque champ renseigné contribue positivement. Titre, créateur, type, année et territoire sont les plus valorisés.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">02</div>
+      <h4>Langue créole</h4>
+      <p>Une langue créole comme langue principale rapporte +10 points. Les langues secondaires et sous-titres créoles sont également valorisés.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">03</div>
+      <h4>Thèmes caribéens</h4>
+      <p>Chaque thème sélectionné ajoute 4 points (max 24). La densité thématique est un indicateur fort d'ancrage culturel.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">04</div>
+      <h4>Représentation</h4>
+      <p>Les expressions culturelles spécifiques et les indicateurs de représentation consolident le niveau de certification.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div>
+      <h2>Votre contenu mérite d'être visible</h2>
+      <p>Rejoignez l'initiative et devenez partenaire du premier standard numérique caribéen.</p>
+    </div>
+    <a class="cta-btn" href="https://caribbeanmetadata.org/collaborate.html">Collaborer avec nous →</a>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="https://caribbeanmetadata.org/index.html">CMS</a>
+      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Le Standard</h4>
+      <ul>
+        <li><a href="https://caribbeanmetadata.org/about.html">À propos</a></li>
+        <li><a href="https://caribbeanmetadata.org/families.html">Les 6 familles</a></li>
+        <li><a href="https://caribbeanmetadata.org/resources.html">Documentation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Écosystème</h4>
+      <ul>
+        <li><a href="https://caribbeanmetadata.org/lab.html">Language Lab</a></li>
+        <li><a href="https://caribbeanmetadata.org/collaborate.html">Collaborer</a></li>
+        <li><a href="https://caribbeanmetadata.org/contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ressources</h4>
+      <ul>
+        <li><a href="https://caribbeanmetadata.org/resources.html">White Paper</a></li>
+        <li><a href="https://caribbeanmetadata.org/resources.html">Glossaire</a></li>
+        <li><a href="https://caribbeanmetadata.org/resources.html">FAQ</a></li>
+        <li><a href="validator.html">Valider un contenu</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <strong style="color:rgba(255,255,255,0.5)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
+  </div>
+</footer>
+
+<script>
+let cur = 0;
+
+// ── Tags ──
+document.querySelectorAll('.tag').forEach(t => {
+  t.addEventListener('click', () => t.classList.toggle('sel'));
+});
+
+function sel(groupId) {
+  return [...document.querySelectorAll('#' + groupId + ' .tag.sel')].map(t => t.dataset.v);
+}
+
+// ── Navigation ──
+function showPanel(n) {
+  document.querySelectorAll('.val-panel').forEach((p, i) => {
+    p.classList.toggle('visible', i === n);
+  });
+  document.querySelectorAll('.val-step').forEach((b, i) => {
+    b.classList.toggle('active', i === n);
+  });
+}
+
+function goStep(n) {
+  if (n <= cur || n === 4) return;
+  showPanel(n); cur = n;
+}
+
+function showErr(id) { document.getElementById(id).classList.add('show'); }
+function hideErr(id) { document.getElementById(id).classList.remove('show'); }
+
+function next(step) {
+  let ok = true;
+  if (step === 0) {
+    if (!document.getElementById('f-title').value.trim())   { showErr('err-title');   ok = false; } else hideErr('err-title');
+    if (!document.getElementById('f-type').value)           { showErr('err-type');    ok = false; } else hideErr('err-type');
+    if (!document.getElementById('f-creator').value.trim()) { showErr('err-creator'); ok = false; } else hideErr('err-creator');
+  }
+  if (step === 1) {
+    if (sel('tg-territories').length === 0) { showErr('err-territory'); ok = false; } else hideErr('err-territory');
+  }
+  if (step === 2) {
+    if (!document.getElementById('f-lang').value) { showErr('err-lang'); ok = false; } else hideErr('err-lang');
+  }
+  if (!ok) return;
+  cur = step + 1;
+  showPanel(cur);
+  document.getElementById('step-btn-' + step).classList.add('done');
+}
+
+function prev(step) {
+  cur = step - 1; showPanel(cur);
+}
+
+// ── Score ──
+function calcScore() {
+  let s = 0;
+  const title    = document.getElementById('f-title').value.trim();
+  const creator  = document.getElementById('f-creator').value.trim();
+  const type     = document.getElementById('f-type').value;
+  const year     = document.getElementById('f-year').value;
+  const lang     = document.getElementById('f-lang').value;
+  const terr     = sel('tg-territories');
+  const addl     = sel('tg-addlangs');
+  const subs     = sel('tg-subtitles');
+  const themes   = sel('tg-themes');
+  const expr     = sel('tg-expressions');
+  const reprs    = sel('tg-representations');
+
+  if (title)   s += 5;
+  if (creator) s += 5;
+  if (type)    s += 5;
+  if (year)    s += 3;
+  if (terr.length > 0) s += 8;
+  if (terr.length > 1) s += 4;
+
+  const creoleLangs = ['ht', 'gcf', 'pap', 'srn'];
+  if (creoleLangs.includes(lang)) s += 10;
+  else if (lang) s += 4;
+  s += Math.min(addl.length * 2, 6);
+  s += Math.min(subs.length * 2, 6);
+  s += Math.min(themes.length * 4, 24);
+  s += Math.min(expr.length   * 2, 12);
+  s += Math.min(reprs.length  * 2, 10);
+
+  return Math.min(Math.round(s), 100);
+}
+
+function getLevel(score) {
+  if (score >= 85) return { key: 'platinum', label: 'PLATINUM', bg: '#0F6E56', desc: 'Standard caribéen de référence' };
+  if (score >= 65) return { key: 'gold',     label: 'GOLD',     bg: '#BA7517', desc: 'Contenu caribéen affirmé' };
+  if (score >= 40) return { key: 'silver',   label: 'SILVER',   bg: '#5F5E5A', desc: 'Contenu caribéen identifié' };
+  if (score >= 20) return { key: 'bronze',   label: 'BRONZE',   bg: '#8B6914', desc: 'Ancrage caribéen minimal' };
+  return { key: 'none', label: 'NON CERTIFIÉ', bg: '#A32D2D', desc: 'Score insuffisant pour certification' };
+}
+
+function runValidation() {
+  const themes = sel('tg-themes');
+  if (themes.length === 0) { showErr('err-themes'); return; }
+  hideErr('err-themes');
+
+  const score   = calcScore();
+  const level   = getLevel(score);
+  const title   = document.getElementById('f-title').value.trim();
+  const type    = document.getElementById('f-type').value;
+  const terr    = sel('tg-territories');
+  const lang    = document.getElementById('f-lang').value;
+  const addl    = sel('tg-addlangs');
+  const subs    = sel('tg-subtitles');
+  const expr    = sel('tg-expressions');
+  const reprs   = sel('tg-representations');
+  const creator = document.getElementById('f-creator').value.trim();
+  const year    = document.getElementById('f-year').value;
+  const typeMap = { audiovisual:'Audiovisuel', musical:'Musical', literary:'Littéraire', heritage:'Patrimonial' };
+  const creoleLangs = ['ht','gcf','pap','srn'];
+
+  // Remplir le résultat
+  document.getElementById('r-circle').style.background = level.bg;
+  document.getElementById('r-circle').style.border     = '3px solid rgba(255,255,255,0.3)';
+  document.getElementById('r-score').textContent       = score;
+  document.getElementById('r-badge').textContent       = level.label;
+  document.getElementById('result-header-block').style.background = level.bg;
+  document.getElementById('r-title').textContent = title || '(sans titre)';
+  document.getElementById('r-meta').textContent  = (typeMap[type] || '') + (terr.length ? ' · ' + terr.slice(0,3).join(', ') : '');
+  document.getElementById('r-fields').textContent = [title, creator, type, year, lang].filter(Boolean).length + terr.length;
+  document.getElementById('r-themes').textContent = themes.length;
+  document.getElementById('r-langs').textContent  = (lang ? 1 : 0) + addl.length;
+  document.getElementById('r-bar').style.width      = score + '%';
+  document.getElementById('r-bar').style.background = level.bg;
+  document.getElementById('r-date').textContent     = new Date().toLocaleDateString('fr-FR');
+
+  const checks = [
+    { ok: !!title,                     label: 'Titre original renseigné' },
+    { ok: !!creator,                   label: 'Créateur principal identifié' },
+    { ok: terr.length > 0,             label: 'Territoire d\'origine déclaré' },
+    { ok: creoleLangs.includes(lang),  label: 'Langue créole comme langue principale' },
+    { ok: themes.length >= 3,          label: 'Au moins 3 thèmes caribéens déclarés' },
+    { ok: expr.length > 0,             label: 'Expressions culturelles déclarées' },
+    { ok: reprs.length > 0,            label: 'Indicateurs de représentation renseignés' },
+    { ok: subs.length > 0,             label: 'Sous-titrage multilingue disponible' },
+    { ok: addl.length > 0,             label: 'Langues secondaires déclarées' },
+    { ok: !!year,                      label: 'Année de création renseignée' },
+  ];
+
+  document.getElementById('r-checks').innerHTML = checks.map(c => `
+    <div class="check-item">
+      <div class="check-dot ${c.ok ? 'ok' : 'warn'}"></div>
+      <span>${c.label}</span>
+      <span class="check-status ${c.ok ? 'ok' : 'warn'}">${c.ok ? 'Conforme' : 'À compléter'}</span>
+    </div>
+  `).join('');
+
+  cur = 4; showPanel(4);
+  document.getElementById('step-btn-3').classList.add('done');
+  document.getElementById('step-btn-4').classList.add('active');
+}
+
+// ── Export JSON ──
+function buildJSON() {
+  const score   = calcScore();
+  const level   = getLevel(score);
+  const lang    = document.getElementById('f-lang').value;
+  const creoleLangs = ['ht','gcf','pap','srn'];
+  return {
+    cms_version: "1.0",
+    content_type: document.getElementById('f-type').value,
+    identity: {
+      title: { original: document.getElementById('f-title').value.trim() },
+      creator: [{
+        name: document.getElementById('f-creator').value.trim(),
+        role: document.getElementById('f-role').value,
+      }],
+      year_of_creation: parseInt(document.getElementById('f-year').value) || null,
+    },
+    origin: {
+      territory: sel('tg-territories'),
+      location_shoot: document.getElementById('f-location').value ? [{ name: document.getElementById('f-location').value }] : [],
+      production_country: document.getElementById('f-prod-country').value ? [document.getElementById('f-prod-country').value] : [],
+    },
+    language: {
+      primary: lang,
+      additional: sel('tg-addlangs'),
+      subtitles: sel('tg-subtitles'),
+      creole_variant: creoleLangs.includes(lang) ? lang : null,
+    },
+    cultural_markers: {
+      caribbean_identity_score: score,
+      themes: sel('tg-themes'),
+      cultural_expressions: sel('tg-expressions'),
+      representation: Object.fromEntries(sel('tg-representations').map(k => [k, true])),
+    },
+    cms_compliance: {
+      certified: score >= 20,
+      certified_date: new Date().toISOString().split('T')[0],
+      certified_by: "Caribwood Language Lab",
+      compliance_level: level.key !== 'none' ? level.key : null,
+      validator_version: "1.0",
+    }
+  };
+}
+
+function downloadJSON() {
+  const data = JSON.stringify(buildJSON(), null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'CMS_' + (document.getElementById('f-title').value.trim().replace(/\s+/g,'_') || 'record') + '_v1.0.json';
+  a.click();
+}
+
+function downloadCert() {
+  const score  = calcScore();
+  const level  = getLevel(score);
+  const title  = document.getElementById('f-title').value.trim();
+  const date   = new Date().toLocaleDateString('fr-FR');
+  const terr   = sel('tg-territories').join(', ');
+  const certHTML = `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<title>Certificat CMS — ${title}</title>
+<style>
+body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;background:#FFFDF5}
+.cert{width:794px;min-height:560px;margin:0 auto;border:2px solid #FFC93C;padding:0;overflow:hidden}
+.top{background:#003E6B;padding:32px 48px;display:flex;align-items:center;gap:20px}
+.top h1{font-size:14px;letter-spacing:3px;color:#00C2C7;margin:0}
+.body{padding:48px;text-align:center}
+.cert-title{font-size:28px;font-weight:700;color:#003E6B;margin-bottom:8px}
+.cert-sub{font-size:14px;color:#888;margin-bottom:32px}
+.seal{width:110px;height:110px;border-radius:50%;border:3px solid ${level.bg};margin:0 auto 24px;display:flex;align-items:center;justify-content:center;flex-direction:column;background:${level.bg}15}
+.seal-score{font-size:32px;font-weight:700;color:${level.bg}}
+.seal-lbl{font-size:10px;color:#999;letter-spacing:1px}
+.level-pill{display:inline-block;padding:6px 20px;background:${level.bg};color:#fff;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:24px}
+.content-title{font-size:22px;font-weight:700;color:#003E6B;margin-bottom:4px}
+.content-terr{font-size:13px;color:#888;margin-bottom:32px}
+.divider{width:120px;height:1px;background:#FFC93C;margin:0 auto 24px}
+.footer-text{font-size:11px;color:#aaa;letter-spacing:1px}
+</style></head><body>
+<div class="cert">
+<div class="top"><div><h1>CARIBBEAN METADATA STANDARD · v1.0</h1><p style="color:rgba(255,255,255,0.5);font-size:12px;margin:4px 0 0">Caribwood Language Lab · caribbeanmetadata.org</p></div></div>
+<div class="body">
+<div class="cert-title">Certificat de Conformité</div>
+<div class="cert-sub">CMS‑Compliant Content</div>
+<div class="seal"><div class="seal-score">${score}</div><div class="seal-lbl">SCORE</div></div>
+<div class="level-pill">${level.label}</div>
+<div class="content-title">${title || '(sans titre)'}</div>
+<div class="content-terr">${terr || ''}</div>
+<div class="divider"></div>
+<div class="footer-text">Certifié le ${date} · ${level.desc}</div>
+</div></div></body></html>`;
+  const blob = new Blob([certHTML], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Certificat_CMS_' + (title.replace(/\s+/g,'_') || 'content') + '.html';
+  a.click();
+}
+
+function resetAll() {
+  document.querySelectorAll('input[type="text"], input[type="number"]').forEach(i => i.value = '');
+  document.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+  document.querySelectorAll('.tag.sel').forEach(t => t.classList.remove('sel'));
+  document.querySelectorAll('.err').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('.val-step').forEach((b, i) => {
+    b.classList.remove('active', 'done');
+    if (i === 0) b.classList.add('active');
+  });
+  cur = 0; showPanel(0);
+}
+</script>
+</body>
+</html>
