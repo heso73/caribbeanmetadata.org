@@ -1,476 +1,197 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les 6 familles de métadonnées — Caribbean Metadata Standard</title>
-<meta name="description" content="Les 6 familles de métadonnées du CMS — Linguistique, Culturelle, Narrative, Rythmique, Géographique, Socio-historique."/>
-<link rel="stylesheet" href="style.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:#003E6B}
+.nav-links a.active{font-weight:700}
+.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:0.5px}
+.nav-validate:hover{background:#00A8AE !important}
+.ph{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
+.phi{position:relative;z-index:1;max-width:760px}
+.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.ph h1{font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
+.ph p{font-size:17px;color:rgba(255,255,255,0.88);max-width:560px;line-height:1.75}
+main{padding:72px 6%;max-width:1100px;margin:0 auto}
+.sl{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sl::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.st{font-size:clamp(22px,3vw,36px);font-weight:700;color:#003E6B;margin-bottom:40px;line-height:1.2}
+.card{background:#fff;border:1px solid rgba(0,62,107,0.12);border-radius:8px;padding:28px}
+.card-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:12px;background:#003E6B;color:#00C2C7}
+.card h3{font-size:17px;font-weight:700;color:#003E6B;margin-bottom:10px}
+.card p{font-size:14px;color:#444;line-height:1.75}
+.cta-block{background:#003E6B;border-radius:12px;padding:48px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.cta-block h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
+.cta-block p{font-size:15px;color:rgba(255,255,255,0.88)}
+.btn-t{display:inline-block;padding:12px 24px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s}
+.btn-t:hover{background:#00A8AE}
+.btn-ow{display:inline-block;padding:12px 24px;background:transparent;color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.5);transition:all .2s}
+footer{background:#003E6B;padding:56px 6% 32px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
+.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
+.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
+.fc ul{list-style:none}
+.fc li{margin-bottom:8px}
+.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
+.fc a:hover{color:#fff}
+.fc a.hl{color:#00C2C7;font-weight:600}
+.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
+@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+.fam-nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
+.fam-nav a{padding:8px 18px;border:1px solid rgba(0,62,107,0.2);border-radius:20px;font-size:13px;color:#003E6B;text-decoration:none;font-weight:500;transition:all .2s}
+.fam-nav a:hover{background:#003E6B;color:#fff;border-color:#003E6B}
+.fam-block{margin-bottom:80px;scroll-margin-top:88px}
+.fam-num{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.fam-num::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.fam-block h2{font-size:clamp(22px,3vw,34px);font-weight:700;color:#003E6B;margin-bottom:12px}
+.fam-desc{font-size:16px;color:#333;max-width:680px;line-height:1.8;margin-bottom:16px}
+.usage-block{background:#f7f9fb;border-left:3px solid #00C2C7;padding:16px 20px;border-radius:0 6px 6px 0;margin-bottom:28px;font-size:14px;color:#333;line-height:1.7}
+.usage-label{font-size:10px;letter-spacing:2px;color:#00C2C7;font-weight:700;margin-bottom:6px}
+.tags-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tag-col h4{font-size:10px;letter-spacing:2px;color:#888;font-weight:700;margin-bottom:10px;text-transform:uppercase}
+.tag-list{list-style:none}
+.tag-list li{font-size:13px;color:#333;padding:4px 0;border-bottom:1px solid rgba(0,62,107,0.06)}
+.tag-list li:last-child{border-bottom:none}
+.fam-divider{height:1px;background:rgba(0,62,107,0.08);margin-bottom:80px}
+@media(max-width:768px){.tags-grid{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="nav">
-  <a href="index.html" class="nav-logo">
-    <svg viewBox="0 0 30 30" fill="none">
-      <path d="M15 2.5A12.5 12.5 0 1 0 15 27.5" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M15 2.5Q5 8 6 15Q7 22 15 27.5" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="15" cy="2.5" r="2" fill="#FFC93C"/>
-      <circle cx="15" cy="27.5" r="2" fill="#FFC93C"/>
-      <circle cx="2.5" cy="15" r="1.8" fill="#00C2C7"/>
-    </svg>
-    <span class="nav-logo-text">CMS</span>
-  </a>
-  <ul class="nav-links" id="navLinks">
+<nav>
+  <a class="nav-logo" href="index.html">CMS</a>
+  <ul class="nav-links">
     <li><a href="about.html">À propos</a></li>
     <li><a href="families.html" class="active">Les 6 familles</a></li>
     <li><a href="resources.html">Ressources</a></li>
     <li><a href="lab.html">Language Lab</a></li>
     <li><a href="collaborate.html">Collaborer</a></li>
-    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="founders.html">Les 100 Premiers</a></li>
+    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
   </ul>
-  <div class="nav-burger" id="burger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
 </nav>
-
-<!-- HERO -->
-<section class="page-hero tressage">
-  <div class="page-hero-inner">
-    <p class="page-hero-label">Taxonomie</p>
-    <h1>Les <span>6 familles</span> de métadonnées</h1>
-    <p class="page-hero-sub">Chaque famille structure un aspect distinct de l'identité caribéenne. Ensemble, elles forment un système complet de classification culturelle.</p>
+<div class="ph">
+  <div class="phi">
+    <div class="ey">Taxonomie</div>
+    <h1>Les 6 familles de métadonnées</h1>
+    <p>Chaque famille structure un aspect distinct de l'identité caribéenne. Ensemble, elles forment un système complet de classification culturelle.</p>
   </div>
-</section>
-
-<!-- INTRO NAVIGATION FAMILLES -->
-<section class="section" style="padding-bottom:1rem;">
-  <div class="section-inner">
-    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-      <a href="#linguistique" class="tag tag--turquoise" style="cursor:pointer;font-size:0.75rem;padding:0.4rem 0.9rem;">01 · Linguistique</a>
-      <a href="#culturelle" class="tag tag--jaune" style="cursor:pointer;font-size:0.75rem;padding:0.4rem 0.9rem;">02 · Culturelle</a>
-      <a href="#narrative" class="tag tag--corail" style="cursor:pointer;font-size:0.75rem;padding:0.4rem 0.9rem;">03 · Narrative</a>
-      <a href="#rythmique" class="tag tag--vert" style="cursor:pointer;font-size:0.75rem;padding:0.4rem 0.9rem;">04 · Rythmique</a>
-      <a href="#geographique" class="tag tag--bleu" style="cursor:pointer;font-size:0.75rem;padding:0.4rem 0.9rem;">05 · Géographique</a>
-      <a href="#sociohistorique" class="tag tag--turquoise" style="cursor:pointer;font-size:0.75rem;padding:0.4rem 0.9rem;">06 · Socio-historique</a>
-    </div>
+</div>
+<main>
+  <div class="fam-nav">
+    <a href="#linguistique">01 · Linguistique</a>
+    <a href="#culturelle">02 · Culturelle</a>
+    <a href="#narrative">03 · Narrative</a>
+    <a href="#rythmique">04 · Rythmique</a>
+    <a href="#geographique">05 · Géographique</a>
+    <a href="#sociohistorique">06 · Socio-historique</a>
   </div>
-</section>
-
-<!-- FAMILLE 01 — LINGUISTIQUE -->
-<section class="section" id="linguistique" style="border-top:3px solid var(--turquoise);">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
-      <div>
-        <p class="section-label">Famille 01</p>
-        <h2 class="section-title">Métadonnées<br/>linguistiques</h2>
-        <p style="color:var(--gris-mid);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;">
-          Décrit les langues, dialectes, registres et pratiques langagières présents dans un contenu audiovisuel caribéen.
-        </p>
-        <div style="background:var(--gris);padding:1.2rem;border-radius:var(--radius);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);letter-spacing:0.2em;margin-bottom:0.75rem;">USAGE TYPE</p>
-          <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Indexer un film tourné en créole guadeloupéen avec passages en français et en anglais, intégrant des proverbes oraux traditionnels.</p>
-        </div>
-      </div>
-      <div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
-          <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-            <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);margin-bottom:0.5rem;">CRÉOLES</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span class="tag tag--turquoise">Créole guadeloupéen</span>
-              <span class="tag tag--turquoise">Créole martiniquais</span>
-              <span class="tag tag--turquoise">Créole haïtien</span>
-              <span class="tag tag--turquoise">Créole réunionnais</span>
-            </div>
-          </div>
-          <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-            <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);margin-bottom:0.5rem;">DIALECTES</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span class="tag tag--turquoise">Jamaican Patois</span>
-              <span class="tag tag--turquoise">Trinidadian English</span>
-              <span class="tag tag--turquoise">Papiamento</span>
-              <span class="tag tag--turquoise">Sranan Tongo</span>
-            </div>
-          </div>
-          <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-            <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);margin-bottom:0.5rem;">PRATIQUES</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span class="tag tag--turquoise">Code-switching</span>
-              <span class="tag tag--turquoise">Alternance codique</span>
-              <span class="tag tag--turquoise">Oralité rythmée</span>
-            </div>
-          </div>
-          <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-            <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);margin-bottom:0.5rem;">FORMES ORALES</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span class="tag tag--turquoise">Proverbes créoles</span>
-              <span class="tag tag--turquoise">Contes oraux</span>
-              <span class="tag tag--turquoise">Joute verbale</span>
-              <span class="tag tag--turquoise">Griot caribéen</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div id="linguistique" class="fam-block">
+    <div class="fam-num">Famille 01</div>
+    <h2>Métadonnées linguistiques</h2>
+    <p class="fam-desc">Décrit les langues, dialectes, registres et pratiques langagières présents dans un contenu audiovisuel caribéen.</p>
+    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Indexer un film tourné en créole guadeloupéen avec passages en français et en anglais, intégrant des proverbes oraux traditionnels.</div>
+    <div class="tags-grid">
+      <div><h4>Créoles</h4><ul class="tag-list"><li>Créole guadeloupéen</li><li>Créole martiniquais</li><li>Créole haïtien</li><li>Créole réunionnais</li></ul></div>
+      <div><h4>Dialectes</h4><ul class="tag-list"><li>Jamaican Patois</li><li>Trinidadian English</li><li>Papiamento</li><li>Sranan Tongo</li></ul></div>
+      <div><h4>Pratiques</h4><ul class="tag-list"><li>Code-switching</li><li>Alternance codique</li><li>Oralité rythmée</li></ul></div>
+      <div><h4>Formes orales</h4><ul class="tag-list"><li>Proverbes créoles</li><li>Contes oraux</li><li>Joute verbale</li><li>Griot caribéen</li></ul></div>
     </div>
   </div>
-</section>
-
-<!-- FAMILLE 02 — CULTURELLE -->
-<section class="section" id="culturelle" style="background:var(--gris);border-top:3px solid var(--jaune);">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
-      <div>
-        <p class="section-label" style="color:var(--jaune);">Famille 02</p>
-        <h2 class="section-title">Métadonnées<br/>culturelles</h2>
-        <p style="color:var(--gris-mid);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;">
-          Décrit les pratiques culturelles, traditions, héritages spirituels, musicaux et gastronomiques propres à la Caraïbe.
-        </p>
-        <div style="background:var(--blanc);padding:1.2rem;border-radius:var(--radius);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--jaune);letter-spacing:0.2em;margin-bottom:0.75rem;">USAGE TYPE</p>
-          <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Classifier une série documentaire sur le carnaval de Guadeloupe intégrant des rites religieux syncrétiques et de la musique gwoka.</p>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="card anim-up" style="border-left:3px solid var(--jaune);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--jaune);margin-bottom:0.5rem;">SPIRITUALITÉS</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--jaune">Vodou haïtien</span>
-            <span class="tag tag--jaune">Santería</span>
-            <span class="tag tag--jaune">Rastafari</span>
-            <span class="tag tag--jaune">Syncrétisme afro-caribéen</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--jaune);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--jaune);margin-bottom:0.5rem;">TRADITIONS</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--jaune">Carnaval</span>
-            <span class="tag tag--jaune">Mas' traditionnel</span>
-            <span class="tag tag--jaune">Léwoz / Gwoka</span>
-            <span class="tag tag--jaune">Bèlè</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--jaune);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--jaune);margin-bottom:0.5rem;">MUSIQUES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--jaune">Reggae</span>
-            <span class="tag tag--jaune">Zouk</span>
-            <span class="tag tag--jaune">Kompa</span>
-            <span class="tag tag--jaune">Calypso</span>
-            <span class="tag tag--jaune">Dancehall</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--jaune);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--jaune);margin-bottom:0.5rem;">DIASPORA & IDENTITÉ</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--jaune">Identité diasporique</span>
-            <span class="tag tag--jaune">Héritage africain</span>
-            <span class="tag tag--jaune">Métissage culturel</span>
-          </div>
-        </div>
-      </div>
+  <div class="fam-divider"></div>
+  <div id="culturelle" class="fam-block">
+    <div class="fam-num">Famille 02</div>
+    <h2>Métadonnées culturelles</h2>
+    <p class="fam-desc">Décrit les pratiques culturelles, traditions, héritages spirituels, musicaux et gastronomiques propres à la Caraïbe.</p>
+    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Classifier une série documentaire sur le carnaval de Guadeloupe intégrant des rites religieux syncrétiques et de la musique gwoka.</div>
+    <div class="tags-grid">
+      <div><h4>Spiritualités</h4><ul class="tag-list"><li>Vodou haïtien</li><li>Santería</li><li>Rastafari</li><li>Syncrétisme afro-caribéen</li></ul></div>
+      <div><h4>Traditions</h4><ul class="tag-list"><li>Carnaval</li><li>Mas traditionnel</li><li>Léwoz / Gwoka</li><li>Bèlè</li></ul></div>
+      <div><h4>Musiques</h4><ul class="tag-list"><li>Reggae</li><li>Zouk</li><li>Kompa</li><li>Calypso</li><li>Dancehall</li></ul></div>
+      <div><h4>Diaspora &amp; Identité</h4><ul class="tag-list"><li>Identité diasporique</li><li>Héritage africain</li><li>Métissage culturel</li></ul></div>
     </div>
   </div>
-</section>
-
-<!-- FAMILLE 03 — NARRATIVE -->
-<section class="section" id="narrative" style="border-top:3px solid var(--corail);">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
-      <div>
-        <p class="section-label" style="color:var(--corail);">Famille 03</p>
-        <h2 class="section-title">Métadonnées<br/>narratives</h2>
-        <p style="color:var(--gris-mid);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;">
-          Décrit les genres, structures dramatiques et archétypes narratifs propres à la tradition storytelling caribéenne.
-        </p>
-        <div style="background:var(--gris);padding:1.2rem;border-radius:var(--radius);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--corail);letter-spacing:0.2em;margin-bottom:0.75rem;">USAGE TYPE</p>
-          <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Indexer un long-métrage de fiction mêlant réalisme magique caribéen, thriller politique postcolonial et saga familiale intergénérationnelle.</p>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="card anim-up" style="border-left:3px solid var(--corail);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--corail);margin-bottom:0.5rem;">GENRES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--corail">Réalisme magique caribéen</span>
-            <span class="tag tag--corail">Thriller tropical</span>
-            <span class="tag tag--corail">Drame social</span>
-            <span class="tag tag--corail">Comédie créole</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--corail);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--corail);margin-bottom:0.5rem;">STRUCTURES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--corail">Saga familiale</span>
-            <span class="tag tag--corail">Chroniques urbaines</span>
-            <span class="tag tag--corail">Récit initiatique</span>
-            <span class="tag tag--corail">Narration circulaire</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--corail);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--corail);margin-bottom:0.5rem;">ARCHÉTYPES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--corail">Figure du conteur</span>
-            <span class="tag tag--corail">Héros de la rue</span>
-            <span class="tag tag--corail">Ancêtre guide</span>
-            <span class="tag tag--corail">Exilé de retour</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--corail);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--corail);margin-bottom:0.5rem;">THÈMES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--corail">Mémoire collective</span>
-            <span class="tag tag--corail">Résistance</span>
-            <span class="tag tag--corail">Affranchissement</span>
-          </div>
-        </div>
-      </div>
+  <div class="fam-divider"></div>
+  <div id="narrative" class="fam-block">
+    <div class="fam-num">Famille 03</div>
+    <h2>Métadonnées narratives</h2>
+    <p class="fam-desc">Décrit les genres, structures dramatiques et archétypes narratifs propres à la tradition storytelling caribéenne.</p>
+    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Indexer un long-métrage de fiction mêlant réalisme magique caribéen, thriller politique postcolonial et saga familiale intergénérationnelle.</div>
+    <div class="tags-grid">
+      <div><h4>Genres</h4><ul class="tag-list"><li>Réalisme magique caribéen</li><li>Thriller tropical</li><li>Drame social</li><li>Comédie créole</li></ul></div>
+      <div><h4>Structures</h4><ul class="tag-list"><li>Saga familiale</li><li>Chroniques urbaines</li><li>Récit initiatique</li><li>Narration circulaire</li></ul></div>
+      <div><h4>Archétypes</h4><ul class="tag-list"><li>Figure du conteur</li><li>Héros de la rue</li><li>Ancêtre guide</li><li>Exilé de retour</li></ul></div>
+      <div><h4>Thèmes</h4><ul class="tag-list"><li>Mémoire collective</li><li>Résistance</li><li>Affranchissement</li></ul></div>
     </div>
   </div>
-</section>
-
-<!-- FAMILLE 04 — RYTHMIQUE -->
-<section class="section" id="rythmique" style="background:var(--gris);border-top:3px solid var(--vert);">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
-      <div>
-        <p class="section-label" style="color:var(--vert);">Famille 04</p>
-        <h2 class="section-title">Métadonnées<br/>rythmiques</h2>
-        <p style="color:var(--gris-mid);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;">
-          Décrit le tempo, la cadence, la musicalité du dialogue et les patterns sonores qui caractérisent les contenus caribéens.
-        </p>
-        <div style="background:var(--blanc);padding:1.2rem;border-radius:var(--radius);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--vert);letter-spacing:0.2em;margin-bottom:0.75rem;">USAGE TYPE</p>
-          <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Qualifier le rythme d'un documentaire musical où les interventions parlées suivent une cadence percussive issue de la tradition gwoka.</p>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="card anim-up" style="border-left:3px solid var(--vert);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--vert);margin-bottom:0.5rem;">TEMPO</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--vert">Tempo insulaire lent</span>
-            <span class="tag tag--vert">Tempo urbain rapide</span>
-            <span class="tag tag--vert">Tempo contemplatif</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--vert);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--vert);margin-bottom:0.5rem;">CADENCE</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--vert">Dialogue syncopé</span>
-            <span class="tag tag--vert">Parole percussive</span>
-            <span class="tag tag--vert">Rythme call & response</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--vert);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--vert);margin-bottom:0.5rem;">MUSICALITÉ</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--vert">Intonation chantée</span>
-            <span class="tag tag--vert">Oralité musicale</span>
-            <span class="tag tag--vert">Silence signifiant</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--vert);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--vert);margin-bottom:0.5rem;">PATTERNS SONORES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--vert">Ambiance tropicale</span>
-            <span class="tag tag--vert">Soundscape urbain</span>
-            <span class="tag tag--vert">Nature sonore insulaire</span>
-          </div>
-        </div>
-      </div>
+  <div class="fam-divider"></div>
+  <div id="rythmique" class="fam-block">
+    <div class="fam-num">Famille 04</div>
+    <h2>Métadonnées rythmiques</h2>
+    <p class="fam-desc">Décrit le tempo, la cadence, la musicalité du dialogue et les patterns sonores qui caractérisent les contenus caribéens.</p>
+    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Qualifier le rythme d'un documentaire musical où les interventions parlées suivent une cadence percussive issue de la tradition gwoka.</div>
+    <div class="tags-grid">
+      <div><h4>Tempo</h4><ul class="tag-list"><li>Tempo insulaire lent</li><li>Tempo urbain rapide</li><li>Tempo contemplatif</li></ul></div>
+      <div><h4>Cadence</h4><ul class="tag-list"><li>Dialogue syncopé</li><li>Parole percussive</li><li>Rythme call &amp; response</li></ul></div>
+      <div><h4>Musicalité</h4><ul class="tag-list"><li>Intonation chantée</li><li>Oralité musicale</li><li>Silence signifiant</li></ul></div>
+      <div><h4>Patterns sonores</h4><ul class="tag-list"><li>Ambiance tropicale</li><li>Soundscape urbain</li><li>Nature sonore insulaire</li></ul></div>
     </div>
   </div>
-</section>
-
-<!-- FAMILLE 05 — GÉOGRAPHIQUE -->
-<section class="section" id="geographique" style="border-top:3px solid var(--bleu);">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
-      <div>
-        <p class="section-label" style="color:var(--bleu);">Famille 05</p>
-        <h2 class="section-title">Métadonnées<br/>géographiques</h2>
-        <p style="color:var(--gris-mid);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;">
-          Localise les contenus dans l'espace caribéen — territoire, milieu, paysage — avec une précision culturelle et non seulement cartographique.
-        </p>
-        <div style="background:var(--gris);padding:1.2rem;border-radius:var(--radius);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--bleu);letter-spacing:0.2em;margin-bottom:0.75rem;">USAGE TYPE</p>
-          <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Situer une web-série tournée dans les quartiers populaires de Pointe-à-Pitre, en milieu urbain côtier guadeloupéen.</p>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="card anim-up" style="border-left:3px solid var(--bleu);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--bleu);margin-bottom:0.5rem;">TERRITOIRES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--bleu">Guadeloupe</span>
-            <span class="tag tag--bleu">Martinique</span>
-            <span class="tag tag--bleu">Haïti</span>
-            <span class="tag tag--bleu">Jamaïque</span>
-            <span class="tag tag--bleu">Trinidad & Tobago</span>
-            <span class="tag tag--bleu">Cuba</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--bleu);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--bleu);margin-bottom:0.5rem;">MILIEUX</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--bleu">Urbain caribéen</span>
-            <span class="tag tag--bleu">Rural tropical</span>
-            <span class="tag tag--bleu">Littoral insulaire</span>
-            <span class="tag tag--bleu">Forêt tropicale</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--bleu);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--bleu);margin-bottom:0.5rem;">ESPACES CULTURELS</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--bleu">Grand Caraïbe</span>
-            <span class="tag tag--bleu">Petites Antilles</span>
-            <span class="tag tag--bleu">Diaspora caribéenne</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--bleu);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--bleu);margin-bottom:0.5rem;">PAYSAGES SYMBOLIQUES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--bleu">La mer comme frontière</span>
-            <span class="tag tag--bleu">La plantation</span>
-            <span class="tag tag--bleu">Le morne</span>
-          </div>
-        </div>
-      </div>
+  <div class="fam-divider"></div>
+  <div id="geographique" class="fam-block">
+    <div class="fam-num">Famille 05</div>
+    <h2>Métadonnées géographiques</h2>
+    <p class="fam-desc">Localise les contenus dans l'espace caribéen — territoire, milieu, paysage — avec une précision culturelle et non seulement cartographique.</p>
+    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Situer une web-série tournée dans les quartiers populaires de Pointe-à-Pitre, en milieu urbain côtier guadeloupéen.</div>
+    <div class="tags-grid">
+      <div><h4>Territoires</h4><ul class="tag-list"><li>Guadeloupe</li><li>Martinique</li><li>Haïti</li><li>Jamaïque</li><li>Trinidad &amp; Tobago</li><li>Cuba</li></ul></div>
+      <div><h4>Milieux</h4><ul class="tag-list"><li>Urbain caribéen</li><li>Rural tropical</li><li>Littoral insulaire</li><li>Forêt tropicale</li></ul></div>
+      <div><h4>Espaces culturels</h4><ul class="tag-list"><li>Grand Caraïbe</li><li>Petites Antilles</li><li>Diaspora caribéenne</li></ul></div>
+      <div><h4>Paysages symboliques</h4><ul class="tag-list"><li>La mer comme frontière</li><li>La plantation</li><li>Le morne</li></ul></div>
     </div>
   </div>
-</section>
-
-<!-- FAMILLE 06 — SOCIO-HISTORIQUE -->
-<section class="section" id="sociohistorique" style="background:var(--gris);border-top:3px solid var(--turquoise);">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
-      <div>
-        <p class="section-label">Famille 06</p>
-        <h2 class="section-title">Métadonnées<br/>socio-historiques</h2>
-        <p style="color:var(--gris-mid);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;">
-          Contextualise les contenus dans les dynamiques sociales, historiques et politiques qui ont façonné la Caraïbe et ses habitants.
-        </p>
-        <div style="background:var(--blanc);padding:1.2rem;border-radius:var(--radius);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);letter-spacing:0.2em;margin-bottom:0.75rem;">USAGE TYPE</p>
-          <p style="font-size:0.82rem;color:var(--gris-mid);line-height:1.6;">Classifier un film traitant des tensions intergénérationnelles entre une famille haïtienne de la diaspora new-yorkaise et ses racines.</p>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);margin-bottom:0.5rem;">HISTOIRE</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--turquoise">Mémoire de l'esclavage</span>
-            <span class="tag tag--turquoise">Colonisation</span>
-            <span class="tag tag--turquoise">Abolition</span>
-            <span class="tag tag--turquoise">Indépendance</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);margin-bottom:0.5rem;">IDENTITÉ</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--turquoise">Créolisation</span>
-            <span class="tag tag--turquoise">Postcolonialité</span>
-            <span class="tag tag--turquoise">Négritude</span>
-            <span class="tag tag--turquoise">Antillanité</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);margin-bottom:0.5rem;">MIGRATION</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--turquoise">Exil volontaire</span>
-            <span class="tag tag--turquoise">Retour au pays</span>
-            <span class="tag tag--turquoise">Tensions diaspora/île</span>
-          </div>
-        </div>
-        <div class="card anim-up" style="border-left:3px solid var(--turquoise);">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--turquoise);margin-bottom:0.5rem;">DYNAMIQUES SOCIALES</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-            <span class="tag tag--turquoise">Tensions intergénérationnelles</span>
-            <span class="tag tag--turquoise">Classe sociale</span>
-            <span class="tag tag--turquoise">Genre & pouvoir</span>
-          </div>
-        </div>
-      </div>
+  <div class="fam-divider"></div>
+  <div id="sociohistorique" class="fam-block">
+    <div class="fam-num">Famille 06</div>
+    <h2>Métadonnées socio-historiques</h2>
+    <p class="fam-desc">Contextualise les contenus dans les dynamiques sociales, historiques et politiques qui ont façonné la Caraïbe et ses habitants.</p>
+    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Classifier un film traitant des tensions intergénérationnelles entre une famille haïtienne de la diaspora new-yorkaise et ses racines.</div>
+    <div class="tags-grid">
+      <div><h4>Histoire</h4><ul class="tag-list"><li>Mémoire de l'esclavage</li><li>Colonisation</li><li>Abolition</li><li>Indépendance</li></ul></div>
+      <div><h4>Identité</h4><ul class="tag-list"><li>Créolisation</li><li>Postcolonialité</li><li>Négritude</li><li>Antillanité</li></ul></div>
+      <div><h4>Migration</h4><ul class="tag-list"><li>Exil volontaire</li><li>Retour au pays</li><li>Tensions diaspora/île</li></ul></div>
+      <div><h4>Dynamiques sociales</h4><ul class="tag-list"><li>Tensions intergénérationnelles</li><li>Classe sociale</li><li>Genre &amp; pouvoir</li></ul></div>
     </div>
   </div>
-</section>
-
-<!-- CTA -->
-<section class="section tressage" style="background:var(--bleu);text-align:center;">
-  <div class="section-inner">
-    <p class="section-label" style="justify-content:center;">Prochaine étape</p>
-    <h2 class="section-title section-title--light" style="margin:0 auto 1rem;">Prêt à utiliser le CMS ?</h2>
-    <p class="section-sub section-sub--light" style="margin:0 auto 2.5rem;">Téléchargez le White Paper et la Bible des métadonnées pour commencer à tagger vos contenus selon le standard officiel.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="resources.html" class="btn btn-primary">Télécharger la documentation</a>
-      <a href="collaborate.html" class="btn btn-secondary">Collaborer avec nous</a>
+  <div class="cta-block">
+    <div><h2>Prêt à utiliser le CMS ?</h2><p>Téléchargez la documentation et commencez à tagger vos contenus selon le standard officiel.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="resources.html" class="btn-t">Télécharger la documentation</a>
+      <a href="validator.html" class="btn-t" style="background:#FFC93C;color:#003E6B">Valider un contenu</a>
+      <a href="collaborate.html" class="btn-ow">Collaborer avec nous</a>
     </div>
   </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-main">
-    <div class="footer-brand">
-      <a href="index.html" class="nav-logo" style="margin-bottom:1rem;">
-        <svg viewBox="0 0 30 30" fill="none" width="24" height="24">
-          <path d="M15 2.5A12.5 12.5 0 1 0 15 27.5" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M15 2.5Q5 8 6 15Q7 22 15 27.5" stroke="#FFC93C" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="15" cy="2.5" r="2" fill="#FFC93C"/>
-          <circle cx="15" cy="27.5" r="2" fill="#FFC93C"/>
-          <circle cx="2.5" cy="15" r="1.8" fill="#00C2C7"/>
-        </svg>
-        <span class="nav-logo-text">CMS</span>
-      </a>
-      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Le Standard</h4>
-      <ul>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="families.html">Les 6 familles</a></li>
-        <li><a href="resources.html">Documentation</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Écosystème</h4>
-      <ul>
-        <li><a href="lab.html">Language Lab</a></li>
-        <li><a href="collaborate.html">Collaborer</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Ressources</h4>
-      <ul>
-        <li><a href="resources.html">White Paper</a></li>
-        <li><a href="resources.html">Glossaire</a></li>
-        <li><a href="resources.html">FAQ</a></li>
-      </ul>
-    </div>
+</main>
+<footer>
+  <div class="fg">
+    <div class="fb"><a class="fl" href="index.html">CMS</a><p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p></div>
+    <div class="fc"><h4>Le Standard</h4><ul><li><a href="about.html">À propos</a></li><li><a href="families.html">Les 6 familles</a></li><li><a href="resources.html">Documentation</a></li></ul></div>
+    <div class="fc"><h4>Écosystème</h4><ul><li><a href="lab.html">Language Lab</a></li><li><a href="collaborate.html">Collaborer</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="fc"><h4>Ressources</h4><ul><li><a href="resources.html">White Paper</a></li><li><a href="resources.html">Glossaire</a></li><li><a href="resources.html">FAQ</a></li><li><a href="validator.html" class="hl">→ Valider un contenu</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <p><strong>caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</p>
-    <div class="footer-bandes">
-      <span style="background:#003E6B;"></span>
-      <span style="background:#00C2C7;"></span>
-      <span style="background:#FFC93C;"></span>
-      <span style="background:#FF6F61;"></span>
-      <span style="background:#3FA66B;"></span>
-    </div>
-  </div>
+  <div class="fb-bot"><strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</div>
 </footer>
-
-<script>
-function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('open');
-}
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.anim-up').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>

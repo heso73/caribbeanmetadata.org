@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture & Standards — Caribbean Metadata Standard</title>
+<meta name="description" content="Architecture technique officielle du CMS et mapping de correspondance avec Dublin Core, Schema.org, ISAN, ISRC et EBUCore.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:#003E6B}
+.nav-links a.active{font-weight:700}
+.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:0.5px}
+
+/* PAGE HEADER */
+.page-header{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
+.phi{position:relative;z-index:1;max-width:760px}
+.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.page-header h1{font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
+.page-header p{font-size:17px;color:rgba(255,255,255,0.88);max-width:580px;line-height:1.75}
+
+/* NAV INTERNE */
+.inner-nav{background:#f7f9fb;border-bottom:1px solid rgba(0,62,107,0.1);padding:0 6%;display:flex;gap:0}
+.inner-nav a{padding:14px 20px;font-size:13px;color:#444;text-decoration:none;font-weight:500;border-bottom:2px solid transparent;transition:all .2s}
+.inner-nav a:hover{color:#003E6B}
+.inner-nav a.active{color:#003E6B;border-bottom-color:#00C2C7;font-weight:700}
+
+main{padding:72px 6%;max-width:1200px;margin:0 auto}
+.sl{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sl::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.st{font-size:clamp(22px,3vw,36px);font-weight:700;color:#003E6B;margin-bottom:12px;line-height:1.2}
+.st-sub{font-size:16px;color:#444;max-width:680px;line-height:1.75;margin-bottom:48px}
+
+/* ── ARCHITECTURE ── */
+.arch-section{margin-bottom:88px;scroll-margin-top:110px}
+
+/* Diagram layers */
+.arch-diagram{border:1px solid rgba(0,62,107,0.12);border-radius:12px;overflow:hidden;margin-bottom:32px}
+.arch-layer{padding:24px 28px;border-bottom:1px solid rgba(0,62,107,0.08)}
+.arch-layer:last-child{border-bottom:none}
+.layer-label{font-size:10px;letter-spacing:2px;color:#00C2C7;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.layer-label::after{content:'';flex:1;height:1px;background:rgba(0,62,107,0.08)}
+.layer-nodes{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.node{padding:10px 16px;border-radius:6px;font-size:13px;font-weight:600;border:1px solid transparent;position:relative}
+.node-cms{background:#003E6B;color:#00C2C7;border-color:#003E6B}
+.node-tool{background:#e6f4f4;color:#005f60;border-color:#00C2C7}
+.node-data{background:#fff8e1;color:#7a4f00;border-color:#FFC93C}
+.node-out{background:#eaf3de;color:#2d5a1b;border-color:#3FA66B}
+.node-ext{background:#f7f9fb;color:#333;border-color:rgba(0,62,107,0.2)}
+.node-arrow{font-size:16px;color:#aaa;flex-shrink:0;align-self:center}
+
+/* Couches descriptives */
+.arch-layers-desc{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+.layer-card{padding:20px;border:1px solid rgba(0,62,107,0.1);border-radius:8px;background:#fff}
+.layer-card-num{font-size:10px;letter-spacing:2px;color:#00C2C7;font-weight:700;margin-bottom:8px}
+.layer-card h4{font-size:14px;font-weight:700;color:#003E6B;margin-bottom:6px}
+.layer-card p{font-size:13px;color:#444;line-height:1.6}
+
+/* Flux de données */
+.flow-section{background:#f7f9fb;border-radius:12px;padding:32px;margin-bottom:48px}
+.flow-title{font-size:14px;font-weight:700;color:#003E6B;margin-bottom:20px}
+.flow-steps{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.flow-step{flex:1;min-width:140px;text-align:center;padding:0 8px}
+.flow-step-circle{width:40px;height:40px;border-radius:50%;background:#003E6B;color:#00C2C7;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.flow-step-label{font-size:12px;color:#333;font-weight:600;margin-bottom:3px}
+.flow-step-sub{font-size:11px;color:#888;line-height:1.4}
+.flow-arrow{font-size:20px;color:#00C2C7;flex-shrink:0;align-self:flex-start;margin-top:10px}
+
+/* Schéma fichiers */
+.files-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.file-card{border:1px solid rgba(0,62,107,0.1);border-radius:8px;padding:20px;background:#fff}
+.file-ext{display:inline-block;padding:4px 10px;background:#003E6B;color:#00C2C7;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:12px;font-family:'Courier New',monospace}
+.file-card h4{font-size:14px;font-weight:700;color:#003E6B;margin-bottom:6px}
+.file-card p{font-size:13px;color:#444;line-height:1.6;margin-bottom:10px}
+.file-url{font-size:11px;color:#00C2C7;font-family:'Courier New',monospace;word-break:break-all}
+
+/* ── MAPPING ── */
+.mapping-section{margin-bottom:88px;scroll-margin-top:110px}
+
+.standard-block{margin-bottom:40px;border:1px solid rgba(0,62,107,0.1);border-radius:12px;overflow:hidden}
+.standard-header{background:#003E6B;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.standard-name{font-size:16px;font-weight:700;color:#fff}
+.standard-desc{font-size:13px;color:rgba(255,255,255,0.82);margin-top:2px}
+.standard-badge{padding:5px 14px;border:1px solid rgba(0,194,199,0.4);border-radius:20px;font-size:11px;color:#00C2C7;letter-spacing:1px}
+.mapping-table{width:100%;border-collapse:collapse}
+.mapping-table th{font-size:10px;letter-spacing:1.5px;color:#888;padding:10px 16px;text-align:left;border-bottom:1px solid rgba(0,62,107,0.08);background:#f7f9fb;font-weight:600;text-transform:uppercase}
+.mapping-table td{padding:11px 16px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06);vertical-align:top;color:#1a1a1a}
+.mapping-table tr:last-child td{border-bottom:none}
+.mapping-table tr:hover td{background:#fafbfc}
+.cms-field{font-family:'Courier New',monospace;font-size:12px;color:#003E6B;font-weight:600}
+.ext-field{font-family:'Courier New',monospace;font-size:12px;color:#555}
+.compat-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:0.5px}
+.compat-full{background:#eaf3de;color:#2d5a1b}
+.compat-partial{background:#fff8e1;color:#7a4f00}
+.compat-cms{background:#e6f4f4;color:#005f60}
+.compat-note{font-size:11px;color:#888;margin-top:3px}
+
+/* Tableau récapitulatif */
+.recap-table{width:100%;border-collapse:collapse;margin-bottom:48px}
+.recap-table th{font-size:11px;letter-spacing:1px;color:#fff;padding:12px 16px;text-align:center;background:#003E6B;font-weight:600}
+.recap-table th:first-child{text-align:left}
+.recap-table td{padding:11px 16px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06);text-align:center;color:#1a1a1a}
+.recap-table td:first-child{text-align:left;font-weight:600;color:#003E6B}
+.recap-table tr:last-child td{border-bottom:none}
+.recap-table tr:nth-child(even) td{background:#f9fbfd}
+.check-y{color:#3FA66B;font-weight:700}
+.check-p{color:#FFC93C;font-weight:700}
+.check-n{color:#ddd}
+
+/* CTA */
+.cta-block{background:#003E6B;border-radius:12px;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:24px}
+.cta-block h2{font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
+.cta-block p{font-size:14px;color:rgba(255,255,255,0.88)}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-t{display:inline-block;padding:11px 22px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s}
+.btn-t:hover{background:#00A8AE}
+.btn-ow{display:inline-block;padding:11px 22px;background:transparent;color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.4);transition:all .2s}
+.btn-ow:hover{border-color:#fff}
+
+/* FOOTER */
+footer{background:#003E6B;padding:56px 6% 32px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
+.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
+.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
+.fc ul{list-style:none}
+.fc li{margin-bottom:8px}
+.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
+.fc a:hover{color:#fff}
+.fc a.hl{color:#00C2C7;font-weight:600}
+.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
+
+@media(max-width:900px){
+  .arch-layers-desc,.files-grid{grid-template-columns:1fr 1fr}
+  .flow-steps{gap:8px}
+  .fg{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .inner-nav{overflow-x:auto}
+}
+@media(max-width:600px){
+  .arch-layers-desc,.files-grid{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">CMS</a>
+  <ul class="nav-links">
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="families.html">Les 6 familles</a></li>
+    <li><a href="resources.html">Ressources</a></li>
+    <li><a href="lab.html">Language Lab</a></li>
+    <li><a href="collaborate.html">Collaborer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="founders.html">Les 100 Premiers</a></li>
+    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="phi">
+    <div class="ey">Documentation technique</div>
+    <h1>Architecture & Standards</h1>
+    <p>L'architecture officielle de l'écosystème CMS et la correspondance complète avec les standards internationaux existants — Dublin Core, Schema.org, ISAN, ISRC, EBUCore.</p>
+  </div>
+</div>
+
+<div class="inner-nav">
+  <a href="#architecture" class="active">Architecture officielle</a>
+  <a href="#fichiers">Fichiers du standard</a>
+  <a href="#mapping">Mapping standards</a>
+  <a href="#recap">Tableau récapitulatif</a>
+</div>
+
+<main>
+
+  <!-- ══ ARCHITECTURE ══ -->
+  <div id="architecture" class="arch-section">
+    <div class="sl">Architecture officielle</div>
+    <h2 class="st">L'écosystème CMS en 4 couches</h2>
+    <p class="st-sub">Le CMS n'est pas un fichier isolé — c'est un écosystème structuré en couches interdépendantes, de la définition du standard jusqu'à la diffusion mondiale des contenus caribéens.</p>
+
+    <div class="arch-diagram">
+      <div class="arch-layer" style="background:#002d4e">
+        <div class="layer-label" style="color:rgba(0,194,199,0.8)">COUCHE 1 — STANDARD (Le cœur)</div>
+        <div class="layer-nodes">
+          <span class="node node-cms">Schéma JSON — CMS v1.0</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-cms">Schéma XML/XSD</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-cms">Déclaration Fondatrice</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-cms">Bible des métadonnées</span>
+        </div>
+      </div>
+      <div class="arch-layer" style="background:#003a5c">
+        <div class="layer-label" style="color:rgba(0,194,199,0.8)">COUCHE 2 — OUTILS (L'interface)</div>
+        <div class="layer-nodes">
+          <span class="node node-tool">Validateur CMS</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-tool">Registre des 100 Premiers</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-tool">Générateur JSON</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-tool">API CMS <em style="font-size:10px;font-weight:400;opacity:.7">(v2)</em></span>
+        </div>
+      </div>
+      <div class="arch-layer" style="background:#f7f9fb">
+        <div class="layer-label">COUCHE 3 — DONNÉES (Le contenu)</div>
+        <div class="layer-nodes">
+          <span class="node node-data">Métadonnées d'œuvre</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-data">Profils créateurs</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-data">Registre territoires</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-data">Corpus caribéen</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="layer-label">COUCHE 4 — DIFFUSION (L'impact)</div>
+        <div class="layer-nodes">
+          <span class="node node-out">Plateformes streaming</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-out">Archives culturelles</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-out">Moteurs de recherche</span>
+          <span class="node-arrow">+</span>
+          <span class="node node-out">IA de recommandation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-layers-desc">
+      <div class="layer-card">
+        <div class="layer-card-num">COUCHE 1</div>
+        <h4>Standard</h4>
+        <p>Les fichiers de définition officielle — JSON Schema et XSD — qui constituent la référence normative du CMS. Tout part de là.</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-num">COUCHE 2</div>
+        <h4>Outils</h4>
+        <p>Les interfaces permettant aux créateurs et institutions d'interagir avec le standard — valider, certifier, soumettre, interroger.</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-num">COUCHE 3</div>
+        <h4>Données</h4>
+        <p>Les enregistrements réels — œuvres taguées, profils créateurs, territoires reconnus — qui constituent le corpus caribéen vivant.</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-num">COUCHE 4</div>
+        <h4>Diffusion</h4>
+        <p>Les plateformes, moteurs et systèmes qui consomment les métadonnées CMS pour rendre les contenus caribéens visibles et recommandables.</p>
+      </div>
+    </div>
+
+    <!-- Flux de données -->
+    <div class="flow-section">
+      <div class="flow-title">Flux de données — Du créateur à la plateforme</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-circle">1</div>
+          <div class="flow-step-label">Créateur</div>
+          <div class="flow-step-sub">Produit une œuvre caribéenne</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-circle">2</div>
+          <div class="flow-step-label">Tagger</div>
+          <div class="flow-step-sub">Renseigne les métadonnées CMS via le validateur</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-circle">3</div>
+          <div class="flow-step-label">Valider</div>
+          <div class="flow-step-sub">Score d'ancrage + niveau Bronze → Platinum</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-circle">4</div>
+          <div class="flow-step-label">Certifier</div>
+          <div class="flow-step-sub">Fichier JSON CMS + badge CMS-Compliant</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-circle">5</div>
+          <div class="flow-step-label">Diffuser</div>
+          <div class="flow-step-sub">Plateformes lisent le JSON et indexent correctement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FICHIERS ══ -->
+  <div id="fichiers" class="arch-section">
+    <div class="sl">Fichiers officiels du standard</div>
+    <h2 class="st">Les fichiers publiés sur caribbeanmetadata.org</h2>
+    <p class="st-sub">Tous les fichiers du standard sont accessibles librement à la racine du site. Le fichier .htaccess configure le serveur pour les afficher correctement.</p>
+
+    <div class="files-grid">
+      <div class="file-card">
+        <div class="file-ext">.json</div>
+        <h4>Schéma JSON officiel</h4>
+        <p>JSON Schema Draft 2020-12. Valide tous les enregistrements CMS. Référence technique principale pour les développeurs.</p>
+        <div class="file-url">caribbeanmetadata.org/CMS_schema_v1.0.json</div>
+      </div>
+      <div class="file-card">
+        <div class="file-ext">.xsd</div>
+        <h4>Schéma XML / XSD</h4>
+        <p>XML Schema Definition. Format institutionnel, interopérable avec les systèmes d'archives et les diffuseurs traditionnels.</p>
+        <div class="file-url">caribbeanmetadata.org/CMS_schema_v1.0.xsd</div>
+      </div>
+      <div class="file-card">
+        <div class="file-ext">.json</div>
+        <h4>Exemple d'enregistrement</h4>
+        <p>Fiche complète d'une œuvre fictive — film "Anba Dlo" — illustrant tous les champs du standard en situation réelle.</p>
+        <div class="file-url">caribbeanmetadata.org/CMS_exemple_film.json</div>
+      </div>
+      <div class="file-card">
+        <div class="file-ext">.html</div>
+        <h4>Validateur interactif</h4>
+        <p>Interface web de validation et certification. Génère le JSON et le certificat. Aucune installation requise.</p>
+        <div class="file-url">caribbeanmetadata.org/validator.html</div>
+      </div>
+      <div class="file-card">
+        <div class="file-ext">.htaccess</div>
+        <h4>Configuration serveur</h4>
+        <p>Types MIME, en-têtes CORS, cache et compression. Nécessaire pour que JSON et XSD s'affichent correctement dans le navigateur.</p>
+        <div class="file-url">caribbeanmetadata.org/.htaccess</div>
+      </div>
+      <div class="file-card" style="border-color:#FFC93C;background:#fffdf5">
+        <div class="file-ext" style="background:#FFC93C;color:#2A2A2A">v2</div>
+        <h4>API CMS — Documentation</h4>
+        <p>Endpoints REST, formats de requête, authentification. En cours de développement — disponible avec le backend CMS v2.</p>
+        <div class="file-url" style="color:#aaa">caribbeanmetadata.org/api/v1/ — Q4 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MAPPING ══ -->
+  <div id="mapping" class="mapping-section">
+    <div class="sl">Mapping avec les standards existants</div>
+    <h2 class="st">Correspondance CMS ↔ standards internationaux</h2>
+    <p class="st-sub">Le CMS est conçu pour être interopérable. Chaque champ CMS correspond à un ou plusieurs champs des standards existants — il ne les remplace pas, il les enrichit avec la dimension caribéenne.</p>
+
+    <!-- Dublin Core -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <div>
+          <div class="standard-name">Dublin Core (DC)</div>
+          <div class="standard-desc">Standard universel de description de ressources numériques — 15 éléments de base</div>
+        </div>
+        <span class="standard-badge">COMPATIBLE</span>
+      </div>
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>Champ CMS</th>
+            <th>Équivalent Dublin Core</th>
+            <th>Compatibilité</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cms-field">identity.title.original</span></td>
+            <td><span class="ext-field">dc:title</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>CMS ajoute les traductions multilingues</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">identity.creator[].name</span></td>
+            <td><span class="ext-field">dc:creator</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>CMS ajoute le rôle, la nationalité et le statut diaspora</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">content_type</span></td>
+            <td><span class="ext-field">dc:type</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>CMS précise avec content_subtype</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">identity.year_of_release</span></td>
+            <td><span class="ext-field">dc:date</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>CMS distingue création et publication</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">language.primary</span></td>
+            <td><span class="ext-field">dc:language</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>CMS ajoute variante créole, langues secondaires, sous-titres</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">rights.license</span></td>
+            <td><span class="ext-field">dc:rights</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>CMS structure les droits par territoire</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">origin.territory[]</span></td>
+            <td><span class="ext-field">dc:coverage</span></td>
+            <td><span class="compat-badge compat-partial">Partielle</span></td>
+            <td>DC couvre lieu + période, CMS spécialise sur les 27 territoires caribéens</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">cultural_markers.themes[]</span></td>
+            <td><span class="ext-field">dc:subject</span></td>
+            <td><span class="compat-badge compat-cms">Extension CMS</span></td>
+            <td>DC est générique — CMS ajoute 18 thèmes caribéens spécifiques</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Schema.org -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <div>
+          <div class="standard-name">Schema.org</div>
+          <div class="standard-desc">Vocabulaire structuré pour le web sémantique — utilisé par Google, Bing, Yahoo pour l'indexation</div>
+        </div>
+        <span class="standard-badge">COMPATIBLE</span>
+      </div>
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>Champ CMS</th>
+            <th>Équivalent Schema.org</th>
+            <th>Compatibilité</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cms-field">identity.title.original</span></td>
+            <td><span class="ext-field">schema:name</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Applicable à Movie, MusicAlbum, Book selon content_type</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">identity.creator[]</span></td>
+            <td><span class="ext-field">schema:director / schema:author</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>CMS mappe le rôle vers la propriété Schema.org correspondante</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">content_type + content_subtype</span></td>
+            <td><span class="ext-field">schema:@type</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>audiovisual/film → Movie, musical/album → MusicAlbum, literary → Book</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">language.primary</span></td>
+            <td><span class="ext-field">schema:inLanguage</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Codes BCP-47 partiellement couverts — gcf et pap nécessitent extension</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">origin.territory[]</span></td>
+            <td><span class="ext-field">schema:countryOfOrigin</span></td>
+            <td><span class="compat-badge compat-partial">Partielle</span></td>
+            <td>Schema.org n'a pas de notion de territoire culturel distinct du pays légal</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">cultural_markers.caribbean_identity_score</span></td>
+            <td><span class="ext-field">— aucun équivalent —</span></td>
+            <td><span class="compat-badge compat-cms">Exclusif CMS</span></td>
+            <td>Concept inédit — score d'ancrage culturel caribéen de 0 à 100</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">cultural_markers.cultural_expressions[]</span></td>
+            <td><span class="ext-field">schema:genre</span></td>
+            <td><span class="compat-badge compat-partial">Partielle</span></td>
+            <td>Schema:genre est trop générique — CMS liste 30+ expressions caribéennes nommées</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">technical.duration_seconds</span></td>
+            <td><span class="ext-field">schema:duration</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Conversion ISO 8601 requise (PT1H37M → 5820s)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ISAN -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <div>
+          <div class="standard-name">ISAN — International Standard Audiovisual Number</div>
+          <div class="standard-desc">Identifiant unique international pour les œuvres audiovisuelles — ISO 15706</div>
+        </div>
+        <span class="standard-badge">COMPLÉMENTAIRE</span>
+      </div>
+      <table class="mapping-table">
+        <thead>
+          <tr><th>Champ CMS</th><th>Équivalent ISAN</th><th>Compatibilité</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cms-field">identity.isbn_issn_isan</span></td>
+            <td><span class="ext-field">ISAN Root</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Le champ CMS accepte directement le code ISAN comme identifiant externe</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">identity.title.original</span></td>
+            <td><span class="ext-field">ISAN Title</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Titre de référence identique</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">identity.year_of_creation</span></td>
+            <td><span class="ext-field">ISAN Year</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Même champ, même format année</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">cultural_markers + origin</span></td>
+            <td><span class="ext-field">— non couvert par ISAN —</span></td>
+            <td><span class="compat-badge compat-cms">Extension CMS</span></td>
+            <td>ISAN identifie mais ne décrit pas culturellement — le CMS comble ce vide</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ISRC -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <div>
+          <div class="standard-name">ISRC — International Standard Recording Code</div>
+          <div class="standard-desc">Identifiant unique pour les enregistrements sonores — ISO 3901</div>
+        </div>
+        <span class="standard-badge">COMPLÉMENTAIRE</span>
+      </div>
+      <table class="mapping-table">
+        <thead>
+          <tr><th>Champ CMS</th><th>Équivalent ISRC</th><th>Compatibilité</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cms-field">identity.isbn_issn_isan</span></td>
+            <td><span class="ext-field">ISRC Code</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Le champ accepte le code ISRC pour les contenus musicaux (content_type: musical)</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">identity.creator[role=performer]</span></td>
+            <td><span class="ext-field">ISRC Performer</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>CMS structure le rôle performer explicitement</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">cultural_markers.cultural_expressions[]</span></td>
+            <td><span class="ext-field">— non couvert —</span></td>
+            <td><span class="compat-badge compat-cms">Extension CMS</span></td>
+            <td>ISRC n'identifie pas le genre musical caribéen — zouk, gwo ka, compas restent invisibles sans CMS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- EBUCore -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <div>
+          <div class="standard-name">EBUCore — European Broadcasting Union Core Metadata</div>
+          <div class="standard-desc">Standard de métadonnées pour la radiodiffusion et les archives audiovisuelles professionnelles</div>
+        </div>
+        <span class="standard-badge">COMPATIBLE</span>
+      </div>
+      <table class="mapping-table">
+        <thead>
+          <tr><th>Champ CMS</th><th>Équivalent EBUCore</th><th>Compatibilité</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cms-field">technical.format</span></td>
+            <td><span class="ext-field">ebucore:format</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>MP4, MXF, ProRes — formats communs</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">technical.duration_seconds</span></td>
+            <td><span class="ext-field">ebucore:duration</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Même unité temporelle</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">technical.aspect_ratio</span></td>
+            <td><span class="ext-field">ebucore:aspectRatio</span></td>
+            <td><span class="compat-badge compat-full">Totale</span></td>
+            <td>Valeurs identiques — 16:9, 4:3, 2.39:1</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">origin.territory[] + origin.location_shoot[]</span></td>
+            <td><span class="ext-field">ebucore:locator / ebucore:publishingPlace</span></td>
+            <td><span class="compat-badge compat-partial">Partielle</span></td>
+            <td>EBUCore couvre la localisation technique, CMS ajoute la dimension culturelle caribéenne</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">cms_compliance.certified</span></td>
+            <td><span class="ext-field">ebucore:rights</span></td>
+            <td><span class="compat-badge compat-cms">Extension CMS</span></td>
+            <td>La certification CMS-Compliant n'a pas d'équivalent EBUCore — concept inédit</td>
+          </tr>
+          <tr>
+            <td><span class="cms-field">language.creole_variant</span></td>
+            <td><span class="ext-field">ebucore:language</span></td>
+            <td><span class="compat-badge compat-cms">Extension CMS</span></td>
+            <td>EBUCore ne distingue pas les variantes créoles — EBUCore ne reconnaît pas gcf, pap, srn</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ TABLEAU RÉCAPITULATIF ══ -->
+  <div id="recap">
+    <div class="sl">Vue d'ensemble</div>
+    <h2 class="st">Couverture comparative par standard</h2>
+    <p class="st-sub" style="margin-bottom:28px">Ce tableau montre pour chaque dimension clé du CMS quel standard existant la couvre — et où le CMS apporte une valeur ajoutée unique.</p>
+
+    <div style="overflow-x:auto;margin-bottom:48px;border:1px solid rgba(0,62,107,0.1);border-radius:8px">
+      <table class="recap-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;min-width:220px">Dimension CMS</th>
+            <th>Dublin Core</th>
+            <th>Schema.org</th>
+            <th>ISAN</th>
+            <th>ISRC</th>
+            <th>EBUCore</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Titre & identification</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+          </tr>
+          <tr>
+            <td>Créateur & rôles</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+            <td class="check-p">◐</td>
+            <td class="check-p">◐</td>
+            <td class="check-y">●</td>
+          </tr>
+          <tr>
+            <td>Date de création / publication</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+          </tr>
+          <tr>
+            <td>Langue principale</td>
+            <td class="check-y">●</td>
+            <td class="check-y">●</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-y">●</td>
+          </tr>
+          <tr>
+            <td>Variantes créoles caribéennes</td>
+            <td class="check-n">○</td>
+            <td class="check-p">◐</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+          </tr>
+          <tr>
+            <td>Territoire d'origine caribéen</td>
+            <td class="check-p">◐</td>
+            <td class="check-p">◐</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-p">◐</td>
+          </tr>
+          <tr>
+            <td>Thématiques culturelles caribéennes</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+          </tr>
+          <tr>
+            <td>Expressions culturelles (zouk, gwo ka…)</td>
+            <td class="check-n">○</td>
+            <td class="check-p">◐</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+          </tr>
+          <tr>
+            <td>Score d'ancrage caribéen</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+          </tr>
+          <tr>
+            <td>Indicateurs de représentation</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+          </tr>
+          <tr>
+            <td>Droits & distribution par territoire</td>
+            <td class="check-p">◐</td>
+            <td class="check-p">◐</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-y">●</td>
+          </tr>
+          <tr>
+            <td>Certification de conformité</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+          </tr>
+          <tr>
+            <td>Données techniques (format, résolution)</td>
+            <td class="check-n">○</td>
+            <td class="check-p">◐</td>
+            <td class="check-n">○</td>
+            <td class="check-n">○</td>
+            <td class="check-y">●</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:48px;font-size:13px;color:#444">
+      <span><strong class="check-y">●</strong> Couvert</span>
+      <span><strong class="check-p">◐</strong> Partiellement couvert</span>
+      <span><strong class="check-n">○</strong> Non couvert — exclusif CMS</span>
+    </div>
+
+    <div class="cta-block">
+      <div>
+        <h2>Télécharger la documentation technique</h2>
+        <p>Schéma JSON, XSD et exemple d'enregistrement disponibles librement sur caribbeanmetadata.org.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="CMS_schema_v1.0.json" class="btn-t" target="_blank">Schéma JSON</a>
+        <a href="CMS_schema_v1.0.xsd" class="btn-t" target="_blank">Schéma XSD</a>
+        <a href="validator.html" class="btn-ow">Valider un contenu</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="fg">
+    <div class="fb"><a class="fl" href="index.html">CMS</a><p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p></div>
+    <div class="fc"><h4>Le Standard</h4><ul><li><a href="about.html">À propos</a></li><li><a href="families.html">Les 6 familles</a></li><li><a href="resources.html">Documentation</a></li></ul></div>
+    <div class="fc"><h4>Technique</h4><ul><li><a href="architecture.html" class="hl">Architecture</a></li><li><a href="validator.html">Validateur</a></li><li><a href="CMS_schema_v1.0.json" target="_blank">Schéma JSON</a></li><li><a href="CMS_schema_v1.0.xsd" target="_blank">Schéma XSD</a></li></ul></div>
+    <div class="fc"><h4>Communauté</h4><ul><li><a href="founders.html">Les 100 Premiers</a></li><li><a href="collaborate.html">Collaborer</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+  </div>
+  <div class="fb-bot"><strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</div>
+</footer>
+
+<script>
+document.querySelectorAll('.inner-nav a').forEach(a => {
+  a.addEventListener('click', function() {
+    document.querySelectorAll('.inner-nav a').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.inner-nav a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-100px 0px -60% 0px' });
+['architecture','fichiers','mapping','recap'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
+});
+</script>
+</body>
+</html>

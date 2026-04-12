@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les 100 Premiers — Caribbean Metadata Standard</title>
+<meta name="description" content="Rejoignez les 100 premiers signataires de la Déclaration Fondatrice du CMS. Un acte historique pour la souveraineté culturelle caribéenne.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
+.nav-links a:hover{color:#003E6B}
+.nav-links a.active{color:#003E6B;font-weight:700}
+.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:0.5px}
+.nav-validate:hover{background:#00A8AE !important}
+
+/* HERO FONDATEUR */
+.founders-hero{background:#003E6B;padding:110px 6% 72px;position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center}
+.founders-hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
+.founders-hero::after{content:'';position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;border:1px solid rgba(0,194,199,0.12);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.hero-eyebrow{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.founders-hero h1{font-size:clamp(36px,6vw,68px);font-weight:700;color:#fff;line-height:1.05;margin-bottom:12px;letter-spacing:-1px}
+.founders-hero h1 span{color:#00C2C7}
+.founders-hero .sub{font-size:clamp(15px,2vw,19px);color:rgba(255,255,255,0.88);line-height:1.7;margin-bottom:36px;max-width:560px}
+.hero-counter{display:flex;gap:32px;flex-wrap:wrap}
+.hc-item{text-align:center}
+.hc-num{font-size:36px;font-weight:700;color:#FFC93C;line-height:1}
+.hc-lbl{font-size:11px;color:rgba(255,255,255,0.72);letter-spacing:1px;margin-top:4px}
+
+/* BARRE PROGRESSION */
+.prog-bar-section{background:#002d4e;padding:20px 6%;border-bottom:1px solid rgba(0,194,199,0.15)}
+.prog-inner{max-width:1100px;margin:0 auto}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.prog-top span{font-size:12px;color:rgba(255,255,255,0.72)}
+.prog-top strong{font-size:13px;color:#00C2C7;font-weight:600}
+.prog-track{height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;position:relative}
+.prog-fill{height:100%;background:#00C2C7;border-radius:3px;transition:width .8s ease}
+.prog-marks{display:flex;justify-content:space-between;margin-top:6px}
+.prog-mark{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.5px}
+
+/* DÉCLARATION */
+.declaration-section{background:#f7f9fb;padding:72px 6%}
+.decl-inner{max-width:820px;margin:0 auto}
+.section-eyebrow{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-eyebrow::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.section-title{font-size:clamp(22px,3vw,36px);font-weight:700;color:#003E6B;margin-bottom:36px;line-height:1.2}
+.decl-articles{display:flex;flex-direction:column;gap:0;border:1px solid rgba(0,62,107,0.12);border-radius:8px;overflow:hidden}
+.decl-article{padding:24px 28px;border-bottom:1px solid rgba(0,62,107,0.08);background:#fff}
+.decl-article:last-child{border-bottom:none}
+.decl-article-num{font-size:10px;letter-spacing:2px;color:#00C2C7;font-weight:700;margin-bottom:8px}
+.decl-article p{font-size:15px;color:#333;line-height:1.8;font-style:italic}
+.decl-preambule{background:#003E6B;padding:32px 28px;color:#fff}
+.decl-preambule p{font-size:16px;line-height:1.9;color:rgba(255,255,255,0.92);font-style:italic}
+.decl-preambule strong{color:#00C2C7;font-style:normal;font-weight:700}
+
+/* REGISTRE */
+.registre-section{padding:72px 6%}
+.reg-inner{max-width:1100px;margin:0 auto}
+
+/* Compteurs profils */
+.profile-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:40px}
+.profile-card{border:1px solid rgba(0,62,107,0.1);border-radius:8px;padding:16px;text-align:center;cursor:pointer;transition:all .2s;background:#fff}
+.profile-card:hover{border-color:#003E6B}
+.profile-card.active{border-color:#003E6B;background:#f0f5fa}
+.profile-dot{width:10px;height:10px;border-radius:50%;margin:0 auto 8px}
+.profile-name{font-size:12px;color:#444;margin-bottom:4px;font-weight:500}
+.profile-count{font-size:24px;font-weight:700;color:#003E6B}
+
+/* Table */
+.table-controls{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.table-controls input{flex:1;min-width:200px;padding:9px 14px;border:1px solid rgba(0,62,107,0.2);border-radius:6px;font-size:13px;font-family:inherit;color:#1a1a1a}
+.table-controls input:focus{outline:none;border-color:#00C2C7}
+.table-controls select{padding:9px 14px;border:1px solid rgba(0,62,107,0.2);border-radius:6px;font-size:13px;font-family:inherit;color:#1a1a1a;background:#fff}
+
+.registre-table{width:100%;border-collapse:collapse;margin-bottom:0}
+.registre-table th{font-size:10px;letter-spacing:1.5px;color:#888;padding:10px 14px;text-align:left;border-bottom:2px solid rgba(0,62,107,0.1);font-weight:600;text-transform:uppercase;background:#f7f9fb}
+.registre-table td{padding:12px 14px;font-size:14px;border-bottom:1px solid rgba(0,62,107,0.06);color:#1a1a1a;vertical-align:middle}
+.registre-table tr:last-child td{border-bottom:none}
+.registre-table tr:hover td{background:#f7f9fb}
+.num-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.type-pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.3px}
+.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.empty-row td{text-align:center;padding:40px;color:#888;font-size:14px}
+
+/* FORMULAIRE INSCRIPTION */
+.inscription-section{background:#003E6B;padding:72px 6%;position:relative;overflow:hidden}
+.inscription-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
+.ins-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.ins-left .section-eyebrow{color:#00C2C7}
+.ins-left .section-eyebrow::before{background:#00C2C7}
+.ins-left h2{font-size:clamp(22px,3vw,34px);font-weight:700;color:#fff;margin-bottom:16px;line-height:1.2}
+.ins-left p{font-size:15px;color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:24px}
+.ins-benefits{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ins-benefits li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,0.88);line-height:1.6}
+.ins-benefits li::before{content:'→';color:#00C2C7;font-weight:700;flex-shrink:0;margin-top:1px}
+
+.ins-form{background:#fff;border-radius:12px;padding:36px}
+.ins-form h3{font-size:17px;font-weight:700;color:#003E6B;margin-bottom:24px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:12px;color:#444;font-weight:600;letter-spacing:0.3px}
+.field label .req{color:#FF6F61;margin-left:3px}
+.field input,.field select,.field textarea{padding:10px 14px;border:1px solid rgba(0,62,107,0.2);border-radius:6px;font-size:14px;font-family:inherit;color:#1a1a1a;background:#fff;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#00C2C7;box-shadow:0 0 0 3px rgba(0,194,199,0.1)}
+.field textarea{min-height:80px;resize:vertical}
+.field .hint{font-size:11px;color:#888;margin-top:2px}
+.form-check{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:14px;background:#f7f9fb;border-radius:6px}
+.form-check input[type=checkbox]{width:16px;height:16px;margin-top:2px;flex-shrink:0;accent-color:#003E6B}
+.form-check label{font-size:13px;color:#444;line-height:1.6;cursor:pointer}
+.btn-inscrire{width:100%;padding:14px;background:#003E6B;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s;margin-top:20px;letter-spacing:0.5px}
+.btn-inscrire:hover{background:#00537A}
+.btn-inscrire:disabled{background:#ccc;cursor:not-allowed}
+.form-note{font-size:11px;color:#888;text-align:center;margin-top:10px;line-height:1.6}
+.success-block{display:none;text-align:center;padding:20px 0}
+.success-block .success-num{font-size:56px;font-weight:700;color:#003E6B;line-height:1}
+.success-block .success-lbl{font-size:13px;color:#888;letter-spacing:1px;margin-bottom:16px}
+.success-block h4{font-size:18px;font-weight:700;color:#003E6B;margin-bottom:8px}
+.success-block p{font-size:14px;color:#555;line-height:1.7;margin-bottom:20px}
+.btn-cert{display:inline-block;padding:12px 28px;background:#00C2C7;color:#003E6B;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .2s}
+.btn-cert:hover{background:#00A8AE}
+
+/* FOOTER */
+footer{background:#003E6B;padding:56px 6% 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
+.footer-col h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:8px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-col a.hl{color:#FFC93C;font-weight:600}
+.footer-bottom{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
+
+@media(max-width:900px){
+  .profile-grid{grid-template-columns:repeat(3,1fr)}
+  .ins-inner{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .hero-counter{gap:20px}
+}
+@media(max-width:600px){
+  .profile-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">CMS</a>
+  <ul class="nav-links">
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="families.html">Les 6 familles</a></li>
+    <li><a href="resources.html">Ressources</a></li>
+    <li><a href="lab.html">Language Lab</a></li>
+    <li><a href="collaborate.html">Collaborer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="founders-hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Acte fondateur · Registre officiel</div>
+    <h1>Les <span>100</span> Premiers</h1>
+    <p class="sub">Ceux qui signent en premier signent l'histoire. Les 100 premiers signataires de la Déclaration Fondatrice du CMS sont les témoins officiels de la naissance d'un standard mondial de souveraineté culturelle caribéenne.</p>
+    <div class="hero-counter">
+      <div class="hc-item"><div class="hc-num" id="h-signed">1</div><div class="hc-lbl">SIGNATAIRES</div></div>
+      <div class="hc-item"><div class="hc-num" id="h-remain">99</div><div class="hc-lbl">PLACES RESTANTES</div></div>
+      <div class="hc-item"><div class="hc-num" id="h-terr">1</div><div class="hc-lbl">TERRITOIRES</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BARRE PROGRESSION -->
+<div class="prog-bar-section">
+  <div class="prog-inner">
+    <div class="prog-top">
+      <span>Progression vers les 100 premiers signataires</span>
+      <strong id="prog-label">1 / 100</strong>
+    </div>
+    <div class="prog-track">
+      <div class="prog-fill" id="prog-fill" style="width:1%"></div>
+    </div>
+    <div class="prog-marks">
+      <span>0</span>
+      <span>25 — Fondateurs</span>
+      <span>50 — Bâtisseurs</span>
+      <span>75 — Pionniers</span>
+      <span>100</span>
+    </div>
+  </div>
+</div>
+
+<!-- DÉCLARATION -->
+<section class="declaration-section">
+  <div class="decl-inner">
+    <div class="section-eyebrow">Déclaration fondatrice</div>
+    <h2 class="section-title">Ce que nous proclamons</h2>
+    <div class="decl-articles">
+      <div class="decl-preambule">
+        <p>Nous, peuples, créateurs, gardiens, conteurs, artisans d'images et de sons, réunis par les vents, les langues, les mémoires et les îles, déclarons que <strong>la Caraïbe n'est pas un fragment du monde : elle est un monde entier.</strong><br><br>Aujourd'hui, nous reprenons la parole. Aujourd'hui, nous reprenons la classification. Aujourd'hui, nous reprenons la souveraineté.</p>
+      </div>
+      <div class="decl-article">
+        <div class="decl-article-num">ARTICLE 1 — La raison d'être</div>
+        <p>Le CMS est établi comme le premier standard mondial conçu pour indexer, protéger, transmettre et amplifier la souveraineté culturelle caribéenne. Il n'est pas un outil. Il n'est pas un catalogue. Il est une institution culturelle, un langage commun, un acte de souveraineté.</p>
+      </div>
+      <div class="decl-article">
+        <div class="decl-article-num">ARTICLE 4 — La Caraïbe comme matrice</div>
+        <p>Le CMS reconnaît la Caraïbe comme un archipel de langues, un continent de mémoires, un océan de récits, une civilisation en mouvement. La Caraïbe se définit elle-même. Le CMS est son alphabet.</p>
+      </div>
+      <div class="decl-article">
+        <div class="decl-article-num">ARTICLE 6 — Le droit d'exister en lumière</div>
+        <p>Nous affirmons que chaque œuvre caribéenne, qu'elle soit grande ou modeste, ancienne ou nouvelle, locale ou diasporique, a droit à un nom, une place, une mémoire, une visibilité, une reconnaissance. Le CMS est le lieu où ces droits deviennent réalité.</p>
+      </div>
+      <div class="decl-article" style="background:#f7f9fb">
+        <div class="decl-article-num">CONCLUSION</div>
+        <p style="font-weight:600;color:#003E6B;font-style:normal;font-size:16px">La Caraïbe n'attend plus d'être découverte. Elle se déclare. Elle se structure. Elle se raconte. Elle se standardise. Le CMS est son acte de naissance numérique et son acte de renaissance culturelle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRE -->
+<section class="registre-section">
+  <div class="reg-inner">
+    <div class="section-eyebrow">Registre officiel</div>
+    <h2 class="section-title">Les signataires</h2>
+
+    <div class="profile-grid">
+      <div class="profile-card active" onclick="filterProfile('')" id="pcard-all">
+        <div class="profile-dot" style="background:#003E6B"></div>
+        <div class="profile-name">Tous</div>
+        <div class="profile-count" id="pcnt-all">1</div>
+      </div>
+      <div class="profile-card" onclick="filterProfile('createur')" id="pcard-createur">
+        <div class="profile-dot" style="background:#00C2C7"></div>
+        <div class="profile-name">Créateurs</div>
+        <div class="profile-count" id="pcnt-createur">0</div>
+      </div>
+      <div class="profile-card" onclick="filterProfile('institution')" id="pcard-institution">
+        <div class="profile-dot" style="background:#FFC93C"></div>
+        <div class="profile-name">Institutions</div>
+        <div class="profile-count" id="pcnt-institution">1</div>
+      </div>
+      <div class="profile-card" onclick="filterProfile('plateforme')" id="pcard-plateforme">
+        <div class="profile-dot" style="background:#FF6F61"></div>
+        <div class="profile-name">Plateformes</div>
+        <div class="profile-count" id="pcnt-plateforme">0</div>
+      </div>
+      <div class="profile-card" onclick="filterProfile('chercheur')" id="pcard-chercheur">
+        <div class="profile-dot" style="background:#3FA66B"></div>
+        <div class="profile-name">Chercheurs</div>
+        <div class="profile-count" id="pcnt-chercheur">0</div>
+      </div>
+    </div>
+
+    <div class="table-controls">
+      <input type="text" id="search" placeholder="Rechercher un signataire, territoire…" oninput="renderTable()">
+      <select onchange="renderTable()" id="sort">
+        <option value="num">Par numéro</option>
+        <option value="nom">Par nom</option>
+        <option value="territoire">Par territoire</option>
+      </select>
+    </div>
+
+    <div style="border:1px solid rgba(0,62,107,0.1);border-radius:8px;overflow:hidden">
+      <table class="registre-table">
+        <thead>
+          <tr>
+            <th style="width:56px">N°</th>
+            <th>Signataire</th>
+            <th>Profil</th>
+            <th>Territoire</th>
+            <th>Statut</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="registre-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE INSCRIPTION -->
+<section class="inscription-section" id="inscription">
+  <div class="ins-inner">
+    <div class="ins-left">
+      <div class="section-eyebrow">Rejoindre le registre</div>
+      <h2>Signez la Déclaration Fondatrice</h2>
+      <p>Votre inscription est soumise à validation par le Caribwood Language Lab. Une fois acceptée, votre nom apparaît dans le registre officiel et vous recevez votre certificat de signataire fondateur.</p>
+      <ul class="ins-benefits">
+        <li>Votre numéro de registre permanent — de 1 à 100</li>
+        <li>Certificat de signataire fondateur téléchargeable</li>
+        <li>Mention dans le White Paper officiel du CMS</li>
+        <li>Accès anticipé aux prochaines versions du standard</li>
+        <li>Badge numérique CMS Founder à afficher sur vos supports</li>
+        <li>Invitation aux événements fondateurs de l'écosystème</li>
+      </ul>
+    </div>
+
+    <div class="ins-form" id="form-container">
+      <h3>Demande d'inscription au registre</h3>
+      <div class="form-grid" id="the-form">
+        <div class="field">
+          <label>Prénom <span class="req">*</span></label>
+          <input type="text" id="f-prenom" placeholder="Votre prénom">
+        </div>
+        <div class="field">
+          <label>Nom <span class="req">*</span></label>
+          <input type="text" id="f-nom" placeholder="Votre nom">
+        </div>
+        <div class="field form-full">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" id="f-email" placeholder="votre@email.com">
+        </div>
+        <div class="field form-full">
+          <label>Organisation / Studio / Institution</label>
+          <input type="text" id="f-org" placeholder="Nom de votre organisation (optionnel)">
+        </div>
+        <div class="field">
+          <label>Profil <span class="req">*</span></label>
+          <select id="f-profil">
+            <option value="">— Sélectionner —</option>
+            <option value="createur">Créateur / Cinéaste / Artiste</option>
+            <option value="institution">Institution / Collectivité</option>
+            <option value="plateforme">Plateforme / Distributeur</option>
+            <option value="chercheur">Chercheur / Académique</option>
+            <option value="studio">Studio / Producteur</option>
+            <option value="linguiste">Linguiste / Traducteur</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Territoire <span class="req">*</span></label>
+          <select id="f-terr">
+            <option value="">— Sélectionner —</option>
+            <option value="GP">Guadeloupe</option>
+            <option value="MQ">Martinique</option>
+            <option value="GF">Guyane française</option>
+            <option value="HT">Haïti</option>
+            <option value="JM">Jamaïque</option>
+            <option value="TT">Trinité-et-Tobago</option>
+            <option value="CU">Cuba</option>
+            <option value="DO">Rép. Dominicaine</option>
+            <option value="PR">Porto Rico</option>
+            <option value="BB">Barbade</option>
+            <option value="LC">Sainte-Lucie</option>
+            <option value="AW">Aruba</option>
+            <option value="CW">Curaçao</option>
+            <option value="SR">Suriname</option>
+            <option value="GY">Guyana</option>
+            <option value="DIASPORA">Diaspora caribéenne</option>
+            <option value="FR">France</option>
+            <option value="INT">International</option>
+          </select>
+        </div>
+        <div class="field form-full">
+          <label>Pourquoi souhaitez-vous rejoindre les 100 premiers ?</label>
+          <textarea id="f-msg" placeholder="En quelques mots, votre lien avec la Caraïbe et votre engagement pour la souveraineté culturelle…"></textarea>
+          <span class="hint">Optionnel — mais apprécié pour la validation.</span>
+        </div>
+        <div class="field form-full">
+          <div class="form-check">
+            <input type="checkbox" id="f-check" onchange="document.getElementById('btn-submit').disabled=!this.checked">
+            <label for="f-check">Je souscris à la Déclaration Fondatrice du Caribbean Metadata Standard et j'autorise la publication de mon nom dans le registre officiel des 100 premiers signataires.</label>
+          </div>
+        </div>
+      </div>
+      <button class="btn-inscrire" id="btn-submit" disabled onclick="handleSubmit()">Soumettre ma candidature →</button>
+      <p class="form-note">Validation sous 48h par le Caribwood Language Lab · contact@caribbeanmetadata.org</p>
+
+      <div class="success-block" id="success-block">
+        <div class="success-num" id="s-num">#—</div>
+        <div class="success-lbl">VOTRE NUMÉRO DE CANDIDATURE</div>
+        <h4>Candidature reçue</h4>
+        <p>Merci. Votre demande d'inscription au registre des 100 premiers a été transmise au Caribwood Language Lab. Vous recevrez une réponse à l'adresse indiquée sous 48 heures. Une fois validée, votre nom apparaîtra dans le registre et votre certificat sera disponible.</p>
+        <button class="btn-cert" onclick="downloadCert()">Télécharger votre certificat provisoire</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="index.html">CMS</a>
+      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Le Standard</h4>
+      <ul>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="families.html">Les 6 familles</a></li>
+        <li><a href="resources.html">Documentation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Écosystème</h4>
+      <ul>
+        <li><a href="lab.html">Language Lab</a></li>
+        <li><a href="collaborate.html">Collaborer</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ressources</h4>
+      <ul>
+        <li><a href="validator.html">Valider un contenu</a></li>
+        <li><a href="founders.html" class="hl">→ Les 100 Premiers</a></li>
+        <li><a href="resources.html">White Paper</a></li>
+        <li><a href="resources.html">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
+  </div>
+</footer>
+
+<script>
+const TYPE_COLORS = {
+  createur:'#00C2C7', institution:'#FFC93C', plateforme:'#FF6F61',
+  chercheur:'#3FA66B', studio:'#7B3FA6', linguiste:'#185FA5', autre:'#888'
+};
+const TYPE_LABELS = {
+  createur:'Créateur', institution:'Institution', plateforme:'Plateforme',
+  chercheur:'Chercheur', studio:'Studio', linguiste:'Linguiste', autre:'Autre'
+};
+const TERR_NAMES = {
+  GP:'Guadeloupe', MQ:'Martinique', GF:'Guyane', HT:'Haïti',
+  JM:'Jamaïque', TT:'Trinité-et-Tobago', CU:'Cuba', DO:'Rép. Dominicaine',
+  PR:'Porto Rico', BB:'Barbade', LC:'Sainte-Lucie', AW:'Aruba',
+  CW:'Curaçao', SR:'Suriname', GY:'Guyana', DIASPORA:'Diaspora',
+  FR:'France', INT:'International'
+};
+
+let signataires = [
+  { num:1, nom:'Caribwood Language Lab', org:'Caribwood Language Lab', profil:'institution', territoire:'GP', date:'2026-04-12', statut:'valide' }
+];
+
+let activeProfile = '';
+
+function filterProfile(p) {
+  activeProfile = p;
+  document.querySelectorAll('.profile-card').forEach(c => c.classList.remove('active'));
+  document.getElementById(p ? 'pcard-'+p : 'pcard-all').classList.add('active');
+  renderTable();
+}
+
+function renderTable() {
+  const search = document.getElementById('search').value.toLowerCase();
+  const sort   = document.getElementById('sort').value;
+  let data = [...signataires];
+  if (activeProfile) data = data.filter(s => s.profil === activeProfile);
+  if (search) data = data.filter(s =>
+    s.nom.toLowerCase().includes(search) ||
+    (s.org||'').toLowerCase().includes(search) ||
+    (TERR_NAMES[s.territoire]||'').toLowerCase().includes(search)
+  );
+  if (sort === 'nom') data.sort((a,b) => a.nom.localeCompare(b.nom));
+  if (sort === 'territoire') data.sort((a,b) => a.territoire.localeCompare(b.territoire));
+
+  const tbody = document.getElementById('registre-body');
+  if (!data.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="6">Aucun signataire trouvé</td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map(s => `
+    <tr>
+      <td><div class="num-badge" style="background:${TYPE_COLORS[s.profil]||'#003E6B'}">${String(s.num).padStart(2,'0')}</div></td>
+      <td>
+        <div style="font-weight:600;color:#1a1a1a">${s.nom}</div>
+        ${s.org && s.org !== s.nom ? `<div style="font-size:12px;color:#888;margin-top:1px">${s.org}</div>` : ''}
+      </td>
+      <td><span class="type-pill" style="background:${TYPE_COLORS[s.profil]}22;color:${TYPE_COLORS[s.profil]}">${TYPE_LABELS[s.profil]||s.profil}</span></td>
+      <td style="font-size:13px;color:#444">${TERR_NAMES[s.territoire]||s.territoire}</td>
+      <td>
+        <span class="status-dot" style="background:${s.statut==='valide'?'#3FA66B':'#FFC93C'}"></span>
+        <span style="font-size:12px;color:${s.statut==='valide'?'#3FA66B':'#888'}">${s.statut==='valide'?'Validé':'En attente'}</span>
+      </td>
+      <td style="font-size:12px;color:#888">${s.date}</td>
+    </tr>
+  `).join('');
+}
+
+function updateCounters() {
+  const n = signataires.length;
+  const terrs = new Set(signataires.map(s => s.territoire)).size;
+  document.getElementById('h-signed').textContent = n;
+  document.getElementById('h-remain').textContent = 100 - n;
+  document.getElementById('h-terr').textContent = terrs;
+  document.getElementById('prog-label').textContent = n + ' / 100';
+  document.getElementById('prog-fill').style.width = Math.min(n, 100) + '%';
+  document.getElementById('pcnt-all').textContent = n;
+  ['createur','institution','plateforme','chercheur'].forEach(t => {
+    document.getElementById('pcnt-'+t).textContent = signataires.filter(s=>s.profil===t).length;
+  });
+}
+
+let pendingNum = 0;
+let pendingData = {};
+
+function handleSubmit() {
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const nom    = document.getElementById('f-nom').value.trim();
+  const email  = document.getElementById('f-email').value.trim();
+  const profil = document.getElementById('f-profil').value;
+  const terr   = document.getElementById('f-terr').value;
+
+  if (!prenom || !nom || !email || !profil || !terr) {
+    alert('Merci de remplir tous les champs obligatoires.');
+    return;
+  }
+
+  const fullNom = prenom + ' ' + nom;
+  const org     = document.getElementById('f-org').value.trim();
+  pendingNum    = signataires.length + 1;
+  pendingData   = { num: pendingNum, nom: fullNom, org: org || fullNom, profil, territoire: terr, date: new Date().toISOString().split('T')[0], statut: 'en_attente' };
+
+  signataires.push(pendingData);
+  updateCounters();
+  renderTable();
+
+  document.getElementById('the-form').style.display = 'none';
+  document.getElementById('btn-submit').style.display = 'none';
+  document.querySelector('.form-note').style.display = 'none';
+  document.getElementById('success-block').style.display = 'block';
+  document.getElementById('s-num').textContent = '#' + String(pendingNum).padStart(2,'0');
+
+  const mailto = `mailto:contact@caribbeanmetadata.org?subject=Candidature%20Registre%20100%20Premiers%20%23${pendingNum}%20—%20${encodeURIComponent(fullNom)}&body=Prénom%20%3A%20${encodeURIComponent(prenom)}%0ANom%20%3A%20${encodeURIComponent(nom)}%0AEmail%20%3A%20${encodeURIComponent(email)}%0AOrganisation%20%3A%20${encodeURIComponent(org)}%0AProfil%20%3A%20${encodeURIComponent(profil)}%0ATerritoire%20%3A%20${encodeURIComponent(TERR_NAMES[terr]||terr)}%0ANuméro%20de%20candidature%20%3A%20${pendingNum}`;
+  window.location.href = mailto;
+}
+
+function downloadCert() {
+  const d = pendingData;
+  const date = new Date().toLocaleDateString('fr-FR');
+  const col  = TYPE_COLORS[d.profil] || '#003E6B';
+  const html = `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<title>Certificat Signataire Fondateur CMS #${String(d.num).padStart(2,'0')}</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#FFFDF5;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+.cert{width:760px;border:2px solid #FFC93C;background:#FFFDF5;overflow:hidden}
+.top{background:#003E6B;padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
+.top-logo{font-size:24px;font-weight:700;color:#fff;letter-spacing:3px}
+.top-sub{font-size:10px;color:#00C2C7;letter-spacing:2px;margin-top:4px}
+.top-badge{padding:6px 16px;border:1px solid rgba(0,194,199,0.4);border-radius:20px;font-size:10px;color:#00C2C7;letter-spacing:1px}
+.body{padding:48px 40px;text-align:center}
+.cert-eyebrow{font-size:10px;letter-spacing:3px;color:#888;margin-bottom:8px}
+.cert-title{font-size:28px;font-weight:700;color:#003E6B;margin-bottom:4px}
+.cert-subtitle{font-size:14px;color:#888;margin-bottom:36px}
+.seal{width:100px;height:100px;border-radius:50%;background:${col};border:3px solid rgba(255,255,255,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px}
+.seal-num{font-size:30px;font-weight:700;color:#fff;line-height:1}
+.seal-lbl{font-size:8px;color:rgba(255,255,255,0.8);letter-spacing:2px;margin-top:2px}
+.signatory-name{font-size:24px;font-weight:700;color:#003E6B;margin-bottom:4px}
+.signatory-org{font-size:14px;color:#888;margin-bottom:4px}
+.signatory-terr{font-size:12px;color:#00C2C7;font-weight:600;letter-spacing:1px;margin-bottom:32px}
+.divider{width:80px;height:2px;background:#FFC93C;margin:0 auto 28px}
+.decl-quote{font-size:14px;font-style:italic;color:#555;line-height:1.8;max-width:480px;margin:0 auto 32px}
+.footer-line{font-size:11px;color:#aaa;letter-spacing:1px;margin-bottom:8px}
+.color-bar{display:flex;height:4px}
+.color-bar div{flex:1}
+</style></head><body>
+<div class="cert">
+<div class="top">
+  <div><div class="top-logo">CMS</div><div class="top-sub">CARIBBEAN METADATA STANDARD · v1.0</div></div>
+  <div class="top-badge">SIGNATAIRE FONDATEUR</div>
+</div>
+<div class="body">
+  <div class="cert-eyebrow">CERTIFICAT OFFICIEL</div>
+  <div class="cert-title">Registre des 100 Premiers</div>
+  <div class="cert-subtitle">Déclaration Fondatrice du Caribbean Metadata Standard</div>
+  <div class="seal"><div class="seal-num">#${String(d.num).padStart(2,'0')}</div><div class="seal-lbl">FONDATEUR</div></div>
+  <div class="signatory-name">${d.nom}</div>
+  ${d.org && d.org !== d.nom ? `<div class="signatory-org">${d.org}</div>` : ''}
+  <div class="signatory-terr">${TERR_NAMES[d.territoire]||d.territoire} · ${TYPE_LABELS[d.profil]||d.profil}</div>
+  <div class="divider"></div>
+  <p class="decl-quote">"La Caraïbe n'attend plus d'être découverte. Elle se déclare. Elle se structure. Elle se raconte. Le CMS est son acte de naissance numérique et son acte de renaissance culturelle."</p>
+  <div class="footer-line">Certifié le ${date} — En attente de validation officielle</div>
+  <div class="footer-line">Caribwood Language Lab · caribbeanmetadata.org</div>
+</div>
+<div class="color-bar">
+  <div style="background:#003E6B"></div><div style="background:#00C2C7"></div>
+  <div style="background:#FFC93C"></div><div style="background:#FF6F61"></div><div style="background:#3FA66B"></div>
+</div>
+</div></body></html>`;
+  const blob = new Blob([html], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `Certificat_CMS_Fondateur_${String(d.num).padStart(2,'0')}_${d.nom.replace(/\s+/g,'_')}.html`;
+  a.click();
+}
+
+updateCounters();
+renderTable();
+</script>
+</body>
+</html>
