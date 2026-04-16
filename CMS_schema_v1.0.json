@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cms.caribwood.com/schema/v1.0/cms-metadata.json",
+  "$id": "https://caribbeanmetadata.org/schema/v1.0/cms-metadata.json",
   "title": "Caribbean Metadata Standard",
   "description": "Schéma officiel de métadonnées culturelles caribéennes — CMS v1.0",
   "version": "1.0.0",
