@@ -1,1 +1,104 @@
+{
+  "_comment": "EXEMPLE CMS — Patrimoine oral caribéen fictif à titre de démonstration",
+  "cms_version": "1.0",
 
+  "content_type": "heritage",
+  "content_subtype": "oral_tradition",
+
+  "identity": {
+    "title": {
+      "original": "Kont Matinik — Sé Zannimo-a",
+      "fr": "Contes de Martinique — Les Animaux",
+      "en": "Tales of Martinique — The Animals",
+      "es": "Cuentos de Martinica — Los Animales",
+      "gcf": "Kont Matinik — Sé Zannimo-a",
+      "ht": "Kont Matinik — Bèt yo"
+    },
+    "creator": [
+      {
+        "name": "Théodore Beauséjour",
+        "role": "narrator",
+        "nationality": "MQ",
+        "diaspora": false
+      },
+      {
+        "name": "Institut du Patrimoine Caribéen",
+        "role": "archivist",
+        "nationality": "GP",
+        "diaspora": false
+      }
+    ],
+    "year_of_creation": 1987,
+    "year_of_release": 2026,
+    "duration_seconds": 2700
+  },
+
+  "origin": {
+    "territory": ["MQ"],
+    "production_country": ["FR", "MQ"],
+    "location_shoot": [
+      {
+        "name": "Le Marin",
+        "territory": "MQ",
+        "lat": 14.4667,
+        "lon": -60.8667
+      }
+    ]
+  },
+
+  "language": {
+    "primary": "gcf",
+    "additional": ["fr"],
+    "subtitles": ["fr", "en"],
+    "creole_variant": "martiniquais"
+  },
+
+  "cultural_markers": {
+    "caribbean_identity_score": 98,
+    "themes": [
+      "oral_tradition",
+      "traditional_knowledge",
+      "creolization",
+      "afrocaribbean",
+      "indigineous_heritage",
+      "identity_language",
+      "caribbean_spirituality"
+    ],
+    "cultural_expressions": [
+      "gwo_ka",
+      "vodou",
+      "carnival"
+    ],
+    "representation": {
+      "afrodescendant_lead": true,
+      "indigenous_presence": true,
+      "creole_language_use": true,
+      "female_lead": false,
+      "youth_focus": true,
+      "diaspora_perspective": false
+    },
+    "historical_period": ["post_colonial", "contemporary"]
+  },
+
+  "rights": {
+    "license": "cc_by_sa",
+    "rights_holder": "Institut du Patrimoine Caribéen",
+    "distribution_territories": ["GP", "MQ", "GF", "HT", "FR", "TT", "LC", "DM", "DIASPORA"]
+  },
+
+  "technical": {
+    "format": "MP4",
+    "resolution": "1080p",
+    "file_size_mb": 2800,
+    "encoding": "H.264",
+    "aspect_ratio": "16:9"
+  },
+
+  "cms_compliance": {
+    "certified": true,
+    "certified_date": "2026-04-16",
+    "certified_by": "Caribwood Language Lab",
+    "compliance_level": "platinum",
+    "validator_version": "1.0"
+  }
+}
