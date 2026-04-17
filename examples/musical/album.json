@@ -1,1 +1,105 @@
+{
+  "_comment": "EXEMPLE CMS — Album musical caribéen fictif à titre de démonstration",
+  "cms_version": "1.0",
 
+  "content_type": "musical",
+  "content_subtype": "album",
+
+  "identity": {
+    "title": {
+      "original": "Rasin Vivan",
+      "fr": "Racines Vivantes",
+      "en": "Living Roots",
+      "es": "Raíces Vivas",
+      "gcf": "Rasin Vivan",
+      "ht": "Rasin Vivan"
+    },
+    "creator": [
+      {
+        "name": "Kévin Mansonval",
+        "role": "composer",
+        "nationality": "GP",
+        "diaspora": false
+      },
+      {
+        "name": "Sylvie Céleste",
+        "role": "performer",
+        "nationality": "MQ",
+        "diaspora": false
+      }
+    ],
+    "year_of_creation": 2025,
+    "year_of_release": 2026,
+    "duration_seconds": 3240,
+    "isbn_issn_isan": "ISRC-FR-Z03-26-00042"
+  },
+
+  "origin": {
+    "territory": ["GP", "MQ"],
+    "production_country": ["FR", "GP"],
+    "location_shoot": [
+      {
+        "name": "Capesterre-Belle-Eau",
+        "territory": "GP",
+        "lat": 16.0441,
+        "lon": -61.5624
+      }
+    ]
+  },
+
+  "language": {
+    "primary": "gcf",
+    "additional": ["fr", "ht"],
+    "subtitles": [],
+    "creole_variant": "guadeloupean"
+  },
+
+  "cultural_markers": {
+    "caribbean_identity_score": 94,
+    "themes": [
+      "oral_tradition",
+      "afrocaribbean",
+      "creolization",
+      "resistance",
+      "caribbean_music_tradition",
+      "identity_language"
+    ],
+    "cultural_expressions": [
+      "gwo_ka",
+      "biguine",
+      "zouk",
+      "bele"
+    ],
+    "representation": {
+      "afrodescendant_lead": true,
+      "indigenous_presence": false,
+      "creole_language_use": true,
+      "female_lead": true,
+      "youth_focus": false,
+      "diaspora_perspective": false
+    },
+    "historical_period": ["contemporary", "post_colonial"]
+  },
+
+  "rights": {
+    "license": "cc_by_nc_sa",
+    "rights_holder": "Caribwood Language Lab",
+    "distribution_territories": ["GP", "MQ", "GF", "HT", "FR", "DIASPORA"]
+  },
+
+  "technical": {
+    "format": "MP3",
+    "resolution": null,
+    "file_size_mb": 320,
+    "encoding": "AAC 320kbps",
+    "aspect_ratio": null
+  },
+
+  "cms_compliance": {
+    "certified": true,
+    "certified_date": "2026-04-16",
+    "certified_by": "Caribwood Language Lab",
+    "compliance_level": "platinum",
+    "validator_version": "1.0"
+  }
+}
