@@ -349,6 +349,58 @@ main { padding: 72px 6%; max-width: 1100px; margin: 0 auto; }
   font-family: inherit;
 }
 
+/* ── UPLOAD JSON ── */
+.upload-zone {
+  border: 2px dashed rgba(0,194,199,0.4);
+  border-radius: 10px;
+  padding: 40px 32px;
+  text-align: center;
+  background: #f9fbfd;
+  cursor: pointer;
+  transition: all .2s;
+  margin-bottom: 32px;
+  position: relative;
+}
+.upload-zone:hover, .upload-zone.drag { border-color: #00C2C7; background: rgba(0,194,199,0.05); }
+.upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+.upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.upload-zone h3 { font-size: 16px; font-weight: 600; color: #003E6B; margin-bottom: 6px; }
+.upload-zone p  { font-size: 13px; color: #888; }
+.upload-zone .upload-btn {
+  display: inline-block; margin-top: 16px;
+  padding: 9px 24px; background: #003E6B; color: #fff;
+  border-radius: 6px; font-size: 13px; font-weight: 600;
+  pointer-events: none;
+}
+.upload-result {
+  display: none; padding: 16px 20px;
+  border-radius: 8px; margin-bottom: 24px;
+  font-size: 13px; align-items: center; gap: 12px;
+}
+.upload-result.ok   { display: flex; background: #EDFBF4; border: 1px solid #3FA66B; color: #1a6644; }
+.upload-result.err  { display: flex; background: #FFF0EF; border: 1px solid #FF6F61; color: #a32d2d; }
+.upload-result .ur-icon { font-size: 1.2rem; flex-shrink: 0; }
+.upload-result .ur-details { font-size: 11px; color: #888; margin-top: 4px; }
+
+.schema-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+.schema-badge.loading { background: #f0f4f8; color: #888; border: 1px solid #ddd; }
+.schema-badge.loaded  { background: #EDFBF4; color: #1a6644; border: 1px solid #3FA66B; }
+.schema-badge.failed  { background: #FFF0EF; color: #a32d2d; border: 1px solid #FF6F61; }
+.schema-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+.or-divider {
+  display: flex; align-items: center; gap: 16px;
+  margin: 28px 0; color: #bbb; font-size: 13px;
+}
+.or-divider::before, .or-divider::after {
+  content: ''; flex: 1; height: 1px; background: rgba(0,62,107,0.1);
+}
+
 /* ── HOW IT WORKS ── */
 .how-grid {
   display: grid; grid-template-columns: repeat(4,1fr);
@@ -509,6 +561,33 @@ footer {
       <div class="level-desc">Standard caribéen de référence — conformité totale au schéma CMS.</div>
     </div>
   </div>
+
+  <!-- ══ UPLOAD JSON EXISTANT ══ -->
+  <div class="section-label">Validation rapide</div>
+  <h2 class="section-title">Vous avez déjà un fichier JSON CMS ?</h2>
+
+  <div id="schema-status" class="schema-badge loading">
+    <span class="schema-dot"></span>
+    Chargement du schéma officiel…
+  </div>
+
+  <div class="upload-zone" id="upload-zone">
+    <input type="file" id="json-upload" accept=".json" onchange="handleFileUpload(event)">
+    <div class="upload-icon">📂</div>
+    <h3>Glissez votre fichier JSON CMS ici</h3>
+    <p>ou cliquez pour sélectionner — Format accepté : .json</p>
+    <div class="upload-btn">Choisir un fichier</div>
+  </div>
+
+  <div class="upload-result" id="upload-result">
+    <span class="ur-icon" id="ur-icon">✅</span>
+    <div>
+      <div id="ur-message">Fichier validé avec succès</div>
+      <div class="ur-details" id="ur-details"></div>
+    </div>
+  </div>
+
+  <div class="or-divider">ou remplissez le formulaire ci-dessous</div>
 
   <!-- ══ VALIDATEUR ══ -->
   <div class="section-label">Outil de validation</div>
@@ -882,6 +961,100 @@ footer {
 </footer>
 
 <script>
+
+// ── CHARGEMENT DU SCHÉMA OFFICIEL ──
+let officialSchema = null;
+
+async function loadSchema() {
+  const badge = document.getElementById('schema-status');
+  try {
+    const res = await fetch('https://caribbeanmetadata.org/schema/v1.0/cms-metadata.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    officialSchema = await res.json();
+    badge.className = 'schema-badge loaded';
+    badge.innerHTML = '<span class="schema-dot"></span> Schéma CMS v1.0 chargé — caribbeanmetadata.org';
+  } catch (e) {
+    badge.className = 'schema-badge failed';
+    badge.innerHTML = '<span class="schema-dot"></span> Schéma non disponible (mode hors-ligne)';
+  }
+}
+loadSchema();
+
+// ── UPLOAD & VALIDATION JSON ──
+function handleFileUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const result = document.getElementById('upload-result');
+    const icon    = document.getElementById('ur-icon');
+    const msg     = document.getElementById('ur-message');
+    const details = document.getElementById('ur-details');
+
+    try {
+      const data = JSON.parse(e.target.result);
+
+      // Validation structurelle de base
+      const required = ['cms_version','content_type','identity','origin','language','cultural_markers'];
+      const missing = required.filter(f => !data[f]);
+
+      if (missing.length > 0) {
+        result.className = 'upload-result err';
+        icon.textContent = '❌';
+        msg.textContent = 'Fichier JSON invalide — champs requis manquants';
+        details.textContent = 'Champs manquants : ' + missing.join(', ');
+        return;
+      }
+
+      // Score et niveau
+      const score = data.cultural_markers?.caribbean_identity_score ?? '—';
+      const level = data.cms_compliance?.compliance_level ?? 'non certifié';
+      const title = data.identity?.title?.original ?? '(sans titre)';
+      const type  = data.content_type ?? '—';
+
+      result.className = 'upload-result ok';
+      icon.textContent = '✅';
+      msg.textContent = `"${title}" — Conforme au schéma CMS v1.0`;
+      details.textContent = `Type : ${type} · Score : ${score}/100 · Niveau : ${level.toUpperCase()} · Version schéma : ${data.cms_version}`;
+
+      // Pré-remplir le formulaire si possible
+      if (data.identity?.title?.original)
+        document.getElementById('f-title').value = data.identity.title.original;
+      if (data.content_type)
+        document.getElementById('f-type').value = data.content_type;
+      if (data.identity?.creator?.[0]?.name)
+        document.getElementById('f-creator').value = data.identity.creator[0].name;
+      if (data.identity?.creator?.[0]?.role)
+        document.getElementById('f-role').value = data.identity.creator[0].role;
+      if (data.identity?.year_of_creation)
+        document.getElementById('f-year').value = data.identity.year_of_creation;
+      if (data.language?.primary)
+        document.getElementById('f-lang').value = data.language.primary;
+
+    } catch(err) {
+      result.className = 'upload-result err';
+      icon.textContent = '❌';
+      msg.textContent = 'Fichier invalide — ce n\'est pas un JSON valide';
+      details.textContent = err.message;
+    }
+  };
+  reader.readAsText(file);
+}
+
+// Drag & drop
+const zone = document.getElementById('upload-zone');
+if (zone) {
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); zone.classList.remove('drag');
+    const file = e.dataTransfer.files[0];
+    if (file && file.name.endsWith('.json')) {
+      handleFileUpload({ target: { files: [file] } });
+    }
+  });
+}
+
 let cur = 0;
 
 // ── Tags ──
