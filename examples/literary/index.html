@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Terre qui Parle — Exemple CMS Littéraire</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+nav{background:rgba(10,14,26,0.95);border-bottom:1px solid #1e3a5f;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:monospace;font-size:0.85rem;color:#00c9a7;text-decoration:none;letter-spacing:0.05em}
+.nav-back{font-size:0.85rem;color:#64748b;text-decoration:none;transition:color .2s}
+.nav-back:hover{color:#00c9a7}
+.hero{padding:3rem 2rem 2rem;max-width:900px;margin:0 auto}
+.tag{font-family:monospace;font-size:0.72rem;color:#00c9a7;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem}
+.tag::before{content:'';display:inline-block;width:2rem;height:1px;background:#00c9a7}
+h1{font-size:2rem;font-weight:800;margin-bottom:0.75rem}
+h1 span{color:#00c9a7}
+.desc{color:#64748b;font-size:0.95rem;margin-bottom:2rem}
+.badges{display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem}
+.badge{font-family:monospace;font-size:0.72rem;padding:0.4rem 0.9rem;border-radius:2px}
+.badge-green{background:rgba(0,201,167,0.12);color:#00c9a7;border:1px solid rgba(0,201,167,0.3)}
+.badge-blue{background:rgba(14,165,233,0.12);color:#0ea5e9;border:1px solid rgba(14,165,233,0.3)}
+.badge-amber{background:rgba(245,158,11,0.12);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)}
+.score-block{background:#111827;border:1px solid #1e3a5f;border-radius:8px;padding:1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.score-num{font-size:3rem;font-weight:800;color:#00c9a7;font-family:monospace}
+.score-label{font-size:0.85rem;color:#64748b}
+.score-bar-wrap{flex:1;min-width:200px}
+.score-bar{height:8px;background:#1e3a5f;border-radius:4px;overflow:hidden;margin-top:8px}
+.score-fill{height:100%;background:linear-gradient(90deg,#00c9a7,#0ea5e9);border-radius:4px}
+.level{display:inline-block;padding:0.3rem 0.9rem;border-radius:2px;font-family:monospace;font-size:0.8rem;font-weight:700;background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)}
+.actions{display:flex;gap:1rem;margin-bottom:3rem}
+.btn{font-family:monospace;font-size:0.8rem;padding:0.65rem 1.5rem;border-radius:2px;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:#00c9a7;color:#0a0e1a;font-weight:700}
+.btn-primary:hover{background:#00b096}
+.btn-outline{background:transparent;color:#64748b;border:1px solid #1e3a5f}
+.btn-outline:hover{border-color:#00c9a7;color:#00c9a7}
+main{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+.code-block{background:#0d1b2a;border:1px solid #1e3a5f;border-radius:4px;overflow:hidden}
+.code-header{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.25rem;border-bottom:1px solid #1e3a5f;background:#111827}
+.code-lang{font-family:monospace;font-size:0.75rem;color:#00c9a7;letter-spacing:0.1em}
+.copy-btn{font-family:monospace;font-size:0.72rem;padding:0.3rem 0.8rem;background:transparent;border:1px solid #1e3a5f;color:#64748b;border-radius:2px;cursor:pointer;transition:all .2s}
+.copy-btn:hover{border-color:#00c9a7;color:#00c9a7}
+pre{padding:1.5rem;overflow-x:auto;font-family:'Space Mono',monospace;font-size:0.82rem;line-height:1.7}
+.k{color:#00c9a7}
+.s{color:#f59e0b}
+.n{color:#0ea5e9}
+footer{border-top:1px solid #1e3a5f;padding:2rem;text-align:center;font-family:monospace;font-size:0.72rem;color:#64748b}
+footer a{color:#00c9a7;text-decoration:none}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/index.html" class="nav-logo">CMS // caribbeanmetadata.org</a>
+  <a href="/developers.html" class="nav-back">← Retour Developers</a>
+</nav>
+<div class="hero">
+  <div class="tag">📖 Exemple — Famille Littéraire</div>
+  <h1>La Terre <span>qui Parle</span></h1>
+  <p class="desc">Roman · Martinique · 2025 — Exemple CMS-Compliant niveau GOLD</p>
+  <div class="score-block">
+    <div>
+      <div class="score-num">90</div>
+      <div class="score-label">Score caribéen / 100</div>
+    </div>
+    <div class="score-bar-wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="level">GOLD</span>
+        <span style="font-family:monospace;font-size:0.75rem;color:#64748b">Ancrage caribéen affirmé</span>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width:90%"></div></div>
+    </div>
+  </div>
+  <div class="badges">
+    <span class="badge badge-green">literary</span>
+    <span class="badge badge-blue">fr · cr</span>
+    <span class="badge badge-amber">Martinique · 2025</span>
+  </div>
+  <div class="actions">
+    <a href="novel.json" download class="btn btn-primary">⬇ Télécharger .json</a>
+    <a href="/developers.html" class="btn btn-outline">← Retour</a>
+  </div>
+</div>
+<main>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">CMS JSON — LITTÉRAIRE</span>
+      <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+    </div>
+    <pre id="code-content">{
+  <span class="k">"cms_version"</span>: <span class="s">"1.0"</span>,
+  <span class="k">"family"</span>: <span class="s">"literary"</span>,
+  <span class="k">"title"</span>: <span class="s">"La Terre qui Parle"</span>,
+  <span class="k">"language"</span>: [<span class="s">"fr"</span>, <span class="s">"cr"</span>],
+  <span class="k">"territory"</span>: [<span class="s">"Martinique"</span>],
+  <span class="k">"caribbean_score"</span>: <span class="n">90</span>,
+  <span class="k">"compliance_level"</span>: <span class="s">"GOLD"</span>,
+  <span class="k">"creators"</span>: [
+    {
+      <span class="k">"name"</span>: <span class="s">"Caribwood Language Lab"</span>,
+      <span class="k">"role"</span>: <span class="s">"Édition"</span>,
+      <span class="k">"territory"</span>: <span class="s">"Martinique"</span>
+    }
+  ],
+  <span class="k">"year"</span>: <span class="n">2025</span>,
+  <span class="k">"genre"</span>: [<span class="s">"Roman"</span>, <span class="s">"Littérature caribéenne francophone"</span>],
+  <span class="k">"themes"</span>: [<span class="s">"Mémoire collective"</span>, <span class="s">"Colonialisme"</span>, <span class="s">"Nature caribéenne"</span>, <span class="s">"Identité"</span>],
+  <span class="k">"caribbean_concepts"</span>: [<span class="s">"créolité"</span>, <span class="s">"antillanité"</span>, <span class="s">"béké"</span>, <span class="s">"morne"</span>],
+  <span class="k">"description"</span>: <span class="s">"Un roman martiniquais qui donne voix à la terre elle-même, tissant la mémoire des peuples caribéens à travers les générations."</span>,
+  <span class="k">"rights"</span>: {
+    <span class="k">"license"</span>: <span class="s">"Tous droits réservés"</span>,
+    <span class="k">"holder"</span>: <span class="s">"Caribwood Language Lab"</span>,
+    <span class="k">"year"</span>: <span class="n">2025</span>
+  },
+  <span class="k">"certified_by"</span>: <span class="s">"Caribwood Language Lab — CMS Certification"</span>,
+  <span class="k">"certification_date"</span>: <span class="s">"2026-04-11"</span>
+}</pre>
+  </div>
+</main>
+<footer>
+  <p>Caribbean Metadata Standard v1.0 — © 2026 <a href="https://caribbeanmetadata.org">Caribwood Language Lab</a> — Licence ouverte</p>
+</footer>
+<script>
+function copyCode(btn) {
+  const pre = document.getElementById('code-content');
+  navigator.clipboard.writeText(pre.innerText);
+  btn.textContent = 'Copié !';
+  btn.style.color = '#00c9a7';
+  setTimeout(() => { btn.textContent = 'Copier'; btn.style.color = ''; }, 2000);
+}
+</script>
+</body>
+</html>
