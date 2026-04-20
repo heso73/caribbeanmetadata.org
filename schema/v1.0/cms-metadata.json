@@ -1,1 +1,110 @@
-
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caribbeanmetadata.org/schema/v1.0/cms-metadata.json",
+  "title": "Caribbean Metadata Standard v1.0",
+  "description": "Standard officiel de métadonnées pour les contenus culturels caribéens — Caribwood Language Lab",
+  "type": "object",
+  "required": ["cms_version", "family", "title", "language", "territory", "caribbean_score"],
+  "properties": {
+    "cms_version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Version du standard CMS utilisée"
+    },
+    "family": {
+      "type": "string",
+      "enum": ["audiovisual", "musical", "literary", "heritage", "visual_arts", "performing_arts"],
+      "description": "Famille culturelle du contenu"
+    },
+    "title": {
+      "type": "string",
+      "description": "Titre principal de l'œuvre"
+    },
+    "title_original": {
+      "type": "string",
+      "description": "Titre original si différent du titre principal"
+    },
+    "language": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["fr", "cr", "en", "es", "ht", "nl", "pt", "other"]
+      },
+      "minItems": 1,
+      "description": "Langue(s) du contenu — cr = créole"
+    },
+    "territory": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Territoire(s) caribéen(s) de création ou d'ancrage"
+    },
+    "caribbean_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Score d'ancrage caribéen (0-100)"
+    },
+    "compliance_level": {
+      "type": "string",
+      "enum": ["BRONZE", "SILVER", "GOLD", "PLATINUM"],
+      "description": "Niveau de conformité CMS"
+    },
+    "creators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "role"],
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "territory": { "type": "string" }
+        }
+      },
+      "description": "Créateurs et leurs rôles"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2100,
+      "description": "Année de création ou de publication"
+    },
+    "genre": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Genre(s) de l'œuvre"
+    },
+    "themes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Thèmes principaux"
+    },
+    "caribbean_concepts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Concepts culturels caribéens spécifiques"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description de l'œuvre"
+    },
+    "rights": {
+      "type": "object",
+      "properties": {
+        "license": { "type": "string" },
+        "holder": { "type": "string" },
+        "year": { "type": "integer" }
+      },
+      "description": "Informations sur les droits"
+    },
+    "certified_by": {
+      "type": "string",
+      "description": "Entité ayant certifié la conformité CMS"
+    },
+    "certification_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date de certification"
+    }
+  }
+}
