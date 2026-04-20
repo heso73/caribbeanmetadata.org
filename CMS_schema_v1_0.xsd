@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:cms="https://caribbeanmetadata.org/schema/v1.0"
+           targetNamespace="https://caribbeanmetadata.org/schema/v1.0"
+           elementFormDefault="qualified"
+           version="1.0">
+
+  <xs:annotation>
+    <xs:documentation>
+      Caribbean Metadata Standard v1.0 — XML Schema Definition
+      Caribwood Language Lab — Guadeloupe, Caraïbe
+      Licence ouverte — caribbeanmetadata.org
+    </xs:documentation>
+  </xs:annotation>
+
+  <!-- ROOT ELEMENT -->
+  <xs:element name="CMSRecord" type="cms:CMSRecordType"/>
+
+  <!-- MAIN TYPE -->
+  <xs:complexType name="CMSRecordType">
+    <xs:sequence>
+      <xs:element name="cms_version" type="xs:string" fixed="1.0"/>
+      <xs:element name="family" type="cms:FamilyType"/>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="title_original" type="xs:string" minOccurs="0"/>
+      <xs:element name="languages" type="cms:LanguagesType"/>
+      <xs:element name="territories" type="cms:TerritoriesType"/>
+      <xs:element name="caribbean_score" type="cms:ScoreType"/>
+      <xs:element name="compliance_level" type="cms:ComplianceType" minOccurs="0"/>
+      <xs:element name="creators" type="cms:CreatorsType" minOccurs="0"/>
+      <xs:element name="year" type="cms:YearType" minOccurs="0"/>
+      <xs:element name="genres" type="cms:StringListType" minOccurs="0"/>
+      <xs:element name="themes" type="cms:StringListType" minOccurs="0"/>
+      <xs:element name="caribbean_concepts" type="cms:StringListType" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="rights" type="cms:RightsType" minOccurs="0"/>
+      <xs:element name="certified_by" type="xs:string" minOccurs="0"/>
+      <xs:element name="certification_date" type="xs:date" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- FAMILY -->
+  <xs:simpleType name="FamilyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="audiovisual"/>
+      <xs:enumeration value="musical"/>
+      <xs:enumeration value="literary"/>
+      <xs:enumeration value="heritage"/>
+      <xs:enumeration value="visual_arts"/>
+      <xs:enumeration value="performing_arts"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- LANGUAGES -->
+  <xs:complexType name="LanguagesType">
+    <xs:sequence>
+      <xs:element name="language" type="cms:LanguageCodeType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="LanguageCodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="fr"/>
+      <xs:enumeration value="cr"/>
+      <xs:enumeration value="en"/>
+      <xs:enumeration value="es"/>
+      <xs:enumeration value="ht"/>
+      <xs:enumeration value="nl"/>
+      <xs:enumeration value="pt"/>
+      <xs:enumeration value="other"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- TERRITORIES -->
+  <xs:complexType name="TerritoriesType">
+    <xs:sequence>
+      <xs:element name="territory" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- SCORE -->
+  <xs:simpleType name="ScoreType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- COMPLIANCE -->
+  <xs:simpleType name="ComplianceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BRONZE"/>
+      <xs:enumeration value="SILVER"/>
+      <xs:enumeration value="GOLD"/>
+      <xs:enumeration value="PLATINUM"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- CREATORS -->
+  <xs:complexType name="CreatorsType">
+    <xs:sequence>
+      <xs:element name="creator" type="cms:CreatorType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CreatorType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="role" type="xs:string"/>
+      <xs:element name="territory" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- YEAR -->
+  <xs:simpleType name="YearType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1900"/>
+      <xs:maxInclusive value="2100"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- STRING LIST -->
+  <xs:complexType name="StringListType">
+    <xs:sequence>
+      <xs:element name="item" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- RIGHTS -->
+  <xs:complexType name="RightsType">
+    <xs:sequence>
+      <xs:element name="license" type="xs:string" minOccurs="0"/>
+      <xs:element name="holder" type="xs:string" minOccurs="0"/>
+      <xs:element name="year" type="xs:integer" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
