@@ -69,16 +69,43 @@ footer{background:#003E6B;padding:56px 6% 32px}
 .btn-submit:hover{background:#00537A}
 .form-note{font-size:11px;color:#888;margin-top:10px;text-align:center}
 .success-msg{display:none;background:#e8f5f0;border:1px solid #3FA66B;border-radius:8px;padding:16px;font-size:14px;color:#0F6E56;text-align:center;margin-bottom:20px}
-@media(max-width:900px){.contact-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+@media(max-width:900px){
+  .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr 1fr}
+  .nav-burger { display: flex; }
+  .nav-links {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: rgba(255,255,255,0.98); flex-direction: column;
+    align-items: flex-start; padding: 24px 6%; gap: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(0,62,107,0.06); font-size: 15px; }
+  .nav-links li:last-child a { border-bottom: none; }
+}
+.nav-burger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 36px; height: 36px; cursor: pointer;
+  background: none; border: none; padding: 4px;
+}
+.nav-burger span { display: block; height: 2px; background: #003E6B; border-radius: 2px; transition: all .3s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="index.html">CMS</a>
-  <ul class="nav-links">
+  <button class="nav-burger" id="nav-burger"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="about.html">À propos</a></li>
     <li><a href="families.html">Les 6 familles</a></li>
     <li><a href="resources.html">Ressources</a></li>
+    <li><a href="developers.html">Developers</a></li>
     <li><a href="lab.html">Language Lab</a></li>
     <li><a href="collaborate.html">Collaborer</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
@@ -140,9 +167,31 @@ footer{background:#003E6B;padding:56px 6% 32px}
 </main>
 <script>
 function handleSubmit(e){
-  e.preventDefault();
-  document.getElementById('success-msg').style.display='block';
-  window.scrollTo({top:400,behavior:'smooth'});
+  const nom = document.querySelector('input[placeholder="Votre nom"]').value.trim();
+  const email = document.querySelector('input[type="email"]').value.trim();
+  const org = document.querySelector('input[placeholder="Votre organisation ou entreprise"]').value.trim();
+  const objet = document.querySelector('select').value;
+  const message = document.querySelector('textarea').value.trim();
+
+  if (!prenom || !nom || !email || !objet || !message) {
+    alert('Merci de remplir tous les champs obligatoires.');
+    return;
+  }
+
+  const subject = encodeURIComponent('Contact CMS — ' + objet + ' — ' + prenom + ' ' + nom);
+  const body = encodeURIComponent(
+    'Prénom : ' + prenom + '\n' +
+    'Nom : ' + nom + '\n' +
+    'Email : ' + email + '\n' +
+    'Organisation : ' + (org || '—') + '\n' +
+    'Objet : ' + objet + '\n\n' +
+    'Message :\n' + message
+  );
+
+  window.location.href = 'mailto:contact@caribbeanmetadata.org?subject=' + subject + '&body=' + body;
+
+  document.getElementById('success-msg').style.display = 'block';
+  window.scrollTo({top: 400, behavior: 'smooth'});
 }
 </script>
 <footer>
@@ -150,9 +199,15 @@ function handleSubmit(e){
     <div class="fb"><a class="fl" href="index.html">CMS</a><p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p></div>
     <div class="fc"><h4>Le Standard</h4><ul><li><a href="about.html">À propos</a></li><li><a href="families.html">Les 6 familles</a></li><li><a href="resources.html">Documentation</a></li></ul></div>
     <div class="fc"><h4>Écosystème</h4><ul><li><a href="lab.html">Language Lab</a></li><li><a href="collaborate.html">Collaborer</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="fc"><h4>Ressources</h4><ul><li><a href="resources.html">White Paper</a></li><li><a href="resources.html">Glossaire</a></li><li><a href="resources.html">FAQ</a></li><li><a href="validator.html" class="hl">→ Valider un contenu</a></li></ul></div>
+    <div class="fc"><h4>Ressources</h4><ul><li><a href="CMS_WhitePaper_v1.0.pdf" download>White Paper</a></li><li><a href="glossaire.html">Glossaire</a></li><li><a href="developers.html">Developers / API</a></li><li><a href="resources.html#faq">FAQ</a></li><li><a href="validator.html" class="hl">→ Valider un contenu</a></li></ul></div>
   </div>
   <div class="fb-bot"><strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</div>
 </footer>
+<script>
+document.getElementById('nav-burger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('nav-links').classList.toggle('open');
+});
+</script>
 </body>
 </html>

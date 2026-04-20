@@ -206,8 +206,28 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
   .validator-highlight { grid-template-columns: 1fr; }
   .vh-visual { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav-links {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: rgba(255,255,255,0.98); flex-direction: column;
+    align-items: flex-start; padding: 24px 6%; gap: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(0,62,107,0.06); font-size: 15px; }
+  .nav-links li:last-child a { border-bottom: none; }
 }
+.nav-burger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 36px; height: 36px; cursor: pointer;
+  background: none; border: none; padding: 4px;
+}
+.nav-burger span { display: block; height: 2px; background: #003E6B; border-radius: 2px; transition: all .3s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 </style>
 </head>
 <body>
@@ -215,10 +235,12 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html">CMS</a>
-  <ul class="nav-links">
+  <button class="nav-burger" id="nav-burger"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="about.html">À propos</a></li>
     <li><a href="families.html">Les 6 familles</a></li>
     <li><a href="resources.html" class="active">Ressources</a></li>
+    <li><a href="developers.html">Developers</a></li>
     <li><a href="lab.html">Language Lab</a></li>
     <li><a href="collaborate.html">Collaborer</a></li>
     <li><a href="contact.html">Contact</a></li>
@@ -248,7 +270,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
       <h3>White Paper CMS</h3>
       <p>Le document de référence du standard — vision, doctrine, architecture des 6 familles, cadre d'implémentation et bénéfices pour l'écosystème caribéen.</p>
       <div class="doc-meta">VERSION <span>CMS v1.0 — 2026</span></div>
-      <a href="contact.html" class="doc-link">Demander l'accès →</a>
+      <a href="CMS_WhitePaper_v1.0.pdf" class="doc-link" download>Télécharger le PDF →</a>
     </div>
 
     <div class="doc-card">
@@ -271,8 +293,8 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
       <div class="doc-tag glossary">Glossaire</div>
       <h3>Glossaire caribéen</h3>
       <p>Définitions des termes culturels, linguistiques et techniques utilisés dans le standard CMS — de la créolisation au code-switching.</p>
-      <div class="doc-meta">DISPONIBILITÉ <span>Q3 2026</span></div>
-      <span class="doc-link disabled">Bientôt disponible</span>
+      <div class="doc-meta">STATUT <span>Disponible</span></div>
+      <a href="glossaire.html" class="doc-link">Consulter le glossaire →</a>
     </div>
 
   </div>
@@ -418,8 +440,9 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
     <div class="footer-col">
       <h4>Ressources</h4>
       <ul>
-        <li><a href="resources.html">White Paper</a></li>
-        <li><a href="resources.html">Glossaire</a></li>
+        <li><a href="CMS_WhitePaper_v1.0.pdf" download>White Paper</a></li>
+        <li><a href="glossaire.html">Glossaire</a></li>
+        <li><a href="developers.html">Developers / API</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="validator.html" class="highlight">→ Valider un contenu</a></li>
       </ul>
@@ -441,6 +464,10 @@ document.querySelectorAll('.faq-q').forEach(q => {
     });
     if (!isOpen) { q.classList.add('open'); a.classList.add('open'); }
   });
+});
+document.getElementById('nav-burger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('nav-links').classList.toggle('open');
 });
 </script>
 </body>
