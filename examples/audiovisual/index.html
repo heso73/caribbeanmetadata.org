@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMS Schema v1.0 — Caribbean Metadata Standard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+nav{background:rgba(10,14,26,0.95);border-bottom:1px solid #1e3a5f;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:monospace;font-size:0.85rem;color:#00c9a7;text-decoration:none;letter-spacing:0.05em}
+.nav-back{font-size:0.85rem;color:#64748b;text-decoration:none;transition:color .2s}
+.nav-back:hover{color:#00c9a7}
+.hero{padding:3rem 2rem 2rem;max-width:900px;margin:0 auto}
+.tag{font-family:monospace;font-size:0.72rem;color:#00c9a7;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem}
+.tag::before{content:'';display:inline-block;width:2rem;height:1px;background:#00c9a7}
+h1{font-size:2rem;font-weight:800;margin-bottom:0.75rem}
+h1 span{color:#00c9a7}
+.desc{color:#64748b;font-size:0.95rem;margin-bottom:2rem}
+.badges{display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem}
+.badge{font-family:monospace;font-size:0.72rem;padding:0.4rem 0.9rem;border-radius:2px}
+.badge-green{background:rgba(0,201,167,0.12);color:#00c9a7;border:1px solid rgba(0,201,167,0.3)}
+.badge-blue{background:rgba(14,165,233,0.12);color:#0ea5e9;border:1px solid rgba(14,165,233,0.3)}
+.actions{display:flex;gap:1rem;margin-bottom:3rem}
+.btn{font-family:monospace;font-size:0.8rem;padding:0.65rem 1.5rem;border-radius:2px;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:#00c9a7;color:#0a0e1a;font-weight:700}
+.btn-primary:hover{background:#00b096}
+.btn-outline{background:transparent;color:#64748b;border:1px solid #1e3a5f}
+.btn-outline:hover{border-color:#00c9a7;color:#00c9a7}
+main{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+.code-block{background:#0d1b2a;border:1px solid #1e3a5f;border-radius:4px;overflow:hidden}
+.code-header{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.25rem;border-bottom:1px solid #1e3a5f;background:#111827}
+.code-lang{font-family:monospace;font-size:0.75rem;color:#00c9a7;letter-spacing:0.1em}
+.copy-btn{font-family:monospace;font-size:0.72rem;padding:0.3rem 0.8rem;background:transparent;border:1px solid #1e3a5f;color:#64748b;border-radius:2px;cursor:pointer;transition:all .2s}
+.copy-btn:hover{border-color:#00c9a7;color:#00c9a7}
+pre{padding:1.5rem;overflow-x:auto;font-family:'Space Mono',monospace;font-size:0.82rem;line-height:1.7;color:#e2e8f0}
+.k{color:#00c9a7}
+.s{color:#f59e0b}
+.n{color:#0ea5e9}
+.c{color:#64748b;font-style:italic}
+footer{border-top:1px solid #1e3a5f;padding:2rem;text-align:center;font-family:monospace;font-size:0.72rem;color:#64748b}
+footer a{color:#00c9a7;text-decoration:none}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/index.html" class="nav-logo">CMS // caribbeanmetadata.org</a>
+  <a href="/developers.html" class="nav-back">← Retour Developers</a>
+</nav>
+<div class="hero">
+  <div class="tag">Schéma officiel</div>
+  <h1>CMS <span>JSON Schema</span> v1.0</h1>
+  <p class="desc">Schéma JSON officiel du Caribbean Metadata Standard — JSON Schema Draft 2020-12</p>
+  <div class="badges">
+    <span class="badge badge-green">JSON Schema 2020-12</span>
+    <span class="badge badge-blue">v1.0.0 — 2026-04-11</span>
+  </div>
+  <div class="actions">
+    <a href="cms-metadata.json" download class="btn btn-primary">⬇ Télécharger .json</a>
+    <a href="/developers.html" class="btn btn-outline">← Retour</a>
+  </div>
+</div>
+<main>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">JSON SCHEMA</span>
+      <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+    </div>
+    <pre id="schema-content"><span class="c">// Caribbean Metadata Standard v1.0</span>
+<span class="c">// Caribwood Language Lab — caribbeanmetadata.org</span>
+
+{
+  <span class="k">"$schema"</span>: <span class="s">"https://json-schema.org/draft/2020-12/schema"</span>,
+  <span class="k">"$id"</span>: <span class="s">"https://caribbeanmetadata.org/schema/v1.0/cms-metadata.json"</span>,
+  <span class="k">"title"</span>: <span class="s">"Caribbean Metadata Standard v1.0"</span>,
+  <span class="k">"description"</span>: <span class="s">"Standard officiel de métadonnées pour les contenus culturels caribéens"</span>,
+  <span class="k">"type"</span>: <span class="s">"object"</span>,
+  <span class="k">"required"</span>: [<span class="s">"cms_version"</span>, <span class="s">"family"</span>, <span class="s">"title"</span>, <span class="s">"language"</span>, <span class="s">"territory"</span>, <span class="s">"caribbean_score"</span>],
+
+  <span class="k">"properties"</span>: {
+    <span class="k">"cms_version"</span>:       { <span class="k">"type"</span>: <span class="s">"string"</span>, <span class="k">"const"</span>: <span class="s">"1.0"</span> },
+    <span class="k">"family"</span>:            { <span class="k">"type"</span>: <span class="s">"string"</span>, <span class="k">"enum"</span>: [<span class="s">"audiovisual"</span>, <span class="s">"musical"</span>, <span class="s">"literary"</span>, <span class="s">"heritage"</span>, <span class="s">"visual_arts"</span>, <span class="s">"performing_arts"</span>] },
+    <span class="k">"title"</span>:             { <span class="k">"type"</span>: <span class="s">"string"</span> },
+    <span class="k">"title_original"</span>:    { <span class="k">"type"</span>: <span class="s">"string"</span> },
+    <span class="k">"language"</span>:          { <span class="k">"type"</span>: <span class="s">"array"</span>, <span class="k">"items"</span>: { <span class="k">"enum"</span>: [<span class="s">"fr"</span>, <span class="s">"cr"</span>, <span class="s">"en"</span>, <span class="s">"es"</span>, <span class="s">"ht"</span>, <span class="s">"nl"</span>, <span class="s">"pt"</span>, <span class="s">"other"</span>] } },
+    <span class="k">"territory"</span>:         { <span class="k">"type"</span>: <span class="s">"array"</span>, <span class="k">"items"</span>: { <span class="k">"type"</span>: <span class="s">"string"</span> } },
+    <span class="k">"caribbean_score"</span>:   { <span class="k">"type"</span>: <span class="s">"integer"</span>, <span class="k">"minimum"</span>: <span class="n">0</span>, <span class="k">"maximum"</span>: <span class="n">100</span> },
+    <span class="k">"compliance_level"</span>:  { <span class="k">"type"</span>: <span class="s">"string"</span>, <span class="k">"enum"</span>: [<span class="s">"BRONZE"</span>, <span class="s">"SILVER"</span>, <span class="s">"GOLD"</span>, <span class="s">"PLATINUM"</span>] },
+    <span class="k">"creators"</span>:          { <span class="k">"type"</span>: <span class="s">"array"</span>, <span class="k">"items"</span>: { <span class="k">"required"</span>: [<span class="s">"name"</span>, <span class="s">"role"</span>] } },
+    <span class="k">"year"</span>:              { <span class="k">"type"</span>: <span class="s">"integer"</span>, <span class="k">"minimum"</span>: <span class="n">1900</span>, <span class="k">"maximum"</span>: <span class="n">2100</span> },
+    <span class="k">"genre"</span>:             { <span class="k">"type"</span>: <span class="s">"array"</span>, <span class="k">"items"</span>: { <span class="k">"type"</span>: <span class="s">"string"</span> } },
+    <span class="k">"themes"</span>:            { <span class="k">"type"</span>: <span class="s">"array"</span>, <span class="k">"items"</span>: { <span class="k">"type"</span>: <span class="s">"string"</span> } },
+    <span class="k">"caribbean_concepts"</span>:{ <span class="k">"type"</span>: <span class="s">"array"</span>, <span class="k">"items"</span>: { <span class="k">"type"</span>: <span class="s">"string"</span> } },
+    <span class="k">"description"</span>:       { <span class="k">"type"</span>: <span class="s">"string"</span> },
+    <span class="k">"rights"</span>:            { <span class="k">"type"</span>: <span class="s">"object"</span> },
+    <span class="k">"certified_by"</span>:      { <span class="k">"type"</span>: <span class="s">"string"</span> },
+    <span class="k">"certification_date"</span>:{ <span class="k">"type"</span>: <span class="s">"string"</span>, <span class="k">"format"</span>: <span class="s">"date"</span> }
+  }
+}</pre>
+  </div>
+</main>
+<footer>
+  <p>Caribbean Metadata Standard v1.0 — © 2026 <a href="https://caribbeanmetadata.org">Caribwood Language Lab</a> — Licence ouverte</p>
+</footer>
+<script>
+function copyCode(btn) {
+  const pre = document.getElementById('schema-content');
+  navigator.clipboard.writeText(pre.innerText);
+  btn.textContent = 'Copié !';
+  btn.style.color = '#00c9a7';
+  setTimeout(() => { btn.textContent = 'Copier'; btn.style.color = ''; }, 2000);
+}
+</script>
+</body>
+</html>
