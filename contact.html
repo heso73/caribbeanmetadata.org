@@ -151,7 +151,7 @@ footer{background:#003E6B;padding:56px 6% 32px}
   </div>
 </main>
 <script>
-function handleSubmit(e) {
+async function handleSubmit(e) {
   const prenom = document.getElementById('prenom').value.trim();
   const nom = document.getElementById('nom').value.trim();
   const email = document.getElementById('email').value.trim();
@@ -164,27 +164,51 @@ function handleSubmit(e) {
     return;
   }
 
-  const subject = encodeURIComponent('Contact CMS — ' + objet + ' — ' + prenom + ' ' + nom);
-  const body = encodeURIComponent(
-    'Prénom : ' + prenom + '\n' +
-    'Nom : ' + nom + '\n' +
-    'Email : ' + email + '\n' +
-    'Organisation : ' + (org || '—') + '\n' +
-    'Objet : ' + objet + '\n\n' +
-    'Message :\n' + message
-  );
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
 
-  window.location.href = 'mailto:contact@caribbeanmetadata.org?subject=' + subject + '&body=' + body;
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'eac5fa5d-d0aa-4636-89f7-0300867ae136',
+        subject: 'Contact CMS — ' + objet + ' — ' + prenom + ' ' + nom,
+        from_name: prenom + ' ' + nom,
+        email: email,
+        message:
+          'Prénom : ' + prenom + '\n' +
+          'Nom : ' + nom + '\n' +
+          'Email : ' + email + '\n' +
+          'Organisation : ' + (org || '—') + '\n' +
+          'Objet : ' + objet + '\n\n' +
+          'Message :\n' + message
+      })
+    });
 
-  document.getElementById('success-msg').style.display = 'block';
-  document.getElementById('error-msg').style.display = 'none';
-  document.getElementById('prenom').value = '';
-  document.getElementById('nom').value = '';
-  document.getElementById('email').value = '';
-  document.getElementById('org').value = '';
-  document.getElementById('objet').value = '';
-  document.getElementById('message').value = '';
-  window.scrollTo({ top: 400, behavior: 'smooth' });
+    const data = await response.json();
+
+    if (data.success) {
+      document.getElementById('success-msg').style.display = 'block';
+      document.getElementById('error-msg').style.display = 'none';
+      document.getElementById('prenom').value = '';
+      document.getElementById('nom').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('org').value = '';
+      document.getElementById('objet').value = '';
+      document.getElementById('message').value = '';
+      window.scrollTo({ top: 400, behavior: 'smooth' });
+    } else {
+      throw new Error('Échec envoi');
+    }
+  } catch(err) {
+    document.getElementById('error-msg').style.display = 'block';
+    document.getElementById('success-msg').style.display = 'none';
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Envoyer le message →';
 }
 </script>
 <footer>
