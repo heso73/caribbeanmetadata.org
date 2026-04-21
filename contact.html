@@ -190,12 +190,10 @@ async function handleSubmit(e) {
     if (data.success) {
       document.getElementById('success-msg').style.display = 'block';
       document.getElementById('error-msg').style.display = 'none';
-      document.getElementById('prenom').value = '';
-      document.getElementById('nom').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('org').value = '';
-      document.getElementById('objet').value = '';
-      document.getElementById('message').value = '';
+      document.querySelector('.form-row').style.display = 'none';
+      document.querySelectorAll('.form-group').forEach(el => el.style.display = 'none');
+      document.getElementById('btn-submit').style.display = 'none';
+      document.querySelector('.form-note').style.display = 'none';
       window.scrollTo({ top: 400, behavior: 'smooth' });
     } else {
       throw new Error('Échec envoi');
