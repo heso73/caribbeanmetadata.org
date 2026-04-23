@@ -1,25 +1,12 @@
 /**
  * CMS Navigation Fix — caribbeanmetadata.org
- * ============================================
  * VERSION DÉFINITIVE — FR + EN + ES
- * - Nav canonique unifiée 3 langues avec hamburger mobile
- * - Footer canonique unifié 3 langues
- * - Switcher FR | EN | ES intégré
- * - Marquage automatique de la page active
- *
- * USAGE — UNE LIGNE à la fin de chaque <body> :
- *   <script src="nav-fix.js"></script>
- *
- * Convention de nommage des fichiers :
- *   FR  : page.html        (ex: about.html)
- *   EN  : page-en.html     (ex: about-en.html)
- *   ES  : page-es.html     (ex: about-es.html)
+ * Switcher langue toujours visible, hamburger mobile, footer 3 colonnes
  */
 
 (function () {
   'use strict';
 
-  // ── DÉTECTION LANGUE ─────────────────────────────────────────────────────────
   const page = window.location.pathname.split('/').pop() || 'index.html';
   const lang = page.endsWith('-es.html') ? 'es'
              : page.endsWith('-en.html') ? 'en'
@@ -27,11 +14,9 @@
   const basePage = page.replace(/-en\.html$/, '').replace(/-es\.html$/, '').replace(/\.html$/, '');
 
   function pageFor(l) {
-    if (l === 'fr') return basePage + '.html';
-    return basePage + '-' + l + '.html';
+    return l === 'fr' ? basePage + '.html' : basePage + '-' + l + '.html';
   }
 
-  // ── NAV ITEMS ────────────────────────────────────────────────────────────────
   const NAV = {
     fr: [
       { href: 'about.html',        label: 'À propos' },
@@ -42,7 +27,7 @@
       { href: 'declaration.html',  label: 'Déclaration' },
       { href: 'contact.html',      label: 'Contact' },
       { href: 'founders.html',     label: 'Les 100 Premiers' },
-      { href: 'validator.html',    label: 'Valider un contenu', cta: true },
+      { href: 'validator.html',    label: 'Valider', cta: true },
     ],
     en: [
       { href: 'about-en.html',       label: 'About' },
@@ -53,7 +38,7 @@
       { href: 'declaration-en.html', label: 'Declaration' },
       { href: 'contact-en.html',     label: 'Contact' },
       { href: 'founders-en.html',    label: 'The 100 Founders' },
-      { href: 'validator.html',      label: 'Certify content', cta: true },
+      { href: 'validator.html',      label: 'Certify', cta: true },
     ],
     es: [
       { href: 'about-es.html',       label: 'Acerca de' },
@@ -64,11 +49,10 @@
       { href: 'declaration-es.html', label: 'Declaración' },
       { href: 'contact-es.html',     label: 'Contacto' },
       { href: 'founders-es.html',    label: 'Los 100 Primeros' },
-      { href: 'validator.html',      label: 'Certificar contenido', cta: true },
+      { href: 'validator.html',      label: 'Certificar', cta: true },
     ]
   };
 
-  // ── FOOTER ───────────────────────────────────────────────────────────────────
   const FOOTER = {
     fr: {
       tagline: 'Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.',
@@ -85,13 +69,12 @@
           { href: 'contact.html',      label: 'Contact' },
         ]},
         { title: 'Ressources', links: [
-          { href: 'resources.html',      label: 'White Paper' },
-          { href: 'glossaire.html',      label: 'Glossaire' },
-          { href: 'developers.html',     label: 'Developers / API' },
-          { href: 'resources.html#faq',  label: 'FAQ' },
-          { href: 'press-fr.html',       label: 'Presse' },
-          { href: 'founders.html',       label: '→ Les 100 Premiers' },
-          { href: 'validator.html',      label: '→ Valider un contenu' },
+          { href: 'resources.html',    label: 'White Paper' },
+          { href: 'glossaire.html',    label: 'Glossaire' },
+          { href: 'developers.html',   label: 'Developers / API' },
+          { href: 'press-fr.html',     label: 'Presse' },
+          { href: 'founders.html',     label: '→ Les 100 Premiers' },
+          { href: 'validator.html',    label: '→ Valider un contenu' },
         ]},
       ]
     },
@@ -113,7 +96,6 @@
           { href: 'resources.html',      label: 'White Paper' },
           { href: 'glossaire.html',      label: 'Glossary' },
           { href: 'developers.html',     label: 'Developers / API' },
-          { href: 'resources.html#faq',  label: 'FAQ' },
           { href: 'press-en.html',       label: 'Press' },
           { href: 'founders-en.html',    label: '→ The 100 Founders' },
           { href: 'validator.html',      label: '→ Certify content' },
@@ -138,7 +120,6 @@
           { href: 'resources.html',      label: 'White Paper' },
           { href: 'glossaire.html',      label: 'Glosario' },
           { href: 'developers.html',     label: 'Developers / API' },
-          { href: 'resources.html#faq',  label: 'FAQ' },
           { href: 'press-es.html',       label: 'Prensa' },
           { href: 'founders-es.html',    label: '→ Los 100 Primeros' },
           { href: 'validator.html',      label: '→ Certificar contenido' },
@@ -147,31 +128,30 @@
     }
   };
 
-  // ── CSS ──────────────────────────────────────────────────────────────────────
   const CSS = `
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(255,255,255,0.98); border-bottom: 1px solid rgba(0,0,0,0.1);
       padding: 0 6%; height: 68px; display: flex; align-items: center;
-      justify-content: space-between;
+      justify-content: space-between; gap: 12px;
     }
     nav .cms-logo { font-size: 20px; font-weight: 700; color: #003E6B;
       text-decoration: none; letter-spacing: 2px; flex-shrink: 0; }
-    nav .nav-links { display: flex; gap: 16px; list-style: none; align-items: center; flex-wrap: nowrap; }
+    nav .nav-links { display: flex; gap: 16px; list-style: none; align-items: center; flex: 1; flex-wrap: nowrap; }
     nav .nav-links a { font-size: 12px; color: #2a2a2a; text-decoration: none;
       transition: color .2s; font-weight: 500; white-space: nowrap; }
     nav .nav-links a:hover, nav .nav-links a.active { color: #003E6B; }
     nav .nav-links a.active { font-weight: 700; }
-    nav .nav-links a.nav-cta { padding: 7px 14px; background: #00C2C7;
+    nav .nav-links a.nav-cta { padding: 6px 12px; background: #00C2C7;
       color: #003E6B !important; border-radius: 4px; font-weight: 700 !important;
-      font-size: 11px; letter-spacing: 0.5px; }
+      font-size: 11px; }
     nav .nav-links a.nav-cta:hover { background: #00A8AE !important; }
-    .lang-switcher { display: flex; align-items: center; gap: 3px; margin-left: 10px; flex-shrink: 0; }
-    .lang-switcher a { font-size: 11px; font-weight: 700; padding: 4px 7px;
-      border-radius: 3px; text-decoration: none; letter-spacing: 0.5px; transition: all .2s; }
-    .lang-switcher a.lang-active { background: #003E6B; color: #fff; }
-    .lang-switcher a:not(.lang-active) { color: #003E6B; border: 1px solid rgba(0,62,107,0.25); }
-    .lang-switcher a:not(.lang-active):hover { background: rgba(0,62,107,0.08); }
+    .cms-lang-switcher { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
+    .cms-lang-switcher a { font-size: 11px; font-weight: 700; padding: 4px 7px;
+      border-radius: 3px; text-decoration: none; transition: all .2s; }
+    .cms-lang-switcher a.lang-active { background: #003E6B; color: #fff; }
+    .cms-lang-switcher a:not(.lang-active) { color: #003E6B; border: 1px solid rgba(0,62,107,0.25); }
+    .cms-lang-switcher a:not(.lang-active):hover { background: rgba(0,62,107,0.08); }
     .nav-burger { display: none; flex-direction: column; justify-content: center;
       gap: 5px; width: 36px; height: 36px; cursor: pointer;
       background: none; border: none; padding: 4px; flex-shrink: 0; }
@@ -186,56 +166,54 @@
         background: rgba(255,255,255,0.98); flex-direction: column;
         align-items: flex-start; padding: 24px 6%; gap: 0;
         border-bottom: 1px solid rgba(0,0,0,0.08);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08); max-height: calc(100vh - 68px); overflow-y: auto; }
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        max-height: calc(100vh - 68px); overflow-y: auto; z-index: 999; }
       nav .nav-links.open { display: flex; }
       nav .nav-links li { width: 100%; }
       nav .nav-links a { display: block; padding: 12px 0;
         border-bottom: 1px solid rgba(0,62,107,0.06); font-size: 15px; }
       nav .nav-links li:last-child a { border-bottom: none; }
-      .lang-switcher { margin-left: 0; padding: 12px 0; border-bottom: none; }
     }
     footer { background: #003E6B; padding: 56px 6% 32px; }
     .footer-logo { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 2px;
       text-decoration: none; display: block; margin-bottom: 12px; }
-    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 40px; max-width: 320px; }
+    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7;
+      margin-bottom: 40px; max-width: 320px; }
     .footer-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-    .footer-col-title { font-size: 11px; font-weight: 700; color: #00C2C7; letter-spacing: 2px;
-      margin-bottom: 16px; text-transform: uppercase; }
+    .footer-col-title { font-size: 11px; font-weight: 700; color: #00C2C7;
+      letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; }
     .footer-cols ul { list-style: none; padding: 0; margin: 0; }
     .footer-cols li { margin-bottom: 8px; }
-    .footer-cols a { font-size: 13px; color: rgba(255,255,255,0.75); text-decoration: none; transition: color .2s; }
+    .footer-cols a { font-size: 13px; color: rgba(255,255,255,0.75);
+      text-decoration: none; transition: color .2s; }
     .footer-cols a:hover { color: #fff; }
     .footer-credit { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15);
       font-size: 12px; color: rgba(255,255,255,0.5); text-align: center; }
-    @media (max-width: 900px) {
-      .footer-cols { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .footer-cols { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px) { .footer-cols { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .footer-cols { grid-template-columns: 1fr; } }
   `;
 
-  // ── BUILD NAV ────────────────────────────────────────────────────────────────
   function buildNav() {
     const nav = document.createElement('nav');
-    const items = NAV[lang];
     const indexPage = lang === 'fr' ? 'index.html' : 'index-' + lang + '.html';
 
+    // Logo
     const logo = document.createElement('a');
     logo.href = indexPage;
     logo.className = 'cms-logo';
     logo.textContent = 'CMS';
     nav.appendChild(logo);
 
+    // Hamburger
     const burger = document.createElement('button');
     burger.className = 'nav-burger';
     burger.innerHTML = '<span></span><span></span><span></span>';
     nav.appendChild(burger);
 
+    // Nav links
     const ul = document.createElement('ul');
     ul.className = 'nav-links';
-
-    items.forEach(function(item) {
+    NAV[lang].forEach(function(item) {
       const li = document.createElement('li');
       const a = document.createElement('a');
       a.href = item.href;
@@ -245,22 +223,21 @@
       li.appendChild(a);
       ul.appendChild(li);
     });
+    nav.appendChild(ul);
 
-    // Switcher FR | EN | ES
-    const switcherLi = document.createElement('li');
-    const switcherDiv = document.createElement('div');
-    switcherDiv.className = 'lang-switcher';
+    // Lang switcher — TOUJOURS VISIBLE, en dehors du menu hamburger
+    const switcher = document.createElement('div');
+    switcher.className = 'cms-lang-switcher';
     ['fr', 'en', 'es'].forEach(function(l) {
       const a = document.createElement('a');
       a.href = pageFor(l);
       a.textContent = l.toUpperCase();
       if (l === lang) a.classList.add('lang-active');
-      switcherDiv.appendChild(a);
+      switcher.appendChild(a);
     });
-    switcherLi.appendChild(switcherDiv);
-    ul.appendChild(switcherLi);
-    nav.appendChild(ul);
+    nav.appendChild(switcher);
 
+    // Hamburger toggle
     burger.addEventListener('click', function() {
       burger.classList.toggle('open');
       ul.classList.toggle('open');
@@ -275,7 +252,6 @@
     return nav;
   }
 
-  // ── BUILD FOOTER ─────────────────────────────────────────────────────────────
   function buildFooter() {
     const f = FOOTER[lang];
     const indexPage = lang === 'fr' ? 'index.html' : 'index-' + lang + '.html';
@@ -322,7 +298,6 @@
     return footer;
   }
 
-  // ── INIT ─────────────────────────────────────────────────────────────────────
   function init() {
     const style = document.createElement('style');
     style.textContent = CSS;
