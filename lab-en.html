@@ -1,106 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Language Lab — Caribbean Metadata Standard</title>
-  <meta name="description" content="The Caribwood Language Lab — the intellectual and technical engine behind the Caribbean Metadata Standard."/>
-  <link rel="canonical" href="https://caribbeanmetadata.org/lab-en.html"/>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Language Lab — Caribbean Metadata Standard</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:#003E6B}
+.nav-links a.active{font-weight:700}
+.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:0.5px}
+.nav-validate:hover{background:#00A8AE !important}
+.ph{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
+.phi{position:relative;z-index:1;max-width:760px}
+.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.ph h1{font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
+.ph p{font-size:17px;color:rgba(255,255,255,0.88);max-width:560px;line-height:1.75}
+main{padding:72px 6%;max-width:1100px;margin:0 auto}
+.sl{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sl::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.st{font-size:clamp(22px,3vw,36px);font-weight:700;color:#003E6B;margin-bottom:40px;line-height:1.2}
+.cta-block{background:#003E6B;border-radius:12px;padding:48px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.cta-block h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
+.cta-block p{font-size:15px;color:rgba(255,255,255,0.88)}
+.btn-t{display:inline-block;padding:12px 24px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s}
+.btn-t:hover{background:#00A8AE}
+.btn-ow{display:inline-block;padding:12px 24px;background:transparent;color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.5);transition:all .2s}
+blockquote{font-size:18px;font-style:italic;color:#003E6B;border-left:3px solid #00C2C7;padding-left:20px;margin:32px 0;line-height:1.6;max-width:600px}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:40px 0 64px}
+.pillar-card{background:#f7f9fb;border-radius:8px;padding:24px}
+.pillar-label{font-size:10px;letter-spacing:2px;color:#00C2C7;font-weight:700;display:block;margin-bottom:10px}
+.pillar-card p{font-size:14px;color:#333;line-height:1.7}
+.poles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:40px 0 64px}
+.pole-card{background:#fff;border:1px solid rgba(0,62,107,0.12);border-radius:8px;padding:28px}
+.pole-card h3{font-size:17px;font-weight:700;color:#003E6B;margin-bottom:10px}
+.pole-card p{font-size:14px;color:#444;line-height:1.75;margin-bottom:14px}
+.pole-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pole-tags span{padding:3px 10px;background:#f0f4f8;border-radius:20px;font-size:11px;color:#003E6B;font-weight:500}
+.projects-list{display:flex;flex-direction:column;gap:20px;margin:40px 0 64px}
+.project-item{border:1px solid rgba(0,62,107,0.1);border-radius:8px;padding:24px}
+.project-status{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px}
+.status-active{background:rgba(63,166,107,0.15);color:#3FA66B}
+.status-phase2{background:rgba(0,194,199,0.15);color:#00C2C7}
+.status-planned{background:rgba(255,201,60,0.15);color:#CC9900}
+.project-item h3{font-size:16px;font-weight:700;color:#003E6B;margin-bottom:8px}
+.project-item p{font-size:14px;color:#444;line-height:1.7}
+footer{background:#003E6B;padding:56px 6% 32px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
+.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
+.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
+.fc ul{list-style:none}
+.fc li{margin-bottom:8px}
+.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
+.fc a:hover{color:#fff}
+.fc a.hl{color:#00C2C7;font-weight:600}
+.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
+@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}.pillars-grid,.poles-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
 </head>
 <body>
-<nav><!-- replaced by nav-fix-en.js --></nav>
-
-<header class="page-hero">
-  <p class="eyebrow">The engine behind the CMS</p>
-  <h1>Caribwood Language Lab</h1>
-  <p class="hero-subtitle">The intellectual and technical infrastructure that develops, maintains, and deploys the Caribbean Metadata Standard.</p>
-</header>
-
-<section class="content-section">
-  <p class="section-eyebrow">Mission</p>
-  <h2>Building a digital infrastructure for Caribbean culture</h2>
-  <p>The Caribwood Language Lab is the research and development laboratory of the Caribwood ecosystem. Its mission is to build the tools, standards, and protocols that allow Caribbean content to exist fully in the global digital economy.</p>
-  <p>It operates at the intersection of linguistics, technology, culture, and artificial intelligence — with a strong territorial grounding in Guadeloupe and the wider Caribbean.</p>
+<nav>
+  <a class="nav-logo" href="index-en.html">CMS</a>
+  <ul class="nav-links">
+    <li><a href="about-en.html">About</a></li>
+    <li><a href="families-en.html">The 6 Families</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="lab-en.html" class="active">Language Lab</a></li>
+    <li><a href="collaborate-en.html">Collaborate</a></li>
+    <li><a href="contact-en.html">Contact</a></li>
+    <li><a href="founders-en.html">The 100 Founders</a></li>
+    <li><a href="validator.html" class="nav-validate">Certify content</a></li>
+  </ul>
+</nav>
+<div class="ph">
+  <div class="phi">
+    <div class="ey">The engine behind the CMS</div>
+    <h1>Caribwood Language Lab</h1>
+    <p>The intellectual and technical infrastructure that develops, maintains, and deploys the Caribbean Metadata Standard.</p>
+  </div>
+</div>
+<main>
+  <div class="sl">Mission</div>
+  <h2 class="st">Building a digital infrastructure for Caribbean culture</h2>
+  <p style="font-size:16px;color:#333;max-width:700px;line-height:1.8;margin-bottom:16px;">The Caribwood Language Lab is the research and development laboratory of the Caribwood ecosystem. Its mission is to build the tools, standards, and protocols that allow Caribbean content to exist fully in the global digital economy.</p>
+  <p style="font-size:16px;color:#444;max-width:700px;line-height:1.8;margin-bottom:24px;">It operates at the intersection of linguistics, technology, culture, and artificial intelligence — with a strong territorial grounding in Guadeloupe and the wider Caribbean.</p>
   <blockquote>"We don't just produce content. We build the vocabulary that allows the world to understand it."</blockquote>
-
-  <div class="lab-pillars">
-    <div class="lab-pillar">
-      <span class="pillar-label">VISION</span>
-      <p>Make the Caribbean a global reference for digital cultural sovereignty.</p>
-    </div>
-    <div class="lab-pillar">
-      <span class="pillar-label">GROUNDING</span>
-      <p>Guadeloupe, Caribbean — with a regional and international vocation.</p>
-    </div>
-    <div class="lab-pillar">
-      <span class="pillar-label">APPROACH</span>
-      <p>Field first. Every tool is born from observed reality, not imported theory.</p>
-    </div>
+  <div class="pillars-grid">
+    <div class="pillar-card"><span class="pillar-label">VISION</span><p>Make the Caribbean a global reference for digital cultural sovereignty.</p></div>
+    <div class="pillar-card"><span class="pillar-label">GROUNDING</span><p>Guadeloupe, Caribbean — with a regional and international vocation.</p></div>
+    <div class="pillar-card"><span class="pillar-label">APPROACH</span><p>Field first. Every tool is born from observed reality, not imported theory.</p></div>
   </div>
-</section>
 
-<section class="content-section">
-  <p class="section-eyebrow">Organisation</p>
-  <h2>The 4 poles of the Language Lab</h2>
-  <p>Each pole contributes to a dimension of the standard.</p>
-
+  <div class="sl">Organisation</div>
+  <h2 class="st">The 4 poles of the Language Lab</h2>
+  <p style="font-size:16px;color:#444;max-width:640px;line-height:1.75;margin-bottom:32px;">Each pole contributes to a dimension of the standard.</p>
   <div class="poles-grid">
-    <div class="pole-card">
-      <h3>Linguistic Pole</h3>
-      <p>Maps and documents the languages, dialects, and linguistic practices of the Caribbean. Builds the reference corpus for the CMS linguistic families.</p>
-      <div class="pole-tags"><span>Creoles</span><span>Oral corpus</span><span>Lexicography</span></div>
-    </div>
-    <div class="pole-card">
-      <h3>Culture &amp; Narrative Pole</h3>
-      <p>Documents Caribbean cultural practices, narrative genres, and oral traditions. Ensures the cultural authenticity of every tag in the standard.</p>
-      <div class="pole-tags"><span>Traditions</span><span>Narrative</span><span>Memory</span></div>
-    </div>
-    <div class="pole-card">
-      <h3>Technology &amp; AI Pole</h3>
-      <p>Develops automatic tagging tools, the AI classification engine, and export packages for global streaming platforms.</p>
-      <div class="pole-tags"><span>Generative AI</span><span>Caribbean NLP</span><span>CMS API</span></div>
-    </div>
-    <div class="pole-card">
-      <h3>Training Pole</h3>
-      <p>Trains creators, technicians, and institutions in using the CMS. Develops educational resources and professional certifications.</p>
-      <div class="pole-tags"><span>Workshops</span><span>Certification</span><span>Documentation</span></div>
-    </div>
+    <div class="pole-card"><h3>Linguistic Pole</h3><p>Maps and documents the languages, dialects, and linguistic practices of the Caribbean. Builds the reference corpus for the CMS linguistic families.</p><div class="pole-tags"><span>Creoles</span><span>Oral corpus</span><span>Lexicography</span></div></div>
+    <div class="pole-card"><h3>Culture &amp; Narrative Pole</h3><p>Documents Caribbean cultural practices, narrative genres, and oral traditions. Ensures the cultural authenticity of every tag in the standard.</p><div class="pole-tags"><span>Traditions</span><span>Narrative</span><span>Memory</span></div></div>
+    <div class="pole-card"><h3>Technology &amp; AI Pole</h3><p>Develops automatic tagging tools, the AI classification engine, and export packages for global streaming platforms.</p><div class="pole-tags"><span>Generative AI</span><span>Caribbean NLP</span><span>CMS API</span></div></div>
+    <div class="pole-card"><h3>Training Pole</h3><p>Trains creators, technicians, and institutions in using the CMS. Develops educational resources and professional certifications.</p><div class="pole-tags"><span>Workshops</span><span>Certification</span><span>Documentation</span></div></div>
   </div>
-</section>
 
-<section class="content-section">
-  <p class="section-eyebrow">Active projects</p>
-  <h2>What we are working on</h2>
-
+  <div class="sl">Active projects</div>
+  <h2 class="st">What we are working on</h2>
   <div class="projects-list">
-    <div class="project-item">
-      <span class="project-status status-active">In progress</span>
-      <h3>CMS v1.0 — Finalisation</h3>
-      <p>Final drafting of the White Paper, validation of the 6 metadata families, and publication of the official standard.</p>
-    </div>
-    <div class="project-item">
-      <span class="project-status status-phase2">Phase 2</span>
-      <h3>Metadata Tagger — Prototype</h3>
-      <p>Development of the internal tagging tool and testing on first Caribwood series. Generation of the first datasets.</p>
-    </div>
-    <div class="project-item">
-      <span class="project-status status-planned">Planned</span>
-      <h3>CMS AI Engine — Development</h3>
-      <p>Training a natural language processing model on Caribbean corpus for automatic detection of cultural markers.</p>
+    <div class="project-item"><span class="project-status status-active">In progress</span><h3>CMS v1.0 — Finalisation</h3><p>Final drafting of the White Paper, validation of the 6 metadata families, and publication of the official standard.</p></div>
+    <div class="project-item"><span class="project-status status-phase2">Phase 2</span><h3>Metadata Tagger — Prototype</h3><p>Development of the internal tagging tool and testing on first Caribwood series. Generation of the first datasets.</p></div>
+    <div class="project-item"><span class="project-status status-planned">Planned</span><h3>CMS AI Engine — Development</h3><p>Training a natural language processing model on Caribbean corpus for automatic detection of cultural markers.</p></div>
+  </div>
+
+  <div class="cta-block">
+    <div><h2>Want to contribute to the Language Lab?</h2><p>Linguists, developers, researchers, cultural experts — the Lab is open to collaborations that advance Caribbean cultural sovereignty.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="collaborate-en.html" class="btn-t">Propose a collaboration</a>
+      <a href="contact-en.html" class="btn-ow">Contact the Lab</a>
     </div>
   </div>
-</section>
-
-<section class="content-section cta-section">
-  <h2>Want to contribute to the Language Lab?</h2>
-  <p>Linguists, developers, researchers, cultural experts — the Lab is open to collaborations that advance Caribbean cultural sovereignty.</p>
-  <a href="collaborate-en.html" class="btn-primary">Propose a collaboration</a>
-  <a href="contact.html" class="btn-secondary">Contact the Lab</a>
-</section>
-
-<footer><!-- replaced by nav-fix-en.js --></footer>
-<script src="nav-fix-en.js"></script>
-<script src="lang-switcher.js"></script>
+</main>
+<footer>
+  <div class="fg">
+    <div class="fb"><a class="fl" href="index-en.html">CMS</a><p>Caribbean Metadata Standard — Structuring Caribbean cultural visibility. A Caribwood Language Lab project.</p></div>
+    <div class="fc"><h4>The Standard</h4><ul><li><a href="about-en.html">About</a></li><li><a href="families-en.html">The 6 Families</a></li><li><a href="resources.html">Documentation</a></li></ul></div>
+    <div class="fc"><h4>Ecosystem</h4><ul><li><a href="lab-en.html">Language Lab</a></li><li><a href="collaborate-en.html">Collaborate</a></li><li><a href="contact-en.html">Contact</a></li></ul></div>
+    <div class="fc"><h4>Resources</h4><ul><li><a href="resources.html">White Paper</a></li><li><a href="glossaire.html">Glossary</a></li><li><a href="developers.html">Developers / API</a></li><li><a href="resources.html">FAQ</a></li><li><a href="validator.html" class="hl">→ Certify content</a></li></ul></div>
+  </div>
+  <div class="fb-bot"><strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</div>
+</footer>
+<script src="nav-fix.js"></script>
 </body>
 </html>
