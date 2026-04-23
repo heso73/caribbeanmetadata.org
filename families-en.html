@@ -1,123 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The 6 Metadata Families — Caribbean Metadata Standard</title>
-  <meta name="description" content="The 6 CMS metadata families: Linguistic, Cultural, Narrative, Rhythmic, Geographic, Socio-Historical. A complete system for classifying Caribbean cultural content."/>
-  <link rel="canonical" href="https://caribbeanmetadata.org/families-en.html"/>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 6 Metadata Families — Caribbean Metadata Standard</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:#003E6B}
+.nav-links a.active{font-weight:700}
+.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:0.5px}
+.nav-validate:hover{background:#00A8AE !important}
+.ph{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
+.phi{position:relative;z-index:1;max-width:760px}
+.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.ph h1{font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
+.ph p{font-size:17px;color:rgba(255,255,255,0.88);max-width:560px;line-height:1.75}
+main{padding:72px 6%;max-width:1100px;margin:0 auto}
+.cta-block{background:#003E6B;border-radius:12px;padding:48px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.cta-block h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
+.cta-block p{font-size:15px;color:rgba(255,255,255,0.88)}
+.btn-t{display:inline-block;padding:12px 24px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s}
+.btn-t:hover{background:#00A8AE}
+.btn-ow{display:inline-block;padding:12px 24px;background:transparent;color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.5);transition:all .2s}
+footer{background:#003E6B;padding:56px 6% 32px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
+.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
+.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
+.fc ul{list-style:none}
+.fc li{margin-bottom:8px}
+.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
+.fc a:hover{color:#fff}
+.fc a.hl{color:#00C2C7;font-weight:600}
+.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
+@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+.fam-nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
+.fam-nav a{padding:8px 18px;border:1px solid rgba(0,62,107,0.2);border-radius:20px;font-size:13px;color:#003E6B;text-decoration:none;font-weight:500;transition:all .2s}
+.fam-nav a:hover{background:#003E6B;color:#fff;border-color:#003E6B}
+.fam-block{margin-bottom:80px;scroll-margin-top:88px}
+.fam-num{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.fam-num::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.fam-block h2{font-size:clamp(22px,3vw,34px);font-weight:700;color:#003E6B;margin-bottom:12px}
+.fam-desc{font-size:16px;color:#333;max-width:680px;line-height:1.8;margin-bottom:16px}
+.usage-block{background:#f7f9fb;border-left:3px solid #00C2C7;padding:16px 20px;border-radius:0 6px 6px 0;margin-bottom:28px;font-size:14px;color:#333;line-height:1.7}
+.usage-label{font-size:10px;letter-spacing:2px;color:#00C2C7;font-weight:700;margin-bottom:6px}
+.tags-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tag-col h4{font-size:10px;letter-spacing:2px;color:#888;font-weight:700;margin-bottom:10px;text-transform:uppercase}
+.tag-list{list-style:none}
+.tag-list li{font-size:13px;color:#333;padding:4px 0;border-bottom:1px solid rgba(0,62,107,0.06)}
+.tag-list li:last-child{border-bottom:none}
+.fam-divider{height:1px;background:rgba(0,62,107,0.08);margin-bottom:80px}
+@media(max-width:768px){.tags-grid{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
-<nav><!-- replaced by nav-fix-en.js --></nav>
-
-<header class="page-hero">
-  <p class="eyebrow">Taxonomy</p>
-  <h1>The 6 metadata families</h1>
-  <p class="hero-subtitle">Each family structures a distinct aspect of Caribbean identity. Together, they form a complete system of cultural classification.</p>
-  <nav class="families-anchor-nav">
+<nav>
+  <a class="nav-logo" href="index-en.html">CMS</a>
+  <ul class="nav-links">
+    <li><a href="about-en.html">About</a></li>
+    <li><a href="families-en.html" class="active">The 6 Families</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="lab-en.html">Language Lab</a></li>
+    <li><a href="collaborate-en.html">Collaborate</a></li>
+    <li><a href="contact-en.html">Contact</a></li>
+    <li><a href="founders-en.html">The 100 Founders</a></li>
+    <li><a href="validator.html" class="nav-validate">Certify content</a></li>
+  </ul>
+</nav>
+<div class="ph">
+  <div class="phi">
+    <div class="ey">Taxonomy</div>
+    <h1>The 6 metadata families</h1>
+    <p>Each family structures a distinct aspect of Caribbean identity. Together, they form a complete system of cultural classification.</p>
+  </div>
+</div>
+<main>
+  <div class="fam-nav">
     <a href="#linguistic">01 · Linguistic</a>
     <a href="#cultural">02 · Cultural</a>
     <a href="#narrative">03 · Narrative</a>
     <a href="#rhythmic">04 · Rhythmic</a>
     <a href="#geographic">05 · Geographic</a>
     <a href="#sociohistorical">06 · Socio-Historical</a>
-  </nav>
-</header>
+  </div>
 
-<section class="family-section" id="linguistic">
-  <div class="family-header">
-    <span class="family-num-label">Family 01</span>
+  <div id="linguistic" class="fam-block">
+    <div class="fam-num">Family 01</div>
     <h2>Linguistic metadata</h2>
+    <p class="fam-desc">Describes the languages, dialects, registers and language practices present in Caribbean audiovisual content.</p>
+    <div class="usage-block"><div class="usage-label">TYPICAL USE</div>Index a film shot in Guadeloupean Creole with passages in French and English, incorporating traditional oral proverbs.</div>
+    <div class="tags-grid">
+      <div><h4>Creoles</h4><ul class="tag-list"><li>Guadeloupean Creole</li><li>Martinican Creole</li><li>Haitian Creole</li><li>Réunion Creole</li></ul></div>
+      <div><h4>Dialects</h4><ul class="tag-list"><li>Jamaican Patois</li><li>Trinidadian English</li><li>Papiamento</li><li>Sranan Tongo</li></ul></div>
+      <div><h4>Practices</h4><ul class="tag-list"><li>Code-switching</li><li>Code alternation</li><li>Rhythmic orality</li></ul></div>
+      <div><h4>Oral forms</h4><ul class="tag-list"><li>Creole proverbs</li><li>Oral tales</li><li>Verbal jousting</li><li>Caribbean griot</li></ul></div>
+    </div>
   </div>
-  <p class="family-usage"><strong>Typical use:</strong> Index a film shot in Guadeloupean Creole with passages in French and English, incorporating traditional oral proverbs.</p>
-  <div class="family-tags-grid">
-    <div class="tag-group"><h4>Creoles</h4><ul><li>Guadeloupean Creole</li><li>Martinican Creole</li><li>Haitian Creole</li><li>Réunion Creole</li></ul></div>
-    <div class="tag-group"><h4>Dialects</h4><ul><li>Jamaican Patois</li><li>Trinidadian English</li><li>Papiamento</li><li>Sranan Tongo</li></ul></div>
-    <div class="tag-group"><h4>Practices</h4><ul><li>Code-switching</li><li>Code alternation</li><li>Rhythmic orality</li></ul></div>
-    <div class="tag-group"><h4>Oral forms</h4><ul><li>Creole proverbs</li><li>Oral tales</li><li>Verbal jousting</li><li>Caribbean griot</li></ul></div>
-  </div>
-</section>
+  <div class="fam-divider"></div>
 
-<section class="family-section" id="cultural">
-  <div class="family-header">
-    <span class="family-num-label">Family 02</span>
+  <div id="cultural" class="fam-block">
+    <div class="fam-num">Family 02</div>
     <h2>Cultural metadata</h2>
+    <p class="fam-desc">Describes cultural practices, traditions, and spiritual, musical and culinary heritages specific to the Caribbean.</p>
+    <div class="usage-block"><div class="usage-label">TYPICAL USE</div>Classify a documentary series on the Guadeloupe carnival incorporating syncretic religious rites and gwoka music.</div>
+    <div class="tags-grid">
+      <div><h4>Spiritualities</h4><ul class="tag-list"><li>Haitian Vodou</li><li>Santería</li><li>Rastafari</li><li>Afro-Caribbean syncretism</li></ul></div>
+      <div><h4>Traditions</h4><ul class="tag-list"><li>Carnival</li><li>Traditional Mas'</li><li>Léwoz / Gwoka</li><li>Bèlè</li></ul></div>
+      <div><h4>Music</h4><ul class="tag-list"><li>Reggae</li><li>Zouk</li><li>Kompa</li><li>Calypso</li><li>Dancehall</li></ul></div>
+      <div><h4>Diaspora &amp; Identity</h4><ul class="tag-list"><li>Diasporic identity</li><li>African heritage</li><li>Cultural métissage</li></ul></div>
+    </div>
   </div>
-  <p class="family-usage"><strong>Typical use:</strong> Classify a documentary series on the Guadeloupe carnival incorporating syncretic religious rites and gwoka music.</p>
-  <div class="family-tags-grid">
-    <div class="tag-group"><h4>Spiritualities</h4><ul><li>Haitian Vodou</li><li>Santería</li><li>Rastafari</li><li>Afro-Caribbean syncretism</li></ul></div>
-    <div class="tag-group"><h4>Traditions</h4><ul><li>Carnival</li><li>Traditional Mas'</li><li>Léwoz / Gwoka</li><li>Bèlè</li></ul></div>
-    <div class="tag-group"><h4>Music</h4><ul><li>Reggae</li><li>Zouk</li><li>Kompa</li><li>Calypso</li><li>Dancehall</li></ul></div>
-    <div class="tag-group"><h4>Diaspora &amp; identity</h4><ul><li>Diasporic identity</li><li>African heritage</li><li>Cultural métissage</li></ul></div>
-  </div>
-</section>
+  <div class="fam-divider"></div>
 
-<section class="family-section" id="narrative">
-  <div class="family-header">
-    <span class="family-num-label">Family 03</span>
+  <div id="narrative" class="fam-block">
+    <div class="fam-num">Family 03</div>
     <h2>Narrative metadata</h2>
+    <p class="fam-desc">Describes genres, dramatic structures and narrative archetypes specific to the Caribbean storytelling tradition.</p>
+    <div class="usage-block"><div class="usage-label">TYPICAL USE</div>Index a feature film blending Caribbean magic realism, postcolonial political thriller and intergenerational family saga.</div>
+    <div class="tags-grid">
+      <div><h4>Genres</h4><ul class="tag-list"><li>Caribbean magic realism</li><li>Tropical thriller</li><li>Social drama</li><li>Creole comedy</li></ul></div>
+      <div><h4>Structures</h4><ul class="tag-list"><li>Family saga</li><li>Urban chronicles</li><li>Coming-of-age narrative</li><li>Circular narration</li></ul></div>
+      <div><h4>Archetypes</h4><ul class="tag-list"><li>The storyteller figure</li><li>Street hero</li><li>Ancestor guide</li><li>Returning exile</li></ul></div>
+      <div><h4>Themes</h4><ul class="tag-list"><li>Collective memory</li><li>Resistance</li><li>Emancipation</li></ul></div>
+    </div>
   </div>
-  <p class="family-usage"><strong>Typical use:</strong> Index a feature film blending Caribbean magic realism, postcolonial political thriller, and intergenerational family saga.</p>
-  <div class="family-tags-grid">
-    <div class="tag-group"><h4>Genres</h4><ul><li>Caribbean magic realism</li><li>Tropical thriller</li><li>Social drama</li><li>Creole comedy</li></ul></div>
-    <div class="tag-group"><h4>Structures</h4><ul><li>Family saga</li><li>Urban chronicles</li><li>Coming-of-age narrative</li><li>Circular narration</li></ul></div>
-    <div class="tag-group"><h4>Archetypes</h4><ul><li>The storyteller figure</li><li>Street hero</li><li>Ancestor guide</li><li>Returning exile</li></ul></div>
-    <div class="tag-group"><h4>Themes</h4><ul><li>Collective memory</li><li>Resistance</li><li>Emancipation</li></ul></div>
-  </div>
-</section>
+  <div class="fam-divider"></div>
 
-<section class="family-section" id="rhythmic">
-  <div class="family-header">
-    <span class="family-num-label">Family 04</span>
+  <div id="rhythmic" class="fam-block">
+    <div class="fam-num">Family 04</div>
     <h2>Rhythmic metadata</h2>
+    <p class="fam-desc">Describes the tempo, cadence, musicality of dialogue and sound patterns that characterise Caribbean content.</p>
+    <div class="usage-block"><div class="usage-label">TYPICAL USE</div>Qualify the rhythm of a music documentary where spoken interventions follow a percussive cadence rooted in the gwoka tradition.</div>
+    <div class="tags-grid">
+      <div><h4>Tempo</h4><ul class="tag-list"><li>Slow insular tempo</li><li>Fast urban tempo</li><li>Contemplative tempo</li></ul></div>
+      <div><h4>Cadence</h4><ul class="tag-list"><li>Syncopated dialogue</li><li>Percussive speech</li><li>Call &amp; response rhythm</li></ul></div>
+      <div><h4>Musicality</h4><ul class="tag-list"><li>Sung intonation</li><li>Musical orality</li><li>Meaningful silence</li></ul></div>
+      <div><h4>Sound patterns</h4><ul class="tag-list"><li>Tropical ambiance</li><li>Urban soundscape</li><li>Insular nature sounds</li></ul></div>
+    </div>
   </div>
-  <p class="family-usage"><strong>Typical use:</strong> Qualify the rhythm of a music documentary where spoken interventions follow a percussive cadence rooted in the gwoka tradition.</p>
-  <div class="family-tags-grid">
-    <div class="tag-group"><h4>Tempo</h4><ul><li>Slow insular tempo</li><li>Fast urban tempo</li><li>Contemplative tempo</li></ul></div>
-    <div class="tag-group"><h4>Cadence</h4><ul><li>Syncopated dialogue</li><li>Percussive speech</li><li>Call &amp; response rhythm</li></ul></div>
-    <div class="tag-group"><h4>Musicality</h4><ul><li>Sung intonation</li><li>Musical orality</li><li>Meaningful silence</li></ul></div>
-    <div class="tag-group"><h4>Sound patterns</h4><ul><li>Tropical ambiance</li><li>Urban soundscape</li><li>Insular nature sounds</li></ul></div>
-  </div>
-</section>
+  <div class="fam-divider"></div>
 
-<section class="family-section" id="geographic">
-  <div class="family-header">
-    <span class="family-num-label">Family 05</span>
+  <div id="geographic" class="fam-block">
+    <div class="fam-num">Family 05</div>
     <h2>Geographic metadata</h2>
+    <p class="fam-desc">Locates content within Caribbean space — territory, environment, landscape — with cultural rather than merely cartographic precision.</p>
+    <div class="usage-block"><div class="usage-label">TYPICAL USE</div>Locate a web series shot in the working-class neighbourhoods of Pointe-à-Pitre, in coastal urban Guadeloupe.</div>
+    <div class="tags-grid">
+      <div><h4>Territories</h4><ul class="tag-list"><li>Guadeloupe</li><li>Martinique</li><li>Haiti</li><li>Jamaica</li><li>Trinidad &amp; Tobago</li><li>Cuba</li></ul></div>
+      <div><h4>Environments</h4><ul class="tag-list"><li>Caribbean urban</li><li>Tropical rural</li><li>Island coastal</li><li>Tropical forest</li></ul></div>
+      <div><h4>Cultural spaces</h4><ul class="tag-list"><li>Greater Caribbean</li><li>Lesser Antilles</li><li>Caribbean diaspora</li></ul></div>
+      <div><h4>Symbolic landscapes</h4><ul class="tag-list"><li>The sea as border</li><li>The plantation</li><li>The morne (hill)</li></ul></div>
+    </div>
   </div>
-  <p class="family-usage"><strong>Typical use:</strong> Locate a web series shot in the working-class neighbourhoods of Pointe-à-Pitre, in coastal urban Guadeloupe.</p>
-  <div class="family-tags-grid">
-    <div class="tag-group"><h4>Territories</h4><ul><li>Guadeloupe</li><li>Martinique</li><li>Haiti</li><li>Jamaica</li><li>Trinidad &amp; Tobago</li><li>Cuba</li></ul></div>
-    <div class="tag-group"><h4>Environments</h4><ul><li>Caribbean urban</li><li>Tropical rural</li><li>Island coastal</li><li>Tropical forest</li></ul></div>
-    <div class="tag-group"><h4>Cultural spaces</h4><ul><li>Greater Caribbean</li><li>Lesser Antilles</li><li>Caribbean diaspora</li></ul></div>
-    <div class="tag-group"><h4>Symbolic landscapes</h4><ul><li>The sea as border</li><li>The plantation</li><li>The morne (hill)</li></ul></div>
-  </div>
-</section>
+  <div class="fam-divider"></div>
 
-<section class="family-section" id="sociohistorical">
-  <div class="family-header">
-    <span class="family-num-label">Family 06</span>
+  <div id="sociohistorical" class="fam-block">
+    <div class="fam-num">Family 06</div>
     <h2>Socio-historical metadata</h2>
+    <p class="fam-desc">Contextualises content within the social, historical and political dynamics that have shaped the Caribbean and its peoples.</p>
+    <div class="usage-block"><div class="usage-label">TYPICAL USE</div>Classify a film exploring intergenerational tensions between a Haitian diaspora family in New York and its roots.</div>
+    <div class="tags-grid">
+      <div><h4>History</h4><ul class="tag-list"><li>Memory of slavery</li><li>Colonisation</li><li>Abolition</li><li>Independence</li></ul></div>
+      <div><h4>Identity</h4><ul class="tag-list"><li>Creolisation</li><li>Postcoloniality</li><li>Négritude</li><li>Antillanité</li></ul></div>
+      <div><h4>Migration</h4><ul class="tag-list"><li>Voluntary exile</li><li>Return home</li><li>Diaspora / island tensions</li></ul></div>
+      <div><h4>Social dynamics</h4><ul class="tag-list"><li>Intergenerational tensions</li><li>Social class</li><li>Gender &amp; power</li></ul></div>
+    </div>
   </div>
-  <p class="family-usage"><strong>Typical use:</strong> Classify a film exploring intergenerational tensions between a Haitian diaspora family in New York and its roots.</p>
-  <div class="family-tags-grid">
-    <div class="tag-group"><h4>History</h4><ul><li>Memory of slavery</li><li>Colonisation</li><li>Abolition</li><li>Independence</li></ul></div>
-    <div class="tag-group"><h4>Identity</h4><ul><li>Creolisation</li><li>Postcoloniality</li><li>Négritude</li><li>Antillanité</li></ul></div>
-    <div class="tag-group"><h4>Migration</h4><ul><li>Voluntary exile</li><li>Return home</li><li>Diaspora / island tensions</li></ul></div>
-    <div class="tag-group"><h4>Social dynamics</h4><ul><li>Intergenerational tensions</li><li>Social class</li><li>Gender &amp; power</li></ul></div>
+
+  <div class="cta-block">
+    <div><h2>Ready to use the CMS?</h2><p>Download the documentation and start tagging your content according to the official standard.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="resources.html" class="btn-t">Download the documentation</a>
+      <a href="validator.html" class="btn-t" style="background:#FFC93C;color:#003E6B">Certify content</a>
+      <a href="collaborate-en.html" class="btn-ow">Collaborate with us</a>
+    </div>
   </div>
-</section>
-
-<section class="content-section cta-section">
-  <h2>Ready to use the CMS?</h2>
-  <p>Download the White Paper and start tagging your content according to the official standard.</p>
-  <a href="CMS_WhitePaper_v1.0.pdf" class="btn-primary">Download the White Paper ↓</a>
-  <a href="collaborate-en.html" class="btn-secondary">Collaborate with us</a>
-</section>
-
-<footer><!-- replaced by nav-fix-en.js --></footer>
-<script src="nav-fix-en.js"></script>
-<script src="lang-switcher.js"></script>
+</main>
+<footer>
+  <div class="fg">
+    <div class="fb"><a class="fl" href="index-en.html">CMS</a><p>Caribbean Metadata Standard — Structuring Caribbean cultural visibility. A Caribwood Language Lab project.</p></div>
+    <div class="fc"><h4>The Standard</h4><ul><li><a href="about-en.html">About</a></li><li><a href="families-en.html">The 6 Families</a></li><li><a href="resources.html">Documentation</a></li></ul></div>
+    <div class="fc"><h4>Ecosystem</h4><ul><li><a href="lab-en.html">Language Lab</a></li><li><a href="collaborate-en.html">Collaborate</a></li><li><a href="contact-en.html">Contact</a></li></ul></div>
+    <div class="fc"><h4>Resources</h4><ul><li><a href="resources.html">White Paper</a></li><li><a href="glossaire.html">Glossary</a></li><li><a href="developers.html">Developers / API</a></li><li><a href="resources.html">FAQ</a></li><li><a href="validator.html" class="hl">→ Certify content</a></li></ul></div>
+  </div>
+  <div class="fb-bot"><strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</div>
+</footer>
+<script src="nav-fix.js"></script>
 </body>
 </html>
