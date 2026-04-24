@@ -4,639 +4,305 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Glossaire — Caribbean Metadata Standard</title>
-<meta name="description" content="Glossaire officiel des termes du Caribbean Metadata Standard v1.0 — définitions des champs, valeurs et concepts culturels caribéens.">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);border-bottom:1px solid rgba(0,0,0,0.08);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
 .nav-links{display:flex;gap:24px;list-style:none;align-items:center}
-.nav-links a{font-size:13px;color:#444;text-decoration:none;transition:color .2s}
-.nav-links a:hover{color:#003E6B}
-.nav-links a.active{color:#003E6B;font-weight:700}
-.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:0.5px}
-.nav-validate:hover{background:#00A8AE !important}
-
-/* PAGE HEADER */
-.page-header{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
-.page-header::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.08) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.06) 24px)}
-.page-header-inner{position:relative;z-index:1;max-width:760px}
-.eyebrow{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
-.page-header h1{font-size:clamp(32px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
-.page-header p{font-size:17px;color:rgba(255,255,255,0.65);max-width:560px;line-height:1.7}
-
-/* MAIN */
-main{max-width:1100px;margin:0 auto;padding:72px 6%}
-
-/* SEARCH & FILTER */
-.glossary-controls{display:flex;gap:16px;margin-bottom:48px;flex-wrap:wrap;align-items:center}
+.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:#003E6B;font-weight:700}
+.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px}
+.ph{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
+.phi{position:relative;z-index:1;max-width:760px}
+.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.ph h1{font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
+.ph p{font-size:17px;color:rgba(255,255,255,0.85);max-width:560px;line-height:1.75}
+main{max-width:1100px;margin:0 auto;padding:56px 6% 80px}
+.controls{display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;align-items:center}
 .search-wrap{position:relative;flex:1;min-width:260px}
-.search-wrap input{width:100%;padding:12px 16px 12px 44px;border:1px solid rgba(0,62,107,0.2);border-radius:6px;font-size:14px;font-family:inherit;color:#1a1a1a;outline:none;transition:border-color .2s;background:#fff}
+.search-wrap input{width:100%;padding:12px 16px 12px 44px;border:1.5px solid rgba(0,62,107,0.2);border-radius:8px;font-size:14px;font-family:inherit;color:#1a1a1a;outline:none;transition:all .2s}
 .search-wrap input:focus{border-color:#00C2C7;box-shadow:0 0 0 3px rgba(0,194,199,0.1)}
 .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#aaa;font-size:16px;pointer-events:none}
 .filter-btns{display:flex;gap:8px;flex-wrap:wrap}
-.filter-btn{padding:8px 16px;border:1px solid rgba(0,62,107,0.2);border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#666;font-family:inherit;transition:all .2s;letter-spacing:0.3px}
+.filter-btn{padding:7px 16px;border:1.5px solid rgba(0,62,107,0.15);border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#666;font-family:inherit;transition:all .2s}
 .filter-btn:hover{border-color:#003E6B;color:#003E6B}
 .filter-btn.active{background:#003E6B;color:#00C2C7;border-color:#003E6B}
-
-/* STATS */
-.glossary-stats{display:flex;gap:32px;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid rgba(0,62,107,0.1)}
+.stats{display:flex;gap:32px;margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid rgba(0,62,107,0.08)}
 .stat-item{text-align:center}
 .stat-num{font-size:28px;font-weight:700;color:#003E6B;line-height:1}
-.stat-lbl{font-size:11px;color:#999;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
-
-/* ALPHABET NAV */
+.stat-lbl{font-size:10px;color:#999;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
 .alpha-nav{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:40px}
-.alpha-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,62,107,0.15);border-radius:4px;font-size:12px;font-weight:700;color:#666;cursor:pointer;background:#fff;font-family:inherit;transition:all .15s}
+.alpha-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,62,107,0.12);border-radius:4px;font-size:12px;font-weight:700;color:#aaa;cursor:pointer;background:#fff;font-family:inherit;transition:all .15s}
+.alpha-btn.has{color:#003E6B;border-color:rgba(0,62,107,0.25)}
 .alpha-btn:hover{border-color:#003E6B;color:#003E6B}
-.alpha-btn.has-terms{color:#003E6B;border-color:rgba(0,62,107,0.3)}
-.alpha-btn.active{background:#003E6B;color:#00C2C7;border-color:#003E6B}
-
-/* GLOSSARY TERMS */
 .letter-section{margin-bottom:48px}
-.letter-heading{font-size:32px;font-weight:700;color:rgba(0,62,107,0.12);margin-bottom:16px;border-bottom:2px solid rgba(0,62,107,0.08);padding-bottom:8px}
-.term-card{border:1px solid rgba(0,62,107,0.1);border-radius:8px;padding:24px 28px;margin-bottom:12px;background:#fff;transition:border-color .2s,box-shadow .2s;position:relative}
+.letter-heading{font-size:32px;font-weight:700;color:rgba(0,62,107,0.1);margin-bottom:16px;border-bottom:2px solid rgba(0,62,107,0.06);padding-bottom:8px}
+.term-card{border:1px solid rgba(0,62,107,0.1);border-radius:8px;padding:22px 26px;margin-bottom:10px;background:#fff;transition:border-color .2s,box-shadow .2s}
 .term-card:hover{border-color:rgba(0,194,199,0.4);box-shadow:0 2px 12px rgba(0,62,107,0.06)}
 .term-card.hidden{display:none}
-.term-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:10px}
-.term-name{font-size:17px;font-weight:700;color:#003E6B}
-.term-code{font-family:'Courier New',monospace;font-size:12px;background:#f0f4f8;color:#003E6B;padding:3px 10px;border-radius:4px;flex-shrink:0}
-.term-category{display:inline-block;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px}
-.cat-schema   {background:#e8f0fb;color:#185FA5}
-.cat-cultural {background:#e8f5f0;color:#0F6E56}
-.cat-language {background:#f9f0fb;color:#7B3FA6}
+.term-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:8px}
+.term-name{font-size:16px;font-weight:700;color:#003E6B}
+.term-code{font-family:'Courier New',monospace;font-size:11px;background:#f0f4f8;color:#003E6B;padding:3px 9px;border-radius:4px;flex-shrink:0}
+.term-cat{display:inline-block;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.cat-schema{background:#e8f0fb;color:#185FA5}
+.cat-cultural{background:#e8f5f0;color:#0F6E56}
+.cat-language{background:#f9f0fb;color:#7B3FA6}
 .cat-territory{background:#eaf3de;color:#3B6D11}
 .cat-technical{background:#f0f4f8;color:#003E6B}
-.cat-cert     {background:#fff8e1;color:#BA7517}
-.term-def{font-size:14px;color:#444;line-height:1.75;margin-bottom:12px}
-.term-example{font-size:13px;color:#666;background:#f7f9fb;border-left:3px solid #00C2C7;padding:10px 14px;border-radius:0 4px 4px 0;margin-bottom:10px}
-.term-example strong{color:#003E6B}
+.cat-cert{background:#fff8e1;color:#BA7517}
+.cat-narrative{background:#fff0ee;color:#CC3300}
+.cat-rhythmic{background:#f5f0fb;color:#5B2D8E}
+.term-def{font-size:14px;color:#444;line-height:1.75;margin-bottom:10px}
+.term-ex{font-size:13px;color:#555;background:#f7f9fb;border-left:3px solid #00C2C7;padding:9px 14px;border-radius:0 4px 4px 0;margin-bottom:8px}
+.term-ex strong{color:#003E6B}
 .term-related{font-size:12px;color:#aaa}
-.term-related a{color:#00C2C7;text-decoration:none;font-weight:600}
-.term-related a:hover{text-decoration:underline}
-
-/* NO RESULTS */
-.no-results{text-align:center;padding:64px 32px;color:#999}
-.no-results h3{font-size:20px;font-weight:600;color:#003E6B;margin-bottom:8px}
-
-/* CTA */
-.cta-block{background:#003E6B;border-radius:12px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-top:72px}
-.cta-block h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
-.cta-block p{font-size:15px;color:rgba(255,255,255,0.7)}
-.btn-primary{display:inline-block;padding:12px 24px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s}
-.btn-primary:hover{background:#00A8AE}
-.btn-outline-w{display:inline-block;padding:12px 24px;background:transparent;color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.4);transition:all .2s;margin-left:12px}
-.btn-outline-w:hover{border-color:#fff}
-
-/* FOOTER */
+.no-results{text-align:center;padding:80px 0;display:none}
+.no-results h3{font-size:22px;font-weight:700;color:#003E6B;margin-bottom:8px}
+.no-results p{color:#888;font-size:15px}
 footer{background:#003E6B;padding:56px 6% 32px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.footer-logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7}
-.footer-col h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
-.footer-col ul{list-style:none}
-.footer-col li{margin-bottom:8px}
-.footer-col a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s}
-.footer-col a:hover{color:#fff}
-.footer-col a.highlight{color:#00C2C7;font-weight:600}
-.footer-bottom{padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;color:rgba(255,255,255,0.35);text-align:center}
-
-@media(max-width:900px){
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .nav-links{display:none}
-  .glossary-stats{gap:16px}
-}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
+.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
+.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
+.fc ul{list-style:none}
+.fc li{margin-bottom:8px}
+.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none}
+.fc a:hover{color:#fff}
+.fc a.hl{color:#00C2C7;font-weight:600}
+.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
+@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}.nav-links{display:none}.controls{flex-direction:column}}
 </style>
 </head>
 <body>
-
 <nav>
   <a class="nav-logo" href="index.html">CMS</a>
   <ul class="nav-links">
     <li><a href="about.html">À propos</a></li>
     <li><a href="families.html">Les 6 familles</a></li>
-    <li><a href="resources.html" class="active">Ressources</a></li>
-    <li><a href="developers.html">Developers</a></li>
+    <li><a href="resources.html">Ressources</a></li>
     <li><a href="lab.html">Language Lab</a></li>
     <li><a href="collaborate.html">Collaborer</a></li>
+    <li><a href="glossaire.html" class="active">Glossaire</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
   </ul>
 </nav>
-
-<div class="page-header">
-  <div class="page-header-inner">
-    <div class="eyebrow">Référence officielle</div>
+<div class="ph">
+  <div class="phi">
+    <div class="ey">Référence officielle</div>
     <h1>Glossaire CMS</h1>
-    <p>Définitions officielles de tous les termes, champs et valeurs du Caribbean Metadata Standard v1.0 — pour les créateurs, développeurs et institutions.</p>
+    <p>Définitions officielles de tous les termes, champs, valeurs et concepts culturels du Caribbean Metadata Standard v1.0.</p>
   </div>
 </div>
-
 <main>
-
-  <!-- STATS -->
-  <div class="glossary-stats">
-    <div class="stat-item"><div class="stat-num" id="total-count">42</div><div class="stat-lbl">Termes</div></div>
-    <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl">Catégories</div></div>
-    <div class="stat-item"><div class="stat-num">v1.0</div><div class="stat-lbl">Version</div></div>
-    <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl">Édition</div></div>
-  </div>
-
-  <!-- CONTROLS -->
-  <div class="glossary-controls">
+  <div class="controls">
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" id="search-input" placeholder="Rechercher un terme…" oninput="filterTerms()">
+      <input type="text" id="search-input" placeholder="Rechercher : vodou, gwoka, zouk, créolisation…" oninput="filterTerms()">
     </div>
     <div class="filter-btns">
-      <button class="filter-btn active" onclick="filterCat('all', this)">Tous</button>
-      <button class="filter-btn" onclick="filterCat('schema', this)">Schéma</button>
-      <button class="filter-btn" onclick="filterCat('cultural', this)">Culturel</button>
-      <button class="filter-btn" onclick="filterCat('language', this)">Langue</button>
-      <button class="filter-btn" onclick="filterCat('territory', this)">Territoire</button>
-      <button class="filter-btn" onclick="filterCat('cert', this)">Certification</button>
-      <button class="filter-btn" onclick="filterCat('technical', this)">Technique</button>
+      <button class="filter-btn active" onclick="filterCat('all',this)">Tous</button>
+      <button class="filter-btn" onclick="filterCat('schema',this)">Schéma</button>
+      <button class="filter-btn" onclick="filterCat('cultural',this)">Culturel</button>
+      <button class="filter-btn" onclick="filterCat('language',this)">Langue</button>
+      <button class="filter-btn" onclick="filterCat('territory',this)">Territoire</button>
+      <button class="filter-btn" onclick="filterCat('cert',this)">Certification</button>
+      <button class="filter-btn" onclick="filterCat('narrative',this)">Narratif</button>
+      <button class="filter-btn" onclick="filterCat('rhythmic',this)">Rythmique</button>
+      <button class="filter-btn" onclick="filterCat('technical',this)">Technique</button>
     </div>
   </div>
-
-  <!-- TERMS -->
-  <div id="glossary-body">
-
-    <!-- C -->
-    <div class="letter-section" data-letter="C">
-      <div class="letter-heading">C</div>
-
-      <div class="term-card" data-cat="cultural" data-name="caribbean identity score">
-        <div class="term-header">
-          <span class="term-name">Caribbean Identity Score</span>
-          <span class="term-code">caribbean_identity_score</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Score numérique de 0 à 100 mesurant le degré d'ancrage culturel caribéen d'un contenu. Il est calculé automatiquement par l'algorithme CMS à partir des champs renseignés : territoire d'origine, langue principale, thèmes culturels, expressions culturelles et indicateurs de représentation. Un score de 0 signifie aucun ancrage caribéen identifiable ; un score de 100 signifie un ancrage total et documenté.</div>
-        <div class="term-example"><strong>Exemple :</strong> Un film tourné en Guadeloupe, en créole guadeloupéen, avec des thèmes de créolisation et de gwo-ka, obtiendra un score de 85 à 95.</div>
-        <div class="term-related">Voir aussi : <a href="#cert">compliance_level</a>, <a href="#theme">themes</a></div>
-      </div>
-
-      <div class="term-card" data-cat="cultural" data-name="carnival culture">
-        <div class="term-header">
-          <span class="term-name">Carnival Culture</span>
-          <span class="term-code">carnival</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Valeur du champ <code>cultural_expressions</code>. Désigne la culture carnavalesque caribéenne dans ses multiples formes : carnaval guadeloupéen, Trinidad Carnival, Jouvert, Mas. Inclut les pratiques de déguisement, les musiques associées (soca, calypso), et les rituels de renversement social hérités de la période coloniale.</div>
-        <div class="term-example"><strong>Exemple :</strong> Un documentaire sur le carnaval de Martinique inclura <code>"carnival"</code> dans <code>cultural_expressions</code>.</div>
-      </div>
-
-      <div class="term-card" data-cat="cert" data-name="certification cms compliance level">
-        <div class="term-header" id="cert">
-          <span class="term-name">Compliance Level</span>
-          <span class="term-code">compliance_level</span>
-        </div>
-        <span class="term-category cat-cert">Certification</span>
-        <div class="term-def">Niveau de certification CMS attribué à un contenu selon son score d'ancrage caribéen et le nombre de champs renseignés. Il existe 4 niveaux : <strong>bronze</strong> (score ≥ 20, 6 champs), <strong>silver</strong> (≥ 40, 10 champs), <strong>gold</strong> (≥ 65, 14 champs), <strong>platinum</strong> (≥ 85, 18 champs). Un contenu non certifié n'est pas invalide — il ne satisfait simplement pas les critères minimaux de certification.</div>
-        <div class="term-example"><strong>Exemple :</strong> "Anba Dlo" (score 88) obtient le niveau <code>"platinum"</code>.</div>
-        <div class="term-related">Voir aussi : <a href="#">caribbean_identity_score</a></div>
-      </div>
-
-      <div class="term-card" data-cat="schema" data-name="cms version">
-        <div class="term-header">
-          <span class="term-name">CMS Version</span>
-          <span class="term-code">cms_version</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Champ obligatoire indiquant la version du Caribbean Metadata Standard utilisée pour décrire le contenu. Actuellement fixé à <code>"1.0"</code>. Ce champ garantit la rétrocompatibilité lors des futures mises à jour du standard.</div>
-        <div class="term-example"><strong>Valeur actuelle :</strong> <code>"cms_version": "1.0"</code></div>
-      </div>
-
-      <div class="term-card" data-cat="schema" data-name="content type">
-        <div class="term-header">
-          <span class="term-name">Content Type</span>
-          <span class="term-code">content_type</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Champ obligatoire définissant la famille principale du contenu. Le CMS reconnaît 4 types : <strong>audiovisual</strong> (films, séries, documentaires), <strong>musical</strong> (albums, titres, enregistrements), <strong>literary</strong> (romans, poésie, essais), <strong>heritage</strong> (traditions orales, artisanat, cérémonies). Ce champ détermine quels sous-types sont disponibles.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"content_type": "audiovisual"</code></div>
-        <div class="term-related">Voir aussi : <a href="#">content_subtype</a></div>
-      </div>
-
-      <div class="term-card" data-cat="schema" data-name="content subtype">
-        <div class="term-header">
-          <span class="term-name">Content Subtype</span>
-          <span class="term-code">content_subtype</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Précise le type de contenu au sein de sa famille. Valeurs disponibles par famille — Audiovisuel : film, series, documentary, short_film, music_video, web_series · Musical : album, single, ep, live_recording, traditional_recording · Littéraire : novel, poetry, short_story, essay, oral_text, script · Patrimonial : oral_tradition, craft, ceremony, gastronomy, dance, archive.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"content_subtype": "documentary"</code></div>
-      </div>
-
-      <div class="term-card" data-cat="cultural" data-name="creolization créolisation">
-        <div class="term-header">
-          <span class="term-name">Créolisation</span>
-          <span class="term-code">creolization</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Valeur du champ <code>themes</code>. Désigne le processus de mélange et de transformation culturelle qui caractérise la Caraïbe — la création d'une culture nouvelle, issue de la rencontre de plusieurs cultures (africaine, européenne, amérindienne, asiatique). Au sens d'Édouard Glissant, la créolisation est un processus imprévisible et irréductible, distinct du simple métissage.</div>
-        <div class="term-example"><strong>Exemple :</strong> Toute œuvre explorant la construction identitaire caribéenne peut inclure <code>"creolization"</code> dans <code>themes</code>.</div>
-      </div>
-
-      <div class="term-card" data-cat="language" data-name="creole variant variante créole">
-        <div class="term-header">
-          <span class="term-name">Creole Variant</span>
-          <span class="term-code">creole_variant</span>
-        </div>
-        <span class="term-category cat-language">Langue</span>
-        <div class="term-def">Précise la variante créole spécifique utilisée dans le contenu. Valeurs disponibles : <strong>guadeloupean</strong> (créole guadeloupéen/martiniquais), <strong>haitian</strong> (créole haïtien), <strong>saint_lucian</strong>, <strong>trinidadian</strong>, <strong>papiamentu</strong> (Aruba, Curaçao), <strong>sranan</strong> (Suriname), <strong>other</strong>. Ce champ est crucial pour la préservation des langues créoles menacées.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"creole_variant": "guadeloupean"</code></div>
-        <div class="term-related">Voir aussi : <a href="#">language.primary</a>, <a href="#">gcf</a></div>
-      </div>
-
-      <div class="term-card" data-cat="schema" data-name="creator créateur">
-        <div class="term-header">
-          <span class="term-name">Creator</span>
-          <span class="term-code">identity.creator</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Tableau obligatoire listant les créateurs principaux du contenu. Chaque entrée contient : <strong>name</strong> (nom complet), <strong>role</strong> (director, author, composer, performer, artist, archivist, narrator, producer), <strong>nationality</strong> (code ISO 3166), <strong>diaspora</strong> (booléen — vrai si le créateur est de la diaspora caribéenne).</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>{"name": "Marie-Cécile Bonhomme", "role": "director", "nationality": "GP", "diaspora": false}</code></div>
-      </div>
-
-      <div class="term-card" data-cat="cultural" data-name="cultural expressions expressions culturelles">
-        <div class="term-header">
-          <span class="term-name">Cultural Expressions</span>
-          <span class="term-code">cultural_expressions</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Tableau listant les expressions culturelles caribéennes spécifiques présentes dans le contenu. Vocabulaire contrôlé incluant : musiques (zouk, gwo_ka, biguine, compas, reggae, soca, calypso, dancehall, salsa, merengue), événements (carnival, jouvert, mas), textiles (bakoua, madras, wax), gastronomie (creole_cuisine, colombo, acras), danses (laghia, bele, quadrille), spiritualités (vodou, shango, obeah, rastafari).</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"cultural_expressions": ["gwo_ka", "bele", "creole_cuisine"]</code></div>
-      </div>
-    </div>
-
-    <!-- D -->
-    <div class="letter-section" data-letter="D">
-      <div class="letter-heading">D</div>
-
-      <div class="term-card" data-cat="cultural" data-name="diaspora">
-        <div class="term-header">
-          <span class="term-name">Diaspora</span>
-          <span class="term-code">diaspora</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Territoire spécial <code>"DIASPORA"</code> dans le champ <code>origin.territory</code>, et booléen <code>diaspora</code> dans <code>identity.creator</code>. Reconnaît la réalité de millions de Caribéens vivant hors de leur île d'origine — en France métropolitaine, aux États-Unis, au Royaume-Uni, au Canada — et dont les œuvres portent une perspective caribéenne authentique même si produites ailleurs.</div>
-        <div class="term-example"><strong>Exemple :</strong> Un film produit à Paris par un réalisateur guadeloupéen sur son expérience diasporique inclura <code>"DIASPORA"</code> dans <code>territory</code> et <code>true</code> dans <code>diaspora</code>.</div>
-      </div>
-
-      <div class="term-card" data-cat="technical" data-name="duration seconds durée">
-        <div class="term-header">
-          <span class="term-name">Duration Seconds</span>
-          <span class="term-code">identity.duration_seconds</span>
-        </div>
-        <span class="term-category cat-technical">Technique</span>
-        <div class="term-def">Durée totale du contenu exprimée en secondes. S'applique principalement aux contenus audiovisuels et musicaux. Pour les contenus littéraires et patrimoniaux archivés sous forme textuelle, ce champ peut être omis ou mis à null.</div>
-        <div class="term-example"><strong>Exemple :</strong> Un film de 97 minutes → <code>"duration_seconds": 5820</code></div>
-      </div>
-    </div>
-
-    <!-- G -->
-    <div class="letter-section" data-letter="G">
-      <div class="letter-heading">G</div>
-
-      <div class="term-card" data-cat="language" data-name="gcf créole guadeloupéen martiniquais">
-        <div class="term-header">
-          <span class="term-name">GCF — Créole guadeloupéen/martiniquais</span>
-          <span class="term-code">gcf</span>
-        </div>
-        <span class="term-category cat-language">Langue</span>
-        <div class="term-def">Code de langue CMS pour le créole guadeloupéen et martiniquais (également appelé antillais). Langue maternelle de plusieurs centaines de milliers de locuteurs en Guadeloupe, Martinique et dans leur diaspora. Langue à base lexicale française avec des influences africaines, amérindiennes et européennes. Le code <code>gcf</code> est distinct de <code>ht</code> (créole haïtien), bien que les deux appartiennent à la famille des créoles français.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"primary": "gcf"</code> pour un film en créole guadeloupéen.</div>
-        <div class="term-related">Voir aussi : <a href="#">ht</a>, <a href="#">creole_variant</a></div>
-      </div>
-
-      <div class="term-card" data-cat="cultural" data-name="gwo ka gwo-ka">
-        <div class="term-header">
-          <span class="term-name">Gwo-Ka</span>
-          <span class="term-code">gwo_ka</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Valeur du champ <code>cultural_expressions</code>. Musique et danse traditionnelle guadeloupéenne, patrimoine vivant reconnu par l'UNESCO en 2014. Le Gwo-Ka est joué sur des tambours artisanaux (ka) et porte la mémoire de la résistance africaine et caribéenne. Sa présence dans un contenu est un marqueur fort d'ancrage culturel guadeloupéen.</div>
-        <div class="term-example"><strong>Exemple :</strong> Un documentaire sur Jacob Desvarieux inclura <code>"gwo_ka"</code> dans <code>cultural_expressions</code>.</div>
-      </div>
-    </div>
-
-    <!-- H -->
-    <div class="letter-section" data-letter="H">
-      <div class="letter-heading">H</div>
-
-      <div class="term-card" data-cat="cultural" data-name="historical period période historique">
-        <div class="term-header">
-          <span class="term-name">Historical Period</span>
-          <span class="term-code">historical_period</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Tableau indiquant la ou les périodes historiques représentées dans le contenu. Valeurs disponibles : <strong>pre_columbian</strong> (avant 1492), <strong>colonial_early</strong> (1492-1700), <strong>slavery_period</strong> (1700-1848), <strong>abolition_era</strong> (autour de 1848), <strong>post_colonial</strong> (1848-2000), <strong>contemporary</strong> (depuis 2000), <strong>futuristic</strong>. Un contenu peut couvrir plusieurs périodes.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"historical_period": ["slavery_period", "abolition_era"]</code></div>
-      </div>
-
-      <div class="term-card" data-cat="language" data-name="ht créole haïtien">
-        <div class="term-header">
-          <span class="term-name">HT — Créole haïtien</span>
-          <span class="term-code">ht</span>
-        </div>
-        <span class="term-category cat-language">Langue</span>
-        <div class="term-def">Code de langue CMS pour le créole haïtien (kreyòl ayisyen). Langue officielle d'Haïti aux côtés du français, parlée par environ 12 millions de personnes dans le monde. Langue à base lexicale française avec de fortes influences africaines (principalement fon et wolof). La reconnaissance du créole haïtien comme langue à part entière — et non comme "patois" — est un principe fondateur du CMS.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"primary": "ht"</code> pour une œuvre en créole haïtien.</div>
-        <div class="term-related">Voir aussi : <a href="#">gcf</a>, <a href="#">pap</a></div>
-      </div>
-    </div>
-
-    <!-- I -->
-    <div class="letter-section" data-letter="I">
-      <div class="letter-heading">I</div>
-
-      <div class="term-card" data-cat="schema" data-name="identity identité">
-        <div class="term-header">
-          <span class="term-name">Identity</span>
-          <span class="term-code">identity</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Section obligatoire du schéma CMS regroupant les informations d'identification principale du contenu : titre (multilingue), créateur(s), année de création, année de sortie, durée, et identifiant standardisé externe (ISBN, ISAN, ISRC). C'est la section qui répond à "Qui a créé quoi, quand ?"</div>
-      </div>
-    </div>
-
-    <!-- L -->
-    <div class="letter-section" data-letter="L">
-      <div class="letter-heading">L</div>
-
-      <div class="term-card" data-cat="schema" data-name="language langue">
-        <div class="term-header">
-          <span class="term-name">Language</span>
-          <span class="term-code">language</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Section obligatoire décrivant les langues présentes dans le contenu. Comprend : <strong>primary</strong> (langue principale obligatoire), <strong>additional</strong> (langues secondaires), <strong>subtitles</strong> (langues de sous-titrage), <strong>creole_variant</strong> (variante créole si applicable). Les langues reconnues par le CMS : fr, en, es, ht, gcf, pap, srn, other.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>{"primary": "gcf", "additional": ["fr"], "subtitles": ["fr","en","es"], "creole_variant": "guadeloupean"}</code></div>
-      </div>
-
-      <div class="term-card" data-cat="schema" data-name="license licence droits">
-        <div class="term-header">
-          <span class="term-name">License</span>
-          <span class="term-code">rights.license</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Type de licence applicable au contenu. Valeurs disponibles : <strong>all_rights_reserved</strong>, <strong>cc_by</strong>, <strong>cc_by_sa</strong>, <strong>cc_by_nc</strong>, <strong>cc_by_nc_sa</strong>, <strong>cc_by_nd</strong>, <strong>public_domain</strong>, <strong>custom</strong>. La licence s'applique aux métadonnées CMS et non nécessairement à l'œuvre elle-même.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"license": "cc_by_nc_sa"</code></div>
-      </div>
-    </div>
-
-    <!-- O -->
-    <div class="letter-section" data-letter="O">
-      <div class="letter-heading">O</div>
-
-      <div class="term-card" data-cat="cultural" data-name="oral tradition oralité tradition orale">
-        <div class="term-header">
-          <span class="term-name">Oral Tradition</span>
-          <span class="term-code">oral_tradition</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Valeur du champ <code>themes</code> ET sous-type du champ <code>content_subtype</code> pour la famille heritage. Désigne la transmission orale des savoirs, récits, contes, chants et pratiques culturelles — pilier fondamental des cultures caribéennes. Le CMS accorde une importance particulière à ce patrimoine immatériel souvent absent des systèmes de classification numérique standard.</div>
-        <div class="term-example"><strong>Exemple :</strong> Un enregistrement de contes créoles → <code>"content_subtype": "oral_tradition"</code> et <code>"themes": ["oral_tradition"]</code></div>
-      </div>
-
-      <div class="term-card" data-cat="schema" data-name="origin origine">
-        <div class="term-header">
-          <span class="term-name">Origin</span>
-          <span class="term-code">origin</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Section obligatoire décrivant l'origine géographique et culturelle du contenu. Comprend : <strong>territory</strong> (territoire(s) caribéen(s) d'origine, obligatoire), <strong>production_country</strong> (pays de production, peut différer du territoire d'origine), <strong>location_shoot</strong> (lieux de tournage avec coordonnées GPS optionnelles).</div>
-      </div>
-    </div>
-
-    <!-- P -->
-    <div class="letter-section" data-letter="P">
-      <div class="letter-heading">P</div>
-
-      <div class="term-card" data-cat="language" data-name="pap papiamentu papiamento">
-        <div class="term-header">
-          <span class="term-name">PAP — Papiamentu</span>
-          <span class="term-code">pap</span>
-        </div>
-        <span class="term-category cat-language">Langue</span>
-        <div class="term-def">Code de langue CMS pour le papiamentu (ou papiamento), langue créole à base hispano-portugaise parlée sur les îles ABC (Aruba, Bonaire, Curaçao). L'une des rares langues créoles à avoir un statut officiel reconnu. Le CMS reconnaît le papiamentu comme langue caribéenne à part entière, distincte de l'espagnol.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"primary": "pap"</code> pour une œuvre en papiamentu.</div>
-        <div class="term-related">Voir aussi : <a href="#">ht</a>, <a href="#">gcf</a>, <a href="#">srn</a></div>
-      </div>
-
-      <div class="term-card" data-cat="cert" data-name="platinum niveau">
-        <div class="term-header">
-          <span class="term-name">Platinum</span>
-          <span class="term-code">platinum</span>
-        </div>
-        <span class="term-category cat-cert">Certification</span>
-        <div class="term-def">Niveau de certification CMS le plus élevé. Requis : score caribéen ≥ 85/100 et au moins 18 champs renseignés. Signifie que le contenu est un "standard caribéen de référence" — ancrage culturel total, documentation complète, utilisation d'une langue créole comme langue principale, expressions culturelles spécifiques déclarées. C'est le niveau visé pour les œuvres patrimoniales et les productions institutionnelles.</div>
-        <div class="term-example"><strong>Exemple :</strong> "Kont Matinik" (score 98) → <code>"compliance_level": "platinum"</code></div>
-      </div>
-    </div>
-
-    <!-- R -->
-    <div class="letter-section" data-letter="R">
-      <div class="letter-heading">R</div>
-
-      <div class="term-card" data-cat="cultural" data-name="representation représentation">
-        <div class="term-header">
-          <span class="term-name">Representation</span>
-          <span class="term-code">cultural_markers.representation</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Objet booléen documentant les indicateurs de représentation à l'écran ou dans le contenu. Champs disponibles : <strong>afrodescendant_lead</strong> (personnage principal afrodescendant), <strong>indigenous_presence</strong> (présence amérindienne), <strong>creole_language_use</strong> (utilisation d'une langue créole), <strong>female_lead</strong> (protagoniste féminine), <strong>youth_focus</strong> (centré sur la jeunesse), <strong>diaspora_perspective</strong> (perspective diasporique).</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>{"afrodescendant_lead": true, "female_lead": true, "creole_language_use": true}</code></div>
-      </div>
-
-      <div class="term-card" data-cat="cultural" data-name="resistance résistance">
-        <div class="term-header">
-          <span class="term-name">Resistance</span>
-          <span class="term-code">resistance</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Valeur du champ <code>themes</code>. Désigne les thèmes liés aux luttes de résistance caribéennes : résistance esclave, marronnage, révoltes, indépendantisme, résistance culturelle. La résistance est un fil conducteur fondamental de l'histoire et de la culture caribéenne, de Toussaint Louverture à la négritude.</div>
-        <div class="term-example"><strong>Exemple :</strong> Un film sur Louis Delgrès inclura <code>"resistance"</code> dans <code>themes</code>.</div>
-      </div>
-
-      <div class="term-card" data-cat="schema" data-name="rights droits">
-        <div class="term-header">
-          <span class="term-name">Rights</span>
-          <span class="term-code">rights</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Section optionnelle décrivant les droits et licences associés au contenu. Comprend : <strong>license</strong> (type de licence), <strong>rights_holder</strong> (titulaire des droits), <strong>distribution_territories</strong> (territoires de diffusion autorisés), <strong>embargo_until</strong> (date de fin d'embargo, format ISO 8601).</div>
-      </div>
-    </div>
-
-    <!-- S -->
-    <div class="letter-section" data-letter="S">
-      <div class="letter-heading">S</div>
-
-      <div class="term-card" data-cat="language" data-name="srn sranan tongo suriname">
-        <div class="term-header">
-          <span class="term-name">SRN — Sranan Tongo</span>
-          <span class="term-code">srn</span>
-        </div>
-        <span class="term-category cat-language">Langue</span>
-        <div class="term-def">Code de langue CMS pour le sranan tongo, langue créole à base anglaise parlée au Suriname. Lingua franca du Suriname, utilisée par la majorité de la population indépendamment de leur langue maternelle. Le CMS reconnaît le sranan tongo comme langue caribéenne à part entière dans sa géographie élargie incluant les Guyanes.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"primary": "srn"</code> pour une œuvre surinamaise en sranan tongo.</div>
-      </div>
-    </div>
-
-    <!-- T -->
-    <div class="letter-section" data-letter="T">
-      <div class="letter-heading">T</div>
-
-      <div class="term-card" data-cat="territory" data-name="territory territoire">
-        <div class="term-header">
-          <span class="term-name">Territory</span>
-          <span class="term-code">origin.territory</span>
-        </div>
-        <span class="term-category cat-territory">Territoire</span>
-        <div class="term-def">Tableau obligatoire listant les territoires caribéens d'origine du contenu. Utilise les codes ISO 3166-1 alpha-2. Le CMS reconnaît 33 territoires caribéens : GP (Guadeloupe), MQ (Martinique), GF (Guyane française), BL, MF, HT (Haïti), DO (République Dominicaine), CU (Cuba), PR (Porto Rico), JM (Jamaïque), TT (Trinité-et-Tobago), BB, LC, VC, GD, AG, DM, KN, BS, TC, AW, CW, SX, BQ, VG, VI, KY, MS, AI, BM, SR, GY, et DIASPORA.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"territory": ["GP", "MQ"]</code> pour une coproduction Guadeloupe-Martinique.</div>
-      </div>
-
-      <div class="term-card" data-cat="cultural" data-name="themes thèmes culturels">
-        <div class="term-header" id="theme">
-          <span class="term-name">Themes</span>
-          <span class="term-code">cultural_markers.themes</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Tableau obligatoire (minimum 1 valeur) listant les thèmes culturels caribéens présents dans le contenu. Vocabulaire contrôlé de 18 valeurs : creolization, slavery_memory, resistance, independence, diaspora, caribbean_nature, traditional_knowledge, oral_tradition, caribbean_spirituality, social_justice, identity_language, pan_caribbean, colonialism_critique, afrocaribbean, indigineous_heritage, carnival_culture, caribbean_music_tradition, maritime_culture.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"themes": ["creolization", "oral_tradition", "resistance"]</code></div>
-      </div>
-
-      <div class="term-card" data-cat="schema" data-name="title titre">
-        <div class="term-header">
-          <span class="term-name">Title</span>
-          <span class="term-code">identity.title</span>
-        </div>
-        <span class="term-category cat-schema">Schéma</span>
-        <div class="term-def">Objet multilingue contenant le titre du contenu dans les différentes langues. Le champ <strong>original</strong> est obligatoire. Langues disponibles : original, fr, en, es, ht (créole haïtien), gcf (créole guadeloupéen/martiniquais), pap (papiamentu). La présence de titres en langues créoles est un marqueur culturel fort valorisé dans le score CMS.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>{"original": "Anba Dlo", "fr": "Sous les eaux", "en": "Beneath the Waters", "gcf": "Anba Dlo"}</code></div>
-      </div>
-    </div>
-
-    <!-- V -->
-    <div class="letter-section" data-letter="V">
-      <div class="letter-heading">V</div>
-
-      <div class="term-card" data-cat="cert" data-name="validator version validateur">
-        <div class="term-header">
-          <span class="term-name">Validator Version</span>
-          <span class="term-code">cms_compliance.validator_version</span>
-        </div>
-        <span class="term-category cat-cert">Certification</span>
-        <div class="term-def">Indique la version de l'outil de validation CMS utilisée pour certifier le contenu. Actuellement <code>"1.0"</code>. Ce champ garantit la traçabilité de la certification et permet de recertifier les contenus lors des mises à jour de l'algorithme de validation.</div>
-        <div class="term-example"><strong>Exemple :</strong> <code>"validator_version": "1.0"</code></div>
-      </div>
-
-      <div class="term-card" data-cat="cultural" data-name="vodou voodoo religion caribéenne">
-        <div class="term-header">
-          <span class="term-name">Vodou</span>
-          <span class="term-code">vodou</span>
-        </div>
-        <span class="term-category cat-cultural">Culturel</span>
-        <div class="term-def">Valeur du champ <code>cultural_expressions</code>. Désigne le vodou haïtien — religion syncrétique née en Haïti, mêlant croyances africaines (principalement fon et ewe) et catholiques. Le CMS utilise l'orthographe "vodou" (et non "voodoo") conformément à la pratique haïtienne. Religion patrimoniale reconnue, à ne pas confondre avec ses représentations caricaturales dans la culture populaire occidentale.</div>
-        <div class="term-example"><strong>Exemple :</strong> Un documentaire sur le vodou haïtien inclura <code>"vodou"</code> dans <code>cultural_expressions</code> et <code>"caribbean_spirituality"</code> dans <code>themes</code>.</div>
-      </div>
-    </div>
-
-    <!-- NO RESULTS -->
-    <div class="no-results" id="no-results" style="display:none">
-      <h3>Aucun terme trouvé</h3>
-      <p>Essayez un autre mot-clé ou réinitialisez les filtres.</p>
-    </div>
-
-  </div><!-- /glossary-body -->
-
-  <!-- CTA -->
-  <div class="cta-block">
-    <div>
-      <h2>Un terme manque dans le glossaire ?</h2>
-      <p>Le CMS est un standard vivant. Proposez un terme, une définition ou une correction.</p>
-    </div>
-    <div>
-      <a href="contact.html" class="btn-primary">Proposer un terme</a>
-      <a href="developers.html" class="btn-outline-w">Documentation technique</a>
-    </div>
+  <div class="stats">
+    <div class="stat-item"><div class="stat-num" id="total-count">0</div><div class="stat-lbl">Termes affichés</div></div>
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl">Familles CMS</div></div>
+    <div class="stat-item"><div class="stat-num">4</div><div class="stat-lbl">Niveaux</div></div>
+    <div class="stat-item"><div class="stat-num">18</div><div class="stat-lbl">Territoires</div></div>
   </div>
-
+  <div class="alpha-nav" id="alpha-nav"></div>
+  <div id="glossary-body"></div>
+  <div class="no-results" id="no-results">
+    <h3>Aucun terme trouvé</h3>
+    <p>Essayez un autre mot-clé ou réinitialisez les filtres.</p>
+  </div>
 </main>
-
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a class="footer-logo" href="index.html">CMS</a>
-      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Le Standard</h4>
-      <ul>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="families.html">Les 6 familles</a></li>
-        <li><a href="resources.html">Documentation</a></li>
-        <li><a href="declaration.html">Déclaration fondatrice</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Écosystème</h4>
-      <ul>
-        <li><a href="lab.html">Language Lab</a></li>
-        <li><a href="collaborate.html">Collaborer</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Ressources</h4>
-      <ul>
-        <li><a href="resources.html">White Paper</a></li>
-        <li><a href="glossaire.html" class="highlight">Glossaire CMS</a></li>
-        <li><a href="resources.html#faq">FAQ</a></li>
-        <li><a href="developers.html">Developers / API</a></li>
-        <li><a href="validator.html" class="highlight">→ Valider un contenu</a></li>
-      </ul>
-    </div>
+  <div class="fg">
+    <div class="fb"><a class="fl" href="index.html">CMS</a><p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p></div>
+    <div class="fc"><h4>Le Standard</h4><ul><li><a href="about.html">À propos</a></li><li><a href="families.html">Les 6 familles</a></li><li><a href="resources.html">Documentation</a></li></ul></div>
+    <div class="fc"><h4>Écosystème</h4><ul><li><a href="lab.html">Language Lab</a></li><li><a href="collaborate.html">Collaborer</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="fc"><h4>Ressources</h4><ul><li><a href="resources.html">White Paper</a></li><li><a href="glossaire.html" class="hl">Glossaire CMS</a></li><li><a href="developers.html">API</a></li><li><a href="validator.html" class="hl">→ Valider</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <strong style="color:rgba(255,255,255,0.5)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
-  </div>
+  <div class="fb-bot"><strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</div>
 </footer>
-
 <script>
+const TERMS = [
+  {name:'Abolition',code:'abolition',cat:'cultural',def:'Valeur du champ historical_period. Période autour de l\'abolition de l\'esclavage dans les colonies françaises (1848), britanniques (1833) et néerlandaises (1863). Moment fondateur de la mémoire caribéenne.',ex:'historical_period: ["abolition"]',rel:'historical_period, esclavage, mémoire'},
+  {name:'Acras',code:'acras',cat:'cultural',def:'Valeur de cultural_expressions. Beignets de morue frits, emblème de la gastronomie créole antillaise. Marqueur d\'ancrage caribéen.',ex:'cultural_expressions: ["acras","colombo"]'},
+  {name:'Antillanité',code:'antillanite',cat:'cultural',def:'Concept théorisé par Édouard Glissant dans "Le Discours antillais" (1981). Identité caribéenne spécifique, ancrée dans le rapport à l\'espace insulaire, à la mer, à la relation. Valeur du champ themes.',ex:'themes: ["antillanite"]',rel:'négritude, créolisation, Glissant'},
+  {name:'Archipel de la Relation',code:'archipel_relation',cat:'cultural',def:'Concept glissantien désignant la Caraïbe comme espace de rencontre et de transformation permanente. S\'oppose à la pensée du territoire fixe. Valeur du champ themes.',ex:'themes: ["archipel_relation"]'},
+  {name:'Aruba',code:'AW',cat:'territory',def:'Île néerlandaise des Petites Antilles, îles ABC. Langue principale : papiamento et néerlandais. Code territoire CMS : AW.',ex:'territory: ["AW"]'},
+  {name:'Bakoua',code:'bakoua',cat:'cultural',def:'Chapeau tressé traditionnel antillais, fabriqué à partir de feuilles de latanier. Élément emblématique du costume traditionnel martiniquais et guadeloupéen.',ex:'cultural_expressions: ["bakoua","costume_traditionnel"]'},
+  {name:'Barbade',code:'BB',cat:'territory',def:'Île des Petites Antilles, ancienne colonie britannique, devenue République en 2021. Langue : anglais. Code territoire CMS : BB.',ex:'territory: ["BB"]'},
+  {name:'Bèlè',code:'bele',cat:'cultural',def:'Danse et musique traditionnelle martiniquaise d\'origine africaine, patrimoine vivant de la Martinique. Joué sur le tambour bèlè et le tibwa, accompagné de chants responsoriaux.',ex:'cultural_expressions: ["bele","tambour_bele"]',rel:'gwo-ka, tambour, laghia'},
+  {name:'Biguine',code:'biguine',cat:'cultural',def:'Genre musical né en Martinique à la fin du XIXe siècle, issu de la rencontre entre les musiques africaines et la musique occidentale. Ancêtre du zouk et du jazz antillais.',ex:'cultural_expressions: ["biguine","jazz_antillais"]'},
+  {name:'Bronze (niveau)',code:'BRONZE',cat:'cert',def:'Premier niveau de certification CMS. Conditions : caribbean_score ≥ 20 et au moins 6 champs renseignés. Ancrage caribéen minimal mais identifiable.',ex:'compliance_level: "BRONZE"',rel:'Silver, Gold, Platinum'},
+  {name:'Calypso',code:'calypso',cat:'cultural',def:'Genre musical originaire de Trinité-et-Tobago, né au XVIIIe siècle. Paroles satiriques et politiques, souvent improvisées. Ancêtre du soca. Vecteur historique de résistance culturelle et politique.',ex:'cultural_expressions: ["calypso","soca"]'},
+  {name:'Caribbean Identity Score',code:'caribbean_score',cat:'cert',def:'Champ obligatoire. Score entier de 0 à 100 évaluant l\'ancrage caribéen d\'un contenu. Calculé à partir du nombre et de la précision des métadonnées renseignées dans les 6 familles. Détermine le niveau de certification.',ex:'caribbean_score: 88 → niveau Platinum',rel:'compliance_level, certification'},
+  {name:'Carnaval',code:'carnival',cat:'cultural',def:'Culture carnavalesque caribéenne dans ses multiples formes : carnaval guadeloupéen, Trinidad Carnival, Jouvert, Mas. Inclut les pratiques de déguisement, les musiques (soca, calypso) et les rituels de renversement social.',ex:'cultural_expressions: ["carnival","soca","jouvert"]'},
+  {name:'Certification CMS',code:'certification',cat:'cert',def:'Processus officiel par lequel un contenu caribéen est évalué selon les critères CMS et se voit attribuer un niveau de conformité (Bronze, Silver, Gold, Platinum). Délivrée par le Caribwood Language Lab.',ex:'Utiliser le validateur sur caribbeanmetadata.org/validator.html',rel:'compliance_level, caribbean_score'},
+  {name:'CMS Version',code:'cms_version',cat:'schema',def:'Champ obligatoire indiquant la version du Caribbean Metadata Standard utilisée. Actuellement fixé à "1.0". Garantit la rétrocompatibilité lors des futures mises à jour.',ex:'cms_version: "1.0"'},
+  {name:'Code-switching',code:'code_switching',cat:'language',def:'Valeur de linguistic_practices. Alternance entre deux ou plusieurs langues au sein d\'un même discours. Pratique linguistique fondamentale dans la Caraïbe multilingue.',ex:'linguistic_practices: ["code_switching"]',rel:'alternance codique, diglossie'},
+  {name:'Colombo',code:'colombo',cat:'cultural',def:'Plat emblématique de la cuisine antillaise. Mélange d\'épices originaire du sous-continent indien, apporté par les travailleurs indiens engagés après l\'abolition. Symbole du métissage culturel caribéen.',ex:'cultural_expressions: ["colombo","cuisine_creole"]'},
+  {name:'Compliance Level',code:'compliance_level',cat:'cert',def:'Niveau de certification CMS : BRONZE (score ≥ 20, 6 champs), SILVER (≥ 40, 10 champs), GOLD (≥ 65, 14 champs), PLATINUM (≥ 85, 18 champs). Un contenu non certifié n\'est pas invalide.',ex:'compliance_level: "GOLD"'},
+  {name:'Content Type / Family',code:'family',cat:'schema',def:'Champ obligatoire. Six familles reconnues : audiovisual, musical, literary, heritage, visual_arts, performing_arts.',ex:'family: "audiovisual"'},
+  {name:'Créateur',code:'creator',cat:'schema',def:'Tableau obligatoire. Chaque entrée : name, role (director, author, composer, performer…), nationality (ISO 3166), diaspora (booléen). La présence de créateurs caribéens augmente significativement le caribbean_score.',ex:'{"name":"Maryse Condé","role":"author","nationality":"GP"}'},
+  {name:'Créole antillais (GCF)',code:'gcf',cat:'language',def:'Code de langue CMS pour le créole guadeloupéen et martiniquais. Langue maternelle de centaines de milliers de locuteurs. Code ISO 639-3 : gcf. Distinct du créole haïtien (ht).',ex:'language: ["gcf","fr"]',rel:'ht, papiamento'},
+  {name:'Créole haïtien (HT)',code:'ht',cat:'language',def:'Code de langue CMS pour le créole haïtien (kreyòl ayisyen). Langue officielle d\'Haïti, parlée par ~12 millions de personnes. La reconnaissance du créole haïtien comme langue à part entière est un principe fondateur du CMS.',ex:'language: ["ht","fr"]'},
+  {name:'Créolisation',code:'creolization',cat:'cultural',def:'Concept fondateur théorisé par Édouard Glissant. Processus de mélange et de transformation culturelle qui caractérise la Caraïbe. Distinct du simple métissage : la créolisation est imprévisible et irréductible.',ex:'themes: ["creolization"]',rel:'antillanité, négritude, Glissant'},
+  {name:'Cuba',code:'CU',cat:'territory',def:'Plus grande île des Antilles, Grande Caraïbe. Langue : espagnol. Berceau du son, de la salsa, du mambo. Code territoire CMS : CU.',ex:'territory: ["CU"]'},
+  {name:'Dancehall',code:'dancehall',cat:'cultural',def:'Genre musical jamaïcain né dans les années 1970, évolution du reggae. Fortement associé à la culture des sound systems.',ex:'cultural_expressions: ["dancehall","sound_system"]',rel:'reggae, Jamaïque'},
+  {name:'Diaspora caribéenne',code:'DIASPORA',cat:'territory',def:'Territoire symbolique pour les contenus produits par ou pour les communautés caribéennes hors de la région. Inclut les antillais de France, des USA, du Canada, du Royaume-Uni. Code CMS : DIASPORA.',ex:'territory: ["GP","DIASPORA"]'},
+  {name:'Diglossie',code:'diglossia',cat:'language',def:'Situation linguistique dans laquelle deux langues coexistent dans une communauté avec des fonctions sociales distinctes. Dans la Caraïbe francophone : français (variété haute) et créole (variété basse).',ex:'Contexte linguistique à mentionner dans les métadonnées.'},
+  {name:'Duration',code:'duration_seconds',cat:'schema',def:'Champ optionnel. Durée du contenu en secondes. Recommandé pour les contenus audiovisuels et musicaux.',ex:'duration_seconds: 5820 (97 minutes)'},
+  {name:'Emancipation',code:'emancipation',cat:'cultural',def:'Valeur de themes. Processus de libération politique, culturelle et identitaire des peuples caribéens. Inclut l\'abolition, les luttes d\'indépendance et la souveraineté numérique caribéenne.',ex:'themes: ["emancipation","resistance"]'},
+  {name:'Exil / Retour',code:'exile_return',cat:'narrative',def:'Archétype narratif fondamental de la littérature et du cinéma caribéens. Le motif de l\'exil et du retour structure de nombreuses œuvres depuis Aimé Césaire.',ex:'narrative_archetypes: ["exile_return"]',rel:'diaspora, mémoire collective'},
+  {name:'Famille Culturelle',code:'family_cultural',cat:'schema',def:'Famille 02 du CMS. Décrit pratiques culturelles, traditions, héritages spirituels, musicaux et gastronomiques : vodou, santería, rastafari, carnaval, gwoka, bèlè, reggae, zouk, kompa.',ex:'Tags : vodou, gwoka, carnaval, rastafari'},
+  {name:'Famille Géographique',code:'family_geographic',cat:'schema',def:'Famille 05 du CMS. Localise les contenus dans l\'espace caribéen avec précision culturelle. Inclut territoires, environnements et paysages symboliques (mer, plantation, morne).',ex:'Tags : Guadeloupe, morne, plantation'},
+  {name:'Famille Linguistique',code:'family_linguistic',cat:'schema',def:'Famille 01 du CMS. Décrit langues, dialectes, registres et pratiques langagières : créoles, code-switching, proverbes créoles, contes, joutes verbales, griot caribéen.',ex:'Tags : gcf, code_switching, oralite'},
+  {name:'Famille Narrative',code:'family_narrative',cat:'schema',def:'Famille 03 du CMS. Décrit genres, structures dramatiques et archétypes narratifs : réalisme magique caribéen, saga familiale, figure du conteur, mémoire collective, résistance.',ex:'Tags : realisme_magique, saga_familiale, conteur'},
+  {name:'Famille Rythmique',code:'family_rhythmic',cat:'schema',def:'Famille 04 du CMS. Décrit tempo, cadence, musicalité du dialogue et patterns sonores : tempo insulaire lent, dialogue syncopé, oralité musicale, ambiance tropicale.',ex:'Tags : tempo_insulaire, dialogue_syncope'},
+  {name:'Famille Socio-historique',code:'family_sociohistorical',cat:'schema',def:'Famille 06 du CMS. Contextualise les contenus dans les dynamiques sociales et historiques : mémoire de l\'esclavage, créolisation, postcolonialité, négritude, tensions intergénérationnelles.',ex:'Tags : esclavage, negritude, postcolonialite'},
+  {name:'Gastronomie créole',code:'creole_cuisine',cat:'cultural',def:'Cuisine créole caribéenne née de la rencontre des traditions africaines, européennes, indiennes et amérindiennes. Éléments emblématiques : acras, colombo, chatrou, blaff, féroce d\'avocat.',ex:'cultural_expressions: ["creole_cuisine","acras"]'},
+  {name:'Glissant (Édouard)',code:'glissant',cat:'cultural',def:'Auteur et théoricien martiniquais (1928-2011). Auteur du "Discours antillais", de la "Poétique de la Relation". Ses théories de la créolisation, de l\'antillanité et de la relation sont des références fondatrices du CMS.',ex:'literary_references: ["glissant"]'},
+  {name:'Gold (niveau)',code:'GOLD',cat:'cert',def:'Troisième niveau de certification CMS. Conditions : caribbean_score ≥ 65 et au moins 14 champs renseignés. Contenu caribéen affirmé. Objectif recommandé pour les productions professionnelles.',ex:'compliance_level: "GOLD"'},
+  {name:'Griot caribéen',code:'griot_caribeen',cat:'language',def:'Valeur de oral_forms. Adaptation caribéenne de la figure du griot africain — gardien de la mémoire collective, conteur, musicien et historien oral.',ex:'oral_forms: ["griot_caribeen","conteur_creole"]'},
+  {name:'Guadeloupe',code:'GP',cat:'territory',def:'Archipel des Petites Antilles, département et région d\'outre-mer français. Langues : français et créole guadeloupéen (gcf). Berceau du gwo-ka (UNESCO 2014), du zouk. Code territoire CMS : GP.',ex:'territory: ["GP"]'},
+  {name:'Guyane française',code:'GF',cat:'territory',def:'Département et région d\'outre-mer français en Amérique du Sud. Langues : français, créole guyanais, langues amérindiennes. Code territoire CMS : GF.',ex:'territory: ["GF"]'},
+  {name:'Gwoka / Gwo-Ka',code:'gwo_ka',cat:'cultural',def:'Musique et danse traditionnelle guadeloupéenne d\'origine africaine, inscrite à l\'UNESCO en 2014. Joué sur des tambours artisanaux (ka). Variantes : gwoka, gwo-ka, gwo ka, grouka. Marqueur le plus fort d\'ancrage culturel guadeloupéen.',ex:'cultural_expressions: ["gwo_ka"]',rel:'bèlè, tambour, UNESCO, Guadeloupe'},
+  {name:'Haïti',code:'HT',cat:'territory',def:'Grande Caraïbe, première République noire du monde (1804). Langues : créole haïtien (ht) et français. Berceau du vodou, du kompa, du rara. Code territoire CMS : HT.',ex:'territory: ["HT"]'},
+  {name:'Heritage / Patrimoine',code:'heritage',cat:'schema',def:'Famille de contenu CMS pour les traditions orales, pratiques artisanales, cérémonies, danses et archives patrimoniales. Sous-types : oral_tradition, craft, ceremony, gastronomy, dance, archive.',ex:'family: "heritage", content_subtype: "oral_tradition"'},
+  {name:'Historical Period',code:'historical_period',cat:'cultural',def:'Périodes historiques représentées dans le contenu. Valeurs : pre_columbian (avant 1492), colonial_early (1492-1700), slavery_period (1700-1848), abolition_era (autour de 1848), post_colonial (1848-2000), contemporary, futuristic.',ex:'historical_period: ["slavery_period","abolition_era"]'},
+  {name:'Identité diasporique',code:'diasporic_identity',cat:'cultural',def:'Valeur de themes. Expérience identitaire des Caribéens vivant hors de leur île d\'origine. Tension entre racines et adoption, entre langue maternelle et langue d\'intégration.',ex:'themes: ["diasporic_identity","exile_return"]'},
+  {name:'Jamaïque',code:'JM',cat:'territory',def:'Grande Caraïbe, ancienne colonie britannique indépendante depuis 1962. Berceau du reggae, du dancehall, du ska et du mouvement rastafari. Code territoire CMS : JM.',ex:'territory: ["JM"]'},
+  {name:'JSON / Fiche CMS',code:'cms_json',cat:'technical',def:'Format de données officiel du CMS. Une fiche CMS est un objet JSON validé contre le schéma officiel. Format permettant l\'intégration native avec les plateformes, institutions et outils numériques.',ex:'Toute fiche CMS commence par {"cms_version": "1.0"}'},
+  {name:'Jouvert',code:'jouvert',cat:'cultural',def:'Célébration nocturne précédant le carnaval trinidadien et jamaïcain. Terme dérivé du français "jour ouvert". Moment de liberté rituelle et de carnavalisation du quotidien.',ex:'cultural_expressions: ["jouvert","carnival","soca"]'},
+  {name:'Ka (tambour)',code:'tambour_ka',cat:'cultural',def:'Tambour artisanal guadeloupéen, instrument central du Gwo-Ka. Sept rythmes traditionnels : lewoz, graj, padjanbel, toumblak, mendé, woulé, kaladja. Symbole de la culture guadeloupéenne.',ex:'cultural_expressions: ["tambour_ka","gwo_ka"]'},
+  {name:'Kompa',code:'kompa',cat:'cultural',def:'Genre musical haïtien né dans les années 1950, créé par Nemours Jean-Baptiste. Rythme lent et romantique à 4 temps, devenu la musique populaire dominante de la Caraïbe francophone.',ex:'cultural_expressions: ["kompa"]',rel:'zouk, biguine, Haïti'},
+  {name:'Laghia',code:'laghia',cat:'cultural',def:'Danse-combat traditionnelle martiniquaise d\'origine africaine (Congo), ancêtre de la capoeira. Danse de résistance et de combativité, patrimoine culturel immatériel de la Martinique.',ex:'cultural_expressions: ["laghia"]'},
+  {name:'Language',code:'language',cat:'schema',def:'Champ obligatoire. Tableau des langues présentes. Codes reconnus : fr, gcf, ht, en, es, pap (papiamento), srn (sranan tongo), nl, other.',ex:'language: ["gcf","fr"]'},
+  {name:'Lewoz',code:'lewoz',cat:'cultural',def:'Cérémonie musicale et dansée guadeloupéenne autour du Gwo-Ka, tenue la nuit dans les quartiers populaires. Événement culturel, spirituel et communautaire. L\'un des sept rythmes fondamentaux du ka.',ex:'cultural_expressions: ["lewoz","gwo_ka"]'},
+  {name:'License',code:'rights_license',cat:'schema',def:'Type de licence : all_rights_reserved, cc_by, cc_by_sa, cc_by_nc, cc_by_nc_sa, cc_by_nd, public_domain, custom. S\'applique aux métadonnées CMS.',ex:'rights: {"license": "cc_by_nc_sa"}'},
+  {name:'Madras',code:'madras',cat:'cultural',def:'Tissu à carreaux colorés emblématique du costume traditionnel antillais. Importé d\'Inde, devenu symbole identitaire fort de la Caraïbe francophone. Le "tying" du madras communique des messages codés.',ex:'cultural_expressions: ["madras","costume_traditionnel"]'},
+  {name:'Martinique',code:'MQ',cat:'territory',def:'Île des Petites Antilles, département d\'outre-mer français. Berceau du bèlè, de la biguine, de la pensée de Glissant, Césaire et Fanon. Code territoire CMS : MQ.',ex:'territory: ["MQ"]'},
+  {name:'Mémoire collective',code:'collective_memory',cat:'narrative',def:'Valeur fondamentale de themes. Mémoire partagée d\'une communauté — en particulier la mémoire de l\'esclavage, des résistances et des luttes d\'émancipation.',ex:'themes: ["collective_memory","memoire_esclavage"]'},
+  {name:'Métissage culturel',code:'cultural_metissage',cat:'cultural',def:'Valeur de themes. Mélange et fusion des cultures dans la Caraïbe. À distinguer de la créolisation (Glissant) qui est un processus plus profond et imprévisible.',ex:'themes: ["cultural_metissage","creolization"]'},
+  {name:'Morne',code:'morne',cat:'cultural',def:'Colline ou montagne dans les îles caribéennes. Paysage symbolique fort : lieu de refuge des esclaves marrons, espace de liberté, point de vue sur la mer. S\'oppose à la plaine (espace de la plantation).',ex:'symbolic_landscapes: ["morne","marronnage"]'},
+  {name:'Négritude',code:'negritude',cat:'cultural',def:'Mouvement littéraire et politique fondé dans les années 1930 par Aimé Césaire, Léopold Sédar Senghor et Léon-Gontran Damas. Affirme la fierté de l\'identité noire en réaction au colonialisme.',ex:'themes: ["negritude","cesaire"]'},
+  {name:'Obeah',code:'obeah',cat:'cultural',def:'Pratique spirituelle et magique d\'origine africaine dans les îles anglophones (Jamaïque, Barbade, Trinidad). Longtemps criminalisée, aujourd\'hui reconnue comme patrimoine culturel africain-caribéen.',ex:'cultural_expressions: ["obeah","spiritualite_caribeenne"]'},
+  {name:'Oralité caribéenne',code:'oralite',cat:'language',def:'Tradition orale comme vecteur principal de transmission culturelle dans la Caraïbe. Inclut les contes, proverbes créoles, chants de travail, berceuses et légendes. Forme de résistance et de préservation culturelle.',ex:'linguistic_practices: ["oralite","conte_creole"]'},
+  {name:'Papiamento',code:'pap',cat:'language',def:'Créole à base ibérique (espagnol et portugais) avec des influences néerlandaises et africaines. Langue officielle d\'Aruba et de Curaçao. ~300 000 locuteurs. Code CMS : pap.',ex:'language: ["pap","nl"]'},
+  {name:'Patrimoine immatériel',code:'intangible_heritage',cat:'cultural',def:'Pratiques, expressions, connaissances et savoir-faire reconnus par les communautés caribéennes comme faisant partie de leur patrimoine. Le CMS attribue un bonus aux contenus liés à des éléments inscrits à l\'UNESCO.',ex:'family: "heritage", content_subtype: "oral_tradition"'},
+  {name:'Plantation (la)',code:'plantation',cat:'cultural',def:'Paysage symbolique du CMS. Lieu central de l\'histoire caribéenne — espace de l\'esclavage et du travail forcé, mais aussi de la résistance et de la formation culturelle caribéenne.',ex:'symbolic_landscapes: ["plantation","memoire_esclavage"]'},
+  {name:'Platinum (niveau)',code:'PLATINUM',cat:'cert',def:'Niveau le plus élevé de certification CMS. Conditions : caribbean_score ≥ 85 et au moins 18 champs renseignés. Standard caribéen de référence.',ex:'compliance_level: "PLATINUM"'},
+  {name:'Postcolonialité',code:'postcoloniality',cat:'cultural',def:'Condition des sociétés caribéennes après l\'ère coloniale formelle. Marquée par les héritages du colonialisme et les luttes pour une décolonisation complète.',ex:'themes: ["postcoloniality","decolonisation"]'},
+  {name:'Proverbe créole',code:'creole_proverb',cat:'language',def:'Valeur de oral_forms. Formes brèves de sagesse populaire créole. Ex. guadeloupéen : "Bon Dié pa dòmi", haïtien : "Deye mòn gen mòn". Patrimoine linguistique fondamental.',ex:'oral_forms: ["creole_proverb"]'},
+  {name:'Puerto Rico',code:'PR',cat:'territory',def:'Grande Caraïbe, territoire américain. Langues : espagnol et anglais. Berceau de la salsa, du reggaeton, du bomba et de la plena. Code territoire CMS : PR.',ex:'territory: ["PR"]'},
+  {name:'Rastafari',code:'rastafari',cat:'cultural',def:'Mouvement spirituel, social et culturel né en Jamaïque dans les années 1930. A produit une culture distinctive : reggae, dreadlocks. Vision du monde axée sur le retour en Afrique et la résistance.',ex:'cultural_expressions: ["rastafari","reggae"]'},
+  {name:'Réalisme magique caribéen',code:'caribbean_magic_realism',cat:'narrative',def:'Genre narratif où des éléments magiques ou spirituels s\'intègrent naturellement à la réalité caribéenne. Informé par le vodou, l\'obeah, la spiritualité créole et l\'oralité.',ex:'narrative_genres: ["caribbean_magic_realism"]'},
+  {name:'Reggae',code:'reggae',cat:'cultural',def:'Genre musical jamaïcain né dans les années 1960. Inscrit au patrimoine culturel immatériel de l\'UNESCO en 2018. Bob Marley en est la figure mondiale emblématique.',ex:'cultural_expressions: ["reggae","rastafari"]'},
+  {name:'République Dominicaine',code:'DO',cat:'territory',def:'Grande Caraïbe, partage l\'île d\'Hispaniola avec Haïti. Langue : espagnol. Berceau du merengue et de la bachata (UNESCO). Code territoire CMS : DO.',ex:'territory: ["DO"]'},
+  {name:'Résistance',code:'resistance',cat:'cultural',def:'Valeur fondamentale de themes. Multiples formes de résistance caribéenne : marronnage, révoltes d\'esclaves, résistances culturelles, luttes d\'indépendance. Fil conducteur de toute la production culturelle caribéenne.',ex:'themes: ["resistance","marronnage","emancipation"]'},
+  {name:'Rights / Droits',code:'rights',cat:'schema',def:'Section du schéma CMS. Comprend : license (type de licence), rights_holder (détenteur des droits), rights_statement. Essentielle pour la réutilisation légale des métadonnées par les plateformes.',ex:'rights: {"license":"cc_by_nc","rights_holder":"Caribwood Language Lab"}'},
+  {name:'Saga familiale',code:'family_saga',cat:'narrative',def:'Structure narrative récurrente dans la littérature et le cinéma caribéens. Explore les destins de familles sur plusieurs générations — traversant l\'esclavage, l\'abolition, la migration et la diaspora.',ex:'narrative_structures: ["family_saga"]'},
+  {name:'Santería',code:'santeria',cat:'cultural',def:'Religion syncrétique afro-cubaine née de la rencontre entre les traditions yoruba et le catholicisme. Également connue sous le nom de Lukumí. A produit une culture musicale et visuelle distinctive.',ex:'cultural_expressions: ["santeria","yoruba","afrocuban"]'},
+  {name:'Shango',code:'shango',cat:'cultural',def:'Valeur de cultural_expressions. Religion afro-caribéenne de Trinité-et-Tobago, d\'origine yoruba. Culte du dieu Shango (dieu du tonnerre). Forme de résistance culturelle africaine maintenue malgré la colonisation.',ex:'cultural_expressions: ["shango","trinite_tobago"]'},
+  {name:'Silver (niveau)',code:'SILVER',cat:'cert',def:'Deuxième niveau de certification CMS. Conditions : caribbean_score ≥ 40 et au moins 10 champs renseignés. Contenu caribéen identifié.',ex:'compliance_level: "SILVER"'},
+  {name:'Ska',code:'ska',cat:'cultural',def:'Genre musical jamaïcain né dans les années 1950, précurseur du reggae et du rocksteady. Caractérisé par un tempo rapide et une rythmique syncopée.',ex:'cultural_expressions: ["ska","rocksteady","reggae"]'},
+  {name:'Soca',code:'soca',cat:'cultural',def:'Genre musical trinidadien né dans les années 1970, fusion du soul et du calypso. Musique principale du carnaval trinidadien. Rythme festif et énergique.',ex:'cultural_expressions: ["soca","carnival","trinidad"]'},
+  {name:'Sound System',code:'sound_system',cat:'cultural',def:'Système de sono mobile né en Jamaïque dans les années 1950. Institution culturelle majeure qui a créé le reggae, le dancehall et influencé la culture hip-hop mondiale.',ex:'cultural_expressions: ["sound_system","dancehall"]'},
+  {name:'Sranan Tongo',code:'srn',cat:'language',def:'Créole anglais du Suriname, langue véhiculaire. Parlé par ~500 000 personnes. Code ISO 639-3 : srn. Code CMS : srn.',ex:'language: ["srn","nl"]'},
+  {name:'Steelpan',code:'steelpan',cat:'cultural',def:'Instrument national de Trinidad-et-Tobago, fabriqué à partir de fûts de pétrole. Seul instrument acoustique inventé au XXe siècle. Patrimoine culturel immatériel de l\'UNESCO.',ex:'cultural_expressions: ["steelpan","panyard"]'},
+  {name:'Suriname',code:'SR',cat:'territory',def:'Amérique du Sud, ancienne colonie néerlandaise. Langues : néerlandais (officiel), sranan tongo (véhiculaire). Biodiversité et diversité culturelle exceptionnelles. Code territoire CMS : SR.',ex:'territory: ["SR"]'},
+  {name:'Syncrétisme afro-caribéen',code:'afrocaribbean_syncretism',cat:'cultural',def:'Fusion des traditions spirituelles africaines avec le catholicisme colonial, donnant naissance à : vodou haïtien, santería cubaine, candomblé brésilien, shango trinidadien, obeah jamaïcain.',ex:'cultural_expressions: ["afrocaribbean_syncretism","vodou"]'},
+  {name:'Tempo insulaire',code:'island_tempo',cat:'rhythmic',def:'Valeur de rhythmic_tempo. Rythme lent, contemplatif et circulaire caractéristique de nombreuses œuvres caribéennes. Associé à la chaleur, à la relation au temps différente, à la contemplation de la mer.',ex:'rhythmic_tempo: "island_tempo"'},
+  {name:'Territory / Territoire',code:'territory',cat:'schema',def:'Champ obligatoire. Tableau des territoires caribéens auxquels le contenu est lié. Le CMS reconnaît 18 territoires caribéens plus la diaspora.',ex:'territory: ["GP","MQ"]'},
+  {name:'Themes / Thèmes',code:'themes',cat:'schema',def:'Tableau fortement recommandé. Thèmes culturels caribéens : créolisation, négritude, antillanité, mémoire collective, résistance, émancipation, identité diasporique, postcolonialité. Impacte significativement le caribbean_score.',ex:'themes: ["creolization","collective_memory","resistance"]'},
+  {name:'Titre multilingue',code:'title',cat:'schema',def:'Champ obligatoire. Titre principal du contenu. Les titres en langue créole ou en langues caribéennes sont fortement valorisés dans le calcul du caribbean_score.',ex:'title: "Anba Dlo", title_original: "Anba Dlo"'},
+  {name:'Trinidad-et-Tobago',code:'TT',cat:'territory',def:'Petites Antilles, ancienne colonie britannique indépendante depuis 1962. Berceau du calypso, du soca, du steelpan, du Trinidad Carnival et du shango. Code territoire CMS : TT.',ex:'territory: ["TT"]'},
+  {name:'Vodou haïtien',code:'vodou',cat:'cultural',def:'Religion syncrétique haïtienne née de la rencontre entre les traditions africaines (fon, yoruba) et le catholicisme. Le vodou n\'est pas sorcellerie : vision du monde complexe avec ses lwa (esprits). A joué un rôle fondamental dans la Révolution haïtienne de 1804.',ex:'cultural_expressions: ["vodou","lwa","ceremonie_vaudou"]',rel:'santería, obeah, shango, Haïti'},
+  {name:'Wax (tissu)',code:'wax',cat:'cultural',def:'Tissu imprimé d\'origine africaine utilisé dans les vêtements caribéens. Arrivé via les Pays-Bas, intégré dans la culture vestimentaire de la diaspora africaine caribéenne.',ex:'cultural_expressions: ["wax","textile_caribbeen"]'},
+  {name:'Year / Année',code:'year',cat:'schema',def:'Champ obligatoire. Année de création ou de sortie du contenu. Un contenu antérieur à 1848 recevra automatiquement des tags de contexte historique.',ex:'year: 2026'},
+  {name:'Zouk',code:'zouk',cat:'cultural',def:'Genre musical né en Guadeloupe dans les années 1980, créé par le groupe Kassav. Rythme lent (zouk love) ou rapide (zouk fèt). Diffusé dans toute la Caraïbe francophone, en Afrique et au Brésil.',ex:'cultural_expressions: ["zouk","kasav"]',rel:'biguine, kompa, Guadeloupe'},
+];
+
+const CAT_LABELS = {schema:'Schéma',cultural:'Culturel',language:'Langue',territory:'Territoire',technical:'Technique',cert:'Certification',narrative:'Narratif',rhythmic:'Rythmique'};
 let activeCat = 'all';
 
+function buildGlossary() {
+  const byLetter = {};
+  TERMS.forEach(t => {
+    const l = t.name[0].toUpperCase();
+    if (!byLetter[l]) byLetter[l] = [];
+    byLetter[l].push(t);
+  });
+  Object.keys(byLetter).forEach(l => byLetter[l].sort((a,b) => a.name.localeCompare(b.name, 'fr')));
+
+  // Alphabet nav
+  const alphaNav = document.getElementById('alpha-nav');
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l => {
+    const btn = document.createElement('button');
+    btn.className = 'alpha-btn' + (byLetter[l] ? ' has' : '');
+    btn.textContent = l;
+    if (byLetter[l]) btn.onclick = () => document.getElementById('sec-'+l)?.scrollIntoView({behavior:'smooth',block:'start'});
+    alphaNav.appendChild(btn);
+  });
+
+  // Body
+  const body = document.getElementById('glossary-body');
+  Object.keys(byLetter).sort().forEach(letter => {
+    const sec = document.createElement('div');
+    sec.className = 'letter-section';
+    sec.id = 'sec-' + letter;
+    sec.innerHTML = `<div class="letter-heading">${letter}</div>`;
+    byLetter[letter].forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'term-card';
+      card.dataset.cat = t.cat;
+      // Clé de recherche : tout le contenu du terme normalisé
+      card.dataset.search = (t.name+' '+t.code+' '+(t.def||'')+' '+(t.ex||'')+' '+(t.rel||'')).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+      card.innerHTML = `
+        <div class="term-header">
+          <span class="term-name">${t.name}</span>
+          <span class="term-code">${t.code}</span>
+        </div>
+        <span class="term-cat cat-${t.cat}">${CAT_LABELS[t.cat]||t.cat}</span>
+        <div class="term-def">${t.def}</div>
+        ${t.ex?`<div class="term-ex"><strong>Exemple :</strong> <code>${t.ex}</code></div>`:''}
+        ${t.rel?`<div class="term-related">Voir aussi : ${t.rel}</div>`:''}
+      `;
+      sec.appendChild(card);
+    });
+    body.appendChild(sec);
+  });
+  document.getElementById('total-count').textContent = TERMS.length;
+}
+
 function filterTerms() {
-  const query = document.getElementById('search-input').value.toLowerCase();
-  const cards = document.querySelectorAll('.term-card');
-  const sections = document.querySelectorAll('.letter-section');
+  const raw = document.getElementById('search-input').value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   let visible = 0;
-
-  cards.forEach(card => {
-    const name = card.dataset.name || '';
-    const cat  = card.dataset.cat || '';
-    const text = card.innerText.toLowerCase();
-    const matchSearch = !query || name.includes(query) || text.includes(query);
-    const matchCat    = activeCat === 'all' || cat === activeCat;
-    if (matchSearch && matchCat) { card.classList.remove('hidden'); visible++; }
-    else card.classList.add('hidden');
+  document.querySelectorAll('.term-card').forEach(card => {
+    const match = (!raw || card.dataset.search.includes(raw)) && (activeCat==='all' || card.dataset.cat===activeCat);
+    card.classList.toggle('hidden', !match);
+    if (match) visible++;
   });
-
-  // Masquer les sections vides
-  sections.forEach(sec => {
-    const anyVisible = [...sec.querySelectorAll('.term-card')].some(c => !c.classList.contains('hidden'));
-    sec.style.display = anyVisible ? '' : 'none';
+  document.querySelectorAll('.letter-section').forEach(sec => {
+    sec.style.display = [...sec.querySelectorAll('.term-card')].some(c=>!c.classList.contains('hidden')) ? '' : 'none';
   });
-
-  document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+  document.getElementById('no-results').style.display = visible===0 ? 'block' : 'none';
   document.getElementById('total-count').textContent = visible;
 }
 
@@ -646,6 +312,9 @@ function filterCat(cat, btn) {
   btn.classList.add('active');
   filterTerms();
 }
+
+buildGlossary();
 </script>
+<script src="nav-fix.js"></script>
 </body>
 </html>
