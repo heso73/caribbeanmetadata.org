@@ -1,0 +1,55 @@
+{
+  "id": "linguistic",
+  "label": "Famille 01 — Linguistique",
+  "color": "#00C2C7",
+  "weight": 15,
+  "count": 15,
+  "terms": [
+    {
+      "term": "Créole guadeloupéen"
+    },
+    {
+      "term": "Créole martiniquais"
+    },
+    {
+      "term": "Créole haïtien"
+    },
+    {
+      "term": "Créole réunionnais"
+    },
+    {
+      "term": "Patois jamaïcain"
+    },
+    {
+      "term": "Anglais trinidadien"
+    },
+    {
+      "term": "Papiamento"
+    },
+    {
+      "term": "Sranan Tongo"
+    },
+    {
+      "term": "Code-switching"
+    },
+    {
+      "term": "Alternance codique"
+    },
+    {
+      "term": "Oralité rythmée"
+    },
+    {
+      "term": "Proverbes créoles"
+    },
+    {
+      "term": "Contes oraux"
+    },
+    {
+      "term": "Joutes verbales"
+    },
+    {
+      "term": "Griot caribéen"
+    }
+  ],
+  "generated": "2026-04-30T17:41:03.348Z"
+}
