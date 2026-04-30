@@ -1,0 +1,58 @@
+{
+  "id": "cultural",
+  "label": "Famille 02 — Culturelle",
+  "color": "#FFC93C",
+  "weight": 15,
+  "count": 16,
+  "terms": [
+    {
+      "term": "Vodou haïtien"
+    },
+    {
+      "term": "Santería"
+    },
+    {
+      "term": "Rastafari"
+    },
+    {
+      "term": "Syncrétisme afro-caribéen"
+    },
+    {
+      "term": "Carnaval"
+    },
+    {
+      "term": "Mas traditionnel"
+    },
+    {
+      "term": "Léwoz / Gwoka"
+    },
+    {
+      "term": "Bèlè"
+    },
+    {
+      "term": "Reggae"
+    },
+    {
+      "term": "Zouk"
+    },
+    {
+      "term": "Kompa"
+    },
+    {
+      "term": "Calypso"
+    },
+    {
+      "term": "Dancehall"
+    },
+    {
+      "term": "Identité diasporique"
+    },
+    {
+      "term": "Héritage africain"
+    },
+    {
+      "term": "Métissage culturel"
+    }
+  ],
+  "generated": "2026-04-30T17:41:06.286Z"
+}
