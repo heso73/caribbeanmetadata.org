@@ -233,21 +233,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 <body>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="index.html">CMS</a>
-  <button class="nav-burger" id="nav-burger"><span></span><span></span><span></span></button>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="about.html">À propos</a></li>
-    <li><a href="families.html">Les 6 familles</a></li>
-    <li><a href="resources.html" class="active">Ressources</a></li>
-    <li><a href="developers.html">Developers</a></li>
-    <li><a href="lab.html">Language Lab</a></li>
-    <li><a href="collaborate.html">Collaborer</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="founders.html">Les 100 Premiers</a></li>
-    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
-  </ul>
-</nav>
+<nav><!-- nav-fix.js --></nav>
 
 <!-- PAGE HEADER -->
 <div class="page-header">
@@ -415,43 +401,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 </main>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a class="footer-logo" href="index.html">CMS</a>
-      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Le Standard</h4>
-      <ul>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="families.html">Les 6 familles</a></li>
-        <li><a href="resources.html">Documentation</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Écosystème</h4>
-      <ul>
-        <li><a href="lab.html">Language Lab</a></li>
-        <li><a href="collaborate.html">Collaborer</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Ressources</h4>
-      <ul>
-        <li><a href="CMS_WhitePaper_v1.0.pdf" download>White Paper</a></li>
-        <li><a href="glossaire.html">Glossaire</a></li>
-        <li><a href="developers.html">Developers / API</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="validator.html" class="highlight">→ Valider un contenu</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <strong style="color:rgba(255,255,255,0.5)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
-  </div>
-</footer>
+<footer><!-- nav-fix.js --></footer>
 
 <script>
 document.querySelectorAll('.faq-q').forEach(q => {
@@ -470,5 +420,6 @@ document.getElementById('nav-burger').addEventListener('click', function() {
   document.getElementById('nav-links').classList.toggle('open');
 });
 </script>
+<script src="nav-fix.js"></script>
 </body>
 </html>

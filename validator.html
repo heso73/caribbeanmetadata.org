@@ -487,19 +487,7 @@ footer {
 <body>
 
 <!-- ── NAV ── -->
-<nav>
-  <a class="nav-logo" href="https://caribbeanmetadata.org/index.html">CMS</a>
-  <ul class="nav-links">
-    <li><a href="https://caribbeanmetadata.org/about.html">À propos</a></li>
-    <li><a href="https://caribbeanmetadata.org/families.html">Les 6 familles</a></li>
-    <li><a href="https://caribbeanmetadata.org/resources.html">Ressources</a></li>
-    <li><a href="https://caribbeanmetadata.org/lab.html">Language Lab</a></li>
-    <li><a href="https://caribbeanmetadata.org/collaborate.html">Collaborer</a></li>
-    <li><a href="founders.html">Les 100 Premiers</a></li>
-    <li><a href="validator.html" class="active">Valider</a></li>
-    <li><a href="https://caribbeanmetadata.org/contact.html">Contact</a></li>
-  </ul>
-</nav>
+<nav><!-- nav-fix.js --></nav>
 
 <!-- ── PAGE HEADER ── -->
 <div class="page-header">
@@ -923,42 +911,7 @@ footer {
 </main>
 
 <!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a class="footer-logo" href="https://caribbeanmetadata.org/index.html">CMS</a>
-      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Le Standard</h4>
-      <ul>
-        <li><a href="https://caribbeanmetadata.org/about.html">À propos</a></li>
-        <li><a href="https://caribbeanmetadata.org/families.html">Les 6 familles</a></li>
-        <li><a href="https://caribbeanmetadata.org/resources.html">Documentation</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Écosystème</h4>
-      <ul>
-        <li><a href="https://caribbeanmetadata.org/lab.html">Language Lab</a></li>
-        <li><a href="https://caribbeanmetadata.org/collaborate.html">Collaborer</a></li>
-        <li><a href="https://caribbeanmetadata.org/contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Ressources</h4>
-      <ul>
-        <li><a href="https://caribbeanmetadata.org/resources.html">White Paper</a></li>
-        <li><a href="https://caribbeanmetadata.org/resources.html">Glossaire</a></li>
-        <li><a href="https://caribbeanmetadata.org/resources.html">FAQ</a></li>
-        <li><a href="validator.html">Valider un contenu</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <strong style="color:rgba(255,255,255,0.5)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
-  </div>
-</footer>
+<footer><!-- nav-fix.js --></footer>
 
 <script>
 
@@ -1299,7 +1252,8 @@ body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;background:#FFFDF5}
 <div class="content-terr">${terr || ''}</div>
 <div class="divider"></div>
 <div class="footer-text">Certifié le ${date} · ${level.desc}</div>
-</div></div></body></html>`;
+</div></div><script src="nav-fix.js"></script>
+</body></html>`;
   const blob = new Blob([certHTML], { type: 'text/html' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -1319,5 +1273,6 @@ function resetAll() {
   cur = 0; showPanel(0);
 }
 </script>
+<script src="nav-fix.js"></script>
 </body>
 </html>

@@ -417,18 +417,7 @@ footer {
 <body>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="index.html">CMS</a>
-  <ul class="nav-links">
-    <li><a href="about.html">À propos</a></li>
-    <li><a href="families.html">Les 6 familles</a></li>
-    <li><a href="resources.html">Ressources</a></li>
-    <li><a href="lab.html">Language Lab</a></li>
-    <li><a href="collaborate.html">Collaborer</a></li>
-    <li><a href="declaration.html" class="active">Déclaration</a></li>
-    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
-  </ul>
-</nav>
+<nav><!-- nav-fix.js --></nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -707,43 +696,7 @@ footer {
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a class="footer-logo" href="index.html">CMS</a>
-      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Le Standard</h4>
-      <ul>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="families.html">Les 6 familles</a></li>
-        <li><a href="resources.html">Documentation</a></li>
-        <li><a href="declaration.html" class="hl">Déclaration fondatrice</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Écosystème</h4>
-      <ul>
-        <li><a href="lab.html">Language Lab</a></li>
-        <li><a href="collaborate.html">Collaborer</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Ressources</h4>
-      <ul>
-        <li><a href="resources.html">White Paper</a></li>
-        <li><a href="resources.html">Glossaire</a></li>
-        <li><a href="resources.html">FAQ</a></li>
-        <li><a href="validator.html" class="hl">→ Valider un contenu</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <strong style="color:rgba(248,245,238,0.6)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
-  </div>
-</footer>
+<footer><!-- nav-fix.js --></footer>
 
 <script>
 // Intersection Observer — révélation au scroll
@@ -777,5 +730,6 @@ const conclusionObserver = new IntersectionObserver((entries) => {
 const conclusionLines = document.getElementById('conclusion-lines');
 if (conclusionLines) conclusionObserver.observe(conclusionLines);
 </script>
+<script src="nav-fix.js"></script>
 </body>
 </html>

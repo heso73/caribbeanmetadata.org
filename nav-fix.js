@@ -27,7 +27,8 @@
       { href: 'declaration.html',  label: 'Déclaration' },
       { href: 'contact.html',      label: 'Contact' },
       { href: 'founders.html',     label: 'Les 100 Premiers' },
-      { href: 'validator.html',    label: 'Valider', cta: true },
+      { href: 'validator.html',    label: 'Valider', cta: false },
+      { href: 'cms-builder.html',  label: 'CMS Builder', cta: true },
     ],
     en: [
       { href: 'about-en.html',       label: 'About' },
@@ -38,7 +39,8 @@
       { href: 'declaration-en.html', label: 'Declaration' },
       { href: 'contact-en.html',     label: 'Contact' },
       { href: 'founders-en.html',    label: 'The 100 Founders' },
-      { href: 'validator.html',      label: 'Certify', cta: true },
+      { href: 'validator.html',      label: 'Certify', cta: false },
+      { href: 'cms-builder.html',    label: 'CMS Builder', cta: true },
     ],
     es: [
       { href: 'about-es.html',       label: 'Acerca de' },
@@ -49,7 +51,8 @@
       { href: 'declaration-es.html', label: 'Declaración' },
       { href: 'contact-es.html',     label: 'Contacto' },
       { href: 'founders-es.html',    label: 'Los 100 Primeros' },
-      { href: 'validator.html',      label: 'Certificar', cta: true },
+      { href: 'validator.html',      label: 'Certificar', cta: false },
+      { href: 'cms-builder.html',    label: 'CMS Builder', cta: true },
     ]
   };
 
@@ -75,6 +78,7 @@
           { href: 'press-fr.html',     label: 'Presse' },
           { href: 'founders.html',     label: '→ Les 100 Premiers' },
           { href: 'validator.html',    label: '→ Valider un contenu' },
+          { href: 'cms-builder.html',  label: '→ CMS Builder' },
         ]},
       ]
     },
@@ -99,6 +103,7 @@
           { href: 'press-en.html',       label: 'Press' },
           { href: 'founders-en.html',    label: '→ The 100 Founders' },
           { href: 'validator.html',      label: '→ Certify content' },
+          { href: 'cms-builder.html',    label: '→ CMS Builder' },
         ]},
       ]
     },
@@ -123,6 +128,7 @@
           { href: 'press-es.html',       label: 'Prensa' },
           { href: 'founders-es.html',    label: '→ Los 100 Primeros' },
           { href: 'validator.html',      label: '→ Certificar contenido' },
+          { href: 'cms-builder.html',    label: '→ CMS Builder' },
         ]},
       ]
     }

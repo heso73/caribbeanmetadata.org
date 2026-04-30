@@ -157,18 +157,7 @@ footer{background:#003E6B;padding:56px 6% 32px}
 <body>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="index.html">CMS</a>
-  <ul class="nav-links">
-    <li><a href="about.html">À propos</a></li>
-    <li><a href="families.html">Les 6 familles</a></li>
-    <li><a href="resources.html">Ressources</a></li>
-    <li><a href="lab.html">Language Lab</a></li>
-    <li><a href="collaborate.html">Collaborer</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
-  </ul>
-</nav>
+<nav><!-- nav-fix.js --></nav>
 
 <!-- HERO -->
 <section class="founders-hero">
@@ -394,44 +383,7 @@ footer{background:#003E6B;padding:56px 6% 32px}
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a class="footer-logo" href="index.html">CMS</a>
-      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Le Standard</h4>
-      <ul>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="families.html">Les 6 familles</a></li>
-        <li><a href="resources.html">Documentation</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Écosystème</h4>
-      <ul>
-        <li><a href="lab.html">Language Lab</a></li>
-        <li><a href="collaborate.html">Collaborer</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-  <h4>Ressources</h4>
-  <ul>
-    <li><a href="resources.html">White Paper</a></li>
-    <li><a href="glossaire.html">Glossaire</a></li>
-    <li><a href="developers.html">Developers / API</a></li>
-    <li><a href="resources.html">FAQ</a></li>
-    <li><a href="validator.html" class="hl">→ Valider un contenu</a></li>
-    <li><a href="founders.html" class="hl">→ Les 100 Premiers</a></li>
-  </ul>
-</div>
-  </div>
-  <div class="footer-bottom">
-    <strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
-  </div>
-</footer>
+<footer><!-- nav-fix.js --></footer>
 
 <script>
 const TYPE_COLORS = {
@@ -599,7 +551,8 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;background:#FFFDF5;display:fl
   <div style="background:#003E6B"></div><div style="background:#00C2C7"></div>
   <div style="background:#FFC93C"></div><div style="background:#FF6F61"></div><div style="background:#3FA66B"></div>
 </div>
-</div></body></html>`;
+</div><script src="nav-fix.js"></script>
+</body></html>`;
   const blob = new Blob([html], {type:'text/html'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -610,5 +563,6 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;background:#FFFDF5;display:fl
 updateCounters();
 renderTable();
 </script>
+<script src="nav-fix.js"></script>
 </body>
 </html>
