@@ -1,0 +1,55 @@
+{
+  "id": "narrative",
+  "label": "Famille 03 — Narrative",
+  "color": "#FF6F61",
+  "weight": 15,
+  "count": 15,
+  "terms": [
+    {
+      "term": "Réalisme magique caribéen"
+    },
+    {
+      "term": "Thriller tropical"
+    },
+    {
+      "term": "Drame social"
+    },
+    {
+      "term": "Comédie créole"
+    },
+    {
+      "term": "Saga familiale"
+    },
+    {
+      "term": "Chroniques urbaines"
+    },
+    {
+      "term": "Récit initiatique"
+    },
+    {
+      "term": "Narration circulaire"
+    },
+    {
+      "term": "Figure du conteur"
+    },
+    {
+      "term": "Héros de rue"
+    },
+    {
+      "term": "Guide ancestral"
+    },
+    {
+      "term": "Exilé de retour"
+    },
+    {
+      "term": "Mémoire collective"
+    },
+    {
+      "term": "Résistance"
+    },
+    {
+      "term": "Émancipation"
+    }
+  ],
+  "generated": "2026-04-30T17:41:08.013Z"
+}
