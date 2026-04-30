@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMS Builder — Caribbean Metadata Standard</title>
+<meta name="description" content="Construisez les métadonnées de votre contenu culturel caribéen et obtenez votre certification CMS en temps réel.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f4f6f9;color:#1a1a1a;font-size:16px;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:#003E6B}
+.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px}
+
+/* HERO */
+.ph{background:#003E6B;padding:100px 6% 56px;position:relative;overflow:hidden;margin-top:68px}
+.ph::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
+.phi{position:relative;z-index:1;max-width:760px}
+.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
+.ph h1{font-size:clamp(28px,4vw,48px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:12px}
+.ph p{font-size:16px;color:rgba(255,255,255,0.85);max-width:560px;line-height:1.75}
+
+/* MAIN TABS */
+.main-tabs{background:#fff;border-bottom:1px solid rgba(0,62,107,0.1);padding:0 6%;display:flex;position:sticky;top:68px;z-index:900}
+.main-tab{padding:16px 24px;font-size:13px;font-weight:700;color:#888;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;letter-spacing:0.5px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.main-tab:hover{color:#003E6B}
+.main-tab.active{color:#003E6B;border-bottom-color:#00C2C7}
+.tab-count{display:inline-block;background:#f0f4f8;color:#888;border-radius:10px;font-size:10px;padding:1px 7px;margin-left:6px;font-weight:700}
+.main-tab.active .tab-count{background:#003E6B;color:#fff}
+
+/* VIEWS */
+.view{display:none}
+.view.active{display:block}
+
+/* DASHBOARD */
+.dashboard-wrap{max-width:1200px;margin:0 auto;padding:40px 6% 80px}
+.dash-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;gap:16px;flex-wrap:wrap}
+.dash-title{font-size:24px;font-weight:700;color:#003E6B}
+.dash-subtitle{font-size:14px;color:#888;margin-top:4px}
+.btn-new{padding:11px 24px;background:#003E6B;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s;white-space:nowrap}
+.btn-new:hover{background:#00537A}
+.empty-state{text-align:center;padding:80px 20px;background:#fff;border-radius:12px;border:2px dashed rgba(0,62,107,0.15)}
+.empty-icon{font-size:48px;margin-bottom:16px}
+.empty-title{font-size:20px;font-weight:700;color:#003E6B;margin-bottom:8px}
+.empty-sub{font-size:14px;color:#888;margin-bottom:24px}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.fiche-card{background:#fff;border-radius:12px;border:1px solid rgba(0,62,107,0.1);padding:24px;transition:all .2s;position:relative}
+.fiche-card:hover{box-shadow:0 4px 20px rgba(0,62,107,0.1);transform:translateY(-2px)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.card-level{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px}
+.card-level.bronze{background:rgba(200,150,12,0.12);color:#C8960C}
+.card-level.silver{background:rgba(158,158,158,0.12);color:#757575}
+.card-level.gold{background:rgba(249,168,37,0.12);color:#F9A825}
+.card-level.platinum{background:rgba(63,166,107,0.12);color:#3FA66B}
+.card-level.none{background:#f0f4f8;color:#aaa}
+.card-score{font-size:22px;font-weight:700;color:#003E6B}
+.card-score span{font-size:12px;color:#aaa;font-weight:400}
+.card-title{font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-meta{font-size:12px;color:#888;margin-bottom:12px;display:flex;flex-wrap:wrap;gap:6px}
+.card-meta-pill{padding:2px 8px;background:#f4f6f9;border-radius:10px;font-size:11px}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;min-height:24px}
+.card-tag{padding:2px 8px;background:#f0f4f8;border-radius:8px;font-size:10px;color:#666}
+.card-date{font-size:11px;color:#bbb;margin-bottom:16px}
+.card-actions{display:flex;gap:6px;border-top:1px solid rgba(0,62,107,0.08);padding-top:14px}
+.card-btn{flex:1;padding:7px 4px;border:1.5px solid rgba(0,62,107,0.15);border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;background:#fff;color:#003E6B;text-align:center}
+.card-btn:hover{background:#003E6B;color:#fff;border-color:#003E6B}
+.card-btn.danger{color:#e53935;border-color:rgba(229,57,53,0.2)}
+.card-btn.danger:hover{background:#e53935;color:#fff;border-color:#e53935}
+
+/* BUILDER LAYOUT */
+.builder-wrap{max-width:1200px;margin:0 auto;padding:32px 6% 80px;display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
+.steps-nav{display:flex;gap:0;margin-bottom:24px;border-radius:8px;overflow:hidden;border:1px solid rgba(0,62,107,0.15)}
+.step-btn{flex:1;padding:14px 8px;background:#fff;border:none;cursor:pointer;font-size:12px;font-weight:700;color:#888;letter-spacing:0.5px;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px;border-right:1px solid rgba(0,62,107,0.1)}
+.step-btn:last-child{border-right:none}
+.step-btn.active{background:#003E6B;color:#fff}
+.step-btn.done{background:#e8f5f0;color:#3FA66B}
+.step-btn .step-num{font-size:18px;font-weight:700}
+.step-btn .step-label{font-size:10px;letter-spacing:1px;text-transform:uppercase}
+.panel{display:none;background:#fff;border-radius:12px;border:1px solid rgba(0,62,107,0.1);padding:32px}
+.panel.active{display:block}
+.panel-title{font-size:20px;font-weight:700;color:#003E6B;margin-bottom:6px}
+.panel-sub{font-size:14px;color:#666;margin-bottom:28px;line-height:1.6}
+
+/* EDIT BANNER */
+.edit-banner{background:rgba(0,194,199,0.07);border:1px solid rgba(0,194,199,0.3);border-radius:8px;padding:12px 16px;margin-bottom:16px;display:none;align-items:center;justify-content:space-between;gap:12px}
+.edit-banner.show{display:flex}
+.edit-banner-text{font-size:13px;color:#003E6B;font-weight:700}
+.edit-banner-sub{font-size:12px;color:#555;margin-top:2px}
+.btn-cancel-edit{padding:6px 14px;background:#fff;color:#666;border:1.5px solid #ddd;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap}
+
+/* AUTOSAVE */
+.autosave-bar{display:flex;align-items:center;gap:8px;font-size:12px;color:#888;margin-bottom:16px;padding:8px 12px;background:#f8fffe;border-radius:6px;border:1px solid rgba(0,194,199,0.2)}
+.autosave-dot{width:7px;height:7px;border-radius:50%;background:#00C2C7;flex-shrink:0}
+.autosave-dot.saving{background:#FFC93C;animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* FORM */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.fg.full{grid-template-columns:1fr}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:11px;letter-spacing:1.5px;color:#888;font-weight:700;margin-bottom:6px;text-transform:uppercase}
+.form-group label .req{color:#FF6F61;margin-left:2px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1.5px solid rgba(0,62,107,0.15);border-radius:6px;font-size:14px;background:#fafbfc;color:#1a1a1a;font-family:inherit;transition:all .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#00C2C7;background:#fff;box-shadow:0 0 0 3px rgba(0,194,199,0.1)}
+.form-group textarea{min-height:90px;resize:vertical}
+
+/* FAMILY TAGS */
+.family-block{margin-bottom:20px;border:1px solid rgba(0,62,107,0.1);border-radius:8px;overflow:hidden}
+.family-header{padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;background:#fafbfc;transition:background .2s}
+.family-header:hover{background:#f0f4f8}
+.family-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.family-name{font-size:13px;font-weight:700;color:#003E6B;flex:1}
+.family-count{font-size:11px;color:#888;background:#f0f4f8;padding:2px 8px;border-radius:10px}
+.family-chevron{font-size:12px;color:#888;transition:transform .2s}
+.family-header.open .family-chevron{transform:rotate(180deg)}
+.family-tags{display:none;padding:16px 18px;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(0,62,107,0.08)}
+.family-tags.open{display:flex}
+.tag-chip{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;border:1.5px solid rgba(0,62,107,0.15);background:#fff;color:#333;transition:all .2s;user-select:none}
+.tag-chip:hover{border-color:#00C2C7;color:#003E6B}
+.tag-chip.selected{background:#003E6B;color:#fff;border-color:#003E6B}
+
+/* SCORE SIDEBAR */
+.score-card{background:#fff;border-radius:12px;border:1px solid rgba(0,62,107,0.1);padding:24px;position:sticky;top:120px}
+.score-title{font-size:11px;letter-spacing:2px;color:#888;font-weight:700;text-transform:uppercase;margin-bottom:16px}
+.score-circle-wrap{display:flex;justify-content:center;margin-bottom:20px}
+.score-circle{width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:6px solid #f0f4f8;transition:all .4s;background:#fff}
+.score-circle .score-num{font-size:32px;font-weight:700;color:#003E6B;line-height:1}
+.score-circle .score-label{font-size:10px;color:#888;letter-spacing:1px}
+.level-badge{text-align:center;margin-bottom:20px}
+.level-pill{display:inline-block;padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;background:#f0f4f8;color:#888}
+.level-pill.bronze{background:rgba(200,150,12,0.15);color:#C8960C}
+.level-pill.silver{background:rgba(158,158,158,0.15);color:#757575}
+.level-pill.gold{background:rgba(249,168,37,0.15);color:#F9A825}
+.level-pill.platinum{background:rgba(63,166,107,0.15);color:#3FA66B}
+.score-bars{margin-bottom:20px}
+.score-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.score-bar-label{font-size:11px;color:#888;width:90px;flex-shrink:0}
+.score-bar-track{flex:1;height:6px;background:#f0f4f8;border-radius:3px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:3px;transition:width .4s;background:#00C2C7}
+.score-bar-val{font-size:11px;color:#003E6B;font-weight:700;width:28px;text-align:right}
+.selected-tags{margin-bottom:16px}
+.selected-tags-title{font-size:11px;letter-spacing:1px;color:#888;font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.selected-tags-list{display:flex;flex-wrap:wrap;gap:4px;min-height:32px}
+.mini-tag{padding:3px 8px;background:#f0f4f8;border-radius:10px;font-size:11px;color:#003E6B}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn-primary{padding:12px 28px;background:#003E6B;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.btn-primary:hover{background:#00537A}
+.btn-secondary{padding:12px 28px;background:#fff;color:#003E6B;border:1.5px solid rgba(0,62,107,0.2);border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-secondary:hover{border-color:#003E6B}
+.btn-cta{width:100%;padding:13px;background:#00C2C7;color:#003E6B;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s;margin-top:8px}
+.btn-cta:hover{background:#00A8AE}
+
+/* RESULT */
+.result-wrap{background:#fff;border-radius:12px;border:1px solid rgba(0,62,107,0.1);padding:32px;margin-top:24px;display:none}
+.result-wrap.show{display:block}
+.result-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.result-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.result-title{font-size:22px;font-weight:700;color:#003E6B}
+.result-subtitle{font-size:14px;color:#666}
+.json-block{background:#001830;border-radius:8px;padding:20px;font-family:'Courier New',monospace;font-size:12px;color:#00C2C7;line-height:1.7;overflow-x:auto;margin:16px 0;max-height:400px;overflow-y:auto}
+.json-key{color:#FFC93C}
+.json-str{color:#98E6C8}
+.json-num{color:#FF9F7A}
+.dl-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn-dl{padding:10px 18px;background:#003E6B;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.btn-dl:hover{background:#00537A}
+.btn-copy{padding:10px 18px;background:#fff;color:#003E6B;border:1.5px solid rgba(0,62,107,0.2);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-copy:hover{border-color:#003E6B}
+.btn-save-fiche{padding:10px 18px;background:#3FA66B;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.btn-save-fiche:hover{background:#348f5a}
+.btn-reset{padding:10px 18px;background:#fff;color:#888;border:1.5px solid #eee;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border-radius:12px;padding:32px;max-width:400px;width:90%;text-align:center}
+.modal h3{font-size:18px;font-weight:700;color:#003E6B;margin-bottom:8px}
+.modal p{font-size:14px;color:#666;margin-bottom:24px;line-height:1.6}
+.modal-actions{display:flex;gap:12px;justify-content:center}
+.btn-confirm-delete{padding:10px 24px;background:#e53935;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-cancel-modal{padding:10px 24px;background:#fff;color:#666;border:1.5px solid #ddd;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+
+/* TOAST */
+.toast{position:fixed;bottom:32px;right:32px;background:#003E6B;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:3000;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* GITHUB SYNC */
+.gh-status-bar{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:6px;font-size:12px;font-weight:600;margin-bottom:0;transition:all .3s}
+.gh-status-bar.connected{background:rgba(63,166,107,0.1);border:1px solid rgba(63,166,107,0.3);color:#3FA66B}
+.gh-status-bar.disconnected{background:rgba(255,111,97,0.08);border:1px solid rgba(255,111,97,0.2);color:#c0392b}
+.gh-status-bar.syncing{background:rgba(0,194,199,0.08);border:1px solid rgba(0,194,199,0.25);color:#00838a}
+.gh-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.gh-dot.on{background:#3FA66B}
+.gh-dot.off{background:#e0e0e0}
+.gh-dot.spin{background:#00C2C7;animation:pulse .8s infinite}
+.gh-config-panel{background:#fff;border-radius:12px;border:1px solid rgba(0,62,107,0.1);padding:28px;margin-bottom:24px;display:none}
+.gh-config-panel.show{display:block}
+.gh-config-title{font-size:15px;font-weight:700;color:#003E6B;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.gh-config-sub{font-size:13px;color:#888;margin-bottom:20px;line-height:1.6}
+.gh-config-sub a{color:#003E6B;font-weight:600}
+.gh-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.gh-field{display:flex;flex-direction:column;gap:5px}
+.gh-field label{font-size:11px;letter-spacing:1.2px;color:#888;font-weight:700;text-transform:uppercase}
+.gh-field input{padding:9px 12px;border:1.5px solid rgba(0,62,107,0.15);border-radius:6px;font-size:13px;font-family:inherit;background:#fafbfc;color:#1a1a1a;transition:all .2s}
+.gh-field input:focus{outline:none;border-color:#00C2C7;box-shadow:0 0 0 3px rgba(0,194,199,0.1)}
+.gh-field input[type=password]{font-family:monospace;letter-spacing:2px}
+.gh-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-gh-save{padding:9px 20px;background:#003E6B;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.btn-gh-save:hover{background:#00537A}
+.btn-gh-test{padding:9px 18px;background:#fff;color:#003E6B;border:1.5px solid rgba(0,62,107,0.2);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-gh-test:hover{border-color:#003E6B}
+.btn-gh-clear{padding:9px 14px;background:#fff;color:#e53935;border:1.5px solid rgba(229,57,53,0.2);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.gh-sync-badge{display:none;align-items:center;gap:5px;font-size:11px;color:#3FA66B;font-weight:700}
+.gh-sync-badge.show{display:inline-flex}
+.sync-log{background:#f8fffe;border:1px solid rgba(0,194,199,0.2);border-radius:6px;padding:12px;margin-top:12px;font-family:monospace;font-size:11px;color:#555;line-height:1.8;display:none;max-height:120px;overflow-y:auto}
+.sync-log.show{display:block}
+.sync-line{margin:0}
+.sync-line.ok{color:#3FA66B}
+.sync-line.err{color:#e53935}
+.sync-line.info{color:#003E6B}
+
+/* GH NAV INDICATOR */
+.gh-nav-indicator{display:flex;align-items:center;gap:6px;font-size:11px;color:#3FA66B;font-weight:700;padding:5px 10px;background:rgba(63,166,107,0.1);border-radius:4px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.gh-nav-indicator:hover{background:rgba(63,166,107,0.18)}
+.gh-nav-indicator.off{color:#aaa;background:#f4f6f9}
+.gh-nav-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+
+/* FOOTER */
+footer{background:#003E6B;padding:56px 6% 32px}
+.fg-f{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
+.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
+.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
+.fc ul{list-style:none}
+.fc li{margin-bottom:8px}
+.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
+.fc a:hover{color:#fff}
+.fc a.hl{color:#00C2C7;font-weight:600}
+.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
+
+@media(max-width:1000px){.builder-wrap{grid-template-columns:1fr}.score-card{position:static}}
+@media(max-width:700px){.fg{grid-template-columns:1fr}.steps-nav{flex-wrap:wrap}.fg-f{grid-template-columns:1fr 1fr}.nav-links{display:none}.cards-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">CMS</a>
+  <ul class="nav-links">
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="families.html">Les 6 familles</a></li>
+    <li><a href="resources.html">Ressources</a></li>
+    <li><a href="lab.html">Language Lab</a></li>
+    <li><a href="collaborate.html">Collaborer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="founders.html">Les 100 Premiers</a></li>
+    <li><a href="cms-builder.html" class="active nav-validate">CMS Builder</a></li>
+    <li><span class="gh-nav-indicator off" id="gh-nav-indicator" onclick="switchView('github')" title="Synchronisation GitHub"><span class="gh-nav-dot"></span>GitHub</span></li>
+  </ul>
+</nav>
+
+<div class="ph">
+  <div class="phi">
+    <div class="ey">Outil officiel</div>
+    <h1>CMS Builder</h1>
+    <p>Construisez les métadonnées de votre contenu culturel caribéen, obtenez votre score d'ancrage et téléchargez votre fiche CMS certifiée.</p>
+  </div>
+</div>
+
+<div class="main-tabs">
+  <button class="main-tab" id="tab-fiches" onclick="switchView('fiches')">
+    Mes fiches <span class="tab-count" id="tab-count">0</span>
+  </button>
+  <button class="main-tab active" id="tab-builder" onclick="switchView('builder')">
+    Builder
+  </button>
+  <button class="main-tab" id="tab-github" onclick="switchView('github')">
+    ⚡ GitHub API <span class="tab-count" id="gh-tab-count">—</span>
+  </button>
+</div>
+
+<!-- VUE : MES FICHES -->
+<div class="view" id="view-fiches">
+  <div class="dashboard-wrap">
+    <div class="dash-header">
+      <div>
+        <div class="dash-title">Mes fiches CMS</div>
+        <div class="dash-subtitle">Retrouvez, modifiez et gérez tous vos contenus certifiés</div>
+      </div>
+      <button class="btn-new" onclick="newFiche()">＋ Nouvelle fiche</button>
+    </div>
+    <div id="fiches-list"></div>
+  </div>
+</div>
+
+<!-- VUE : GITHUB SYNC -->
+<div class="view" id="view-github">
+  <div class="dashboard-wrap">
+    <div class="dash-header">
+      <div>
+        <div class="dash-title">⚡ Synchronisation GitHub API</div>
+        <div class="dash-subtitle">Publiez vos fiches directement dans le repo <strong>heso73/caribbeanmetadata.org</strong></div>
+      </div>
+      <div class="gh-status-bar disconnected" id="gh-main-status">
+        <div class="gh-dot off" id="gh-main-dot"></div>
+        <span id="gh-main-status-text">Non configuré</span>
+      </div>
+    </div>
+
+    <!-- CONFIG PANEL -->
+    <div class="gh-config-panel show" id="gh-config-panel">
+      <div class="gh-config-title">🔑 Configuration du Personal Access Token</div>
+      <div class="gh-config-sub">
+        Créez un token sur <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> avec la permission <strong>repo → Contents (write)</strong>. Il ne sera stocké que dans votre navigateur.
+      </div>
+      <div class="gh-fields">
+        <div class="gh-field">
+          <label>Owner / Organisation</label>
+          <input id="gh-owner" type="text" placeholder="heso73" value="heso73">
+        </div>
+        <div class="gh-field">
+          <label>Nom du repo</label>
+          <input id="gh-repo" type="text" placeholder="caribbeanmetadata.org" value="caribbeanmetadata.org">
+        </div>
+        <div class="gh-field">
+          <label>Branche</label>
+          <input id="gh-branch" type="text" placeholder="main" value="main">
+        </div>
+        <div class="gh-field">
+          <label>Personal Access Token</label>
+          <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        </div>
+      </div>
+      <div class="gh-actions">
+        <button class="btn-gh-save" onclick="saveGhConfig()">💾 Enregistrer</button>
+        <button class="btn-gh-test" onclick="testGhConnection()">🔌 Tester la connexion</button>
+        <button class="btn-gh-clear" onclick="clearGhConfig()">✕ Effacer</button>
+      </div>
+      <div class="sync-log" id="gh-test-log"></div>
+    </div>
+
+    <!-- SYNC PANEL -->
+    <div style="background:#fff;border-radius:12px;border:1px solid rgba(0,62,107,0.1);padding:28px;margin-bottom:24px">
+      <div style="font-size:15px;font-weight:700;color:#003E6B;margin-bottom:6px">📤 Publier les fiches vers GitHub</div>
+      <div style="font-size:13px;color:#888;margin-bottom:20px;line-height:1.6">
+        Chaque fiche sera publiée en tant que fichier JSON dans <code style="background:#f4f6f9;padding:1px 6px;border-radius:4px">/api/works/{id}.json</code>. Le schéma et les vocabulaires seront mis à jour automatiquement.
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:20px">
+        <div style="background:#f8fffe;border:1px solid rgba(0,194,199,0.2);border-radius:8px;padding:16px">
+          <div style="font-size:11px;color:#888;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Fiches locales</div>
+          <div style="font-size:28px;font-weight:700;color:#003E6B" id="gh-count-local">0</div>
+        </div>
+        <div style="background:#f8fffe;border:1px solid rgba(0,194,199,0.2);border-radius:8px;padding:16px">
+          <div style="font-size:11px;color:#888;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Publiées sur GitHub</div>
+          <div style="font-size:28px;font-weight:700;color:#3FA66B" id="gh-count-remote">—</div>
+        </div>
+        <div style="background:#f8fffe;border:1px solid rgba(0,194,199,0.2);border-radius:8px;padding:16px">
+          <div style="font-size:11px;color:#888;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Dernière synchro</div>
+          <div style="font-size:13px;font-weight:700;color:#003E6B" id="gh-last-sync">Jamais</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+        <button class="btn-gh-save" onclick="syncAllFiches()" id="btn-sync-all">🚀 Publier toutes les fiches</button>
+        <button class="btn-gh-test" onclick="checkRemoteFiles()">🔍 Vérifier le repo</button>
+        <button class="btn-gh-test" onclick="updateSchema()">📋 Mettre à jour le schéma</button>
+        <button class="btn-gh-test" onclick="updateVocabularies()">🏷️ Mettre à jour les vocabulaires</button>
+      </div>
+
+      <div class="sync-log" id="gh-sync-log"></div>
+    </div>
+
+    <!-- STRUCTURE INFO -->
+    <div style="background:#fff;border-radius:12px;border:1px solid rgba(0,62,107,0.1);padding:28px">
+      <div style="font-size:15px;font-weight:700;color:#003E6B;margin-bottom:16px">📁 Structure publiée sur le repo</div>
+      <div style="font-family:monospace;font-size:13px;background:#001830;color:#00C2C7;padding:20px;border-radius:8px;line-height:2">
+        <div>heso73/caribbeanmetadata.org/</div>
+        <div style="color:#FFC93C">├── api/</div>
+        <div style="color:#98E6C8">│   ├── works/</div>
+        <div style="color:#888">│   │   ├── fiche_001.json</div>
+        <div style="color:#888">│   │   ├── fiche_002.json</div>
+        <div style="color:#888">│   │   └── index.json  ← liste de toutes les œuvres</div>
+        <div style="color:#98E6C8">│   ├── schema/</div>
+        <div style="color:#888">│   │   ├── cms-schema.json</div>
+        <div style="color:#888">│   │   └── cms-validation-rules.json</div>
+        <div style="color:#98E6C8">│   └── vocabularies/</div>
+        <div style="color:#888">│       ├── linguistic.json</div>
+        <div style="color:#888">│       ├── cultural.json</div>
+        <div style="color:#888">│       ├── narrative.json</div>
+        <div style="color:#888">│       ├── rhythmic.json</div>
+        <div style="color:#888">│       ├── geographic.json</div>
+        <div style="color:#888">│       └── sociohistorical.json</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VUE : BUILDER -->
+<div class="view active" id="view-builder">
+  <div class="builder-wrap">
+    <div>
+      <div class="edit-banner" id="edit-banner">
+        <div>
+          <div class="edit-banner-text">✏️ Mode édition</div>
+          <div class="edit-banner-sub" id="edit-banner-sub">Modification en cours…</div>
+        </div>
+        <button class="btn-cancel-edit" onclick="cancelEdit()">Annuler les modifications</button>
+      </div>
+
+      <div class="autosave-bar" id="autosave-bar">
+        <div class="autosave-dot" id="autosave-dot"></div>
+        <span id="autosave-text">Brouillon sauvegardé automatiquement</span>
+      </div>
+
+      <div class="steps-nav">
+        <button class="step-btn active" onclick="goStep(1)" id="stepbtn-1">
+          <span class="step-num">01</span><span class="step-label">Identité</span>
+        </button>
+        <button class="step-btn" onclick="goStep(2)" id="stepbtn-2">
+          <span class="step-num">02</span><span class="step-label">Métadonnées</span>
+        </button>
+        <button class="step-btn" onclick="goStep(3)" id="stepbtn-3">
+          <span class="step-num">03</span><span class="step-label">Certification</span>
+        </button>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="panel active" id="step-1">
+        <p class="panel-title">Identité du contenu</p>
+        <p class="panel-sub">Décrivez votre contenu culturel caribéen. Ces informations constituent le socle de votre fiche CMS.</p>
+        <div class="fg">
+          <div class="form-group"><label>Titre <span class="req">*</span></label><input id="f-title" type="text" placeholder="Titre de votre contenu" oninput="onFormChange()"></div>
+          <div class="form-group"><label>Titre original</label><input id="f-title-orig" type="text" placeholder="Titre en langue d'origine" oninput="onFormChange()"></div>
+        </div>
+        <div class="fg">
+          <div class="form-group"><label>Famille CMS <span class="req">*</span></label>
+            <select id="f-family" onchange="onFormChange()">
+              <option value="">Sélectionner une famille</option>
+              <option value="audiovisual">Audiovisuel</option>
+              <option value="musical">Musical</option>
+              <option value="literary">Littéraire</option>
+              <option value="heritage">Patrimoine</option>
+              <option value="visual_arts">Arts visuels</option>
+              <option value="performing_arts">Arts de la scène</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Année <span class="req">*</span></label><input id="f-year" type="number" placeholder="2026" min="1900" max="2100" oninput="onFormChange()"></div>
+        </div>
+        <div class="fg">
+          <div class="form-group"><label>Territoire principal <span class="req">*</span></label>
+            <select id="f-territory" onchange="onFormChange()">
+              <option value="">Sélectionner un territoire</option>
+              <option value="Guadeloupe">Guadeloupe</option>
+              <option value="Martinique">Martinique</option>
+              <option value="Haïti">Haïti</option>
+              <option value="Jamaïque">Jamaïque</option>
+              <option value="Trinité-et-Tobago">Trinité-et-Tobago</option>
+              <option value="Cuba">Cuba</option>
+              <option value="République Dominicaine">République Dominicaine</option>
+              <option value="Porto Rico">Porto Rico</option>
+              <option value="Barbade">Barbade</option>
+              <option value="Sainte-Lucie">Sainte-Lucie</option>
+              <option value="Guyane française">Guyane française</option>
+              <option value="Suriname">Suriname</option>
+              <option value="Diaspora caribéenne">Diaspora caribéenne</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Langue principale <span class="req">*</span></label>
+            <select id="f-language" onchange="onFormChange()">
+              <option value="">Sélectionner une langue</option>
+              <option value="fr">Français</option>
+              <option value="cr">Créole antillais</option>
+              <option value="ht">Créole haïtien</option>
+              <option value="en">Anglais caribéen</option>
+              <option value="es">Espagnol caribéen</option>
+              <option value="nl">Néerlandais</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg full"><div class="form-group"><label>Créateur(s) principal(aux)</label><input id="f-creators" type="text" placeholder="Ex : Jean Dupont (Réalisateur), Marie Martin (Auteure)" oninput="onFormChange()"></div></div>
+        <div class="fg full"><div class="form-group"><label>Description</label><textarea id="f-desc" placeholder="Décrivez brièvement votre contenu..." oninput="onFormChange()"></textarea></div></div>
+        <div class="btn-row">
+          <button class="btn-primary" onclick="goStep(2)">Étape suivante →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="panel" id="step-2">
+        <p class="panel-title">Métadonnées CMS</p>
+        <p class="panel-sub">Sélectionnez les tags qui correspondent à votre contenu dans les 6 familles CMS. Plus vous en sélectionnez avec précision, plus votre score d'ancrage caribéen sera élevé.</p>
+        <div id="families-container"></div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="goStep(1)">← Retour</button>
+          <button class="btn-primary" onclick="goStep(3)">Voir ma certification →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="panel" id="step-3">
+        <p class="panel-title">Certification CMS</p>
+        <p class="panel-sub">Votre fiche CMS est prête. Sauvegardez-la dans vos fiches, téléchargez-la ou copiez-la.</p>
+        <div class="result-wrap show" id="result-block">
+          <div class="result-header">
+            <div class="result-icon" id="result-icon" style="background:#f0f4f8">🏆</div>
+            <div>
+              <div class="result-title" id="result-title">—</div>
+              <div class="result-subtitle" id="result-subtitle">Complétez les étapes 1 et 2 pour générer votre fiche</div>
+            </div>
+          </div>
+          <div class="json-block" id="json-output">// Votre fiche CMS apparaîtra ici</div>
+          <div class="dl-row">
+            <button class="btn-save-fiche" id="btn-save-fiche" onclick="saveFiche()">💾 Sauvegarder la fiche</button>
+            <button class="btn-dl" onclick="downloadJSON()">↓ Télécharger JSON</button>
+            <button class="btn-copy" onclick="copyJSON()">⎘ Copier</button>
+            <button class="btn-gh-save" onclick="publishCurrentFiche()" id="btn-publish-gh" style="display:none">⚡ Publier sur GitHub</button>
+            <button class="btn-reset" onclick="confirmReset()">↺ Nouveau</button>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="goStep(2)">← Retour</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR SCORE -->
+    <div class="score-card">
+      <div class="score-title">Score caribéen</div>
+      <div class="score-circle-wrap">
+        <div class="score-circle" id="score-circle">
+          <span class="score-num" id="score-num">0</span>
+          <span class="score-label">/ 100</span>
+        </div>
+      </div>
+      <div class="level-badge"><span class="level-pill" id="level-pill">— NON CERTIFIÉ —</span></div>
+      <div class="score-bars">
+        <div class="score-bar-row"><span class="score-bar-label">Identité</span><div class="score-bar-track"><div class="score-bar-fill" id="bar-identity" style="width:0%"></div></div><span class="score-bar-val" id="val-identity">0</span></div>
+        <div class="score-bar-row"><span class="score-bar-label">Linguistique</span><div class="score-bar-track"><div class="score-bar-fill" id="bar-linguistic" style="width:0%;background:#00C2C7"></div></div><span class="score-bar-val" id="val-linguistic">0</span></div>
+        <div class="score-bar-row"><span class="score-bar-label">Culturelle</span><div class="score-bar-track"><div class="score-bar-fill" id="bar-cultural" style="width:0%;background:#FFC93C"></div></div><span class="score-bar-val" id="val-cultural">0</span></div>
+        <div class="score-bar-row"><span class="score-bar-label">Narrative</span><div class="score-bar-track"><div class="score-bar-fill" id="bar-narrative" style="width:0%;background:#FF6F61"></div></div><span class="score-bar-val" id="val-narrative">0</span></div>
+        <div class="score-bar-row"><span class="score-bar-label">Rythmique</span><div class="score-bar-track"><div class="score-bar-fill" id="bar-rhythmic" style="width:0%;background:#7B3FA6"></div></div><span class="score-bar-val" id="val-rhythmic">0</span></div>
+        <div class="score-bar-row"><span class="score-bar-label">Géographique</span><div class="score-bar-track"><div class="score-bar-fill" id="bar-geographic" style="width:0%;background:#3FA66B"></div></div><span class="score-bar-val" id="val-geographic">0</span></div>
+        <div class="score-bar-row"><span class="score-bar-label">Socio-hist.</span><div class="score-bar-track"><div class="score-bar-fill" id="bar-sociohistorical" style="width:0%;background:#185FA5"></div></div><span class="score-bar-val" id="val-sociohistorical">0</span></div>
+      </div>
+      <div class="selected-tags">
+        <div class="selected-tags-title">Tags sélectionnés</div>
+        <div class="selected-tags-list" id="selected-tags-list"><span style="font-size:12px;color:#ccc">Aucun tag sélectionné</span></div>
+      </div>
+      <button class="btn-cta" onclick="goStep(3)">Générer ma fiche →</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="fg-f">
+    <div class="fb"><a class="fl" href="index.html">CMS</a><p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p></div>
+    <div class="fc"><h4>Le Standard</h4><ul><li><a href="about.html">À propos</a></li><li><a href="families.html">Les 6 familles</a></li><li><a href="resources.html">Documentation</a></li></ul></div>
+    <div class="fc"><h4>Écosystème</h4><ul><li><a href="lab.html">Language Lab</a></li><li><a href="collaborate.html">Collaborer</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="fc"><h4>Outils</h4><ul><li><a href="cms-builder.html" class="hl">CMS Builder</a></li><li><a href="validator.html">Valider un contenu</a></li><li><a href="developers.html">Developers / API</a></li><li><a href="glossaire.html">Glossaire</a></li></ul></div>
+  </div>
+  <div class="fb-bot"><strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</div>
+</footer>
+
+<div class="modal-overlay" id="modal-delete">
+  <div class="modal">
+    <h3>Supprimer la fiche ?</h3>
+    <p>Cette action est irréversible. La fiche sera définitivement supprimée.</p>
+    <div class="modal-actions">
+      <button class="btn-cancel-modal" onclick="closeModal()">Annuler</button>
+      <button class="btn-confirm-delete" id="btn-confirm-delete">Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const FAMILIES = [
+  { id: 'linguistic', label: 'Famille 01 — Linguistique', color: '#00C2C7', weight: 15, tags: ['Créole guadeloupéen','Créole martiniquais','Créole haïtien','Créole réunionnais','Patois jamaïcain','Anglais trinidadien','Papiamento','Sranan Tongo','Code-switching','Alternance codique','Oralité rythmée','Proverbes créoles','Contes oraux','Joutes verbales','Griot caribéen']},
+  { id: 'cultural', label: 'Famille 02 — Culturelle', color: '#FFC93C', weight: 15, tags: ['Vodou haïtien','Santería','Rastafari','Syncrétisme afro-caribéen','Carnaval','Mas traditionnel','Léwoz / Gwoka','Bèlè','Reggae','Zouk','Kompa','Calypso','Dancehall','Identité diasporique','Héritage africain','Métissage culturel']},
+  { id: 'narrative', label: 'Famille 03 — Narrative', color: '#FF6F61', weight: 15, tags: ['Réalisme magique caribéen','Thriller tropical','Drame social','Comédie créole','Saga familiale','Chroniques urbaines','Récit initiatique','Narration circulaire','Figure du conteur','Héros de rue','Guide ancestral','Exilé de retour','Mémoire collective','Résistance','Émancipation']},
+  { id: 'rhythmic', label: 'Famille 04 — Rythmique', color: '#7B3FA6', weight: 10, tags: ['Tempo insulaire lent','Tempo urbain rapide','Tempo contemplatif','Dialogue syncopé','Parole percussive','Rythme appel-réponse','Intonation chantée','Oralité musicale','Silence signifiant','Ambiance tropicale','Paysage sonore urbain','Sons naturels insulaires']},
+  { id: 'geographic', label: 'Famille 05 — Géographique', color: '#3FA66B', weight: 20, tags: ['Guadeloupe','Martinique','Haïti','Jamaïque','Trinité-et-Tobago','Cuba','Urbain caribéen','Rural tropical','Littoral insulaire','Forêt tropicale','Grande Caraïbe','Petites Antilles','Diaspora caribéenne','La mer comme frontière','La plantation','Le morne']},
+  { id: 'sociohistorical', label: 'Famille 06 — Socio-historique', color: '#185FA5', weight: 15, tags: ["Mémoire de l'esclavage",'Colonisation','Abolition','Indépendance','Créolisation','Postcolonialité','Négritude','Antillanité','Exil volontaire','Retour au pays','Tensions diaspora/île','Tensions intergénérationnelles','Classe sociale','Genre et pouvoir']}
+];
+
+let selectedTags = {};
+FAMILIES.forEach(f => selectedTags[f.id] = []);
+let currentStep = 1;
+let editingId = null;
+let autosaveTimer = null;
+
+
+// ── GITHUB API ────────────────────────────────────────────────────────────────
+const GH_KEY = 'cms_gh_config';
+
+function loadGhConfig(){try{return JSON.parse(localStorage.getItem(GH_KEY))||{};}catch(e){return {};}}
+function saveGhConfig(){
+  const cfg={owner:document.getElementById('gh-owner').value.trim(),repo:document.getElementById('gh-repo').value.trim(),branch:document.getElementById('gh-branch').value.trim()||'main',token:document.getElementById('gh-token').value.trim()};
+  if(!cfg.token){showToast('⚠️ Le token est requis');return;}
+  localStorage.setItem(GH_KEY,JSON.stringify(cfg));
+  updateGhUI();showToast('✅ Configuration GitHub sauvegardée');
+}
+function clearGhConfig(){
+  localStorage.removeItem(GH_KEY);
+  document.getElementById('gh-token').value='';
+  updateGhUI();showToast('Configuration GitHub effacée');
+}
+
+function updateGhUI(){
+  const cfg=loadGhConfig();
+  const connected=!!(cfg.token);
+  // Main status
+  const ms=document.getElementById('gh-main-status');
+  const md=document.getElementById('gh-main-dot');
+  const mt=document.getElementById('gh-main-status-text');
+  ms.className='gh-status-bar '+(connected?'connected':'disconnected');
+  md.className='gh-dot '+(connected?'on':'off');
+  mt.textContent=connected?`Connecté — ${cfg.owner}/${cfg.repo}`:'Non configuré';
+  // Nav indicator
+  const ni=document.getElementById('gh-nav-indicator');
+  ni.className='gh-nav-indicator '+(connected?'':'off');
+  ni.innerHTML=`<span class="gh-nav-dot"></span>${connected?'GitHub ✓':'GitHub'}`;
+  // Tab count
+  document.getElementById('gh-tab-count').textContent=connected?'✓':'—';
+  // Publish button in builder
+  const pb=document.getElementById('btn-publish-gh');
+  if(pb)pb.style.display=connected?'inline-block':'none';
+  // Stats
+  document.getElementById('gh-count-local').textContent=loadFiches().length;
+  // Last sync
+  const ls=localStorage.getItem('cms_gh_last_sync');
+  document.getElementById('gh-last-sync').textContent=ls?new Date(ls).toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'Jamais';
+}
+
+// GitHub API call helper
+async function ghAPI(path, method='GET', body=null){
+  const cfg=loadGhConfig();
+  if(!cfg.token)throw new Error('Token GitHub non configuré');
+  const url=`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`;
+  const opts={method,headers:{'Authorization':`token ${cfg.token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'}};
+  if(body)opts.body=JSON.stringify(body);
+  const r=await fetch(url,opts);
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(`GitHub ${r.status}: ${e.message||r.statusText}`);}
+  return r.status===204?null:r.json();
+}
+
+// Get existing file SHA (needed for updates)
+async function getFileSHA(path){
+  try{const d=await ghAPI(path);return d.sha;}
+  catch(e){if(e.message.includes('404'))return null;throw e;}
+}
+
+// Write a file to GitHub
+async function writeFile(path, content, message){
+  const cfg=loadGhConfig();
+  const sha=await getFileSHA(path);
+  const body={message,content:btoa(unescape(encodeURIComponent(JSON.stringify(content,null,2)))),branch:cfg.branch||'main'};
+  if(sha)body.sha=sha;
+  return ghAPI(path,'PUT',body);
+}
+
+function addLog(logId, text, type='info'){
+  const log=document.getElementById(logId);
+  log.classList.add('show');
+  const line=document.createElement('div');
+  line.className='sync-line '+type;
+  line.textContent='['+new Date().toLocaleTimeString('fr-FR')+'] '+text;
+  log.appendChild(line);
+  log.scrollTop=log.scrollHeight;
+}
+function clearLog(logId){const l=document.getElementById(logId);l.innerHTML='';l.classList.remove('show');}
+
+async function testGhConnection(){
+  clearLog('gh-test-log');
+  addLog('gh-test-log','Test de connexion à GitHub API…','info');
+  try{
+    const cfg=loadGhConfig();
+    if(!cfg.token){addLog('gh-test-log','❌ Token manquant — configurez votre Personal Access Token','err');return;}
+    const r=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}`,{headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'}});
+    if(r.status===200){
+      const d=await r.json();
+      addLog('gh-test-log',`✅ Repo trouvé : ${d.full_name} (${d.visibility})','ok');
+      addLog('gh-test-log',`✅ Branche par défaut : ${d.default_branch}`,'ok');
+      addLog('gh-test-log','✅ Connexion GitHub opérationnelle !','ok');
+      updateGhUI();
+    } else if(r.status===401){addLog('gh-test-log','❌ Token invalide ou expiré','err');}
+    else if(r.status===404){addLog('gh-test-log',`❌ Repo ${cfg.owner}/${cfg.repo} introuvable — vérifiez le nom`,'err');}
+    else{addLog('gh-test-log',`❌ Erreur ${r.status}`,'err');}
+  }catch(e){addLog('gh-test-log','❌ Erreur réseau : '+e.message,'err');}
+}
+
+async function checkRemoteFiles(){
+  clearLog('gh-sync-log');
+  addLog('gh-sync-log','Vérification du repo distant…','info');
+  try{
+    const cfg=loadGhConfig();
+    // Check api/works
+    try{const d=await ghAPI('api/works');addLog('gh-sync-log',`✅ api/works/ — ${d.length} fichier(s) trouvé(s)`,'ok');}
+    catch(e){addLog('gh-sync-log','⚠️ api/works/ — dossier absent (sera créé à la première synchro)','info');}
+    try{await ghAPI('api/schema');addLog('gh-sync-log','✅ api/schema/ — présent','ok');}
+    catch(e){addLog('gh-sync-log','⚠️ api/schema/ — absent','info');}
+    try{await ghAPI('api/vocabularies');addLog('gh-sync-log','✅ api/vocabularies/ — présent','ok');}
+    catch(e){addLog('gh-sync-log','⚠️ api/vocabularies/ — absent','info');}
+    document.getElementById('gh-count-remote').textContent='✓';
+  }catch(e){addLog('gh-sync-log','❌ '+e.message,'err');}
+}
+
+async function syncAllFiches(){
+  const fiches=loadFiches();
+  if(!fiches.length){showToast('Aucune fiche à publier');return;}
+  clearLog('gh-sync-log');
+  const btn=document.getElementById('btn-sync-all');
+  btn.textContent='⏳ Publication…';btn.disabled=true;
+  addLog('gh-sync-log',`Publication de ${fiches.length} fiche(s)…`,'info');
+  let ok=0,err=0;
+  for(const fiche of fiches){
+    try{
+      const record=buildRecord(fiche);
+      const slug=(fiche.title||fiche.id).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      const path=`api/works/${slug}_${fiche.id.replace('fiche_','')}.json`;
+      await writeFile(path,record,`CMS Builder: publish "${fiche.title}"`);
+      addLog('gh-sync-log',`✅ ${fiche.title||fiche.id}`,'ok');
+      ok++;
+    }catch(e){
+      addLog('gh-sync-log',`❌ ${fiche.title||fiche.id} — ${e.message}`,'err');
+      err++;
+    }
+  }
+  // Write index.json
+  try{
+    const index={generated:new Date().toISOString(),total:fiches.length,works:fiches.map(f=>({id:f.id,title:f.title,family:f.family,territory:f.territory,year:f.year,score:f.score,level:getLevel(f.score||0),savedAt:f.savedAt}))};
+    await writeFile('api/works/index.json',index,'CMS Builder: update works index');
+    addLog('gh-sync-log','✅ api/works/index.json mis à jour','ok');
+  }catch(e){addLog('gh-sync-log','⚠️ index.json — '+e.message,'info');}
+
+  localStorage.setItem('cms_gh_last_sync',new Date().toISOString());
+  updateGhUI();
+  addLog('gh-sync-log',`\n🎉 Terminé — ${ok} publié(s), ${err} erreur(s)`,'ok');
+  btn.textContent='🚀 Publier toutes les fiches';btn.disabled=false;
+  showToast(`✅ ${ok} fiche(s) publiée(s) sur GitHub !`);
+}
+
+async function publishCurrentFiche(){
+  const data=collectFormData();
+  if(!data.title){showToast('⚠️ Sauvegardez d\'abord la fiche');return;}
+  const score=parseInt(document.getElementById('score-num').textContent)||0;
+  const record=buildRecord({...data,score});
+  const slug=data.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const id=editingId||('fiche_'+Date.now());
+  const path=`api/works/${slug}_${id.replace('fiche_','')}.json`;
+  const btn=document.getElementById('btn-publish-gh');
+  btn.textContent='⏳…';btn.disabled=true;
+  try{
+    await writeFile(path,record,`CMS Builder: publish "${data.title}"`);
+    localStorage.setItem('cms_gh_last_sync',new Date().toISOString());
+    showToast('✅ Fiche publiée sur GitHub !');
+    updateGhUI();
+  }catch(e){showToast('❌ Erreur GitHub : '+e.message);}
+  btn.textContent='⚡ Publier sur GitHub';btn.disabled=false;
+}
+
+async function updateSchema(){
+  clearLog('gh-sync-log');
+  addLog('gh-sync-log','Mise à jour du schéma CMS…','info');
+  try{
+    const schema={$schema:'http://json-schema.org/draft-07/schema#',$id:'https://caribbeanmetadata.org/api/schema/cms-schema.json',title:'Caribbean Metadata Standard',version:'1.0',description:'Schéma officiel du Caribbean Metadata Standard (CMS) — Caribwood Language Lab',required:['cms_version','family','title','language','territory'],properties:{cms_version:{type:'string'},family:{type:'string',enum:['audiovisual','musical','literary','heritage','visual_arts','performing_arts']},title:{type:'string'},title_original:{type:'string'},language:{type:'array',items:{type:'string'}},territory:{type:'array',items:{type:'string'}},year:{type:'integer'},creators:{type:'array'},description:{type:'string'},metadata_tags:{type:'object'},caribbean_score:{type:'integer',minimum:0,maximum:100},compliance_level:{type:'string',enum:['PLATINUM','GOLD','SILVER','BRONZE','BELOW_THRESHOLD']},certified_by:{type:'string'},certification_date:{type:'string',format:'date'}},generated:new Date().toISOString()};
+    await writeFile('api/schema/cms-schema.json',schema,'CMS Builder: update schema v1.0');
+    addLog('gh-sync-log','✅ api/schema/cms-schema.json mis à jour','ok');
+
+    const rules={version:'1.0',levels:{PLATINUM:{min:85,description:'Ancrage caribéen exceptionnel'},GOLD:{min:65,description:'Fort ancrage caribéen'},SILVER:{min:40,description:'Ancrage caribéen établi'},BRONZE:{min:20,description:'Ancrage caribéen minimal'},BELOW_THRESHOLD:{min:0,max:19,description:'Score insuffisant pour certification'}},scoring:{identity:{max:10,fields:{title:2,family:2,year:1,territory:2,language:2,creators:1}},families:{linguistic:{weight:15},cultural:{weight:15},narrative:{weight:15},rhythmic:{weight:10},geographic:{weight:20},sociohistorical:{weight:15}}},generated:new Date().toISOString()};
+    await writeFile('api/schema/cms-validation-rules.json',rules,'CMS Builder: update validation rules');
+    addLog('gh-sync-log','✅ api/schema/cms-validation-rules.json mis à jour','ok');
+    showToast('✅ Schéma publié sur GitHub !');
+  }catch(e){addLog('gh-sync-log','❌ '+e.message,'err');}
+}
+
+async function updateVocabularies(){
+  clearLog('gh-sync-log');
+  addLog('gh-sync-log','Mise à jour des vocabulaires CMS…','info');
+  try{
+    for(const fam of FAMILIES){
+      const vocab={id:fam.id,label:fam.label,color:fam.color,weight:fam.weight,count:fam.tags.length,terms:fam.tags.map(t=>({term:t})),generated:new Date().toISOString()};
+      await writeFile(`api/vocabularies/${fam.id}.json`,vocab,`CMS Builder: update vocabulary ${fam.id}`);
+      addLog('gh-sync-log',`✅ api/vocabularies/${fam.id}.json (${fam.tags.length} termes)`,'ok');
+    }
+    showToast('✅ Vocabulaires publiés sur GitHub !');
+  }catch(e){addLog('gh-sync-log','❌ '+e.message,'err');}
+}
+
+// ── VIEWS (updated to include github) ────────────────────────────────────────
+
+const SK = 'cms_fiches', DK = 'cms_draft';
+function loadFiches(){try{return JSON.parse(localStorage.getItem(SK))||[];}catch(e){return [];}}
+function saveFiches(f){localStorage.setItem(SK,JSON.stringify(f));updateTabCount();}
+function saveDraft(){localStorage.setItem(DK,JSON.stringify(collectFormData()));}
+function loadDraft(){try{return JSON.parse(localStorage.getItem(DK));}catch(e){return null;}}
+function clearDraft(){localStorage.removeItem(DK);}
+
+// ── VIEWS ─────────────────────────────────────────────────────────────────────
+function switchView(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.main-tab').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.getElementById('tab-'+v).classList.add('active');
+  if(v==='fiches') renderFiches();
+  if(v==='github'){updateGhUI();}
+}
+function updateTabCount(){document.getElementById('tab-count').textContent=loadFiches().length;}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────────
+function renderFiches(){
+  const fiches=loadFiches();
+  const c=document.getElementById('fiches-list');
+  if(!fiches.length){
+    c.innerHTML=`<div class="empty-state"><div class="empty-icon">📂</div><div class="empty-title">Aucune fiche sauvegardée</div><div class="empty-sub">Créez votre première fiche CMS et sauvegardez-la pour la retrouver ici.</div><button class="btn-new" onclick="newFiche()">＋ Créer une fiche</button></div>`;
+    return;
+  }
+  c.innerHTML=`<div class="cards-grid">${fiches.map(f=>renderCard(f)).join('')}</div>`;
+}
+
+function renderCard(f){
+  const level=getLevel(f.score||0);
+  const lc=level?level.toLowerCase():'none';
+  const allTags=Object.values(f.tags||{}).flat();
+  const shown=allTags.slice(0,5);
+  const extra=allTags.length-5;
+  const tagsHtml=shown.map(t=>`<span class="card-tag">${t}</span>`).join('')+(extra>0?`<span class="card-tag">+${extra}</span>`:'');
+  const date=f.savedAt?new Date(f.savedAt).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):'';
+  return`<div class="fiche-card">
+    <div class="card-top"><span class="card-level ${lc}">${getLevelEmoji(level)} ${level||'NON CERTIFIÉ'}</span><div class="card-score">${f.score||0}<span>/100</span></div></div>
+    <div class="card-title">${f.title||'—'}</div>
+    <div class="card-meta">${f.family?`<span class="card-meta-pill">${f.family}</span>`:''} ${f.territory?`<span class="card-meta-pill">📍 ${f.territory}</span>`:''} ${f.year?`<span class="card-meta-pill">${f.year}</span>`:''}</div>
+    <div class="card-tags">${tagsHtml}</div>
+    <div class="card-date">Sauvegardée le ${date}</div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="editFiche('${f.id}')">✏️ Modifier</button>
+      <button class="card-btn" onclick="duplicateFiche('${f.id}')">⎘ Dupliquer</button>
+      <button class="card-btn" onclick="downloadFiche('${f.id}')">↓ JSON</button>
+      <button class="card-btn danger" onclick="askDelete('${f.id}')">🗑</button>
+    </div>
+  </div>`;
+}
+
+// ── CRUD ──────────────────────────────────────────────────────────────────────
+function newFiche(){
+  editingId=null;
+  clearFormAndTags();
+  const draft=loadDraft();
+  if(draft) fillForm(draft);
+  document.getElementById('edit-banner').classList.remove('show');
+  buildFamiliesUI();
+  updateScore();
+  updateSaveBtn();
+  switchView('builder');
+  goStep(1);
+}
+
+function saveFiche(){
+  const data=collectFormData();
+  if(!data.title){showToast('⚠️ Ajoutez au moins un titre avant de sauvegarder.');return;}
+  const fiches=loadFiches();
+  const score=parseInt(document.getElementById('score-num').textContent)||0;
+  if(editingId){
+    const idx=fiches.findIndex(f=>f.id===editingId);
+    if(idx!==-1){fiches[idx]={...fiches[idx],...data,score,savedAt:new Date().toISOString()};saveFiches(fiches);showToast('✅ Fiche mise à jour !');}
+  } else {
+    const fiche={id:'fiche_'+Date.now(),...data,score,savedAt:new Date().toISOString()};
+    fiches.unshift(fiche);saveFiches(fiches);editingId=fiche.id;
+    document.getElementById('edit-banner').classList.add('show');
+    document.getElementById('edit-banner-sub').textContent=`Modification de "${fiche.title}"`;
+    showToast('✅ Fiche sauvegardée !');
+  }
+  clearDraft();updateSaveBtn();
+}
+
+function editFiche(id){
+  const fiche=loadFiches().find(f=>f.id===id);
+  if(!fiche)return;
+  editingId=id;
+  clearFormAndTags();
+  fillForm(fiche);
+  buildFamiliesUI();
+  document.getElementById('edit-banner').classList.add('show');
+  document.getElementById('edit-banner-sub').textContent=`Modification de "${fiche.title}"`;
+  switchView('builder');
+  goStep(1);
+  updateScore();updateSaveBtn();
+}
+
+function cancelEdit(){
+  editingId=null;
+  clearFormAndTags();clearDraft();
+  document.getElementById('edit-banner').classList.remove('show');
+  buildFamiliesUI();updateScore();updateSaveBtn();
+  showToast('Modification annulée');
+}
+
+function duplicateFiche(id){
+  const fiche=loadFiches().find(f=>f.id===id);
+  if(!fiche)return;
+  const fiches=loadFiches();
+  const copy={...JSON.parse(JSON.stringify(fiche)),id:'fiche_'+Date.now(),title:fiche.title+' (copie)',savedAt:new Date().toISOString()};
+  fiches.unshift(copy);saveFiches(fiches);renderFiches();showToast('⎘ Fiche dupliquée !');
+}
+
+function downloadFiche(id){
+  const fiche=loadFiches().find(f=>f.id===id);
+  if(!fiche)return;
+  const rec=buildRecord(fiche);
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(rec,null,2)],{type:'application/json'}));
+  a.download='cms-'+(fiche.title||'content').replace(/\s+/g,'-').toLowerCase()+'.json';
+  a.click();
+}
+
+let _delId=null;
+function askDelete(id){
+  _delId=id;
+  document.getElementById('modal-delete').classList.add('show');
+  document.getElementById('btn-confirm-delete').onclick=()=>{deleteFiche(_delId);closeModal();};
+}
+function deleteFiche(id){
+  let fiches=loadFiches().filter(f=>f.id!==id);
+  saveFiches(fiches);
+  if(editingId===id){editingId=null;document.getElementById('edit-banner').classList.remove('show');}
+  renderFiches();showToast('🗑️ Fiche supprimée');
+}
+function closeModal(){document.getElementById('modal-delete').classList.remove('show');}
+
+// ── FORM HELPERS ──────────────────────────────────────────────────────────────
+function collectFormData(){
+  return{title:document.getElementById('f-title').value.trim(),titleOrig:document.getElementById('f-title-orig').value.trim(),family:document.getElementById('f-family').value,year:document.getElementById('f-year').value,territory:document.getElementById('f-territory').value,language:document.getElementById('f-language').value,creators:document.getElementById('f-creators').value.trim(),desc:document.getElementById('f-desc').value.trim(),tags:JSON.parse(JSON.stringify(selectedTags))};
+}
+function fillForm(d){
+  document.getElementById('f-title').value=d.title||'';
+  document.getElementById('f-title-orig').value=d.titleOrig||'';
+  document.getElementById('f-family').value=d.family||'';
+  document.getElementById('f-year').value=d.year||'';
+  document.getElementById('f-territory').value=d.territory||'';
+  document.getElementById('f-language').value=d.language||'';
+  document.getElementById('f-creators').value=d.creators||'';
+  document.getElementById('f-desc').value=d.desc||'';
+  if(d.tags)FAMILIES.forEach(f=>{selectedTags[f.id]=(d.tags[f.id]||[]).slice();});
+}
+function clearFormAndTags(){
+  FAMILIES.forEach(f=>selectedTags[f.id]=[]);
+  ['f-title','f-title-orig','f-creators','f-desc'].forEach(id=>document.getElementById(id).value='');
+  ['f-family','f-year','f-territory','f-language'].forEach(id=>document.getElementById(id).value='');
+}
+function updateSaveBtn(){
+  const btn=document.getElementById('btn-save-fiche');
+  if(btn)btn.textContent=editingId?'💾 Mettre à jour la fiche':'💾 Sauvegarder la fiche';
+}
+
+// ── AUTOSAVE ──────────────────────────────────────────────────────────────────
+function onFormChange(){
+  updateScore();
+  if(!editingId){
+    document.getElementById('autosave-dot').classList.add('saving');
+    document.getElementById('autosave-text').textContent='Sauvegarde…';
+    clearTimeout(autosaveTimer);
+    autosaveTimer=setTimeout(()=>{
+      saveDraft();
+      document.getElementById('autosave-dot').classList.remove('saving');
+      document.getElementById('autosave-text').textContent='Brouillon sauvegardé automatiquement';
+    },800);
+  }
+}
+
+// ── FAMILIES UI ───────────────────────────────────────────────────────────────
+function buildFamiliesUI(){
+  const c=document.getElementById('families-container');
+  c.innerHTML='';
+  FAMILIES.forEach(fam=>{
+    const block=document.createElement('div');block.className='family-block';
+    const header=document.createElement('div');header.className='family-header';
+    header.innerHTML=`<div class="family-dot" style="background:${fam.color}"></div><span class="family-name">${fam.label}</span><span class="family-count" id="count-${fam.id}">${selectedTags[fam.id].length} sélectionné(s)</span><span class="family-chevron">▼</span>`;
+    const tagsDiv=document.createElement('div');tagsDiv.className='family-tags';
+    header.onclick=function(){header.classList.toggle('open');tagsDiv.classList.toggle('open');};
+    fam.tags.forEach(tag=>{
+      const chip=document.createElement('span');
+      chip.className='tag-chip'+(selectedTags[fam.id].includes(tag)?' selected':'');
+      chip.textContent=tag;
+      chip.onclick=function(){
+        chip.classList.toggle('selected');
+        const idx=selectedTags[fam.id].indexOf(tag);
+        if(idx===-1)selectedTags[fam.id].push(tag);else selectedTags[fam.id].splice(idx,1);
+        onFormChange();
+      };
+      tagsDiv.appendChild(chip);
+    });
+    block.appendChild(header);block.appendChild(tagsDiv);c.appendChild(block);
+  });
+}
+
+// ── SCORE ─────────────────────────────────────────────────────────────────────
+function updateScore(){
+  const title=document.getElementById('f-title').value.trim();
+  const family=document.getElementById('f-family').value;
+  const year=document.getElementById('f-year').value;
+  const territory=document.getElementById('f-territory').value;
+  const language=document.getElementById('f-language').value;
+  const creators=document.getElementById('f-creators').value.trim();
+  let id=0;
+  if(title)id+=2;if(family)id+=2;if(year)id+=1;if(territory)id+=2;if(language)id+=2;if(creators)id+=1;
+  const idPct=Math.round((id/10)*100);
+  const famScores={};
+  FAMILIES.forEach(fam=>{
+    const count=selectedTags[fam.id].length;
+    const max=Math.min(count,Math.ceil(fam.tags.length*0.4));
+    famScores[fam.id]=Math.min(fam.weight,Math.round((max/(fam.tags.length*0.4))*fam.weight));
+    const el=document.getElementById('count-'+fam.id);
+    if(el)el.textContent=count+' sélectionné(s)';
+  });
+  const total=Math.min(100,id+Object.values(famScores).reduce((a,b)=>a+b,0));
+  document.getElementById('score-num').textContent=total;
+  document.getElementById('bar-identity').style.width=idPct+'%';
+  document.getElementById('val-identity').textContent=id;
+  FAMILIES.forEach(fam=>{
+    const pct=Math.round((famScores[fam.id]/fam.weight)*100);
+    document.getElementById('bar-'+fam.id).style.width=pct+'%';
+    document.getElementById('val-'+fam.id).textContent=famScores[fam.id];
+  });
+  const level=getLevel(total);
+  const pill=document.getElementById('level-pill');
+  pill.className='level-pill '+(level?level.toLowerCase():'');
+  pill.textContent=level?level:'— NON CERTIFIÉ —';
+  document.getElementById('score-circle').style.borderColor=getLevelColor(level);
+  const allTags=Object.values(selectedTags).flat();
+  const list=document.getElementById('selected-tags-list');
+  list.innerHTML=allTags.length?allTags.map(t=>`<span class="mini-tag">${t}</span>`).join(''):'<span style="font-size:12px;color:#ccc">Aucun tag sélectionné</span>';
+  if(currentStep===3)generateResult();
+}
+
+function getLevel(s){if(s>=85)return'PLATINUM';if(s>=65)return'GOLD';if(s>=40)return'SILVER';if(s>=20)return'BRONZE';return null;}
+function getLevelColor(l){return{PLATINUM:'#3FA66B',GOLD:'#F9A825',SILVER:'#9E9E9E',BRONZE:'#C8960C'}[l]||'#f0f4f8';}
+function getLevelEmoji(l){return{PLATINUM:'🏆',GOLD:'🥇',SILVER:'🥈',BRONZE:'🥉'}[l]||'📋';}
+
+// ── STEPS ─────────────────────────────────────────────────────────────────────
+function goStep(n){
+  currentStep=n;
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i+1===n));
+  document.querySelectorAll('.step-btn').forEach((b,i)=>{b.classList.remove('active','done');if(i+1===n)b.classList.add('active');else if(i+1<n)b.classList.add('done');});
+  if(n===3)generateResult();
+  const bw=document.querySelector('.builder-wrap');
+  if(bw){const off=bw.getBoundingClientRect().top+window.pageYOffset-120;window.scrollTo({top:Math.max(0,off),behavior:'smooth'});}
+}
+
+// ── GENERATE RESULT ───────────────────────────────────────────────────────────
+function buildRecord(data){
+  const score=data.score!==undefined?data.score:parseInt(document.getElementById('score-num').textContent);
+  const level=getLevel(score);
+  const allTags={};
+  FAMILIES.forEach(fam=>{const tags=data.tags?data.tags[fam.id]:selectedTags[fam.id];if(tags&&tags.length)allTags[fam.id]=tags;});
+  return{cms_version:'1.0',family:data.family||'—',title:data.title||'—',...(data.titleOrig&&{title_original:data.titleOrig}),language:[data.language||'—'],territory:[data.territory||'—'],year:parseInt(data.year)||null,...(data.creators&&{creators:[{name:data.creators,role:'Créateur'}]}),...(data.desc&&{description:data.desc}),metadata_tags:allTags,caribbean_score:score,compliance_level:level||'BELOW_THRESHOLD',certified_by:'Caribwood Language Lab — CMS Builder v1.0',certification_date:new Date().toISOString().split('T')[0]};
+}
+
+function generateResult(){
+  const data=collectFormData();
+  const score=parseInt(document.getElementById('score-num').textContent);
+  const level=getLevel(score);
+  document.getElementById('result-title').textContent=data.title||'—';
+  document.getElementById('result-subtitle').textContent=level?'Niveau '+level+' — Score caribéen : '+score+'/100':'Score insuffisant pour certification ('+score+'/100 — minimum 20)';
+  document.getElementById('result-icon').textContent=level?getLevelEmoji(level):'📋';
+  document.getElementById('result-icon').style.background=level?getLevelColor(level)+'22':'#f0f4f8';
+  const rec=buildRecord({...data,score});
+  document.getElementById('json-output').innerHTML=syntaxHighlight(JSON.stringify(rec,null,2));
+  window._cmsRecord=rec;
+}
+
+function syntaxHighlight(json){
+  return json.replace(/("[\w_]+")(:)/g,'<span class="json-key">$1</span>$2').replace(/: ("([^"]*)")/g,': <span class="json-str">"$2"</span>').replace(/: (\d+)/g,': <span class="json-num">$1</span>').replace(/: (true|false|null)/g,': <span class="json-num">$1</span>');
+}
+
+// ── DOWNLOAD / COPY ───────────────────────────────────────────────────────────
+function downloadJSON(){
+  if(!window._cmsRecord)return;
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(window._cmsRecord,null,2)],{type:'application/json'}));
+  a.download='cms-'+(window._cmsRecord.title||'content').replace(/\s+/g,'-').toLowerCase()+'.json';
+  a.click();
+}
+function copyJSON(){
+  if(!window._cmsRecord)return;
+  navigator.clipboard.writeText(JSON.stringify(window._cmsRecord,null,2)).then(()=>{
+    const btn=document.querySelector('.btn-copy');btn.textContent='✓ Copié !';setTimeout(()=>btn.textContent='⎘ Copier',2000);
+  });
+}
+function confirmReset(){
+  if(editingId){cancelEdit();}
+  else{clearFormAndTags();clearDraft();buildFamiliesUI();updateScore();goStep(1);showToast('Nouveau contenu prêt');}
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+let _tt;
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('show'),3000);}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+buildFamiliesUI();
+updateScore();
+updateTabCount();
+updateSaveBtn();
+updateGhUI();
+// Load saved GH config into fields
+const _ghcfg=loadGhConfig();
+if(_ghcfg.owner)document.getElementById('gh-owner').value=_ghcfg.owner;
+if(_ghcfg.repo)document.getElementById('gh-repo').value=_ghcfg.repo;
+if(_ghcfg.branch)document.getElementById('gh-branch').value=_ghcfg.branch;
+if(_ghcfg.token)document.getElementById('gh-token').value=_ghcfg.token;
+// Restaurer le brouillon si pas d'édition en cours
+const _draft=loadDraft();
+if(_draft){fillForm(_draft);buildFamiliesUI();updateScore();document.getElementById('autosave-text').textContent='Brouillon restauré automatiquement';}
+</script>
+</body>
+</html>
