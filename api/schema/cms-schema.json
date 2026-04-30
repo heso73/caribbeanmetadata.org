@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://caribbeanmetadata.org/api/schema/cms-schema.json",
+  "title": "Caribbean Metadata Standard",
+  "version": "1.0",
+  "description": "Schéma officiel du Caribbean Metadata Standard (CMS) — Caribwood Language Lab",
+  "required": [
+    "cms_version",
+    "family",
+    "title",
+    "language",
+    "territory"
+  ],
+  "properties": {
+    "cms_version": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string",
+      "enum": [
+        "audiovisual",
+        "musical",
+        "literary",
+        "heritage",
+        "visual_arts",
+        "performing_arts"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "title_original": {
+      "type": "string"
+    },
+    "language": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "territory": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "year": {
+      "type": "integer"
+    },
+    "creators": {
+      "type": "array"
+    },
+    "description": {
+      "type": "string"
+    },
+    "metadata_tags": {
+      "type": "object"
+    },
+    "caribbean_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "compliance_level": {
+      "type": "string",
+      "enum": [
+        "PLATINUM",
+        "GOLD",
+        "SILVER",
+        "BRONZE",
+        "BELOW_THRESHOLD"
+      ]
+    },
+    "certified_by": {
+      "type": "string"
+    },
+    "certification_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "generated": "2026-04-30T17:40:53.453Z"
+}
