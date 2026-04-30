@@ -1,0 +1,58 @@
+{
+  "id": "geographic",
+  "label": "Famille 05 — Géographique",
+  "color": "#3FA66B",
+  "weight": 20,
+  "count": 16,
+  "terms": [
+    {
+      "term": "Guadeloupe"
+    },
+    {
+      "term": "Martinique"
+    },
+    {
+      "term": "Haïti"
+    },
+    {
+      "term": "Jamaïque"
+    },
+    {
+      "term": "Trinité-et-Tobago"
+    },
+    {
+      "term": "Cuba"
+    },
+    {
+      "term": "Urbain caribéen"
+    },
+    {
+      "term": "Rural tropical"
+    },
+    {
+      "term": "Littoral insulaire"
+    },
+    {
+      "term": "Forêt tropicale"
+    },
+    {
+      "term": "Grande Caraïbe"
+    },
+    {
+      "term": "Petites Antilles"
+    },
+    {
+      "term": "Diaspora caribéenne"
+    },
+    {
+      "term": "La mer comme frontière"
+    },
+    {
+      "term": "La plantation"
+    },
+    {
+      "term": "Le morne"
+    }
+  ],
+  "generated": "2026-04-30T17:41:10.823Z"
+}
