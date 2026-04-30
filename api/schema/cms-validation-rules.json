@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "levels": {
+    "PLATINUM": {
+      "min": 85,
+      "description": "Ancrage caribéen exceptionnel"
+    },
+    "GOLD": {
+      "min": 65,
+      "description": "Fort ancrage caribéen"
+    },
+    "SILVER": {
+      "min": 40,
+      "description": "Ancrage caribéen établi"
+    },
+    "BRONZE": {
+      "min": 20,
+      "description": "Ancrage caribéen minimal"
+    },
+    "BELOW_THRESHOLD": {
+      "min": 0,
+      "max": 19,
+      "description": "Score insuffisant pour certification"
+    }
+  },
+  "scoring": {
+    "identity": {
+      "max": 10,
+      "fields": {
+        "title": 2,
+        "family": 2,
+        "year": 1,
+        "territory": 2,
+        "language": 2,
+        "creators": 1
+      }
+    },
+    "families": {
+      "linguistic": {
+        "weight": 15
+      },
+      "cultural": {
+        "weight": 15
+      },
+      "narrative": {
+        "weight": 15
+      },
+      "rhythmic": {
+        "weight": 10
+      },
+      "geographic": {
+        "weight": 20
+      },
+      "sociohistorical": {
+        "weight": 15
+      }
+    }
+  },
+  "generated": "2026-04-30T17:40:57.578Z"
+}
