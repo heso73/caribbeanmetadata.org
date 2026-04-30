@@ -1,0 +1,52 @@
+{
+  "id": "sociohistorical",
+  "label": "Famille 06 — Socio-historique",
+  "color": "#185FA5",
+  "weight": 15,
+  "count": 14,
+  "terms": [
+    {
+      "term": "Mémoire de l'esclavage"
+    },
+    {
+      "term": "Colonisation"
+    },
+    {
+      "term": "Abolition"
+    },
+    {
+      "term": "Indépendance"
+    },
+    {
+      "term": "Créolisation"
+    },
+    {
+      "term": "Postcolonialité"
+    },
+    {
+      "term": "Négritude"
+    },
+    {
+      "term": "Antillanité"
+    },
+    {
+      "term": "Exil volontaire"
+    },
+    {
+      "term": "Retour au pays"
+    },
+    {
+      "term": "Tensions diaspora/île"
+    },
+    {
+      "term": "Tensions intergénérationnelles"
+    },
+    {
+      "term": "Classe sociale"
+    },
+    {
+      "term": "Genre et pouvoir"
+    }
+  ],
+  "generated": "2026-04-30T17:41:12.537Z"
+}
