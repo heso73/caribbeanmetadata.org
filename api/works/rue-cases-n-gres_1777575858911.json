@@ -1,0 +1,58 @@
+{
+  "cms_version": "1.0",
+  "family": "audiovisual",
+  "title": "Rue Cases-Nègres",
+  "title_original": "Rue Cases-Nègres",
+  "language": [
+    "cr"
+  ],
+  "territory": [
+    "Martinique"
+  ],
+  "year": 1983,
+  "creators": [
+    {
+      "name": "Euzhan Palcy (Réalisatrice)",
+      "role": "Créateur"
+    }
+  ],
+  "metadata_tags": {
+    "linguistic": [
+      "Créole martiniquais",
+      "Oralité rythmée",
+      "Proverbes créoles",
+      "Contes oraux"
+    ],
+    "cultural": [
+      "Héritage africain",
+      "Métissage culturel",
+      "Syncrétisme afro-caribéen"
+    ],
+    "narrative": [
+      "Récit initiatique",
+      "Saga familiale",
+      "Drame social"
+    ],
+    "rhythmic": [
+      "Tempo insulaire lent",
+      "Sons naturels insulaires"
+    ],
+    "geographic": [
+      "Martinique",
+      "Rural tropical",
+      "La plantation"
+    ],
+    "sociohistorical": [
+      "Mémoire de l'esclavage",
+      "Colonisation",
+      "Négritude",
+      "Antillanité",
+      "Tensions intergénérationnelles",
+      "Classe sociale"
+    ]
+  },
+  "caribbean_score": 63,
+  "compliance_level": "SILVER",
+  "certified_by": "Caribwood Language Lab — CMS Builder v1.0",
+  "certification_date": "2026-04-30"
+}
