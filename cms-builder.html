@@ -689,7 +689,7 @@ async function testGhConnection(){
     const r=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}`,{headers:{'Authorization':`token ${cfg.token}`,'Accept':'application/vnd.github.v3+json'}});
     if(r.status===200){
       const d=await r.json();
-      addLog('gh-test-log',`✅ Repo trouvé : ${d.full_name} (${d.visibility})','ok');
+      addLog('gh-test-log',`✅ Repo trouvé : ${d.full_name} (${d.visibility})`,'ok');
       addLog('gh-test-log',`✅ Branche par défaut : ${d.default_branch}`,'ok');
       addLog('gh-test-log','✅ Connexion GitHub opérationnelle !','ok');
       updateGhUI();
