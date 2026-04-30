@@ -1,0 +1,46 @@
+{
+  "id": "rhythmic",
+  "label": "Famille 04 — Rythmique",
+  "color": "#7B3FA6",
+  "weight": 10,
+  "count": 12,
+  "terms": [
+    {
+      "term": "Tempo insulaire lent"
+    },
+    {
+      "term": "Tempo urbain rapide"
+    },
+    {
+      "term": "Tempo contemplatif"
+    },
+    {
+      "term": "Dialogue syncopé"
+    },
+    {
+      "term": "Parole percussive"
+    },
+    {
+      "term": "Rythme appel-réponse"
+    },
+    {
+      "term": "Intonation chantée"
+    },
+    {
+      "term": "Oralité musicale"
+    },
+    {
+      "term": "Silence signifiant"
+    },
+    {
+      "term": "Ambiance tropicale"
+    },
+    {
+      "term": "Paysage sonore urbain"
+    },
+    {
+      "term": "Sons naturels insulaires"
+    }
+  ],
+  "generated": "2026-04-30T17:41:09.457Z"
+}
