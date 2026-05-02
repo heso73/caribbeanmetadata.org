@@ -136,11 +136,15 @@
 
   const CSS = `
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(255,255,255,0.98); border-bottom: 1px solid rgba(0,0,0,0.1);
-      padding: 0 6%; height: 68px; display: flex; align-items: center;
-      justify-content: space-between; gap: 12px;
+      position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important;
+      z-index: 1000 !important; background: rgba(255,255,255,0.98) !important;
+      border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+      padding: 0 6% !important; height: 68px !important; display: flex !important;
+      align-items: center !important; justify-content: space-between !important;
+      gap: 12px !important; flex-direction: row !important;
+      backdrop-filter: none !important;
     }
+    body { padding-top: 68px; }
     nav .cms-logo { font-size: 20px; font-weight: 700; color: #003E6B;
       text-decoration: none; letter-spacing: 2px; flex-shrink: 0; }
     nav .nav-links { display: flex; gap: 16px; list-style: none; align-items: center; flex: 1; flex-wrap: nowrap; }
