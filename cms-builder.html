@@ -555,7 +555,7 @@ footer{background:#003E6B;padding:56px 6% 32px}
         <div class="selected-tags-title">Tags sélectionnés</div>
         <div class="selected-tags-list" id="selected-tags-list"><span style="font-size:12px;color:#ccc">Aucun tag sélectionné</span></div>
       </div>
-      <button class="btn-cta" onclick="goStep(3)">Générer ma fiche →</button>
+      <button class="btn-cta" onclick="saveFiche()">💾 Sauvegarder la fiche</button>
     </div>
   </div>
 </div>
@@ -873,14 +873,29 @@ function saveFiche(){
   if(editingId){
     const idx=fiches.findIndex(f=>f.id===editingId);
     if(idx!==-1){fiches[idx]={...fiches[idx],...data,score,savedAt:new Date().toISOString()};saveFiches(fiches);showToast('✅ Fiche mise à jour !');}
+    // Après mise à jour : on repart à zéro
+    editingId=null;
+    clearFormAndTags();
+    clearDraft();
+    document.getElementById('edit-banner').classList.remove('show');
+    buildFamiliesUI();
+    updateScore();
+    updateSaveBtn();
+    goStep(1);
   } else {
     const fiche={id:'fiche_'+Date.now(),...data,score,savedAt:new Date().toISOString()};
-    fiches.unshift(fiche);saveFiches(fiches);editingId=fiche.id;
-    document.getElementById('edit-banner').classList.add('show');
-    document.getElementById('edit-banner-sub').textContent=`Modification de "${fiche.title}"`;
+    fiches.unshift(fiche);saveFiches(fiches);
     showToast('✅ Fiche sauvegardée !');
+    // Après sauvegarde : on repart à zéro proprement
+    editingId=null;
+    clearFormAndTags();
+    clearDraft();
+    document.getElementById('edit-banner').classList.remove('show');
+    buildFamiliesUI();
+    updateScore();
+    updateSaveBtn();
+    goStep(1);
   }
-  clearDraft();updateSaveBtn();
 }
 
 function editFiche(id){
