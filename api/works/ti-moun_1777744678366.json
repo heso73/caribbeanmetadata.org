@@ -1,0 +1,53 @@
+{
+  "cms_version": "1.0",
+  "family": "musical",
+  "title": "Ti Moun",
+  "title_original": "Ti Moun",
+  "language": [
+    "cr"
+  ],
+  "territory": [
+    "Martinique"
+  ],
+  "year": 2020,
+  "creators": [
+    {
+      "name": "Kalash (Artiste)",
+      "role": "Créateur"
+    }
+  ],
+  "description": "Album de Kalash, artiste martiniquais, mêlant rap, dancehall et créole antillais. Ti Moun illustre la vitalité de la scène musicale caribéenne contemporaine.",
+  "metadata_tags": {
+    "linguistic": [
+      "Créole martiniquais",
+      "Code-switching",
+      "Alternance codique",
+      "Oralité rythmée"
+    ],
+    "cultural": [
+      "Reggae",
+      "Dancehall",
+      "Identité diasporique",
+      "Métissage culturel"
+    ],
+    "rhythmic": [
+      "Tempo urbain rapide",
+      "Dialogue syncopé",
+      "Parole percussive"
+    ],
+    "geographic": [
+      "Martinique",
+      "Petites Antilles",
+      "Urbain caribéen"
+    ],
+    "sociohistorical": [
+      "Postcolonialité",
+      "Créolisation",
+      "Antillanité"
+    ]
+  },
+  "caribbean_score": 52,
+  "compliance_level": "SILVER",
+  "certified_by": "Caribwood Language Lab — CMS Builder v1.0",
+  "certification_date": "2026-05-02"
+}
