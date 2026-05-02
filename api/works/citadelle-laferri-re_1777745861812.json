@@ -1,0 +1,59 @@
+{
+  "cms_version": "1.0",
+  "family": "heritage",
+  "title": "Citadelle Laferrière",
+  "title_original": "Citadelle Laferrière",
+  "language": [
+    "ht"
+  ],
+  "territory": [
+    "Haïti"
+  ],
+  "year": 1820,
+  "creators": [
+    {
+      "name": "Henri Christophe (Commanditaire)",
+      "role": "Créateur"
+    }
+  ],
+  "description": "Forteresse monumentale construite après l'indépendance haïtienne de 1804, sous la supervision du roi Henri Christophe. Symbole de la souveraineté et de la résistance caribéenne. Classée au patrimoine mondial de l'UNESCO.",
+  "metadata_tags": {
+    "linguistic": [
+      "Créole haïtien",
+      "Oralité rythmée",
+      "Griot caribéen"
+    ],
+    "cultural": [
+      "Syncrétisme afro-caribéen",
+      "Identité diasporique",
+      "Héritage africain"
+    ],
+    "narrative": [
+      "Mémoire collective",
+      "Résistance",
+      "Émancipation",
+      "Guide ancestral"
+    ],
+    "rhythmic": [
+      "Tempo contemplatif",
+      "Silence signifiant"
+    ],
+    "geographic": [
+      "Grande Caraïbe",
+      "Le morne",
+      "Rural tropical",
+      "Haïti"
+    ],
+    "sociohistorical": [
+      "Indépendance",
+      "Mémoire de l'esclavage",
+      "Abolition",
+      "Négritude",
+      "Postcolonialité"
+    ]
+  },
+  "caribbean_score": 65,
+  "compliance_level": "GOLD",
+  "certified_by": "Caribwood Language Lab — CMS Builder v1.0",
+  "certification_date": "2026-05-02"
+}
