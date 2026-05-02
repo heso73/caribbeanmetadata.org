@@ -1,0 +1,36 @@
+{
+  "generated": "2026-05-02T19:47:50.486Z",
+  "total": 3,
+  "works": [
+    {
+      "id": "fiche_1777745861812",
+      "title": "Citadelle Laferrière",
+      "family": "heritage",
+      "territory": "Haïti",
+      "year": "1820",
+      "score": 65,
+      "level": "GOLD",
+      "savedAt": "2026-05-02T18:17:41.812Z"
+    },
+    {
+      "id": "fiche_1777744678366",
+      "title": "Ti Moun",
+      "family": "musical",
+      "territory": "Martinique",
+      "year": "2020",
+      "score": 52,
+      "level": "SILVER",
+      "savedAt": "2026-05-02T17:57:58.366Z"
+    },
+    {
+      "id": "fiche_1777743929576",
+      "title": "Rue Cases-Nègres",
+      "family": "audiovisual",
+      "territory": "Martinique",
+      "year": "1983",
+      "score": 63,
+      "level": "SILVER",
+      "savedAt": "2026-05-02T17:45:29.576Z"
+    }
+  ]
+}
