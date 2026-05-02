@@ -13,8 +13,15 @@
              : 'fr';
   const basePage = page.replace(/-en\.html$/, '').replace(/-es\.html$/, '').replace(/\.html$/, '');
 
+  // Pages qui n'ont pas de version ES ou EN — fallback vers index
+  const NO_ES = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'contact', 'cms-builder', 'press'];
+  const NO_EN = ['glossaire', 'architecture', 'press'];
+
   function pageFor(l) {
-    return l === 'fr' ? basePage + '.html' : basePage + '-' + l + '.html';
+    if (l === 'fr') return basePage + '.html';
+    if (l === 'es' && NO_ES.includes(basePage)) return 'index-es.html';
+    if (l === 'en' && NO_EN.includes(basePage)) return 'index-en.html';
+    return basePage + '-' + l + '.html';
   }
 
   const NAV = {
@@ -122,13 +129,13 @@
           { href: 'contact-es.html',     label: 'Contacto' },
         ]},
         { title: 'Recursos', links: [
-          { href: 'resources.html',      label: 'White Paper' },
-          { href: 'glossaire.html',      label: 'Glosario' },
-          { href: 'developers.html',     label: 'Developers / API' },
-          { href: 'press-es.html',       label: 'Prensa' },
-          { href: 'founders-es.html',    label: '→ Los 100 Primeros' },
-          { href: 'validator.html',      label: '→ Certificar contenido' },
-          { href: 'cms-builder.html',    label: '→ CMS Builder' },
+          { href: 'CMS_WhitePaper_v1.0.pdf', label: 'White Paper' },
+          { href: 'glossaire.html',          label: 'Glosario' },
+          { href: 'developers.html',         label: 'Developers / API' },
+          { href: 'press-es.html',           label: 'Prensa' },
+          { href: 'founders-es.html',        label: '→ Los 100 Primeros' },
+          { href: 'validator.html',          label: '→ Certificar contenido' },
+          { href: 'cms-builder.html',        label: '→ CMS Builder' },
         ]},
       ]
     }
