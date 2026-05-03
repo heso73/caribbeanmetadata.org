@@ -142,3 +142,15 @@ blockquote{border-left:3px solid var(--turquoise);padding:1rem 0 1rem 1.5rem;fon
   .stats-grid{grid-template-columns:1fr}
   .family-tags-grid{grid-template-columns:1fr}
 }
+
+/* ── NAV FIX ES — correctif opacité ── */
+nav { opacity: 1 !important; visibility: visible !important; }
+nav .cms-logo { color: #003E6B !important; opacity: 1 !important; visibility: visible !important; }
+nav .nav-burger span { background: #003E6B !important; opacity: 1 !important; }
+nav .nav-links a { color: #2a2a2a !important; opacity: 1 !important; visibility: visible !important; }
+nav .nav-links a:hover, nav .nav-links a.active { color: #003E6B !important; }
+nav .nav-links a.nav-cta { color: #003E6B !important; background: #00C2C7 !important; }
+.cms-lang-switcher { opacity: 1 !important; visibility: visible !important; }
+.cms-lang-switcher a { opacity: 1 !important; visibility: visible !important; color: #003E6B !important; }
+.cms-lang-switcher a.lang-active { background: #003E6B !important; color: #fff !important; }
+.cms-lang-switcher a:not(.lang-active) { border: 1px solid rgba(0,62,107,0.25) !important; }
