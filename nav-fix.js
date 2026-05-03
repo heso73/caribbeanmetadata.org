@@ -13,13 +13,14 @@
              : 'fr';
   const basePage = page.replace(/-en\.html$/, '').replace(/-es\.html$/, '').replace(/\.html$/, '');
 
-  // Pages qui n'ont pas de version ES ou EN — fallback vers index
-  const NO_ES = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'contact', 'cms-builder', 'press'];
+  // Pages sans version ES — restent sur la version FR
+  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press'];
+  // Pages sans version EN
   const NO_EN = ['glossaire', 'architecture', 'press'];
 
   function pageFor(l) {
     if (l === 'fr') return basePage + '.html';
-    if (l === 'es' && NO_ES.includes(basePage)) return 'index-es.html';
+    if (l === 'es' && STAY_FR.includes(basePage)) return basePage + '.html';
     if (l === 'en' && NO_EN.includes(basePage)) return 'index-en.html';
     return basePage + '-' + l + '.html';
   }
