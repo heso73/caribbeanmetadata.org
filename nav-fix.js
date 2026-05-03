@@ -143,27 +143,29 @@
   };
 
   const CSS = `
-    nav {
+    nav:not(.families-anchor-nav) {
       position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important;
       z-index: 1000 !important; background: rgba(255,255,255,0.98) !important;
       border-bottom: 1px solid rgba(0,0,0,0.1) !important;
-      padding: 0 6% !important; height: 68px !important; display: flex !important;
-      align-items: center !important; justify-content: space-between !important;
+      padding: 0 6% !important; height: 68px !important; min-height: 68px !important; max-height: 68px !important;
+      display: flex !important; align-items: center !important;
+      justify-content: space-between !important;
       gap: 12px !important; flex-direction: row !important;
-      backdrop-filter: none !important;
+      backdrop-filter: none !important; width: 100% !important;
+      box-sizing: border-box !important;
     }
-    body { padding-top: 68px; }
-    nav .cms-logo { font-size: 20px; font-weight: 700; color: #003E6B;
+    body { padding-top: 68px !important; margin-top: 0 !important; }
+    nav:not(.families-anchor-nav) .cms-logo { font-size: 20px; font-weight: 700; color: #003E6B;
       text-decoration: none; letter-spacing: 2px; flex-shrink: 0; }
-    nav .nav-links { display: flex; gap: 16px; list-style: none; align-items: center; flex: 1; flex-wrap: nowrap; }
-    nav .nav-links a { font-size: 12px; color: #2a2a2a; text-decoration: none;
+    nav:not(.families-anchor-nav) .nav-links { display: flex; gap: 16px; list-style: none; align-items: center; flex: 1; flex-wrap: nowrap; }
+    nav:not(.families-anchor-nav) .nav-links a { font-size: 12px; color: #2a2a2a; text-decoration: none;
       transition: color .2s; font-weight: 500; white-space: nowrap; }
-    nav .nav-links a:hover, nav .nav-links a.active { color: #003E6B; }
-    nav .nav-links a.active { font-weight: 700; }
-    nav .nav-links a.nav-cta { padding: 6px 12px; background: #00C2C7;
+    nav:not(.families-anchor-nav) .nav-links a:hover, nav:not(.families-anchor-nav) .nav-links a.active { color: #003E6B; }
+    nav:not(.families-anchor-nav) .nav-links a.active { font-weight: 700; }
+    nav:not(.families-anchor-nav) .nav-links a.nav-cta { padding: 6px 12px; background: #00C2C7;
       color: #003E6B !important; border-radius: 4px; font-weight: 700 !important;
       font-size: 11px; }
-    nav .nav-links a.nav-cta:hover { background: #00A8AE !important; }
+    nav:not(.families-anchor-nav) .nav-links a.nav-cta:hover { background: #00A8AE !important; }
     .cms-lang-switcher { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
     .cms-lang-switcher a { font-size: 11px; font-weight: 700; padding: 4px 7px;
       border-radius: 3px; text-decoration: none; transition: all .2s; }
@@ -180,17 +182,17 @@
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     @media (max-width: 1100px) {
       .nav-burger { display: flex; }
-      nav .nav-links { display: none; position: fixed; top: 68px; left: 0; right: 0;
+      nav:not(.families-anchor-nav) .nav-links { display: none; position: fixed; top: 68px; left: 0; right: 0;
         background: rgba(255,255,255,0.98); flex-direction: column;
         align-items: flex-start; padding: 24px 6%; gap: 0;
         border-bottom: 1px solid rgba(0,0,0,0.08);
         box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         max-height: calc(100vh - 68px); overflow-y: auto; z-index: 999; }
-      nav .nav-links.open { display: flex; }
-      nav .nav-links li { width: 100%; }
-      nav .nav-links a { display: block; padding: 12px 0;
+      nav:not(.families-anchor-nav) .nav-links.open { display: flex; }
+      nav:not(.families-anchor-nav) .nav-links li { width: 100%; }
+      nav:not(.families-anchor-nav) .nav-links a { display: block; padding: 12px 0;
         border-bottom: 1px solid rgba(0,62,107,0.06); font-size: 15px; }
-      nav .nav-links li:last-child a { border-bottom: none; }
+      nav:not(.families-anchor-nav) .nav-links li:last-child a { border-bottom: none; }
     }
     footer { background: #003E6B; padding: 56px 6% 32px; }
     .footer-logo { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 2px;
