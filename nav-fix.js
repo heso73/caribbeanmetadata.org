@@ -30,6 +30,7 @@
       { href: 'about.html',        label: 'À propos' },
       { href: 'families.html',     label: 'Les 6 familles' },
       { href: 'resources.html',    label: 'Ressources' },
+      { href: 'roadmap.html',      label: 'Roadmap' },
       { href: 'lab.html',          label: 'Language Lab' },
       { href: 'collaborate.html',  label: 'Collaborer' },
       { href: 'declaration.html',  label: 'Déclaration' },
@@ -42,6 +43,7 @@
       { href: 'about-en.html',       label: 'About' },
       { href: 'families-en.html',    label: 'The 6 Families' },
       { href: 'resources.html',      label: 'Resources' },
+      { href: 'roadmap.html',        label: 'Roadmap' },
       { href: 'lab-en.html',         label: 'Language Lab' },
       { href: 'collaborate-en.html', label: 'Collaborate' },
       { href: 'declaration-en.html', label: 'Declaration' },
@@ -54,6 +56,7 @@
       { href: 'about-es.html',       label: 'Acerca de' },
       { href: 'families-es.html',    label: 'Las 6 familias' },
       { href: 'resources.html',      label: 'Recursos' },
+      { href: 'roadmap.html',        label: 'Roadmap' },
       { href: 'lab-es.html',         label: 'Language Lab' },
       { href: 'collaborate-es.html', label: 'Colaborar' },
       { href: 'declaration-es.html', label: 'Declaración' },
@@ -73,6 +76,7 @@
           { href: 'families.html',     label: 'Les 6 familles' },
           { href: 'resources.html',    label: 'Documentation' },
           { href: 'declaration.html',  label: 'Déclaration fondatrice' },
+          { href: 'roadmap.html',      label: 'Roadmap 2026–2028' },
         ]},
         { title: 'Écosystème', links: [
           { href: 'lab.html',          label: 'Language Lab' },
@@ -98,6 +102,7 @@
           { href: 'families-en.html',    label: 'The 6 Families' },
           { href: 'resources.html',      label: 'Documentation' },
           { href: 'declaration-en.html', label: 'Founding Declaration' },
+          { href: 'roadmap.html',        label: 'Roadmap 2026–2028' },
         ]},
         { title: 'Ecosystem', links: [
           { href: 'lab-en.html',         label: 'Language Lab' },
@@ -123,6 +128,7 @@
           { href: 'families-es.html',    label: 'Las 6 familias' },
           { href: 'resources.html',      label: 'Documentación' },
           { href: 'declaration-es.html', label: 'Declaración Fundadora' },
+          { href: 'roadmap.html',        label: 'Roadmap 2026–2028' },
         ]},
         { title: 'Ecosistema', links: [
           { href: 'lab-es.html',         label: 'Language Lab' },
