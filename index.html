@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne</title>
-<meta name="description" content="Le premier standard numérique caribéen — un cadre unifié pour classifier, décrire et indexer les contenus culturels caribéens.">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -143,10 +142,7 @@ section { padding: 88px 6%; }
   transition: all .2s;
 }
 .btn-declaration:hover { background: rgba(201,168,76,0.1); border-color: #C9A84C; }
-.declaration-quote {
-  border-left: 2px solid #C9A84C;
-  padding-left: 28px;
-}
+.declaration-quote { border-left: 2px solid #C9A84C; padding-left: 28px; }
 .declaration-quote blockquote {
   font-family: Georgia, serif;
   font-size: clamp(18px, 2.5vw, 26px);
@@ -154,13 +150,8 @@ section { padding: 88px 6%; }
   color: rgba(248,245,238,0.88);
   line-height: 1.75; margin-bottom: 24px;
 }
-.declaration-quote .quote-source {
-  font-size: 11px; letter-spacing: 2px;
-  color: #C9A84C; font-style: normal;
-}
-.declaration-articles {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px;
-}
+.declaration-quote .quote-source { font-size: 11px; letter-spacing: 2px; color: #C9A84C; font-style: normal; }
+.declaration-articles { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
 .decl-pill {
   padding: 4px 12px; border-radius: 20px;
   font-size: 11px; color: rgba(248,245,238,0.5);
@@ -168,7 +159,7 @@ section { padding: 88px 6%; }
   font-family: inherit;
 }
 
-
+/* VALIDATOR CTA */
 .validator-cta-section { background: #003E6B; padding: 80px 6%; }
 .validator-cta-inner {
   display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
@@ -197,7 +188,7 @@ section { padding: 88px 6%; }
 }
 .vcp-logo { width: 32px; height: 32px; }
 .vcp-header-text p:first-child { font-size: 13px; font-weight: 700; color: #fff; }
-.vcp-header-text p:last-child  { font-size: 10px; color: #00C2C7; letter-spacing: 1px; }
+.vcp-header-text p:last-child { font-size: 10px; color: #00C2C7; letter-spacing: 1px; }
 .vcp-steps { display: flex; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .vcp-step { flex: 1; padding: 10px 6px; text-align: center; font-size: 10px; color: rgba(255,255,255,0.4); }
 .vcp-step.a { color: #00C2C7; border-bottom: 2px solid #00C2C7; }
@@ -213,10 +204,83 @@ section { padding: 88px 6%; }
   flex: 1; padding: 8px 4px; border-radius: 4px; text-align: center;
   font-size: 9px; font-weight: 700; letter-spacing: 1px;
 }
-.vcp-level.bronze  { background: rgba(200,150,20,0.2);  color: #C8960C; }
-.vcp-level.silver  { background: rgba(158,158,158,0.2); color: #9E9E9E; }
-.vcp-level.gold    { background: rgba(249,168,37,0.2);  color: #F9A825; }
-.vcp-level.plat    { background: rgba(15,110,86,0.2);   color: #3FA66B; }
+.vcp-level.bronze { background: rgba(200,150,20,0.2); color: #C8960C; }
+.vcp-level.silver { background: rgba(158,158,158,0.2); color: #9E9E9E; }
+.vcp-level.gold { background: rgba(249,168,37,0.2); color: #F9A825; }
+.vcp-level.plat { background: rgba(15,110,86,0.2); color: #3FA66B; }
+
+/* ==========================================
+   OPEN DATA SECTION — NOUVEAU
+   ========================================== */
+.opendata-section { background: #fff; padding: 88px 6%; }
+.opendata-inner { max-width: 1100px; margin: 0 auto; }
+.opendata-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: start; margin-bottom: 48px;
+}
+.opendata-text .section-title { margin-bottom: 20px; }
+.opendata-text p { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 28px; }
+.opendata-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.opendata-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-decoration: none;
+}
+.badge-cc  { background: #E8F6F7; color: #007A7E; border: 1px solid #B2E4E6; }
+.badge-cms { background: #E8F0F7; color: #003E6B; border: 1px solid #B2CCE0; }
+.badge-ifla  { background: #EEF2F7; color: #003E6B; border: 1px solid #C5D0DD; }
+.badge-crosq { background: #FFF9E8; color: #7A5C00; border: 1px solid #FFE49A; }
+.btn-github {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 24px; background: #1a1a1a; color: #fff;
+  text-decoration: none; border-radius: 4px;
+  font-size: 14px; font-weight: 600; transition: background .2s;
+}
+.btn-github:hover { background: #333; }
+.corpus-card {
+  background: #fff; border: 1px solid rgba(0,62,107,0.1);
+  border-radius: 10px; overflow: hidden;
+}
+.corpus-card-header {
+  background: #003E6B; padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.corpus-card-header-left { display: flex; align-items: center; gap: 12px; }
+.corpus-dot { width: 10px; height: 10px; border-radius: 50%; background: #00C2C7; }
+.corpus-card-title { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.corpus-card-sub { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 1px; margin-top: 2px; }
+.corpus-version { font-size: 10px; color: #00C2C7; letter-spacing: 2px; font-weight: 700; }
+.corpus-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid rgba(0,62,107,0.08);
+}
+.corpus-stat { padding: 18px 20px; border-right: 1px solid rgba(0,62,107,0.08); text-align: center; }
+.corpus-stat:last-child { border-right: none; }
+.corpus-stat-value { font-size: 26px; font-weight: 700; color: #003E6B; line-height: 1; margin-bottom: 4px; }
+.corpus-stat-label { font-size: 10px; color: #999; letter-spacing: 1px; text-transform: uppercase; }
+.corpus-languages { padding: 16px 20px; border-bottom: 1px solid rgba(0,62,107,0.06); }
+.corpus-lang-title { font-size: 10px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+.corpus-lang-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.lang-tag {
+  padding: 3px 10px; background: #f0f4f8; border-radius: 12px;
+  font-size: 11px; color: #003E6B; font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+.corpus-markers { padding: 16px 20px; }
+.corpus-marker-title { font-size: 10px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+.corpus-marker-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.marker-tag {
+  padding: 3px 10px; background: #E8F6F7; border-radius: 12px;
+  font-size: 11px; color: #007A7E; font-weight: 600;
+}
+.opendata-stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(0,62,107,0.08);
+  border-radius: 8px; overflow: hidden;
+}
+.opendata-stat-box { background: #fff; padding: 24px 20px; text-align: center; }
+.opendata-stat-num { font-size: 32px; font-weight: 700; color: #003E6B; line-height: 1; margin-bottom: 6px; }
+.opendata-stat-lbl { font-size: 11px; color: #888; letter-spacing: 1px; text-transform: uppercase; }
 
 /* BÉNÉFICIAIRES */
 .benefits-section { background: #f7f9fb; }
@@ -258,6 +322,8 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
   .problem-grid, .families-grid, .benefits-grid { grid-template-columns: 1fr; }
   .validator-cta-inner { grid-template-columns: 1fr; }
   .declaration-inner { grid-template-columns: 1fr; }
+  .opendata-grid { grid-template-columns: 1fr; }
+  .opendata-stats-row { grid-template-columns: repeat(2, 1fr); }
   .vcp-levels { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
@@ -268,20 +334,20 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html">CMS</a>
+  <a href="#" class="nav-logo">CMS</a>
   <ul class="nav-links">
-    <li><a href="about.html">À propos</a></li>
-    <li><a href="families.html">Les 6 familles</a></li>
-    <li><a href="resources.html">Ressources</a></li>
-    <li><a href="roadmap.html">Roadmap</a></li>
-    <li><a href="developers.html">Developers</a></li>
-    <li><a href="lab.html">Language Lab</a></li>
-    <li><a href="collaborate.html">Collaborer</a></li>
-    <li><a href="declaration.html">Déclaration</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="founders.html">Les 100 Premiers</a></li>
-    <li><a href="validator.html">Valider un contenu</a></li>
-    <li><a href="cms-builder.html" class="nav-validate">CMS Builder</a></li>
+    <li><a href="#">À propos</a></li>
+    <li><a href="#">Les 6 familles</a></li>
+    <li><a href="#">Ressources</a></li>
+    <li><a href="#">Roadmap</a></li>
+    <li><a href="#">Developers</a></li>
+    <li><a href="#">Language Lab</a></li>
+    <li><a href="#">Collaborer</a></li>
+    <li><a href="#">Déclaration</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Les 100 Premiers</a></li>
+    <li><a href="#" class="nav-validate">Valider un contenu</a></li>
+    <li><a href="#">CMS Builder</a></li>
   </ul>
 </nav>
 
@@ -293,9 +359,9 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
     <p class="hero-cms">C · M · S</p>
     <p>Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.</p>
     <div class="hero-actions">
-      <a href="cms-builder.html" class="btn-hero-primary">Créer une fiche CMS</a>
-      <a href="about.html" class="btn-hero-secondary">Découvrir le standard</a>
-      <a href="collaborate.html" class="btn-hero-secondary">Rejoindre l'initiative</a>
+      <a href="#" class="btn-hero-primary">Créer une fiche CMS</a>
+      <a href="#" class="btn-hero-secondary">Découvrir le standard</a>
+      <a href="#" class="btn-hero-secondary">Rejoindre l'initiative</a>
     </div>
   </div>
   <div class="hero-scroll">Scroll</div>
@@ -305,7 +371,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 <section class="problem-section">
   <div class="section-eyebrow">Le problème</div>
   <h2 class="section-title">L'invisibilité numérique des créateurs caribéens</h2>
-  <p style="font-size:16px;color:#555;max-width:620px;margin-bottom:40px;line-height:1.7;">Les algorithmes déterminent ce que les audiences voient et valorisent. Pourtant les contenus caribéens restent mal indexés, mal classifiés — ou invisibles.</p>
+  <p style="font-size:16px;color:#555;max-width:600px;margin-bottom:40px;line-height:1.75;">Les algorithmes déterminent ce que les audiences voient et valorisent. Pourtant les contenus caribéens restent mal indexés, mal classifiés — ou invisibles.</p>
   <div class="problem-grid">
     <div class="problem-card">
       <div class="problem-letter">A</div>
@@ -325,56 +391,54 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
   </div>
 </section>
 
-<!-- LES 6 FAMILLES -->
+<!-- FAMILLES -->
 <section class="families-section">
   <div class="section-eyebrow">Le standard</div>
   <h2 class="section-title">Une infrastructure culturelle et technologique</h2>
-  <blockquote class="quote-block">"Le CMS est plus qu'un outil technique. C'est une déclaration de souveraineté culturelle."</blockquote>
+  <div class="quote-block">"Le CMS est plus qu'un outil technique. C'est une déclaration de souveraineté culturelle."</div>
   <div class="families-grid">
-    <a class="family-card" href="families.html#linguistique">
+    <a href="#" class="family-card">
       <div class="family-num">01 — Linguistic</div>
       <div class="family-name">Linguistique</div>
       <div class="family-tags">Créole · Patois · Code-switching</div>
     </a>
-    <a class="family-card" href="families.html#culturelle">
+    <a href="#" class="family-card">
       <div class="family-num">02 — Cultural</div>
       <div class="family-name">Culturelle</div>
       <div class="family-tags">Carnaval · Spiritualité · Diaspora</div>
     </a>
-    <a class="family-card" href="families.html#narrative">
+    <a href="#" class="family-card">
       <div class="family-num">03 — Narrative</div>
       <div class="family-name">Narrative</div>
       <div class="family-tags">Réalisme magique · Saga · Thriller</div>
     </a>
-    <a class="family-card" href="families.html#rythmique">
+    <a href="#" class="family-card">
       <div class="family-num">04 — Rhythmic</div>
       <div class="family-name">Rythmique</div>
       <div class="family-tags">Tempo · Syncopé · Percussif</div>
     </a>
-    <a class="family-card" href="families.html#geographique">
+    <a href="#" class="family-card">
       <div class="family-num">05 — Geographic</div>
       <div class="family-name">Géographique</div>
       <div class="family-tags">Guadeloupe · Haïti · Jamaïque</div>
     </a>
-    <a class="family-card" href="families.html#sociohistorique">
+    <a href="#" class="family-card">
       <div class="family-num">06 — Socio-Historical</div>
       <div class="family-name">Socio-historique</div>
       <div class="family-tags">Créolisation · Migration · Mémoire</div>
     </a>
   </div>
-  <div class="families-cta">
-    <a href="families.html" class="btn-outline">Explorer les 6 familles →</a>
-  </div>
+  <div class="families-cta"><a href="#" class="btn-outline">Explorer les 6 familles →</a></div>
 </section>
 
-<!-- ══ DÉCLARATION FONDATRICE ══ -->
+<!-- DÉCLARATION -->
 <section class="declaration-section">
   <div class="declaration-inner">
     <div class="declaration-text">
       <div class="section-eyebrow">Acte fondateur</div>
       <h2 class="section-title">La Déclaration Fondatrice</h2>
       <p>Un texte solennel, poétique et institutionnel — l'acte de naissance numérique du Caribbean Metadata Standard et la proclamation de la souveraineté culturelle caribéenne.</p>
-      <a href="declaration.html" class="btn-declaration">Lire la Déclaration fondatrice →</a>
+      <a href="#" class="btn-declaration">Lire la Déclaration fondatrice →</a>
       <div class="declaration-articles">
         <span class="decl-pill">Art. 1 — Raison d'être</span>
         <span class="decl-pill">Art. 4 — La Caraïbe comme matrice</span>
@@ -383,37 +447,28 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
       </div>
     </div>
     <div class="declaration-quote">
-      <blockquote>
-        "La Caraïbe n'est pas un fragment du monde :<br>
-        elle est un monde entier."
-      </blockquote>
-      <blockquote style="font-size:clamp(15px,1.8vw,20px); margin-top:20px;">
-        "La Caraïbe se définit elle-même.<br>
-        Le CMS est son alphabet."
-      </blockquote>
+      <blockquote>"La Caraïbe n'est pas un fragment du monde : elle est un monde entier."</blockquote>
+      <blockquote>"La Caraïbe se définit elle-même. Le CMS est son alphabet."</blockquote>
       <p class="quote-source">— Déclaration Fondatrice du CMS, 2026</p>
     </div>
   </div>
 </section>
 
-<!-- ══ SECTION VALIDATEUR — NOUVEAU ══ -->
+<!-- VALIDATOR CTA -->
 <section class="validator-cta-section">
   <div class="validator-cta-inner">
     <div class="validator-cta-text">
       <div class="section-eyebrow">Outils officiels</div>
       <h2 class="section-title">Certifiez votre contenu caribéen</h2>
       <p>Le CMS Builder vous guide pas à pas pour créer votre fiche CMS et obtenir votre certification officielle — Bronze, Silver, Gold ou Platinum — selon votre score d'ancrage culturel caribéen.</p>
-      <a href="cms-builder.html" class="btn-validate-cta">Créer une fiche CMS →</a>
-      <a href="validator.html" style="display:inline-block;margin-left:12px;font-size:14px;color:#003E6B;text-decoration:underline;">Valider un contenu existant</a>
+      <a href="#" class="btn-validate-cta">Créer une fiche CMS →</a>
     </div>
     <div class="validator-cta-preview">
       <div class="vcp-header">
-        <svg class="vcp-logo" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 3 A13 13 0 1 0 16 29" fill="none" stroke="#00C2C7" stroke-width="3" stroke-linecap="round"/>
-          <path d="M16 3 Q6 9 8 16 Q10 23 16 29" fill="none" stroke="#FFC93C" stroke-width="1.8" stroke-linecap="round" opacity=".9"/>
-          <circle cx="16" cy="3"  r="2.5" fill="#FFC93C"/>
-          <circle cx="16" cy="29" r="2.5" fill="#FFC93C"/>
-          <circle cx="3"  cy="16" r="2"   fill="#00C2C7"/>
+        <svg class="vcp-logo" viewBox="0 0 52 52" fill="none">
+          <path d="M38 26C38 19.373 32.627 14 26 14C19.373 14 14 19.373 14 26" stroke="#00C2C7" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="38" cy="26" r="3" fill="#FFC93C"/>
+          <circle cx="14" cy="26" r="2.5" fill="#FF6F61"/>
         </svg>
         <div class="vcp-header-text">
           <p>Validateur CMS officiel</p>
@@ -446,6 +501,109 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
     </div>
   </div>
 </section>
+
+<!-- ==========================================
+     OPEN DATA — SECTION NOUVELLE
+     ========================================== -->
+<section class="opendata-section" id="open-data">
+  <div class="opendata-inner">
+    <div class="opendata-grid">
+
+      <div class="opendata-text">
+        <div class="section-eyebrow">Open Data</div>
+        <h2 class="section-title">Premier corpus culturel caribéen — open source</h2>
+        <p>Le CMS publie en open source le premier corpus de données culturelles caribéen structuré selon le standard CMS v1.0 — librement téléchargeable, citable dans les publications académiques, et ouvert aux contributions de toute la communauté caribéenne.</p>
+        <div class="opendata-badges">
+          <span class="opendata-badge badge-cc">CC-BY 4.0</span>
+          <span class="opendata-badge badge-cms">CMS v1.0</span>
+          <span class="opendata-badge badge-ifla">IFLA METATEC · En cours</span>
+          <span class="opendata-badge badge-crosq">CROSQ · NWIP Soumis</span>
+        </div>
+        <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" rel="noopener" class="btn-github">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          Accéder au corpus sur GitHub
+        </a>
+      </div>
+
+      <div class="corpus-card">
+        <div class="corpus-card-header">
+          <div class="corpus-card-header-left">
+            <div class="corpus-dot"></div>
+            <div>
+              <div class="corpus-card-title">cms-nlp-corpus</div>
+              <div class="corpus-card-sub">heso73 / caribbeanmetadata.org</div>
+            </div>
+          </div>
+          <div class="corpus-version">v1.0</div>
+        </div>
+        <div class="corpus-stats">
+          <div class="corpus-stat">
+            <div class="corpus-stat-value">15</div>
+            <div class="corpus-stat-label">Enregistrements</div>
+          </div>
+          <div class="corpus-stat">
+            <div class="corpus-stat-value">8</div>
+            <div class="corpus-stat-label">Langues</div>
+          </div>
+          <div class="corpus-stat">
+            <div class="corpus-stat-value">15</div>
+            <div class="corpus-stat-label">Marqueurs</div>
+          </div>
+        </div>
+        <div class="corpus-languages">
+          <div class="corpus-lang-title">Langues couvertes</div>
+          <div class="corpus-lang-tags">
+            <span class="lang-tag">hat</span>
+            <span class="lang-tag">gcf</span>
+            <span class="lang-tag">acf</span>
+            <span class="lang-tag">jam</span>
+            <span class="lang-tag">pap</span>
+            <span class="lang-tag">fra</span>
+            <span class="lang-tag">spa</span>
+            <span class="lang-tag">eng</span>
+          </div>
+        </div>
+        <div class="corpus-markers">
+          <div class="corpus-marker-title">Marqueurs culturels</div>
+          <div class="corpus-marker-tags">
+            <span class="marker-tag">gwo ka</span>
+            <span class="marker-tag">bèlè</span>
+            <span class="marker-tag">konpa</span>
+            <span class="marker-tag">zouk</span>
+            <span class="marker-tag">calypso</span>
+            <span class="marker-tag">reggae</span>
+            <span class="marker-tag">tumba</span>
+            <span class="marker-tag">carnival</span>
+            <span class="marker-tag">+ 7 autres</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="opendata-stats-row">
+      <div class="opendata-stat-box">
+        <div class="opendata-stat-num">14</div>
+        <div class="opendata-stat-lbl">Champs schéma</div>
+      </div>
+      <div class="opendata-stat-box">
+        <div class="opendata-stat-num">9</div>
+        <div class="opendata-stat-lbl">Institutions contactées</div>
+      </div>
+      <div class="opendata-stat-box">
+        <div class="opendata-stat-num">CC</div>
+        <div class="opendata-stat-lbl">Licence BY 4.0</div>
+      </div>
+      <div class="opendata-stat-box">
+        <div class="opendata-stat-num">v1.0</div>
+        <div class="opendata-stat-lbl">Standard CMS</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FIN OPEN DATA -->
 
 <!-- BÉNÉFICIAIRES -->
 <section class="benefits-section">
@@ -481,19 +639,19 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
     </div>
   </div>
   <div style="text-align:center;margin-top:36px;">
-    <a href="collaborate.html" class="btn-outline">Voir comment collaborer →</a>
+    <a href="#" class="btn-outline">Voir comment collaborer →</a>
   </div>
 </section>
 
 <!-- CTA FINAL -->
 <section class="final-cta">
   <div class="section-eyebrow" style="justify-content:center;">Rejoindre l'initiative</div>
-  <h2 class="section-title" style="text-align:center;">Construisons le premier standard numérique caribéen ensemble.</h2>
+  <h2 class="section-title">Construisons le premier standard numérique caribéen ensemble.</h2>
   <p>Créateur, institution, plateforme ou chercheur — votre contribution est essentielle.</p>
   <div class="final-cta-actions">
-    <a href="collaborate.html" class="btn-solid">Collaborer avec nous</a>
-    <a href="validator.html"   class="btn-validate-cta" style="display:inline-block;padding:13px 28px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:14px;font-weight:700;">Valider un contenu</a>
-    <a href="contact.html"     class="btn-outline">Nous contacter</a>
+    <a href="#" class="btn-solid">Collaborer avec nous</a>
+    <a href="#" class="btn-outline">Valider un contenu</a>
+    <a href="#" class="btn-outline">Nous contacter</a>
   </div>
 </section>
 
@@ -501,42 +659,42 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a class="footer-logo" href="index.html">CMS</a>
+      <a href="#" class="footer-logo">CMS</a>
       <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
     </div>
     <div class="footer-col">
       <h4>Le Standard</h4>
       <ul>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="families.html">Les 6 familles</a></li>
-        <li><a href="resources.html">Documentation</a></li>
-        <li><a href="declaration.html" class="highlight">Déclaration fondatrice</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Les 6 familles</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Déclaration fondatrice</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Écosystème</h4>
       <ul>
-        <li><a href="lab.html">Language Lab</a></li>
-        <li><a href="collaborate.html">Collaborer</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Language Lab</a></li>
+        <li><a href="#">Collaborer</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Ressources</h4>
       <ul>
-        <li><a href="CMS_WhitePaper_v1.0.pdf" download>White Paper</a></li>
-        <li><a href="developers.html">Developers / API</a></li>
-        <li><a href="glossaire.html">Glossaire</a></li>
-        <li><a href="resources.html">FAQ</a></li>
-        <li><a href="validator.html" class="highlight">→ Valider un contenu</a></li>
+        <li><a href="#">White Paper</a></li>
+        <li><a href="#">Developers / API</a></li>
+        <li><a href="#">Glossaire</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#open-data" class="highlight">→ Open Data / Corpus</a></li>
+        <li><a href="#" class="highlight">→ Valider un contenu</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <strong style="color:rgba(255,255,255,0.5)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
+    caribbeanmetadata.org &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
   </div>
 </footer>
 
-<script src="nav-fix.js"></script>
 </body>
 </html>
