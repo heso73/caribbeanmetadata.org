@@ -27,6 +27,63 @@ nav {
 }
 .nav-links .nav-validate:hover { background: #00A8AE; }
 
+/* Langue switcher desktop */
+.nav-lang {
+  display: flex; align-items: center; gap: 4px; margin-left: 16px;
+}
+.nav-lang button {
+  background: none; border: none; cursor: pointer;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  color: #bbb; padding: 3px 7px; border-radius: 3px;
+  transition: all .2s; font-family: inherit;
+}
+.nav-lang button:hover { color: #003E6B; }
+.nav-lang button.active { color: #003E6B; background: rgba(0,62,107,0.08); }
+.nav-lang .sep { color: rgba(0,62,107,0.2); font-size: 11px; pointer-events: none; user-select: none; }
+
+/* Hamburger */
+.nav-burger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 2px;
+  background: #003E6B; border-radius: 2px; transition: all .25s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menu mobile */
+.nav-mobile {
+  display: none; position: fixed; top: 68px; left: 0; right: 0; z-index: 999;
+  background: rgba(255,255,255,0.98); border-bottom: 1px solid rgba(0,62,107,0.1);
+  padding: 20px 6% 28px; flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0,62,107,0.10);
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a {
+  font-size: 15px; color: #444; text-decoration: none;
+  padding: 12px 0; border-bottom: 1px solid rgba(0,62,107,0.06); transition: color .2s;
+}
+.nav-mobile a:last-of-type { border-bottom: none; }
+.nav-mobile a:hover { color: #003E6B; }
+.nav-mobile .m-validate {
+  margin-top: 16px; padding: 12px 20px; background: #00C2C7; color: #003E6B !important;
+  border-radius: 4px; font-weight: 700; text-align: center; font-size: 14px; border-bottom: none !important;
+}
+.nav-mobile-lang {
+  display: flex; gap: 8px; margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid rgba(0,62,107,0.06);
+}
+.nav-mobile-lang button {
+  background: none; border: 1px solid rgba(0,62,107,0.15); border-radius: 4px;
+  cursor: pointer; font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  color: #999; padding: 6px 14px; transition: all .2s; font-family: inherit;
+}
+.nav-mobile-lang button:hover,
+.nav-mobile-lang button.active { color: #003E6B; border-color: #003E6B; background: rgba(0,62,107,0.05); }
+
 /* HERO */
 .hero {
   min-height: 100vh; background: #003E6B;
@@ -326,7 +383,13 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
   .opendata-stats-row { grid-template-columns: repeat(2, 1fr); }
   .vcp-levels { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
+  .nav-links, .nav-lang { display: none !important; }
+  .nav-burger { display: flex; }
+  .status-bar { justify-content: flex-start; overflow-x: auto; }
+}
+@media(min-width: 901px) {
+  .nav-burger { display: none !important; }
+  .nav-mobile { display: none !important; }
 }
 </style>
 </head>
@@ -334,22 +397,53 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">CMS</a>
+  <a href="index.html" class="nav-logo">CMS</a>
   <ul class="nav-links">
-    <li><a href="#">À propos</a></li>
-    <li><a href="#">Les 6 familles</a></li>
-    <li><a href="#">Ressources</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="families.html">Les 6 familles</a></li>
+    <li><a href="resources.html">Ressources</a></li>
     <li><a href="#">Roadmap</a></li>
     <li><a href="#">Developers</a></li>
-    <li><a href="#">Language Lab</a></li>
-    <li><a href="#">Collaborer</a></li>
-    <li><a href="#">Déclaration</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="lab.html">Language Lab</a></li>
+    <li><a href="collaborate.html">Collaborer</a></li>
+    <li><a href="declaration.html">Déclaration</a></li>
+    <li><a href="contact.html">Contact</a></li>
     <li><a href="#">Les 100 Premiers</a></li>
-    <li><a href="#" class="nav-validate">Valider un contenu</a></li>
+    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
     <li><a href="#">CMS Builder</a></li>
   </ul>
+  <div class="nav-lang">
+    <button class="active" data-lang="fr" onclick="setLang('fr')">FR</button>
+    <span class="sep">·</span>
+    <button data-lang="en" onclick="setLang('en')">EN</button>
+    <span class="sep">·</span>
+    <button data-lang="es" onclick="setLang('es')">ES</button>
+  </div>
+  <button class="nav-burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Menu mobile -->
+<div class="nav-mobile" id="navMobile">
+  <a href="about.html"       onclick="closeMenu()">À propos</a>
+  <a href="families.html"    onclick="closeMenu()">Les 6 familles</a>
+  <a href="resources.html"   onclick="closeMenu()">Ressources</a>
+  <a href="#"                onclick="closeMenu()">Roadmap</a>
+  <a href="#"                onclick="closeMenu()">Developers</a>
+  <a href="lab.html"         onclick="closeMenu()">Language Lab</a>
+  <a href="collaborate.html" onclick="closeMenu()">Collaborer</a>
+  <a href="declaration.html" onclick="closeMenu()">Déclaration</a>
+  <a href="contact.html"     onclick="closeMenu()">Contact</a>
+  <a href="#"                onclick="closeMenu()">Les 100 Premiers</a>
+  <a href="validator.html" class="m-validate" onclick="closeMenu()">Valider un contenu</a>
+  <a href="#"                onclick="closeMenu()">CMS Builder</a>
+  <div class="nav-mobile-lang">
+    <button class="active" data-lang="fr" onclick="setLang('fr')">FR</button>
+    <button data-lang="en" onclick="setLang('en')">EN</button>
+    <button data-lang="es" onclick="setLang('es')">ES</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -695,6 +789,69 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
     caribbeanmetadata.org &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
   </div>
 </footer>
+
+<script>
+// Hamburger
+function toggleMenu() {
+  const burger = document.getElementById('burger');
+  const menu   = document.getElementById('navMobile');
+  const open   = menu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('burger').classList.remove('open');
+  document.getElementById('navMobile').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('click', e => {
+  const menu   = document.getElementById('navMobile');
+  const burger = document.getElementById('burger');
+  if (menu && menu.classList.contains('open') &&
+      !menu.contains(e.target) && !burger.contains(e.target)) {
+    closeMenu();
+  }
+});
+
+// Langue switcher
+const T = {
+  fr: {
+    'hero-eyebrow': 'Premier standard numérique caribéen — v1.0',
+    'hero-desc':    'Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.',
+    'btn-discover': 'Découvrir le standard',
+    'btn-join':     "Rejoindre l'initiative",
+  },
+  en: {
+    'hero-eyebrow': 'First Caribbean digital standard — v1.0',
+    'hero-desc':    'The first unified framework to classify, describe and index Caribbean audiovisual content — so algorithms finally understand our cultures.',
+    'btn-discover': 'Discover the standard',
+    'btn-join':     'Join the initiative',
+  },
+  es: {
+    'hero-eyebrow': 'Primer estándar digital caribeño — v1.0',
+    'hero-desc':    'El primer marco unificado para clasificar, describir e indexar contenidos audiovisuales caribeños — para que los algoritmos entiendan nuestras culturas.',
+    'btn-discover': 'Descubrir el estándar',
+    'btn-join':     'Unirse a la iniciativa',
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('[data-lang]').forEach(b =>
+    b.classList.toggle('active', b.dataset.lang === lang));
+  const t = T[lang]; if (!t) return;
+  Object.entries(t).forEach(([id, txt]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = txt;
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('cms-lang', lang);
+  closeMenu();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setLang(localStorage.getItem('cms-lang') || 'fr');
+});
+</script>
 
 </body>
 </html>
