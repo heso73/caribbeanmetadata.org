@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caribbean Metadata Standard – CMS v2.0</title>
+<meta name="description" content="The first unified framework to classify, describe, and index Caribbean audiovisual content for global digital platforms.">
+
+<!-- Schema.org JSON-LD (CMS-compliant example) -->
+<script type="application/ld+json">
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "cms": "https://caribbeanmetadata.org/ns/"
+  },
+  "@type": "WebPage",
+  "name": "Caribbean Metadata Standard – CMS v2.0",
+  "description": "The first unified framework to classify, describe, and index Caribbean audiovisual content for global digital platforms.",
+  "url": "https://caribbeanmetadata.org",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Caribwood Language Lab",
+    "url": "https://caribbeanmetadata.org"
+  },
+  "inLanguage": ["en", "fr", "ht"],
+  "cms:territory": "Caribbean",
+  "cms:domain": "metadata-standards",
+  "cms:certification": "v2.0"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --sea:   #0B4F6C;
+    --sea-light: #1A7A9A;
+    --sea-pale: #E8F4F8;
+    --gold:  #C9843A;
+    --gold-light: #F5C87A;
+    --cream: #FAF7F2;
+    --ink:   #1A1612;
+    --muted: #6B6059;
+    --border:#D9CFC5;
+    --white: #FFFFFF;
+    --radius: 4px;
+    --radius-lg: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--sea);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; font-weight: 300; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    background: var(--sea);
+    padding: 90px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 520px; height: 520px;
+    border: 1.5px solid rgba(201,132,58,0.18);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; right: 60px;
+    width: 320px; height: 320px;
+    border: 1.5px solid rgba(201,132,58,0.10);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 760px; position: relative; z-index: 1; }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    border: 1px solid rgba(245,200,122,0.35);
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(38px, 6vw, 68px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-light);
+  }
+  .hero-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    margin-bottom: 44px;
+    line-height: 1.6;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    padding: 13px 28px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #B87030; transform: translateY(-1px); }
+  .btn-ghost {
+    color: rgba(255,255,255,0.85);
+    padding: 13px 22px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: var(--white); }
+
+  .hero-meta {
+    margin-top: 52px;
+    display: flex; gap: 36px; flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 28px;
+  }
+  .hero-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+  }
+  .hero-stat .lbl {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* SECTION BASE */
+  section { padding: 80px 5%; }
+  .section-inner { max-width: 1020px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-intro {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 52px;
+    line-height: 1.7;
+  }
+
+  /* PROBLEM */
+  .problem { background: var(--white); }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .problem-card {
+    padding: 30px 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    position: relative;
+  }
+  .problem-card::before {
+    content: attr(data-letter);
+    position: absolute;
+    top: 26px; right: 28px;
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--sea-pale);
+    line-height: 1;
+  }
+  .problem-card h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--sea);
+  }
+  .problem-card p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* FAMILIES */
+  .families { background: var(--cream); }
+  .families-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .family-item {
+    background: var(--white);
+    padding: 26px 24px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    transition: background 0.18s;
+  }
+  .family-item:hover { background: var(--sea-pale); }
+  .family-icon {
+    width: 36px; height: 36px;
+    background: var(--sea);
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+    font-size: 16px;
+  }
+  .family-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--sea);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .family-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .family-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 400;
+    background: var(--sea-pale);
+    color: var(--sea);
+    padding: 3px 9px;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+  }
+
+  /* INTEROP */
+  .interop { background: var(--sea); color: var(--white); }
+  .interop .section-title { color: var(--white); }
+  .interop .section-intro { color: rgba(255,255,255,0.65); }
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .level-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+  }
+  .level-num {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .level-card h3 { font-size: 17px; font-weight: 500; margin-bottom: 10px; }
+  .level-card p { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.65; margin-bottom: 16px; }
+  .level-effort {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    background: rgba(201,132,58,0.18);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,132,58,0.3);
+    padding: 4px 12px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* JSON-LD DEMO */
+  .json-block {
+    background: #0D1117;
+    border-radius: var(--radius-lg);
+    padding: 28px 30px;
+    margin-top: 40px;
+    overflow-x: auto;
+  }
+  .json-block pre {
+    font-family: 'DM Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.75;
+    color: #C9D1D9;
+  }
+  .j-key   { color: #79C0FF; }
+  .j-str   { color: #A5D6FF; }
+  .j-ns    { color: #FFD700; }
+  .j-punct { color: #8B949E; }
+  .j-comment { color: #8B949E; font-style: italic; }
+
+  /* GOVERNANCE */
+  .governance { background: var(--white); }
+  .gov-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .gov-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px 22px;
+  }
+  .gov-card h3 { font-size: 15px; font-weight: 500; color: var(--sea); margin-bottom: 8px; }
+  .gov-card p { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+  .transfer-banner {
+    background: var(--sea-pale);
+    border: 1px solid rgba(11,79,108,0.15);
+    border-left: 4px solid var(--sea);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: 22px 26px;
+    font-size: 14px;
+    color: var(--sea);
+    line-height: 1.65;
+  }
+  .transfer-banner strong { font-weight: 500; }
+
+  /* ROADMAP */
+  .roadmap { background: var(--cream); }
+  .phases { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .phases::before {
+    content: '';
+    position: absolute;
+    left: 22px; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .phase {
+    display: flex; gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .phase:last-child { border-bottom: none; }
+  .phase-dot {
+    width: 44px; height: 44px; min-width: 44px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--sea);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--sea);
+    position: relative; z-index: 1;
+  }
+  .phase-body h3 { font-size: 16px; font-weight: 500; color: var(--sea); margin-bottom: 6px; }
+  .phase-body .timing {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .phase-body p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+  /* CTA */
+  .cta-section { background: var(--sea); padding: 80px 5%; }
+  .cta-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .cta-inner h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .cta-inner p { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.7); margin-bottom: 36px; line-height: 1.65; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 44px 5% 32px;
+    color: rgba(255,255,255,0.45);
+  }
+  .footer-inner { max-width: 1020px; margin: 0 auto; }
+  .footer-top {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 24px;
+  }
+  .footer-brand .name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .footer-brand p { font-size: 13px; line-height: 1.65; max-width: 300px; }
+  .footer-links h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); margin-bottom: 12px; font-weight: 500; }
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.8); }
+  .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 12px; }
+  .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+
+  /* TAGGER SECTION */
+  .tagger-section { background: var(--white); }
+  .tagger-layout {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .tagger-panel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .tagger-panel-head {
+    background: var(--sea);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tagger-panel-head span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.03em;
+  }
+  .tagger-badge {
+    font-size: 10px;
+    font-weight: 500;
+    background: rgba(201,132,58,0.25);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,132,58,0.4);
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tagger-form-body { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+
+  .t-family { padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .t-family:last-child { padding-bottom: 0; border-bottom: none; }
+  .t-family-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .t-family-icon {
+    width: 26px; height: 26px;
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; flex-shrink: 0;
+  }
+  .t-family-head h4 { font-size: 12px; font-weight: 500; color: var(--sea); text-transform: uppercase; letter-spacing: 0.08em; }
+  .t-family-head em { font-size: 11px; color: var(--muted); font-style: italic; margin-left: auto; }
+
+  .t-field { margin-bottom: 8px; }
+  .t-field:last-child { margin-bottom: 0; }
+  .t-field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .t-field input, .t-field select {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+    color: var(--ink);
+    appearance: none;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .t-field input:focus, .t-field select:focus { border-color: var(--sea-light); }
+  .t-field input::placeholder { color: #B0A89F; }
+
+  .t-tags-row { display: flex; gap: 6px; }
+  .t-tags-row input { flex: 1; }
+  .t-add-btn {
+    padding: 8px 12px;
+    background: var(--sea);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .t-add-btn:hover { background: var(--sea-light); }
+
+  .t-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .t-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 8px;
+    background: var(--sea-pale);
+    color: var(--sea);
+    border-radius: 2px;
+  }
+  .t-pill button { background: none; border: none; cursor: pointer; color: var(--sea-light); font-size: 14px; line-height: 1; padding: 0; }
+  .t-pill button:hover { color: #B33; }
+
+  .t-cert-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+  .t-cert {
+    text-align: center; font-size: 11px; font-weight: 500;
+    padding: 7px 4px; border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    background: var(--white); color: var(--muted);
+    cursor: pointer; transition: all 0.12s;
+  }
+  .t-cert:hover { border-color: var(--sea-light); color: var(--sea); }
+  .t-cert.active { border-color: var(--sea); background: var(--sea-pale); color: var(--sea); }
+
+  .output-head {
+    background: #0D1117;
+    padding: 12px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .output-head span { font-size: 12px; font-weight: 500; color: #8B949E; letter-spacing: 0.05em; }
+  .output-head-btns { display: flex; gap: 6px; }
+  .out-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; padding: 5px 12px;
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: background 0.15s;
+  }
+  .out-btn:hover { background: rgba(255,255,255,0.13); }
+
+  .json-pre {
+    background: #0D1117;
+    padding: 20px 20px 16px;
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #C9D1D9;
+    white-space: pre;
+    overflow-x: auto;
+    min-height: 340px;
+    border-top: 1px solid #21262D;
+  }
+  .jk  { color: #79C0FF; }
+  .jns { color: #F5C87A; }
+  .js  { color: #A5D6FF; }
+  .jp  { color: #8B949E; }
+  .jc  { color: #8B949E; font-style: italic; }
+
+  .valid-footer {
+    background: #0D1117;
+    border-top: 1px solid #21262D;
+    padding: 10px 18px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px;
+  }
+  .valid-dot { width: 7px; height: 7px; border-radius: 50%; background: #3FB950; flex-shrink: 0; }
+  .valid-footer span { color: #3FB950; }
+  .copy-flash { margin-left: auto; color: #3FB950; font-size: 11px; opacity: 0; transition: opacity 0.2s; }
+  .copy-flash.show { opacity: 1; }
+
+  @media (max-width: 820px) {
+    .tagger-layout { grid-template-columns: 1fr; }
+    .t-cert-grid { grid-template-columns: repeat(2,1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 36px; }
+    nav .nav-links { display: none; }
+    .hero-meta { gap: 24px; }
+    .phases::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">CMS · Caribbean Metadata Standard</a>
+  <ul class="nav-links">
+    <li><a href="#standard">The Standard</a></li>
+    <li><a href="#technical">Technical</a></li>
+    <li><a href="#governance">Governance</a></li>
+    <li><a href="#tagger">Tagger</a></li>
+    <li><a href="#adopt">Adopt CMS</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-label">White Paper v2.0 — May 2026</span>
+    <h1>Caribbean <em>Digital</em><br>Sovereignty Starts<br>with Metadata</h1>
+    <p class="hero-subtitle">
+      The Caribbean Metadata Standard (CMS) is the first unified framework to classify, describe, and index Caribbean audiovisual content — bridging cultural authenticity and global discoverability.
+    </p>
+    <div class="hero-actions">
+      <a href="CMS_WhitePaper_v2.0_Final.docx" class="btn-primary">
+        ↓ Download White Paper
+      </a>
+      <a href="#adopt" class="btn-ghost">Become a co-adopter →</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-stat">
+        <span class="num">6</span>
+        <span class="lbl">Metadata families</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">3</span>
+        <span class="lbl">Integration levels</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">5</span>
+        <span class="lbl">Institutions needed for transfer</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">CC BY 4.0</span>
+        <span class="lbl">Open license</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="standard">
+  <div class="section-inner">
+    <p class="section-label">The Problem</p>
+    <h2 class="section-title">Caribbean content is invisible — by design</h2>
+    <p class="section-intro">Existing metadata systems were not built for our languages, rhythms, or cultural markers. The result: algorithmic invisibility.</p>
+    <div class="problem-grid">
+      <div class="problem-card" data-letter="A">
+        <h3>Misclassification</h3>
+        <p>Platforms lack categories for Caribbean genres, dialects, and cultural nuances. Content is forced into foreign frameworks.</p>
+      </div>
+      <div class="problem-card" data-letter="B">
+        <h3>Algorithmic Blindness</h3>
+        <p>Recommendation engines cannot promote what they cannot interpret. Invisibility compounds over time.</p>
+      </div>
+      <div class="problem-card" data-letter="C">
+        <h3>Cultural Dilution</h3>
+        <p>Without proper metadata, Caribbean identity is flattened into generic or inaccurate categories, erasing specificity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILIES -->
+<section class="families">
+  <div class="section-inner">
+    <p class="section-label">The Standard</p>
+    <h2 class="section-title">Six metadata families</h2>
+    <p class="section-intro">A structured taxonomy built from and for the Caribbean — not adapted from elsewhere.</p>
+    <div class="families-grid">
+      <div class="family-item">
+        <div class="family-icon">🗣</div>
+        <div class="family-name">Linguistic</div>
+        <div class="family-desc">Languages, dialects, code-switching patterns</div>
+        <div class="family-tags">
+          <span class="tag">Haitian Creole</span>
+          <span class="tag">Guadeloupe Creole</span>
+          <span class="tag">Jamaican Patois</span>
+          <span class="tag">FR/Kreyol</span>
+        </div>
+      </div>
+      <div class="family-item">
+        <div class="family-icon">🥁</div>
+        <div class="family-name">Cultural</div>
+        <div class="family-desc">Traditions, spiritualities, heritage markers</div>
+        <div class="family-tags">
+          <span class="tag">Carnival</span>
+          <span class="tag">Afro-Caribbean</span>
+          <span class="tag">Diaspora identity</span>
+        </div>
+      </div>
+      <div class="family-item">
+        <div class="family-icon">📖</div>
+        <div class="family-name">Narrative</div>
+        <div class="family-desc">Genres, story structures, Caribbean tropes</div>
+        <div class="family-tags">
+          <span class="tag">Magical realism</span>
+          <span class="tag">Social drama</span>
+          <span class="tag">Family saga</span>
+        </div>
+      </div>
+      <div class="family-item">
+        <div class="family-icon">🎵</div>
+        <div class="family-name">Rhythmic</div>
+        <div class="family-desc">Tempo, dialogue musicality, pacing</div>
+        <div class="family-tags">
+          <span class="tag">Syncopated</span>
+          <span class="tag">Fast-paced urban</span>
+          <span class="tag">Island tempo</span>
+        </div>
+      </div>
+      <div class="family-item">
+        <div class="family-icon">🗺</div>
+        <div class="family-name">Geographic</div>
+        <div class="family-desc">Territory, environment, insular specificity</div>
+        <div class="family-tags">
+          <span class="tag">Guadeloupe</span>
+          <span class="tag">Haiti</span>
+          <span class="tag">Jamaica</span>
+          <span class="tag">Martinique</span>
+        </div>
+      </div>
+      <div class="family-item">
+        <div class="family-icon">⚖️</div>
+        <div class="family-name">Socio-historical</div>
+        <div class="family-desc">Postcolonial markers, memory, migration</div>
+        <div class="family-tags">
+          <span class="tag">Creolization</span>
+          <span class="tag">Memory</span>
+          <span class="tag">Intergenerational</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNICAL -->
+<section class="interop" id="technical">
+  <div class="section-inner">
+    <p class="section-label" style="color: var(--gold-light);">Technical Interoperability</p>
+    <h2 class="section-title">Built on schema.org, Dublin Core &amp; EBUCore</h2>
+    <p class="section-intro">The CMS is an extension — not a replacement. Three integration levels match any technical capacity.</p>
+    <div class="levels-grid">
+      <div class="level-card">
+        <div class="level-num">Level 1</div>
+        <h3>Basic</h3>
+        <p>Accept CMS tags as additional keywords in existing fields (e.g., <code style="color:var(--gold-light);font-size:12px;">dc:subject</code>). Requires no infrastructure change.</p>
+        <span class="level-effort">Hours of work</span>
+      </div>
+      <div class="level-card">
+        <div class="level-num">Level 2</div>
+        <h3>Structured</h3>
+        <p>Map CMS families to dedicated fields or <code style="color:var(--gold-light);font-size:12px;">schema:additionalProperty</code>. Enables richer queries and filtering.</p>
+        <span class="level-effort">Days of work</span>
+      </div>
+      <div class="level-card">
+        <div class="level-num">Level 3</div>
+        <h3>Native</h3>
+        <p>Fully integrate the six CMS families as first-class metadata fields. Unlocks full algorithmic potential and Caribbean discoverability.</p>
+        <span class="level-effort">Weeks of work</span>
+      </div>
+    </div>
+
+    <div class="json-block">
+      <pre><span class="j-comment">// CMS-compliant JSON-LD example (v2.0 — corrected)</span>
+<span class="j-punct">{</span>
+  <span class="j-key">"@context"</span><span class="j-punct">: {</span>
+    <span class="j-key">"@vocab"</span><span class="j-punct">:</span> <span class="j-str">"https://schema.org/"</span><span class="j-punct">,</span>
+    <span class="j-key">"cms"</span><span class="j-punct">:</span>    <span class="j-ns">"https://caribbeanmetadata.org/ns/"</span>  <span class="j-comment">// CMS namespace</span>
+  <span class="j-punct">},</span>
+  <span class="j-key">"@type"</span><span class="j-punct">:</span>             <span class="j-str">"CreativeWork"</span><span class="j-punct">,</span>
+  <span class="j-key">"name"</span><span class="j-punct">:</span>             <span class="j-str">"Anba Dlo"</span><span class="j-punct">,</span>
+  <span class="j-key">"inLanguage"</span><span class="j-punct">:</span>       <span class="j-str">"ht"</span><span class="j-punct">,</span>              <span class="j-comment">// BCP 47 — required by schema.org</span>
+  <span class="j-key">"keywords"</span><span class="j-punct">:</span>         <span class="j-str">["konpa", "haiti", "musique-carib"]</span><span class="j-punct">,</span>
+  <span class="j-key">"cms:territory"</span><span class="j-punct">:</span>    <span class="j-str">"Haiti"</span><span class="j-punct">,</span>
+  <span class="j-key">"cms:cultural_markers"</span><span class="j-punct">:</span> <span class="j-str">["Afro-Caribbean spirituality"]</span><span class="j-punct">,</span>
+  <span class="j-key">"cms:rhythmic_tempo"</span><span class="j-punct">:</span> <span class="j-str">"syncopated"</span><span class="j-punct">,</span>
+  <span class="j-key">"cms:certification"</span><span class="j-punct">:</span> <span class="j-str">"Gold"</span>
+<span class="j-punct">}</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- TAGGER -->
+<section class="tagger-section" id="tagger">
+  <div class="section-inner">
+    <p class="section-label">CMS Tagger</p>
+    <h2 class="section-title">Generate your metadata now</h2>
+    <p class="section-intro">Fill in the six families — your schema.org-compliant JSON-LD is generated live. Copy it or export the <code style="font-size:14px;color:var(--sea);">.json</code> file directly.</p>
+
+    <div class="tagger-layout">
+
+      <div class="tagger-panel">
+        <div class="tagger-panel-head">
+          <span>&#9998; Content metadata</span>
+          <span class="tagger-badge">v0.1</span>
+        </div>
+        <div class="tagger-form-body">
+
+          <div class="t-family">
+            <div class="t-family-head">
+              <div class="t-family-icon" style="background:var(--sea-pale);">&#128196;</div>
+              <h4>Content identity</h4>
+            </div>
+            <div class="t-field"><label>Title *</label><input type="text" id="t-title" placeholder="e.g. Anba Dlo" oninput="tRender()"></div>
+            <div class="t-field"><label>Content type</label>
+              <select id="t-type" onchange="tRender()">
+                <option value="CreativeWork">CreativeWork (generic)</option>
+                <option value="Movie">Movie</option>
+                <option value="MusicRecording">Music recording</option>
+                <option value="TVSeries">TV series</option>
+                <option value="Podcast">Podcast</option>
+                <option value="Book">Book / Text</option>
+              </select>
+            </div>
+            <div class="t-field"><label>Creator</label><input type="text" id="t-creator" placeholder="e.g. Marie-Sophie Jourdain" oninput="tRender()"></div>
+            <div class="t-field"><label>Date published</label><input type="text" id="t-date" placeholder="YYYY-MM-DD" oninput="tRender()"></div>
+          </div>
+
+          <div class="t-family">
+            <div class="t-family-head">
+              <div class="t-family-icon" style="background:#E1F5EE;">&#128172;</div>
+              <h4>Linguistic</h4>
+              <em>BCP 47</em>
+            </div>
+            <div class="t-field"><label>Primary language</label>
+              <select id="t-lang" onchange="tRender()">
+                <option value="">— select —</option>
+                <option value="ht">Haitian Creole (ht)</option>
+                <option value="gcf">Guadeloupe Creole (gcf)</option>
+                <option value="mart1259">Martinique Creole</option>
+                <option value="jam">Jamaican Patois (jam)</option>
+                <option value="fr">French (fr)</option>
+                <option value="en">English (en)</option>
+                <option value="es">Spanish (es)</option>
+                <option value="nl">Dutch / Papiamento (nl)</option>
+              </select>
+            </div>
+            <div class="t-field"><label>Code-switching</label>
+              <select id="t-codesw" onchange="tRender()">
+                <option value="">— none —</option>
+                <option value="FR/Kreyol">FR / Kreyol</option>
+                <option value="EN/Patois">EN / Patois</option>
+                <option value="ES/Creole">ES / Creole</option>
+                <option value="Multilingual">Multilingual</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="t-family">
+            <div class="t-family-head">
+              <div class="t-family-icon" style="background:#FAEEDA;">&#128205;</div>
+              <h4>Geographic</h4>
+            </div>
+            <div class="t-field"><label>Territory</label>
+              <select id="t-territory" onchange="tRender()">
+                <option value="">— select —</option>
+                <option value="Guadeloupe">Guadeloupe</option>
+                <option value="Martinique">Martinique</option>
+                <option value="Haiti">Haiti</option>
+                <option value="Jamaica">Jamaica</option>
+                <option value="Trinidad and Tobago">Trinidad &amp; Tobago</option>
+                <option value="Barbados">Barbados</option>
+                <option value="Dominican Republic">Dominican Republic</option>
+                <option value="Cuba">Cuba</option>
+                <option value="Puerto Rico">Puerto Rico</option>
+                <option value="Caribbean Diaspora">Caribbean Diaspora</option>
+                <option value="Caribbean (multi-territory)">Multi-territory</option>
+              </select>
+            </div>
+            <div class="t-field"><label>Environment</label>
+              <select id="t-env" onchange="tRender()">
+                <option value="">— select —</option>
+                <option value="Urban">Urban</option>
+                <option value="Rural">Rural</option>
+                <option value="Coastal">Coastal</option>
+                <option value="Island">Island</option>
+                <option value="Diaspora">Diaspora</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="t-family">
+            <div class="t-family-head">
+              <div class="t-family-icon" style="background:#EEEDFE;">&#127914;</div>
+              <h4>Narrative &amp; Cultural</h4>
+            </div>
+            <div class="t-field"><label>Genre</label>
+              <select id="t-genre" onchange="tRender()">
+                <option value="">— select —</option>
+                <option value="Magical realism">Magical realism</option>
+                <option value="Social drama">Social drama</option>
+                <option value="Family saga">Family saga</option>
+                <option value="Tropical thriller">Tropical thriller</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Coming-of-age">Coming-of-age</option>
+                <option value="Historical fiction">Historical fiction</option>
+              </select>
+            </div>
+            <div class="t-field">
+              <label>Cultural markers</label>
+              <div class="t-tags-row">
+                <input type="text" id="t-cult-in" placeholder="e.g. Carnival, Vodou, Konpa…" onkeydown="tTagKey(event,'cult')">
+                <button class="t-add-btn" onclick="tAddTag('cult')" aria-label="Add cultural marker">+</button>
+              </div>
+              <div class="t-pills" id="cult-pills"></div>
+            </div>
+          </div>
+
+          <div class="t-family">
+            <div class="t-family-head">
+              <div class="t-family-icon" style="background:#FAECE7;">&#127925;</div>
+              <h4>Rhythmic</h4>
+            </div>
+            <div class="t-field"><label>Dialogue tempo</label>
+              <select id="t-tempo" onchange="tRender()">
+                <option value="">— select —</option>
+                <option value="syncopated">Syncopated</option>
+                <option value="fast-paced urban">Fast-paced urban</option>
+                <option value="slow contemplative island">Slow contemplative island</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="t-family">
+            <div class="t-family-head">
+              <div class="t-family-icon" style="background:#EAF3DE;">&#9878;&#65039;</div>
+              <h4>Socio-historical</h4>
+            </div>
+            <div class="t-field">
+              <label>Historical markers</label>
+              <div class="t-tags-row">
+                <input type="text" id="t-socio-in" placeholder="e.g. Postcolonial, Creolization…" onkeydown="tTagKey(event,'socio')">
+                <button class="t-add-btn" onclick="tAddTag('socio')" aria-label="Add socio-historical marker">+</button>
+              </div>
+              <div class="t-pills" id="socio-pills"></div>
+            </div>
+          </div>
+
+          <div class="t-family">
+            <div class="t-family-head">
+              <div class="t-family-icon" style="background:#FFF3CD;">&#127942;</div>
+              <h4>Certification</h4>
+            </div>
+            <div class="t-cert-grid">
+              <div class="t-cert" data-c="Bronze" onclick="tSetCert(this)">Bronze</div>
+              <div class="t-cert" data-c="Silver" onclick="tSetCert(this)">Silver</div>
+              <div class="t-cert" data-c="Gold" onclick="tSetCert(this)">Gold</div>
+              <div class="t-cert" data-c="Platinum" onclick="tSetCert(this)">Platinum</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tagger-panel">
+        <div class="output-head">
+          <span>JSON-LD OUTPUT</span>
+          <div class="output-head-btns">
+            <button class="out-btn" onclick="tCopy()">&#10697; Copy</button>
+            <button class="out-btn" onclick="tExport()">&#8595; Export .json</button>
+          </div>
+        </div>
+        <div class="json-pre" id="t-json-out" aria-live="polite" aria-label="Generated JSON-LD output"></div>
+        <div class="valid-footer">
+          <div class="valid-dot"></div>
+          <span>Valid schema.org &middot; CMS v2.0 compliant</span>
+          <span class="copy-flash" id="t-flash">&#10003; Copied!</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const tState = { cult: [], socio: [], cert: null };
+
+  function tV(id){ return document.getElementById(id).value.trim(); }
+
+  function tBuild(){
+    const o = {};
+    o['@context'] = { '@vocab': 'https://schema.org/', 'cms': 'https://caribbeanmetadata.org/ns/' };
+    o['@type'] = tV('t-type') || 'CreativeWork';
+    if(tV('t-title')) o['name'] = tV('t-title');
+    if(tV('t-creator')) o['creator'] = { '@type': 'Person', 'name': tV('t-creator') };
+    if(tV('t-date')) o['datePublished'] = tV('t-date');
+    if(tV('t-lang')) o['inLanguage'] = tV('t-lang');
+    const kw = [];
+    if(tV('t-territory')) kw.push(tV('t-territory').toLowerCase());
+    if(tV('t-genre')) kw.push(tV('t-genre').toLowerCase().replace(/ /g,'-'));
+    tState.cult.forEach(t => kw.push(t.toLowerCase().replace(/ /g,'-')));
+    if(kw.length) o['keywords'] = kw;
+    if(tV('t-territory')) o['cms:territory'] = tV('t-territory');
+    if(tV('t-env')) o['cms:environment'] = tV('t-env');
+    if(tV('t-codesw')) o['cms:code_switching'] = tV('t-codesw');
+    if(tV('t-genre')) o['cms:narrative_genre'] = tV('t-genre');
+    if(tState.cult.length) o['cms:cultural_markers'] = [...tState.cult];
+    if(tV('t-tempo')) o['cms:rhythmic_tempo'] = tV('t-tempo');
+    if(tState.socio.length) o['cms:sociohistorical_markers'] = [...tState.socio];
+    if(tState.cert) o['cms:certification'] = tState.cert;
+    o['cms:standard_version'] = 'CMS-2.0';
+    return o;
+  }
+
+  function tHL(str){
+    return str
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"(cms:[^"]+)"(\s*:)/g,'<span class="jns">"$1"</span>$2')
+      .replace(/"([^"]+)"(\s*:)/g,'<span class="jk">"$1"</span>$2')
+      .replace(/:\s*"([^"]+)"/g,': <span class="js">"$1"</span>');
+  }
+
+  window.tRender = function(){
+    document.getElementById('t-json-out').innerHTML = tHL(JSON.stringify(tBuild(), null, 2));
+  };
+
+  window.tAddTag = function(fam){
+    const inp = document.getElementById('t-'+fam+'-in');
+    const v = inp.value.trim();
+    if(!v || tState[fam].includes(v)) return;
+    tState[fam].push(v);
+    inp.value = '';
+    tRenderPills(fam);
+    tRender();
+  };
+
+  window.tTagKey = function(e, fam){
+    if(e.key === 'Enter'){ e.preventDefault(); tAddTag(fam); }
+  };
+
+  window.tRemove = function(fam, i){
+    tState[fam].splice(i,1);
+    tRenderPills(fam);
+    tRender();
+  };
+
+  function tRenderPills(fam){
+    document.getElementById(fam+'-pills').innerHTML =
+      tState[fam].map((t,i) =>
+        `<span class="t-pill">${t}<button onclick="tRemove('${fam}',${i})" aria-label="remove ${t}">&times;</button></span>`
+      ).join('');
+  }
+
+  window.tSetCert = function(btn){
+    document.querySelectorAll('.t-cert').forEach(b => b.classList.remove('active'));
+    if(tState.cert === btn.dataset.c){ tState.cert = null; }
+    else { tState.cert = btn.dataset.c; btn.classList.add('active'); }
+    tRender();
+  };
+
+  window.tCopy = function(){
+    navigator.clipboard.writeText(JSON.stringify(tBuild(), null, 2)).then(() => {
+      const f = document.getElementById('t-flash');
+      f.classList.add('show');
+      setTimeout(() => f.classList.remove('show'), 2000);
+    });
+  };
+
+  window.tExport = function(){
+    const title = (document.getElementById('t-title').value.trim().replace(/[^a-z0-9]/gi,'_').toLowerCase()) || 'cms_metadata';
+    const blob = new Blob([JSON.stringify(tBuild(), null, 2)], {type:'application/json'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = title + '_cms.json'; a.click();
+  };
+
+  tRender();
+})();
+</script>
+
+<!-- GOVERNANCE -->
+<section class="governance" id="governance">
+  <div class="section-inner">
+    <p class="section-label">Governance</p>
+    <h2 class="section-title">A regional common good</h2>
+    <p class="section-intro">Not a private standard. Designed to transfer to independent Caribbean governance the moment five institutions adopt it.</p>
+    <div class="gov-grid">
+      <div class="gov-card">
+        <h3>Technical Committee</h3>
+        <p>5–9 experts. Validates new tags, corrections, minor versions. 2-year mandates. 1/3 renewed yearly.</p>
+      </div>
+      <div class="gov-card">
+        <h3>General Assembly</h3>
+        <p>All adopting institutions, one vote each. Approves major versions and strategic directions.</p>
+      </div>
+      <div class="gov-card">
+        <h3>Secretariat</h3>
+        <p>Manages daily operations, website, GitHub repository, and certification process.</p>
+      </div>
+    </div>
+    <div class="transfer-banner">
+      <strong>Transfer clause:</strong> As soon as 5 independent institutions officially adopt the CMS — national archives, universities, cultural ministries — governance transfers entirely from Caribwood Language Lab to the independent Technical Committee. The CMS becomes the Caribbean's standard, not any single organization's property.
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap">
+  <div class="section-inner">
+    <p class="section-label">Roadmap</p>
+    <h2 class="section-title">18 months to a regional standard</h2>
+    <p class="section-intro">Three phases. Each one builds the foundation for the next.</p>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-dot">1</div>
+        <div class="phase-body">
+          <div class="timing">Months 0–3 · Foundation</div>
+          <h3>CMS v1.0 + Metadata Bible</h3>
+          <p>Linguistic & cultural committee convened. Six families defined. Glossary published. Manual tagging tools ready.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-dot">2</div>
+        <div class="phase-body">
+          <div class="timing">Months 3–9 · Adoption</div>
+          <h3>Pilot platforms &amp; certification launch</h3>
+          <p>First 2–3 institutions onboarded. CMS Tagger prototype live. Bronze/Silver/Gold/Platinum badges issued.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-dot">3</div>
+        <div class="phase-body">
+          <div class="timing">Months 9–18 · Scaling</div>
+          <h3>Governance transfer + CMS v2.0 public</h3>
+          <p>AI-assisted tagging (experimental). Independent governance activated. CMS v2.0 published as an open standard.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="adopt">
+  <div class="cta-inner">
+    <h2>Be one of the five.</h2>
+    <p>Five institutions make the CMS a Caribbean commons. Are you a platform, archive, university, or cultural ministry? Your adoption is the standard's independence.</p>
+    <div class="cta-actions">
+      <a href="mailto:cms@caribwood.org?subject=CMS%20Co-adoption%20Interest" class="btn-primary">Express interest →</a>
+      <a href="CMS_WhitePaper_v2.0_Final.docx" class="btn-ghost">↓ Download White Paper</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="name">Caribbean Metadata Standard</div>
+        <p>Developed by the Caribwood Language Lab — a center of excellence for Caribbean linguistic innovation, translation, and cultural localization.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="CMS_WhitePaper_v2.0_Final.docx">White Paper v2.0</a></li>
+          <li><a href="#">Metadata Bible</a></li>
+          <li><a href="#">GitHub Repository</a></li>
+          <li><a href="#">Certification Process</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:cms@caribwood.org">cms@caribwood.org</a></li>
+          <li><a href="#">Join the governance</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Caribwood Language Lab · Caribbean Metadata Standard</span>
+      <span>License: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Version 2.0</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
