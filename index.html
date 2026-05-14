@@ -448,7 +448,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">Premier standard numérique caribéen — v1.0</div>
+    <div class="hero-eyebrow">Premier standard numérique caribéen — v2.0</div>
     <h1>Caribbean Metadata Standard</h1>
     <p class="hero-cms">C · M · S</p>
     <p>Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.</p>
@@ -566,7 +566,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
         </svg>
         <div class="vcp-header-text">
           <p>Validateur CMS officiel</p>
-          <p>CARIBBEAN METADATA STANDARD v1.0</p>
+          <p>CARIBBEAN METADATA STANDARD v2.0</p>
         </div>
       </div>
       <div class="vcp-steps">
@@ -596,6 +596,281 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
   </div>
 </section>
 
+<!-- TAGGER -->
+<section id="tagger" style="background:#f7f9fb;padding:88px 6%;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-eyebrow" data-i18n="tagger-eyebrow">CMS Tagger</div>
+    <h2 class="section-title" data-i18n="tagger-title">Générez vos métadonnées maintenant</h2>
+    <p style="font-size:16px;color:#6B6059;max-width:600px;margin-bottom:40px;line-height:1.75;" data-i18n="tagger-sub">Remplissez les 6 familles — votre JSON-LD schema.org se génère en temps réel. Copiez-le ou exportez le fichier <code style="font-size:14px;color:#003E6B;">.json</code> directement.</p>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start;">
+
+      <!-- FORMULAIRE -->
+      <div style="border:1px solid #E0D8D0;border-radius:10px;overflow:hidden;">
+        <div style="background:#003E6B;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:13px;font-weight:500;color:#fff;">&#9998; Métadonnées du contenu</span>
+          <span style="font-size:10px;font-weight:600;background:rgba(201,132,58,0.25);color:#F5C87A;border:1px solid rgba(201,132,58,0.4);padding:2px 8px;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;">v0.1</span>
+        </div>
+        <div style="padding:20px;display:flex;flex-direction:column;gap:18px;background:#fff;">
+
+          <!-- Identité -->
+          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div style="width:26px;height:26px;background:#E8F4F8;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#128196;</div>
+              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Identité du contenu</h4>
+            </div>
+            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-title-label">Titre *</label><input type="text" id="tf-title" placeholder="ex: Anba Dlo" oninput="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;"></div>
+            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-type-label">Type de contenu</label>
+              <select id="tf-type" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
+                <option value="CreativeWork">CreativeWork (générique)</option>
+                <option value="Movie">Film</option>
+                <option value="MusicRecording">Musique</option>
+                <option value="TVSeries">Série TV</option>
+                <option value="Podcast">Podcast</option>
+                <option value="Book">Livre / Texte</option>
+              </select>
+            </div>
+            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-creator-label">Créateur</label><input type="text" id="tf-creator" placeholder="ex: Marie-Sophie Jourdain" oninput="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;"></div>
+            <div><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-date-label">Date de publication</label><input type="text" id="tf-date" placeholder="AAAA-MM-JJ" oninput="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;"></div>
+          </div>
+
+          <!-- Linguistique -->
+          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div style="width:26px;height:26px;background:#E1F5EE;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#128172;</div>
+              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Linguistique</h4>
+              <span style="font-size:11px;color:#6B6059;font-style:italic;margin-left:auto;">BCP 47</span>
+            </div>
+            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-lang-label">Langue principale</label>
+              <select id="tf-lang" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
+                <option value="">— sélectionner —</option>
+                <option value="ht">Créole haïtien (ht)</option>
+                <option value="gcf">Créole guadeloupéen (gcf)</option>
+                <option value="mart1259">Créole martiniquais</option>
+                <option value="jam">Patois jamaïcain (jam)</option>
+                <option value="fr">Français (fr)</option>
+                <option value="en">Anglais (en)</option>
+                <option value="es">Espagnol (es)</option>
+                <option value="pap">Papiamento (pap)</option>
+              </select>
+            </div>
+            <div><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-codesw-label">Code-switching</label>
+              <select id="tf-codesw" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
+                <option value="">— aucun —</option>
+                <option value="FR/Kreyol">FR / Kreyol</option>
+                <option value="EN/Patois">EN / Patois</option>
+                <option value="ES/Creole">ES / Creole</option>
+                <option value="Multilingual">Multilingue</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Géographique -->
+          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div style="width:26px;height:26px;background:#FAEEDA;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#128205;</div>
+              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Géographique</h4>
+            </div>
+            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-territory-label">Territoire</label>
+              <select id="tf-territory" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
+                <option value="">— sélectionner —</option>
+                <option value="Guadeloupe">Guadeloupe</option>
+                <option value="Martinique">Martinique</option>
+                <option value="Haiti">Haïti</option>
+                <option value="Jamaica">Jamaïque</option>
+                <option value="Trinidad and Tobago">Trinidad &amp; Tobago</option>
+                <option value="Barbados">Barbade</option>
+                <option value="Dominican Republic">République Dominicaine</option>
+                <option value="Cuba">Cuba</option>
+                <option value="Puerto Rico">Porto Rico</option>
+                <option value="Caribbean Diaspora">Diaspora caribéenne</option>
+                <option value="Caribbean (multi-territory)">Multi-territoire</option>
+              </select>
+            </div>
+            <div><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-env-label">Environnement</label>
+              <select id="tf-env" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
+                <option value="">— sélectionner —</option>
+                <option value="Urban">Urbain</option>
+                <option value="Rural">Rural</option>
+                <option value="Coastal">Côtier</option>
+                <option value="Island">Île</option>
+                <option value="Diaspora">Diaspora</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Narrative & Culturelle -->
+          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div style="width:26px;height:26px;background:#EEEDFE;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#127914;</div>
+              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Narrative &amp; Culturelle</h4>
+            </div>
+            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-genre-label">Genre narratif</label>
+              <select id="tf-genre" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
+                <option value="">— sélectionner —</option>
+                <option value="Magical realism">Réalisme magique</option>
+                <option value="Social drama">Drame social</option>
+                <option value="Family saga">Saga familiale</option>
+                <option value="Tropical thriller">Thriller tropical</option>
+                <option value="Documentary">Documentaire</option>
+                <option value="Comedy">Comédie</option>
+                <option value="Coming-of-age">Coming-of-age</option>
+                <option value="Historical fiction">Fiction historique</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-cultural-label">Marqueurs culturels</label>
+              <div style="display:flex;gap:6px;">
+                <input type="text" id="tf-cult-in" placeholder="ex: Carnaval, Vodou, Konpa…" onkeydown="if(event.key==='Enter'){event.preventDefault();taggerAddTag('cult')}" style="flex:1;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;">
+                <button onclick="taggerAddTag('cult')" style="padding:8px 14px;background:#003E6B;color:#fff;border:none;border-radius:4px;font-size:18px;line-height:1;cursor:pointer;">+</button>
+              </div>
+              <div id="cult-pills" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;"></div>
+            </div>
+          </div>
+
+          <!-- Rythmique -->
+          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div style="width:26px;height:26px;background:#FAECE7;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#127925;</div>
+              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Rythmique</h4>
+            </div>
+            <div><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-tempo-label">Tempo du dialogue</label>
+              <select id="tf-tempo" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
+                <option value="">— sélectionner —</option>
+                <option value="syncopated">Syncopé</option>
+                <option value="fast-paced urban">Rapide urbain</option>
+                <option value="slow contemplative island">Lent contemplatif</option>
+                <option value="mixed">Mixte</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Socio-historique -->
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div style="width:26px;height:26px;background:#EAF3DE;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#9878;&#65039;</div>
+              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Socio-historique</h4>
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-socio-label">Marqueurs historiques</label>
+              <div style="display:flex;gap:6px;">
+                <input type="text" id="tf-socio-in" placeholder="ex: Postcolonial, Créolisation…" onkeydown="if(event.key==='Enter'){event.preventDefault();taggerAddTag('socio')}" style="flex:1;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;">
+                <button onclick="taggerAddTag('socio')" style="padding:8px 14px;background:#003E6B;color:#fff;border:none;border-radius:4px;font-size:18px;line-height:1;cursor:pointer;">+</button>
+              </div>
+              <div id="socio-pills" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- OUTPUT JSON-LD -->
+      <div style="border:1px solid #E0D8D0;border-radius:10px;overflow:hidden;position:sticky;top:88px;">
+        <div style="background:#0D1117;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:monospace;font-size:12px;font-weight:500;color:#8B949E;letter-spacing:0.05em;">JSON-LD OUTPUT</span>
+          <div style="display:flex;gap:6px;">
+            <button onclick="taggerCopy()" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:5px 12px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.12);border-radius:4px;cursor:pointer;font-family:inherit;">&#10697; Copier</button>
+            <button onclick="taggerExport()" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:5px 12px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.12);border-radius:4px;cursor:pointer;font-family:inherit;">&#8595; Export .json</button>
+          </div>
+        </div>
+        <div id="tf-json-out" style="background:#0D1117;padding:20px;font-family:monospace;font-size:12px;line-height:1.8;color:#C9D1D9;white-space:pre;overflow-x:auto;min-height:340px;" aria-live="polite"></div>
+        <div style="background:#0D1117;border-top:1px solid #21262D;padding:10px 18px;display:flex;align-items:center;gap:8px;font-size:11px;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#3FB950;flex-shrink:0;"></div>
+          <span style="color:#3FB950;">Valid schema.org · CMS v2.0 compliant</span>
+          <span id="tf-flash" style="margin-left:auto;color:#3FB950;font-size:11px;opacity:0;transition:opacity 0.2s;">&#10003; Copié !</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const tS = { cult: [], socio: [] };
+
+  function tV(id){ return document.getElementById(id).value.trim(); }
+
+  function tBuild(){
+    const o = {};
+    o['@context'] = { '@vocab': 'https://schema.org/', 'cms': 'https://caribbeanmetadata.org/ns/' };
+    o['@type'] = tV('tf-type') || 'CreativeWork';
+    if(tV('tf-title'))   o['name'] = tV('tf-title');
+    if(tV('tf-creator')) o['creator'] = { '@type': 'Person', 'name': tV('tf-creator') };
+    if(tV('tf-date'))    o['datePublished'] = tV('tf-date');
+    if(tV('tf-lang'))    o['inLanguage'] = tV('tf-lang');
+    const kw = [];
+    if(tV('tf-territory')) kw.push(tV('tf-territory').toLowerCase());
+    if(tV('tf-genre'))     kw.push(tV('tf-genre').toLowerCase().replace(/ /g,'-'));
+    tS.cult.forEach(t => kw.push(t.toLowerCase().replace(/ /g,'-')));
+    if(kw.length) o['keywords'] = kw;
+    if(tV('tf-territory')) o['cms:territory'] = tV('tf-territory');
+    if(tV('tf-env'))       o['cms:environment'] = tV('tf-env');
+    if(tV('tf-codesw'))    o['cms:code_switching'] = tV('tf-codesw');
+    if(tV('tf-genre'))     o['cms:narrative_genre'] = tV('tf-genre');
+    if(tS.cult.length)     o['cms:cultural_markers'] = [...tS.cult];
+    if(tV('tf-tempo'))     o['cms:rhythmic_tempo'] = tV('tf-tempo');
+    if(tS.socio.length)    o['cms:sociohistorical_markers'] = [...tS.socio];
+    o['cms:standard_version'] = 'CMS-2.0';
+    return o;
+  }
+
+  function tHL(str){
+    return str
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"(cms:[^"]+)"(\s*:)/g,'<span style="color:#F0C040">"$1"</span>$2')
+      .replace(/"([^"]+)"(\s*:)/g,'<span style="color:#79C0FF">"$1"</span>$2')
+      .replace(/:\s*"([^"]+)"/g,': <span style="color:#A5D6FF">"$1"</span>');
+  }
+
+  window.taggerRender = function(){
+    document.getElementById('tf-json-out').innerHTML = tHL(JSON.stringify(tBuild(),null,2));
+  };
+
+  window.taggerAddTag = function(fam){
+    const inp = document.getElementById('tf-'+fam+'-in');
+    const v = inp.value.trim();
+    if(!v || tS[fam].includes(v)) return;
+    tS[fam].push(v);
+    inp.value = '';
+    tRenderPills(fam);
+    taggerRender();
+  };
+
+  function tRenderPills(fam){
+    document.getElementById(fam+'-pills').innerHTML =
+      tS[fam].map((t,i) =>
+        `<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 8px;background:#E8F4F8;color:#003E6B;border-radius:2px;">${t}<button onclick="taggerRemove('${fam}',${i})" style="background:none;border:none;cursor:pointer;color:#1A7A9A;font-size:14px;line-height:1;padding:0;" aria-label="supprimer ${t}">&times;</button></span>`
+      ).join('');
+  }
+
+  window.taggerRemove = function(fam,i){
+    tS[fam].splice(i,1);
+    tRenderPills(fam);
+    taggerRender();
+  };
+
+  window.taggerCopy = function(){
+    navigator.clipboard.writeText(JSON.stringify(tBuild(),null,2)).then(()=>{
+      const f = document.getElementById('tf-flash');
+      f.style.opacity = '1';
+      setTimeout(()=>{ f.style.opacity='0'; }, 2000);
+    });
+  };
+
+  window.taggerExport = function(){
+    const title = (document.getElementById('tf-title').value.trim().replace(/[^a-z0-9]/gi,'_').toLowerCase()) || 'cms_metadata';
+    const blob = new Blob([JSON.stringify(tBuild(),null,2)],{type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = title+'_cms.json';
+    a.click();
+  };
+
+  taggerRender();
+})();
+</script>
+
 <!-- ==========================================
      OPEN DATA — SECTION NOUVELLE
      ========================================== -->
@@ -606,10 +881,10 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
       <div class="opendata-text">
         <div class="section-eyebrow">Open Data</div>
         <h2 class="section-title">Premier corpus culturel caribéen — open source</h2>
-        <p>Le CMS publie en open source le premier corpus de données culturelles caribéen structuré selon le standard CMS v1.0 — librement téléchargeable, citable dans les publications académiques, et ouvert aux contributions de toute la communauté caribéenne.</p>
+        <p>Le CMS publie en open source le premier corpus de données culturelles caribéen structuré selon le standard CMS v2.0 — librement téléchargeable, citable dans les publications académiques, et ouvert aux contributions de toute la communauté caribéenne.</p>
         <div class="opendata-badges">
           <span class="opendata-badge badge-cc">CC-BY 4.0</span>
-          <span class="opendata-badge badge-cms">CMS v1.0</span>
+          <span class="opendata-badge badge-cms">CMS v2.0</span>
           <span class="opendata-badge badge-ifla">IFLA METATEC · En cours</span>
           <span class="opendata-badge badge-crosq">CROSQ · NWIP Soumis</span>
         </div>
@@ -630,7 +905,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
               <div class="corpus-card-sub">heso73 / caribbeanmetadata.org</div>
             </div>
           </div>
-          <div class="corpus-version">v1.0</div>
+          <div class="corpus-version">v2.0</div>
         </div>
         <div class="corpus-stats">
           <div class="corpus-stat">
@@ -691,7 +966,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
         <div class="opendata-stat-lbl">Licence BY 4.0</div>
       </div>
       <div class="opendata-stat-box">
-        <div class="opendata-stat-num">v1.0</div>
+        <div class="opendata-stat-num">v2.0</div>
         <div class="opendata-stat-lbl">Standard CMS</div>
       </div>
     </div>
@@ -786,7 +1061,7 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
     </div>
   </div>
   <div class="footer-bottom">
-    caribbeanmetadata.org &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
+    caribbeanmetadata.org &nbsp;·&nbsp; CMS v2.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
   </div>
 </footer>
 
@@ -816,19 +1091,19 @@ document.addEventListener('click', e => {
 // Langue switcher
 const T = {
   fr: {
-    'hero-eyebrow': 'Premier standard numérique caribéen — v1.0',
+    'hero-eyebrow': 'Premier standard numérique caribéen — v2.0',
     'hero-desc':    'Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.',
     'btn-discover': 'Découvrir le standard',
     'btn-join':     "Rejoindre l'initiative",
   },
   en: {
-    'hero-eyebrow': 'First Caribbean digital standard — v1.0',
+    'hero-eyebrow': 'First Caribbean digital standard — v2.0',
     'hero-desc':    'The first unified framework to classify, describe and index Caribbean audiovisual content — so algorithms finally understand our cultures.',
     'btn-discover': 'Discover the standard',
     'btn-join':     'Join the initiative',
   },
   es: {
-    'hero-eyebrow': 'Primer estándar digital caribeño — v1.0',
+    'hero-eyebrow': 'Primer estándar digital caribeño — v2.0',
     'hero-desc':    'El primer marco unificado para clasificar, describir e indexar contenidos audiovisuales caribeños — para que los algoritmos entiendan nuestras culturas.',
     'btn-discover': 'Descubrir el estándar',
     'btn-join':     'Unirse a la iniciativa',
