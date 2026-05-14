@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Validateur CMS — Caribbean Metadata Standard</title>
-<meta name="description" content="Validez et certifiez vos contenus caribéens selon le Caribbean Metadata Standard v1.0. Obtenez votre niveau de certification : Bronze, Silver, Gold ou Platinum.">
+<meta name="description" content="Validez et certifiez vos contenus caribéens selon le Caribbean Metadata Standard v2.0. Obtenez votre niveau de certification : Bronze, Silver, Gold ou Platinum.">
 <style>
 /* ── RESET & BASE ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -596,7 +596,7 @@ footer {
       </svg>
       <div class="val-header-text">
         <h2>Validateur CMS officiel</h2>
-        <p>CARIBBEAN METADATA STANDARD — v1.0</p>
+        <p>CARIBBEAN METADATA STANDARD — v2.0</p>
       </div>
       <div class="val-badge">Caribwood Language Lab</div>
     </div>
@@ -859,7 +859,7 @@ footer {
         <div id="r-checks"></div>
 
         <div class="cert-footer" id="r-cert-footer">
-          Certifié le <strong id="r-date">—</strong> · <strong>Caribwood Language Lab</strong> · CMS v1.0 · caribbeanmetadata.org
+          Certifié le <strong id="r-date">—</strong> · <strong>Caribwood Language Lab</strong> · CMS v2.0 · caribbeanmetadata.org
         </div>
 
         <div class="result-actions">
@@ -921,11 +921,11 @@ let officialSchema = null;
 async function loadSchema() {
   const badge = document.getElementById('schema-status');
   try {
-    const res = await fetch('https://caribbeanmetadata.org/schema/v1.0/cms-metadata.json');
+    const res = await fetch('https://caribbeanmetadata.org/schema/v2.0/cms-metadata.json');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     officialSchema = await res.json();
     badge.className = 'schema-badge loaded';
-    badge.innerHTML = '<span class="schema-dot"></span> Schéma CMS v1.0 chargé — caribbeanmetadata.org';
+    badge.innerHTML = '<span class="schema-dot"></span> Schéma CMS v2.0 chargé — caribbeanmetadata.org';
   } catch (e) {
     badge.className = 'schema-badge failed';
     badge.innerHTML = '<span class="schema-dot"></span> Schéma non disponible (mode hors-ligne)';
@@ -967,7 +967,7 @@ function handleFileUpload(event) {
 
       result.className = 'upload-result ok';
       icon.textContent = '✅';
-      msg.textContent = `"${title}" — Conforme au schéma CMS v1.0`;
+      msg.textContent = `"${title}" — Conforme au schéma CMS v2.0`;
       details.textContent = `Type : ${type} · Score : ${score}/100 · Niveau : ${level.toUpperCase()} · Version schéma : ${data.cms_version}`;
 
       // Pré-remplir le formulaire si possible
@@ -1212,7 +1212,7 @@ function downloadJSON() {
   const blob = new Blob([data], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'CMS_' + (document.getElementById('f-title').value.trim().replace(/\s+/g,'_') || 'record') + '_v1.0.json';
+  a.download = 'CMS_' + (document.getElementById('f-title').value.trim().replace(/\s+/g,'_') || 'record') + '_v2.0.json';
   a.click();
 }
 
@@ -1242,7 +1242,7 @@ body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;background:#FFFDF5}
 .footer-text{font-size:11px;color:#aaa;letter-spacing:1px}
 </style></head><body>
 <div class="cert">
-<div class="top"><div><h1>CARIBBEAN METADATA STANDARD · v1.0</h1><p style="color:rgba(255,255,255,0.5);font-size:12px;margin:4px 0 0">Caribwood Language Lab · caribbeanmetadata.org</p></div></div>
+<div class="top"><div><h1>CARIBBEAN METADATA STANDARD · v2.0</h1><p style="color:rgba(255,255,255,0.5);font-size:12px;margin:4px 0 0">Caribwood Language Lab · caribbeanmetadata.org</p></div></div>
 <div class="body">
 <div class="cert-title">Certificat de Conformité</div>
 <div class="cert-sub">CMS‑Compliant Content</div>
