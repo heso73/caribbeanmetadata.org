@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon — Caribbean Metadata Standard</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: #003E6B; color: #fff;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+
+/* NAV — identique à index.html */
+nav {
+  background: rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 6%; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { font-size: 20px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 2px; }
+.nav-back {
+  font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none;
+  display: flex; align-items: center; gap: 6px; transition: color .2s;
+}
+.nav-back:hover { color: #00C2C7; }
+
+/* MAIN */
+main {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 60px 6%; position: relative; overflow: hidden;
+}
+main::before {
+  content: ''; position: absolute; inset: 0; opacity: 0.05;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(0,194,199,0.8) 48px),
+    repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(201,168,76,0.5) 48px);
+}
+.content { position: relative; z-index: 1; max-width: 560px; text-align: center; }
+
+.page-tag {
+  display: inline-block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: #00C2C7; border: 1px solid rgba(0,194,199,0.3); padding: 5px 16px;
+  border-radius: 20px; margin-bottom: 28px;
+}
+.page-name {
+  font-size: clamp(32px, 6vw, 52px); font-weight: 700; color: #fff;
+  line-height: 1.1; margin-bottom: 12px; letter-spacing: -0.5px;
+}
+.page-sub {
+  font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.7;
+  margin-bottom: 40px;
+}
+.progress-wrap { margin-bottom: 36px; }
+.progress-label {
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 8px; letter-spacing: 1px;
+}
+.progress-bar {
+  height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;
+}
+.progress-fill { height: 100%; background: #00C2C7; border-radius: 2px; transition: width 1s ease; }
+
+.actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-home {
+  padding: 12px 26px; background: #00C2C7; color: #003E6B;
+  text-decoration: none; border-radius: 4px; font-weight: 700; font-size: 14px;
+  transition: background .2s;
+}
+.btn-home:hover { background: #00A8AE; }
+.btn-notify {
+  padding: 12px 26px; background: transparent; color: rgba(255,255,255,0.7);
+  text-decoration: none; border-radius: 4px; font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.2); transition: all .2s;
+}
+.btn-notify:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+/* NOTIFY FORM */
+.notify-form {
+  display: none; margin-top: 24px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 20px 24px;
+}
+.notify-form.open { display: block; }
+.notify-form p { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
+.notify-row { display: flex; gap: 8px; }
+.notify-input {
+  flex: 1; padding: 10px 14px; background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 4px;
+  color: #fff; font-size: 13px; font-family: inherit; outline: none;
+}
+.notify-input::placeholder { color: rgba(255,255,255,0.35); }
+.notify-input:focus { border-color: #00C2C7; }
+.notify-btn {
+  padding: 10px 20px; background: #00C2C7; color: #003E6B;
+  border: none; border-radius: 4px; font-weight: 700; font-size: 13px;
+  cursor: pointer; font-family: inherit; white-space: nowrap;
+}
+.notify-success { display: none; color: #00C2C7; font-size: 13px; margin-top: 8px; }
+
+/* OTHER PAGES */
+.other-pages { margin-top: 48px; }
+.other-pages p { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+.other-pages-grid { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.other-pages-grid a {
+  font-size: 12px; padding: 5px 14px; color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; text-decoration: none;
+  transition: all .2s;
+}
+.other-pages-grid a:hover { color: #00C2C7; border-color: rgba(0,194,199,0.4); }
+.other-pages-grid a.live { color: #00C2C7; border-color: rgba(0,194,199,0.3); }
+
+/* FOOTER */
+footer {
+  padding: 20px 6%; border-top: 1px solid rgba(255,255,255,0.06);
+  text-align: center; font-size: 11px; color: rgba(255,255,255,0.25);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">CMS</a>
+  <a class="nav-back" href="index.html">← Retour à l'accueil</a>
+</nav>
+
+<main>
+  <div class="content">
+    <div class="page-tag" id="page-tag">Page en construction</div>
+    <h1 class="page-name" id="page-name">Coming Soon</h1>
+    <p class="page-sub" id="page-sub">Cette page est en cours de développement. Elle sera disponible très prochainement.</p>
+
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-label">
+        <span id="progress-label-text">Avancement</span>
+        <span id="progress-pct">—</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="index.html" class="btn-home">← Retour à l'accueil</a>
+      <button class="btn-notify" onclick="toggleNotify()">M'avertir au lancement</button>
+    </div>
+
+    <div class="notify-form" id="notifyForm">
+      <p>Laissez votre email — nous vous préviendrons dès que cette page est en ligne.</p>
+      <div class="notify-row">
+        <input class="notify-input" type="email" id="notifyEmail" placeholder="votre@email.com">
+        <button class="notify-btn" onclick="submitNotify()">OK</button>
+      </div>
+      <p class="notify-success" id="notifySuccess">✓ Noté ! Nous vous contacterons à l'ouverture.</p>
+    </div>
+
+    <div class="other-pages">
+      <p>Pages disponibles</p>
+      <div class="other-pages-grid" id="pages-grid"></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  caribbeanmetadata.org · CMS v1.0 · Caribwood Language Lab — Guadeloupe
+</footer>
+
+<script>
+// ── Page metadata ────────────────────────────────────────────────────────────
+const PAGES = {
+  'about.html':        { fr: 'À propos', en: 'About', es: 'Acerca de',
+    sub: { fr: 'L\'histoire du CMS, l\'équipe Caribwood Language Lab et la vision fondatrice.',
+           en: 'The CMS story, the Caribwood Language Lab team and the founding vision.',
+           es: 'La historia del CMS, el equipo y la visión fundadora.' },
+    pct: 60 },
+  'families.html':     { fr: 'Les 6 Familles', en: 'The 6 Families', es: 'Las 6 Familias',
+    sub: { fr: 'Documentation complète des 6 familles de métadonnées caribéennes.',
+           en: 'Complete documentation of the 6 Caribbean metadata families.',
+           es: 'Documentación completa de las 6 familias de metadatos caribeños.' },
+    pct: 45 },
+  'declaration.html':  { fr: 'Déclaration Fondatrice', en: 'Founding Declaration', es: 'Declaración Fundadora',
+    sub: { fr: 'L\'acte de naissance numérique du Caribbean Metadata Standard.',
+           en: 'The digital birth certificate of the Caribbean Metadata Standard.',
+           es: 'El acta de nacimiento digital del Caribbean Metadata Standard.' },
+    pct: 80 },
+  'validator.html':    { fr: 'Validateur CMS', en: 'CMS Validator', es: 'Validador CMS',
+    sub: { fr: 'Outil de certification officiel Bronze / Silver / Gold / Platinum.',
+           en: 'Official certification tool Bronze / Silver / Gold / Platinum.',
+           es: 'Herramienta de certificación oficial Bronce / Plata / Oro / Platino.' },
+    pct: 35 },
+  'collaborate.html':  { fr: 'Collaborer', en: 'Collaborate', es: 'Colaborar',
+    sub: { fr: 'Comment rejoindre l\'initiative, co-adopter le standard et contribuer.',
+           en: 'How to join the initiative, co-adopt the standard and contribute.',
+           es: 'Cómo unirse a la iniciativa, co-adoptar el estándar y contribuir.' },
+    pct: 50 },
+  'resources.html':    { fr: 'Ressources', en: 'Resources', es: 'Recursos',
+    sub: { fr: 'Documentation, White Paper, Metadata Bible et outils techniques.',
+           en: 'Documentation, White Paper, Metadata Bible and technical tools.',
+           es: 'Documentación, White Paper, Metadata Bible y herramientas técnicas.' },
+    pct: 40 },
+  'developers.html':   { fr: 'Developers', en: 'Developers', es: 'Developers',
+    sub: { fr: 'Guide technique, API, scripts de conversion et exemples JSON-LD.',
+           en: 'Technical guide, API, conversion scripts and JSON-LD examples.',
+           es: 'Guía técnica, API, scripts de conversión y ejemplos JSON-LD.' },
+    pct: 55 },
+  'lab.html':          { fr: 'Language Lab', en: 'Language Lab', es: 'Language Lab',
+    sub: { fr: 'Le Caribwood Language Lab — centre d\'innovation linguistique caribéenne.',
+           en: 'Caribwood Language Lab — centre for Caribbean linguistic innovation.',
+           es: 'Caribwood Language Lab — centro de innovación lingüística caribeña.' },
+    pct: 30 },
+  'contact.html':      { fr: 'Contact', en: 'Contact', es: 'Contacto',
+    sub: { fr: 'Nous écrire, rejoindre le Comité Technique ou demander une certification.',
+           en: 'Write to us, join the Technical Committee or request certification.',
+           es: 'Escríbanos, únase al Comité Técnico o solicite certificación.' },
+    pct: 70 },
+  'founders.html':     { fr: 'Les 100 Premiers', en: 'The 100 Founders', es: 'Los 100 Fundadores',
+    sub: { fr: 'Les 100 premières institutions et créateurs à adopter officiellement le CMS.',
+           en: 'The first 100 institutions and creators to officially adopt the CMS.',
+           es: 'Las primeras 100 instituciones y creadores en adoptar oficialmente el CMS.' },
+    pct: 20 },
+  'press.html':        { fr: 'Presse', en: 'Press', es: 'Prensa',
+    sub: { fr: 'Kit presse, contacts médias et annonces officielles du CMS.',
+           en: 'Press kit, media contacts and official CMS announcements.',
+           es: 'Kit de prensa, contactos de medios y anuncios oficiales del CMS.' },
+    pct: 25 },
+};
+
+// ── Live pages (always accessible) ──────────────────────────────────────────
+const LIVE = ['index.html'];
+
+// ── Detect current page and language ────────────────────────────────────────
+const lang = localStorage.getItem('cms-lang') || 'fr';
+const path = window.location.pathname.split('/').pop() || 'index.html';
+const page = PAGES[path] || null;
+
+// ── Update content ───────────────────────────────────────────────────────────
+if (page) {
+  document.title = (page[lang] || page.fr) + ' — Caribbean Metadata Standard';
+  document.getElementById('page-tag').textContent =
+    { fr: 'Page en construction', en: 'Coming Soon', es: 'Próximamente' }[lang] || 'Coming Soon';
+  document.getElementById('page-name').textContent = page[lang] || page.fr;
+  document.getElementById('page-sub').textContent = (page.sub && page.sub[lang]) || page.sub.fr;
+
+  const pct = page.pct || 0;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-label-text').textContent =
+    { fr: 'Avancement', en: 'Progress', es: 'Progreso' }[lang] || 'Avancement';
+  setTimeout(() => {
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }, 300);
+} else {
+  // Unknown page
+  document.getElementById('progress-wrap').style.display = 'none';
+  document.getElementById('page-sub').textContent =
+    { fr: 'Cette page n\'existe pas. Retournez à l\'accueil.',
+      en: 'This page does not exist. Return to the homepage.',
+      es: 'Esta página no existe. Vuelva a la página de inicio.' }[lang];
+}
+
+// ── Pages grid ───────────────────────────────────────────────────────────────
+const grid = document.getElementById('pages-grid');
+const allPages = [
+  { href: 'index.html', label: { fr: 'Accueil', en: 'Home', es: 'Inicio' }, live: true },
+  ...Object.entries(PAGES).map(([href, data]) => ({
+    href, label: { fr: data.fr, en: data.en, es: data.es }, live: LIVE.includes(href)
+  }))
+];
+allPages.forEach(({ href, label, live }) => {
+  if (href === path) return; // skip current page
+  const a = document.createElement('a');
+  a.href = href;
+  a.textContent = label[lang] || label.fr;
+  if (live) a.classList.add('live');
+  grid.appendChild(a);
+});
+
+// ── Notify form ──────────────────────────────────────────────────────────────
+function toggleNotify() {
+  document.getElementById('notifyForm').classList.toggle('open');
+}
+function submitNotify() {
+  const email = document.getElementById('notifyEmail').value;
+  if (!email || !email.includes('@')) return;
+  document.getElementById('notifySuccess').style.display = 'block';
+  document.getElementById('notifyEmail').disabled = true;
+  document.querySelector('.notify-btn').disabled = true;
+  // In production: POST to your backend / Mailchimp / Airtable
+  console.log('Notify request:', email, 'for page:', path);
+}
+
+// ── Language from index ──────────────────────────────────────────────────────
+document.querySelector('.nav-back').textContent =
+  { fr: '← Retour à l\'accueil', en: '← Back to home', es: '← Volver al inicio' }[lang] || '← Retour';
+</script>
+</body>
+</html>
