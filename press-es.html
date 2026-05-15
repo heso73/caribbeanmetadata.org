@@ -1,173 +1,990 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prensa — Caribbean Metadata Standard</title>
-  <meta name="description" content="Recursos de prensa del Caribbean Metadata Standard. Logos, visuales, kit de prensa, comunicados y contacto para medios."/>
-  <link rel="canonical" href="https://caribbeanmetadata.org/press-es.html"/>
-  <link rel="stylesheet" href="style-es.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    .press-hero{padding:4rem 0 3rem;border-bottom:1px solid var(--border);}
-    .press-hero .eyebrow{font-size:.7rem;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:.75rem;}
-    .press-hero h1{font-size:2.6rem;font-weight:700;line-height:1.15;margin-bottom:1rem;}
-    .press-hero p{font-size:1rem;color:var(--text-muted);max-width:52ch;line-height:1.7;}
-    .press-section{padding:3rem 0;border-bottom:1px solid var(--border);}
-    .press-section h2{font-size:1.35rem;font-weight:700;margin-bottom:.4rem;}
-    .press-section .section-note{font-size:.85rem;color:var(--text-muted);margin-bottom:2rem;}
-    .download-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.5rem;}
-    .download-card{border:1px solid var(--border);border-radius:10px;padding:1.25rem;display:flex;flex-direction:column;gap:.75rem;}
-    .download-card:hover{border-color:var(--accent);}
-    .download-card-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;}
-    .icon-zip{background:#F1EFE8;color:#5F5E5A;}
-    .icon-pdf{background:#FAECE7;color:#D85A30;}
-    .icon-png{background:#E1F5EE;color:#1D9E75;}
-    .icon-svg{background:#EEEDFE;color:#534AB7;}
-    .download-card-name{font-size:.9rem;font-weight:600;color:var(--text);}
-    .download-card-desc{font-size:.78rem;color:var(--text-muted);line-height:1.5;flex:1;}
-    .download-card-link{font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none;}
-    .download-card-link:hover{text-decoration:underline;}
-    .release-list{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;}
-    .release-item{display:flex;gap:1.25rem;align-items:flex-start;padding:1.1rem 1.25rem;border:1px solid var(--border);border-radius:10px;}
-    .release-date{font-size:.75rem;color:var(--text-muted);white-space:nowrap;padding-top:.15rem;min-width:80px;}
-    .release-body{flex:1;}
-    .release-title{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.25rem;}
-    .release-desc{font-size:.82rem;color:var(--text-muted);line-height:1.5;}
-    .release-tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:.15rem .55rem;border-radius:20px;margin-top:.5rem;}
-    .tag-new{background:#E1F5EE;color:#0F6E56;}
-    .tag-coming{background:#F1EFE8;color:#888780;}
-    .swatch-grid{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem;}
-    .swatch{display:flex;align-items:center;gap:.65rem;}
-    .swatch-dot{width:32px;height:32px;border-radius:6px;flex-shrink:0;}
-    .swatch-info{font-size:.8rem;}
-    .swatch-name{font-weight:600;color:var(--text);display:block;}
-    .swatch-hex{color:var(--text-muted);}
-    .press-contact-card{border:1px solid var(--border);border-radius:12px;padding:1.75rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start;margin-top:1.5rem;}
-    .contact-name{font-size:1rem;font-weight:700;color:var(--text);}
-    .contact-role{font-size:.82rem;color:var(--text-muted);margin:.2rem 0 .75rem;}
-    .contact-links{display:flex;flex-direction:column;gap:.4rem;}
-    .contact-link{font-size:.85rem;color:var(--accent);text-decoration:none;}
-    .contact-link:hover{text-decoration:underline;}
-    .contact-note{font-size:.78rem;color:var(--text-muted);line-height:1.5;border-left:3px solid var(--border);padding-left:.9rem;}
-    @media(max-width:600px){.press-contact-card{grid-template-columns:1fr;}}
+    :root {
+      --bg: #0a0a0b;
+      --bg-card: #111114;
+      --bg-card2: #16161a;
+      --border: rgba(255,255,255,0.07);
+      --border-accent: rgba(255,200,80,0.3);
+      --gold: #f5c842;
+      --gold-dim: rgba(245,200,66,0.15);
+      --gold-glow: rgba(245,200,66,0.06);
+      --text: #e8e4d8;
+      --text-muted: rgba(232,228,216,0.45);
+      --text-dim: rgba(232,228,216,0.25);
+      --teal: #4ecdc4;
+      --teal-dim: rgba(78,205,196,0.12);
+      --red: #e8534a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,11,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+      z-index: 110;
+    }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active { color: var(--gold); }
+    /* ── BURGER ── */
+    .burger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px;
+      cursor: pointer; z-index: 110;
+      background: none; border: none; padding: 4px;
+    }
+    .burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--text);
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-mobile {
+      display: none;
+      position: fixed; inset: 0; z-index: 105;
+      background: rgba(10,10,11,0.98);
+      backdrop-filter: blur(16px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 32px; list-style: none;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .nav-mobile.open { opacity: 1; pointer-events: all; }
+    .nav-mobile a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-mobile a:hover, .nav-mobile a.active { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(245,200,66,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--gold);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(52px, 7vw, 96px);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      max-width: 700px;
+      margin-bottom: 32px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-desc {
+      max-width: 520px;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .hero-stats {
+      display: flex; gap: 48px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-header {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 48px;
+    }
+    .section-tag {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border-accent);
+      padding: 3px 10px;
+      background: var(--gold-glow);
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── COMMUNIQUÉS ── */
+    .communiques-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+    }
+    .communique-card {
+      background: var(--bg-card);
+      padding: 32px;
+      transition: background 0.2s;
+      cursor: default;
+      position: relative;
+    }
+    .communique-card:hover { background: var(--bg-card2); }
+    .communique-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      background: linear-gradient(135deg, #111116, #0e0e12);
+      border-left: 2px solid var(--gold);
+    }
+    .communique-meta {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .communique-date {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .badge {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 1px solid;
+    }
+    .badge-new { color: var(--teal); border-color: rgba(78,205,196,0.3); background: var(--teal-dim); }
+    .badge-featured { color: var(--gold); border-color: var(--border-accent); background: var(--gold-glow); }
+    .communique-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .communique-card.featured .communique-title {
+      font-size: 32px;
+    }
+    .communique-excerpt {
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .communique-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .communique-link:hover { gap: 12px; }
+    .communique-link::after { content: '→'; }
+
+    /* ── REVUE DE PRESSE ── */
+    .mentions-list {
+      display: flex; flex-direction: column; gap: 1px;
+    }
+    .mention-row {
+      display: grid;
+      grid-template-columns: 160px 1fr auto;
+      align-items: center;
+      gap: 32px;
+      padding: 24px 32px;
+      background: var(--bg-card);
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .mention-row:hover {
+      background: var(--bg-card2);
+      border-left-color: var(--gold);
+    }
+    .mention-source {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .mention-source span {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+    .mention-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .mention-date {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* ── KIT PRESSE ── */
+    .kit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+    }
+    .kit-item {
+      background: var(--bg-card);
+      padding: 32px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: background 0.2s;
+    }
+    .kit-item:hover { background: var(--bg-card2); }
+    .kit-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 18px;
+    }
+    .kit-item-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .kit-item-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .btn-dl {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      transition: color 0.2s, border-color 0.2s;
+      width: fit-content;
+    }
+    .btn-dl:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+    }
+    .contact-block {
+      background: var(--bg-card);
+      padding: 40px;
+    }
+    .contact-block.primary {
+      background: linear-gradient(135deg, #111116, #0e0e12);
+      border-left: 2px solid var(--gold);
+    }
+    .contact-label {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .contact-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .contact-role {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .contact-item {
+      display: flex; flex-direction: column; gap: 4px;
+      margin-bottom: 16px;
+    }
+    .contact-item-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .contact-item-val {
+      font-size: 13px;
+      color: var(--text);
+    }
+    .contact-item-val a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+    .contact-item-val a:hover { text-decoration: underline; }
+    .contact-note {
+      margin-top: 28px;
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--gold);
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      .nav-mobile { display: flex; }
+      .hero, .section { padding-left: 20px; padding-right: 20px; }
+      .hero { padding-top: 100px; }
+      .hero h1 { font-size: 42px; }
+      .communique-card.featured { grid-template-columns: 1fr; gap: 24px; }
+      .mention-row { grid-template-columns: 1fr; gap: 8px; }
+      .mention-date { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; }
+    }
   </style>
 </head>
 <body>
-<nav><!-- replaced by nav-fix.js --></nav>
 
-<header class="press-hero container">
-  <p class="eyebrow">Recursos para medios</p>
-  <h1>Sala de prensa</h1>
-  <p>Logos, visuales, comunicados de prensa e información de contacto para periodistas, medios de comunicación e instituciones que cubren el Caribbean Metadata Standard.</p>
-</header>
+  <!-- NAV -->
+  <nav>
+    <!-- TODO: remplacer index.html par la vraie page d'accueil si différente -->
+    <a href="index.html" class="nav-logo">CMS</a>
+    <ul class="nav-links">
+      <li><a href="about.html">Acerca de</a></li>
+      <li><a href="families.html">Las 6 familias</a></li>
+      <li><a href="resources.html">Recursos</a></li>
+      <li><a href="collaborate.html">Colaborar</a></li>
+      <li><a href="press-es.html" class="active">Prensa</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<section class="press-section container">
-  <h2>Acerca del CMS — texto sugerido para medios</h2>
-  <p class="section-note">Copie y pegue para artículos, comunicados o programas de eventos.</p>
-  <blockquote style="border-left:4px solid var(--accent);padding:1.1rem 1.4rem;background:var(--surface);border-radius:0 10px 10px 0;font-size:.9rem;line-height:1.75;color:var(--text);margin:0;">
-    <strong>Corto (1 frase):</strong><br>
-    El Caribbean Metadata Standard (CMS) es el primer marco digital unificado para clasificar, describir e indexar los contenidos culturales caribeños — diseñado para que las plataformas globales comprendan finalmente nuestras culturas, lenguas y géneros.
-    <br><br>
-    <strong>Medio (3 frases):</strong><br>
-    El Caribbean Metadata Standard (CMS) es el primer marco digital abierto diseñado específicamente para indexar y amplificar los contenidos culturales caribeños en las plataformas mundiales. Desarrollado por el Caribwood Language Lab (Guadalupe), el CMS ofrece a creadores, instituciones, plataformas e investigadores un lenguaje común de más de 50 etiquetas estandarizadas en seis familias de metadatos: Lingüística, Cultural, Narrativa, Rítmica, Geográfica y Sociohistórica. El CMS también incluye un sistema de certificación (de Bronce a Platino) y una API diseñada para la interoperabilidad con estándares internacionales como Dublin Core y TEI.
-    <br><br>
-    <strong>Sitio web:</strong> <a href="https://caribbeanmetadata.org" style="color:var(--accent);">caribbeanmetadata.org</a>
-    &nbsp;·&nbsp; <strong>Fundado:</strong> 2026 &nbsp;·&nbsp; <strong>Con sede en:</strong> Guadalupe, Caribe francés
-  </blockquote>
-</section>
+  <!-- MENU MOBILE -->
+  <ul class="nav-mobile" id="navMobile">
+    <li><a href="about.html">Acerca de</a></li>
+    <li><a href="families.html">Las 6 familias</a></li>
+    <li><a href="resources.html">Recursos</a></li>
+    <li><a href="collaborate.html">Colaborar</a></li>
+    <li><a href="press-es.html" class="active">Prensa</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 
-<section class="press-section container">
-  <h2>Comunicados de prensa</h2>
-  <p class="section-note">Comunicaciones oficiales del Caribwood Language Lab.</p>
-  <div class="release-list">
-    <div class="release-item">
-      <span class="release-date">2026</span>
-      <div class="release-body">
-        <p class="release-title">Lanzamiento del Caribbean Metadata Standard v1.0 — el primer marco digital unificado para contenidos culturales caribeños</p>
-        <p class="release-desc">El Caribwood Language Lab (Guadalupe) lanza oficialmente el Caribbean Metadata Standard, el primer marco abierto diseñado para hacer visibles, clasificables y descubribles los contenidos culturales caribeños en las plataformas algorítmicas globales.</p>
-        <span class="release-tag tag-new">NUEVO</span>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Sala de prensa</div>
+    <h1>Relaciones<br /><em>con los medios</em></h1>
+    <p class="hero-desc">
+      El Caribbean Metadata Standard es el primer marco unificado para clasificar e indexar contenidos audiovisuales caribeños. Encuentre aquí nuestros comunicados, recursos descargables y contactos de prensa.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">v2.0</span>
+        <span class="stat-label">Estándar publicado</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2026</span>
+        <span class="stat-label">Año de lanzamiento</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8</span>
+        <span class="stat-label">Idiomas cubiertos</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">CC-BY</span>
+        <span class="stat-label">Licencia open data</span>
       </div>
     </div>
-    <div class="release-item">
-      <span class="release-date">Próximamente</span>
-      <div class="release-body">
-        <p class="release-title">Los 100 Primeros Signatarios — apertura del registro oficial</p>
-        <p class="release-desc">La Declaración Fundadora del CMS se abre a la firma. Creadores, instituciones, plataformas e investigadores de todo el Caribe están invitados a unirse a los 100 primeros signatarios fundadores.</p>
-        <span class="release-tag tag-coming">PRÓXIMAMENTE</span>
+  </section>
+
+  <!-- COMMUNIQUÉS -->
+  <section class="section fade-in">
+    <div class="section-header">
+      <span class="section-tag">01</span>
+      <h2 class="section-title">Comunicados de prensa</h2>
+    </div>
+    <div class="communiques-grid">
+
+      <article class="communique-card featured">
+        <div>
+          <div class="communique-meta">
+            <span class="communique-date">Mai 2026</span>
+            <span class="badge badge-featured">Lanzamiento oficial</span>
+          </div>
+          <h3 class="communique-title">Lanzamiento del Caribbean Metadata Standard v2.0 — el primer estándar digital caribeño</h3>
+          <p class="communique-excerpt">
+            El Caribwood Language Lab anuncia la publicación oficial del Caribbean Metadata Standard v2.0, un marco sin precedentes para clasificar, describir e indexar contenidos audiovisuales caribeños. Este estándar busca acabar con la invisibilidad algorítmica de los creadores de la región.
+          </p>
+          <a href="#" class="communique-link">Leer el comunicado completo</a>
+        </div>
+        <div>
+          <p class="communique-excerpt" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; line-height:1.6; color:rgba(232,228,216,0.6);">
+            "El Caribe no es un fragmento del mundo: es un mundo entero."<br /><br />
+            Le CMS est notre réponse structurée à des décennies d'invisibilité numérique — un alphabet pour que les algorithmes comprennent enfin nos cultures.
+          </p>
+          <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+            <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim);">Caribwood Language Lab — Guadeloupe, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="communique-card">
+        <div class="communique-meta">
+          <span class="communique-date">Avril 2026</span>
+          <span class="badge badge-new">Nouveau</span>
+        </div>
+        <h3 class="communique-title">Publicación del primer corpus open data caribeño en GitHub</h3>
+        <p class="communique-excerpt">
+          El CMS publica bajo CC-BY 4.0 el primer corpus estructurado de datos culturales caribeños — 15 registros, 8 idiomas, 15 marcadores culturales.
+        </p>
+        <a href="#" class="communique-link">Télécharger</a>
+      </article>
+
+      <article class="communique-card">
+        <div class="communique-meta">
+          <span class="communique-date">Mars 2026</span>
+        </div>
+        <h3 class="communique-title">Presentación del CMS como estándar regional al CROSQ</h3>
+        <p class="communique-excerpt">
+          El Caribbean Metadata Standard fue presentado oficialmente ante la Caribbean Regional Organisation for Standards and Quality (CROSQ) en el marco del procedimiento NWIP.
+        </p>
+        <a href="#" class="communique-link">Saber más</a>
+      </article>
+
+      <article class="communique-card">
+        <div class="communique-meta">
+          <span class="communique-date">Janvier 2026</span>
+        </div>
+        <h3 class="communique-title">Los 100 Primeros — convocatoria de signatarios fundadores del estándar CMS</h3>
+        <p class="communique-excerpt">
+          Lanzamiento de la iniciativa "Los 100 Primeros": una convocatoria a creadores, instituciones y plataformas caribeñas para convertirse en signatarios fundadores del Caribbean Metadata Standard.
+        </p>
+        <a href="#" class="communique-link">Unirse</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- REVUE DE PRESSE -->
+  <section class="section fade-in">
+    <div class="section-header">
+      <span class="section-tag">02</span>
+      <h2 class="section-title">Cobertura de prensa</h2>
+      <button id="toggleAdmin" style="margin-left:auto; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; background:none; border:1px solid var(--border); color:var(--text-dim); padding:6px 14px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-dim)'">+ Añadir</button>
+    </div>
+
+    <!-- Formulaire admin -->
+    <div id="adminForm" style="display:none; background:var(--bg-card); border:1px solid var(--border-accent); padding:28px 32px; margin-bottom:2px;">
+      <div style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">Añadir una mención de prensa</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim);">Medio *</label>
+          <input id="f-source" type="text" placeholder="Ej: RCI Guadeloupe" style="background:var(--bg); border:1px solid var(--border); color:var(--text); padding:10px 14px; font-family:'DM Mono',monospace; font-size:12px; outline:none;" />
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim);">Type</label>
+          <input id="f-type" type="text" placeholder="Ej: Radio · Prensa escrita · Web" style="background:var(--bg); border:1px solid var(--border); color:var(--text); padding:10px 14px; font-family:'DM Mono',monospace; font-size:12px; outline:none;" />
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:16px;">
+        <label style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim);">Cita *</label>
+        <input id="f-quote" type="text" placeholder="Ej: Una iniciativa que transforma la visibilidad de los artistas caribeños..." style="background:var(--bg); border:1px solid var(--border); color:var(--text); padding:10px 14px; font-family:'DM Mono',monospace; font-size:12px; outline:none;" />
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim);">Date</label>
+          <input id="f-date" type="text" placeholder="Ex : Mai 2026" style="background:var(--bg); border:1px solid var(--border); color:var(--text); padding:10px 14px; font-family:'DM Mono',monospace; font-size:12px; outline:none;" />
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim);">Enlace al artículo (opcional)</label>
+          <input id="f-url" type="url" placeholder="https://..." style="background:var(--bg); border:1px solid var(--border); color:var(--text); padding:10px 14px; font-family:'DM Mono',monospace; font-size:12px; outline:none;" />
+        </div>
+      </div>
+      <div style="display:flex; gap:12px;">
+        <button onclick="addMention()" style="background:var(--gold); color:#000; border:none; padding:10px 24px; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; font-weight:500;">Ajouter</button>
+        <button onclick="document.getElementById('adminForm').style.display='none'" style="background:none; border:1px solid var(--border); color:var(--text-muted); padding:10px 20px; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; cursor:pointer;">Cancelar</button>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="press-section container">
-  <h2>Logos y recursos visuales</h2>
-  <p class="section-note">Todos los archivos son de uso libre para fines editoriales con mención a "Caribbean Metadata Standard — Caribwood Language Lab".</p>
-  <div class="download-grid">
-    <div class="download-card">
-      <div class="download-card-icon icon-zip">ZIP</div>
-      <p class="download-card-name">Kit de medios completo</p>
-      <p class="download-card-desc">Logos (SVG + PNG), 5 visuales HD y el dossier PDF bilingüe en un único archivo.</p>
-      <a href="CMS_Media_Kit_FR-EN.zip" class="download-card-link">↓ Descargar ZIP (672 KB)</a>
+    <!-- Filtres -->
+    <div id="filterBar" style="display:flex; gap:8px; margin-bottom:2px; flex-wrap:wrap;">
+      <button class="filter-btn active" data-filter="all" onclick="filterMentions('all', this)">Tous</button>
     </div>
-    <div class="download-card">
-      <div class="download-card-icon icon-svg">SVG</div>
-      <p class="download-card-name">Logo — Color (SVG)</p>
-      <p class="download-card-desc">Logo principal con fondo transparente. Paleta púrpura / verde azulado / coral.</p>
-      <a href="cms_media_kit/logos/CMS_Logo_Couleur.svg" class="download-card-link">↓ Descargar SVG</a>
-    </div>
-    <div class="download-card">
-      <div class="download-card-icon icon-png">PNG</div>
-      <p class="download-card-name">Logo — Color (PNG)</p>
-      <p class="download-card-desc">PNG alta resolución a 3× (1200 × 480 px). Fondo transparente.</p>
-      <a href="cms_media_kit/logos/CMS_Logo_Couleur.png" class="download-card-link">↓ Descargar PNG</a>
-    </div>
-    <div class="download-card">
-      <div class="download-card-icon icon-pdf">PDF</div>
-      <p class="download-card-name">Dossier de prensa FR + EN</p>
-      <p class="download-card-desc">Dossier bilingüe de 2 páginas — visión, problemas, funcionalidades, gobernanza, contacto.</p>
-      <a href="cms_media_kit/docs/CMS_DossierPresentation_FR-EN.pdf" class="download-card-link">↓ Descargar PDF</a>
-    </div>
-    <div class="download-card">
-      <div class="download-card-icon icon-pdf">PDF</div>
-      <p class="download-card-name">White Paper v1.0</p>
-      <p class="download-card-desc">Documento de referencia completo — 16 páginas, visión, familias, certificación, gobernanza.</p>
-      <a href="CMS_WhitePaper_v1.0.pdf" class="download-card-link">↓ Descargar PDF</a>
-    </div>
-  </div>
-</section>
 
-<section class="press-section container">
-  <h2>Colores oficiales de la marca</h2>
-  <p class="section-note">Use siempre estos valores exactos. No aproxime.</p>
-  <div class="swatch-grid">
-    <div class="swatch"><div class="swatch-dot" style="background:#534AB7;"></div><div class="swatch-info"><span class="swatch-name">Púrpura principal</span><span class="swatch-hex">#534AB7</span></div></div>
-    <div class="swatch"><div class="swatch-dot" style="background:#26215C;"></div><div class="swatch-info"><span class="swatch-name">Púrpura oscuro</span><span class="swatch-hex">#26215C</span></div></div>
-    <div class="swatch"><div class="swatch-dot" style="background:#1D9E75;"></div><div class="swatch-info"><span class="swatch-name">Verde azulado caribeño</span><span class="swatch-hex">#1D9E75</span></div></div>
-    <div class="swatch"><div class="swatch-dot" style="background:#D85A30;"></div><div class="swatch-info"><span class="swatch-name">Coral</span><span class="swatch-hex">#D85A30</span></div></div>
-  </div>
-</section>
+    <div id="mentionsList" class="mentions-list"></div>
 
-<section class="press-section container">
-  <h2>Contacto de prensa</h2>
-  <p class="section-note">Para solicitudes de entrevistas, consultas de colaboración o autorizaciones de uso especial.</p>
-  <div class="press-contact-card">
-    <div>
-      <p class="contact-name">Caribwood Language Lab</p>
-      <p class="contact-role">Caribbean Metadata Standard — Prensa y Comunicaciones</p>
-      <div class="contact-links">
-        <a href="mailto:contact@caribbeanmetadata.org" class="contact-link">✉ contact@caribbeanmetadata.org</a>
-        <a href="https://caribbeanmetadata.org" class="contact-link">↗ caribbeanmetadata.org</a>
-        <a href="founders-es.html" class="contact-link">→ Unirse a los 100 Primeros Signatarios</a>
+    <div id="emptyState" style="display:none; padding:48px 32px; text-align:center; background:var(--bg-card); color:var(--text-dim); font-size:12px; letter-spacing:0.1em;">
+      Sin menciones por ahora — añada una usando el botón de arriba.
+    </div>
+  </section>
+
+  <!-- KIT PRESSE -->
+  <section class="section fade-in">
+    <div class="section-header">
+      <span class="section-tag">03</span>
+      <h2 class="section-title">Kit de prensa</h2>
+    </div>
+    <div class="kit-grid">
+
+      <!-- Logo -->
+      <div class="kit-item">
+        <div class="kit-icon-preview" style="background:#003E6B; border-radius:4px; padding:12px; display:flex; align-items:center; justify-content:center; height:72px;">
+          <span style="font-family:'Syne',sans-serif; font-weight:800; font-size:22px; color:#FFC93C; letter-spacing:0.08em;">CMS</span>
+        </div>
+        <div class="kit-item-title">Logo oficial</div>
+        <p class="kit-item-desc">Logo CMS — versiones banner (fondo azul #003E6B), fondo blanco, transparente. SVG + PNG alta resolución.</p>
+        <a href="#" class="btn-dl">↓ Télécharger .zip</a>
+      </div>
+
+      <!-- Palette -->
+      <div class="kit-item">
+        <div style="height:72px; display:flex; flex-direction:column; gap:6px; justify-content:center;">
+          <div style="display:flex; gap:4px; height:28px;">
+            <div style="flex:2; background:#003E6B; border-radius:3px;"></div>
+            <div style="flex:2; background:#00C2C7; border-radius:3px;"></div>
+            <div style="flex:2; background:#FFC93C; border-radius:3px;"></div>
+          </div>
+          <div style="display:flex; gap:4px; height:20px;">
+            <div style="flex:1; background:#FF6F61; border-radius:3px;"></div>
+            <div style="flex:1; background:#3FA66B; border-radius:3px;"></div>
+            <div style="flex:1; background:#2A2A2A; border-radius:3px;"></div>
+            <div style="flex:1; background:#F2F2F2; border-radius:3px; border:1px solid rgba(255,255,255,0.1);"></div>
+          </div>
+        </div>
+        <div class="kit-item-title">Paleta oficial</div>
+        <p class="kit-item-desc">7 couleurs — Bleu Caraïbe #003E6B · Turquoise #00C2C7 · Jaune soleil #FFC93C · Corail #FF6F61 · Vert canne #3FA66B · Graphite · Blanc.</p>
+        <a href="#" class="btn-dl">↓ Télécharger .ase / .json</a>
+      </div>
+
+      <!-- Icônes -->
+      <div class="kit-item">
+        <div style="height:72px; display:flex; align-items:center; justify-content:center; gap:12px;">
+          <!-- Langue -->
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="7" width="16" height="11" rx="2" stroke="#00C2C7" stroke-width="1.5"/><line x1="4" y1="11" x2="20" y2="11" stroke="#00C2C7" stroke-width="1"/><line x1="4" y1="14" x2="20" y2="14" stroke="#00C2C7" stroke-width="1"/><polygon points="12,18 16,24 8,24" fill="#00C2C7"/></svg>
+          <!-- Culture -->
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4 C10 4 6 8 6 12 C6 18 14 24 14 24 C14 24 22 18 22 12 C22 8 18 4 14 4Z" stroke="#FFC93C" stroke-width="1.5" fill="none"/><circle cx="14" cy="12" r="3" stroke="#FFC93C" stroke-width="1.5"/></svg>
+          <!-- Rythme -->
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><polyline points="2,14 6,14 8,8 11,20 14,10 17,18 20,14 26,14" stroke="#FF6F61" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <!-- Géo -->
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="14" rx="6" ry="9" fill="#3FA66B" opacity="0.3"/><ellipse cx="14" cy="14" rx="6" ry="9" stroke="#3FA66B" stroke-width="1.5"/><circle cx="14" cy="7" r="2" fill="#FFC93C"/></svg>
+        </div>
+        <div class="kit-item-title">Iconografía oficial</div>
+        <p class="kit-item-desc">6 iconos CMS — Lengua · Cultura · Ritmo · Geografía · Historia · Datos. Estilo lineal geométrico caribeño. SVG + PNG.</p>
+        <a href="#" class="btn-dl">↓ Télécharger .zip</a>
+      </div>
+
+      <!-- Motifs -->
+      <div class="kit-item">
+        <div style="height:72px; overflow:hidden; border-radius:4px; position:relative;">
+          <!-- Motif tressage inspiré de la charte -->
+          <svg width="100%" height="72" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+            <rect width="200" height="72" fill="#003E6B"/>
+            <line x1="0" y1="0" x2="200" y2="200" stroke="#00C2C7" stroke-width="0.5" opacity="0.3"/>
+            <line x1="20" y1="0" x2="220" y2="200" stroke="#00C2C7" stroke-width="0.5" opacity="0.3"/>
+            <line x1="40" y1="0" x2="240" y2="200" stroke="#00C2C7" stroke-width="0.5" opacity="0.3"/>
+            <line x1="60" y1="0" x2="260" y2="200" stroke="#00C2C7" stroke-width="0.5" opacity="0.3"/>
+            <line x1="0" y1="20" x2="200" y2="220" stroke="#FFC93C" stroke-width="0.5" opacity="0.2"/>
+            <line x1="0" y1="40" x2="200" y2="240" stroke="#FFC93C" stroke-width="0.5" opacity="0.2"/>
+            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="3">TRESSAGE · ONDES · RÉSEAU</text>
+          </svg>
+        </div>
+        <div class="kit-item-title">Motifs & textures</div>
+        <p class="kit-item-desc">3 motivos oficiales — Tejido de datos (fondo institucional) · Ondas caribeñas · Red de datos. PNG + SVG tileable.</p>
+        <a href="#" class="btn-dl">↓ Télécharger .zip</a>
+      </div>
+
+      <!-- Certificat -->
+      <div class="kit-item">
+        <div style="height:72px; border:1px solid rgba(255,199,60,0.3); border-radius:4px; background:linear-gradient(135deg,#003E6B,#001f40); display:flex; align-items:center; justify-content:center; gap:12px; padding:0 16px;">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="13" stroke="#FFC93C" stroke-width="1.2"/>
+            <circle cx="16" cy="16" r="9" stroke="#00C2C7" stroke-width="0.8" opacity="0.5"/>
+            <path d="M16 6 Q22 11 22 16 Q22 21 16 26 Q10 21 10 16 Q10 11 16 6Z" stroke="#FFC93C" stroke-width="1" fill="none"/>
+            <circle cx="16" cy="16" r="2" fill="#FFC93C"/>
+          </svg>
+          <span style="font-family:'Syne',sans-serif; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.7); text-transform:uppercase; line-height:1.4;">Certificat<br/>de conformité</span>
+        </div>
+        <div class="kit-item-title">Certificado de conformidad</div>
+        <p class="kit-item-desc">Plantilla oficial del Certificado CMS-Compliant Content. Niveles Bronze · Silver · Gold · Platinum. PDF editable.</p>
+        <a href="#" class="btn-dl">↓ Télécharger PDF</a>
+      </div>
+
+      <!-- White Paper -->
+      <div class="kit-item">
+        <div style="height:72px; display:flex; align-items:center; justify-content:center;">
+          <div style="border:1px solid rgba(255,255,255,0.1); border-top:3px solid #FFC93C; padding:10px 20px; background:rgba(255,255,255,0.03);">
+            <div style="font-size:9px; letter-spacing:0.2em; color:var(--text-dim); text-transform:uppercase; margin-bottom:6px;">Caribbean Metadata Standard</div>
+            <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--text);">White Paper v2.0</div>
+          </div>
+        </div>
+        <div class="kit-item-title">White Paper & documentation</div>
+        <p class="kit-item-desc">Documento de referencia completo — 6 familias de metadatos, esquema JSON, casos de uso, gobernanza. FR / EN.</p>
+        <a href="#" class="btn-dl">↓ Télécharger PDF</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT PRESSE -->
+  <section class="section fade-in">
+    <div class="section-header">
+      <span class="section-tag">04</span>
+      <h2 class="section-title">Contacto de prensa</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-block primary">
+        <div class="contact-label">Relaciones de prensa</div>
+        <div class="contact-name">Caribwood Language Lab</div>
+        <div class="contact-role">Equipo de comunicación — Guadalupe</div>
+        <div class="contact-item">
+          <span class="contact-item-label">Email presse</span>
+          <span class="contact-item-val"><a href="mailto:press@caribbeanmetadata.org">press@caribbeanmetadata.org</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Tiempo de respuesta</span>
+          <span class="contact-item-val">48 horas hábiles</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Idiomas</span>
+          <span class="contact-item-val">Francés · Inglés · Kreyòl</span>
+        </div>
+        <div class="contact-note">
+          Para cualquier solicitud de entrevista, acreditación o asociación editorial, incluya el nombre de su medio, la naturaleza de su proyecto y su fecha límite.
+        </div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-label">Información clave</div>
+        <div class="contact-item" style="margin-bottom:24px;">
+          <span class="contact-item-label">Nombre completo</span>
+          <span class="contact-item-val">Caribbean Metadata Standard (CMS)</span>
+        </div>
+        <div class="contact-item" style="margin-bottom:24px;">
+          <span class="contact-item-label">Responsable del proyecto</span>
+          <span class="contact-item-val">Caribwood Language Lab — Guadeloupe</span>
+        </div>
+        <div class="contact-item" style="margin-bottom:24px;">
+          <span class="contact-item-label">Sitio oficial</span>
+          <span class="contact-item-val"><a href="https://caribbeanmetadata.org">caribbeanmetadata.org</a></span>
+        </div>
+        <div class="contact-item" style="margin-bottom:24px;">
+          <span class="contact-item-label">Repositorio GitHub</span>
+          <span class="contact-item-val"><a href="https://github.com/heso73/caribbeanmetadata.org">github.com/heso73/caribbeanmetadata.org</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Licence</span>
+          <span class="contact-item-val">Creative Commons CC-BY 4.0</span>
+        </div>
       </div>
     </div>
-    <div class="contact-note">
-      <p>Use el asunto:<br><strong>"Prensa — [Su nombre / medio]"</strong><br><br>Respondemos todas las consultas de prensa en 48 horas. Para urgencias, indique la fecha límite de publicación.</p>
+  </section>
+
+  <!-- FOOTER + MENTIONS LÉGALES -->
+  <footer>
+    <div style="width:100%; border-bottom:1px solid var(--border); padding-bottom:32px; margin-bottom:28px; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:32px;">
+      <div>
+        <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Editor</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.8;">
+          Caribwood Language Lab<br/>
+          Les Abymes, Guadeloupe, France<br/>
+          <a href="mailto:contact@caribbeanmetadata.org" style="color:var(--teal); text-decoration:none;">contact@caribbeanmetadata.org</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Alojamiento</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.8;">
+          GitHub Pages<br/>
+          GitHub Inc. · San Francisco, USA<br/>
+          <a href="https://github.com/heso73/caribbeanmetadata.org" target="_blank" rel="noopener" style="color:var(--teal); text-decoration:none; font-size:11px;">github.com/heso73/caribbeanmetadata.org</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Propiedad intelectual</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.8;">
+          Données open source sous licence<br/>
+          Creative Commons CC-BY 4.0<br/>
+          Standard CMS v2.0 © 2026
+        </div>
+      </div>
+      <div>
+        <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Última actualización</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.8;">
+          Página de prensa — <span id="lastUpdated"></span><br/>
+          <span style="color:var(--text-dim); font-size:11px;">CMS v2.0 · Standard caribéen</span>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+    <div style="width:100%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <span class="footer-brand">CMS</span>
+      <span class="footer-copy">Caribbean Metadata Standard — CMS v2.0 · Caribwood Language Lab — Guadalupe</span>
+      <span class="footer-copy">caribbeanmetadata.org</span>
+    </div>
+  </footer>
 
-<footer><!-- replaced by nav-fix.js --></footer>
-<script src="nav-fix.js"></script>
+  <script>
+    /* ── DATE MAJ ── */
+    document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
 
+    /* ── BURGER ── */
+    const burger = document.getElementById('burger');
+    const navMobile = document.getElementById('navMobile');
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      navMobile.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      burger.classList.remove('open');
+      navMobile.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+
+    /* ── REVUE DE PRESSE DYNAMIQUE ── */
+    const STORAGE_KEY = 'cms_mentions_es_v2';
+
+    const defaultMentions = [
+      { id: 1, source: 'RCI Guadeloupe', type: 'Radio · Presse régionale', quote: 'Una iniciativa que podría transformar la visibilidad de los artistas caribeños en las grandes plataformas.', date: 'Mai 2026', url: '' },
+      { id: 2, source: 'France-Antilles', type: 'Presse écrite', quote: 'El CMS se impone como un acto de soberanía cultural en la era de los algoritmos.', date: 'Avr. 2026', url: '' },
+      { id: 3, source: 'Outre-mer 1ère', type: 'Télévision', quote: 'Un estándar nacido en Guadalupe con ambición regional: reconciliar las culturas caribeñas con el mundo digital.', date: 'Avr. 2026', url: '' }
+    ];
+
+    function loadMentions() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultMentions; }
+      catch { return defaultMentions; }
+    }
+    function saveMentions(data) {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+    }
+
+    let mentions = loadMentions();
+    let activeFilter = 'all';
+
+    function renderFilters() {
+      const types = [...new Set(mentions.map(m => m.type).filter(Boolean))];
+      const bar = document.getElementById('filterBar');
+      bar.innerHTML = `<button class="filter-btn ${activeFilter==='all'?'active':''}" data-filter="all" onclick="filterMentions('all',this)">Tous</button>`;
+      types.forEach(t => {
+        const label = t.split('·')[0].trim();
+        bar.innerHTML += `<button class="filter-btn ${activeFilter===t?'active':''}" data-filter="${t}" onclick="filterMentions('${t}',this)">${label}</button>`;
+      });
+    }
+
+    function renderMentions() {
+      const list = document.getElementById('mentionsList');
+      const empty = document.getElementById('emptyState');
+      const filtered = activeFilter === 'all' ? mentions : mentions.filter(m => m.type === activeFilter);
+      if (!filtered.length) { list.innerHTML = ''; empty.style.display = 'block'; return; }
+      empty.style.display = 'none';
+      list.innerHTML = filtered.map(m => `
+        <div class="mention-row" style="position:relative;">
+          <div class="mention-source">${m.source}<span>${m.type || ''}</span></div>
+          <div class="mention-quote">${m.url ? `<a href="${m.url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">"${m.quote}"&nbsp;↗</a>` : `"${m.quote}"`}</div>
+          <div class="mention-date">${m.date || ''}</div>
+          <button onclick="deleteMention(${m.id})" title="Supprimer" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;opacity:0;transition:opacity 0.2s;" class="del-btn">✕</button>
+        </div>`).join('');
+      list.querySelectorAll('.mention-row').forEach(row => {
+        row.addEventListener('mouseenter', () => row.querySelector('.del-btn').style.opacity='1');
+        row.addEventListener('mouseleave', () => row.querySelector('.del-btn').style.opacity='0');
+      });
+    }
+
+    function filterMentions(val, btn) {
+      activeFilter = val;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderMentions();
+    }
+
+    function addMention() {
+      const source = document.getElementById('f-source').value.trim();
+      const quote  = document.getElementById('f-quote').value.trim();
+      if (!source || !quote) { alert('Média et citation sont obligatoires.'); return; }
+      mentions.unshift({
+        id: Date.now(),
+        source,
+        type:  document.getElementById('f-type').value.trim(),
+        quote,
+        date:  document.getElementById('f-date').value.trim(),
+        url:   document.getElementById('f-url').value.trim()
+      });
+      saveMentions(mentions);
+      ['f-source','f-type','f-quote','f-date','f-url'].forEach(id => document.getElementById(id).value='');
+      document.getElementById('adminForm').style.display='none';
+      renderFilters(); renderMentions();
+    }
+
+    function deleteMention(id) {
+      if (!confirm('Supprimer cette mention ?')) return;
+      mentions = mentions.filter(m => m.id !== id);
+      saveMentions(mentions);
+      renderFilters(); renderMentions();
+    }
+
+    document.getElementById('toggleAdmin').addEventListener('click', () => {
+      const f = document.getElementById('adminForm');
+      f.style.display = f.style.display === 'none' ? 'block' : 'none';
+    });
+
+    renderFilters();
+    renderMentions();
+
+    /* ── FADE IN ── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+  <style>
+    .filter-btn {
+      background: none; border: 1px solid var(--border);
+      color: var(--text-dim); padding: 5px 14px;
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active { background: var(--gold-glow); border-color: var(--border-accent); color: var(--gold); }
+  </style>
 </body>
 </html>
