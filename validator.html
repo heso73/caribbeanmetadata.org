@@ -865,7 +865,7 @@ footer {
         <div class="result-actions">
           <button class="btn-reset" onclick="resetAll()">Nouvelle validation</button>
           <button class="btn-export" onclick="downloadJSON()">Télécharger JSON</button>
-          <button class="btn-json" onclick="downloadCert()">Télécharger certificat</button>
+          <button class="btn-json" onclick="downloadCert()">⬇ Télécharger mon badge</button>
         </div>
       </div>
     </div>
@@ -1170,7 +1170,7 @@ function buildJSON() {
   const lang    = document.getElementById('f-lang').value;
   const creoleLangs = ['ht','gcf','pap','srn'];
   return {
-    cms_version: "1.0",
+    cms_version: "2.0",
     content_type: document.getElementById('f-type').value,
     identity: {
       title: { original: document.getElementById('f-title').value.trim() },
@@ -1219,46 +1219,70 @@ function downloadJSON() {
 function downloadCert() {
   const score  = calcScore();
   const level  = getLevel(score);
-  const title  = document.getElementById('f-title').value.trim();
-  const date   = new Date().toLocaleDateString('fr-FR');
-  const terr   = sel('tg-territories').join(', ');
-  const certHTML = `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
-<title>Certificat CMS — ${title}</title>
-<style>
-body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;background:#FFFDF5}
-.cert{width:794px;min-height:560px;margin:0 auto;border:2px solid #FFC93C;padding:0;overflow:hidden}
-.top{background:#003E6B;padding:32px 48px;display:flex;align-items:center;gap:20px}
-.top h1{font-size:14px;letter-spacing:3px;color:#00C2C7;margin:0}
-.body{padding:48px;text-align:center}
-.cert-title{font-size:28px;font-weight:700;color:#003E6B;margin-bottom:8px}
-.cert-sub{font-size:14px;color:#888;margin-bottom:32px}
-.seal{width:110px;height:110px;border-radius:50%;border:3px solid ${level.bg};margin:0 auto 24px;display:flex;align-items:center;justify-content:center;flex-direction:column;background:${level.bg}15}
-.seal-score{font-size:32px;font-weight:700;color:${level.bg}}
-.seal-lbl{font-size:10px;color:#999;letter-spacing:1px}
-.level-pill{display:inline-block;padding:6px 20px;background:${level.bg};color:#fff;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:24px}
-.content-title{font-size:22px;font-weight:700;color:#003E6B;margin-bottom:4px}
-.content-terr{font-size:13px;color:#888;margin-bottom:32px}
-.divider{width:120px;height:1px;background:#FFC93C;margin:0 auto 24px}
-.footer-text{font-size:11px;color:#aaa;letter-spacing:1px}
-</style></head><body>
-<div class="cert">
-<div class="top"><div><h1>CARIBBEAN METADATA STANDARD · v2.0</h1><p style="color:rgba(255,255,255,0.5);font-size:12px;margin:4px 0 0">Caribwood Language Lab · caribbeanmetadata.org</p></div></div>
-<div class="body">
-<div class="cert-title">Certificat de Conformité</div>
-<div class="cert-sub">CMS‑Compliant Content</div>
-<div class="seal"><div class="seal-score">${score}</div><div class="seal-lbl">SCORE</div></div>
-<div class="level-pill">${level.label}</div>
-<div class="content-title">${title || '(sans titre)'}</div>
-<div class="content-terr">${terr || ''}</div>
-<div class="divider"></div>
-<div class="footer-text">Certifié le ${date} · ${level.desc}</div>
-</div></div><script src="nav-fix.js"></script>
-</body></html>`;
-  const blob = new Blob([certHTML], { type: 'text/html' });
+  const title  = document.getElementById('f-title').value.trim() || 'Mon contenu';
+
+  const levelColors = {
+    bronze:   { color: '#CD7F32', textColor: '#fff' },
+    silver:   { color: '#C0C0C0', textColor: '#0a0a0b' },
+    gold:     { color: '#FFC93C', textColor: '#0a0a0b' },
+    platinum: { color: '#00C2C7', textColor: '#fff' },
+    none:     { color: '#A32D2D', textColor: '#fff' },
+  };
+  const lc = levelColors[level.key] || levelColors.none;
+
+  const svg = `<svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="g" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M16 0L0 0 0 16" fill="none" stroke="${lc.color}" stroke-width="0.3" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="240" height="80" fill="#0a0a0b" rx="3"/>
+  <rect width="240" height="80" fill="url(#g)" rx="3"/>
+  <rect x="0.75" y="0.75" width="238.5" height="78.5" rx="2.5" fill="none" stroke="${lc.color}" stroke-width="1.5" opacity="0.6"/>
+  <rect x="0" y="0" width="5" height="80" fill="${lc.color}" rx="3"/>
+  <rect x="3" y="0" width="2" height="80" fill="${lc.color}"/>
+  <path d="M 30 22 Q 20 40 30 58" fill="none" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 33 18 Q 18 40 33 62" fill="none" stroke="${lc.color}" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+  <circle cx="30" cy="22" r="3" fill="${lc.color}"/>
+  <circle cx="30" cy="58" r="3" fill="${lc.color}"/>
+  <text x="52" y="34" font-family="Arial Black,sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="1">CMS</text>
+  <rect x="52" y="42" width="60" height="16" fill="${lc.color}" rx="2"/>
+  <text x="82" y="54" text-anchor="middle" font-family="Courier New,monospace" font-size="9" font-weight="700" fill="${lc.textColor}" letter-spacing="2">${level.label}</text>
+  <text x="122" y="54" font-family="Courier New,monospace" font-size="8" fill="rgba(255,255,255,0.35)" letter-spacing="1">≥ ${level.key === 'none' ? '0' : level.key === 'bronze' ? '20' : level.key === 'silver' ? '40' : level.key === 'gold' ? '65' : '85'} pts</text>
+  <line x1="175" y1="16" x2="175" y2="64" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="190" y="36" text-anchor="middle" font-family="Courier New,monospace" font-size="9" fill="${lc.color}" letter-spacing="1" opacity="0.9">v2.0</text>
+  <text x="190" y="52" text-anchor="middle" font-family="Courier New,monospace" font-size="7" fill="rgba(255,255,255,0.25)" letter-spacing="0.5">CMS-Compliant</text>
+  <text x="190" y="63" text-anchor="middle" font-family="Courier New,monospace" font-size="6" fill="rgba(255,255,255,0.18)">caribbeanmetadata.org</text>
+</svg>`;
+
+  // Téléchargement SVG
+  const blob = new Blob([svg], { type: 'image/svg+xml' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'Certificat_CMS_' + (title.replace(/\s+/g,'_') || 'content') + '.html';
+  a.download = 'CMS_badge_' + level.label + '_' + title.replace(/\s+/g,'_').substring(0,30) + '.svg';
   a.click();
+
+  // Afficher aperçu + bouton copier sous les actions
+  const existing = document.getElementById('badge-preview-block');
+  if (existing) existing.remove();
+
+  const preview = document.createElement('div');
+  preview.id = 'badge-preview-block';
+  preview.style.cssText = 'margin-top:24px; padding:24px; background:#0a0a0b; border:1px solid rgba(255,201,60,0.2); border-radius:8px;';
+  preview.innerHTML = `
+    <div style="font-size:11px; letter-spacing:2px; color:#00C2C7; text-transform:uppercase; margin-bottom:16px;">Votre badge CMS-Compliant</div>
+    <div style="margin-bottom:16px;">${svg}</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:12px;">Copiez ce code SVG pour l'intégrer sur votre site :</div>
+    <textarea id="badge-code" style="width:100%; height:80px; background:#111114; border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); font-family:'Courier New',monospace; font-size:10px; padding:10px; resize:none; border-radius:4px;">${svg.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</textarea>
+    <button onclick="
+      const t=document.getElementById('badge-code');
+      t.value=t.value.replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+      navigator.clipboard.writeText(t.value.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
+      this.textContent='✓ Copié !'; this.style.borderColor='#3FA66B'; this.style.color='#3FA66B';
+      setTimeout(()=>{this.textContent='⬁ Copier le code SVG';this.style.borderColor='';this.style.color='';},2000);
+    " style="margin-top:10px; background:none; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.5); padding:8px 20px; font-family:'Helvetica Neue',Arial,sans-serif; font-size:11px; letter-spacing:1px; cursor:pointer; border-radius:4px; transition:all 0.2s;">⬁ Copier le code SVG</button>
+  `;
+  document.querySelector('.result-actions').after(preview);
 }
 
 function resetAll() {
