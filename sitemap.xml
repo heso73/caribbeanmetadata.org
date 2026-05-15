@@ -1,116 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Page d'accueil -->
-  <url>
-    <loc>https://caribbeanmetadata.org/</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <!-- Accueil FR / EN / ES -->
+  <url><loc>https://caribbeanmetadata.org/</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://caribbeanmetadata.org/index-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://caribbeanmetadata.org/index-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 
   <!-- À propos -->
-  <url>
-    <loc>https://caribbeanmetadata.org/about.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://caribbeanmetadata.org/about.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://caribbeanmetadata.org/about-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/about-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Les 6 familles -->
-  <url>
-    <loc>https://caribbeanmetadata.org/families.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Ressources -->
-  <url>
-    <loc>https://caribbeanmetadata.org/resources.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Roadmap -->
-  <url>
-    <loc>https://caribbeanmetadata.org/roadmap.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Developers / API -->
-  <url>
-    <loc>https://caribbeanmetadata.org/developers.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Language Lab -->
-  <url>
-    <loc>https://caribbeanmetadata.org/language-lab.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Collaborer -->
-  <url>
-    <loc>https://caribbeanmetadata.org/collaborate.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <url><loc>https://caribbeanmetadata.org/families.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://caribbeanmetadata.org/families-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/families-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Déclaration fondatrice -->
-  <url>
-    <loc>https://caribbeanmetadata.org/declaration.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://caribbeanmetadata.org/declaration.html</loc><lastmod>2026-05-15</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://caribbeanmetadata.org/declaration-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/declaration-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+
+  <!-- Ressources / Roadmap / Developers / Glossaire -->
+  <url><loc>https://caribbeanmetadata.org/resources.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/roadmap.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://caribbeanmetadata.org/developers.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/glossaire.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- Language Lab -->
+  <url><loc>https://caribbeanmetadata.org/lab.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/lab-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://caribbeanmetadata.org/lab-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Collaborer -->
+  <url><loc>https://caribbeanmetadata.org/collaborate.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/collaborate-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://caribbeanmetadata.org/collaborate-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- Contact -->
-  <url>
-    <loc>https://caribbeanmetadata.org/contact.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
+  <url><loc>https://caribbeanmetadata.org/contact.html</loc><lastmod>2026-05-15</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://caribbeanmetadata.org/contact-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://caribbeanmetadata.org/contact-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
 
-  <!-- Les 100 Premiers -->
-  <url>
-    <loc>https://caribbeanmetadata.org/100-premiers.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Founders / Les 100 Premiers -->
+  <url><loc>https://caribbeanmetadata.org/founders.html</loc><lastmod>2026-05-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/founders-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://caribbeanmetadata.org/founders-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
 
-  <!-- Valider un contenu -->
-  <url>
-    <loc>https://caribbeanmetadata.org/validate.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Validateur / CMS Builder -->
+  <url><loc>https://caribbeanmetadata.org/validator.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://caribbeanmetadata.org/cms-builder.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
-  <!-- CMS Builder -->
-  <url>
-    <loc>https://caribbeanmetadata.org/cms-builder.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Presse -->
-  <url>
-    <loc>https://caribbeanmetadata.org/press-fr.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  <!-- Presse FR / EN / ES -->
+  <url><loc>https://caribbeanmetadata.org/press-fr.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://caribbeanmetadata.org/press-en.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://caribbeanmetadata.org/press-es.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
 </urlset>
