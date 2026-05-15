@@ -1,0 +1,15 @@
+# robots.txt — Caribbean Metadata Standard
+# caribbeanmetadata.org
+# Caribwood Language Lab — Les Abymes, Guadeloupe, France
+
+# ── Tous les robots ──
+User-agent: *
+Allow: /
+
+# Exclure les assets non pertinents pour l'indexation
+Disallow: /assets/
+Disallow: /drafts/
+Disallow: /private/
+
+# ── Sitemap ──
+Sitemap: https://caribbeanmetadata.org/sitemap.xml
