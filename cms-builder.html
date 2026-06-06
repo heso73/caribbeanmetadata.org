@@ -4,19 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CMS Builder — Caribbean Metadata Standard</title>
-<meta name="description" content="Construisez les métadonnées de votre contenu culturel caribéen et obtenez votre certification CMS en temps réel.">
+<meta name="description" content="Construisez les métadonnées de votre contenu culturel caribéen et obtenez votre certification CMS v2.0 en temps réel.">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f4f6f9;color:#1a1a1a;font-size:16px;line-height:1.6}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
-.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
-.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
-.nav-links a:hover,.nav-links a.active{color:#003E6B}
-.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px}
 
 /* HERO */
 .ph{background:#003E6B;padding:100px 6% 56px;position:relative;overflow:hidden;margin-top:68px}
@@ -234,18 +227,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255
 .gh-nav-indicator.off{color:#aaa;background:#f4f6f9}
 .gh-nav-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
 
-/* FOOTER */
-footer{background:#003E6B;padding:56px 6% 32px}
-.fg-f{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
-.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
-.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
-.fc ul{list-style:none}
-.fc li{margin-bottom:8px}
-.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
-.fc a:hover{color:#fff}
-.fc a.hl{color:#00C2C7;font-weight:600}
-.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
 
 @media(max-width:1000px){.builder-wrap{grid-template-columns:1fr}.score-card{position:static}}
 @media(max-width:700px){.fg{grid-template-columns:1fr}.steps-nav{flex-wrap:wrap}.fg-f{grid-template-columns:1fr 1fr}.nav-links{display:none}.cards-grid{grid-template-columns:1fr}}
@@ -253,20 +234,7 @@ footer{background:#003E6B;padding:56px 6% 32px}
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">CMS</a>
-  <ul class="nav-links">
-    <li><a href="about.html">À propos</a></li>
-    <li><a href="families.html">Les 6 familles</a></li>
-    <li><a href="resources.html">Ressources</a></li>
-    <li><a href="lab.html">Language Lab</a></li>
-    <li><a href="collaborate.html">Collaborer</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="founders.html">Les 100 Premiers</a></li>
-    <li><a href="cms-builder.html" class="active nav-validate">CMS Builder</a></li>
-    <li><span class="gh-nav-indicator off" id="gh-nav-indicator" onclick="switchView('github')" title="Synchronisation GitHub"><span class="gh-nav-dot"></span>GitHub</span></li>
-  </ul>
-</nav>
+<nav><!-- nav-fix.js --></nav>
 
 <div class="ph">
   <div class="phi">
@@ -462,28 +430,39 @@ footer{background:#003E6B;padding:56px 6% 32px}
               <option value="">Sélectionner un territoire</option>
               <option value="Guadeloupe">Guadeloupe</option>
               <option value="Martinique">Martinique</option>
-              <option value="Haïti">Haïti</option>
-              <option value="Jamaïque">Jamaïque</option>
-              <option value="Trinité-et-Tobago">Trinité-et-Tobago</option>
+              <option value="Haiti">Haïti</option>
+              <option value="Guyane">Guyane</option>
+              <option value="Jamaica">Jamaïque</option>
+              <option value="Trinidad">Trinidad &amp; Tobago</option>
+              <option value="Barbados">Barbade</option>
               <option value="Cuba">Cuba</option>
-              <option value="République Dominicaine">République Dominicaine</option>
-              <option value="Porto Rico">Porto Rico</option>
-              <option value="Barbade">Barbade</option>
-              <option value="Sainte-Lucie">Sainte-Lucie</option>
-              <option value="Guyane française">Guyane française</option>
+              <option value="Dominican Republic">République Dominicaine</option>
+              <option value="Puerto Rico">Porto Rico</option>
+              <option value="Aruba">Aruba</option>
+              <option value="Curacao">Curaçao</option>
               <option value="Suriname">Suriname</option>
+              <option value="Dominica">Dominique</option>
+              <option value="St Lucia">Sainte-Lucie</option>
+              <option value="St Vincent">Saint-Vincent</option>
+              <option value="Grenada">Grenade</option>
+              <option value="Antigua">Antigua</option>
               <option value="Diaspora caribéenne">Diaspora caribéenne</option>
+              <option value="Caribbean (général)">Caraïbe (général)</option>
             </select>
           </div>
           <div class="form-group"><label>Langue principale <span class="req">*</span></label>
             <select id="f-language" onchange="onFormChange()">
               <option value="">Sélectionner une langue</option>
-              <option value="fr">Français</option>
-              <option value="cr">Créole antillais</option>
-              <option value="ht">Créole haïtien</option>
-              <option value="en">Anglais caribéen</option>
-              <option value="es">Espagnol caribéen</option>
-              <option value="nl">Néerlandais</option>
+              <option value="gcf">Créole guadeloupéen (gcf)</option>
+              <option value="acf">Créole antillais / martiniquais (acf)</option>
+              <option value="hat">Créole haïtien (hat)</option>
+              <option value="jam">Jamaican Patois (jam)</option>
+              <option value="pap">Papiamentu (pap)</option>
+              <option value="srn">Sranan Tongo (srn)</option>
+              <option value="nld">Nederlands Caribisch (nld)</option>
+              <option value="fra">Français caribéen (fra)</option>
+              <option value="eng">English Caribbean (eng)</option>
+              <option value="spa">Español caribeño (spa)</option>
             </select>
           </div>
         </div>
@@ -560,15 +539,7 @@ footer{background:#003E6B;padding:56px 6% 32px}
   </div>
 </div>
 
-<footer>
-  <div class="fg-f">
-    <div class="fb"><a class="fl" href="index.html">CMS</a><p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p></div>
-    <div class="fc"><h4>Le Standard</h4><ul><li><a href="about.html">À propos</a></li><li><a href="families.html">Les 6 familles</a></li><li><a href="resources.html">Documentation</a></li></ul></div>
-    <div class="fc"><h4>Écosystème</h4><ul><li><a href="lab.html">Language Lab</a></li><li><a href="collaborate.html">Collaborer</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="fc"><h4>Outils</h4><ul><li><a href="cms-builder.html" class="hl">CMS Builder</a></li><li><a href="validator.html">Valider un contenu</a></li><li><a href="developers.html">Developers / API</a></li><li><a href="glossaire.html">Glossaire</a></li></ul></div>
-  </div>
-  <div class="fb-bot"><strong style="color:rgba(255,255,255,0.85)">caribbeanmetadata.org</strong> &nbsp;·&nbsp; CMS v1.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe</div>
-</footer>
+<footer><!-- nav-fix.js --></footer>
 
 <div class="modal-overlay" id="modal-delete">
   <div class="modal">
@@ -585,12 +556,50 @@ footer{background:#003E6B;padding:56px 6% 32px}
 
 <script>
 const FAMILIES = [
-  { id: 'linguistic', label: 'Famille 01 — Linguistique', color: '#00C2C7', weight: 15, tags: ['Créole guadeloupéen','Créole martiniquais','Créole haïtien','Créole réunionnais','Patois jamaïcain','Anglais trinidadien','Papiamento','Sranan Tongo','Code-switching','Alternance codique','Oralité rythmée','Proverbes créoles','Contes oraux','Joutes verbales','Griot caribéen']},
-  { id: 'cultural', label: 'Famille 02 — Culturelle', color: '#FFC93C', weight: 15, tags: ['Vodou haïtien','Santería','Rastafari','Syncrétisme afro-caribéen','Carnaval','Mas traditionnel','Léwoz / Gwoka','Bèlè','Reggae','Zouk','Kompa','Calypso','Dancehall','Identité diasporique','Héritage africain','Métissage culturel']},
-  { id: 'narrative', label: 'Famille 03 — Narrative', color: '#FF6F61', weight: 15, tags: ['Réalisme magique caribéen','Thriller tropical','Drame social','Comédie créole','Saga familiale','Chroniques urbaines','Récit initiatique','Narration circulaire','Figure du conteur','Héros de rue','Guide ancestral','Exilé de retour','Mémoire collective','Résistance','Émancipation']},
-  { id: 'rhythmic', label: 'Famille 04 — Rythmique', color: '#7B3FA6', weight: 10, tags: ['Tempo insulaire lent','Tempo urbain rapide','Tempo contemplatif','Dialogue syncopé','Parole percussive','Rythme appel-réponse','Intonation chantée','Oralité musicale','Silence signifiant','Ambiance tropicale','Paysage sonore urbain','Sons naturels insulaires']},
-  { id: 'geographic', label: 'Famille 05 — Géographique', color: '#3FA66B', weight: 20, tags: ['Guadeloupe','Martinique','Haïti','Jamaïque','Trinité-et-Tobago','Cuba','Urbain caribéen','Rural tropical','Littoral insulaire','Forêt tropicale','Grande Caraïbe','Petites Antilles','Diaspora caribéenne','La mer comme frontière','La plantation','Le morne']},
-  { id: 'sociohistorical', label: 'Famille 06 — Socio-historique', color: '#185FA5', weight: 15, tags: ["Mémoire de l'esclavage",'Colonisation','Abolition','Indépendance','Créolisation','Postcolonialité','Négritude','Antillanité','Exil volontaire','Retour au pays','Tensions diaspora/île','Tensions intergénérationnelles','Classe sociale','Genre et pouvoir']}
+  { id: 'linguistic', label: 'Famille 01 — Linguistique', color: '#00C2C7', weight: 15, tags: [
+    'Créole guadeloupéen (gcf)', 'Créole antillais (acf)', 'Créole haïtien (hat)',
+    'Jamaican Patois (jam)', 'Papiamentu (pap)', 'Sranan Tongo (srn)',
+    'Nederlands Caribisch (nld)', 'Français caribéen (fra)', 'English Caribbean (eng)',
+    'Español caribeño (spa)', 'Code-switching', 'Alternance codique',
+    'Oralité rythmée', 'Proverbes créoles', 'Contes oraux', 'Joutes verbales'
+  ]},
+  { id: 'cultural', label: 'Famille 02 — Culturelle', color: '#FFC93C', weight: 15, tags: [
+    'Gwo Ka', 'Bèlè', 'Konpa', 'Zouk', 'Calypso', 'Soca', 'Reggae', 'Ska',
+    'Dancehall', 'Tumba', 'Son Cubano', 'Salsa', 'Bachata', 'Merengue',
+    'Kaseko', 'Kadans', 'Bouyon', 'Carnival', 'Mas', 'Rara',
+    'Vodou', 'Orisha', 'Rastafari', 'Maroon Culture',
+    'Quadrille créole', 'Danmyé', 'Kalenda', 'Chanté Noël',
+    'Identité diasporique', 'Héritage africain', 'Syncrétisme afro-caribéen'
+  ]},
+  { id: 'narrative', label: 'Famille 03 — Narrative', color: '#FF6F61', weight: 15, tags: [
+    'Musique', 'Danse', 'Théâtre', 'Littérature', 'Tradition orale',
+    'Patrimoine immatériel', 'Religion', 'Gastronomie', 'Carnaval',
+    'Arts visuels', 'Éducation', 'Actualités', 'Réseaux sociaux',
+    'Réalisme magique caribéen', 'Drame social', 'Saga familiale',
+    'Thriller tropical', 'Comédie créole', 'Récit initiatique',
+    'Documentaire', 'Coming-of-age', 'Fiction historique'
+  ]},
+  { id: 'rhythmic', label: 'Famille 04 — Rythmique', color: '#7B3FA6', weight: 10, tags: [
+    'Tempo insulaire lent', 'Tempo urbain rapide', 'Tempo contemplatif',
+    'Dialogue syncopé', 'Parole percussive', 'Rythme appel-réponse',
+    'Intonation chantée', 'Oralité musicale', 'Silence signifiant',
+    'Ambiance tropicale', 'Paysage sonore urbain', 'Sons naturels insulaires'
+  ]},
+  { id: 'geographic', label: 'Famille 05 — Géographique', color: '#3FA66B', weight: 20, tags: [
+    'Haïti', 'Guadeloupe', 'Martinique', 'Guyane', 'Jamaica', 'Trinidad',
+    'Barbados', 'Cuba', 'Dominican Republic', 'Puerto Rico', 'Aruba',
+    'Curacao', 'Suriname', 'Dominica', 'St Lucia', 'St Vincent',
+    'Grenada', 'Antigua', 'Diaspora caribéenne', 'Caribbean (général)',
+    'Urbain caribéen', 'Rural tropical', 'Littoral insulaire',
+    'Forêt tropicale', 'La mer comme frontière', 'Le morne'
+  ]},
+  { id: 'sociohistorical', label: 'Famille 06 — Socio-historique', color: '#185FA5', weight: 15, tags: [
+    "Mémoire de l'esclavage", 'Créolisation', 'Colonisation', 'Abolition',
+    'Indépendance', 'Postcolonialité', 'Négritude', 'Antillanité',
+    'Identité postcoloniale', 'Marronage', 'Résistance culturelle',
+    'Migration', 'Exil volontaire', 'Retour au pays',
+    'Patrimoine UNESCO', 'Mémoire collective', 'Genre et pouvoir'
+  ]}
 ];
 
 let selectedTags = {};
@@ -728,7 +737,7 @@ async function syncAllFiches(){
       const record=buildRecord(fiche);
       const slug=(fiche.title||fiche.id).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
       const path=`api/works/${slug}_${fiche.id.replace('fiche_','')}.json`;
-      await writeFile(path,record,`CMS Builder: publish "${fiche.title}"`);
+      await writeFile(path,record,`CMS Builder v2.0: publish "${fiche.title}"`);
       addLog('gh-sync-log',`✅ ${fiche.title||fiche.id}`,'ok');
       ok++;
     }catch(e){
@@ -739,7 +748,7 @@ async function syncAllFiches(){
   // Write index.json
   try{
     const index={generated:new Date().toISOString(),total:fiches.length,works:fiches.map(f=>({id:f.id,title:f.title,family:f.family,territory:f.territory,year:f.year,score:f.score,level:getLevel(f.score||0),savedAt:f.savedAt}))};
-    await writeFile('api/works/index.json',index,'CMS Builder: update works index');
+    await writeFile('api/works/index.json',index,'CMS Builder v2.0: update works index');
     addLog('gh-sync-log','✅ api/works/index.json mis à jour','ok');
   }catch(e){addLog('gh-sync-log','⚠️ index.json — '+e.message,'info');}
 
@@ -761,7 +770,7 @@ async function publishCurrentFiche(){
   const btn=document.getElementById('btn-publish-gh');
   btn.textContent='⏳…';btn.disabled=true;
   try{
-    await writeFile(path,record,`CMS Builder: publish "${data.title}"`);
+    await writeFile(path,record,`CMS Builder v2.0: publish "${data.title}"`);
     localStorage.setItem('cms_gh_last_sync',new Date().toISOString());
     showToast('✅ Fiche publiée sur GitHub !');
     updateGhUI();
@@ -774,11 +783,11 @@ async function updateSchema(){
   addLog('gh-sync-log','Mise à jour du schéma CMS…','info');
   try{
     const schema={$schema:'http://json-schema.org/draft-07/schema#',$id:'https://caribbeanmetadata.org/api/schema/cms-schema.json',title:'Caribbean Metadata Standard',version:'1.0',description:'Schéma officiel du Caribbean Metadata Standard (CMS) — Caribwood Language Lab',required:['cms_version','family','title','language','territory'],properties:{cms_version:{type:'string'},family:{type:'string',enum:['audiovisual','musical','literary','heritage','visual_arts','performing_arts']},title:{type:'string'},title_original:{type:'string'},language:{type:'array',items:{type:'string'}},territory:{type:'array',items:{type:'string'}},year:{type:'integer'},creators:{type:'array'},description:{type:'string'},metadata_tags:{type:'object'},caribbean_score:{type:'integer',minimum:0,maximum:100},compliance_level:{type:'string',enum:['PLATINUM','GOLD','SILVER','BRONZE','BELOW_THRESHOLD']},certified_by:{type:'string'},certification_date:{type:'string',format:'date'}},generated:new Date().toISOString()};
-    await writeFile('api/schema/cms-schema.json',schema,'CMS Builder: update schema v1.0');
+    await writeFile('api/schema/cms-schema.json',schema,'CMS Builder v2.0: update schema v1.0');
     addLog('gh-sync-log','✅ api/schema/cms-schema.json mis à jour','ok');
 
     const rules={version:'1.0',levels:{PLATINUM:{min:85,description:'Ancrage caribéen exceptionnel'},GOLD:{min:65,description:'Fort ancrage caribéen'},SILVER:{min:40,description:'Ancrage caribéen établi'},BRONZE:{min:20,description:'Ancrage caribéen minimal'},BELOW_THRESHOLD:{min:0,max:19,description:'Score insuffisant pour certification'}},scoring:{identity:{max:10,fields:{title:2,family:2,year:1,territory:2,language:2,creators:1}},families:{linguistic:{weight:15},cultural:{weight:15},narrative:{weight:15},rhythmic:{weight:10},geographic:{weight:20},sociohistorical:{weight:15}}},generated:new Date().toISOString()};
-    await writeFile('api/schema/cms-validation-rules.json',rules,'CMS Builder: update validation rules');
+    await writeFile('api/schema/cms-validation-rules.json',rules,'CMS Builder v2.0: update validation rules');
     addLog('gh-sync-log','✅ api/schema/cms-validation-rules.json mis à jour','ok');
     showToast('✅ Schéma publié sur GitHub !');
   }catch(e){addLog('gh-sync-log','❌ '+e.message,'err');}
@@ -790,7 +799,7 @@ async function updateVocabularies(){
   try{
     for(const fam of FAMILIES){
       const vocab={id:fam.id,label:fam.label,color:fam.color,weight:fam.weight,count:fam.tags.length,terms:fam.tags.map(t=>({term:t})),generated:new Date().toISOString()};
-      await writeFile(`api/vocabularies/${fam.id}.json`,vocab,`CMS Builder: update vocabulary ${fam.id}`);
+      await writeFile(`api/vocabularies/${fam.id}.json`,vocab,`CMS Builder v2.0: update vocabulary ${fam.id}`);
       addLog('gh-sync-log',`✅ api/vocabularies/${fam.id}.json (${fam.tags.length} termes)`,'ok');
     }
     showToast('✅ Vocabulaires publiés sur GitHub !');
@@ -1077,7 +1086,7 @@ function buildRecord(data){
   const level=getLevel(score);
   const allTags={};
   FAMILIES.forEach(fam=>{const tags=data.tags?data.tags[fam.id]:selectedTags[fam.id];if(tags&&tags.length)allTags[fam.id]=tags;});
-  return{cms_version:'1.0',family:data.family||'—',title:data.title||'—',...(data.titleOrig&&{title_original:data.titleOrig}),language:[data.language||'—'],territory:[data.territory||'—'],year:parseInt(data.year)||null,...(data.creators&&{creators:[{name:data.creators,role:'Créateur'}]}),...(data.desc&&{description:data.desc}),metadata_tags:allTags,caribbean_score:score,compliance_level:level||'BELOW_THRESHOLD',certified_by:'Caribwood Language Lab — CMS Builder v1.0',certification_date:new Date().toISOString().split('T')[0]};
+  return{cms_version:'2.0',family:data.family||'—',title:data.title||'—',...(data.titleOrig&&{title_original:data.titleOrig}),language:[data.language||'—'],territory:[data.territory||'—'],year:parseInt(data.year)||null,...(data.creators&&{creators:[{name:data.creators,role:'Créateur'}]}),...(data.desc&&{description:data.desc}),metadata_tags:allTags,caribbean_score:score,compliance_level:level||'BELOW_THRESHOLD',certified_by:'Caribwood Language Lab — CMS Builder v2.0',certification_date:new Date().toISOString().split('T')[0]};
 }
 
 function generateResult(){
@@ -1136,5 +1145,6 @@ if(_ghcfg.token)document.getElementById('gh-token').value=_ghcfg.token;
 const _draft=loadDraft();
 if(_draft){fillForm(_draft);buildFamiliesUI();updateScore();document.getElementById('autosave-text').textContent='Brouillon restauré automatiquement';}
 </script>
+<script src="nav-fix.js"></script>
 </body>
 </html>
