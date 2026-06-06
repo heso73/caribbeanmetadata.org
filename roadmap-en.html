@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roadmap — Caribbean Metadata Standard</title>
+  <style>
+    :root {
+      --purple-d: #2d1b69;
+      --purple: #4f35a3;
+      --purple-l: #ede9fc;
+      --teal: #0d9488;
+      --teal-l: #ccfbf1;
+      --coral: #e05252;
+      --coral-l: #fde8e8;
+      --amber: #d97706;
+      --amber-l: #fef3c7;
+      --gray-d: #1f2937;
+      --gray-m: #6b7280;
+      --gray-l: #f3f4f6;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--gray-d); background: var(--white); }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; border-bottom: 1px solid #e5e7eb;
+      position: sticky; top: 0; background: white; z-index: 100;
+    }
+    .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--purple-d); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--gray-m); font-size: 0.875rem; }
+    .nav-links a:hover { color: var(--purple); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--purple-d) 0%, var(--purple) 100%);
+      color: white; text-align: center; padding: 5rem 2rem 4rem;
+    }
+    .eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 1rem;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1.5rem; line-height: 1.15; }
+    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 640px; margin: 0 auto; }
+
+    /* SECTION */
+    .section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.5rem; }
+    .section h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--purple-d); margin-bottom: 2rem; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0.75rem; top: 0; bottom: 0;
+      width: 2px; background: var(--purple-l);
+    }
+    .phase { position: relative; margin-bottom: 2.5rem; }
+    .phase-dot {
+      position: absolute; left: -2.5rem; top: 1.5rem;
+      width: 1.5rem; height: 1.5rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 800; color: white;
+    }
+    .phase-card {
+      border-radius: 12px; padding: 2rem;
+      border-left: 4px solid;
+    }
+    .phase-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .phase-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .phase-title { font-size: 1.2rem; font-weight: 800; color: var(--purple-d); }
+    .phase-date { font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; white-space: nowrap; }
+    .phase-desc { font-size: 0.9rem; color: var(--gray-m); margin-bottom: 1rem; line-height: 1.6; }
+    .milestones { display: flex; flex-direction: column; gap: 0.4rem; }
+    .milestone { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--gray-d); }
+    .milestone::before { content: '→'; font-weight: 700; flex-shrink: 0; }
+
+    /* Phase colors */
+    .p1 .phase-card { background: var(--purple-l); border-color: var(--purple); }
+    .p1 .phase-dot { background: var(--purple); }
+    .p1 .phase-label { color: var(--purple); }
+    .p1 .phase-date { background: var(--purple); color: white; }
+
+    .p2 .phase-card { background: var(--teal-l); border-color: var(--teal); }
+    .p2 .phase-dot { background: var(--teal); }
+    .p2 .phase-label { color: var(--teal); }
+    .p2 .phase-date { background: var(--teal); color: white; }
+
+    .p3 .phase-card { background: var(--coral-l); border-color: var(--coral); }
+    .p3 .phase-dot { background: var(--coral); }
+    .p3 .phase-label { color: var(--coral); }
+    .p3 .phase-date { background: var(--coral); color: white; }
+
+    .p4 .phase-card { background: var(--amber-l); border-color: var(--amber); }
+    .p4 .phase-dot { background: var(--amber); }
+    .p4 .phase-label { color: var(--amber); }
+    .p4 .phase-date { background: var(--amber); color: white; }
+
+    /* STATUS BADGE */
+    .status-current {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; font-weight: 700; color: #16a34a;
+      background: #dcfce7; padding: 0.2rem 0.6rem; border-radius: 20px;
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #16a34a; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* CTA */
+    .cta-band {
+      background: var(--purple-d); color: white; text-align: center;
+      padding: 4rem 2rem;
+    }
+    .cta-band h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
+    .cta-band p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .btn { display: inline-block; padding: 0.85rem 2rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; text-decoration: none; margin: 0.4rem; }
+    .btn-white { background: white; color: var(--purple-d); }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.4); color: white; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #e5e7eb; padding: 2rem; text-align: center;
+      font-size: 0.8rem; color: var(--gray-m);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://caribbeanmetadata.org/index-en.html">CMS</a>
+  <ul class="nav-links">
+    <li><a href="https://caribbeanmetadata.org/about-en.html">About</a></li>
+    <li><a href="https://caribbeanmetadata.org/families-en.html">The 6 Families</a></li>
+    <li><a href="https://caribbeanmetadata.org/resources.html">Resources</a></li>
+    <li><a href="https://caribbeanmetadata.org/collaborate-en.html">Collaborate</a></li>
+    <li><a href="https://caribbeanmetadata.org/contact-en.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <p class="eyebrow">Deployment · 2026–2028</p>
+  <h1>Caribbean Metadata Standard Roadmap</h1>
+  <p>An 18-month structured plan to deploy the first Caribbean digital standard — from the White Paper publication to integration on global platforms.</p>
+</header>
+
+<section class="section">
+  <p class="section-eyebrow">Deployment plan</p>
+  <h2>4 phases · 18 months · 1 Caribbean standard</h2>
+
+  <div class="timeline">
+
+    <!-- PHASE 1 -->
+    <div class="phase p1">
+      <div class="phase-dot">1</div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div>
+            <div class="phase-label">Phase 1 — Foundation</div>
+            <div class="phase-title">CMS v1.0 Launch</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;">
+            <span class="phase-date">2026</span>
+            <span class="status-current"><span class="status-dot"></span>In progress</span>
+          </div>
+        </div>
+        <p class="phase-desc">The official founding act of the Caribbean Metadata Standard. Publication of founding documents, opening of public tools and constitution of the founding signatories registry.</p>
+        <div class="milestones">
+          <div class="milestone">Publication of the CMS v1.0 White Paper</div>
+          <div class="milestone">Opening of the 100 Founders signatories registry</div>
+          <div class="milestone">Launch of the CMS Validator & certification system</div>
+          <div class="milestone">Launch of the CMS Builder (metadata creation tool)</div>
+          <div class="milestone">Publication of the Metadata Bible (50+ tags)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase p2">
+      <div class="phase-dot">2</div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div>
+            <div class="phase-label">Phase 2 — Regional Deployment</div>
+            <div class="phase-title">French-speaking Caribbean Anchoring</div>
+          </div>
+          <span class="phase-date">2026 – 2027</span>
+        </div>
+        <p class="phase-desc">Extension of the standard to French-speaking Caribbean institutions and creators. Building collective governance and first CMS-Compliant certified content.</p>
+        <div class="milestones">
+          <div class="milestone">Partnerships with Caribbean cultural institutions (Guadeloupe, Martinique, Guiana, Haiti)</div>
+          <div class="milestone">CMS tagging training workshops for creators</div>
+          <div class="milestone">First Bronze / Silver / Gold certified audiovisual content</div>
+          <div class="milestone">Launch of the standard governance committee</div>
+          <div class="milestone">Implementation guide for studios and institutions</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase p3">
+      <div class="phase-dot">3</div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div>
+            <div class="phase-label">Phase 3 — Linguistic Extension</div>
+            <div class="phase-title">Spanish & Dutch-speaking Caribbean</div>
+          </div>
+          <span class="phase-date">2027</span>
+        </div>
+        <p class="phase-desc">Opening of the CMS to the entire Caribbean space. Integration of Spanish and Dutch-speaking territories, and publication of multilingual versions of the standard.</p>
+        <div class="milestones">
+          <div class="milestone">Integration of Cuba, Puerto Rico, Dominican Republic</div>
+          <div class="milestone">Integration of Curaçao, Aruba, Suriname</div>
+          <div class="milestone">Publication CMS v2.0 — full ES and NL versions</div>
+          <div class="milestone">Partnerships with regional universities (UWI, UNAM, UA)</div>
+          <div class="milestone">Multilingual Caribbean corpus — 500+ indexed content</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase p4">
+      <div class="phase-dot">4</div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div>
+            <div class="phase-label">Phase 4 — Artificial Intelligence</div>
+            <div class="phase-title">CMS AI Engine & Platform Integrations</div>
+          </div>
+          <span class="phase-date">2027 – 2028</span>
+        </div>
+        <p class="phase-desc">Development of an artificial intelligence engine trained on Caribbean corpora. Deployment of the CMS API for direct integration on major global platforms.</p>
+        <div class="milestones">
+          <div class="milestone">Caribbean NLP model — automatic cultural marker recognition</div>
+          <div class="milestone">Automatic content tagging via CMS AI Engine</div>
+          <div class="milestone">Open CMS API — complete technical documentation</div>
+          <div class="milestone">Integration outreach to Netflix, Spotify, Amazon, YouTube</div>
+          <div class="milestone">Opening of the CMS-Compliant certification process to platforms</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Join the initiative now.</h2>
+  <p>Creator, institution, platform or researcher — your contribution to Phase 1 is essential for the standard to take root.</p>
+  <a class="btn btn-white" href="https://caribbeanmetadata.org/founders-en.html">Become a founding signatory</a>
+  <a class="btn btn-outline" href="https://caribbeanmetadata.org/collaborate-en.html">Collaborate avec nous</a>
+</div>
+
+<footer>
+  <strong>caribbeanmetadata.org</strong> · CMS v2.0 · Caribwood Language Lab — Guadeloupe
+</footer>
+
+</body>
+</html>
