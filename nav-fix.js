@@ -14,7 +14,7 @@
   const basePage = page.replace(/-en\.html$/, '').replace(/-es\.html$/, '').replace(/\.html$/, '');
 
   // Pages sans version ES — restent sur la version FR
-  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press'];
+  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue'];
   // Pages sans version EN
   const NO_EN = ['glossaire', 'architecture', 'press'];
 
@@ -30,6 +30,7 @@
       { href: 'about.html',        label: 'À propos' },
       { href: 'families.html',     label: 'Les 6 familles' },
       { href: 'resources.html',    label: 'Ressources' },
+      { href: 'catalogue.html',    label: 'Catalogue' },
       { href: 'roadmap.html',      label: 'Roadmap' },
       { href: 'lab.html',          label: 'Language Lab' },
       { href: 'collaborate.html',  label: 'Collaborer' },
@@ -43,6 +44,7 @@
       { href: 'about-en.html',       label: 'About' },
       { href: 'families-en.html',    label: 'The 6 Families' },
       { href: 'resources.html',      label: 'Resources' },
+      { href: 'catalogue.html',      label: 'Catalogue' },
       { href: 'roadmap.html',        label: 'Roadmap' },
       { href: 'lab-en.html',         label: 'Language Lab' },
       { href: 'collaborate-en.html', label: 'Collaborate' },
@@ -56,6 +58,7 @@
       { href: 'about-es.html',       label: 'Acerca de' },
       { href: 'families-es.html',    label: 'Las 6 familias' },
       { href: 'resources.html',      label: 'Recursos' },
+      { href: 'catalogue.html',      label: 'Catálogo' },
       { href: 'roadmap.html',        label: 'Roadmap' },
       { href: 'lab-es.html',         label: 'Language Lab' },
       { href: 'collaborate-es.html', label: 'Colaborar' },
@@ -75,6 +78,7 @@
           { href: 'about.html',        label: 'À propos' },
           { href: 'families.html',     label: 'Les 6 familles' },
           { href: 'resources.html',    label: 'Documentation' },
+          { href: 'catalogue.html',    label: 'Catalogue CMS' },
           { href: 'declaration.html',  label: 'Déclaration fondatrice' },
           { href: 'roadmap.html',      label: 'Roadmap 2026–2028' },
         ]},
@@ -101,6 +105,7 @@
           { href: 'about-en.html',       label: 'About' },
           { href: 'families-en.html',    label: 'The 6 Families' },
           { href: 'resources.html',      label: 'Documentation' },
+          { href: 'catalogue.html',      label: 'CMS Catalogue' },
           { href: 'declaration-en.html', label: 'Founding Declaration' },
           { href: 'roadmap.html',        label: 'Roadmap 2026–2028' },
         ]},
@@ -127,6 +132,7 @@
           { href: 'about-es.html',       label: 'Acerca de' },
           { href: 'families-es.html',    label: 'Las 6 familias' },
           { href: 'resources.html',      label: 'Documentación' },
+          { href: 'catalogue.html',      label: 'Catálogo CMS' },
           { href: 'declaration-es.html', label: 'Declaración Fundadora' },
           { href: 'roadmap.html',        label: 'Roadmap 2026–2028' },
         ]},
@@ -318,7 +324,7 @@
 
     const credit = document.createElement('p');
     credit.className = 'footer-credit';
-    credit.innerHTML = '<strong>caribbeanmetadata.org</strong> · CMS v1.0 · Caribwood Language Lab — Guadeloupe';
+    credit.innerHTML = '<strong>caribbeanmetadata.org</strong> · CMS v2.0 · Caribwood Language Lab — Guadeloupe';
     footer.appendChild(credit);
 
     return footer;
