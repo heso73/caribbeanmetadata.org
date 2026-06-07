@@ -107,6 +107,53 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
 @media(max-width:900px){main{grid-template-columns:1fr}.sidebar{display:none}}
 @media(max-width:600px){.fg{grid-template-columns:1fr}}
 
+
+/* AI LAYER */
+.ai-panel{background:linear-gradient(135deg,#001F33,#003E6B);border-radius:12px;padding:28px;margin-bottom:24px;position:relative;overflow:hidden}
+.ai-panel::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.04) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.03) 24px)}
+.ai-panel-inner{position:relative;z-index:1}
+.ai-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.ai-eyebrow::before{content:'◆';font-size:8px}
+.ai-title{font-family:'DM Serif Display',Georgia,serif;font-size:18px;color:#fff;margin-bottom:6px}
+.ai-sub{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;line-height:1.7}
+.ai-textarea{width:100%;padding:12px 16px;border:1px solid rgba(0,194,199,0.2);border-radius:6px;font-size:13px;background:rgba(255,255,255,0.05);color:#fff;font-family:'DM Sans',sans-serif;min-height:90px;resize:vertical;outline:none;transition:border .2s;line-height:1.7}
+.ai-textarea:focus{border-color:rgba(0,194,199,0.5);background:rgba(255,255,255,0.08)}
+.ai-textarea::placeholder{color:rgba(255,255,255,0.25)}
+.btn-ai{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;background:var(--teal);color:#003E6B;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;margin-top:14px}
+.btn-ai:hover{background:#00a8ae;transform:translateY(-1px)}
+.btn-ai:disabled{opacity:.6;cursor:wait;transform:none}
+.btn-ai .ai-icon{font-size:16px}
+.ai-loading{display:none;margin-top:16px;align-items:center;gap:10px}
+.ai-loading.show{display:flex}
+.ai-dots{display:flex;gap:4px}
+.ai-dot{width:6px;height:6px;background:var(--teal);border-radius:50%;animation:ai-bounce .8s infinite}
+.ai-dot:nth-child(2){animation-delay:.15s}
+.ai-dot:nth-child(3){animation-delay:.3s}
+@keyframes ai-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.ai-loading-text{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px}
+
+/* AI RESULTS */
+.ai-results{display:none;margin-top:20px;background:rgba(255,255,255,0.04);border:1px solid rgba(0,194,199,0.15);border-radius:8px;padding:20px}
+.ai-results.show{display:block}
+.air-section{margin-bottom:16px}
+.air-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--teal);margin-bottom:8px}
+.air-score-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.air-score-num{font-family:'DM Serif Display',Georgia,serif;font-size:36px;color:#fff;line-height:1}
+.air-level{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:20px}
+.air-level.platinum{background:rgba(0,194,199,0.2);color:var(--teal)}
+.air-level.gold{background:rgba(255,201,60,0.2);color:var(--gold)}
+.air-level.silver{background:rgba(192,192,192,0.2);color:#C0C0C0}
+.air-level.bronze{background:rgba(205,127,50,0.2);color:#CD7F32}
+.air-justification{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7;font-style:italic;margin-top:8px}
+.air-tags-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.ai-tag-suggest{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid rgba(0,194,199,0.3);background:rgba(0,194,199,0.08);color:rgba(255,255,255,0.8);transition:all .2s;font-family:'DM Sans',sans-serif}
+.ai-tag-suggest:hover{background:rgba(0,194,199,0.2);color:#fff;border-color:rgba(0,194,199,0.5)}
+.ai-tag-suggest.applied{background:var(--teal);color:#003E6B;border-color:var(--teal)}
+.air-lang{font-family:'DM Mono',monospace;font-size:13px;color:#fff;font-weight:500}
+.air-lang-code{font-size:11px;color:rgba(255,255,255,0.4);margin-left:8px}
+.btn-ai-apply{width:100%;padding:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:14px;transition:all .2s}
+.btn-ai-apply:hover{background:rgba(255,255,255,0.1);color:#fff}
+
 /* AUTH */
 .auth-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
 .auth-overlay.show{display:flex}
@@ -265,6 +312,43 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
           </select>
         </div>
       </div>
+      <!-- AI ANALYSIS PANEL -->
+      <div class="ai-panel" id="ai-panel">
+        <div class="ai-panel-inner">
+          <div class="ai-eyebrow">ANALYSE AI — CLAUDE</div>
+          <div class="ai-title">Laissez Claude analyser votre œuvre</div>
+          <div class="ai-sub">Décrivez votre œuvre en quelques phrases. Claude identifiera les marqueurs culturels caribéens, suggérera un score et détectera la langue.</div>
+          <textarea class="ai-textarea" id="ai-input" placeholder="Ex : Film documentaire sur les tambourinaires de Gwo Ka en Guadeloupe, tourné dans les communes rurales de Sainte-Anne. Les musiciens alternent entre le créole guadeloupéen et le français. Le film explore la transmission de cette pratique classée UNESCO..."></textarea>
+          <button class="btn-ai" onclick="analyzeWithAI()" id="btn-ai">
+            <span class="ai-icon">◆</span> Analyser avec Claude
+          </button>
+          <div class="ai-loading" id="ai-loading">
+            <div class="ai-dots"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div>
+            <span class="ai-loading-text">CLAUDE ANALYSE VOTRE ŒUVRE...</span>
+          </div>
+
+          <div class="ai-results" id="ai-results">
+            <div class="air-section">
+              <div class="air-label">SCORE PRÉLIMINAIRE ESTIMÉ</div>
+              <div class="air-score-row">
+                <div class="air-score-num" id="air-score">—</div>
+                <div class="air-level" id="air-level">—</div>
+              </div>
+              <div class="air-justification" id="air-justification">—</div>
+            </div>
+            <div class="air-section">
+              <div class="air-label">LANGUE DÉTECTÉE</div>
+              <div><span class="air-lang" id="air-lang">—</span><span class="air-lang-code" id="air-lang-code"></span></div>
+            </div>
+            <div class="air-section">
+              <div class="air-label">MARQUEURS CULTURELS SUGGÉRÉS — cliquer pour sélectionner</div>
+              <div class="air-tags-wrap" id="air-tags"></div>
+            </div>
+            <button class="btn-ai-apply" onclick="applyAllAISuggestions()">↓ Appliquer toutes les suggestions au formulaire</button>
+          </div>
+        </div>
+      </div>
+
       <div class="fg full"><div class="form-group"><label>Description</label><textarea id="w-desc" placeholder="Décrivez brièvement votre œuvre..." oninput="updateScore()"></textarea></div></div>
       <div class="btn-row">
         <button class="btn-secondary" onclick="goStep(1)">← Retour</button>
@@ -670,6 +754,189 @@ let _tt;
 function showToast(msg) {
   const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
   clearTimeout(_tt); _tt = setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+
+// ── AI LAYER — CLAUDE API ─────────────────────────────────────────────────────
+
+const LANG_MAP = {
+  'gcf': 'Créole guadeloupéen', 'acf': 'Créole antillais', 'hat': 'Créole haïtien',
+  'jam': 'Jamaican Patois', 'pap': 'Papiamentu', 'srn': 'Sranan Tongo',
+  'nld': 'Nederlands Caribisch', 'fra': 'Français caribéen',
+  'eng': 'English Caribbean', 'spa': 'Español caribeño'
+};
+
+const ALL_MARKERS = [
+  'Gwo Ka','Bèlè','Konpa','Zouk','Calypso','Soca','Reggae','Ska','Dancehall',
+  'Tumba','Son Cubano','Salsa','Bachata','Merengue','Kaseko','Kadans','Bouyon',
+  'Carnival','Mas','Rara','Vodou','Orisha','Rastafari','Maroon Culture',
+  'Quadrille créole','Danmyé','Kalenda','Chanté Noël',
+  'Créolisation',"Mémoire de l'esclavage",'Négritude','Antillanité','Postcolonialité'
+];
+
+let aiSuggestions = {};
+
+async function analyzeWithAI() {
+  const input = document.getElementById('ai-input').value.trim();
+  const title = document.getElementById('w-title').value.trim();
+  const territory = document.getElementById('w-territory').value;
+  const family = document.getElementById('w-family').value;
+
+  if (!input && !title) {
+    showToast('⚠️ Décrivez votre œuvre ou remplissez le titre d\'abord');
+    return;
+  }
+
+  const btn = document.getElementById('btn-ai');
+  btn.disabled = true;
+  document.getElementById('ai-loading').classList.add('show');
+  document.getElementById('ai-results').classList.remove('show');
+
+  const context = [
+    title ? `Titre : ${title}` : '',
+    family ? `Famille : ${family}` : '',
+    territory ? `Territoire : ${territory}` : '',
+    input ? `Description : ${input}` : '',
+  ].filter(Boolean).join('\n');
+
+  const prompt = `Tu es un expert du Caribbean Metadata Standard (CMS v2.0) et de la culture caribéenne.
+
+Analyse ce contenu culturel caribéen et réponds UNIQUEMENT en JSON valide, sans markdown, sans commentaire :
+
+${context}
+
+Marqueurs disponibles : ${ALL_MARKERS.join(', ')}
+
+Langues disponibles : ${Object.entries(LANG_MAP).map(([k,v]) => k + ' (' + v + ')').join(', ')}
+
+Réponds avec ce JSON exact :
+{
+  "score": <entier 0-100 basé sur l'ancrage caribéen>,
+  "level": <"platinum"|"gold"|"silver"|"bronze"|null>,
+  "justification": <string 1-2 phrases expliquant le score>,
+  "detected_language_code": <code ISO 639-3 parmi les langues disponibles>,
+  "detected_language_name": <nom de la langue>,
+  "suggested_markers": <array de 3-8 marqueurs parmi ceux disponibles, les plus pertinents>,
+  "suggested_territory": <territoire caribéen si détectable, sinon null>,
+  "suggested_language_select": <valeur exacte du select parmi : gcf,acf,hat,jam,pap,srn,nld,fra,eng,spa>
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    const text = data.content?.[0]?.text || '';
+
+    // Parser le JSON
+    const clean = text.replace(/```json|```/g, '').trim();
+    const result = JSON.parse(clean);
+
+    aiSuggestions = result;
+    renderAIResults(result);
+
+  } catch(e) {
+    showToast('❌ Erreur analyse AI : ' + e.message);
+    document.getElementById('ai-loading').classList.remove('show');
+    btn.disabled = false;
+  }
+}
+
+function renderAIResults(r) {
+  document.getElementById('ai-loading').classList.remove('show');
+  document.getElementById('btn-ai').disabled = false;
+  document.getElementById('ai-results').classList.add('show');
+
+  // Score
+  document.getElementById('air-score').textContent = r.score || 0;
+  const levelEl = document.getElementById('air-level');
+  levelEl.textContent = (r.level || 'NON CERTIFIÉ').toUpperCase();
+  levelEl.className = 'air-level' + (r.level ? ' ' + r.level : '');
+
+  // Justification
+  document.getElementById('air-justification').textContent = r.justification || '';
+
+  // Langue
+  document.getElementById('air-lang').textContent = r.detected_language_name || '—';
+  document.getElementById('air-lang-code').textContent = r.detected_language_code ? '[' + r.detected_language_code + ']' : '';
+
+  // Tags suggérés
+  const tagsWrap = document.getElementById('air-tags');
+  tagsWrap.innerHTML = (r.suggested_markers || []).map(tag => `
+    <span class="ai-tag-suggest" onclick="toggleAITag(this,'${tag.replace(/'/g, "\'")}','${tag.replace(/'/g, "\'")}')">${tag}</span>
+  `).join('');
+
+  showToast('✅ Analyse AI terminée !');
+}
+
+function toggleAITag(el, tag, displayTag) {
+  el.classList.toggle('applied');
+  // Trouver et cliquer le tag dans les familles
+  document.querySelectorAll('.tag-chip').forEach(chip => {
+    if (chip.textContent.trim() === tag || chip.textContent.includes(tag.split(' ')[0])) {
+      const isSelected = chip.classList.contains('selected');
+      const shouldSelect = el.classList.contains('applied');
+      if (shouldSelect && !isSelected) chip.click();
+      else if (!shouldSelect && isSelected) chip.click();
+    }
+  });
+}
+
+function applyAllAISuggestions() {
+  if (!aiSuggestions) return;
+
+  // Appliquer la langue
+  if (aiSuggestions.suggested_language_select) {
+    const langSelect = document.getElementById('w-language');
+    if (langSelect) {
+      langSelect.value = aiSuggestions.suggested_language_select;
+      updateScore();
+    }
+  }
+
+  // Appliquer le territoire si non rempli
+  if (aiSuggestions.suggested_territory) {
+    const terrSelect = document.getElementById('w-territory');
+    if (terrSelect && !terrSelect.value) {
+      // Chercher correspondance approx
+      Array.from(terrSelect.options).forEach(opt => {
+        if (opt.value.toLowerCase().includes(aiSuggestions.suggested_territory.toLowerCase()) ||
+            aiSuggestions.suggested_territory.toLowerCase().includes(opt.value.toLowerCase())) {
+          terrSelect.value = opt.value;
+        }
+      });
+      updateScore();
+    }
+  }
+
+  // Appliquer tous les tags
+  document.querySelectorAll('.ai-tag-suggest').forEach(el => {
+    if (!el.classList.contains('applied')) {
+      el.classList.add('applied');
+      const tag = el.textContent.trim();
+      document.querySelectorAll('.tag-chip').forEach(chip => {
+        if (chip.textContent.trim() === tag || chip.textContent.includes(tag.split(' ')[0])) {
+          if (!chip.classList.contains('selected')) chip.click();
+        }
+      });
+    }
+  });
+
+  // Copier le texte AI dans la description si vide
+  const desc = document.getElementById('w-desc');
+  if (desc && !desc.value.trim()) {
+    desc.value = document.getElementById('ai-input').value;
+    updateScore();
+  }
+
+  showToast('✅ Toutes les suggestions appliquées !');
 }
 
 // INIT
