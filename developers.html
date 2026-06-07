@@ -508,18 +508,18 @@
     </div>
     <div class="divider"></div>
     <div class="endpoint-grid">
-      <a class="endpoint-card" href="https://caribbeanmetadata.org/schema/v1.0/" target="_blank">
+      <a class="endpoint-card" href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json" target="_blank">
         <span class="method method-get">GET</span>
         <div class="endpoint-info">
-          <div class="endpoint-url">https://caribbeanmetadata.org/schema/v1.0/cms-metadata.json</div>
+          <div class="endpoint-url">https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json</div>
           <div class="endpoint-desc">Schéma JSON officiel — Caribbean Metadata Standard v1.0 (JSON Schema Draft 2020-12)</div>
         </div>
         <span class="endpoint-arrow">↗</span>
       </a>
-      <a class="endpoint-card" href="https://caribbeanmetadata.org/CMS_schema_v1_0.xsd" target="_blank">
+      <a class="endpoint-card" href="https://github.com/heso73/cms-nlp-corpus/tree/main/data" target="_blank">
         <span class="method method-get">GET</span>
         <div class="endpoint-info">
-          <div class="endpoint-url">https://caribbeanmetadata.org/CMS_schema_v1_0.xsd</div>
+          <div class="endpoint-url">https://github.com/heso73/cms-nlp-corpus/tree/main/data</div>
           <div class="endpoint-desc">Schéma XSD — Version XML Schema 1.1 pour intégrations XML/XSLT</div>
         </div>
         <span class="endpoint-arrow">↗</span>
@@ -594,7 +594,7 @@
 <span class="token-key">import</span> requests, jsonschema, json
 
 <span class="token-comment"># 1. Charger le schéma CMS officiel</span>
-schema_url = <span class="token-str">"https://caribbeanmetadata.org/schema/v1.0/cms-metadata.json"</span>
+schema_url = <span class="token-str">"https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json"</span>
 schema = requests.get(schema_url).json()
 
 <span class="token-comment"># 2. Charger votre fichier œuvre</span>
@@ -604,7 +604,7 @@ with open(<span class="token-str">"mon_oeuvre.json"</span>) as f:
 <span class="token-comment"># 3. Valider</span>
 try:
     jsonschema.validate(instance=oeuvre, schema=schema)
-    print(<span class="token-str">"✅ Fichier conforme au standard CMS v1.0"</span>)
+    print(<span class="token-str">"✅ Fichier conforme au standard CMS v2.0"</span>)
 except jsonschema.ValidationError as e:
     print(<span class="token-str">f"❌ Erreur : {e.message}"</span>)</pre>
     </div>
@@ -614,7 +614,73 @@ except jsonschema.ValidationError as e:
   <div class="section">
     <div class="section-header">
       <span class="section-num">04</span>
-      <h2>Niveaux de conformité</h2>
+      
+      <!-- API PUBLIQUE -->
+      <h2>API publique officielle</h2>
+      <p>L'API CMS est publique, gratuite et opérationnelle. Aucune clé requise pour les requêtes en lecture.</p>
+
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;margin-bottom:12px;letter-spacing:2px">BASE URL</div>
+        <div style="font-family:'Space Mono',monospace;font-size:14px;color:#fff">https://cms-api.small-disk-3275.workers.dev</div>
+      </div>
+
+      <table style="width:100%;border-collapse:collapse;margin:16px 0">
+        <thead><tr>
+          <th style="text-align:left;padding:10px 14px;font-size:11px;letter-spacing:1px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1)">ENDPOINT</th>
+          <th style="text-align:left;padding:10px 14px;font-size:11px;letter-spacing:1px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1)">DESCRIPTION</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Index de l'API + liste des endpoints</td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1/stats</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Statistiques du registre en temps réel</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1/certifications</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Liste des certifications émises</td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1/certifications/:cms_id</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Vérifier une certification par son ID</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1/markers</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Les 27 marqueurs culturels caribéens</td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7">GET /api/v1/territories</td><td style="padding:10px 14px;font-size:13px">Territoires couverts avec compteurs</td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFC93C;margin-bottom:10px;letter-spacing:2px">EXEMPLE — cURL</div>
+        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#98E6C8;line-height:1.7;overflow-x:auto">curl https://cms-api.small-disk-3275.workers.dev/api/v1/stats
+
+# Réponse :
+{
+  "total_certifications": 0,
+  "standard_version": "2.0",
+  "corpus_records": 110,
+  "languages_covered": 10,
+  "cultural_markers": 27
+}</pre>
+      </div>
+
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFC93C;margin-bottom:10px;letter-spacing:2px">EXEMPLE — Python</div>
+        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#98E6C8;line-height:1.7;overflow-x:auto">import requests
+
+# Vérifier une certification
+r = requests.get(
+    "https://cms-api.small-disk-3275.workers.dev/api/v1/certifications/CMS-GUA-2026-XXXXXXXX"
+)
+cert = r.json()
+print(cert["level"], cert["score"])  # "gold", 72</pre>
+      </div>
+
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFC93C;margin-bottom:10px;letter-spacing:2px">EXEMPLE — JavaScript</div>
+        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#98E6C8;line-height:1.7;overflow-x:auto">const res = await fetch(
+  'https://cms-api.small-disk-3275.workers.dev/api/v1/markers'
+);
+const { markers } = await res.json();
+console.log(markers.length); // 27</pre>
+      </div>
+
+      <div style="background:#e8f5f0;border-radius:8px;padding:16px 20px;margin:16px 0;font-size:13px;color:#166534;border:1px solid rgba(63,166,107,0.25)">
+        <strong>Open source · Gratuit · Sans authentification</strong><br>
+        L'API est publique en lecture. Aucune clé API requise. Rate limit : 100 req/s.
+        <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" style="color:#166534;font-weight:700;margin-left:8px">→ Corpus sur GitHub</a>
+      </div>
+
+<h2>Niveaux de conformité</h2>
     </div>
     <div class="divider"></div>
     <div class="code-block">
