@@ -1,0 +1,300 @@
+{
+  "cms_corpus_schema": {
+    "version": "2.0",
+    "status": "locked",
+    "created": "2026-05-11",
+    "updated": "2026-06-06",
+    "description": "Caribbean Metadata Standard — Schéma de métadonnées officiel v2.0 (verrouillé)",
+    "namespace": "https://caribbeanmetadata.org/ns/",
+    "fields": {
+
+      "cms_id": {
+        "type": "string",
+        "required": true,
+        "pattern": "^CMS-[A-Z]{3}-[0-9]{4}-[A-Z0-9]{8}$",
+        "description": "Identifiant unique CMS",
+        "example": "CMS-HAT-2026-C541D17F"
+      },
+
+      "lang_code": {
+        "type": "string",
+        "required": true,
+        "description": "Code ISO 639-3 de la langue principale",
+        "caribbean_values": {
+          "hat": "Créole haïtien",
+          "gcf": "Créole guadeloupéen",
+          "acf": "Créole antillais (Martinique)",
+          "jam": "Jamaican Patois",
+          "pap": "Papiamentu (Aruba · Curaçao)",
+          "srn": "Sranan Tongo (Suriname)",
+          "nld": "Nederlands Caribisch (Suriname · Antilles NL)",
+          "fra": "Français caribéen",
+          "eng": "English Caribbean",
+          "spa": "Español caribeño"
+        }
+      },
+
+      "lang_name": {
+        "type": "string",
+        "required": false,
+        "description": "Nom lisible de la langue (dérivé de lang_code)",
+        "example": "Créole haïtien"
+      },
+
+      "cms_territory": {
+        "type": "string",
+        "required": true,
+        "description": "Territoire caribéen d'origine du contenu",
+        "caribbean_values": [
+          "Haiti",
+          "Guadeloupe",
+          "Martinique",
+          "Guyane",
+          "Jamaica",
+          "Trinidad",
+          "Barbados",
+          "Cuba",
+          "Dominican Republic",
+          "Puerto Rico",
+          "Aruba",
+          "Curacao",
+          "Suriname",
+          "Dominica",
+          "St Lucia",
+          "St Vincent",
+          "Grenada",
+          "Antigua",
+          "Diaspora caribéenne",
+          "Caribbean (général)"
+        ]
+      },
+
+      "cms_domain": {
+        "type": "string",
+        "required": true,
+        "description": "Domaine culturel caribéen principal",
+        "values": [
+          "music",
+          "dance",
+          "theatre",
+          "literature",
+          "oral_tradition",
+          "intangible_heritage",
+          "religion",
+          "gastronomy",
+          "carnival",
+          "visual_arts",
+          "education",
+          "general",
+          "news",
+          "social_media"
+        ]
+      },
+
+      "cms_cultural_markers": {
+        "type": "array",
+        "items": "string",
+        "required": false,
+        "description": "Marqueurs culturels caribéens spécifiques — liste non exhaustive, extensible",
+        "defined_values": {
+          "music": {
+            "gwo_ka": "Musique et danse afro-guadeloupéenne, tambour à peau. UNESCO 2014.",
+            "bele": "Danse et musique traditionnelle martiniquaise d'origine africaine.",
+            "konpa": "Genre haïtien à tempo modéré, créé par Nemours Jean-Baptiste (1955).",
+            "zouk": "Genre antillais né au sein du groupe Kassav' dans les années 1980.",
+            "calypso": "Musique traditionnelle de Trinidad, vecteur de commentaire social.",
+            "soca": "Évolution moderne du calypso, Trinidad, années 1970.",
+            "reggae": "Musique jamaïcaine née dans les années 1960, mouvement Rastafari.",
+            "ska": "Précurseur du reggae, Jamaïque, années 1950-1960.",
+            "dancehall": "Genre jamaïcain issu du reggae, années 1970, tempo rapide.",
+            "tumba": "Genre des îles ABC (Aruba, Bonaire, Curaçao), lié au Carnaval.",
+            "son_cubano": "Genre cubain fondateur, synthèse africaine et espagnole.",
+            "salsa": "Genre dansant issu du son cubain, diaspora caribéenne de New York.",
+            "bachata": "Genre dominicain né dans les années 1960, cordes et romantisme.",
+            "merengue": "Genre national dominicain, rythme binaire rapide.",
+            "kaseko": "Musique afro-surinamaise mêlant jazz, calypso et percussions africaines.",
+            "kadans": "Genre antillais des années 1970, précurseur du zouk.",
+            "bouyon": "Genre dominicain contemporain, fusion calypso-soca."
+          },
+          "dance_performance": {
+            "quadrille_creole": "Danse quadrille créolisée, héritage européen transformé aux Antilles.",
+            "danmye": "Art martial et danse martiniquaise d'origine africaine.",
+            "kalenda": "Danse de combat caribéenne d'origine africaine."
+          },
+          "carnival_heritage": {
+            "carnival": "Carnaval caribéen — fête populaire pan-caribéenne.",
+            "mas": "Tradition de mascarade carnavalesque, Trinidad & Tobago.",
+            "rara": "Musique processionnelle haïtienne liée au calendrier vodou."
+          },
+          "religion_spirituality": {
+            "vodou": "Système religieux afro-haïtien syncrétique.",
+            "orisha": "Divinités du panthéon yoruba, pratique afro-caribéenne.",
+            "rastafari": "Mouvement religieux et culturel jamaïcain."
+          },
+          "heritage": {
+            "maroon_culture": "Culture des communautés marronnes — résistance et autonomie.",
+            "chante_noel": "Chants de Noël créoles, tradition des Antilles françaises."
+          }
+        },
+        "note": "Les marqueurs peuvent être combinés. Tout marqueur non listé peut être utilisé librement — la liste est indicative, non restrictive."
+      },
+
+      "text": {
+        "type": "string",
+        "required": true,
+        "description": "Texte brut en langue caribéenne ou sur la culture caribéenne"
+      },
+
+      "text_translation": {
+        "type": "object",
+        "required": false,
+        "description": "Traductions disponibles — dict { lang_code: texte_traduit }",
+        "example": { "fr": "Traduction française...", "en": "English translation..." }
+      },
+
+      "word_count": {
+        "type": "integer",
+        "required": false,
+        "description": "Nombre de mots du champ text",
+        "example": 42
+      },
+
+      "source": {
+        "type": "string",
+        "required": true,
+        "description": "Source du texte (publication, institution, initiative)"
+      },
+
+      "source_url": {
+        "type": "string",
+        "required": false,
+        "description": "URL source si disponible",
+        "example": "https://caribbeanmetadata.org"
+      },
+
+      "license": {
+        "type": "string",
+        "required": true,
+        "description": "Licence du contenu",
+        "values": [
+          "CC0",
+          "CC-BY 2.0",
+          "CC-BY 4.0",
+          "CC-BY-SA 4.0",
+          "MIT",
+          "Apache 2.0",
+          "proprietary",
+          "unknown"
+        ]
+      },
+
+      "cms_rights_holder": {
+        "type": "string",
+        "required": false,
+        "description": "Ayant droit ou institution détentrice des droits"
+      },
+
+      "cms_annotation_type": {
+        "type": "string",
+        "required": false,
+        "description": "Type d'annotation NLP si disponible",
+        "values": [
+          "none",
+          "NER",
+          "POS",
+          "sentiment",
+          "MT",
+          "cultural_tagging",
+          "badge_generation"
+        ]
+      },
+
+      "date_collected": {
+        "type": "string",
+        "required": true,
+        "format": "ISO 8601 (YYYY-MM-DD)",
+        "description": "Date de collecte du texte",
+        "example": "2026-05-11"
+      },
+
+      "cms_verified": {
+        "type": "boolean",
+        "required": false,
+        "description": "Vérifié par un annotateur humain caribéen (true/false)"
+      },
+
+      "cms_compliance": {
+        "type": "object",
+        "required": false,
+        "description": "Conformité CMS v2.0 — badge de certification culturelle",
+        "properties": {
+          "level": {
+            "type": "string",
+            "values": ["bronze", "silver", "gold", "platinum"],
+            "thresholds": {
+              "bronze": "score >= 20",
+              "silver": "score >= 40",
+              "gold":   "score >= 65",
+              "platinum": "score >= 85"
+            },
+            "description": "Niveau de certification CMS"
+          },
+          "score": {
+            "type": "integer",
+            "min": 0,
+            "max": 100,
+            "description": "Score d'ancrage caribéen calculé sur les 6 familles"
+          },
+          "badge_url": {
+            "type": "string",
+            "description": "URL du badge SVG officiel"
+          },
+          "validated_date": {
+            "type": "string",
+            "format": "ISO 8601",
+            "description": "Date de validation du score"
+          }
+        }
+      }
+    },
+
+    "validation_rules": {
+      "required_fields": ["cms_id", "lang_code", "cms_territory", "cms_domain", "text", "source", "license", "date_collected"],
+      "cms_id_pattern": "^CMS-[A-Z]{3}-[0-9]{4}-[A-Z0-9]{8}$",
+      "lang_code_values": ["hat", "gcf", "acf", "jam", "pap", "srn", "nld", "fra", "eng", "spa"],
+      "territory_values": ["Haiti", "Guadeloupe", "Martinique", "Guyane", "Jamaica", "Trinidad", "Barbados", "Cuba", "Dominican Republic", "Puerto Rico", "Aruba", "Curacao", "Suriname", "Dominica", "St Lucia", "St Vincent", "Grenada", "Antigua", "Diaspora caribéenne", "Caribbean (général)"],
+      "domain_values": ["music", "dance", "theatre", "literature", "oral_tradition", "intangible_heritage", "religion", "gastronomy", "carnival", "visual_arts", "education", "general", "news", "social_media"],
+      "license_values": ["CC0", "CC-BY 2.0", "CC-BY 4.0", "CC-BY-SA 4.0", "MIT", "Apache 2.0", "proprietary", "unknown"],
+      "cultural_markers_open": true,
+      "note": "Les marqueurs culturels sont un vocabulaire ouvert — toute valeur est acceptée. La liste defined_values est indicative."
+    },
+
+    "six_families": {
+      "description": "Les 6 familles de métadonnées CMS — alignées sur les standards internationaux",
+      "families": {
+        "linguistic":      { "fields": ["lang_code", "lang_name"], "standard_alignment": "dc:language, schema:inLanguage, MARC 041, ISO 639-3" },
+        "cultural":        { "fields": ["cms_cultural_markers"], "standard_alignment": "dc:subject, schema:keywords, EBUCore genre" },
+        "narrative":       { "fields": ["cms_domain"], "standard_alignment": "dc:type, schema:genre, EBUCore contentType" },
+        "rhythmic":        { "fields": ["cms_cultural_markers (music subset)"], "standard_alignment": "EBUCore audioFormat (extension)" },
+        "geographic":      { "fields": ["cms_territory"], "standard_alignment": "dc:coverage, schema:locationCreated, MARC 651" },
+        "sociohistorical": { "fields": ["cms_cultural_markers (heritage/religion subset)"], "standard_alignment": "dc:subject, schema:about, MARC 650" }
+      }
+    },
+
+    "corpus_stats": {
+      "version": "v2.0",
+      "locked_date": "2026-06-06",
+      "total_records": 110,
+      "languages": 10,
+      "cultural_markers_defined": 27,
+      "territories": 17,
+      "cultural_domains": 14
+    },
+
+    "changelog": {
+      "v1.0": "2026-05-11 — Version initiale (15 enregistrements, 8 langues)",
+      "v2.0": "2026-05-15 — Build-out majeur (110 enregistrements, 10 langues, 27 marqueurs, 17 territoires)",
+      "v2.0-locked": "2026-06-06 — Verrouillage : correction territoire Jamaica/Jamaique, normalisation licences, ajout nld, documentation word_count et lang_name, marqueurs complets documentés"
+    }
+  }
+}
