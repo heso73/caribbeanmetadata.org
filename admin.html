@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin CMS — Tableau de bord validateur</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -146,11 +147,15 @@ tr:hover td{background:#f8fafc}
     <div class="login-logo">CMS<span style="color:var(--teal)">.</span>ADMIN</div>
     <div class="login-sub">CARIBWOOD LANGUAGE LAB · VALIDATEUR</div>
     <div class="lf-group">
-      <label>Clé d'accès administrateur</label>
+      <label>Email administrateur</label>
+      <input type="email" id="admin-email" placeholder="contact@caribbeanmetadata.org" onkeydown="if(event.key==='Enter')login()">
+    </div>
+    <div class="lf-group">
+      <label>Mot de passe</label>
       <input type="password" id="admin-key" placeholder="••••••••••••••••" onkeydown="if(event.key==='Enter')login()">
     </div>
     <button class="btn-login" onclick="login()">Accéder au tableau de bord →</button>
-    <div class="login-error" id="login-error">Clé incorrecte. Accès refusé.</div>
+    <div class="login-error" id="login-error">Email ou mot de passe incorrect.</div>
   </div>
 </div>
 
@@ -333,61 +338,98 @@ tr:hover td{background:#f8fafc}
 <script>
 const SUPABASE_URL = 'https://vtbaqvjxfgseykjcinpu.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_cZc3a7kaK3M7ZcHRsoTI8w_NQz4Xy0z';
-// Note : Pour les opérations admin (INSERT certifications, UPDATE works),
-// on utilise la clé secrète stockée localement — jamais exposée dans le code
-const ADMIN_SECRET_KEY = localStorage.getItem('cms_admin_secret') || '';
 
-// MOT DE PASSE ADMIN (hash simple — à remplacer par Supabase Auth en production)
-const ADMIN_HASH = 'cms2026caribwood';
+// Initialiser le client Supabase
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// UID admin autorisé (ton compte Supabase Auth)
+const ADMIN_UID = '7f10e63f-38e3-40fd-a14c-c26378e1f612';
 
 let currentWorkId = null;
 let currentCreatorName = '';
+let currentUser = null;
 
-// ── AUTH ──────────────────────────────────────────────────────────────────────
-function login() {
-  const key = document.getElementById('admin-key').value;
-  if (key === ADMIN_HASH) {
+// ── AUTH SUPABASE ─────────────────────────────────────────────────────────────
+async function login() {
+  const email = document.getElementById('admin-email').value.trim();
+  const password = document.getElementById('admin-key').value;
+  const errEl = document.getElementById('login-error');
+  errEl.style.display = 'none';
+
+  if (!email || !password) {
+    errEl.textContent = 'Email et mot de passe requis.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  try {
+    const { data, error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+
+    // Vérifier que c'est bien le compte admin autorisé
+    if (data.user.id !== ADMIN_UID) {
+      await sb.auth.signOut();
+      errEl.textContent = 'Accès non autorisé pour ce compte.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    currentUser = data.user;
+    document.getElementById('admin-name').textContent = data.user.email;
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').classList.add('show');
     loadAll();
-  } else {
-    document.getElementById('login-error').style.display = 'block';
+
+  } catch(e) {
+    errEl.textContent = e.message || 'Email ou mot de passe incorrect.';
+    errEl.style.display = 'block';
   }
 }
 
-function logout() {
+async function logout() {
+  await sb.auth.signOut();
+  currentUser = null;
   document.getElementById('app').classList.remove('show');
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('admin-key').value = '';
+  document.getElementById('admin-email').value = '';
 }
 
-// ── API ───────────────────────────────────────────────────────────────────────
-async function sbFetch(path, params='', key=SUPABASE_KEY) {
+// Vérifier session existante au chargement
+async function checkSession() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session && session.user.id === ADMIN_UID) {
+    currentUser = session.user;
+    document.getElementById('admin-name').textContent = session.user.email;
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').classList.add('show');
+    loadAll();
+  }
+}
+
+// ── API via SDK Supabase ──────────────────────────────────────────────────────
+async function sbFetch(path, params='') {
+  // Utilise fetch direct pour les requêtes complexes avec paramètres PostgREST
+  const { data: { session } } = await sb.auth.getSession();
+  const token = session ? session.access_token : SUPABASE_KEY;
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}${params}`, {
-    headers: { 'apikey': key, 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' }
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
   });
   if (!r.ok) throw new Error(`API ${r.status}`);
   return r.json();
 }
 
-async function sbUpdate(table, id, data, key=SUPABASE_KEY) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
-    method: 'PATCH',
-    headers: { 'apikey': key, 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
-    body: JSON.stringify(data)
-  });
-  if (!r.ok) throw new Error(`Update error ${r.status}`);
-  return r.json();
+async function sbUpdate(table, id, data) {
+  const { data: result, error } = await sb.from(table).update(data).eq('id', id).select();
+  if (error) throw new Error(error.message);
+  return result;
 }
 
-async function sbInsert(table, data, key=SUPABASE_KEY) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-    method: 'POST',
-    headers: { 'apikey': key, 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
-    body: JSON.stringify(data)
-  });
-  if (!r.ok) { const e = await r.json().catch(()=>{}); throw new Error((e&&e.message) || `Insert error ${r.status}`); }
-  return r.json();
+async function sbInsert(table, data) {
+  const { data: result, error } = await sb.from(table).insert(data).select();
+  if (error) throw new Error(error.message);
+  return result;
 }
 
 // ── LOAD ──────────────────────────────────────────────────────────────────────
@@ -610,6 +652,9 @@ function showToast(msg) {
 document.getElementById('modal-review').addEventListener('click', function(e) {
   if(e.target === this) closeModal();
 });
+
+// Vérifier session au chargement
+checkSession();
 </script>
 </body>
 </html>
