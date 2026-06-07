@@ -1,0 +1,18 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="t" width="20" height="20" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="20" y2="20" stroke="#00C2C7" stroke-width="0.7" opacity="0.35"/>
+      <line x1="20" y1="0" x2="0" y2="20" stroke="#FFC93C" stroke-width="0.4" opacity="0.2"/>
+      <line x1="0" y1="10" x2="20" y2="10" stroke="#00C2C7" stroke-width="0.3" opacity="0.15"/>
+      <line x1="10" y1="0" x2="10" y2="20" stroke="#FFC93C" stroke-width="0.3" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="220" fill="#003E6B"/>
+  <rect width="400" height="220" fill="url(#t)"/>
+  <text x="200" y="100" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="18" fill="#fff" opacity="0.9">Fond institutionnel</text>
+  <text x="200" y="126" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#00C2C7" letter-spacing="3" opacity="0.8">Slides · White Paper · Certificat</text>
+  <line x1="0" y1="240" x2="400" y2="240" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="200" y="262" text-anchor="middle" font-family="Courier New,monospace" font-size="9" fill="rgba(255,199,60,0.7)" letter-spacing="3">TRESSAGE DE DONNÉES</text>
+  <text x="200" y="278" text-anchor="middle" font-family="Courier New,monospace" font-size="8" fill="rgba(232,228,216,0.35)" letter-spacing="1">Inspiré du madras, de la vannerie et des réseaux de données.</text>
+  <text x="200" y="293" text-anchor="middle" font-family="Courier New,monospace" font-size="7" fill="#FFC93C" letter-spacing="1" opacity="0.5">Caribbean Metadata Standard v2.0</text>
+</svg>
