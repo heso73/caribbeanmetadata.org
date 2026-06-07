@@ -1,0 +1,14 @@
+<svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="g" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="160" height="180" fill="#0a0a0b"/>
+  <rect width="160" height="180" fill="url(#g)"/>
+  <rect x="1" y="1" width="158" height="178" rx="4" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <g transform="translate(80,82)"><rect x="-28" y="-22" width="56" height="36" rx="3" fill="none" stroke="#00C2C7" stroke-width="2.5"/><line x1="-18" y1="-10" x2="18" y2="-10" stroke="#00C2C7" stroke-width="1.5" opacity="0.7"/><line x1="-18" y1="-2" x2="12" y2="-2" stroke="#00C2C7" stroke-width="1.5" opacity="0.7"/><line x1="-18" y1="6" x2="16" y2="6" stroke="#00C2C7" stroke-width="1.5" opacity="0.7"/><line x1="0" y1="14" x2="0" y2="26" stroke="#00C2C7" stroke-width="2"/><line x1="-12" y1="26" x2="12" y2="26" stroke="#00C2C7" stroke-width="2"/></g>
+  <line x1="20" y1="148" x2="140" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="80" y="166" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="rgba(232,228,216,0.55)" letter-spacing="2">LANGUE</text>
+  <text x="80" y="178" text-anchor="middle" font-family="Courier New, monospace" font-size="7" fill="#FFC93C" letter-spacing="1" opacity="0.6">CMS v2.0</text>
+</svg>
