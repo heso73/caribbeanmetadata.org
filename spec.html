@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spécification technique CMS v2.0 — Caribbean Metadata Standard</title>
+  <meta name="description" content="Spécification technique officielle du Caribbean Metadata Standard v2.0 — schéma JSON, vocabulaires contrôlés, règles de validation, alignements Dublin Core / schema.org / EBUCore.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#0a0a0b;--navy:#003E6B;--teal:#00C2C7;--gold:#FFC93C;--green:#3FA66B;--white:#fff;--muted:#888;--border:rgba(0,62,107,0.1)}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#f7f9fb;color:#1a1a1a;font-size:16px;line-height:1.6}
+
+.hero{background:var(--dark);padding:100px 6% 56px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,194,199,0.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,201,60,0.03) 40px)}
+.hero-inner{position:relative;z-index:1;max-width:820px}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--teal);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--teal)}
+.hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(28px,5vw,52px);color:#fff;line-height:1.1;margin-bottom:14px}
+.hero p{font-size:15px;color:rgba(255,255,255,0.55);max-width:580px;line-height:1.8;margin-bottom:28px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px}
+.meta-pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.4);padding:5px 14px;border:1px solid rgba(255,255,255,0.1);border-radius:20px}
+.meta-pill strong{color:var(--teal)}
+
+main{max-width:960px;margin:0 auto;padding:56px 6% 80px}
+
+.section{margin-bottom:64px}
+.sl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sl::before{content:'';display:block;width:20px;height:1px;background:var(--teal)}
+.st{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(20px,3vw,30px);color:var(--navy);margin-bottom:10px}
+.sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.75;max-width:640px}
+
+/* DOWNLOAD CARDS */
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:40px}
+.dl-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:24px;transition:box-shadow .2s;position:relative;overflow:hidden}
+.dl-card:hover{box-shadow:0 4px 20px rgba(0,62,107,0.08)}
+.dl-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--teal)}
+.dlc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--teal);margin-bottom:10px}
+.dlc-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.dlc-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.dlc-meta{font-family:'DM Mono',monospace;font-size:10px;color:#aaa;margin-bottom:14px}
+.btn-dl{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--navy);color:#fff;text-decoration:none;border-radius:4px;font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;transition:background .2s}
+.btn-dl:hover{background:#00537A}
+.btn-dl-outline{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1px solid var(--border);color:var(--navy);text-decoration:none;border-radius:4px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;transition:all .2s;margin-left:8px}
+.btn-dl-outline:hover{border-color:var(--navy)}
+
+/* SCHEMA VIEWER */
+.schema-viewer{background:var(--dark);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.sv-header{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sv-title{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1px}
+.sv-url{font-family:'DM Mono',monospace;font-size:11px;color:var(--teal)}
+.sv-body{padding:20px;font-family:'DM Mono',monospace;font-size:12px;color:#a8b4be;line-height:1.8;overflow-x:auto;max-height:500px;overflow-y:auto}
+.sv-key{color:#FFC93C}
+.sv-str{color:#98E6C8}
+.sv-num{color:#FF9F7A}
+.sv-bool{color:#C792EA}
+.btn-copy-schema{font-family:'DM Mono',monospace;font-size:10px;padding:5px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:4px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);cursor:pointer;transition:all .2s}
+.btn-copy-schema:hover{background:rgba(255,255,255,0.1);color:#fff}
+
+/* CHAMPS TABLE */
+.fields-table{width:100%;border-collapse:collapse;margin-bottom:32px;font-size:13px}
+.fields-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);padding:10px 14px;border-bottom:2px solid var(--border);text-align:left;background:#fafbfc}
+.fields-table td{padding:11px 14px;border-bottom:1px solid rgba(0,62,107,0.05);vertical-align:top}
+.fields-table tr:hover td{background:#f8fafc}
+.field-name{font-family:'DM Mono',monospace;color:var(--navy);font-weight:500}
+.field-req{display:inline-block;padding:2px 7px;border-radius:10px;font-family:'DM Mono',monospace;font-size:9px;font-weight:700}
+.field-req.req{background:rgba(255,111,97,0.1);color:#c0392b}
+.field-req.opt{background:#f0f4f8;color:#888}
+.field-type{font-family:'DM Mono',monospace;font-size:11px;color:var(--teal)}
+
+/* ALIGNEMENTS */
+.align-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.align-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.ac-std{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:.5px}
+.ac-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.ac-fields{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.ac-field{font-family:'DM Mono',monospace;font-size:10px;padding:2px 8px;background:#f0f7ff;color:var(--navy);border-radius:10px}
+
+/* VOCAB */
+.vocab-block{background:#fff;border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:16px}
+.vb-title{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--teal);margin-bottom:12px;letter-spacing:1px}
+.vb-tags{display:flex;flex-wrap:wrap;gap:6px}
+.vb-tag{padding:4px 12px;background:#f0f4f8;border-radius:20px;font-size:12px;color:#333;font-family:'DM Mono',monospace}
+
+/* NS BOX */
+.ns-box{background:var(--dark);border-radius:8px;padding:20px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ns-label{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;margin-bottom:4px}
+.ns-url{font-family:'DM Mono',monospace;font-size:14px;color:var(--teal);font-weight:500}
+.btn-copy-ns{font-family:'DM Mono',monospace;font-size:10px;padding:6px 14px;border:1px solid rgba(0,194,199,0.3);border-radius:4px;background:rgba(0,194,199,0.08);color:var(--teal);cursor:pointer;transition:all .2s}
+.btn-copy-ns:hover{background:rgba(0,194,199,0.15)}
+
+@media(max-width:700px){.align-grid{grid-template-columns:1fr}.dl-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav><!-- nav-fix.js --></nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Spécification officielle</div>
+    <h1>Caribbean Metadata Standard<br/>Spécification technique v2.0</h1>
+    <p>Schéma JSON officiel, vocabulaires contrôlés, règles de validation et alignements avec les standards internationaux. Lisible par une machine. Utilisable immédiatement.</p>
+    <div class="hero-meta">
+      <span class="meta-pill"><strong>VERSION</strong> 2.0 — Verrouillé juin 2026</span>
+      <span class="meta-pill"><strong>STATUT</strong> Locked</span>
+      <span class="meta-pill"><strong>LICENCE</strong> CC-BY 4.0</span>
+      <span class="meta-pill"><strong>FORMAT</strong> JSON Schema</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- NAMESPACE -->
+  <div class="section">
+    <div class="sl">Namespace officiel</div>
+    <h2 class="st">Identifiant persistant du standard</h2>
+    <p class="sub">Le namespace CMS est l'identifiant unique et persistant du standard. Utilisez-le dans vos champs <code>@context</code> JSON-LD.</p>
+    <div class="ns-box">
+      <div>
+        <div class="ns-label">NAMESPACE URI</div>
+        <div class="ns-url">https://caribbeanmetadata.org/ns/</div>
+      </div>
+      <button class="btn-copy-ns" onclick="navigator.clipboard.writeText('https://caribbeanmetadata.org/ns/').then(()=>{this.textContent='✓ Copié';setTimeout(()=>this.textContent='Copier',2000)})">Copier</button>
+    </div>
+    <div class="ns-box" style="margin-top:12px">
+      <div>
+        <div class="ns-label">SCHEMA URL (machine-readable)</div>
+        <div class="ns-url">https://caribbeanmetadata.org/spec/cms-v2.json</div>
+      </div>
+      <a href="spec/cms-v2.json" class="btn-copy-ns" target="_blank">Ouvrir →</a>
+    </div>
+  </div>
+
+  <!-- TÉLÉCHARGEMENTS -->
+  <div class="section">
+    <div class="sl">Ressources à télécharger</div>
+    <h2 class="st">Fichiers officiels du standard</h2>
+    <p class="sub">Tous les fichiers techniques du CMS v2.0 sont disponibles en open source sous licence CC-BY 4.0.</p>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <div class="dlc-tag">SCHÉMA JSON</div>
+        <div class="dlc-title">CMS_corpus_schema_v2.json</div>
+        <div class="dlc-desc">Schéma complet — champs, types, vocabulaires contrôlés, règles de validation, alignements.</div>
+        <div class="dlc-meta">JSON · 11 KB · v2.0 locked</div>
+        <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json" class="btn-dl" target="_blank">↓ Télécharger JSON</a>
+        <a href="https://github.com/heso73/cms-nlp-corpus/blob/main/data/CMS_corpus_schema_v2.json" class="btn-dl-outline" target="_blank">GitHub</a>
+      </div>
+      <div class="dl-card">
+        <div class="dlc-tag">CORPUS OPEN DATA</div>
+        <div class="dlc-title">CMS_corpus_v2_unified.jsonl</div>
+        <div class="dlc-desc">110 enregistrements validés — 10 langues, 27 marqueurs culturels, 17 territoires.</div>
+        <div class="dlc-meta">JSONL · CC-BY 4.0 · 110 enreg.</div>
+        <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_v2_unified.jsonl" class="btn-dl" target="_blank">↓ Télécharger JSONL</a>
+        <a href="https://github.com/heso73/cms-nlp-corpus" class="btn-dl-outline" target="_blank">GitHub</a>
+      </div>
+      <div class="dl-card">
+        <div class="dlc-tag">VALIDATEUR PYTHON</div>
+        <div class="dlc-title">validate_corpus.py</div>
+        <div class="dlc-desc">Script Python officiel — vérifie les 8 champs requis, vocabulaires contrôlés, format des IDs.</div>
+        <div class="dlc-meta">Python 3 · Open source</div>
+        <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/scripts/validate_corpus.py" class="btn-dl" target="_blank">↓ Télécharger .py</a>
+        <a href="https://github.com/heso73/cms-nlp-corpus/blob/main/scripts/validate_corpus.py" class="btn-dl-outline" target="_blank">GitHub</a>
+      </div>
+      <div class="dl-card">
+        <div class="dlc-tag">API PUBLIQUE</div>
+        <div class="dlc-title">CMS API v1</div>
+        <div class="dlc-desc">API REST publique — vérification certifications, marqueurs, stats du registre. Gratuite, sans clé.</div>
+        <div class="dlc-meta">REST · JSON · 100k req/jour</div>
+        <a href="https://cms-api.small-disk-3275.workers.dev/api/v1" class="btn-dl" target="_blank">Tester l'API →</a>
+        <a href="developers.html" class="btn-dl-outline">Documentation</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHÉMA INLINE -->
+  <div class="section">
+    <div class="sl">Spécification machine-readable</div>
+    <h2 class="st">Schéma JSON — CMS v2.0</h2>
+    <p class="sub">Ce fichier est la spécification technique officielle du standard. Il définit chaque champ, son type, ses valeurs autorisées et ses règles de validation.</p>
+    <div class="schema-viewer">
+      <div class="sv-header">
+        <span class="sv-title">CMS_corpus_schema_v2.json</span>
+        <span class="sv-url">https://caribbeanmetadata.org/spec/cms-v2.json</span>
+        <button class="btn-copy-schema" onclick="copySchema()">⎘ Copier le schéma</button>
+      </div>
+      <div class="sv-body" id="schema-display">Chargement du schéma...</div>
+    </div>
+  </div>
+
+  <!-- CHAMPS -->
+  <div class="section">
+    <div class="sl">Définition des champs</div>
+    <h2 class="st">17 champs — 8 requis, 9 optionnels</h2>
+    <p class="sub">Chaque enregistrement CMS v2.0 suit cette structure. Les champs requis sont obligatoires pour qu'un enregistrement soit considéré valide.</p>
+    <table class="fields-table">
+      <thead><tr>
+        <th>CHAMP</th><th>TYPE</th><th>STATUT</th><th>DESCRIPTION</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="field-name">cms_id</td><td class="field-type">string</td><td><span class="field-req req">REQUIS</span></td><td>Identifiant unique — format CMS-XXX-YYYY-XXXXXXXX</td></tr>
+        <tr><td class="field-name">lang_code</td><td class="field-type">string</td><td><span class="field-req req">REQUIS</span></td><td>Code ISO 639-3 — hat, gcf, acf, jam, pap, srn, nld, fra, eng, spa</td></tr>
+        <tr><td class="field-name">cms_territory</td><td class="field-type">string</td><td><span class="field-req req">REQUIS</span></td><td>Territoire caribéen — 20 valeurs contrôlées</td></tr>
+        <tr><td class="field-name">cms_domain</td><td class="field-type">string</td><td><span class="field-req req">REQUIS</span></td><td>Domaine culturel — 14 valeurs contrôlées</td></tr>
+        <tr><td class="field-name">text</td><td class="field-type">string</td><td><span class="field-req req">REQUIS</span></td><td>Texte brut en langue caribéenne ou sur la culture caribéenne</td></tr>
+        <tr><td class="field-name">source</td><td class="field-type">string</td><td><span class="field-req req">REQUIS</span></td><td>Source du texte (publication, institution, initiative)</td></tr>
+        <tr><td class="field-name">license</td><td class="field-type">string</td><td><span class="field-req req">REQUIS</span></td><td>Licence — CC0, CC-BY 4.0, MIT, Apache 2.0, proprietary, unknown</td></tr>
+        <tr><td class="field-name">date_collected</td><td class="field-type">string</td><td><span class="field-req req">REQUIS</span></td><td>Date ISO 8601 (YYYY-MM-DD)</td></tr>
+        <tr><td class="field-name">lang_name</td><td class="field-type">string</td><td><span class="field-req opt">optionnel</span></td><td>Nom lisible de la langue</td></tr>
+        <tr><td class="field-name">cms_cultural_markers</td><td class="field-type">array</td><td><span class="field-req opt">optionnel</span></td><td>Marqueurs culturels caribéens — vocabulaire ouvert, 27 définis</td></tr>
+        <tr><td class="field-name">text_translation</td><td class="field-type">object</td><td><span class="field-req opt">optionnel</span></td><td>Traductions — dict {lang_code: texte}</td></tr>
+        <tr><td class="field-name">word_count</td><td class="field-type">integer</td><td><span class="field-req opt">optionnel</span></td><td>Nombre de mots du champ text</td></tr>
+        <tr><td class="field-name">source_url</td><td class="field-type">string</td><td><span class="field-req opt">optionnel</span></td><td>URL source si disponible</td></tr>
+        <tr><td class="field-name">cms_rights_holder</td><td class="field-type">string</td><td><span class="field-req opt">optionnel</span></td><td>Ayant droit ou institution détentrice des droits</td></tr>
+        <tr><td class="field-name">cms_annotation_type</td><td class="field-type">string</td><td><span class="field-req opt">optionnel</span></td><td>Type d'annotation NLP — NER, POS, cultural_tagging, etc.</td></tr>
+        <tr><td class="field-name">cms_verified</td><td class="field-type">boolean</td><td><span class="field-req opt">optionnel</span></td><td>Vérifié par un annotateur humain caribéen</td></tr>
+        <tr><td class="field-name">cms_compliance</td><td class="field-type">object</td><td><span class="field-req opt">optionnel</span></td><td>Certification — level, score, badge_url, validated_date</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- VOCABULAIRES -->
+  <div class="section">
+    <div class="sl">Vocabulaires contrôlés</div>
+    <h2 class="st">Valeurs autorisées</h2>
+    <p class="sub">Ces vocabulaires sont fermés — seules les valeurs listées sont acceptées par le validateur officiel. Les marqueurs culturels sont un vocabulaire ouvert.</p>
+
+    <div class="vocab-block">
+      <div class="vb-title">LANGUES (lang_code) — ISO 639-3</div>
+      <div class="vb-tags">
+        <span class="vb-tag">hat</span><span class="vb-tag">gcf</span><span class="vb-tag">acf</span><span class="vb-tag">jam</span><span class="vb-tag">pap</span><span class="vb-tag">srn</span><span class="vb-tag">nld</span><span class="vb-tag">fra</span><span class="vb-tag">eng</span><span class="vb-tag">spa</span>
+      </div>
+    </div>
+
+    <div class="vocab-block">
+      <div class="vb-title">TERRITOIRES (cms_territory) — 20 valeurs</div>
+      <div class="vb-tags">
+        <span class="vb-tag">Haiti</span><span class="vb-tag">Guadeloupe</span><span class="vb-tag">Martinique</span><span class="vb-tag">Guyane</span><span class="vb-tag">Jamaica</span><span class="vb-tag">Trinidad</span><span class="vb-tag">Barbados</span><span class="vb-tag">Cuba</span><span class="vb-tag">Dominican Republic</span><span class="vb-tag">Puerto Rico</span><span class="vb-tag">Aruba</span><span class="vb-tag">Curacao</span><span class="vb-tag">Suriname</span><span class="vb-tag">Dominica</span><span class="vb-tag">St Lucia</span><span class="vb-tag">St Vincent</span><span class="vb-tag">Grenada</span><span class="vb-tag">Antigua</span><span class="vb-tag">Diaspora caribéenne</span><span class="vb-tag">Caribbean (général)</span>
+      </div>
+    </div>
+
+    <div class="vocab-block">
+      <div class="vb-title">DOMAINES (cms_domain) — 14 valeurs</div>
+      <div class="vb-tags">
+        <span class="vb-tag">music</span><span class="vb-tag">dance</span><span class="vb-tag">theatre</span><span class="vb-tag">literature</span><span class="vb-tag">oral_tradition</span><span class="vb-tag">intangible_heritage</span><span class="vb-tag">religion</span><span class="vb-tag">gastronomy</span><span class="vb-tag">carnival</span><span class="vb-tag">visual_arts</span><span class="vb-tag">education</span><span class="vb-tag">general</span><span class="vb-tag">news</span><span class="vb-tag">social_media</span>
+      </div>
+    </div>
+
+    <div class="vocab-block">
+      <div class="vb-title">MARQUEURS CULTURELS (cms_cultural_markers) — 27 définis, vocabulaire ouvert</div>
+      <div class="vb-tags">
+        <span class="vb-tag">gwo_ka</span><span class="vb-tag">bele</span><span class="vb-tag">konpa</span><span class="vb-tag">zouk</span><span class="vb-tag">calypso</span><span class="vb-tag">soca</span><span class="vb-tag">reggae</span><span class="vb-tag">ska</span><span class="vb-tag">dancehall</span><span class="vb-tag">tumba</span><span class="vb-tag">son_cubano</span><span class="vb-tag">salsa</span><span class="vb-tag">bachata</span><span class="vb-tag">merengue</span><span class="vb-tag">kaseko</span><span class="vb-tag">kadans</span><span class="vb-tag">bouyon</span><span class="vb-tag">quadrille_creole</span><span class="vb-tag">danmye</span><span class="vb-tag">kalenda</span><span class="vb-tag">carnival</span><span class="vb-tag">mas</span><span class="vb-tag">rara</span><span class="vb-tag">vodou</span><span class="vb-tag">orisha</span><span class="vb-tag">rastafari</span><span class="vb-tag">maroon_culture</span><span class="vb-tag">chante_noel</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALIGNEMENTS -->
+  <div class="section">
+    <div class="sl">Interopérabilité</div>
+    <h2 class="st">Alignements avec les standards internationaux</h2>
+    <p class="sub">Le CMS n'est pas un standard de remplacement — il étend les standards existants par des champs caribéens spécifiques.</p>
+    <div class="align-grid">
+      <div class="align-card">
+        <div class="ac-std">DUBLIN CORE</div>
+        <div class="ac-desc">Extension directe — champs CMS mappables sur les éléments Dublin Core.</div>
+        <div class="ac-fields"><span class="ac-field">dc:language</span><span class="ac-field">dc:subject</span><span class="ac-field">dc:coverage</span><span class="ac-field">dc:type</span></div>
+      </div>
+      <div class="align-card">
+        <div class="ac-std">SCHEMA.ORG</div>
+        <div class="ac-desc">JSON-LD natif — champs CMS intégrés comme additionalProperty.</div>
+        <div class="ac-fields"><span class="ac-field">schema:inLanguage</span><span class="ac-field">schema:keywords</span><span class="ac-field">schema:locationCreated</span></div>
+      </div>
+      <div class="align-card">
+        <div class="ac-std">EBUCORE</div>
+        <div class="ac-desc">Alignement audiovisuel — complémentaire à EBUCore contentType.</div>
+        <div class="ac-fields"><span class="ac-field">ebucore:genre</span><span class="ac-field">ebucore:contentType</span><span class="ac-field">ebucore:audioFormat</span></div>
+      </div>
+      <div class="align-card">
+        <div class="ac-std">MARC 21</div>
+        <div class="ac-desc">Correspondances bibliothèques — compatible catalogage institutionnel.</div>
+        <div class="ac-fields"><span class="ac-field">MARC 041</span><span class="ac-field">MARC 650</span><span class="ac-field">MARC 651</span><span class="ac-field">MARC 655</span></div>
+      </div>
+      <div class="align-card">
+        <div class="ac-std">IFLA LRM</div>
+        <div class="ac-desc">Cohérence avec le modèle de référence bibliographique IFLA.</div>
+        <div class="ac-fields"><span class="ac-field">Res</span><span class="ac-field">Agent</span><span class="ac-field">Place</span><span class="ac-field">Timespan</span></div>
+      </div>
+      <div class="align-card">
+        <div class="ac-std">ISO 639-3</div>
+        <div class="ac-desc">Codes de langue ISO 639-3 utilisés nativement pour les 10 langues caribéennes.</div>
+        <div class="ac-fields"><span class="ac-field">hat</span><span class="ac-field">gcf</span><span class="ac-field">acf</span><span class="ac-field">jam</span><span class="ac-field">pap</span><span class="ac-field">srn</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXEMPLE -->
+  <div class="section">
+    <div class="sl">Exemple minimal</div>
+    <h2 class="st">Enregistrement CMS v2.0 valide</h2>
+    <div class="schema-viewer">
+      <div class="sv-header">
+        <span class="sv-title">Exemple — enregistrement minimal valide</span>
+        <button class="btn-copy-schema" onclick="copyExample()">⎘ Copier</button>
+      </div>
+      <div class="sv-body" id="example-display"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer><!-- nav-fix.js --></footer>
+
+<script>
+const SCHEMA_URL = 'https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json';
+
+const EXAMPLE = {
+  "cms_id": "CMS-GUA-2026-A1B2C3D4",
+  "lang_code": "gcf",
+  "lang_name": "Créole guadeloupéen",
+  "cms_territory": "Guadeloupe",
+  "cms_domain": "music",
+  "cms_cultural_markers": ["gwo_ka", "bele"],
+  "text": "Gwo ka sé von mizik ki sòti Gwadloup. Li genyen an gran enpòtans kiltirèl nan pèp la.",
+  "text_translation": {"fr": "Le gwo ka est une musique qui vient de Guadeloupe. Il a une grande importance culturelle pour le peuple."},
+  "source": "CMS Initiative — Corpus fondateur",
+  "source_url": "https://caribbeanmetadata.org",
+  "license": "CC-BY 4.0",
+  "cms_annotation_type": "cultural_tagging",
+  "date_collected": "2026-06-07",
+  "cms_verified": true,
+  "word_count": 19
+};
+
+function syntaxHL(json) {
+  return json
+    .replace(/"([^"]+)":/g, '<span class="sv-key">"$1"</span>:')
+    .replace(/: "([^"]*)"/g, ': <span class="sv-str">"$1"</span>')
+    .replace(/: (\d+)/g, ': <span class="sv-num">$1</span>')
+    .replace(/: (true|false|null)/g, ': <span class="sv-bool">$1</span>');
+}
+
+async function loadSchema() {
+  try {
+    const r = await fetch(SCHEMA_URL);
+    const data = await r.json();
+    window._schemaData = data;
+    document.getElementById('schema-display').innerHTML = syntaxHL(JSON.stringify(data, null, 2));
+  } catch(e) {
+    document.getElementById('schema-display').textContent = 'Erreur de chargement — voir : ' + SCHEMA_URL;
+  }
+}
+
+function copySchema() {
+  if (window._schemaData) {
+    navigator.clipboard.writeText(JSON.stringify(window._schemaData, null, 2)).then(() => {
+      const btn = document.querySelector('.btn-copy-schema');
+      btn.textContent = '✓ Copié'; setTimeout(() => btn.textContent = '⎘ Copier le schéma', 2000);
+    });
+  }
+}
+
+function copyExample() {
+  navigator.clipboard.writeText(JSON.stringify(EXAMPLE, null, 2)).then(() => {
+    const btns = document.querySelectorAll('.btn-copy-schema');
+    btns[1].textContent = '✓ Copié'; setTimeout(() => btns[1].textContent = '⎘ Copier', 2000);
+  });
+}
+
+// Afficher l'exemple
+document.getElementById('example-display').innerHTML = syntaxHL(JSON.stringify(EXAMPLE, null, 2));
+
+// Charger le schéma complet
+loadSchema();
+</script>
+
+<script src="nav-fix.js"></script>
+</body>
+</html>
