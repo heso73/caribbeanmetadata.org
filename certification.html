@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vérification CMS — Caribbean Metadata Standard</title>
+  <meta name="description" content="Vérifiez l'authenticité d'une certification Caribbean Metadata Standard. Registre public officiel CMS v2.0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#0a0a0b;--navy:#003E6B;--teal:#00C2C7;--gold:#FFC93C;
+  --coral:#FF6F61;--green:#3FA66B;--white:#fff;--off:#f4f2ee;
+  --muted:#888;--border:rgba(0,62,107,0.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#f7f9fb;color:#1a1a1a;font-size:16px;line-height:1.6}
+
+.hero{background:var(--dark);padding:100px 6% 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,194,199,0.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,201,60,0.03) 40px)}
+.hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--teal);margin-bottom:16px}
+.hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(28px,5vw,52px);color:#fff;line-height:1.1;margin-bottom:16px}
+.hero h1 em{color:var(--teal);font-style:italic}
+.hero-desc{font-size:15px;color:rgba(255,255,255,0.55);margin-bottom:40px;line-height:1.8}
+
+/* SEARCH BOX */
+.search-box{background:#fff;border-radius:12px;padding:32px;max-width:680px;margin:0 auto;position:relative;z-index:2;box-shadow:0 8px 40px rgba(0,0,0,0.15)}
+.search-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);display:block;margin-bottom:10px;text-align:left}
+.search-row{display:flex;gap:10px}
+.search-input{flex:1;padding:14px 18px;border:2px solid var(--border);border-radius:6px;font-family:'DM Mono',monospace;font-size:14px;color:var(--navy);background:#fafbfc;transition:border .2s;outline:none;letter-spacing:1px}
+.search-input:focus{border-color:var(--teal);background:#fff}
+.search-input::placeholder{color:#ccc;letter-spacing:1px}
+.search-btn{padding:14px 28px;background:var(--navy);color:#fff;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;white-space:nowrap}
+.search-btn:hover{background:#00537A}
+.search-hint{font-size:12px;color:#aaa;margin-top:10px;text-align:left;font-family:'DM Mono',monospace}
+
+/* MAIN */
+main{max-width:860px;margin:0 auto;padding:48px 6% 80px}
+
+/* STATES */
+.state{display:none}
+.state.active{display:block}
+
+/* LOADING */
+.loading-wrap{text-align:center;padding:60px 20px}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:2px}
+
+/* ERROR */
+.error-wrap{background:#fff;border-radius:12px;padding:48px;text-align:center;border:1px solid rgba(229,57,53,0.15)}
+.error-icon{font-size:48px;margin-bottom:16px}
+.error-title{font-family:'DM Serif Display',Georgia,serif;font-size:24px;color:#c0392b;margin-bottom:8px}
+.error-sub{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* RESULT CARD */
+.result-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 20px rgba(0,62,107,0.06)}
+.result-header{padding:32px;display:flex;align-items:flex-start;gap:24px;border-bottom:1px solid var(--border)}
+.cert-badge-large{width:80px;height:80px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:32px}
+.cert-badge-large.platinum{background:rgba(0,194,199,0.1);border:2px solid rgba(0,194,199,0.3)}
+.cert-badge-large.gold{background:rgba(255,201,60,0.1);border:2px solid rgba(255,201,60,0.3)}
+.cert-badge-large.silver{background:rgba(192,192,192,0.1);border:2px solid rgba(192,192,192,0.3)}
+.cert-badge-large.bronze{background:rgba(205,127,50,0.1);border:2px solid rgba(205,127,50,0.3)}
+.result-title-wrap{}
+.result-work-title{font-family:'DM Serif Display',Georgia,serif;font-size:26px;color:var(--navy);margin-bottom:6px}
+.result-creator{font-size:14px;color:var(--muted);margin-bottom:12px}
+.result-badges{display:flex;flex-wrap:wrap;gap:8px}
+.rbadge{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:4px 12px;border-radius:20px;letter-spacing:1px}
+.rbadge.level-platinum{background:rgba(0,194,199,0.12);color:#0e7490}
+.rbadge.level-gold{background:rgba(255,201,60,0.12);color:#b45309}
+.rbadge.level-silver{background:rgba(192,192,192,0.12);color:#64748b}
+.rbadge.level-bronze{background:rgba(205,127,50,0.12);color:#92400e}
+.rbadge.verified{background:#f0fdf4;color:#166534}
+.rbadge.family{background:#f0f7ff;color:var(--navy)}
+
+/* SCORE */
+.score-section{padding:28px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.score-big{text-align:center}
+.score-num-big{font-family:'DM Serif Display',Georgia,serif;font-size:56px;color:var(--navy);line-height:1}
+.score-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:4px}
+.score-bar-section{flex:1;min-width:200px}
+.sbar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sbar-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:80px;letter-spacing:.5px}
+.sbar-track{flex:1;height:5px;background:#f0f4f8;border-radius:3px;overflow:hidden}
+.sbar-fill{height:100%;border-radius:3px;transition:width 1s ease}
+.sbar-val{font-family:'DM Mono',monospace;font-size:10px;color:var(--navy);font-weight:500;width:20px;text-align:right}
+
+/* DETAILS */
+.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border)}
+.detail-item{padding:20px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.detail-item:nth-child(2n){border-right:none}
+.detail-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:6px}
+.detail-value{font-size:14px;color:var(--navy);font-weight:500}
+
+/* TAGS */
+.tags-section{padding:24px 32px;border-bottom:1px solid var(--border)}
+.tags-family{margin-bottom:16px}
+.tags-family-name{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:8px}
+.tags-list{display:flex;flex-wrap:wrap;gap:6px}
+.tag-pill{padding:4px 12px;background:#f0f7ff;border-radius:20px;font-size:12px;color:var(--navy);font-family:'DM Sans',sans-serif}
+
+/* CMS ID */
+.cms-id-section{padding:20px 32px;background:#fafbfc;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.cms-id-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted)}
+.cms-id-value{font-family:'DM Mono',monospace;font-size:14px;color:var(--navy);font-weight:500;letter-spacing:1px}
+.copy-id{font-family:'DM Mono',monospace;font-size:10px;padding:6px 14px;border:1px solid var(--border);border-radius:4px;background:#fff;cursor:pointer;color:var(--muted);transition:all .2s}
+.copy-id:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* VALID BANNER */
+.valid-banner{background:#f0fdf4;border-top:3px solid var(--green);padding:16px 32px;display:flex;align-items:center;gap:12px}
+.valid-banner.invalid{background:#fff5f5;border-top-color:#e53935}
+.valid-icon{font-size:20px}
+.valid-text{font-size:13px;color:#166534;font-weight:600}
+.valid-text.invalid{color:#c0392b}
+.valid-sub{font-size:12px;color:#888;margin-top:2px}
+
+/* EMPTY STATE */
+.empty-state{background:#fff;border-radius:12px;padding:60px;text-align:center;border:1px solid var(--border)}
+.empty-icon{font-size:48px;margin-bottom:16px}
+.empty-title{font-family:'DM Serif Display',Georgia,serif;font-size:22px;color:var(--navy);margin-bottom:8px}
+.empty-sub{font-size:14px;color:var(--muted);line-height:1.7;max-width:400px;margin:0 auto}
+
+/* STATS */
+.public-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+.pstat{background:#fff;border-radius:10px;padding:20px;text-align:center;border:1px solid var(--border)}
+.pstat-num{font-family:'DM Serif Display',Georgia,serif;font-size:32px;color:var(--teal);line-height:1}
+.pstat-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-top:6px}
+
+/* RECENT */
+.recent-title{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--teal);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.recent-title::before{content:'';display:block;width:20px;height:1px;background:var(--teal)}
+.recent-list{display:grid;gap:12px}
+.recent-item{background:#fff;border-radius:8px;padding:16px 20px;border:1px solid var(--border);display:flex;align-items:center;gap:16px;transition:box-shadow .2s;cursor:pointer}
+.recent-item:hover{box-shadow:0 4px 16px rgba(0,62,107,0.08)}
+.ri-level{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ri-level.platinum{background:rgba(0,194,199,0.1)}
+.ri-level.gold{background:rgba(255,201,60,0.1)}
+.ri-level.silver{background:rgba(192,192,192,0.1)}
+.ri-level.bronze{background:rgba(205,127,50,0.1)}
+.ri-info{flex:1}
+.ri-title{font-size:14px;font-weight:600;color:var(--navy)}
+.ri-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:.5px}
+.ri-score{font-family:'DM Serif Display',Georgia,serif;font-size:22px;color:var(--navy)}
+
+@media(max-width:700px){
+  .search-row{flex-direction:column}
+  .details-grid{grid-template-columns:1fr}
+  .detail-item{border-right:none}
+  .public-stats{grid-template-columns:repeat(2,1fr)}
+  .score-section{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav><!-- nav-fix.js --></nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">REGISTRE PUBLIC OFFICIEL</div>
+    <h1>Vérifier une<br/><em>certification CMS</em></h1>
+    <p class="hero-desc">Entrez un identifiant CMS pour vérifier l'authenticité d'une certification Caribbean Metadata Standard.</p>
+
+    <div class="search-box">
+      <label class="search-label">IDENTIFIANT CMS</label>
+      <div class="search-row">
+        <input class="search-input" id="cms-input" type="text"
+          placeholder="CMS-GUA-2026-XXXXXXXX"
+          oninput="this.value=this.value.toUpperCase()"
+          onkeydown="if(event.key==='Enter')verify()">
+        <button class="search-btn" onclick="verify()">Vérifier →</button>
+      </div>
+      <div class="search-hint">Format : CMS-[TERRITOIRE]-[ANNÉE]-[8 caractères]</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- STATE : DEFAULT -->
+  <div class="state active" id="state-default">
+    <div class="public-stats" id="public-stats">
+      <div class="pstat"><div class="pstat-num" id="stat-total">—</div><div class="pstat-lbl">CERTIFICATIONS</div></div>
+      <div class="pstat"><div class="pstat-num" id="stat-platinum">—</div><div class="pstat-lbl">PLATINUM</div></div>
+      <div class="pstat"><div class="pstat-num" id="stat-gold">—</div><div class="pstat-lbl">GOLD</div></div>
+      <div class="pstat"><div class="pstat-num" id="stat-territories">—</div><div class="pstat-lbl">TERRITOIRES</div></div>
+    </div>
+    <div class="recent-title">Certifications récentes</div>
+    <div class="recent-list" id="recent-list">
+      <div style="text-align:center;padding:32px;color:#ccc;font-family:'DM Mono',monospace;font-size:12px">Aucune certification encore émise — soyez parmi les premiers.</div>
+    </div>
+  </div>
+
+  <!-- STATE : LOADING -->
+  <div class="state" id="state-loading">
+    <div class="loading-wrap">
+      <div class="spinner"></div>
+      <div class="loading-text">INTERROGATION DU REGISTRE CMS...</div>
+    </div>
+  </div>
+
+  <!-- STATE : ERROR -->
+  <div class="state" id="state-error">
+    <div class="error-wrap">
+      <div class="error-icon">🔍</div>
+      <div class="error-title" id="error-title">Certification introuvable</div>
+      <div class="error-sub" id="error-sub">L'identifiant CMS saisi ne correspond à aucune certification dans le registre officiel. Vérifiez l'identifiant et réessayez.</div>
+    </div>
+  </div>
+
+  <!-- STATE : RESULT -->
+  <div class="state" id="state-result">
+    <div class="result-card">
+
+      <div class="valid-banner" id="valid-banner">
+        <div class="valid-icon">✅</div>
+        <div>
+          <div class="valid-text" id="valid-text">Certification authentique — Registre CMS officiel</div>
+          <div class="valid-sub" id="valid-sub">Émise par le Caribwood Language Lab · caribbeanmetadata.org</div>
+        </div>
+      </div>
+
+      <div class="result-header">
+        <div class="cert-badge-large" id="cert-badge-icon">🏆</div>
+        <div class="result-title-wrap">
+          <div class="result-work-title" id="result-work-title">—</div>
+          <div class="result-creator" id="result-creator">—</div>
+          <div class="result-badges" id="result-badges"></div>
+        </div>
+      </div>
+
+      <div class="score-section">
+        <div class="score-big">
+          <div class="score-num-big" id="score-num">—</div>
+          <div class="score-label">SCORE / 100</div>
+        </div>
+        <div class="score-bar-section" id="score-bars"></div>
+      </div>
+
+      <div class="details-grid" id="details-grid"></div>
+
+      <div class="tags-section" id="tags-section"></div>
+
+      <div class="cms-id-section">
+        <div>
+          <div class="cms-id-label">IDENTIFIANT CMS OFFICIEL</div>
+          <div class="cms-id-value" id="cms-id-display">—</div>
+        </div>
+        <button class="copy-id" onclick="copyId()">⎘ Copier</button>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer><!-- nav-fix.js --></footer>
+
+<script>
+const SUPABASE_URL = 'https://vtbaqvjxfgseykjcinpu.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_cZc3a7kaK3M7ZcHRsoTI8w_NQz4Xy0z';
+
+const LEVEL_EMOJI = {platinum:'💎', gold:'🥇', silver:'🥈', bronze:'🥉'};
+const LEVEL_LABEL = {platinum:'PLATINUM', gold:'GOLD', silver:'SILVER', bronze:'BRONZE'};
+
+async function sbFetch(path, params='') {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}${params}`, {
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json'
+    }
+  });
+  if (!r.ok) throw new Error(`API error ${r.status}`);
+  return r.json();
+}
+
+function showState(name) {
+  document.querySelectorAll('.state').forEach(s => s.classList.remove('active'));
+  document.getElementById('state-' + name).classList.add('active');
+}
+
+async function verify() {
+  const raw = document.getElementById('cms-input').value.trim().toUpperCase();
+  if (!raw) return;
+
+  // Validation format basique
+  if (!/^CMS-[A-Z]{2,5}-\d{4}-[A-Z0-9]{8}$/.test(raw)) {
+    showState('error');
+    document.getElementById('error-title').textContent = 'Format invalide';
+    document.getElementById('error-sub').textContent = `"${raw}" n'est pas un identifiant CMS valide. Format attendu : CMS-GUA-2026-XXXXXXXX`;
+    return;
+  }
+
+  showState('loading');
+
+  try {
+    // Chercher la certification + l'œuvre associée
+    const certs = await sbFetch('certifications',
+      `?cms_id=eq.${encodeURIComponent(raw)}&select=*,works(title,title_original,family,year,territory,languages,creator_id,creators(name,type,territory))&limit=1`
+    );
+
+    if (!certs || certs.length === 0) {
+      showState('error');
+      document.getElementById('error-title').textContent = 'Certification introuvable';
+      document.getElementById('error-sub').textContent = `Aucune certification "${raw}" dans le registre officiel CMS. Vérifiez l'identifiant ou contactez l'émetteur.`;
+      return;
+    }
+
+    const cert = certs[0];
+    renderResult(cert);
+    showState('result');
+
+  } catch(e) {
+    showState('error');
+    document.getElementById('error-title').textContent = 'Erreur de connexion';
+    document.getElementById('error-sub').textContent = 'Impossible d\'interroger le registre CMS. Vérifiez votre connexion et réessayez.';
+  }
+}
+
+function renderResult(cert) {
+  const level = cert.level;
+  const work = cert.works || {};
+  const creator = work.creators || {};
+
+  // Valid banner
+  const banner = document.getElementById('valid-banner');
+  const isRevoked = cert.revoked;
+  banner.className = 'valid-banner' + (isRevoked ? ' invalid' : '');
+  document.getElementById('valid-text').className = 'valid-text' + (isRevoked ? ' invalid' : '');
+  document.getElementById('valid-text').textContent = isRevoked
+    ? '⚠️ Certification révoquée — non valide'
+    : '✅ Certification authentique — Registre CMS officiel';
+  document.getElementById('valid-sub').textContent = isRevoked
+    ? `Révoquée le ${new Date(cert.revoked_at).toLocaleDateString('fr-FR')} — ${cert.revoked_reason || ''}`
+    : `Émise le ${new Date(cert.issued_at).toLocaleDateString('fr-FR')} · Caribwood Language Lab · caribbeanmetadata.org`;
+
+  // Badge icon
+  const badge = document.getElementById('cert-badge-icon');
+  badge.className = 'cert-badge-large ' + level;
+  badge.textContent = LEVEL_EMOJI[level] || '🏆';
+
+  // Titre et créateur
+  document.getElementById('result-work-title').textContent = work.title || '—';
+  document.getElementById('result-creator').textContent = creator.name
+    ? `Par ${creator.name}${creator.territory ? ' · ' + creator.territory : ''}`
+    : '—';
+
+  // Badges
+  const badgesEl = document.getElementById('result-badges');
+  badgesEl.innerHTML = `
+    <span class="rbadge level-${level}">${LEVEL_LABEL[level]}</span>
+    ${work.family ? `<span class="rbadge family">${work.family}</span>` : ''}
+    ${work.territory ? `<span class="rbadge family">📍 ${work.territory}</span>` : ''}
+    ${work.year ? `<span class="rbadge family">${work.year}</span>` : ''}
+    <span class="rbadge verified">✓ Vérifié CMS</span>
+  `;
+
+  // Score
+  document.getElementById('score-num').textContent = cert.score;
+
+  // Score bars (depuis metadata_json si disponible)
+  const meta = cert.metadata_json || {};
+  const families = [
+    {id:'identity', label:'Identité', color:'#003E6B'},
+    {id:'linguistic', label:'Linguistique', color:'#00C2C7'},
+    {id:'cultural', label:'Culturelle', color:'#FFC93C'},
+    {id:'narrative', label:'Narrative', color:'#FF6F61'},
+    {id:'rhythmic', label:'Rythmique', color:'#7B3FA6'},
+    {id:'geographic', label:'Géographique', color:'#3FA66B'},
+    {id:'sociohistorical', label:'Socio-hist.', color:'#185FA5'},
+  ];
+  const scores = meta.family_scores || {};
+  document.getElementById('score-bars').innerHTML = families.map(f => `
+    <div class="sbar-row">
+      <span class="sbar-lbl">${f.label}</span>
+      <div class="sbar-track"><div class="sbar-fill" style="width:${scores[f.id]||0}%;background:${f.color}"></div></div>
+      <span class="sbar-val">${scores[f.id]||0}</span>
+    </div>
+  `).join('');
+
+  // Détails
+  const details = [
+    {label:'FAMILLE', value: work.family || '—'},
+    {label:'ANNÉE', value: work.year || '—'},
+    {label:'TERRITOIRE', value: work.territory || '—'},
+    {label:'LANGUES', value: (work.languages||[]).join(', ') || '—'},
+    {label:'DATE D\'ÉMISSION', value: cert.issued_at ? new Date(cert.issued_at).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}) : '—'},
+    {label:'ÉMIS PAR', value: 'Caribwood Language Lab'},
+  ];
+  document.getElementById('details-grid').innerHTML = details.map(d => `
+    <div class="detail-item">
+      <div class="detail-label">${d.label}</div>
+      <div class="detail-value">${d.value}</div>
+    </div>
+  `).join('');
+
+  // Tags (si metadata_json contient les familles)
+  const tagsSection = document.getElementById('tags-section');
+  const tagFamilies = meta.metadata_tags || {};
+  const familyNames = {
+    linguistic:'Linguistique', cultural:'Culturelle', narrative:'Narrative',
+    rhythmic:'Rythmique', geographic:'Géographique', sociohistorical:'Socio-historique'
+  };
+  const hasTags = Object.values(tagFamilies).some(t => t && t.length);
+  if (hasTags) {
+    tagsSection.innerHTML = Object.entries(tagFamilies).filter(([,tags]) => tags && tags.length).map(([fam, tags]) => `
+      <div class="tags-family">
+        <div class="tags-family-name">${(familyNames[fam]||fam).toUpperCase()}</div>
+        <div class="tags-list">${tags.map(t => `<span class="tag-pill">${t}</span>`).join('')}</div>
+      </div>
+    `).join('');
+  } else {
+    tagsSection.innerHTML = '';
+    tagsSection.style.display = 'none';
+  }
+
+  // CMS ID
+  document.getElementById('cms-id-display').textContent = cert.cms_id;
+  window._currentCmsId = cert.cms_id;
+}
+
+function copyId() {
+  if (window._currentCmsId) {
+    navigator.clipboard.writeText(window._currentCmsId).then(() => {
+      const btn = document.querySelector('.copy-id');
+      btn.textContent = '✓ Copié';
+      setTimeout(() => btn.textContent = '⎘ Copier', 2000);
+    });
+  }
+}
+
+// Charger les stats publiques au démarrage
+async function loadStats() {
+  try {
+    const certs = await sbFetch('certifications', '?select=level,works(territory)&revoked=eq.false');
+    if (!certs) return;
+    document.getElementById('stat-total').textContent = certs.length;
+    document.getElementById('stat-platinum').textContent = certs.filter(c => c.level === 'platinum').length;
+    document.getElementById('stat-gold').textContent = certs.filter(c => c.level === 'gold').length;
+    const territories = new Set(certs.map(c => c.works?.territory).filter(Boolean));
+    document.getElementById('stat-territories').textContent = territories.size;
+
+    // Récentes
+    const recent = await sbFetch('certifications',
+      '?select=cms_id,level,score,issued_at,works(title,territory,family)&revoked=eq.false&order=issued_at.desc&limit=5'
+    );
+    if (recent && recent.length) {
+      document.getElementById('recent-list').innerHTML = recent.map(c => `
+        <div class="recent-item" onclick="loadCert('${c.cms_id}')">
+          <div class="ri-level ${c.level}">${LEVEL_EMOJI[c.level]||'🏆'}</div>
+          <div class="ri-info">
+            <div class="ri-title">${c.works?.title || '—'}</div>
+            <div class="ri-meta">${c.cms_id} · ${c.works?.territory||''} · ${c.works?.family||''}</div>
+          </div>
+          <div class="ri-score">${c.score}</div>
+        </div>
+      `).join('');
+    }
+  } catch(e) {
+    // Silencieux si pas encore de données
+  }
+}
+
+function loadCert(id) {
+  document.getElementById('cms-input').value = id;
+  verify();
+}
+
+// Pré-remplir depuis l'URL
+const urlParams = new URLSearchParams(window.location.search);
+const urlId = urlParams.get('id');
+if (urlId) {
+  document.getElementById('cms-input').value = urlId.toUpperCase();
+  verify();
+} else {
+  loadStats();
+}
+</script>
+
+<script src="nav-fix.js"></script>
+</body>
+</html>
