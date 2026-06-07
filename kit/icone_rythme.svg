@@ -1,0 +1,14 @@
+<svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="g" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="160" height="180" fill="#0a0a0b"/>
+  <rect width="160" height="180" fill="url(#g)"/>
+  <rect x="1" y="1" width="158" height="178" rx="4" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <g transform="translate(80,82)"><polyline points="-38,0 -24,0 -16,-26 -8,26 0,-18 8,18 16,0 38,0" fill="none" stroke="#FF6F61" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <line x1="20" y1="148" x2="140" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="80" y="166" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="rgba(232,228,216,0.55)" letter-spacing="2">RYTHME</text>
+  <text x="80" y="178" text-anchor="middle" font-family="Courier New, monospace" font-size="7" fill="#FFC93C" letter-spacing="1" opacity="0.6">CMS v2.0</text>
+</svg>
