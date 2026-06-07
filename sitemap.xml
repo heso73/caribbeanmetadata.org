@@ -73,6 +73,10 @@
   <url><loc>https://caribbeanmetadata.org/press-en.html</loc><lastmod>2026-06-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://caribbeanmetadata.org/press-es.html</loc><lastmod>2026-06-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
+
+  <!-- SPÉCIFICATION TECHNIQUE -->
+  <url><loc>https://caribbeanmetadata.org/spec.html</loc><lastmod>2026-06-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://caribbeanmetadata.org/spec/cms-v2.json</loc><lastmod>2026-06-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <!-- GLOSSAIRE -->
   <url><loc>https://caribbeanmetadata.org/glossaire.html</loc><lastmod>2026-06-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
