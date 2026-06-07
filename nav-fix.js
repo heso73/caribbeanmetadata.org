@@ -14,7 +14,7 @@
   const basePage = page.replace(/-en\.html$/, '').replace(/-es\.html$/, '').replace(/\.html$/, '');
 
   // Pages sans version ES — restent sur la version FR
-  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue', 'kit'];
+  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue', 'kit', 'spec'];
   // Pages sans version EN
   const NO_EN = ['glossaire', 'architecture', 'press'];
 
@@ -81,6 +81,7 @@
           { href: 'about.html',        label: 'À propos' },
           { href: 'families.html',     label: 'Les 6 familles' },
           { href: 'resources.html',    label: 'Documentation' },
+          { href: 'spec.html',          label: 'Spécification v2.0' },
           { href: 'catalogue.html',    label: 'Catalogue CMS' },
           { href: 'kit.html',          label: 'Kit Média' },
           { href: 'declaration.html',  label: 'Déclaration fondatrice' },
@@ -109,6 +110,7 @@
           { href: 'about-en.html',       label: 'About' },
           { href: 'families-en.html',    label: 'The 6 Families' },
           { href: 'resources.html',      label: 'Documentation' },
+          { href: 'spec.html',            label: 'Specification v2.0' },
           { href: 'catalogue.html',      label: 'CMS Catalogue' },
           { href: 'kit.html',            label: 'Media Kit' },
           { href: 'declaration-en.html', label: 'Founding Declaration' },
@@ -137,6 +139,7 @@
           { href: 'about-es.html',       label: 'Acerca de' },
           { href: 'families-es.html',    label: 'Las 6 familias' },
           { href: 'resources.html',      label: 'Documentación' },
+          { href: 'spec.html',            label: 'Especificación v2.0' },
           { href: 'catalogue.html',      label: 'Catálogo CMS' },
           { href: 'kit.html',            label: 'Kit de Medios' },
           { href: 'declaration-es.html', label: 'Declaración Fundadora' },
