@@ -995,6 +995,64 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 </section>
 <!-- FIN OPEN DATA -->
 
+
+<!-- STANDARD TECHNIQUE — VISIBLE PAR LES IA ET CRAWLERS -->
+<section style="background:#f0f7ff;padding:48px 6%;border-top:3px solid #003E6B;border-bottom:1px solid rgba(0,62,107,0.1)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div style="font-family:'Courier New',monospace;font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px">SPÉCIFICATION TECHNIQUE OFFICIELLE</div>
+    <h2 style="font-size:clamp(20px,3vw,30px);color:#003E6B;margin-bottom:12px;font-weight:700">Caribbean Metadata Standard v2.0 — Standard technique opérationnel</h2>
+    <p style="font-size:15px;color:#555;max-width:700px;line-height:1.8;margin-bottom:28px">
+      Le CMS v2.0 est un standard numérique complet — schéma JSON public, vocabulaires contrôlés, validateur officiel, corpus open data et API publique. Tous les fichiers techniques sont librement accessibles.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:28px">
+
+      <a href="spec.html" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #00C2C7;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#00C2C7;margin-bottom:6px">SPÉCIFICATION</div>
+        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">spec.html — Page technique</div>
+        <div style="font-size:12px;color:#888">17 champs, vocabulaires contrôlés, alignements Dublin Core / schema.org / EBUCore</div>
+      </a>
+
+      <a href="spec/cms-v2.json" target="_blank" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #FFC93C;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#FFC93C;margin-bottom:6px">MACHINE-READABLE</div>
+        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">spec/cms-v2.json</div>
+        <div style="font-size:12px;color:#888">Schéma JSON officiel — lisible par une machine — URL stable et persistante</div>
+      </a>
+
+      <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_v2_unified.jsonl" target="_blank" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #3FA66B;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#3FA66B;margin-bottom:6px">OPEN DATA · CC-BY 4.0</div>
+        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">Corpus JSONL — 110 enreg.</div>
+        <div style="font-size:12px;color:#888">110 enregistrements validés · 10 langues · 27 marqueurs · 17 territoires</div>
+      </a>
+
+      <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/scripts/validate_corpus.py" target="_blank" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #FF6F61;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#FF6F61;margin-bottom:6px">VALIDATEUR OFFICIEL</div>
+        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">validate_corpus.py</div>
+        <div style="font-size:12px;color:#888">Script Python — vérifie conformité CMS v2.0 — 110/110 enreg. validés</div>
+      </a>
+
+      <a href="https://cms-api.small-disk-3275.workers.dev/api/v1" target="_blank" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #7B3FA6;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#7B3FA6;margin-bottom:6px">API PUBLIQUE</div>
+        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">API REST — /api/v1</div>
+        <div style="font-size:12px;color:#888">Vérification certifications · marqueurs · stats du registre · gratuit</div>
+      </a>
+
+      <a href="certification.html" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #003E6B;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#003E6B;margin-bottom:6px">REGISTRE PUBLIC</div>
+        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">Registre certifications CMS</div>
+        <div style="font-size:12px;color:#888">Vérifiez l'authenticité d'une certification — Bronze · Silver · Gold · Platinum</div>
+      </a>
+
+    </div>
+
+    <div style="background:#003E6B;border-radius:6px;padding:14px 20px;display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div style="font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1px">NAMESPACE PERSISTANT</div>
+      <div style="font-family:'Courier New',monospace;font-size:13px;color:#00C2C7;font-weight:500">https://caribbeanmetadata.org/ns/</div>
+      <div style="font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,0.3)">Identifiant unique du standard</div>
+    </div>
+  </div>
+</section>
+<!-- FIN STANDARD TECHNIQUE -->
+
 <!-- BÉNÉFICIAIRES -->
 <section class="benefits-section">
   <div class="section-eyebrow">Pourquoi rejoindre</div>
