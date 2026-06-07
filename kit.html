@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kit Média — Caribbean Metadata Standard</title>
+  <meta name="description" content="Logos, badges, icônes, motifs et textes officiels du Caribbean Metadata Standard v2.0. Ressources libres pour partenaires, presse et institutions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#0a0a0b;
+  --navy:#003E6B;
+  --teal:#00C2C7;
+  --gold:#FFC93C;
+  --coral:#FF6F61;
+  --green:#3FA66B;
+  --white:#fff;
+  --off:#f4f2ee;
+  --muted:#888;
+  --border:rgba(0,62,107,0.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
+
+/* ── HERO ── */
+.hero{background:var(--dark);padding:120px 6% 72px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,194,199,0.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,201,60,0.03) 40px)}
+.hero-glow{position:absolute;top:-120px;right:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,194,199,0.12),transparent 70%);pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:900px}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--teal);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--teal)}
+.hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(36px,6vw,68px);color:var(--white);line-height:1.05;margin-bottom:20px;letter-spacing:-1px}
+.hero h1 em{font-style:italic;color:var(--teal)}
+.hero-desc{font-size:17px;color:rgba(255,255,255,0.6);max-width:560px;line-height:1.8;margin-bottom:36px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.meta-pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);padding:6px 14px;border:1px solid rgba(255,255,255,0.1);border-radius:20px}
+.meta-pill strong{color:var(--gold)}
+.dl-kit-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--teal);color:var(--dark);font-weight:700;font-size:14px;border-radius:3px;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:.3px;transition:background .2s}
+.dl-kit-btn:hover{background:#00a8ae}
+.dl-kit-btn::before{content:'↓';font-size:16px}
+
+/* ── STICKY NAV ── */
+.kit-nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:68px;z-index:90;padding:0 6%}
+.kit-nav-inner{display:flex;gap:0;max-width:1100px;margin:0 auto;overflow-x:auto}
+.kn-btn{padding:16px 22px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:500;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap;transition:all .2s}
+.kn-btn:hover{color:var(--navy)}
+.kn-btn.active{color:var(--navy);border-bottom-color:var(--teal)}
+
+/* ── MAIN ── */
+main{max-width:1100px;margin:0 auto;padding:64px 6% 100px}
+.section{margin-bottom:80px}
+.s-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.s-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--teal)}
+.s-title{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,3vw,34px);color:var(--navy);margin-bottom:10px;letter-spacing:-.5px}
+.s-sub{font-size:15px;color:var(--muted);margin-bottom:36px;max-width:600px;line-height:1.75}
+
+/* ── LOGO GRID ── */
+.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.logo-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:box-shadow .2s}
+.logo-card:hover{box-shadow:0 6px 24px rgba(0,62,107,0.1)}
+.logo-preview{padding:32px 24px;display:flex;align-items:center;justify-content:center}
+.logo-preview.dark{background:var(--dark)}
+.logo-preview.light{background:#fff;border-bottom:1px solid var(--border)}
+.logo-preview.transparent{background:repeating-conic-gradient(#eee 0% 25%,#fff 0% 50%) 0 0/20px 20px}
+.logo-preview svg{width:100%;max-width:280px;height:auto}
+.logo-info{padding:14px 16px;background:#fafafa;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.logo-name{font-family:'DM Mono',monospace;font-size:11px;color:#555;letter-spacing:1px}
+.dl-btn{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--navy);text-decoration:none;padding:5px 12px;border:1px solid var(--border);border-radius:3px;transition:all .2s;cursor:pointer;background:none}
+.dl-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ── BADGES ── */
+.badges-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
+.badge-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:box-shadow .2s}
+.badge-card:hover{box-shadow:0 6px 24px rgba(0,62,107,0.1)}
+.badge-preview{padding:28px 24px;background:var(--dark);display:flex;align-items:center;justify-content:center}
+.badge-preview svg{width:100%;max-width:240px;height:auto}
+.badge-info{padding:12px 16px;background:#fafafa;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.badge-level{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;font-weight:500}
+.badge-score{font-size:12px;color:var(--muted)}
+
+/* ── ICÔNES ── */
+.icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px}
+.icon-card{border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:box-shadow .2s;cursor:pointer}
+.icon-card:hover{box-shadow:0 4px 16px rgba(0,62,107,0.1)}
+.icon-preview{background:var(--dark);padding:12px;display:flex;align-items:center;justify-content:center}
+.icon-preview svg{width:64px;height:72px}
+.icon-name{padding:8px;text-align:center;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#888;background:#fafafa;border-top:1px solid var(--border)}
+
+/* ── MOTIFS ── */
+.motifs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.motif-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:box-shadow .2s}
+.motif-card:hover{box-shadow:0 6px 24px rgba(0,62,107,0.1)}
+.motif-preview{overflow:hidden}
+.motif-preview svg{width:100%;height:auto;display:block}
+.motif-info{padding:12px 16px;background:#fafafa;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+
+/* ── COULEURS ── */
+.colors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:40px}
+.color-card{border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.color-swatch{height:72px}
+.color-info{padding:12px 14px;background:#fff}
+.color-name{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--navy);margin-bottom:2px}
+.color-hex{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);cursor:pointer;transition:color .2s}
+.color-hex:hover{color:var(--navy)}
+.color-role{font-size:11px;color:#aaa;margin-top:4px}
+
+/* ── TYPO ── */
+.typo-samples{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
+.typo-card{border:1px solid var(--border);border-radius:8px;padding:28px}
+.typo-sample{margin-bottom:16px}
+.typo-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:8px}
+
+/* ── BOILERPLATE ── */
+.bp-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:24px}
+.bp-tab{padding:10px 20px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all .2s}
+.bp-tab.active{color:var(--navy);border-bottom-color:var(--teal)}
+.bp-panel{display:none}
+.bp-panel.active{display:block}
+.bp-block{margin-bottom:16px}
+.bp-size{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:8px}
+.bp-text{background:#f7f8fa;border-left:3px solid var(--teal);padding:16px 20px;font-size:14px;color:#333;line-height:1.8;border-radius:0 6px 6px 0;margin-bottom:8px;position:relative}
+.copy-bp{position:absolute;top:10px;right:10px;font-family:'DM Mono',monospace;font-size:9px;padding:4px 10px;border:1px solid var(--border);border-radius:3px;background:#fff;cursor:pointer;color:#888;transition:all .2s}
+.copy-bp:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.copy-bp.done{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+/* ── RÈGLES D'USAGE ── */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px}
+.rule-card{border-radius:8px;padding:20px 22px}
+.rule-card.ok{background:#f0fdf4;border:1px solid rgba(63,166,107,0.25)}
+.rule-card.nok{background:#fff5f5;border:1px solid rgba(229,57,53,0.2)}
+.rule-icon{font-size:20px;margin-bottom:10px}
+.rule-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.rule-list{font-size:13px;color:#555;line-height:1.8;padding-left:16px}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--navy);color:#fff;padding:10px 18px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;z-index:9999;transform:translateY(60px);opacity:0;transition:all .25s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ── DL SECTION ── */
+.dl-section{background:var(--dark);border-radius:12px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-top:16px;position:relative;overflow:hidden}
+.dl-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.04) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.03) 24px)}
+.dl-section-content{position:relative;z-index:1}
+.dl-section h2{font-family:'DM Serif Display',Georgia,serif;font-size:24px;color:#fff;margin-bottom:6px}
+.dl-section p{font-size:14px;color:rgba(255,255,255,0.5);max-width:440px}
+.dl-section-btns{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px}
+.btn-dl-main{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--teal);color:var(--dark);font-weight:700;font-size:14px;border-radius:3px;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .2s}
+.btn-dl-main:hover{background:#00a8ae}
+.btn-dl-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:14px;border-radius:3px;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-dl-outline:hover{border-color:#fff;background:rgba(255,255,255,0.06)}
+
+@media(max-width:900px){
+  .logo-grid,.typo-samples,.rules-grid{grid-template-columns:1fr}
+  .icons-grid{grid-template-columns:repeat(3,1fr)}
+  .badges-grid,.motifs-grid{grid-template-columns:1fr}
+  .dl-section{padding:32px}
+}
+@media(max-width:600px){
+  .icons-grid{grid-template-columns:repeat(2,1fr)}
+  .colors-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav><!-- nav-fix.js --></nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Kit Média Officiel</div>
+    <h1>Parlez du CMS<br/><em>avec les bons outils.</em></h1>
+    <p class="hero-desc">Logos, badges, icônes, motifs, charte couleurs et textes officiels — tout ce dont vous avez besoin pour représenter le Caribbean Metadata Standard avec précision et cohérence.</p>
+    <div class="hero-meta">
+      <span class="meta-pill"><strong>16</strong> FICHIERS SVG</span>
+      <span class="meta-pill"><strong>CC-BY 4.0</strong> LIBRE D'USAGE</span>
+      <span class="meta-pill">CMS <strong>v2.0</strong></span>
+      <a href="#" onclick="downloadKit()" class="dl-kit-btn">Télécharger le kit complet</a>
+    </div>
+  </div>
+</div>
+
+<!-- KIT NAV -->
+<div class="kit-nav">
+  <div class="kit-nav-inner">
+    <button class="kn-btn active" onclick="scrollTo('logos')">LOGOS</button>
+    <button class="kn-btn" onclick="scrollTo('badges')">BADGES</button>
+    <button class="kn-btn" onclick="scrollTo('icones')">ICÔNES</button>
+    <button class="kn-btn" onclick="scrollTo('motifs')">MOTIFS</button>
+    <button class="kn-btn" onclick="scrollTo('couleurs')">COULEURS</button>
+    <button class="kn-btn" onclick="scrollTo('typographie')">TYPOGRAPHIE</button>
+    <button class="kn-btn" onclick="scrollTo('boilerplate')">BOILERPLATE</button>
+    <button class="kn-btn" onclick="scrollTo('regles')">RÈGLES D'USAGE</button>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── LOGOS ── -->
+  <div class="section" id="logos">
+    <div class="s-eyebrow">Identité visuelle</div>
+    <h2 class="s-title">Logos officiels</h2>
+    <p class="s-sub">3 versions pour tous les contextes. Utilisez toujours le logo adapté au fond — ne modifiez pas les couleurs ni les proportions.</p>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-preview dark">
+          <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0L0 0 0 20" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.2"/></pattern></defs><rect width="480" height="200" fill="#0a0a0b"/><rect width="480" height="200" fill="url(#grid1)"/><path d="M 80 35 Q 18 100 80 165" fill="none" stroke="#00C2C7" stroke-width="9" stroke-linecap="round"/><path d="M 95 22 Q 10 100 95 178" fill="none" stroke="#FFC93C" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/><circle cx="80" cy="35" r="7" fill="#FFC93C"/><circle cx="80" cy="165" r="7" fill="#FFC93C"/><circle cx="34" cy="100" r="5" fill="#FF6F61"/><circle cx="52" cy="62" r="4" fill="#3FA66B"/><circle cx="52" cy="138" r="4" fill="#00C2C7"/><text x="130" y="125" font-family="Georgia, serif" font-weight="700" font-size="82" fill="#FFFFFF" letter-spacing="-2">CMS</text><line x1="130" y1="148" x2="460" y2="148" stroke="#FFC93C" stroke-width="1.5" opacity="0.5"/><text x="132" y="170" font-family="Courier New, monospace" font-size="11" fill="#FFC93C" letter-spacing="4" opacity="0.85">CARIBBEAN METADATA STANDARD</text><text x="132" y="188" font-family="Courier New, monospace" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">Structurer la visibilité culturelle caribéenne · v2.0</text></svg>
+        </div>
+        <div class="logo-info"><span class="logo-name">DARK — fond sombre</span><button class="dl-btn" onclick="downloadSVG('CMS_logo_dark')">↓ SVG</button></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-preview light">
+          <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="200" fill="#FFFFFF"/><path d="M 80 35 Q 18 100 80 165" fill="none" stroke="#003E6B" stroke-width="9" stroke-linecap="round"/><path d="M 95 22 Q 10 100 95 178" fill="none" stroke="#00C2C7" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/><circle cx="80" cy="35" r="7" fill="#FFC93C"/><circle cx="80" cy="165" r="7" fill="#FFC93C"/><circle cx="34" cy="100" r="5" fill="#FF6F61"/><circle cx="52" cy="62" r="4" fill="#3FA66B"/><circle cx="52" cy="138" r="4" fill="#00C2C7"/><text x="130" y="125" font-family="Georgia, serif" font-weight="700" font-size="82" fill="#003E6B" letter-spacing="-2">CMS</text><line x1="130" y1="148" x2="460" y2="148" stroke="#FFC93C" stroke-width="1.5" opacity="0.8"/><text x="132" y="170" font-family="Courier New, monospace" font-size="11" fill="#003E6B" letter-spacing="4" opacity="0.85">CARIBBEAN METADATA STANDARD</text><text x="132" y="188" font-family="Courier New, monospace" font-size="9" fill="#2A2A2A" letter-spacing="2" opacity="0.5">Structurer la visibilité culturelle caribéenne · v2.0</text></svg>
+        </div>
+        <div class="logo-info"><span class="logo-name">LIGHT — fond clair</span><button class="dl-btn" onclick="downloadSVG('CMS_logo_light')">↓ SVG</button></div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-preview transparent">
+          <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg"><path d="M 80 35 Q 18 100 80 165" fill="none" stroke="#00C2C7" stroke-width="9" stroke-linecap="round"/><path d="M 95 22 Q 10 100 95 178" fill="none" stroke="#FFC93C" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/><circle cx="80" cy="35" r="7" fill="#FFC93C"/><circle cx="80" cy="165" r="7" fill="#FFC93C"/><circle cx="34" cy="100" r="5" fill="#FF6F61"/><circle cx="52" cy="62" r="4" fill="#3FA66B"/><circle cx="52" cy="138" r="4" fill="#00C2C7"/><text x="130" y="125" font-family="Georgia, serif" font-weight="700" font-size="82" fill="#003E6B" letter-spacing="-2">CMS</text><line x1="130" y1="148" x2="460" y2="148" stroke="#FFC93C" stroke-width="1.5" opacity="0.8"/><text x="132" y="170" font-family="Courier New, monospace" font-size="11" fill="#003E6B" letter-spacing="4" opacity="0.85">CARIBBEAN METADATA STANDARD</text><text x="132" y="188" font-family="Courier New, monospace" font-size="9" fill="#2A2A2A" letter-spacing="2" opacity="0.5">Structurer la visibilité culturelle caribéenne · v2.0</text></svg>
+        </div>
+        <div class="logo-info"><span class="logo-name">TRANSPARENT</span><button class="dl-btn" onclick="downloadSVG('CMS_logo_transparent')">↓ SVG</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BADGES ── -->
+  <div class="section" id="badges">
+    <div class="s-eyebrow">Certification</div>
+    <h2 class="s-title">Badges CMS-Compliant</h2>
+    <p class="s-sub">4 niveaux de certification. À afficher sur le site, les communications et les outils d'une institution ayant reçu sa certification CMS.</p>
+    <div class="badges-grid">
+      <div class="badge-card">
+        <div class="badge-preview"><svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="bp" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#CD7F32" stroke-width="0.3" opacity="0.15"/></pattern></defs><rect width="240" height="80" fill="#0a0a0b" rx="3"/><rect width="240" height="80" fill="url(#bp)" rx="3"/><rect x="0.75" y="0.75" width="238.5" height="78.5" rx="2.5" fill="none" stroke="#CD7F32" stroke-width="1.5" opacity="0.6"/><rect x="0" y="0" width="5" height="80" fill="#CD7F32" rx="3"/><rect x="3" y="0" width="2" height="80" fill="#CD7F32"/><path d="M 30 22 Q 20 40 30 58" fill="none" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/><path d="M 33 18 Q 18 40 33 62" fill="none" stroke="#CD7F32" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><circle cx="30" cy="22" r="3" fill="#CD7F32"/><circle cx="30" cy="58" r="3" fill="#CD7F32"/><text x="52" y="34" font-family="Arial Black,sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="1">CMS</text><rect x="52" y="42" width="60" height="16" fill="#CD7F32" rx="2"/><text x="82" y="54" text-anchor="middle" font-family="Courier New,monospace" font-size="9" font-weight="700" fill="#0a0a0b" letter-spacing="2">BRONZE</text><text x="122" y="54" font-family="Courier New,monospace" font-size="8" fill="rgba(255,255,255,0.35)" letter-spacing="1">≥ 20 pts</text><line x1="175" y1="16" x2="175" y2="64" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="190" y="36" text-anchor="middle" font-family="Courier New,monospace" font-size="9" fill="#CD7F32" letter-spacing="1" opacity="0.9">v2.0</text><text x="190" y="52" text-anchor="middle" font-family="Courier New,monospace" font-size="7" fill="rgba(255,255,255,0.25)" letter-spacing="0.5">CMS-Compliant</text></svg></div>
+        <div class="badge-info"><span class="badge-level" style="color:#CD7F32">BRONZE</span><span class="badge-score">Score ≥ 20</span><button class="dl-btn" onclick="downloadSVG('CMS_badge_bronze')">↓ SVG</button></div>
+      </div>
+      <div class="badge-card">
+        <div class="badge-preview"><svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="sp" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#C0C0C0" stroke-width="0.3" opacity="0.15"/></pattern></defs><rect width="240" height="80" fill="#0a0a0b" rx="3"/><rect width="240" height="80" fill="url(#sp)" rx="3"/><rect x="0.75" y="0.75" width="238.5" height="78.5" rx="2.5" fill="none" stroke="#C0C0C0" stroke-width="1.5" opacity="0.6"/><rect x="0" y="0" width="5" height="80" fill="#C0C0C0" rx="3"/><rect x="3" y="0" width="2" height="80" fill="#C0C0C0"/><path d="M 30 22 Q 20 40 30 58" fill="none" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/><path d="M 33 18 Q 18 40 33 62" fill="none" stroke="#C0C0C0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><circle cx="30" cy="22" r="3" fill="#C0C0C0"/><circle cx="30" cy="58" r="3" fill="#C0C0C0"/><text x="52" y="34" font-family="Arial Black,sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="1">CMS</text><rect x="52" y="42" width="60" height="16" fill="#C0C0C0" rx="2"/><text x="82" y="54" text-anchor="middle" font-family="Courier New,monospace" font-size="9" font-weight="700" fill="#0a0a0b" letter-spacing="2">SILVER</text><text x="122" y="54" font-family="Courier New,monospace" font-size="8" fill="rgba(255,255,255,0.35)" letter-spacing="1">≥ 40 pts</text><line x1="175" y1="16" x2="175" y2="64" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="190" y="36" text-anchor="middle" font-family="Courier New,monospace" font-size="9" fill="#C0C0C0" letter-spacing="1" opacity="0.9">v2.0</text><text x="190" y="52" text-anchor="middle" font-family="Courier New,monospace" font-size="7" fill="rgba(255,255,255,0.25)" letter-spacing="0.5">CMS-Compliant</text></svg></div>
+        <div class="badge-info"><span class="badge-level" style="color:#888">SILVER</span><span class="badge-score">Score ≥ 40</span><button class="dl-btn" onclick="downloadSVG('CMS_badge_silver')">↓ SVG</button></div>
+      </div>
+      <div class="badge-card">
+        <div class="badge-preview"><svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="gp" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#FFC93C" stroke-width="0.3" opacity="0.15"/></pattern></defs><rect width="240" height="80" fill="#0a0a0b" rx="3"/><rect width="240" height="80" fill="url(#gp)" rx="3"/><rect x="0.75" y="0.75" width="238.5" height="78.5" rx="2.5" fill="none" stroke="#FFC93C" stroke-width="1.5" opacity="0.6"/><rect x="0" y="0" width="5" height="80" fill="#FFC93C" rx="3"/><rect x="3" y="0" width="2" height="80" fill="#FFC93C"/><path d="M 30 22 Q 20 40 30 58" fill="none" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/><path d="M 33 18 Q 18 40 33 62" fill="none" stroke="#FFC93C" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><circle cx="30" cy="22" r="3" fill="#FFC93C"/><circle cx="30" cy="58" r="3" fill="#FFC93C"/><text x="52" y="34" font-family="Arial Black,sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="1">CMS</text><rect x="52" y="42" width="60" height="16" fill="#FFC93C" rx="2"/><text x="82" y="54" text-anchor="middle" font-family="Courier New,monospace" font-size="9" font-weight="700" fill="#0a0a0b" letter-spacing="2">GOLD</text><text x="122" y="54" font-family="Courier New,monospace" font-size="8" fill="rgba(255,255,255,0.35)" letter-spacing="1">≥ 65 pts</text><line x1="175" y1="16" x2="175" y2="64" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="190" y="36" text-anchor="middle" font-family="Courier New,monospace" font-size="9" fill="#FFC93C" letter-spacing="1" opacity="0.9">v2.0</text><text x="190" y="52" text-anchor="middle" font-family="Courier New,monospace" font-size="7" fill="rgba(255,255,255,0.25)" letter-spacing="0.5">CMS-Compliant</text></svg></div>
+        <div class="badge-info"><span class="badge-level" style="color:#b45309">GOLD</span><span class="badge-score">Score ≥ 65</span><button class="dl-btn" onclick="downloadSVG('CMS_badge_gold')">↓ SVG</button></div>
+      </div>
+      <div class="badge-card">
+        <div class="badge-preview"><svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="pp" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.3" opacity="0.15"/></pattern></defs><rect width="240" height="80" fill="#0a0a0b" rx="3"/><rect width="240" height="80" fill="url(#pp)" rx="3"/><rect x="0.75" y="0.75" width="238.5" height="78.5" rx="2.5" fill="none" stroke="#00C2C7" stroke-width="1.5" opacity="0.6"/><rect x="0" y="0" width="5" height="80" fill="#00C2C7" rx="3"/><rect x="3" y="0" width="2" height="80" fill="#00C2C7"/><path d="M 30 22 Q 20 40 30 58" fill="none" stroke="#00C2C7" stroke-width="2.5" stroke-linecap="round"/><path d="M 33 18 Q 18 40 33 62" fill="none" stroke="#00C2C7" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><circle cx="30" cy="22" r="3" fill="#00C2C7"/><circle cx="30" cy="58" r="3" fill="#00C2C7"/><text x="52" y="34" font-family="Arial Black,sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="1">CMS</text><rect x="52" y="42" width="60" height="16" fill="#00C2C7" rx="2"/><text x="82" y="54" text-anchor="middle" font-family="Courier New,monospace" font-size="9" font-weight="700" fill="#0a0a0b" letter-spacing="2">PLATINUM</text><text x="122" y="54" font-family="Courier New,monospace" font-size="8" fill="rgba(255,255,255,0.35)" letter-spacing="1">≥ 85 pts</text><line x1="175" y1="16" x2="175" y2="64" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="190" y="36" text-anchor="middle" font-family="Courier New,monospace" font-size="9" fill="#00C2C7" letter-spacing="1" opacity="0.9">v2.0</text><text x="190" y="52" text-anchor="middle" font-family="Courier New,monospace" font-size="7" fill="rgba(255,255,255,0.25)" letter-spacing="0.5">CMS-Compliant</text></svg></div>
+        <div class="badge-info"><span class="badge-level" style="color:#0e7490">PLATINUM</span><span class="badge-score">Score ≥ 85</span><button class="dl-btn" onclick="downloadSVG('CMS_badge_platinum')">↓ SVG</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ICÔNES ── -->
+  <div class="section" id="icones">
+    <div class="s-eyebrow">Les 6 familles</div>
+    <h2 class="s-title">Icônes CMS</h2>
+    <p class="s-sub">Une icône par famille de métadonnées. À utiliser dans les présentations, documents et interfaces.</p>
+    <div class="icons-grid">
+      <div class="icon-card" onclick="downloadSVG('icone_langue')">
+        <div class="icon-preview"><svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="gi1" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.15"/></pattern></defs><rect width="160" height="180" fill="#0a0a0b"/><rect width="160" height="180" fill="url(#gi1)"/><g transform="translate(80,82)"><rect x="-28" y="-22" width="56" height="36" rx="3" fill="none" stroke="#00C2C7" stroke-width="2.5"/><line x1="-18" y1="-10" x2="18" y2="-10" stroke="#00C2C7" stroke-width="1.5" opacity="0.7"/><line x1="-18" y1="-2" x2="12" y2="-2" stroke="#00C2C7" stroke-width="1.5" opacity="0.7"/><line x1="-18" y1="6" x2="16" y2="6" stroke="#00C2C7" stroke-width="1.5" opacity="0.7"/><line x1="0" y1="14" x2="0" y2="26" stroke="#00C2C7" stroke-width="2"/><line x1="-12" y1="26" x2="12" y2="26" stroke="#00C2C7" stroke-width="2"/></g><line x1="20" y1="148" x2="140" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="80" y="166" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="rgba(232,228,216,0.55)" letter-spacing="2">LANGUE</text></svg></div>
+        <div class="icon-name">LANGUE</div>
+      </div>
+      <div class="icon-card" onclick="downloadSVG('icone_culture')">
+        <div class="icon-preview"><svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="gi2" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.15"/></pattern></defs><rect width="160" height="180" fill="#0a0a0b"/><rect width="160" height="180" fill="url(#gi2)"/><g transform="translate(80,82)"><path d="M0 -28 C18 -28 28 -16 28 0 C28 16 18 28 0 28 C-18 28 -28 16 -28 0 C-28 -16 -18 -28 0 -28Z" fill="none" stroke="#FFC93C" stroke-width="2.5"/><circle cx="0" cy="0" r="10" fill="none" stroke="#FFC93C" stroke-width="2"/><line x1="-28" y1="0" x2="28" y2="0" stroke="#FFC93C" stroke-width="1" opacity="0.5"/><line x1="0" y1="-28" x2="0" y2="28" stroke="#FFC93C" stroke-width="1" opacity="0.5"/><circle cx="0" cy="0" r="3.5" fill="#FFC93C"/></g><line x1="20" y1="148" x2="140" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="80" y="166" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="rgba(232,228,216,0.55)" letter-spacing="2">CULTURE</text></svg></div>
+        <div class="icon-name">CULTURE</div>
+      </div>
+      <div class="icon-card" onclick="downloadSVG('icone_rythme')">
+        <div class="icon-preview"><svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="gi3" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.15"/></pattern></defs><rect width="160" height="180" fill="#0a0a0b"/><rect width="160" height="180" fill="url(#gi3)"/><g transform="translate(80,82)"><polyline points="-38,0 -24,0 -16,-26 -8,26 0,-18 8,18 16,0 38,0" fill="none" stroke="#FF6F61" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><line x1="20" y1="148" x2="140" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="80" y="166" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="rgba(232,228,216,0.55)" letter-spacing="2">RYTHME</text></svg></div>
+        <div class="icon-name">RYTHME</div>
+      </div>
+      <div class="icon-card" onclick="downloadSVG('icone_geographie')">
+        <div class="icon-preview"><svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="gi4" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.15"/></pattern></defs><rect width="160" height="180" fill="#0a0a0b"/><rect width="160" height="180" fill="url(#gi4)"/><g transform="translate(80,82)"><ellipse cx="0" cy="6" rx="22" ry="16" fill="#3FA66B" opacity="0.2"/><ellipse cx="0" cy="6" rx="22" ry="16" fill="none" stroke="#3FA66B" stroke-width="2.5"/><circle cx="0" cy="-20" r="6" fill="#FFC93C"/><line x1="0" y1="-14" x2="0" y2="-10" stroke="#FFC93C" stroke-width="2" opacity="0.7"/></g><line x1="20" y1="148" x2="140" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="80" y="166" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="rgba(232,228,216,0.55)" letter-spacing="2">GÉOGRAPHIE</text></svg></div>
+        <div class="icon-name">GÉOGRAPHIE</div>
+      </div>
+      <div class="icon-card" onclick="downloadSVG('icone_histoire')">
+        <div class="icon-preview"><svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="gi5" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.15"/></pattern></defs><rect width="160" height="180" fill="#0a0a0b"/><rect width="160" height="180" fill="url(#gi5)"/><g transform="translate(80,82)"><path d="M2 2 C14 -12 32 -12 32 2 C32 20 14 32 0 26 C-16 18 -22 0 -14 -12 C-4 -24 12 -26 24 -18" fill="none" stroke="#00C2C7" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="-18" r="4" fill="#00C2C7"/></g><line x1="20" y1="148" x2="140" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="80" y="166" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="rgba(232,228,216,0.55)" letter-spacing="2">HISTOIRE</text></svg></div>
+        <div class="icon-name">HISTOIRE</div>
+      </div>
+      <div class="icon-card" onclick="downloadSVG('icone_donnees')">
+        <div class="icon-preview"><svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="gi6" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.15"/></pattern></defs><rect width="160" height="180" fill="#0a0a0b"/><rect width="160" height="180" fill="url(#gi6)"/><g transform="translate(80,82)"><line x1="0" y1="-26" x2="-24" y2="18" stroke="rgba(255,255,255,0.25)" stroke-width="2"/><line x1="0" y1="-26" x2="24" y2="18" stroke="rgba(255,255,255,0.25)" stroke-width="2"/><line x1="-24" y1="18" x2="24" y2="18" stroke="rgba(255,255,255,0.25)" stroke-width="2"/><circle cx="0" cy="-26" r="6" fill="#003E6B" stroke="#00C2C7" stroke-width="2.5"/><circle cx="-24" cy="18" r="6" fill="#003E6B" stroke="#FFC93C" stroke-width="2.5"/><circle cx="24" cy="18" r="6" fill="#003E6B" stroke="#FF6F61" stroke-width="2.5"/></g><line x1="20" y1="148" x2="140" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="80" y="166" text-anchor="middle" font-family="Courier New, monospace" font-size="10" fill="rgba(232,228,216,0.55)" letter-spacing="2">DONNÉES</text></svg></div>
+        <div class="icon-name">DONNÉES</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#aaa;font-family:'DM Mono',monospace">↑ Cliquer sur une icône pour la télécharger</p>
+  </div>
+
+  <!-- ── MOTIFS ── -->
+  <div class="section" id="motifs">
+    <div class="s-eyebrow">Visuels décoratifs</div>
+    <h2 class="s-title">Motifs CMS</h2>
+    <p class="s-sub">3 motifs pour enrichir les présentations, rapports et supports de communication. Usage libre avec attribution.</p>
+    <div class="motifs-grid">
+      <div class="motif-card">
+        <div class="motif-preview"><svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="t" width="20" height="20" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="20" y2="20" stroke="#00C2C7" stroke-width="0.7" opacity="0.35"/><line x1="20" y1="0" x2="0" y2="20" stroke="#FFC93C" stroke-width="0.4" opacity="0.2"/></pattern></defs><rect width="400" height="220" fill="#003E6B"/><rect width="400" height="220" fill="url(#t)"/><text x="200" y="96" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="18" fill="#fff" opacity="0.9">Fond institutionnel</text><text x="200" y="122" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#00C2C7" letter-spacing="3" opacity="0.8">Slides · White Paper · Certificat</text></svg></div>
+        <div class="motif-info"><span class="logo-name">TRESSAGE — fond institutionnel</span><button class="dl-btn" onclick="downloadSVG('motif_tressage')">↓ SVG</button></div>
+      </div>
+      <div class="motif-card">
+        <div class="motif-preview"><svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#111114"/><path d="M0,80 C50,55 100,55 150,80 C200,105 250,105 300,80 C350,55 380,58 400,68" fill="none" stroke="#00C2C7" stroke-width="3.5" opacity="0.9"/><path d="M0,100 C50,75 100,75 150,100 C200,125 250,125 300,100 C350,75 380,78 400,88" fill="none" stroke="#00C2C7" stroke-width="2" opacity="0.5"/><path d="M0,120 C50,95 100,95 150,120 C200,145 250,145 300,120 C350,95 380,98 400,108" fill="none" stroke="#FFC93C" stroke-width="2.5" opacity="0.8"/><path d="M0,140 C50,115 100,115 150,140 C200,165 250,165 300,140 C350,115 380,118 400,128" fill="none" stroke="#FFC93C" stroke-width="1.2" opacity="0.4"/><path d="M0,160 C50,135 100,135 150,160 C200,185 250,185 300,160 C350,135 380,138 400,148" fill="none" stroke="#FF6F61" stroke-width="2" opacity="0.6"/></svg></div>
+        <div class="motif-info"><span class="logo-name">ONDES — vagues caribéennes</span><button class="dl-btn" onclick="downloadSVG('motif_ondes')">↓ SVG</button></div>
+      </div>
+      <div class="motif-card">
+        <div class="motif-preview"><svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><defs><filter id="glow2"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="220" fill="#111114"/><line x1="120" y1="60" x2="200" y2="40" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="200" y1="40" x2="280" y2="70" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="120" y1="60" x2="80" y2="120" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="120" y1="60" x2="200" y2="110" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="200" y1="40" x2="200" y2="110" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="280" y1="70" x2="320" y2="140" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="200" y1="110" x2="240" y2="170" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="80" y1="120" x2="160" y2="170" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><circle cx="200" cy="40" r="9" fill="#003E6B" stroke="#00C2C7" stroke-width="2.5" filter="url(#glow2)"/><circle cx="120" cy="60" r="7" fill="#003E6B" stroke="#FFC93C" stroke-width="2.5"/><circle cx="280" cy="70" r="6" fill="#003E6B" stroke="#00C2C7" stroke-width="2"/><circle cx="80" cy="120" r="6" fill="#003E6B" stroke="#3FA66B" stroke-width="2"/><circle cx="200" cy="110" r="8" fill="#003E6B" stroke="#FFC93C" stroke-width="2.5"/><circle cx="160" cy="170" r="7" fill="#003E6B" stroke="#00C2C7" stroke-width="2.5"/></svg></div>
+        <div class="motif-info"><span class="logo-name">RÉSEAU — graphe de données</span><button class="dl-btn" onclick="downloadSVG('motif_reseau')">↓ SVG</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COULEURS ── -->
+  <div class="section" id="couleurs">
+    <div class="s-eyebrow">Charte couleurs</div>
+    <h2 class="s-title">Palette officielle CMS</h2>
+    <p class="s-sub">Ne modifiez pas les couleurs dans les logos et badges. Ces valeurs sont strictement définies. Cliquez sur un code hex pour le copier.</p>
+    <div class="colors-grid">
+      <div class="color-card"><div class="color-swatch" style="background:#003E6B"></div><div class="color-info"><div class="color-name">Navy</div><div class="color-hex" onclick="copyHex('#003E6B',this)">#003E6B</div><div class="color-role">Couleur primaire</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background:#00C2C7"></div><div class="color-info"><div class="color-name">Teal</div><div class="color-hex" onclick="copyHex('#00C2C7',this)">#00C2C7</div><div class="color-role">Accent principal</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background:#FFC93C"></div><div class="color-info"><div class="color-name">Gold</div><div class="color-hex" onclick="copyHex('#FFC93C',this)">#FFC93C</div><div class="color-role">Accent secondaire</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background:#FF6F61"></div><div class="color-info"><div class="color-name">Coral</div><div class="color-hex" onclick="copyHex('#FF6F61',this)">#FF6F61</div><div class="color-role">Accent chaleur</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background:#3FA66B"></div><div class="color-info"><div class="color-name">Green</div><div class="color-hex" onclick="copyHex('#3FA66B',this)">#3FA66B</div><div class="color-role">Accent nature</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background:#0a0a0b"></div><div class="color-info"><div class="color-name">Noir CMS</div><div class="color-hex" onclick="copyHex('#0a0a0b',this)">#0a0a0b</div><div class="color-role">Fond sombre</div></div></div>
+    </div>
+  </div>
+
+  <!-- ── TYPOGRAPHIE ── -->
+  <div class="section" id="typographie">
+    <div class="s-eyebrow">Typographie</div>
+    <h2 class="s-title">Polices officielles</h2>
+    <p class="s-sub">Disponibles gratuitement sur Google Fonts. À utiliser pour tous les documents officiels CMS.</p>
+    <div class="typo-samples">
+      <div class="typo-card">
+        <div class="typo-label">TITRES — DM Serif Display</div>
+        <div class="typo-sample" style="font-family:'DM Serif Display',Georgia,serif;font-size:32px;color:#003E6B;line-height:1.1">Caribbean<br/><em style="color:#00C2C7">Metadata</em></div>
+        <div style="font-size:12px;color:#aaa;font-family:'DM Mono',monospace;margin-top:8px">Titres, hero, accroches</div>
+        <a href="https://fonts.google.com/specimen/DM+Serif+Display" target="_blank" style="font-size:11px;color:#003E6B;font-family:'DM Mono',monospace;text-decoration:none;display:inline-block;margin-top:8px;padding:4px 10px;border:1px solid rgba(0,62,107,0.2);border-radius:3px">↗ Google Fonts</a>
+      </div>
+      <div class="typo-card">
+        <div class="typo-label">CORPS — DM Sans</div>
+        <div class="typo-sample" style="font-family:'DM Sans',sans-serif;font-size:15px;color:#333;line-height:1.7">Le Caribbean Metadata Standard est le premier cadre ouvert pour décrire et certifier les œuvres caribéennes sur les plateformes mondiales.</div>
+        <div style="font-size:12px;color:#aaa;font-family:'DM Mono',monospace;margin-top:8px">Corps de texte, descriptions</div>
+        <a href="https://fonts.google.com/specimen/DM+Sans" target="_blank" style="font-size:11px;color:#003E6B;font-family:'DM Mono',monospace;text-decoration:none;display:inline-block;margin-top:8px;padding:4px 10px;border:1px solid rgba(0,62,107,0.2);border-radius:3px">↗ Google Fonts</a>
+      </div>
+      <div class="typo-card">
+        <div class="typo-label">CODE & LABELS — DM Mono</div>
+        <div class="typo-sample" style="font-family:'DM Mono',monospace;font-size:13px;color:#003E6B;line-height:1.8;letter-spacing:1px">CMS V2.0 · CC-BY 4.0<br/>CARIBBEANMETADATA.ORG<br/>cms:cultural_markers</div>
+        <div style="font-size:12px;color:#aaa;font-family:'DM Mono',monospace;margin-top:8px">Labels, codes, tags, UI</div>
+        <a href="https://fonts.google.com/specimen/DM+Mono" target="_blank" style="font-size:11px;color:#003E6B;font-family:'DM Mono',monospace;text-decoration:none;display:inline-block;margin-top:8px;padding:4px 10px;border:1px solid rgba(0,62,107,0.2);border-radius:3px">↗ Google Fonts</a>
+      </div>
+      <div class="typo-card">
+        <div class="typo-label">FALLBACK — Georgia + Courier New</div>
+        <div class="typo-sample" style="font-family:Georgia,serif;font-size:18px;color:#003E6B;line-height:1.4">CMS</div>
+        <div class="typo-sample" style="font-family:'Courier New',monospace;font-size:12px;color:#555;letter-spacing:3px;margin-top:8px">CARIBBEAN METADATA STANDARD</div>
+        <div style="font-size:12px;color:#aaa;font-family:'DM Mono',monospace;margin-top:8px">Présents dans les SVG (logos, badges)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BOILERPLATE ── -->
+  <div class="section" id="boilerplate">
+    <div class="s-eyebrow">Textes officiels</div>
+    <h2 class="s-title">Boilerplate — textes prêts à l'emploi</h2>
+    <p class="s-sub">Copiez-collez ces textes tels quels dans vos communiqués, signatures, présentations. Ne les modifiez pas sans accord du Caribwood Language Lab.</p>
+
+    <div class="bp-tabs">
+      <button class="bp-tab active" onclick="showBP('fr',this)">FRANÇAIS</button>
+      <button class="bp-tab" onclick="showBP('en',this)">ENGLISH</button>
+      <button class="bp-tab" onclick="showBP('es',this)">ESPAÑOL</button>
+    </div>
+
+    <div class="bp-panel active" id="bp-fr">
+      <div class="bp-block">
+        <div class="bp-size">VERSION COURTE — 1 phrase (signature, bio)</div>
+        <div class="bp-text" id="bp-fr-short">Le Caribbean Metadata Standard (CMS) est le premier standard ouvert de métadonnées pour les contenus culturels caribéens — développé par le Caribwood Language Lab, Guadeloupe.<button class="copy-bp" onclick="copyBP('bp-fr-short',this)">Copier</button></div>
+      </div>
+      <div class="bp-block">
+        <div class="bp-size">VERSION MOYENNE — 2-3 phrases (communiqué de presse)</div>
+        <div class="bp-text" id="bp-fr-med">Le Caribbean Metadata Standard (CMS) est le premier cadre ouvert de métadonnées conçu pour décrire, certifier et indexer les œuvres caribéennes sur les plateformes mondiales. Développé par le Caribwood Language Lab (Guadeloupe), le CMS couvre 10 langues caribéennes, 27 marqueurs culturels et 20 territoires. Standard libre sous licence CC-BY 4.0 — caribbeanmetadata.org<button class="copy-bp" onclick="copyBP('bp-fr-med',this)">Copier</button></div>
+      </div>
+      <div class="bp-block">
+        <div class="bp-size">VERSION LONGUE — 1 paragraphe (dossier institutionnel)</div>
+        <div class="bp-text" id="bp-fr-long">Le Caribbean Metadata Standard (CMS v2.0) est le premier standard numérique ouvert pour les contenus culturels caribéens. Développé par le Caribwood Language Lab depuis la Guadeloupe, le CMS définit six familles de métadonnées — linguistique, culturelle, narrative, rythmique, géographique et socio-historique — couvrant 10 langues, 27 marqueurs culturels et 20 territoires. Conçu pour être interopérable avec Dublin Core, schema.org et EBUCore, il est mis à disposition gratuitement de toute institution, créateur ou plateforme sous licence Creative Commons CC-BY 4.0. Il vise à structurer la visibilité numérique des œuvres caribéennes sur les plateformes mondiales, dans un esprit de souveraineté culturelle et d'intérêt général régional. Reconnaissance internationale en cours : IFLA METATEC, CROSQ CARICOM, AFNOR/ISO TC 46, UNESCO ICH, W3C. Site officiel : caribbeanmetadata.org<button class="copy-bp" onclick="copyBP('bp-fr-long',this)">Copier</button></div>
+      </div>
+    </div>
+
+    <div class="bp-panel" id="bp-en">
+      <div class="bp-block">
+        <div class="bp-size">SHORT VERSION — 1 sentence (signature, bio)</div>
+        <div class="bp-text" id="bp-en-short">The Caribbean Metadata Standard (CMS) is the first open metadata standard for Caribbean cultural content — developed by the Caribwood Language Lab, Guadeloupe.<button class="copy-bp" onclick="copyBP('bp-en-short',this)">Copy</button></div>
+      </div>
+      <div class="bp-block">
+        <div class="bp-size">MEDIUM VERSION — 2-3 sentences (press release)</div>
+        <div class="bp-text" id="bp-en-med">The Caribbean Metadata Standard (CMS) is the first open metadata framework designed to describe, certify and index Caribbean works on global platforms. Developed by the Caribwood Language Lab (Guadeloupe), the CMS covers 10 Caribbean languages, 27 cultural markers and 20 territories. Open standard under CC-BY 4.0 licence — caribbeanmetadata.org<button class="copy-bp" onclick="copyBP('bp-en-med',this)">Copy</button></div>
+      </div>
+      <div class="bp-block">
+        <div class="bp-size">LONG VERSION — 1 paragraph (institutional dossier)</div>
+        <div class="bp-text" id="bp-en-long">The Caribbean Metadata Standard (CMS v2.0) is the first open digital standard for Caribbean cultural content. Developed by the Caribwood Language Lab from Guadeloupe, the CMS defines six metadata families — linguistic, cultural, narrative, rhythmic, geographic and socio-historical — covering 10 languages, 27 cultural markers and 20 territories. Designed to be interoperable with Dublin Core, schema.org and EBUCore, it is made freely available to any institution, creator or platform under the Creative Commons CC-BY 4.0 licence. Its goal is to structure the digital visibility of Caribbean works on global platforms, in a spirit of cultural sovereignty and regional public interest. International recognition in progress: IFLA METATEC, CROSQ CARICOM, AFNOR/ISO TC 46, UNESCO ICH, W3C. Official website: caribbeanmetadata.org<button class="copy-bp" onclick="copyBP('bp-en-long',this)">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="bp-panel" id="bp-es">
+      <div class="bp-block">
+        <div class="bp-size">VERSIÓN CORTA — 1 frase (firma, bio)</div>
+        <div class="bp-text" id="bp-es-short">El Caribbean Metadata Standard (CMS) es el primer estándar abierto de metadatos para contenidos culturales caribeños — desarrollado por el Caribwood Language Lab, Guadalupe.<button class="copy-bp" onclick="copyBP('bp-es-short',this)">Copiar</button></div>
+      </div>
+      <div class="bp-block">
+        <div class="bp-size">VERSIÓN MEDIA — 2-3 frases (comunicado de prensa)</div>
+        <div class="bp-text" id="bp-es-med">El Caribbean Metadata Standard (CMS) es el primer marco abierto de metadatos diseñado para describir, certificar e indexar obras caribeñas en plataformas mundiales. Desarrollado por el Caribwood Language Lab (Guadalupe), el CMS cubre 10 lenguas caribeñas, 27 marcadores culturales y 20 territorios. Estándar abierto bajo licencia CC-BY 4.0 — caribbeanmetadata.org<button class="copy-bp" onclick="copyBP('bp-es-med',this)">Copiar</button></div>
+      </div>
+      <div class="bp-block">
+        <div class="bp-size">VERSIÓN LARGA — 1 párrafo (dossier institucional)</div>
+        <div class="bp-text" id="bp-es-long">El Caribbean Metadata Standard (CMS v2.0) es el primer estándar digital abierto para contenidos culturales caribeños. Desarrollado por el Caribwood Language Lab desde Guadalupe, el CMS define seis familias de metadatos — lingüística, cultural, narrativa, rítmica, geográfica y sociohistórica — cubriendo 10 lenguas, 27 marcadores culturales y 20 territorios. Diseñado para ser interoperable con Dublin Core, schema.org y EBUCore, se pone a disposición gratuitamente de cualquier institución, creador o plataforma bajo licencia Creative Commons CC-BY 4.0. Su objetivo es estructurar la visibilidad digital de las obras caribeñas en las plataformas mundiales, en un espíritu de soberanía cultural e interés general regional. Reconocimiento internacional en curso: IFLA METATEC, CROSQ CARICOM, AFNOR/ISO TC 46, UNESCO ICH, W3C. Sitio oficial: caribbeanmetadata.org<button class="copy-bp" onclick="copyBP('bp-es-long',this)">Copiar</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RÈGLES D'USAGE ── -->
+  <div class="section" id="regles">
+    <div class="s-eyebrow">Cadre d'utilisation</div>
+    <h2 class="s-title">Règles d'usage</h2>
+    <p class="s-sub">Licence CC-BY 4.0 — usage libre avec attribution. Ces règles protègent l'intégrité visuelle du standard.</p>
+    <div class="rules-grid">
+      <div class="rule-card ok">
+        <div class="rule-icon">✅</div>
+        <div class="rule-title">Autorisé</div>
+        <ul class="rule-list">
+          <li>Utiliser les logos dans vos communications sur le CMS</li>
+          <li>Intégrer les badges sur vos sites et documents</li>
+          <li>Reproduire les textes boilerplate tels quels</li>
+          <li>Adapter les motifs pour vos présentations</li>
+          <li>Traduire les textes avec mention de la source</li>
+        </ul>
+      </div>
+      <div class="rule-card nok">
+        <div class="rule-icon">🚫</div>
+        <div class="rule-title">Interdit</div>
+        <ul class="rule-list">
+          <li>Modifier les couleurs des logos et badges</li>
+          <li>Déformer ou redimensionner de façon non proportionnelle</li>
+          <li>Utiliser le badge CMS sans certification obtenue</li>
+          <li>Associer les visuels à des contenus commerciaux non liés au CMS</li>
+          <li>Prétendre à une affiliation CMS non établie</li>
+        </ul>
+      </div>
+    </div>
+    <div style="background:#f7f8fa;border-radius:8px;padding:20px 24px;font-size:13px;color:#555;line-height:1.8;border:1px solid var(--border)">
+      <strong style="color:var(--navy)">Attribution requise :</strong> "Caribbean Metadata Standard — Caribwood Language Lab · caribbeanmetadata.org · CC-BY 4.0"<br>
+      Pour toute question sur les droits d'usage : <a href="mailto:contact@caribbeanmetadata.org" style="color:var(--navy);font-weight:600">contact@caribbeanmetadata.org</a>
+    </div>
+  </div>
+
+  <!-- ── DOWNLOAD ── -->
+  <div class="dl-section">
+    <div class="dl-section-content">
+      <h2>Tout le kit en un clic.</h2>
+      <p>16 fichiers SVG · 3 logos · 4 badges · 6 icônes · 3 motifs · Boilerplates FR/EN/ES · Charte couleurs</p>
+    </div>
+    <div class="dl-section-btns">
+      <a href="#" onclick="downloadKit()" class="btn-dl-main">↓ Télécharger le kit complet</a>
+      <a href="https://github.com/heso73/caribbeanmetadata.org/tree/main/kit" target="_blank" class="btn-dl-outline">↗ GitHub</a>
+    </div>
+  </div>
+
+</main>
+
+<footer><!-- nav-fix.js --></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DONNÉES SVG (inline pour téléchargement) ─────────────────────────────────
+const SVG_FILES = {
+  'CMS_logo_dark': `<svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0L0 0 0 20" fill="none" stroke="#00C2C7" stroke-width="0.2" opacity="0.2"/></pattern></defs><rect width="480" height="200" fill="#0a0a0b"/><rect width="480" height="200" fill="url(#grid)"/><path d="M 80 35 Q 18 100 80 165" fill="none" stroke="#00C2C7" stroke-width="9" stroke-linecap="round"/><path d="M 95 22 Q 10 100 95 178" fill="none" stroke="#FFC93C" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/><circle cx="80" cy="35" r="7" fill="#FFC93C"/><circle cx="80" cy="165" r="7" fill="#FFC93C"/><circle cx="34" cy="100" r="5" fill="#FF6F61"/><circle cx="52" cy="62" r="4" fill="#3FA66B"/><circle cx="52" cy="138" r="4" fill="#00C2C7"/><text x="130" y="125" font-family="Georgia, serif" font-weight="700" font-size="82" fill="#FFFFFF" letter-spacing="-2">CMS</text><line x1="130" y1="148" x2="460" y2="148" stroke="#FFC93C" stroke-width="1.5" opacity="0.5"/><text x="132" y="170" font-family="Courier New, monospace" font-size="11" fill="#FFC93C" letter-spacing="4" opacity="0.85">CARIBBEAN METADATA STANDARD</text><text x="132" y="188" font-family="Courier New, monospace" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">Structurer la visibilité culturelle caribéenne · v2.0</text></svg>`,
+  'CMS_logo_light': `<svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="200" fill="#FFFFFF"/><path d="M 80 35 Q 18 100 80 165" fill="none" stroke="#003E6B" stroke-width="9" stroke-linecap="round"/><path d="M 95 22 Q 10 100 95 178" fill="none" stroke="#00C2C7" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/><circle cx="80" cy="35" r="7" fill="#FFC93C"/><circle cx="80" cy="165" r="7" fill="#FFC93C"/><circle cx="34" cy="100" r="5" fill="#FF6F61"/><circle cx="52" cy="62" r="4" fill="#3FA66B"/><circle cx="52" cy="138" r="4" fill="#00C2C7"/><text x="130" y="125" font-family="Georgia, serif" font-weight="700" font-size="82" fill="#003E6B" letter-spacing="-2">CMS</text><line x1="130" y1="148" x2="460" y2="148" stroke="#FFC93C" stroke-width="1.5" opacity="0.8"/><text x="132" y="170" font-family="Courier New, monospace" font-size="11" fill="#003E6B" letter-spacing="4" opacity="0.85">CARIBBEAN METADATA STANDARD</text><text x="132" y="188" font-family="Courier New, monospace" font-size="9" fill="#2A2A2A" letter-spacing="2" opacity="0.5">Structurer la visibilité culturelle caribéenne · v2.0</text></svg>`,
+  'CMS_logo_transparent': `<svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg"><path d="M 80 35 Q 18 100 80 165" fill="none" stroke="#00C2C7" stroke-width="9" stroke-linecap="round"/><path d="M 95 22 Q 10 100 95 178" fill="none" stroke="#FFC93C" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/><circle cx="80" cy="35" r="7" fill="#FFC93C"/><circle cx="80" cy="165" r="7" fill="#FFC93C"/><circle cx="34" cy="100" r="5" fill="#FF6F61"/><circle cx="52" cy="62" r="4" fill="#3FA66B"/><circle cx="52" cy="138" r="4" fill="#00C2C7"/><text x="130" y="125" font-family="Georgia, serif" font-weight="700" font-size="82" fill="#003E6B" letter-spacing="-2">CMS</text><line x1="130" y1="148" x2="460" y2="148" stroke="#FFC93C" stroke-width="1.5" opacity="0.8"/><text x="132" y="170" font-family="Courier New, monospace" font-size="11" fill="#003E6B" letter-spacing="4" opacity="0.85">CARIBBEAN METADATA STANDARD</text><text x="132" y="188" font-family="Courier New, monospace" font-size="9" fill="#2A2A2A" letter-spacing="2" opacity="0.5">Structurer la visibilité culturelle caribéenne · v2.0</text></svg>`,
+};
+
+function downloadSVG(name) {
+  const content = SVG_FILES[name];
+  if (!content) { showToast('SVG disponible sur GitHub'); return; }
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([content], {type:'image/svg+xml'}));
+  a.download = name + '.svg';
+  a.click();
+  showToast('↓ ' + name + '.svg');
+}
+
+function downloadKit() {
+  showToast('Kit disponible sur GitHub → heso73/caribbeanmetadata.org/tree/main/kit');
+}
+
+// ── COULEURS ──────────────────────────────────────────────────────────────────
+function copyHex(hex, el) {
+  navigator.clipboard.writeText(hex).then(() => {
+    const orig = el.textContent;
+    el.textContent = '✓ Copié';
+    el.style.color = '#00C2C7';
+    setTimeout(() => { el.textContent = orig; el.style.color = ''; }, 1500);
+  });
+}
+
+// ── BOILERPLATE ───────────────────────────────────────────────────────────────
+function showBP(lang, btn) {
+  document.querySelectorAll('.bp-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.bp-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('bp-' + lang).classList.add('active');
+  btn.classList.add('active');
+}
+
+function copyBP(id, btn) {
+  const el = document.getElementById(id);
+  const text = el.childNodes[0].textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓';
+    btn.classList.add('done');
+    showToast('Texte copié !')
+    setTimeout(() => { btn.textContent = btn.textContent.includes('Copy') ? 'Copy' : btn.textContent.includes('Copiar') ? 'Copiar' : 'Copier'; btn.classList.remove('done'); }, 2000);
+  });
+}
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+  document.querySelectorAll('.kn-btn').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+let _tt;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(_tt); _tt = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Active nav sur scroll
+const sections = ['logos','badges','icones','motifs','couleurs','typographie','boilerplate','regles'];
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = sections.indexOf(e.target.id);
+      if (idx !== -1) {
+        document.querySelectorAll('.kn-btn').forEach((b,i) => b.classList.toggle('active', i === idx));
+      }
+    }
+  });
+}, {threshold: 0.3});
+sections.forEach(id => { const el = document.getElementById(id); if(el) observer.observe(el); });
+</script>
+
+<script src="nav-fix.js"></script>
+</body>
+</html>
