@@ -14,7 +14,7 @@
   const basePage = page.replace(/-en\.html$/, '').replace(/-es\.html$/, '').replace(/\.html$/, '');
 
   // Pages sans version ES — restent sur la version FR
-  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue'];
+  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue', 'kit'];
   // Pages sans version EN
   const NO_EN = ['glossaire', 'architecture', 'press'];
 
@@ -31,6 +31,7 @@
       { href: 'families.html',     label: 'Les 6 familles' },
       { href: 'resources.html',    label: 'Ressources' },
       { href: 'catalogue.html',    label: 'Catalogue' },
+      { href: 'kit.html',          label: 'Kit Média' },
       { href: 'roadmap.html',      label: 'Roadmap' },
       { href: 'lab.html',          label: 'Language Lab' },
       { href: 'collaborate.html',  label: 'Collaborer' },
@@ -45,6 +46,7 @@
       { href: 'families-en.html',    label: 'The 6 Families' },
       { href: 'resources.html',      label: 'Resources' },
       { href: 'catalogue.html',      label: 'Catalogue' },
+      { href: 'kit.html',            label: 'Media Kit' },
       { href: 'roadmap.html',        label: 'Roadmap' },
       { href: 'lab-en.html',         label: 'Language Lab' },
       { href: 'collaborate-en.html', label: 'Collaborate' },
@@ -59,6 +61,7 @@
       { href: 'families-es.html',    label: 'Las 6 familias' },
       { href: 'resources.html',      label: 'Recursos' },
       { href: 'catalogue.html',      label: 'Catálogo' },
+      { href: 'kit.html',            label: 'Kit de Medios' },
       { href: 'roadmap.html',        label: 'Roadmap' },
       { href: 'lab-es.html',         label: 'Language Lab' },
       { href: 'collaborate-es.html', label: 'Colaborar' },
@@ -79,6 +82,7 @@
           { href: 'families.html',     label: 'Les 6 familles' },
           { href: 'resources.html',    label: 'Documentation' },
           { href: 'catalogue.html',    label: 'Catalogue CMS' },
+          { href: 'kit.html',          label: 'Kit Média' },
           { href: 'declaration.html',  label: 'Déclaration fondatrice' },
           { href: 'roadmap.html',      label: 'Roadmap 2026–2028' },
         ]},
@@ -106,6 +110,7 @@
           { href: 'families-en.html',    label: 'The 6 Families' },
           { href: 'resources.html',      label: 'Documentation' },
           { href: 'catalogue.html',      label: 'CMS Catalogue' },
+          { href: 'kit.html',            label: 'Media Kit' },
           { href: 'declaration-en.html', label: 'Founding Declaration' },
           { href: 'roadmap.html',        label: 'Roadmap 2026–2028' },
         ]},
@@ -133,6 +138,7 @@
           { href: 'families-es.html',    label: 'Las 6 familias' },
           { href: 'resources.html',      label: 'Documentación' },
           { href: 'catalogue.html',      label: 'Catálogo CMS' },
+          { href: 'kit.html',            label: 'Kit de Medios' },
           { href: 'declaration-es.html', label: 'Declaración Fundadora' },
           { href: 'roadmap.html',        label: 'Roadmap 2026–2028' },
         ]},
