@@ -256,8 +256,8 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
       <div class="doc-tag primary">Document fondateur</div>
       <h3>White Paper CMS</h3>
       <p>Le document de référence du standard — vision, doctrine, architecture des 6 familles, cadre d'implémentation et bénéfices pour l'écosystème caribéen.</p>
-      <div class="doc-meta">VERSION <span>CMS v1.0 — 2026</span></div>
-      <a href="CMS_WhitePaper_v1.0.pdf" class="doc-link" download>Télécharger le PDF →</a>
+      <div class="doc-meta">VERSION <span>CMS v2.0 — 2026</span></div>
+      <a href="https://github.com/heso73/cms-nlp-corpus/raw/main/docs/CMS_Fiche_Institutionnelle_FR.docx" class="doc-link" download>Télécharger le DOCX →</a>
     </div>
 
     <div class="doc-card">
@@ -287,7 +287,50 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
   </div>
 
   <!-- ══ VALIDATEUR HIGHLIGHT — NOUVEAU ══ -->
-  <div class="section-label">Outil officiel · Nouveau</div>
+  
+        <!-- RESSOURCES TECHNIQUES -->
+        <div class="doc-card" style="margin-top:16px">
+          <div class="doc-tag tech">Ressources techniques</div>
+          <h3>Schéma officiel JSON — CMS v2.0</h3>
+          <p>Schéma JSON complet du standard CMS v2.0 — champs, vocabulaires contrôlés, règles de validation, alignements Dublin Core / schema.org / EBUCore.</p>
+          <div class="doc-meta">
+            <span>>VERSION <span>CMS v2.0 — Verrouillé juin 2026</span></span>
+            <span class="gh-sync-badge show">✓ Validé</span>
+          </div>
+          <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json" class="doc-link" target="_blank">Voir le schéma JSON →</a>
+        </div>
+
+        <div class="doc-card" style="margin-top:16px">
+          <div class="doc-tag tech">Corpus open data</div>
+          <h3>Corpus CMS v2.0 — 110 enregistrements</h3>
+          <p>Premier corpus culturel caribéen structuré — 110 enregistrements validés, 10 langues, 27 marqueurs culturels, 17 territoires. Licence CC-BY 4.0.</p>
+          <div class="doc-meta">
+            <span>>FORMAT <span>JSONL · CC-BY 4.0</span></span>
+          </div>
+          <a href="https://github.com/heso73/cms-nlp-corpus" class="doc-link" target="_blank">Accéder au corpus GitHub →</a>
+        </div>
+
+        <div class="doc-card" style="margin-top:16px">
+          <div class="doc-tag tech">API publique</div>
+          <h3>CMS API v1 — Endpoint public</h3>
+          <p>API REST publique pour vérifier les certifications, consulter les marqueurs culturels et interroger le registre officiel. Gratuite, sans authentification.</p>
+          <div class="doc-meta">
+            <span>>STATUT <span>Opérationnelle</span></span>
+          </div>
+          <a href="https://cms-api.small-disk-3275.workers.dev/api/v1" class="doc-link" target="_blank">Tester l'API →</a>
+        </div>
+
+        <div class="doc-card" style="margin-top:16px">
+          <div class="doc-tag tech">Validateur</div>
+          <h3>Script de validation officiel</h3>
+          <p>Validateur Python officiel du corpus CMS v2.0 — vérifie les 8 champs requis, les vocabulaires contrôlés, le format des identifiants et les dates ISO 8601.</p>
+          <div class="doc-meta">
+            <span>>LANGAGE <span>Python 3</span></span>
+          </div>
+          <a href="https://github.com/heso73/cms-nlp-corpus/blob/main/scripts/validate_corpus.py" class="doc-link" target="_blank">Voir le validateur →</a>
+        </div>
+
+<div class="section-label">Outil officiel · Nouveau</div>
   <h2 class="section-title">Certifiez votre contenu caribéen</h2>
 
   <div class="validator-highlight">
