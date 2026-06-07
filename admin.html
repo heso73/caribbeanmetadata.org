@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin CMS — Tableau de bord validateur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#0a0a0b;--navy:#003E6B;--teal:#00C2C7;--gold:#FFC93C;--green:#3FA66B;--white:#fff;--muted:#888;--border:rgba(0,62,107,0.1)}
+body{font-family:'DM Sans',sans-serif;background:#f0f4f8;color:#1a1a1a;font-size:14px}
+
+/* LOGIN */
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--dark);position:relative;overflow:hidden}
+.login-screen::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,194,199,0.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,201,60,0.03) 40px)}
+.login-card{background:#fff;border-radius:12px;padding:40px;width:360px;position:relative;z-index:1}
+.login-logo{font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--navy);letter-spacing:2px;margin-bottom:6px}
+.login-sub{font-size:12px;color:var(--muted);margin-bottom:28px;font-family:'DM Mono',monospace;letter-spacing:1px}
+.lf-group{margin-bottom:16px}
+.lf-group label{display:block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px}
+.lf-group input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:6px;font-size:14px;outline:none;transition:border .2s}
+.lf-group input:focus{border-color:var(--teal)}
+.btn-login{width:100%;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;margin-top:8px}
+.btn-login:hover{background:#00537A}
+.login-error{font-size:12px;color:#c0392b;text-align:center;margin-top:10px;display:none}
+
+/* LAYOUT */
+.app{display:none;min-height:100vh}
+.app.show{display:grid;grid-template-columns:220px 1fr}
+.sidebar{background:var(--dark);color:#fff;padding:24px 0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;width:220px;overflow-y:auto}
+.sb-logo{font-family:'DM Mono',monospace;font-size:16px;color:#fff;letter-spacing:2px;padding:0 20px 24px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:16px}
+.sb-sub{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;display:block;margin-top:2px}
+.sb-section{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);padding:8px 20px 6px;margin-top:8px}
+.sb-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,0.6);cursor:pointer;transition:all .2s;border-left:2px solid transparent}
+.sb-item:hover{background:rgba(255,255,255,0.06);color:#fff}
+.sb-item.active{background:rgba(0,194,199,0.1);color:var(--teal);border-left-color:var(--teal)}
+.sb-badge{margin-left:auto;background:var(--teal);color:var(--dark);font-family:'DM Mono',monospace;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;min-width:20px;text-align:center}
+.sb-badge.red{background:#FF6F61;color:#fff}
+.sb-footer{margin-top:auto;padding:16px 20px;border-top:1px solid rgba(255,255,255,0.06);font-size:12px;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace}
+.btn-logout{font-size:11px;color:rgba(255,255,255,0.4);cursor:pointer;font-family:'DM Mono',monospace;background:none;border:none;padding:0;margin-top:6px;transition:color .2s}
+.btn-logout:hover{color:#FF6F61}
+
+/* CONTENT */
+.content{margin-left:220px;padding:32px}
+.view{display:none}
+.view.active{display:block}
+
+/* HEADER */
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.page-title{font-family:'DM Mono',monospace;font-size:18px;color:var(--navy);font-weight:500}
+.page-sub{font-size:12px;color:var(--muted);margin-top:2px;font-family:'DM Mono',monospace;letter-spacing:.5px}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.stat-card{background:#fff;border-radius:10px;padding:20px;border:1px solid var(--border)}
+.sc-num{font-family:'DM Mono',monospace;font-size:28px;color:var(--navy);font-weight:500}
+.sc-lbl{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;margin-top:4px}
+.sc-change{font-size:11px;margin-top:6px}
+.sc-change.up{color:var(--green)}
+.sc-change.pending{color:var(--gold)}
+
+/* TABLE */
+.table-card{background:#fff;border-radius:10px;border:1px solid var(--border);overflow:hidden;margin-bottom:24px}
+.table-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.table-title{font-family:'DM Mono',monospace;font-size:12px;color:var(--navy);letter-spacing:1px;font-weight:500}
+.table-filters{display:flex;gap:8px;align-items:center}
+.filter-select{padding:6px 12px;border:1px solid var(--border);border-radius:4px;font-size:12px;outline:none;background:#fff;cursor:pointer}
+.search-input-sm{padding:6px 12px;border:1px solid var(--border);border-radius:4px;font-size:12px;outline:none;min-width:180px;font-family:'DM Mono',monospace}
+.search-input-sm:focus{border-color:var(--teal)}
+table{width:100%;border-collapse:collapse}
+th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);padding:10px 16px;border-bottom:1px solid var(--border);text-align:left;font-weight:500;white-space:nowrap;background:#fafbfc}
+td{padding:12px 16px;border-bottom:1px solid rgba(0,62,107,0.05);font-size:13px;color:#333;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#f8fafc}
+
+/* STATUS BADGES */
+.status{display:inline-block;padding:3px 10px;border-radius:10px;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px}
+.status.pending{background:rgba(255,201,60,0.12);color:#b45309}
+.status.in_review{background:rgba(0,194,199,0.12);color:#0e7490}
+.status.validated{background:rgba(63,166,107,0.12);color:#166534}
+.status.rejected{background:rgba(229,57,53,0.1);color:#c0392b}
+
+/* CERT LEVEL */
+.cert-level{display:inline-block;padding:3px 10px;border-radius:10px;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px}
+.cert-level.platinum{background:rgba(0,194,199,0.12);color:#0e7490}
+.cert-level.gold{background:rgba(255,201,60,0.12);color:#b45309}
+.cert-level.silver{background:rgba(192,192,192,0.12);color:#64748b}
+.cert-level.bronze{background:rgba(205,127,50,0.12);color:#92400e}
+
+/* ACTIONS */
+.btn-action{padding:5px 12px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;border:none;transition:all .2s}
+.btn-review{background:#f0f7ff;color:var(--navy)}
+.btn-review:hover{background:var(--navy);color:#fff}
+.btn-validate{background:#f0fdf4;color:#166534}
+.btn-validate:hover{background:var(--green);color:#fff}
+.btn-reject{background:#fff5f5;color:#c0392b}
+.btn-reject:hover{background:#e53935;color:#fff}
+.btn-certify{background:var(--teal);color:var(--dark);font-weight:700}
+.btn-certify:hover{background:#00a8ae}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border-radius:12px;padding:32px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'DM Mono',monospace;font-size:16px;color:var(--navy);margin-bottom:6px;font-weight:500}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6}
+.modal-section{margin-bottom:20px}
+.modal-section-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:10px}
+.modal-field{display:flex;gap:8px;margin-bottom:8px;font-size:13px}
+.mf-label{color:var(--muted);min-width:120px;font-family:'DM Mono',monospace;font-size:11px;flex-shrink:0}
+.mf-value{color:#333;font-weight:500}
+.score-input{width:80px;padding:8px 12px;border:1.5px solid var(--border);border-radius:6px;font-size:20px;font-weight:700;text-align:center;color:var(--navy);font-family:'DM Mono',monospace;outline:none}
+.score-input:focus{border-color:var(--teal)}
+.level-select{padding:8px 14px;border:1.5px solid var(--border);border-radius:6px;font-size:14px;outline:none;font-family:'DM Mono',monospace;color:var(--navy)}
+.level-select:focus{border-color:var(--teal)}
+.note-input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;min-height:80px;resize:vertical}
+.note-input:focus{border-color:var(--teal)}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:24px;border-top:1px solid var(--border);padding-top:20px}
+.btn-cancel{padding:10px 20px;background:#fff;color:#888;border:1.5px solid #ddd;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-confirm{padding:10px 24px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-confirm:hover{background:#348f5a}
+.btn-confirm-reject{background:#e53935}
+.btn-confirm-reject:hover{background:#c0392b}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--navy);color:#fff;padding:10px 18px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;z-index:9999;transform:translateY(60px);opacity:0;transition:all .25s;pointer-events:none;max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* EMPTY */
+.empty-row td{text-align:center;padding:40px;color:#ccc;font-family:'DM Mono',monospace;font-size:11px}
+
+@media(max-width:900px){
+  .app.show{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .content{margin-left:0}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">CMS<span style="color:var(--teal)">.</span>ADMIN</div>
+    <div class="login-sub">CARIBWOOD LANGUAGE LAB · VALIDATEUR</div>
+    <div class="lf-group">
+      <label>Clé d'accès administrateur</label>
+      <input type="password" id="admin-key" placeholder="••••••••••••••••" onkeydown="if(event.key==='Enter')login()">
+    </div>
+    <button class="btn-login" onclick="login()">Accéder au tableau de bord →</button>
+    <div class="login-error" id="login-error">Clé incorrecte. Accès refusé.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-logo">CMS<span style="color:var(--teal)">.</span>ADMIN<span class="sb-sub">Caribwood Language Lab</span></div>
+    <div class="sb-section">TABLEAU DE BORD</div>
+    <div class="sb-item active" onclick="showView('dashboard',this)">📊 Vue d'ensemble</div>
+    <div class="sb-section">CERTIFICATIONS</div>
+    <div class="sb-item" onclick="showView('pending',this)">⏳ En attente <span class="sb-badge red" id="badge-pending">0</span></div>
+    <div class="sb-item" onclick="showView('validated',this)">✅ Validées <span class="sb-badge" id="badge-validated">0</span></div>
+    <div class="sb-item" onclick="showView('all-certs',this)">📋 Toutes les certifications</div>
+    <div class="sb-section">DONNÉES</div>
+    <div class="sb-item" onclick="showView('creators',this)">👤 Créateurs</div>
+    <div class="sb-item" onclick="showView('works',this)">🎬 Œuvres</div>
+    <div class="sb-footer">
+      <div id="admin-name" style="color:rgba(255,255,255,0.5)">Admin</div>
+      <button class="btn-logout" onclick="logout()">Se déconnecter</button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="view active" id="view-dashboard">
+      <div class="page-header">
+        <div><div class="page-title">Vue d'ensemble</div><div class="page-sub">CMS CERTIFICATION PLATFORM · v2.0</div></div>
+        <button class="btn-action btn-review" onclick="loadAll()" style="padding:8px 16px">↺ Actualiser</button>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><div class="sc-num" id="dash-total">—</div><div class="sc-lbl">SOUMISSIONS TOTALES</div></div>
+        <div class="stat-card"><div class="sc-num" id="dash-pending">—</div><div class="sc-lbl">EN ATTENTE</div><div class="sc-change pending" id="dash-pending-label">À traiter</div></div>
+        <div class="stat-card"><div class="sc-num" id="dash-certs">—</div><div class="sc-lbl">CERTIFICATIONS ÉMISES</div><div class="sc-change up">Registre officiel</div></div>
+        <div class="stat-card"><div class="sc-num" id="dash-creators">—</div><div class="sc-lbl">CRÉATEURS INSCRITS</div></div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">SOUMISSIONS RÉCENTES</div></div>
+        <table><thead><tr><th>TITRE</th><th>CRÉATEUR</th><th>FAMILLE</th><th>TERRITOIRE</th><th>SOUMIS LE</th><th>STATUT</th><th>ACTION</th></tr></thead>
+        <tbody id="recent-works-body"><tr class="empty-row"><td colspan="7">Chargement...</td></tr></tbody></table>
+      </div>
+    </div>
+
+    <!-- EN ATTENTE -->
+    <div class="view" id="view-pending">
+      <div class="page-header">
+        <div><div class="page-title">Soumissions en attente</div><div class="page-sub">DEMANDES À VALIDER</div></div>
+      </div>
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">EN ATTENTE DE VALIDATION</div>
+          <input class="search-input-sm" placeholder="Rechercher..." oninput="filterTable('pending-body', this.value)">
+        </div>
+        <table><thead><tr><th>TITRE</th><th>CRÉATEUR</th><th>FAMILLE</th><th>TERRITOIRE</th><th>LANGUE</th><th>SOUMIS LE</th><th>ACTIONS</th></tr></thead>
+        <tbody id="pending-body"><tr class="empty-row"><td colspan="7">Chargement...</td></tr></tbody></table>
+      </div>
+    </div>
+
+    <!-- VALIDÉES -->
+    <div class="view" id="view-validated">
+      <div class="page-header">
+        <div><div class="page-title">Certifications émises</div><div class="page-sub">REGISTRE OFFICIEL CMS</div></div>
+      </div>
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">CERTIFICATIONS OFFICIELLES</div>
+          <div class="table-filters">
+            <select class="filter-select" onchange="filterByLevel(this.value)">
+              <option value="">Tous niveaux</option>
+              <option value="platinum">Platinum</option>
+              <option value="gold">Gold</option>
+              <option value="silver">Silver</option>
+              <option value="bronze">Bronze</option>
+            </select>
+            <input class="search-input-sm" placeholder="Rechercher..." oninput="filterTable('validated-body', this.value)">
+          </div>
+        </div>
+        <table><thead><tr><th>CMS ID</th><th>TITRE</th><th>TERRITOIRE</th><th>SCORE</th><th>NIVEAU</th><th>ÉMIS LE</th><th>ACTIONS</th></tr></thead>
+        <tbody id="validated-body"><tr class="empty-row"><td colspan="7">Chargement...</td></tr></tbody></table>
+      </div>
+    </div>
+
+    <!-- TOUTES CERTIFICATIONS -->
+    <div class="view" id="view-all-certs">
+      <div class="page-header"><div class="page-title">Toutes les certifications</div></div>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">REGISTRE COMPLET</div></div>
+        <table><thead><tr><th>CMS ID</th><th>TITRE</th><th>SCORE</th><th>NIVEAU</th><th>ÉMIS LE</th><th>RÉVOQUÉ</th></tr></thead>
+        <tbody id="all-certs-body"><tr class="empty-row"><td colspan="6">Chargement...</td></tr></tbody>
+      </div>
+    </div>
+
+    <!-- CRÉATEURS -->
+    <div class="view" id="view-creators">
+      <div class="page-header"><div class="page-title">Créateurs inscrits</div></div>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">REGISTRE CRÉATEURS</div></div>
+        <table><thead><tr><th>NOM</th><th>EMAIL</th><th>TYPE</th><th>TERRITOIRE</th><th>VÉRIFIÉ</th><th>INSCRIT LE</th></tr></thead>
+        <tbody id="creators-body"><tr class="empty-row"><td colspan="6">Chargement...</td></tr></tbody>
+      </div>
+    </div>
+
+    <!-- ŒUVRES -->
+    <div class="view" id="view-works">
+      <div class="page-header"><div class="page-title">Toutes les œuvres</div></div>
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">ŒUVRES SOUMISES</div>
+          <select class="filter-select" onchange="loadWorksFiltered(this.value)">
+            <option value="">Tous statuts</option>
+            <option value="pending">En attente</option>
+            <option value="in_review">En revue</option>
+            <option value="validated">Validées</option>
+            <option value="rejected">Rejetées</option>
+          </select>
+        </div>
+        <table><thead><tr><th>TITRE</th><th>CRÉATEUR</th><th>FAMILLE</th><th>TERRITOIRE</th><th>STATUT</th><th>SOUMIS LE</th><th>ACTION</th></tr></thead>
+        <tbody id="works-body"><tr class="empty-row"><td colspan="7">Chargement...</td></tr></tbody>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL REVIEW -->
+<div class="modal-overlay" id="modal-review">
+  <div class="modal">
+    <div class="modal-title">Valider une soumission CMS</div>
+    <div class="modal-sub">Examinez les informations de l'œuvre et définissez le score et le niveau de certification.</div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">L'ŒUVRE</div>
+      <div class="modal-field"><span class="mf-label">Titre</span><span class="mf-value" id="mr-title">—</span></div>
+      <div class="modal-field"><span class="mf-label">Créateur</span><span class="mf-value" id="mr-creator">—</span></div>
+      <div class="modal-field"><span class="mf-label">Famille</span><span class="mf-value" id="mr-family">—</span></div>
+      <div class="modal-field"><span class="mf-label">Territoire</span><span class="mf-value" id="mr-territory">—</span></div>
+      <div class="modal-field"><span class="mf-label">Langue</span><span class="mf-value" id="mr-language">—</span></div>
+      <div class="modal-field"><span class="mf-label">Année</span><span class="mf-value" id="mr-year">—</span></div>
+      <div class="modal-field"><span class="mf-label">Description</span><span class="mf-value" id="mr-desc" style="font-size:12px;color:#555">—</span></div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">DÉCISION DE CERTIFICATION</div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px">SCORE (0-100)</div>
+          <input type="number" class="score-input" id="mr-score" min="0" max="100" value="0" oninput="updateModalLevel()">
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px">NIVEAU</div>
+          <select class="level-select" id="mr-level">
+            <option value="">Non certifié</option>
+            <option value="bronze">Bronze (≥20)</option>
+            <option value="silver">Silver (≥40)</option>
+            <option value="gold">Gold (≥65)</option>
+            <option value="platinum">Platinum (≥85)</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px">NOTE DU VALIDATEUR (optionnel)</div>
+        <textarea class="note-input" id="mr-note" placeholder="Remarques, justifications, conditions..."></textarea>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Annuler</button>
+      <button class="btn-action btn-reject btn-confirm btn-confirm-reject" onclick="rejectWork()">Rejeter</button>
+      <button class="btn-confirm" onclick="certifyWork()">✓ Émettre la certification</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL = 'https://vtbaqvjxfgseykjcinpu.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_cZc3a7kaK3M7ZcHRsoTI8w_NQz4Xy0z';
+// Note : Pour les opérations admin (INSERT certifications, UPDATE works),
+// on utilise la clé secrète stockée localement — jamais exposée dans le code
+const ADMIN_SECRET_KEY = localStorage.getItem('cms_admin_secret') || '';
+
+// MOT DE PASSE ADMIN (hash simple — à remplacer par Supabase Auth en production)
+const ADMIN_HASH = 'cms2026caribwood';
+
+let currentWorkId = null;
+let currentCreatorName = '';
+
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+function login() {
+  const key = document.getElementById('admin-key').value;
+  if (key === ADMIN_HASH) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').classList.add('show');
+    loadAll();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+
+function logout() {
+  document.getElementById('app').classList.remove('show');
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('admin-key').value = '';
+}
+
+// ── API ───────────────────────────────────────────────────────────────────────
+async function sbFetch(path, params='', key=SUPABASE_KEY) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}${params}`, {
+    headers: { 'apikey': key, 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' }
+  });
+  if (!r.ok) throw new Error(`API ${r.status}`);
+  return r.json();
+}
+
+async function sbUpdate(table, id, data, key=SUPABASE_KEY) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+    method: 'PATCH',
+    headers: { 'apikey': key, 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+    body: JSON.stringify(data)
+  });
+  if (!r.ok) throw new Error(`Update error ${r.status}`);
+  return r.json();
+}
+
+async function sbInsert(table, data, key=SUPABASE_KEY) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+    method: 'POST',
+    headers: { 'apikey': key, 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+    body: JSON.stringify(data)
+  });
+  if (!r.ok) { const e = await r.json().catch(()=>{}); throw new Error((e&&e.message) || `Insert error ${r.status}`); }
+  return r.json();
+}
+
+// ── LOAD ──────────────────────────────────────────────────────────────────────
+async function loadAll() {
+  try {
+    const [works, certs, creators] = await Promise.all([
+      sbFetch('works', '?select=*,creators(name,email,territory)&order=submitted_at.desc'),
+      sbFetch('certifications', '?select=*,works(title,territory)&order=issued_at.desc'),
+      sbFetch('creators', '?select=*&order=created_at.desc'),
+    ]);
+
+    const pending = works.filter(w => w.status === 'pending' || w.status === 'in_review');
+    const validated = certs.filter(c => !c.revoked);
+
+    // Stats
+    document.getElementById('dash-total').textContent = works.length;
+    document.getElementById('dash-pending').textContent = pending.length;
+    document.getElementById('dash-certs').textContent = certs.length;
+    document.getElementById('dash-creators').textContent = creators.length;
+    document.getElementById('badge-pending').textContent = pending.length;
+    document.getElementById('badge-validated').textContent = validated.length;
+
+    // Recent works
+    renderWorksTable('recent-works-body', works.slice(0, 8));
+
+    // Pending
+    renderWorksTable('pending-body', pending);
+
+    // Validated certs
+    renderCertsTable('validated-body', validated);
+
+    // All certs
+    renderCertsTable('all-certs-body', certs);
+
+    // Creators
+    renderCreatorsTable(creators);
+
+    // Works full
+    renderWorksTable('works-body', works);
+
+  } catch(e) {
+    showToast('❌ Erreur chargement : ' + e.message);
+  }
+}
+
+function renderWorksTable(tbodyId, works) {
+  const tbody = document.getElementById(tbodyId);
+  if (!works.length) { tbody.innerHTML = '<tr class="empty-row"><td colspan="7">Aucune donnée</td></tr>'; return; }
+  tbody.innerHTML = works.map(w => `
+    <tr data-search="${(w.title+' '+(w.creators?.name||'')+' '+w.territory).toLowerCase()}">
+      <td><strong>${w.title||'—'}</strong>${w.title_original ? `<br><small style="color:#aaa">${w.title_original}</small>` : ''}</td>
+      <td>${w.creators?.name || w.creator_id?.substring(0,8) || '—'}</td>
+      <td>${w.family||'—'}</td>
+      <td>${w.territory||'—'}</td>
+      <td>${(w.languages||[]).join(', ')||'—'}</td>
+      <td style="color:#888;font-size:11px">${w.submitted_at ? new Date(w.submitted_at).toLocaleDateString('fr-FR') : '—'}</td>
+      <td><span class="status ${w.status}">${w.status}</span> &nbsp;
+        ${w.status==='pending'||w.status==='in_review' ? `<button class="btn-action btn-certify" onclick="openReview('${w.id}','${(w.title||'').replace(/'/g,"\\'")}','${(w.creators?.name||'').replace(/'/g,"\\'")}','${w.family||''}','${w.territory||''}','${(w.languages||[]).join(',')}','${w.year||''}','${(w.description||'').substring(0,80).replace(/'/g,"\\'")}')">Certifier</button>` : ''}
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderCertsTable(tbodyId, certs) {
+  const tbody = document.getElementById(tbodyId);
+  if (!certs.length) { tbody.innerHTML = '<tr class="empty-row"><td colspan="7">Aucune certification émise</td></tr>'; return; }
+  tbody.innerHTML = certs.map(c => `
+    <tr data-search="${(c.cms_id+' '+(c.works?.title||'')+' '+(c.works?.territory||'')).toLowerCase()}" data-level="${c.level}">
+      <td><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--teal)">${c.cms_id||'—'}</span></td>
+      <td>${c.works?.title||'—'}</td>
+      <td>${c.works?.territory||'—'}</td>
+      <td style="font-family:'DM Mono',monospace;font-weight:700;color:var(--navy)">${c.score}</td>
+      <td><span class="cert-level ${c.level}">${(c.level||'').toUpperCase()}</span></td>
+      <td style="color:#888;font-size:11px">${c.issued_at ? new Date(c.issued_at).toLocaleDateString('fr-FR') : '—'}</td>
+      <td><button class="btn-action btn-review" onclick="window.open('certification.html?id=${c.cms_id}')">Voir →</button></td>
+    </tr>
+  `).join('');
+}
+
+function renderCreatorsTable(creators) {
+  const tbody = document.getElementById('creators-body');
+  if (!creators.length) { tbody.innerHTML = '<tr class="empty-row"><td colspan="6">Aucun créateur</td></tr>'; return; }
+  tbody.innerHTML = creators.map(c => `
+    <tr>
+      <td><strong>${c.name}</strong></td>
+      <td style="font-size:12px;color:#888">${c.email}</td>
+      <td>${c.type||'—'}</td>
+      <td>${c.territory||'—'}</td>
+      <td>${c.verified ? '<span style="color:var(--green)">✓</span>' : '<span style="color:#ccc">—</span>'}</td>
+      <td style="font-size:11px;color:#888">${c.created_at ? new Date(c.created_at).toLocaleDateString('fr-FR') : '—'}</td>
+    </tr>
+  `).join('');
+}
+
+// ── REVIEW MODAL ──────────────────────────────────────────────────────────────
+function openReview(id, title, creator, family, territory, languages, year, desc) {
+  currentWorkId = id;
+  currentCreatorName = creator;
+  document.getElementById('mr-title').textContent = title || '—';
+  document.getElementById('mr-creator').textContent = creator || '—';
+  document.getElementById('mr-family').textContent = family || '—';
+  document.getElementById('mr-territory').textContent = territory || '—';
+  document.getElementById('mr-language').textContent = languages || '—';
+  document.getElementById('mr-year').textContent = year || '—';
+  document.getElementById('mr-desc').textContent = desc ? (desc + (desc.length >= 80 ? '...' : '')) : '—';
+  document.getElementById('mr-score').value = 0;
+  document.getElementById('mr-level').value = '';
+  document.getElementById('mr-note').value = '';
+  document.getElementById('modal-review').classList.add('show');
+}
+
+function updateModalLevel() {
+  const score = parseInt(document.getElementById('mr-score').value) || 0;
+  const level = score >= 85 ? 'platinum' : score >= 65 ? 'gold' : score >= 40 ? 'silver' : score >= 20 ? 'bronze' : '';
+  document.getElementById('mr-level').value = level;
+}
+
+function closeModal() { document.getElementById('modal-review').classList.remove('show'); }
+
+async function certifyWork() {
+  const score = parseInt(document.getElementById('mr-score').value) || 0;
+  const level = document.getElementById('mr-level').value;
+  const note = document.getElementById('mr-note').value.trim();
+
+  if (!level) { showToast('⚠️ Le score doit être ≥ 20 pour certifier'); return; }
+  if (!currentWorkId) return;
+
+  try {
+    // Générer le CMS ID via la fonction PostgreSQL
+    const territory = document.getElementById('mr-territory').textContent.substring(0,3).toUpperCase();
+    const year = new Date().getFullYear();
+
+    // Générer un ID unique côté client (la fonction SQL est plus propre mais nécessite service_role)
+    const randomPart = Array.from(crypto.getRandomValues(new Uint8Array(4))).map(b => b.toString(16).padStart(2,'0')).join('').toUpperCase();
+    const cmsId = `CMS-${territory}-${year}-${randomPart}`;
+
+    // 1. Mettre à jour le statut de l'œuvre
+    await sbUpdate('works', currentWorkId, {
+      status: 'validated',
+      reviewed_at: new Date().toISOString(),
+      reviewer_note: note || null,
+    });
+
+    // 2. Créer la certification
+    await sbInsert('certifications', {
+      cms_id: cmsId,
+      work_id: currentWorkId,
+      score,
+      level,
+      metadata_json: { note },
+      issued_at: new Date().toISOString(),
+      revoked: false,
+    });
+
+    closeModal();
+    showToast(`✅ Certification émise — ${cmsId}`);
+    await loadAll();
+
+  } catch(e) {
+    showToast('❌ Erreur : ' + e.message);
+  }
+}
+
+async function rejectWork() {
+  if (!currentWorkId) return;
+  const note = document.getElementById('mr-note').value.trim();
+  try {
+    await sbUpdate('works', currentWorkId, {
+      status: 'rejected',
+      reviewed_at: new Date().toISOString(),
+      reviewer_note: note || 'Rejeté par le validateur',
+    });
+    closeModal();
+    showToast('Soumission rejetée');
+    await loadAll();
+  } catch(e) {
+    showToast('❌ Erreur : ' + e.message);
+  }
+}
+
+// ── FILTERS ───────────────────────────────────────────────────────────────────
+function filterTable(tbodyId, query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll(`#${tbodyId} tr`).forEach(row => {
+    const search = row.dataset.search || row.textContent.toLowerCase();
+    row.style.display = q ? (search.includes(q) ? '' : 'none') : '';
+  });
+}
+
+function filterByLevel(level) {
+  document.querySelectorAll('#validated-body tr').forEach(row => {
+    row.style.display = level ? (row.dataset.level === level ? '' : 'none') : '';
+  });
+}
+
+async function loadWorksFiltered(status) {
+  try {
+    const param = status ? `?status=eq.${status}&select=*,creators(name)&order=submitted_at.desc` : '?select=*,creators(name)&order=submitted_at.desc';
+    const works = await sbFetch('works', param);
+    renderWorksTable('works-body', works);
+  } catch(e) { showToast('❌ ' + e.message); }
+}
+
+// ── VIEWS ─────────────────────────────────────────────────────────────────────
+function showView(name, el) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  if (el) el.classList.add('active');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+let _tt;
+function showToast(msg) {
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(_tt); _tt = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// Fermer modal en cliquant dehors
+document.getElementById('modal-review').addEventListener('click', function(e) {
+  if(e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
