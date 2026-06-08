@@ -174,6 +174,11 @@ tr:hover td{background:#f8fafc}
     <div class="sb-section">DONNÉES</div>
     <div class="sb-item" onclick="showView('creators',this)">👤 Créateurs</div>
     <div class="sb-item" onclick="showView('works',this)">🎬 Œuvres</div>
+    <div class="sb-section">BACK-OFFICE</div>
+    <div class="sb-item" onclick="showView('vocabulaires',this)">🏷️ Vocabulaires</div>
+    <div class="sb-item" onclick="showView('schemas',this)">📐 Schémas & Versions</div>
+    <div class="sb-item" onclick="showView('roles',this)">👥 Rôles & Validateurs</div>
+    <div class="sb-item" onclick="showView('partenaires',this)">🤝 Institutions partenaires</div>
     <div class="sb-footer">
       <div id="admin-name" style="color:rgba(255,255,255,0.5)">Admin</div>
       <button class="btn-logout" onclick="logout()">Se déconnecter</button>
@@ -278,6 +283,177 @@ tr:hover td{background:#f8fafc}
         </div>
         <table><thead><tr><th>TITRE</th><th>CRÉATEUR</th><th>FAMILLE</th><th>TERRITOIRE</th><th>STATUT</th><th>SOUMIS LE</th><th>ACTION</th></tr></thead>
         <tbody id="works-body"><tr class="empty-row"><td colspan="7">Chargement...</td></tr></tbody>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- AXE 8 — BACK-OFFICE                               -->
+    <!-- ══════════════════════════════════════════════════ -->
+
+    <!-- VOCABULAIRES -->
+    <div class="view" id="view-vocabulaires">
+      <div class="page-header">
+        <div><div class="page-title">Vocabulaires CMS</div><div class="page-sub">MARQUEURS · LANGUES · TERRITOIRES · DOMAINES</div></div>
+        <button class="btn-action btn-certify" onclick="showAddVocabModal()">+ Ajouter un marqueur</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
+        <!-- MARQUEURS -->
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">🏷️ MARQUEURS CULTURELS (27)</div>
+            <input class="search-input-sm" placeholder="Filtrer..." oninput="filterTable('markers-body', this.value)">
+          </div>
+          <table><thead><tr><th>ID</th><th>NOM</th><th>CATÉGORIE</th><th>TERRITOIRE</th><th>ACTION</th></tr></thead>
+          <tbody id="markers-body"></tbody></table>
+        </div>
+        <!-- LANGUES -->
+        <div class="table-card">
+          <div class="table-header"><div class="table-title">🌐 LANGUES ISO 639-3 (10)</div></div>
+          <table><thead><tr><th>CODE</th><th>NOM</th><th>TERRITOIRE</th><th>ENREG.</th></tr></thead>
+          <tbody id="langs-body"></tbody></table>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <!-- TERRITOIRES -->
+        <div class="table-card">
+          <div class="table-header"><div class="table-title">📍 TERRITOIRES (20)</div></div>
+          <table><thead><tr><th>TERRITOIRE</th><th>FLAG</th><th>ENREG.</th></tr></thead>
+          <tbody id="terr-body"></tbody></table>
+        </div>
+        <!-- DOMAINES -->
+        <div class="table-card">
+          <div class="table-header"><div class="table-title">🎭 DOMAINES CULTURELS (14)</div></div>
+          <table><thead><tr><th>ID</th><th>LABEL</th><th>ENREG.</th></tr></thead>
+          <tbody id="domains-body"></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHÉMAS & VERSIONS -->
+    <div class="view" id="view-schemas">
+      <div class="page-header">
+        <div><div class="page-title">Schémas & Versions</div><div class="page-sub">GESTION DES VERSIONS DU STANDARD CMS</div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px">
+        <div>
+          <!-- Version actuelle -->
+          <div class="table-card" style="margin-bottom:20px">
+            <div class="table-header"><div class="table-title">VERSION ACTUELLE — CMS v2.0</div><span class="status validated">LOCKED</span></div>
+            <div style="padding:20px 24px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;line-height:2">
+                <div><strong style="color:var(--navy)">Namespace :</strong> <span style="font-family:'DM Mono',monospace;font-size:12px">https://caribbeanmetadata.org/ns/</span></div>
+                <div><strong style="color:var(--navy)">Date de verrouillage :</strong> 7 juin 2026</div>
+                <div><strong style="color:var(--navy)">Champs :</strong> 17 champs, 6 familles</div>
+                <div><strong style="color:var(--navy)">Corpus :</strong> 110 enregistrements validés</div>
+                <div><strong style="color:var(--navy)">Langues :</strong> 10 (ISO 639-3)</div>
+                <div><strong style="color:var(--navy)">Marqueurs :</strong> 27 officiels</div>
+              </div>
+              <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+                <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json" target="_blank" class="btn-action btn-review" style="text-decoration:none">↗ Schéma JSON</a>
+                <a href="https://caribbeanmetadata.org/spec.html" target="_blank" class="btn-action btn-review" style="text-decoration:none">↗ Spec page</a>
+                <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_v2_unified.jsonl" target="_blank" class="btn-action btn-review" style="text-decoration:none">↗ Corpus JSONL</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Changelog -->
+          <div class="table-card">
+            <div class="table-header"><div class="table-title">CHANGELOG</div></div>
+            <table><thead><tr><th>VERSION</th><th>DATE</th><th>CHANGEMENTS</th><th>STATUT</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:monospace;color:var(--teal)">v2.0</td><td style="font-size:11px;color:#888">07 juin 2026</td><td style="font-size:12px">110 enreg. · 10 langues · 27 marqueurs · 17 territoires · schéma verrouillé</td><td><span class="status validated">LOCKED</span></td></tr>
+              <tr><td style="font-family:monospace;color:#888">v1.0</td><td style="font-size:11px;color:#888">11 mai 2026</td><td style="font-size:12px">15 enreg. · 8 langues · 15 marqueurs · Version initiale</td><td><span class="status rejected">DEPRECATED</span></td></tr>
+            </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Prochaine version -->
+        <div class="table-card" style="height:fit-content">
+          <div class="table-header"><div class="table-title">PROCHAINE VERSION</div></div>
+          <div style="padding:20px 24px">
+            <div style="font-size:13px;color:#888;margin-bottom:16px;line-height:1.7">La prochaine version majeure (v3.0) sera préparée après transfert de gouvernance au Comité Technique caribéen (5 institutions adoptantes requises).</div>
+            <div style="font-size:12px;font-family:'DM Mono',monospace;color:var(--muted);margin-bottom:8px">ADOPTANTS ACTUELS</div>
+            <div style="font-size:28px;font-weight:700;color:var(--teal);font-family:'DM Mono',monospace">0 <span style="font-size:16px;color:#aaa">/ 5</span></div>
+            <div style="height:4px;background:#f0f4f8;border-radius:2px;margin:12px 0;overflow:hidden"><div style="width:0%;height:100%;background:var(--teal);border-radius:2px"></div></div>
+            <div style="font-size:12px;color:#aaa;line-height:1.7">Dès 5 institutions : transfert automatique de gouvernance au Comité Technique indépendant (Convention Art. 9).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RÔLES & VALIDATEURS -->
+    <div class="view" id="view-roles">
+      <div class="page-header">
+        <div><div class="page-title">Rôles & Validateurs</div><div class="page-sub">GESTION DU COMITÉ TECHNIQUE</div></div>
+        <button class="btn-action btn-certify" onclick="showAddValidatorModal()">+ Ajouter un validateur</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:3fr 1fr;gap:24px">
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">MEMBRES DU COMITÉ</div>
+            <input class="search-input-sm" placeholder="Rechercher..." oninput="filterTable('validators-body', this.value)">
+          </div>
+          <table><thead><tr><th>NOM</th><th>EMAIL</th><th>INSTITUTION</th><th>TERRITOIRE</th><th>RÔLE</th><th>ACTIF</th><th>NOMMÉ LE</th></tr></thead>
+          <tbody id="validators-body"><tr class="empty-row"><td colspan="7">Aucun validateur enregistré</td></tr></tbody>
+          </table>
+        </div>
+
+        <div>
+          <div class="table-card" style="margin-bottom:16px">
+            <div class="table-header"><div class="table-title">RÔLES DÉFINIS</div></div>
+            <div style="padding:16px 20px">
+              <div style="margin-bottom:12px"><span class="cert-level gold" style="margin-right:8px">ADMIN</span><span style="font-size:12px;color:#555">Accès total · toi seul actuellement</span></div>
+              <div style="margin-bottom:12px"><span class="cert-level silver" style="margin-right:8px">COMMITTEE</span><span style="font-size:12px;color:#555">Vote sur évolutions du standard</span></div>
+              <div><span class="cert-level bronze" style="margin-right:8px">VALIDATOR</span><span style="font-size:12px;color:#555">Valide les soumissions créateurs</span></div>
+            </div>
+          </div>
+          <div class="table-card">
+            <div class="table-header"><div class="table-title">GOUVERNANCE</div></div>
+            <div style="padding:16px 20px;font-size:12px;color:#555;line-height:1.8">
+              <div style="margin-bottom:8px"><strong style="color:var(--navy)">Transfert :</strong> automatique dès 5 adoptants</div>
+              <div style="margin-bottom:8px"><strong style="color:var(--navy)">Comité :</strong> 5-9 membres, mandats 2 ans</div>
+              <div><strong style="color:var(--navy)">Assemblée :</strong> 1 vote par institution adoptante</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSTITUTIONS PARTENAIRES -->
+    <div class="view" id="view-partenaires">
+      <div class="page-header">
+        <div><div class="page-title">Institutions partenaires</div><div class="page-sub">REGISTRE DES ADOPTANTS OFFICIELS</div></div>
+        <button class="btn-action btn-certify" onclick="showAddPartnerModal()">+ Enregistrer un partenaire</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+        <div class="stat-card"><div class="sc-num" id="p-total">0</div><div class="sc-lbl">PARTENAIRES</div></div>
+        <div class="stat-card"><div class="sc-num" id="p-signed">0</div><div class="sc-lbl">CONVENTIONS SIGNÉES</div></div>
+        <div class="stat-card"><div class="sc-num" id="p-countries">0</div><div class="sc-lbl">TERRITOIRES</div></div>
+        <div class="stat-card"><div class="sc-num">5</div><div class="sc-lbl">OBJECTIF GOUVERNANCE</div><div class="sc-change pending">Transfert comité</div></div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">REGISTRE OFFICIEL DES ADOPTANTS</div>
+          <div class="table-filters">
+            <select class="filter-select" onchange="filterPartnersBy(this.value)">
+              <option value="">Tous statuts</option>
+              <option value="signed">Convention signée</option>
+              <option value="pending">En cours</option>
+              <option value="prospect">Prospect</option>
+            </select>
+            <input class="search-input-sm" placeholder="Rechercher..." oninput="filterTable('partners-body', this.value)">
+          </div>
+        </div>
+        <table><thead><tr><th>INSTITUTION</th><th>TERRITOIRE</th><th>TYPE</th><th>NIVEAU</th><th>STATUT</th><th>CONTACT</th><th>DATE</th><th>ACTIONS</th></tr></thead>
+        <tbody id="partners-body"><tr class="empty-row"><td colspan="8">Aucun partenaire enregistré — soyez le premier !</td></tr></tbody>
+        </table>
       </div>
     </div>
 
@@ -646,6 +822,285 @@ let _tt;
 function showToast(msg) {
   const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
   clearTimeout(_tt); _tt = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+// AXE 8 — BACK-OFFICE : Vocabulaires, Schémas, Rôles, Partenaires
+// ══════════════════════════════════════════════════════════════════════════════
+
+// ── DONNÉES VOCABULAIRES ──────────────────────────────────────────────────────
+const MARKERS_DATA = [
+  {id:'gwo_ka',      name:'Gwo Ka',          cat:'music',    territory:'Guadeloupe'},
+  {id:'bele',        name:'Bèlè',             cat:'dance',    territory:'Martinique'},
+  {id:'konpa',       name:'Konpa',            cat:'music',    territory:'Haïti'},
+  {id:'zouk',        name:'Zouk',             cat:'music',    territory:'Antilles FR'},
+  {id:'calypso',     name:'Calypso',          cat:'music',    territory:'Trinidad'},
+  {id:'soca',        name:'Soca',             cat:'music',    territory:'Trinidad'},
+  {id:'reggae',      name:'Reggae',           cat:'music',    territory:'Jamaica'},
+  {id:'ska',         name:'Ska',              cat:'music',    territory:'Jamaica'},
+  {id:'dancehall',   name:'Dancehall',        cat:'music',    territory:'Jamaica'},
+  {id:'tumba',       name:'Tumba',            cat:'music',    territory:'Curaçao'},
+  {id:'son_cubano',  name:'Son Cubano',       cat:'music',    territory:'Cuba'},
+  {id:'salsa',       name:'Salsa',            cat:'music',    territory:'Caraïbe'},
+  {id:'bachata',     name:'Bachata',          cat:'music',    territory:'Dom. Rep.'},
+  {id:'merengue',    name:'Merengue',         cat:'music',    territory:'Dom. Rep.'},
+  {id:'kaseko',      name:'Kaseko',           cat:'music',    territory:'Suriname'},
+  {id:'kadans',      name:'Kadans',           cat:'music',    territory:'Antilles FR'},
+  {id:'bouyon',      name:'Bouyon',           cat:'music',    territory:'Dominique'},
+  {id:'carnival',    name:'Carnival',         cat:'carnival', territory:'Pan-caribéenne'},
+  {id:'mas',         name:'Mas',              cat:'carnival', territory:'Trinidad'},
+  {id:'rara',        name:'Rara',             cat:'carnival', territory:'Haïti'},
+  {id:'vodou',       name:'Vodou',            cat:'religion', territory:'Haïti'},
+  {id:'orisha',      name:'Orisha',           cat:'religion', territory:'Caraïbe'},
+  {id:'rastafari',   name:'Rastafari',        cat:'religion', territory:'Jamaica'},
+  {id:'maroon',      name:'Maroon Culture',   cat:'heritage', territory:'Caraïbe'},
+  {id:'quadrille',   name:'Quadrille créole', cat:'dance',    territory:'Antilles FR'},
+  {id:'danmye',      name:'Danmyé',           cat:'dance',    territory:'Martinique'},
+  {id:'chante_noel', name:'Chanté Noël',      cat:'heritage', territory:'Antilles FR'},
+];
+
+const LANGS_DATA = [
+  {code:'gcf', name:'Créole guadeloupéen',   territory:'Guadeloupe',        count:14},
+  {code:'hat', name:'Créole haïtien',        territory:'Haïti',             count:14},
+  {code:'fra', name:'Français caribéen',     territory:'Antilles FR',       count:14},
+  {code:'eng', name:'English Caribbean',     territory:'Trinidad · Barbados',count:21},
+  {code:'acf', name:'Créole antillais',      territory:'Martinique',        count:8},
+  {code:'spa', name:'Español caribeño',      territory:'Cuba · RD · PR',    count:13},
+  {code:'jam', name:'Jamaican Patois',       territory:'Jamaica',           count:8},
+  {code:'pap', name:'Papiamentu',            territory:'Aruba · Curaçao',   count:6},
+  {code:'nld', name:'Nederlands Caribisch',  territory:'Suriname · NL',     count:6},
+  {code:'srn', name:'Sranan Tongo',          territory:'Suriname',          count:6},
+];
+
+const TERR_DATA = [
+  {name:'Guadeloupe',         flag:'🇬🇵', count:17},
+  {name:'Haïti',              flag:'🇭🇹', count:15},
+  {name:'Martinique',         flag:'🇲🇶', count:11},
+  {name:'Curaçao',            flag:'🇨🇼', count:7},
+  {name:'Suriname',           flag:'🇸🇷', count:7},
+  {name:'Trinidad',           flag:'🇹🇹', count:6},
+  {name:'Cuba',               flag:'🇨🇺', count:6},
+  {name:'Aruba',              flag:'🇦🇼', count:4},
+  {name:'Dominican Republic', flag:'🇩🇴', count:4},
+  {name:'Diaspora caribéenne',flag:'🌍',  count:4},
+  {name:'St Lucia',           flag:'🇱🇨', count:3},
+  {name:'Jamaica',            flag:'🇯🇲', count:2},
+  {name:'Barbados',           flag:'🇧🇧', count:2},
+  {name:'Puerto Rico',        flag:'🇵🇷', count:2},
+  {name:'Dominica',           flag:'🇩🇲', count:1},
+  {name:'Guyane',             flag:'🇬🇫', count:0},
+  {name:'St Vincent',         flag:'🇻🇨', count:0},
+  {name:'Grenada',            flag:'🇬🇩', count:0},
+  {name:'Antigua',            flag:'🇦🇬', count:0},
+  {name:'Caribbean (général)',flag:'🌊',  count:12},
+];
+
+const DOMAINS_DATA = [
+  {id:'music',              label:'Musique',               count:20},
+  {id:'oral_tradition',     label:'Tradition orale',       count:12},
+  {id:'general',            label:'Général',               count:11},
+  {id:'visual_arts',        label:'Arts visuels',          count:10},
+  {id:'literature',         label:'Littérature',           count:9},
+  {id:'social_media',       label:'Réseaux sociaux',       count:8},
+  {id:'gastronomy',         label:'Gastronomie',           count:8},
+  {id:'education',          label:'Éducation',             count:6},
+  {id:'theatre',            label:'Théâtre',               count:6},
+  {id:'religion',           label:'Religion',              count:5},
+  {id:'carnival',           label:'Carnaval',              count:4},
+  {id:'news',               label:'Actualités',            count:4},
+  {id:'intangible_heritage',label:'Patrimoine immatériel', count:4},
+  {id:'dance',              label:'Danse',                 count:3},
+];
+
+// ── RENDU VOCABULAIRES ────────────────────────────────────────────────────────
+function renderVocabulaires() {
+  // Marqueurs
+  const CAT_COLOR = {music:'#1565C0',dance:'#6A1B9A',carnival:'#E65100',religion:'#1B5E20',heritage:'#880E4F'};
+  document.getElementById('markers-body').innerHTML = MARKERS_DATA.map(m => `
+    <tr data-search="${m.id} ${m.name} ${m.cat} ${m.territory}">
+      <td style="font-family:monospace;font-size:11px;color:var(--teal)">${m.id}</td>
+      <td style="font-weight:600;color:var(--navy)">${m.name}</td>
+      <td><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#f0f4f8;color:${CAT_COLOR[m.cat]||'#333'}">${m.cat}</span></td>
+      <td style="font-size:12px;color:#888">${m.territory}</td>
+      <td><button class="btn-action btn-review" onclick="editMarker('${m.id}','${m.name}')">Éditer</button></td>
+    </tr>
+  `).join('');
+
+  // Langues
+  document.getElementById('langs-body').innerHTML = LANGS_DATA.map(l => `
+    <tr>
+      <td style="font-family:monospace;font-weight:700;color:var(--teal)">${l.code}</td>
+      <td style="font-size:13px;color:var(--navy)">${l.name}</td>
+      <td style="font-size:11px;color:#888">${l.territory}</td>
+      <td style="font-family:monospace;font-weight:600;color:var(--navy)">${l.count}</td>
+    </tr>
+  `).join('');
+
+  // Territoires
+  document.getElementById('terr-body').innerHTML = TERR_DATA.map(t => `
+    <tr>
+      <td style="font-weight:600;color:var(--navy)">${t.name}</td>
+      <td style="font-size:20px">${t.flag}</td>
+      <td style="font-family:monospace;color:var(--teal)">${t.count}</td>
+    </tr>
+  `).join('');
+
+  // Domaines
+  document.getElementById('domains-body').innerHTML = DOMAINS_DATA.map(d => `
+    <tr>
+      <td style="font-family:monospace;font-size:11px;color:var(--teal)">${d.id}</td>
+      <td style="font-weight:600;color:var(--navy)">${d.label}</td>
+      <td style="font-family:monospace;color:var(--teal)">${d.count}</td>
+    </tr>
+  `).join('');
+}
+
+function editMarker(id, name) {
+  showToast(`Marqueur "${name}" — édition disponible en v3.0`);
+}
+
+// ── PARTENAIRES ───────────────────────────────────────────────────────────────
+let partnersData = [];
+
+async function loadPartenaires() {
+  // Pour l'instant, les partenaires sont stockés dans une table Supabase
+  // (à créer lors d'une prochaine session si nécessaire)
+  // Pour l'instant on simule avec localStorage
+  const stored = localStorage.getItem('cms_partners');
+  partnersData = stored ? JSON.parse(stored) : [];
+  renderPartners();
+  updatePartnerStats();
+}
+
+function renderPartners(filtered) {
+  const data = filtered || partnersData;
+  const tbody = document.getElementById('partners-body');
+  if (!data.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="8">Aucun partenaire enregistré</td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map(p => `
+    <tr data-search="${p.name} ${p.territory} ${p.type}" data-status="${p.status}">
+      <td style="font-weight:600;color:var(--navy)">${p.name}</td>
+      <td>${p.territory}</td>
+      <td style="font-size:12px;color:#888">${p.type}</td>
+      <td><span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#f0f4f8;color:var(--navy)">${p.level||'—'}</span></td>
+      <td><span class="status ${p.status}">${p.status}</span></td>
+      <td style="font-size:11px;color:#888">${p.contact||'—'}</td>
+      <td style="font-size:11px;color:#888">${p.date||'—'}</td>
+      <td>
+        <button class="btn-action btn-validate" onclick="signPartner('${p.id}')">✓ Signer</button>
+        <button class="btn-action btn-reject" onclick="deletePartner('${p.id}')" style="margin-left:4px">✕</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function updatePartnerStats() {
+  document.getElementById('p-total').textContent = partnersData.length;
+  document.getElementById('p-signed').textContent = partnersData.filter(p => p.status === 'signed').length;
+  const countries = new Set(partnersData.map(p => p.territory));
+  document.getElementById('p-countries').textContent = countries.size;
+}
+
+function filterPartnersBy(status) {
+  if (!status) return renderPartners();
+  renderPartners(partnersData.filter(p => p.status === status));
+}
+
+function signPartner(id) {
+  const p = partnersData.find(x => x.id === id);
+  if (p) { p.status = 'signed'; savePartners(); renderPartners(); updatePartnerStats(); showToast('✅ Convention signée — ' + p.name); }
+}
+
+function deletePartner(id) {
+  partnersData = partnersData.filter(x => x.id !== id);
+  savePartners(); renderPartners(); updatePartnerStats();
+  showToast('Partenaire retiré');
+}
+
+function savePartners() {
+  localStorage.setItem('cms_partners', JSON.stringify(partnersData));
+}
+
+// ── MODALS BACK-OFFICE ────────────────────────────────────────────────────────
+function showAddVocabModal() {
+  const name = prompt('Nom du nouveau marqueur culturel :');
+  if (!name) return;
+  const cat = prompt('Catégorie (music/dance/carnival/religion/heritage) :') || 'music';
+  const terr = prompt('Territoire d'origine :') || 'Caraïbe';
+  const id = name.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
+  MARKERS_DATA.push({id, name, cat, territory: terr});
+  renderVocabulaires();
+  showToast(`✅ Marqueur "${name}" ajouté (session courante)`);
+}
+
+function showAddValidatorModal() {
+  const name = prompt('Nom du validateur :');
+  if (!name) return;
+  const email = prompt('Email :') || '';
+  const institution = prompt('Institution :') || '';
+  const territory = prompt('Territoire :') || '';
+  const role = prompt('Rôle (validator/committee/admin) :') || 'validator';
+  // Insérer dans Supabase
+  sbInsert('validators', {name, email, institution, territory, role, active: true})
+    .then(() => { loadValidators(); showToast(`✅ ${name} ajouté comme ${role}`); })
+    .catch(e => showToast('❌ ' + e.message));
+}
+
+function showAddPartnerModal() {
+  const name = prompt('Nom de l'institution :');
+  if (!name) return;
+  const territory = prompt('Territoire :') || '';
+  const type = prompt('Type (festival/cinémathèque/institution/université) :') || 'institution';
+  const level = prompt('Niveau d'intégration (basic/structured/native) :') || 'basic';
+  const contact = prompt('Email de contact :') || '';
+  const id = Date.now().toString();
+  const date = new Date().toLocaleDateString('fr-FR');
+  partnersData.push({id, name, territory, type, level, contact, date, status:'pending'});
+  savePartners(); renderPartners(); updatePartnerStats();
+  showToast(`✅ "${name}" ajouté en statut "en cours"`);
+}
+
+async function loadValidators() {
+  try {
+    const data = await sbFetch('validators', '?select=*&order=appointed_at.desc');
+    const tbody = document.getElementById('validators-body');
+    if (!data || !data.length) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="7">Aucun validateur enregistré</td></tr>';
+      return;
+    }
+    tbody.innerHTML = data.map(v => `
+      <tr data-search="${v.name} ${v.email} ${v.institution} ${v.territory}">
+        <td style="font-weight:600;color:var(--navy)">${v.name}</td>
+        <td style="font-size:11px;color:#888">${v.email}</td>
+        <td>${v.institution||'—'}</td>
+        <td>${v.territory||'—'}</td>
+        <td><span class="cert-level ${v.role==='admin'?'gold':v.role==='committee'?'silver':'bronze'}">${(v.role||'').toUpperCase()}</span></td>
+        <td>${v.active ? '<span style="color:var(--green)">✓</span>' : '<span style="color:#ccc">✗</span>'}</td>
+        <td style="font-size:11px;color:#888">${v.appointed_at ? new Date(v.appointed_at).toLocaleDateString('fr-FR') : '—'}</td>
+      </tr>
+    `).join('');
+  } catch(e) {
+    // Silencieux si table vide
+  }
+}
+
+// Étendre loadAll pour inclure les vues back-office
+const _originalLoadAll = loadAll;
+async function loadAll() {
+  await _originalLoadAll();
+  loadPartenaires();
+}
+
+// Étendre showView pour rendre les vocabulaires à la demande
+const _originalShowView = showView;
+function showView(name, el) {
+  _originalShowView(name, el);
+  if (name === 'vocabulaires') renderVocabulaires();
+  if (name === 'roles') loadValidators();
+  if (name === 'partenaires') loadPartenaires();
 }
 
 // Fermer modal en cliquant dehors
