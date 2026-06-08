@@ -753,7 +753,7 @@ async function certifyWork() {
 
   // Vérifier que l'admin est connecté localement
   if (sessionStorage.getItem('cms_admin_auth') !== 'true') {
-    showToast('❌ Session expirée — reconnectez-vous');
+    showToast("Session expirée — reconnectez-vous");
     logout();
     return;
   }
@@ -1068,7 +1068,7 @@ function showAddVocabModal() {
   const name = prompt('Nom du nouveau marqueur culturel :');
   if (!name) return;
   const cat = prompt('Catégorie (music/dance/carnival/religion/heritage) :') || 'music';
-  const terr = prompt('Territoire d'origine :') || 'Caraïbe';
+  const terr = prompt('Territoire origine :') || 'Caraïbe';
   const id = name.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
   MARKERS_DATA.push({id, name, cat, territory: terr});
   renderVocabulaires();
@@ -1089,11 +1089,11 @@ function showAddValidatorModal() {
 }
 
 function showAddPartnerModal() {
-  const name = prompt('Nom de l'institution :');
+  const name = prompt('Nom institution :');
   if (!name) return;
   const territory = prompt('Territoire :') || '';
   const type = prompt('Type (festival/cinémathèque/institution/université) :') || 'institution';
-  const level = prompt('Niveau d'intégration (basic/structured/native) :') || 'basic';
+  const level = prompt('Niveau integration (basic/structured/native) :') || 'basic';
   const contact = prompt('Email de contact :') || '';
   const id = Date.now().toString();
   const date = new Date().toLocaleDateString('fr-FR');
