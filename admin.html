@@ -147,15 +147,11 @@ tr:hover td{background:#f8fafc}
     <div class="login-logo">CMS<span style="color:var(--teal)">.</span>ADMIN</div>
     <div class="login-sub">CARIBWOOD LANGUAGE LAB · VALIDATEUR</div>
     <div class="lf-group">
-      <label>Email administrateur</label>
-      <input type="email" id="admin-email" placeholder="contact@caribbeanmetadata.org" onkeydown="if(event.key==='Enter')login()">
-    </div>
-    <div class="lf-group">
-      <label>Mot de passe</label>
+      <label>Mot de passe administrateur</label>
       <input type="password" id="admin-key" placeholder="••••••••••••••••" onkeydown="if(event.key==='Enter')login()">
     </div>
     <button class="btn-login" onclick="login()">Accéder au tableau de bord →</button>
-    <div class="login-error" id="login-error">Email ou mot de passe incorrect.</div>
+    <div class="login-error" id="login-error">Mot de passe incorrect.</div>
   </div>
 </div>
 
@@ -515,69 +511,58 @@ tr:hover td{background:#f8fafc}
 const SUPABASE_URL = 'https://vtbaqvjxfgseykjcinpu.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_cZc3a7kaK3M7ZcHRsoTI8w_NQz4Xy0z';
 
-// Initialiser le client Supabase
+// Initialiser le client Supabase (pour les opérations de données)
 const { createClient } = supabase;
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// UID admin autorisé (ton compte Supabase Auth)
-const ADMIN_UID = 'dadc21b7-ffe9-4fc3-8399-10631016691a';
+// Hash SHA-256 du mot de passe admin (jamais le mot de passe en clair)
+const ADMIN_HASH = '8052989232ac4b3df85c669b17e3bbf88991cc727717adf2d343a437d71b6369';
 
 let currentWorkId = null;
 let currentCreatorName = '';
-let currentUser = null;
+let currentUser = { email: 'contact@caribbeanmetadata.org' };
 
-// ── AUTH SUPABASE ─────────────────────────────────────────────────────────────
+// ── AUTH LOCAL SHA-256 ────────────────────────────────────────────────────────
+async function hashPassword(pwd) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pwd));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
 async function login() {
-  const email = document.getElementById('admin-email').value.trim();
   const password = document.getElementById('admin-key').value;
   const errEl = document.getElementById('login-error');
   errEl.style.display = 'none';
 
-  if (!email || !password) {
-    errEl.textContent = 'Email et mot de passe requis.';
+  if (!password) {
+    errEl.textContent = 'Mot de passe requis.';
     errEl.style.display = 'block';
     return;
   }
 
-  try {
-    const { data, error } = await sb.auth.signInWithPassword({ email, password });
-    if (error) throw error;
+  const hash = await hashPassword(password);
 
-    // Vérifier que c'est bien le compte admin autorisé
-    if (data.user.id !== ADMIN_UID) {
-      await sb.auth.signOut();
-      errEl.textContent = 'Accès non autorisé pour ce compte.';
-      errEl.style.display = 'block';
-      return;
-    }
-
-    currentUser = data.user;
-    document.getElementById('admin-name').textContent = data.user.email;
+  if (hash === ADMIN_HASH) {
+    sessionStorage.setItem('cms_admin_auth', 'true');
+    document.getElementById('admin-name').textContent = 'contact@caribbeanmetadata.org';
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').classList.add('show');
     loadAll();
-
-  } catch(e) {
-    errEl.textContent = e.message || 'Email ou mot de passe incorrect.';
+  } else {
+    errEl.textContent = 'Mot de passe incorrect.';
     errEl.style.display = 'block';
   }
 }
 
-async function logout() {
-  await sb.auth.signOut();
-  currentUser = null;
+function logout() {
+  sessionStorage.removeItem('cms_admin_auth');
   document.getElementById('app').classList.remove('show');
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('admin-key').value = '';
-  document.getElementById('admin-email').value = '';
 }
 
-// Vérifier session existante au chargement
-async function checkSession() {
-  const { data: { session } } = await sb.auth.getSession();
-  if (session && session.user.id === ADMIN_UID) {
-    currentUser = session.user;
-    document.getElementById('admin-name').textContent = session.user.email;
+function checkSession() {
+  if (sessionStorage.getItem('cms_admin_auth') === 'true') {
+    document.getElementById('admin-name').textContent = 'contact@caribbeanmetadata.org';
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').classList.add('show');
     loadAll();
@@ -586,8 +571,8 @@ async function checkSession() {
 
 // ── API via SDK Supabase — token de session pour write operations ─────────────
 async function getToken() {
-  const { data: { session } } = await sb.auth.getSession();
-  return session ? session.access_token : SUPABASE_KEY;
+  // Login local — on utilise la clé publishable avec RLS permissive
+  return SUPABASE_KEY;
 }
 
 async function sbFetch(path, params='') {
@@ -766,9 +751,12 @@ async function certifyWork() {
   if (!level) { showToast('⚠️ Le score doit être ≥ 20 pour certifier'); return; }
   if (!currentWorkId) return;
 
-  // Vérifier la session
-  const { data: { session } } = await sb.auth.getSession();
-  if (!session) { showToast('❌ Session expirée — reconnectez-vous'); return; }
+  // Vérifier que l'admin est connecté localement
+  if (sessionStorage.getItem('cms_admin_auth') !== 'true') {
+    showToast('❌ Session expirée — reconnectez-vous');
+    logout();
+    return;
+  }
 
   const btn = document.querySelector('.btn-confirm:not(.btn-confirm-reject)');
   if (btn) { btn.textContent = '⏳ Émission...'; btn.disabled = true; }
