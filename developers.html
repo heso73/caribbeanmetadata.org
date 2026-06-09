@@ -616,117 +616,103 @@ except jsonschema.ValidationError as e:
       <span class="section-num">04</span>
       
       <!-- API PUBLIQUE -->
-      <h2>API publique officielle</h2>
-      <p>L'API CMS est publique, gratuite et opérationnelle. Aucune clé requise pour les requêtes en lecture.</p>
+      <h2>API publique officielle <span style="font-size:13px;background:rgba(0,194,199,0.12);color:#0e7490;padding:3px 10px;border-radius:20px;font-family:'Space Mono',monospace;font-weight:400;letter-spacing:1px;margin-left:8px">v2.0 LIVE</span></h2>
+      <p>L'API CMS v2.0 est publique, gratuite et connectée en temps réel à Supabase. Aucune clé requise pour les requêtes en lecture. Données réelles : 110 enregistrements corpus, vocabulaire complet v2.0.</p>
 
       <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;margin-bottom:12px;letter-spacing:2px">BASE URL</div>
-        <div style="font-family:'Space Mono',monospace;font-size:14px;color:#fff">https://cms-api.small-disk-3275.workers.dev</div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#00C2C7;margin-bottom:8px;letter-spacing:2px">BASE URL — v2.0</div>
+        <div style="font-family:'Space Mono',monospace;font-size:15px;color:#fff;margin-bottom:8px">https://cms-api.small-disk-3275.workers.dev</div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.35)">v1 → redirigée vers v2 · CORS: * · Format: JSON</div>
       </div>
 
-      <table style="width:100%;border-collapse:collapse;margin:16px 0">
+      <!-- ENDPOINTS TABLE -->
+      <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:13px">
         <thead><tr>
-          <th style="text-align:left;padding:10px 14px;font-size:11px;letter-spacing:1px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1)">ENDPOINT</th>
-          <th style="text-align:left;padding:10px 14px;font-size:11px;letter-spacing:1px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1)">DESCRIPTION</th>
+          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">MÉTHODE + ENDPOINT</th>
+          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">DESCRIPTION</th>
         </tr></thead>
         <tbody>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Index de l'API — description et endpoints</td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1/stats</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Statistiques du registre en temps réel</td></tr>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1/works</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Liste des œuvres — filtres: territory, family, language, limit, offset</td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1/works/:cms_id</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche complète d'une œuvre par identifiant CMS</td></tr>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)">GET /api/v1/vocabularies</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(0,62,107,0.06)">Vocabulaires contrôlés CMS v2.0 (langues, territoires, domaines, marqueurs)</td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7">GET /api/v1/schema</td><td style="padding:10px 14px;font-size:13px">Schéma officiel CMS v2.0 — 6 familles, champs requis, règles de validation</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Index — endpoints, version, licence</td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/stats</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Statistiques en temps réel — œuvres, certifications, langues, territoires</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/works</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Liste des œuvres — filtres: <code>territory</code>, <code>family</code>, <code>language</code>, <code>status</code>, <code>limit</code>, <code>offset</code></td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/works/:id</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Détail d'une œuvre par UUID — avec créateur</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#FF6F61;margin-right:6px">POST</span>/api/v2/works</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Soumettre une œuvre pour enregistrement CMS — body JSON requis</td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/certifications</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Registre public des certifications CMS</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/certifications/:cms_id</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Vérifier une certification par CMS ID — <code>valid</code>, <code>cms_id</code>, <code>work</code>, <code>completeness</code></td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/vocabulary/markers</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">27 marqueurs culturels officiels CMS — id, name, category, territory</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/vocabulary/languages</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">10 langues caribéennes ISO 639-3</td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/vocabulary/territories</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">20 territoires caribéens</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/vocabulary/domains</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">14 domaines culturels</td></tr>
         </tbody>
       </table>
 
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFC93C;margin-bottom:10px;letter-spacing:2px">EXEMPLE — cURL</div>
-        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#98E6C8;line-height:1.7;overflow-x:auto">curl https://cms-api.small-disk-3275.workers.dev/api/v1/stats
+      <!-- EXEMPLES -->
+      <h3 style="font-size:16px;color:#003E6B;margin:24px 0 12px">Exemples de requêtes</h3>
 
-# Réponse :
-{
-  "certified_works": 0,
-  "standard_version": "2.0",
-  "corpus_records": 110,
-  "languages_covered": 10,
-  "cultural_markers": 27
-}</pre>
+      <!-- cURL -->
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFC93C;margin-bottom:12px;letter-spacing:2px">CURL — Stats en temps réel</div>
+        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">curl https://cms-api.small-disk-3275.workers.dev/api/v2/stats</pre>
       </div>
 
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFC93C;margin-bottom:10px;letter-spacing:2px">EXEMPLE — Python</div>
-        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#98E6C8;line-height:1.7;overflow-x:auto">import requests
-
-# Vérifier une certification
-r = requests.get(
-    "https://cms-api.small-disk-3275.workers.dev/api/v1/works/CMS-GUA-2026-XXXXXXXX"
-)
-cert = r.json()
-print(cert["level"], cert["score"])  # "gold", 72</pre>
+      <!-- cURL works -->
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFC93C;margin-bottom:12px;letter-spacing:2px">CURL — Œuvres par territoire</div>
+        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">curl "https://cms-api.small-disk-3275.workers.dev/api/v2/works?territory=Guadeloupe&limit=10"</pre>
       </div>
 
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFC93C;margin-bottom:10px;letter-spacing:2px">EXEMPLE — JavaScript</div>
-        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#98E6C8;line-height:1.7;overflow-x:auto">const res = await fetch(
-  'https://cms-api.small-disk-3275.workers.dev/api/v1/vocabularies/markers'
+      <!-- JavaScript -->
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFC93C;margin-bottom:12px;letter-spacing:2px">JAVASCRIPT — Vérifier une certification</div>
+        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">const res = await fetch(
+  'https://cms-api.small-disk-3275.workers.dev/api/v2/certifications/CMS-GUA-2026-XXXXXXXX'
 );
-const { data } = await res.json();
-console.log(Object.keys(data).length); // 6 catégories</pre>
+const cert = await res.json();
+console.log(cert.valid, cert.work.title);</pre>
       </div>
 
-      <div style="background:#e8f5f0;border-radius:8px;padding:16px 20px;margin:16px 0;font-size:13px;color:#166534;border:1px solid rgba(63,166,107,0.25)">
-        <strong>Open source · Gratuit · Sans authentification</strong><br>
-        L'API est publique en lecture. Aucune clé API requise. Rate limit : 100 req/s.
-        <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" style="color:#166534;font-weight:700;margin-left:8px">→ Corpus sur GitHub</a>
+      <!-- Python -->
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFC93C;margin-bottom:12px;letter-spacing:2px">PYTHON — Lister les marqueurs</div>
+        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">import requests
+r = requests.get('https://cms-api.small-disk-3275.workers.dev/api/v2/vocabulary/markers')
+markers = r.json()['markers']
+for m in markers:
+    print(m['id'], '-', m['name'], '(', m['category'], ')')</pre>
       </div>
 
-<h2>Niveaux de conformité</h2>
-    </div>
-    <div class="divider"></div>
-    <div class="code-block">
-      <table class="compliance-table">
-        <thead>
-          <tr>
-            <th>Niveau</th>
-            <th>Score caribéen</th>
-            <th>Champs requis</th>
-            <th>Description</th>
-          </tr>
-        </thead>
+      <!-- POST works -->
+      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FF6F61;margin-bottom:12px;letter-spacing:2px">POST — Soumettre une œuvre</div>
+        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">curl -X POST https://cms-api.small-disk-3275.workers.dev/api/v2/works \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Gwo Ka — Tambours de Guadeloupe",
+    "territory": "Guadeloupe",
+    "languages": ["gcf"],
+    "family": "musical",
+    "year": 2026,
+    "description": "Documentaire sur la pratique du Gwo Ka..."
+  }'</pre>
+      </div>
+
+      <!-- Niveaux conformité -->
+      <h3 style="font-size:16px;color:#003E6B;margin:24px 0 12px">Niveaux de conformité CMS</h3>
+      <p style="font-size:14px;color:#555;margin-bottom:16px">La complétude d'une fiche CMS se mesure par le nombre de familles de métadonnées renseignées sur 6.</p>
+      <table style="width:100%;border-collapse:collapse;margin:0 0 16px;font-size:13px">
+        <thead><tr>
+          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">FAMILLES</th>
+          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">NIVEAU</th>
+          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">DESCRIPTION</th>
+        </tr></thead>
         <tbody>
-          <tr>
-            <td><span class="level-badge level-bronze">BRONZE</span></td>
-            <td>≥ 20 / 100</td>
-            <td>6 champs</td>
-            <td style="color:var(--muted)">Ancrage caribéen minimal</td>
-          </tr>
-          <tr>
-            <td><span class="level-badge level-silver">SILVER</span></td>
-            <td>≥ 40 / 100</td>
-            <td>10 champs</td>
-            <td style="color:var(--muted)">Contenu caribéen identifié</td>
-          </tr>
-          <tr>
-            <td><span class="level-badge level-gold">GOLD</span></td>
-            <td>≥ 65 / 100</td>
-            <td>14 champs</td>
-            <td style="color:var(--muted)">Contenu caribéen affirmé</td>
-          </tr>
-          <tr>
-            <td><span class="level-badge level-platinum">PLATINUM</span></td>
-            <td>≥ 85 / 100</td>
-            <td>18 champs</td>
-            <td style="color:var(--muted)">Standard caribéen de référence</td>
-          </tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;border-bottom:1px solid rgba(0,62,107,0.06)">1–2 / 6</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-weight:600;color:#003E6B">Partielle</td><td style="padding:10px 14px;font-size:12px;color:#555;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche démarrée — langue ou territoire identifié</td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;border-bottom:1px solid rgba(0,62,107,0.06)">3–4 / 6</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-weight:600;color:#003E6B">Avancée</td><td style="padding:10px 14px;font-size:12px;color:#555;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche substantielle — langue + territoire + marqueurs documentés</td></tr>
+          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;border-bottom:1px solid rgba(0,62,107,0.06)">5–6 / 6</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-weight:600;color:#00C2C7">Complète</td><td style="padding:10px 14px;font-size:12px;color:#555;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche CMS complète — toutes les dimensions caribéennes documentées</td></tr>
+          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;border-bottom:1px solid rgba(0,62,107,0.06)">6 / 6</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-weight:600;color:#0e7490">Exhaustive</td><td style="padding:10px 14px;font-size:12px;color:#555;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche de référence — standard maximal CMS v2.0</td></tr>
         </tbody>
       </table>
-    </div>
-  </div>
 
-  <!-- CTA -->
-  <div class="cta-block">
-    <h3>Prêt à intégrer le CMS ?</h3>
-    <p>Rejoignez les plateformes qui documentent et valorisent la culture caribéenne avec un standard ouvert et international.</p>
     <a href="collaborate.html" class="btn btn-primary">Devenir partenaire</a>
     <a href="contact.html" class="btn btn-outline">Nous contacter</a>
   </div>
