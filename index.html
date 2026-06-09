@@ -2,395 +2,211 @@
 <html lang="fr">
 <head>
   <link rel="canonical" href="https://caribbeanmetadata.org/" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne</title>
+  <meta name="description" content="Le premier standard ouvert de métadonnées pour les contenus culturels caribéens. 27 marqueurs culturels, 10 langues ISO, 20 territoires. API publique. CC-BY 4.0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #fff; color: #1a1a1a; font-size: 16px; line-height: 1.6; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#05111F;
+  --navy:#003E6B;
+  --teal:#00C2C7;
+  --teal2:#00A8AE;
+  --gold:#FFC93C;
+  --coral:#FF6F61;
+  --green:#3FA66B;
+  --white:#fff;
+  --muted:#888;
+  --border:rgba(0,62,107,0.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6;overflow-x:hidden}
 
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(255,255,255,0.97);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  padding: 0 6%; height: 68px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-logo { font-size: 20px; font-weight: 700; color: #003E6B; text-decoration: none; letter-spacing: 2px; }
-.nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
-.nav-links a { font-size: 13px; color: #444; text-decoration: none; transition: color .2s; }
-.nav-links a:hover { color: #003E6B; }
-.nav-links .nav-validate {
-  padding: 7px 16px; background: #00C2C7; color: #003E6B !important;
-  border-radius: 4px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px;
-}
-.nav-links .nav-validate:hover { background: #00A8AE; }
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.07);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:2px;font-family:'DM Mono',monospace}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;color:#444;text-decoration:none;transition:color .2s;font-weight:400}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{padding:8px 18px;background:var(--teal);color:var(--dark) !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:.5px;transition:background .2s}
+.nav-cta:hover{background:var(--teal2) !important}
+.nav-lang{display:flex;align-items:center;gap:4px;margin-left:16px}
+.nav-lang button{background:none;border:none;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:1px;color:#bbb;padding:3px 7px;border-radius:3px;transition:all .2s;font-family:inherit}
+.nav-lang button:hover,.nav-lang button.active{color:var(--navy);background:rgba(0,62,107,0.08)}
 
-/* Langue switcher desktop */
-.nav-lang {
-  display: flex; align-items: center; gap: 4px; margin-left: 16px;
-}
-.nav-lang button {
-  background: none; border: none; cursor: pointer;
-  font-size: 11px; font-weight: 700; letter-spacing: 1px;
-  color: #bbb; padding: 3px 7px; border-radius: 3px;
-  transition: all .2s; font-family: inherit;
-}
-.nav-lang button:hover { color: #003E6B; }
-.nav-lang button.active { color: #003E6B; background: rgba(0,62,107,0.08); }
-.nav-lang .sep { color: rgba(0,62,107,0.2); font-size: 11px; pointer-events: none; user-select: none; }
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--dark);position:relative;overflow:hidden;display:flex;align-items:center;padding:100px 6% 60px}
 
-/* Hamburger */
-.nav-burger {
-  display: none; flex-direction: column; justify-content: center; gap: 5px;
-  width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px;
-}
-.nav-burger span {
-  display: block; width: 22px; height: 2px;
-  background: #003E6B; border-radius: 2px; transition: all .25s;
-}
-.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-burger.open span:nth-child(2) { opacity: 0; }
-.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* Grille de fond */
+.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(0,194,199,0.04) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(0,194,199,0.025) 48px)}
 
-/* Menu mobile */
-.nav-mobile {
-  display: none; position: fixed; top: 68px; left: 0; right: 0; z-index: 999;
-  background: rgba(255,255,255,0.98); border-bottom: 1px solid rgba(0,62,107,0.1);
-  padding: 20px 6% 28px; flex-direction: column;
-  box-shadow: 0 8px 32px rgba(0,62,107,0.10);
-}
-.nav-mobile.open { display: flex; }
-.nav-mobile a {
-  font-size: 15px; color: #444; text-decoration: none;
-  padding: 12px 0; border-bottom: 1px solid rgba(0,62,107,0.06); transition: color .2s;
-}
-.nav-mobile a:last-of-type { border-bottom: none; }
-.nav-mobile a:hover { color: #003E6B; }
-.nav-mobile .m-validate {
-  margin-top: 16px; padding: 12px 20px; background: #00C2C7; color: #003E6B !important;
-  border-radius: 4px; font-weight: 700; text-align: center; font-size: 14px; border-bottom: none !important;
-}
-.nav-mobile-lang {
-  display: flex; gap: 8px; margin-top: 20px; padding-top: 16px;
-  border-top: 1px solid rgba(0,62,107,0.06);
-}
-.nav-mobile-lang button {
-  background: none; border: 1px solid rgba(0,62,107,0.15); border-radius: 4px;
-  cursor: pointer; font-size: 12px; font-weight: 700; letter-spacing: 1px;
-  color: #999; padding: 6px 14px; transition: all .2s; font-family: inherit;
-}
-.nav-mobile-lang button:hover,
-.nav-mobile-lang button.active { color: #003E6B; border-color: #003E6B; background: rgba(0,62,107,0.05); }
+/* Halos lumineux */
+.hero-glow-1{position:absolute;top:-120px;right:10%;width:600px;height:600px;background:radial-gradient(ellipse at center,rgba(0,194,199,0.12) 0%,transparent 65%);pointer-events:none}
+.hero-glow-2{position:absolute;bottom:-80px;left:5%;width:400px;height:400px;background:radial-gradient(ellipse at center,rgba(0,62,107,0.18) 0%,transparent 65%);pointer-events:none}
+.hero-glow-3{position:absolute;top:30%;right:5%;width:300px;height:300px;background:radial-gradient(ellipse at center,rgba(255,201,60,0.06) 0%,transparent 65%);pointer-events:none}
 
-/* HERO */
-.hero {
-  min-height: 100vh; background: #003E6B;
-  display: flex; align-items: center;
-  padding: 100px 6% 80px; position: relative; overflow: hidden;
-}
-.hero::before {
-  content: ''; position: absolute; inset: 0; opacity: 0.07;
-  background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(0,194,199,0.6) 24px),
-    repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(255,201,60,0.4) 24px),
-    repeating-linear-gradient(45deg, transparent, transparent 11px, rgba(0,194,199,0.3) 12px),
-    repeating-linear-gradient(-45deg, transparent, transparent 11px, rgba(255,201,60,0.2) 12px);
-}
-.hero-content { position: relative; z-index: 1; max-width: 720px; }
-.hero-eyebrow {
-  font-size: 11px; letter-spacing: 3px; color: #00C2C7;
-  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
-}
-.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: #00C2C7; }
-.hero h1 {
-  font-size: clamp(38px, 6vw, 76px); font-weight: 700;
-  color: #fff; line-height: 1.05; margin-bottom: 8px; letter-spacing: -1px;
-}
-.hero-cms { font-size: 14px; letter-spacing: 6px; color: rgba(255,255,255,0.3); margin-bottom: 24px; }
-.hero p { font-size: 17px; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.75; margin-bottom: 40px; }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-hero-primary {
-  padding: 14px 28px; background: #00C2C7; color: #003E6B;
-  text-decoration: none; border-radius: 4px; font-weight: 700;
-  font-size: 14px; letter-spacing: 0.5px; transition: background .2s;
-}
-.btn-hero-primary:hover { background: #00A8AE; }
-.btn-hero-secondary {
-  padding: 14px 28px; background: transparent; color: rgba(255,255,255,0.7);
-  text-decoration: none; border-radius: 4px; font-size: 14px;
-  border: 1px solid rgba(255,255,255,0.2); transition: all .2s;
-}
-.btn-hero-secondary:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
-.hero-scroll {
-  position: absolute; bottom: 32px; left: 6%;
-  font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.3);
-  display: flex; align-items: center; gap: 8px;
-}
-.hero-scroll::after { content: ''; display: block; width: 40px; height: 1px; background: rgba(255,255,255,0.2); }
+.hero-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 480px;gap:48px;align-items:center}
 
-/* SECTIONS */
-section { padding: 88px 6%; }
-.section-eyebrow {
-  font-size: 11px; letter-spacing: 3px; color: #00C2C7;
-  margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
-}
-.section-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: #00C2C7; }
-.section-title { font-size: clamp(24px, 3.5vw, 40px); font-weight: 700; color: #003E6B; line-height: 1.2; margin-bottom: 48px; max-width: 640px; }
+/* Texte hero */
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--teal);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:36px;height:1px;background:var(--teal)}
+.hero-h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(40px,6vw,72px);color:#fff;line-height:1.02;margin-bottom:20px;letter-spacing:-1.5px}
+.hero-h1 em{font-style:italic;color:var(--teal)}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.55);max-width:520px;line-height:1.85;margin-bottom:36px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px}
+.btn-hero-primary{padding:14px 32px;background:var(--teal);color:var(--dark);font-weight:700;font-size:14px;border:none;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;letter-spacing:.3px}
+.btn-hero-primary:hover{background:var(--teal2)}
+.btn-hero-outline{padding:14px 28px;background:transparent;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);font-size:14px;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-hero-outline:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.04)}
+.btn-hero-ghost{padding:14px 20px;background:transparent;border:none;color:rgba(255,255,255,0.35);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px}
 
-/* PROBLÈME */
-.problem-section { background: #f7f9fb; }
-.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(0,62,107,0.1); border-radius: 8px; overflow: hidden; }
-.problem-card { padding: 36px 28px; border-right: 1px solid rgba(0,62,107,0.1); }
-.problem-card:last-child { border-right: none; }
-.problem-letter { font-size: 11px; letter-spacing: 2px; color: #00C2C7; margin-bottom: 16px; font-weight: 700; }
-.problem-card h3 { font-size: 17px; font-weight: 700; color: #003E6B; margin-bottom: 12px; }
-.problem-card p { font-size: 14px; color: #666; line-height: 1.7; }
+/* Mini-stats sous les boutons */
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px}
+.hero-pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);padding:5px 12px;border:1px solid rgba(255,255,255,0.08);border-radius:20px}
+.hero-pill strong{color:rgba(255,255,255,0.7)}
 
-/* FAMILLES */
-.families-section { background: #fff; }
-.quote-block {
-  font-size: 18px; font-style: italic; color: #003E6B;
-  border-left: 3px solid #00C2C7; padding-left: 20px;
-  margin-bottom: 48px; line-height: 1.6; max-width: 600px;
-}
-.families-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(0,62,107,0.1); border-radius: 8px; overflow: hidden; margin-bottom: 36px; }
-.family-card { background: #fff; padding: 28px 24px; transition: background .2s; text-decoration: none; display: block; }
-.family-card:hover { background: #f7f9fb; }
-.family-num { font-size: 11px; letter-spacing: 2px; color: #00C2C7; margin-bottom: 10px; font-weight: 600; }
-.family-name { font-size: 16px; font-weight: 700; color: #003E6B; margin-bottom: 6px; }
-.family-tags { font-size: 12px; color: #888; }
-.families-cta { text-align: center; }
-.btn-outline {
-  display: inline-block; padding: 12px 28px;
-  border: 1px solid #003E6B; color: #003E6B;
-  text-decoration: none; border-radius: 4px; font-size: 14px;
-  font-weight: 600; transition: all .2s;
-}
-.btn-outline:hover { background: #003E6B; color: #fff; }
+/* ── CARTE CARAÏBE ── */
+.hero-map{position:relative}
+.map-container{position:relative;width:100%;aspect-ratio:1/0.85}
+.map-svg{width:100%;height:100%}
 
-/* DÉCLARATION */
-.declaration-section {
-  background: #0A0A0F; padding: 88px 6%;
-  position: relative; overflow: hidden;
-}
-.declaration-section::before {
-  content: ''; position: absolute; inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(201,168,76,0.04) 48px),
-    repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(0,194,199,0.03) 48px);
-}
-.declaration-inner {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  max-width: 1100px; margin: 0 auto;
-}
-.declaration-text .section-eyebrow { color: #C9A84C; }
-.declaration-text .section-eyebrow::before { background: #C9A84C; }
-.declaration-text .section-title { color: #F8F5EE; margin-bottom: 20px; }
-.declaration-text p { font-size: 15px; color: rgba(248,245,238,0.72); line-height: 1.8; margin-bottom: 32px; }
-.btn-declaration {
-  display: inline-block; padding: 13px 28px;
-  background: transparent; color: #C9A84C;
-  border: 1px solid rgba(201,168,76,0.5);
-  text-decoration: none; border-radius: 4px;
-  font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
-  transition: all .2s;
-}
-.btn-declaration:hover { background: rgba(201,168,76,0.1); border-color: #C9A84C; }
-.declaration-quote { border-left: 2px solid #C9A84C; padding-left: 28px; }
-.declaration-quote blockquote {
-  font-family: Georgia, serif;
-  font-size: clamp(18px, 2.5vw, 26px);
-  font-style: italic; font-weight: 300;
-  color: rgba(248,245,238,0.88);
-  line-height: 1.75; margin-bottom: 24px;
-}
-.declaration-quote .quote-source { font-size: 11px; letter-spacing: 2px; color: #C9A84C; font-style: normal; }
-.declaration-articles { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
-.decl-pill {
-  padding: 4px 12px; border-radius: 20px;
-  font-size: 11px; color: rgba(248,245,238,0.5);
-  border: 1px solid rgba(248,245,238,0.1);
-  font-family: inherit;
-}
+/* ── BARRE DE STATS ── */
+.stats-strip{background:rgba(0,20,40,0.95);border-top:1px solid rgba(0,194,199,0.12);border-bottom:1px solid rgba(0,194,199,0.08)}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.stat-col{padding:20px 0;text-align:center;border-right:1px solid rgba(255,255,255,0.05)}
+.stat-col:last-child{border-right:none}
+.stat-n{font-family:'DM Serif Display',Georgia,serif;font-size:32px;color:var(--teal);line-height:1}
+.stat-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.35);margin-top:4px}
 
-/* VALIDATOR CTA */
-.validator-cta-section { background: #003E6B; padding: 80px 6%; }
-.validator-cta-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-  max-width: 1100px; margin: 0 auto;
-}
-.validator-cta-text .section-eyebrow::before { background: #00C2C7; }
-.validator-cta-text .section-eyebrow { color: #00C2C7; }
-.validator-cta-text .section-title { color: #fff; margin-bottom: 16px; }
-.validator-cta-text p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 32px; }
-.validator-cta-text .btn-validate-cta {
-  display: inline-block; padding: 14px 32px;
-  background: #00C2C7; color: #003E6B;
-  text-decoration: none; border-radius: 4px;
-  font-weight: 700; font-size: 15px; letter-spacing: 0.5px;
-  transition: background .2s;
-}
-.validator-cta-text .btn-validate-cta:hover { background: #00A8AE; }
-.validator-cta-preview {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(0,194,199,0.2);
-  border-radius: 12px; overflow: hidden;
-}
-.vcp-header {
-  background: rgba(0,194,199,0.1); border-bottom: 1px solid rgba(0,194,199,0.2);
-  padding: 16px 20px; display: flex; align-items: center; gap: 12px;
-}
-.vcp-logo { width: 32px; height: 32px; }
-.vcp-header-text p:first-child { font-size: 13px; font-weight: 700; color: #fff; }
-.vcp-header-text p:last-child { font-size: 10px; color: #00C2C7; letter-spacing: 1px; }
-.vcp-steps { display: flex; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.vcp-step { flex: 1; padding: 10px 6px; text-align: center; font-size: 10px; color: rgba(255,255,255,0.4); }
-.vcp-step.a { color: #00C2C7; border-bottom: 2px solid #00C2C7; }
-.vcp-body { padding: 20px; }
-.vcp-field { margin-bottom: 12px; }
-.vcp-label { font-size: 10px; color: rgba(255,255,255,0.4); margin-bottom: 5px; letter-spacing: 0.5px; }
-.vcp-input {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px; padding: 8px 12px; font-size: 12px; color: rgba(255,255,255,0.7);
-}
-.vcp-levels { display: flex; gap: 6px; margin-top: 16px; }
-.vcp-level {
-  flex: 1; padding: 8px 4px; border-radius: 4px; text-align: center;
-  font-size: 9px; font-weight: 700; letter-spacing: 1px;
-}
-.vcp-level.bronze { background: rgba(200,150,20,0.2); color: #C8960C; }
-.vcp-level.silver { background: rgba(158,158,158,0.2); color: #9E9E9E; }
-.vcp-level.gold { background: rgba(249,168,37,0.2); color: #F9A825; }
-.vcp-level.plat { background: rgba(15,110,86,0.2); color: #3FA66B; }
+/* ── SECTIONS COMMUNES ── */
+.section{padding:80px 6%}
+.section-alt{background:#f7f9fb}
+.sec-inner{max-width:1200px;margin:0 auto}
+.s-ey{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.s-ey::before{content:'';display:block;width:24px;height:1px;background:var(--teal)}
+.s-title{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(26px,3.5vw,42px);color:var(--navy);margin-bottom:12px;letter-spacing:-.5px;line-height:1.15}
+.s-sub{font-size:16px;color:#555;max-width:580px;line-height:1.8;margin-bottom:48px}
 
-/* ==========================================
-   OPEN DATA SECTION — NOUVEAU
-   ========================================== */
-.opendata-section { background: #fff; padding: 88px 6%; }
-.opendata-inner { max-width: 1100px; margin: 0 auto; }
-.opendata-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 48px; align-items: start; margin-bottom: 48px;
-}
-.opendata-text .section-title { margin-bottom: 20px; }
-.opendata-text p { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 28px; }
-.opendata-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
-.opendata-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px; border-radius: 20px;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-decoration: none;
-}
-.badge-cc  { background: #E8F6F7; color: #007A7E; border: 1px solid #B2E4E6; }
-.badge-cms { background: #E8F0F7; color: #003E6B; border: 1px solid #B2CCE0; }
-.badge-ifla  { background: #EEF2F7; color: #003E6B; border: 1px solid #C5D0DD; }
-.badge-crosq { background: #FFF9E8; color: #7A5C00; border: 1px solid #FFE49A; }
-.btn-github {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 13px 24px; background: #1a1a1a; color: #fff;
-  text-decoration: none; border-radius: 4px;
-  font-size: 14px; font-weight: 600; transition: background .2s;
-}
-.btn-github:hover { background: #333; }
-.corpus-card {
-  background: #fff; border: 1px solid rgba(0,62,107,0.1);
-  border-radius: 10px; overflow: hidden;
-}
-.corpus-card-header {
-  background: #003E6B; padding: 20px 24px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.corpus-card-header-left { display: flex; align-items: center; gap: 12px; }
-.corpus-dot { width: 10px; height: 10px; border-radius: 50%; background: #00C2C7; }
-.corpus-card-title { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
-.corpus-card-sub { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 1px; margin-top: 2px; }
-.corpus-version { font-size: 10px; color: #00C2C7; letter-spacing: 2px; font-weight: 700; }
-.corpus-stats {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border-bottom: 1px solid rgba(0,62,107,0.08);
-}
-.corpus-stat { padding: 18px 20px; border-right: 1px solid rgba(0,62,107,0.08); text-align: center; }
-.corpus-stat:last-child { border-right: none; }
-.corpus-stat-value { font-size: 26px; font-weight: 700; color: #003E6B; line-height: 1; margin-bottom: 4px; }
-.corpus-stat-label { font-size: 10px; color: #999; letter-spacing: 1px; text-transform: uppercase; }
-.corpus-languages { padding: 16px 20px; border-bottom: 1px solid rgba(0,62,107,0.06); }
-.corpus-lang-title { font-size: 10px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
-.corpus-lang-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.lang-tag {
-  padding: 3px 10px; background: #f0f4f8; border-radius: 12px;
-  font-size: 11px; color: #003E6B; font-weight: 600;
-  font-family: 'Courier New', monospace;
-}
-.corpus-markers { padding: 16px 20px; }
-.corpus-marker-title { font-size: 10px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
-.corpus-marker-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.marker-tag {
-  padding: 3px 10px; background: #E8F6F7; border-radius: 12px;
-  font-size: 11px; color: #007A7E; font-weight: 600;
-}
-.opendata-stats-row {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: rgba(0,62,107,0.08);
-  border-radius: 8px; overflow: hidden;
-}
-.opendata-stat-box { background: #fff; padding: 24px 20px; text-align: center; }
-.opendata-stat-num { font-size: 32px; font-weight: 700; color: #003E6B; line-height: 1; margin-bottom: 6px; }
-.opendata-stat-lbl { font-size: 11px; color: #888; letter-spacing: 1px; text-transform: uppercase; }
+/* ── POURQUOI ── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-card{border:1px solid var(--border);border-radius:12px;padding:28px;background:#fff;transition:box-shadow .2s}
+.why-card:hover{box-shadow:0 8px 32px rgba(0,62,107,0.08)}
+.wc-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px}
+.wc-title{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.wc-body{font-size:14px;color:#666;line-height:1.75}
 
-/* BÉNÉFICIAIRES */
-.benefits-section { background: #f7f9fb; }
-.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.benefit-card { background: #fff; border: 1px solid rgba(0,62,107,0.08); border-radius: 8px; padding: 32px 24px; }
-.benefit-type { font-size: 10px; letter-spacing: 2px; color: #00C2C7; font-weight: 700; margin-bottom: 14px; }
-.benefit-card h3 { font-size: 17px; font-weight: 700; color: #003E6B; margin-bottom: 16px; }
-.benefit-list { list-style: none; }
-.benefit-list li { font-size: 14px; color: #555; padding: 6px 0; border-bottom: 1px solid rgba(0,62,107,0.06); display: flex; align-items: center; gap: 8px; }
-.benefit-list li::before { content: '→'; color: #00C2C7; font-weight: 700; flex-shrink: 0; }
-.benefit-list li:last-child { border-bottom: none; }
+/* ── FAMILLES ── */
+.fam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fam-card{border-radius:10px;padding:24px;border:1px solid var(--border);background:#fff;transition:all .2s;cursor:default}
+.fam-card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,194,199,0.08)}
+.fc-bar{height:3px;border-radius:2px;margin-bottom:16px}
+.fc-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:6px}
+.fc-name{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.fc-desc{font-size:13px;color:#666;line-height:1.65;margin-bottom:12px}
+.fc-tags{display:flex;flex-wrap:wrap;gap:5px}
+.fc-tag{font-size:10px;padding:3px 8px;border-radius:10px;background:#f0f4f8;color:#555;font-family:'DM Mono',monospace}
 
-/* CTA FINAL */
-.final-cta { background: #fff; text-align: center; }
-.final-cta .section-title { margin: 0 auto 12px; }
-.final-cta p { font-size: 16px; color: #666; margin-bottom: 32px; }
-.final-cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.btn-solid {
-  display: inline-block; padding: 13px 28px; background: #003E6B; color: #fff;
-  text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 600;
-  transition: background .2s;
+/* ── CMS BUILDER ── */
+.builder-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.builder-feats{display:flex;flex-direction:column;gap:20px}
+.bf-row{display:flex;gap:16px;align-items:flex-start}
+.bf-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.bf-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.bf-body{font-size:13px;color:#666;line-height:1.7}
+
+/* Mockup IVA */
+.iva-mock{border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 48px rgba(0,62,107,0.1)}
+.iva-bar{background:var(--dark);padding:10px 16px;display:flex;align-items:center;gap:8px}
+.iva-dot{width:8px;height:8px;border-radius:50%}
+.iva-title-bar{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);margin-left:8px;letter-spacing:1px}
+.iva-body{padding:20px;background:#fff}
+.iva-score-row{display:flex;align-items:center;gap:16px;background:#f7f9fb;border-radius:10px;padding:14px 16px;margin-bottom:16px}
+.iva-num{font-family:'DM Serif Display',Georgia,serif;font-size:42px;color:var(--navy);line-height:1}
+.iva-denom{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted)}
+.iva-pill{font-family:'DM Mono',monospace;font-size:10px;padding:4px 12px;background:#E1F5EE;color:#0F6E56;border-radius:20px;font-weight:500;letter-spacing:.5px}
+.iva-sub-lbl{font-size:11px;color:var(--muted);margin-top:4px;font-family:'DM Mono',monospace}
+.iva-bar-row{margin-bottom:8px}
+.iva-bar-head{display:flex;justify-content:space-between;font-size:11px;color:#666;margin-bottom:4px;font-family:'DM Mono',monospace}
+.iva-track{height:5px;background:#f0f4f8;border-radius:3px;overflow:hidden}
+.iva-fill{height:100%;border-radius:3px;transition:width 1s ease}
+.iva-tip{margin-top:12px;background:#f0fdf4;border-left:3px solid var(--teal);padding:10px 14px;border-radius:0 6px 6px 0;font-size:12px;color:#555;line-height:1.65}
+
+/* ── CORPUS ── */
+.corpus-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.corpus-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.cs-card{border:1px solid var(--border);border-radius:10px;padding:20px;background:#fff;text-align:center}
+.cs-num{font-family:'DM Serif Display',Georgia,serif;font-size:36px;color:var(--navy);line-height:1;margin-bottom:4px}
+.cs-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted)}
+.api-window{background:var(--dark);border-radius:12px;overflow:hidden}
+.api-win-bar{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px}
+.api-win-dot{width:7px;height:7px;border-radius:50%}
+.api-win-url{font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);margin-left:10px}
+.api-win-body{padding:16px}
+.api-line{font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);line-height:1.8}
+.api-key{color:rgba(255,255,255,0.35)}
+.api-val-teal{color:var(--teal)}
+.api-val-gold{color:var(--gold)}
+.api-val-num{color:#a8d8ff}
+
+/* ── GOUVERNANCE ── */
+.gouv-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gs-card{border-radius:12px;padding:24px;border:1px solid var(--border);background:#fff;text-align:center;position:relative;overflow:hidden;transition:box-shadow .2s}
+.gs-card:hover{box-shadow:0 8px 24px rgba(0,62,107,0.08)}
+.gs-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal)}
+.gs-step{font-family:'DM Serif Display',Georgia,serif;font-size:36px;color:var(--teal);opacity:.25;line-height:1;margin-bottom:10px}
+.gs-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.gs-body{font-size:12px;color:#666;line-height:1.7}
+
+/* ── REJOINDRE ── */
+.join-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.jc{border:1px solid var(--border);border-radius:12px;padding:24px;background:#fff;display:flex;gap:16px;transition:all .2s}
+.jc:hover{border-color:var(--teal);box-shadow:0 6px 20px rgba(0,194,199,0.06)}
+.jc-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.jc-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.jc-body{font-size:13px;color:#666;line-height:1.65;margin-bottom:8px}
+.jc-link{font-size:12px;color:var(--navy);font-weight:600;font-family:'DM Mono',monospace;letter-spacing:.5px}
+
+/* ── CTA FINAL ── */
+.cta-block{background:var(--dark);position:relative;overflow:hidden;padding:96px 6%;text-align:center}
+.cta-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(0,194,199,0.035) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(0,194,199,0.025) 48px)}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(0,194,199,0.1) 0%,transparent 65%);pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.cta-title{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(28px,4vw,48px);color:#fff;margin-bottom:14px;letter-spacing:-.5px;line-height:1.15}
+.cta-sub{font-size:16px;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:32px}
+.cta-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);color:#fff;padding:48px 6% 32px}
+.foot-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:#fff;letter-spacing:2px;display:block;margin-bottom:12px;text-decoration:none}
+.foot-logo span{color:var(--teal)}
+.foot-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75}
+.foot-col h4{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:16px;text-transform:uppercase}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:8px}
+.foot-col a{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-bot{max-width:1200px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;flex-wrap:wrap;gap:8px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:32px}
+  .hero-map{display:none}
+  .builder-layout,.corpus-layout{grid-template-columns:1fr}
+  .gouv-steps{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
 }
-.btn-solid:hover { background: #00537A; }
-
-/* FOOTER */
-footer { background: #003E6B; padding: 56px 6% 32px; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.footer-logo { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 2px; text-decoration: none; display: block; margin-bottom: 12px; }
-.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
-.footer-col h4 { font-size: 11px; font-weight: 700; color: #00C2C7; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; }
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 8px; }
-.footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
-.footer-col a:hover { color: #fff; }
-.footer-col a.highlight { color: #00C2C7; font-weight: 600; }
-.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: rgba(255,255,255,0.35); text-align: center; }
-
-@media(max-width: 900px) {
-  .problem-grid, .families-grid, .benefits-grid { grid-template-columns: 1fr; }
-  .validator-cta-inner { grid-template-columns: 1fr; }
-  .declaration-inner { grid-template-columns: 1fr; }
-  .opendata-grid { grid-template-columns: 1fr; }
-  .opendata-stats-row { grid-template-columns: repeat(2, 1fr); }
-  .vcp-levels { display: none; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links, .nav-lang { display: none !important; }
-  .nav-burger { display: flex; }
-  .status-bar { justify-content: flex-start; overflow-x: auto; }
-}
-@media(min-width: 901px) {
-  .nav-burger { display: none !important; }
-  .nav-mobile { display: none !important; }
+@media(max-width:768px){
+  .why-grid,.fam-grid{grid-template-columns:1fr}
+  .join-grid{grid-template-columns:1fr}
+  .corpus-stats{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:repeat(3,1fr)}
+  .stat-col:nth-child(4),.stat-col:nth-child(5){display:none}
+  .nav-links{display:none}
 }
 </style>
 </head>
@@ -398,814 +214,538 @@ footer { background: #003E6B; padding: 56px 6% 32px; }
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">CMS</a>
+  <a class="nav-logo" href="/">CMS<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="about.html">À propos</a></li>
-    <li><a href="families.html">Les 6 familles</a></li>
-    <li><a href="resources.html">Ressources</a></li>
-    <li><a href="roadmap.html">Roadmap</a></li>
-    <li><a href="developers.html">Developers</a></li>
-    <li><a href="lab.html">Language Lab</a></li>
-    <li><a href="collaborate.html">Collaborer</a></li>
-    <li><a href="declaration.html">Déclaration</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="founders.html">Les 100 Premiers</a></li>
-    <li><a href="validator.html" class="nav-validate">Valider un contenu</a></li>
-    <li><a href="index.html#tagger">CMS Builder</a></li>
+    <li><a href="about.html">Standard</a></li>
+    <li><a href="families.html">6 Familles</a></li>
+    <li><a href="catalogue.html">Catalogue</a></li>
+    <li><a href="developers.html">API</a></li>
+    <li><a href="equity.html">Équité</a></li>
+    <li><a href="submit.html" class="nav-cta">Soumettre une œuvre</a></li>
+    <li>
+      <div class="nav-lang">
+        <button class="active" onclick="window.location='index.html'">FR</button>
+        <span style="color:rgba(0,62,107,0.2);font-size:11px">|</span>
+        <button onclick="window.location='index-en.html'">EN</button>
+        <span style="color:rgba(0,62,107,0.2);font-size:11px">|</span>
+        <button onclick="window.location='index-es.html'">ES</button>
+      </div>
+    </li>
   </ul>
-  <div class="nav-lang">
-    <button class="active" data-lang="fr" onclick="setLang('fr')">FR</button>
-    <span class="sep">·</span>
-    <button data-lang="en" onclick="setLang('en')">EN</button>
-    <span class="sep">·</span>
-    <button data-lang="es" onclick="setLang('es')">ES</button>
-  </div>
-  <button class="nav-burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<!-- Menu mobile -->
-<div class="nav-mobile" id="navMobile">
-  <a href="about.html"       onclick="closeMenu()">À propos</a>
-  <a href="families.html"    onclick="closeMenu()">Les 6 familles</a>
-  <a href="resources.html"   onclick="closeMenu()">Ressources</a>
-  <a href="roadmap.html"     onclick="closeMenu()">Roadmap</a>
-  <a href="developers.html"  onclick="closeMenu()">Developers</a>
-  <a href="lab.html"         onclick="closeMenu()">Language Lab</a>
-  <a href="collaborate.html" onclick="closeMenu()">Collaborer</a>
-  <a href="declaration.html" onclick="closeMenu()">Déclaration</a>
-  <a href="contact.html"     onclick="closeMenu()">Contact</a>
-  <a href="founders.html"    onclick="closeMenu()">Les 100 Premiers</a>
-  <a href="validator.html" class="m-validate" onclick="closeMenu()">Valider un contenu</a>
-  <a href="index.html#tagger" onclick="closeMenu()">CMS Builder</a>
-  <div class="nav-mobile-lang">
-    <button class="active" data-lang="fr" onclick="setLang('fr')">FR</button>
-    <button data-lang="en" onclick="setLang('en')">EN</button>
-    <button data-lang="es" onclick="setLang('es')">ES</button>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HERO                                                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-glow-3"></div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Standard régional caribéen open source</div>
+      <h1 class="hero-h1">Caribbean<br><em>Metadata</em><br>Standard</h1>
+      <p class="hero-sub">La première infrastructure de métadonnées culturelles caribéennes — pour que les œuvres de la Caraïbe soient reconnues, recommandées et valorisées par les plateformes mondiales.</p>
+      <div class="hero-btns">
+        <button class="btn-hero-primary" onclick="window.location='submit.html'">Soumettre une œuvre →</button>
+        <button class="btn-hero-outline" onclick="window.location='about.html'">Explorer le standard</button>
+        <button class="btn-hero-ghost" onclick="window.location='spec.html'">Lire la spec v2.0</button>
+      </div>
+      <div class="hero-pills">
+        <span class="hero-pill"><strong>27</strong> marqueurs culturels</span>
+        <span class="hero-pill"><strong>10</strong> langues ISO 639-3</span>
+        <span class="hero-pill"><strong>20</strong> territoires</span>
+        <span class="hero-pill">CC-BY 4.0</span>
+      </div>
+    </div>
+
+    <!-- CARTE CARAÏBE SVG -->
+    <div class="hero-map">
+      <svg class="map-svg" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glo1" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stop-color="#00C2C7" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#00C2C7" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glo2" cx="30%" cy="60%" r="45%">
+            <stop offset="0%" stop-color="#003E6B" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#003E6B" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Halos -->
+        <ellipse cx="240" cy="160" rx="200" ry="160" fill="url(#glo1)"/>
+        <ellipse cx="140" cy="240" rx="160" ry="120" fill="url(#glo2)"/>
+
+        <!-- Cercles concentriques de référence -->
+        <circle cx="240" cy="180" r="140" fill="none" stroke="rgba(0,194,199,0.06)" stroke-width="1"/>
+        <circle cx="240" cy="180" r="100" fill="none" stroke="rgba(0,194,199,0.08)" stroke-width="1"/>
+        <circle cx="240" cy="180" r="60" fill="none" stroke="rgba(0,194,199,0.1)" stroke-width="0.5"/>
+
+        <!-- CUBA -->
+        <g>
+          <ellipse cx="130" cy="120" rx="55" ry="16" fill="rgba(0,194,199,0.3)" stroke="rgba(0,194,199,0.6)" stroke-width="1" transform="rotate(-8,130,120)"/>
+          <text x="130" y="104" font-family="DM Mono,monospace" font-size="9" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="1">CUBA</text>
+        </g>
+
+        <!-- HISPANIOLA (Haïti + RD) -->
+        <g>
+          <ellipse cx="220" cy="138" rx="30" ry="12" fill="rgba(255,201,60,0.3)" stroke="rgba(255,201,60,0.6)" stroke-width="1" transform="rotate(-5,220,138)"/>
+          <text x="200" y="128" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,201,60,0.8)" text-anchor="middle" letter-spacing="1">HAÏTI</text>
+        </g>
+
+        <!-- PUERTO RICO -->
+        <g>
+          <ellipse cx="272" cy="140" rx="14" ry="8" fill="rgba(0,194,199,0.25)" stroke="rgba(0,194,199,0.5)" stroke-width="1"/>
+          <text x="272" y="130" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.55)" text-anchor="middle">PR</text>
+        </g>
+
+        <!-- JAMAÏQUE -->
+        <g>
+          <ellipse cx="168" cy="152" rx="18" ry="9" fill="rgba(63,166,107,0.3)" stroke="rgba(63,166,107,0.6)" stroke-width="1" transform="rotate(-5,168,152)"/>
+          <text x="168" y="142" font-family="DM Mono,monospace" font-size="7" fill="rgba(63,166,107,0.9)" text-anchor="middle">JAMAICA</text>
+        </g>
+
+        <!-- PETITES ANTILLES — chaîne verticale -->
+        <!-- Guadeloupe -->
+        <g>
+          <ellipse cx="310" cy="162" rx="9" ry="6" fill="rgba(0,194,199,0.4)" stroke="rgba(0,194,199,0.8)" stroke-width="1.2"/>
+          <text x="327" y="164" font-family="DM Mono,monospace" font-size="8" fill="rgba(0,194,199,0.9)" letter-spacing="0.5">GUA</text>
+        </g>
+        <!-- Martinique -->
+        <g>
+          <ellipse cx="313" cy="182" rx="7" ry="5" fill="rgba(255,111,97,0.35)" stroke="rgba(255,111,97,0.7)" stroke-width="1"/>
+          <text x="328" y="184" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,111,97,0.85)" letter-spacing="0.5">MTQ</text>
+        </g>
+        <!-- Dominique -->
+        <ellipse cx="311" cy="172" rx="4" ry="3" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <!-- St Lucia -->
+        <ellipse cx="315" cy="192" rx="4" ry="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+        <!-- Barbade -->
+        <g>
+          <circle cx="330" cy="196" r="4" fill="rgba(255,201,60,0.3)" stroke="rgba(255,201,60,0.6)" stroke-width="1"/>
+          <text x="338" y="198" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,201,60,0.7)">BRB</text>
+        </g>
+        <!-- Trinidad -->
+        <g>
+          <ellipse cx="306" cy="218" rx="10" ry="6" fill="rgba(255,201,60,0.3)" stroke="rgba(255,201,60,0.6)" stroke-width="1" transform="rotate(-10,306,218)"/>
+          <text x="295" y="230" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,201,60,0.85)" text-anchor="middle" letter-spacing="0.5">TTO</text>
+        </g>
+
+        <!-- ARUBA / CURAÇAO -->
+        <g>
+          <ellipse cx="238" cy="195" rx="8" ry="4" fill="rgba(123,63,166,0.3)" stroke="rgba(123,63,166,0.6)" stroke-width="1" transform="rotate(-15,238,195)"/>
+          <ellipse cx="255" cy="192" rx="9" ry="4" fill="rgba(123,63,166,0.3)" stroke="rgba(123,63,166,0.6)" stroke-width="1" transform="rotate(-15,255,192)"/>
+          <text x="246" y="184" font-family="DM Mono,monospace" font-size="7" fill="rgba(123,63,166,0.85)" text-anchor="middle">CUW/ARU</text>
+        </g>
+
+        <!-- SURINAME (continent) -->
+        <g>
+          <ellipse cx="340" cy="230" rx="22" ry="14" fill="rgba(63,166,107,0.2)" stroke="rgba(63,166,107,0.45)" stroke-width="1"/>
+          <text x="340" y="232" font-family="DM Mono,monospace" font-size="8" fill="rgba(63,166,107,0.8)" text-anchor="middle" letter-spacing="0.5">SUR</text>
+        </g>
+
+        <!-- GUYANE -->
+        <g>
+          <ellipse cx="378" cy="222" rx="18" ry="13" fill="rgba(0,194,199,0.15)" stroke="rgba(0,194,199,0.4)" stroke-width="1"/>
+          <text x="378" y="224" font-family="DM Mono,monospace" font-size="8" fill="rgba(0,194,199,0.65)" text-anchor="middle" letter-spacing="0.5">GUF</text>
+        </g>
+
+        <!-- Ligne de connexion réseau -->
+        <line x1="310" y1="162" x2="220" y2="138" stroke="rgba(0,194,199,0.15)" stroke-width="0.8" stroke-dasharray="4,4"/>
+        <line x1="310" y1="162" x2="313" y2="182" stroke="rgba(0,194,199,0.2)" stroke-width="0.8"/>
+        <line x1="168" y1="152" x2="220" y2="138" stroke="rgba(63,166,107,0.15)" stroke-width="0.8" stroke-dasharray="4,4"/>
+        <line x1="130" y1="120" x2="220" y2="138" stroke="rgba(0,194,199,0.1)" stroke-width="0.8" stroke-dasharray="4,4"/>
+        <line x1="306" y1="218" x2="313" y2="182" stroke="rgba(255,201,60,0.15)" stroke-width="0.8"/>
+
+        <!-- Noeud central CMS -->
+        <circle cx="240" cy="180" r="16" fill="none" stroke="rgba(0,194,199,0.3)" stroke-width="1.5"/>
+        <circle cx="240" cy="180" r="8" fill="rgba(0,62,107,0.8)" stroke="rgba(0,194,199,0.6)" stroke-width="1.5"/>
+        <circle cx="240" cy="180" r="3" fill="#00C2C7"/>
+        <text x="240" y="210" font-family="DM Mono,monospace" font-size="10" fill="rgba(0,194,199,0.6)" text-anchor="middle" letter-spacing="2">CMS v2.0</text>
+
+        <!-- Points flottants diaspora -->
+        <circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.15)"/>
+        <circle cx="420" cy="110" r="3" fill="rgba(255,255,255,0.12)"/>
+        <circle cx="60" cy="200" r="2" fill="rgba(255,255,255,0.1)"/>
+        <circle cx="440" cy="270" r="2.5" fill="rgba(255,255,255,0.1)"/>
+
+        <!-- Label diaspora -->
+        <text x="60" y="270" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.2)" text-anchor="middle" letter-spacing="1.5">DIASPORA</text>
+        <text x="60" y="280" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.2)" text-anchor="middle" letter-spacing="1.5">CARIBÉENNE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-col"><div class="stat-n">110</div><div class="stat-l">Enregistrements</div></div>
+    <div class="stat-col"><div class="stat-n">10</div><div class="stat-l">Langues ISO</div></div>
+    <div class="stat-col"><div class="stat-n">27</div><div class="stat-l">Marqueurs culturels</div></div>
+    <div class="stat-col"><div class="stat-n">20</div><div class="stat-l">Territoires</div></div>
+    <div class="stat-col"><div class="stat-n">v2.0</div><div class="stat-l">Standard verrouillé</div></div>
   </div>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Premier standard numérique caribéen — v2.0</div>
-    <h1>Caribbean Metadata Standard</h1>
-    <p class="hero-cms">C · M · S</p>
-    <p>Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.</p>
-    <div class="hero-actions">
-      <a href="index.html#tagger" class="btn-hero-primary" data-i18n="btn-primary">Créer une fiche CMS</a>
-      <a href="about.html" class="btn-hero-secondary" data-i18n="btn-discover">Découvrir le standard</a>
-      <a href="collaborate.html" class="btn-hero-secondary" data-i18n="btn-join">Rejoindre l'initiative</a>
-    </div>
-  </div>
-  <div class="hero-scroll">Scroll</div>
-</section>
-
-<!-- PROBLÈME -->
-<section class="problem-section">
-  <div class="section-eyebrow">Le problème</div>
-  <h2 class="section-title">L'invisibilité numérique des créateurs caribéens</h2>
-  <p style="font-size:16px;color:#555;max-width:600px;margin-bottom:40px;line-height:1.75;">Les algorithmes déterminent ce que les audiences voient et valorisent. Pourtant les contenus caribéens restent mal indexés, mal classifiés — ou invisibles.</p>
-  <div class="problem-grid">
-    <div class="problem-card">
-      <div class="problem-letter">A</div>
-      <h3>Mauvaise classification</h3>
-      <p>Les plateformes ne disposent pas de catégories pour les genres caribéens, dialectes et nuances culturelles.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-letter">B</div>
-      <h3>Cécité algorithmique</h3>
-      <p>Les systèmes de recommandation ne peuvent pas promouvoir ce qu'ils ne savent pas interpréter.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-letter">C</div>
-      <h3>Dilution culturelle</h3>
-      <p>Sans métadonnées adaptées, les contenus caribéens sont forcés dans des catégories génériques inexactes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FAMILLES -->
-<section class="families-section">
-  <div class="section-eyebrow">Le standard</div>
-  <h2 class="section-title">Une infrastructure culturelle et technologique</h2>
-  <div class="quote-block">"Le CMS est plus qu'un outil technique. C'est une déclaration de souveraineté culturelle."</div>
-  <div class="families-grid">
-    <a href="families.html#linguistique" class="family-card">
-      <div class="family-num">01 — Linguistic</div>
-      <div class="family-name">Linguistique</div>
-      <div class="family-tags">Créole · Patois · Code-switching</div>
-    </a>
-    <a href="families.html#culturelle" class="family-card">
-      <div class="family-num">02 — Cultural</div>
-      <div class="family-name">Culturelle</div>
-      <div class="family-tags">Carnaval · Spiritualité · Diaspora</div>
-    </a>
-    <a href="families.html#narrative" class="family-card">
-      <div class="family-num">03 — Narrative</div>
-      <div class="family-name">Narrative</div>
-      <div class="family-tags">Réalisme magique · Saga · Thriller</div>
-    </a>
-    <a href="families.html#rythmique" class="family-card">
-      <div class="family-num">04 — Rhythmic</div>
-      <div class="family-name">Rythmique</div>
-      <div class="family-tags">Tempo · Syncopé · Percussif</div>
-    </a>
-    <a href="families.html#geographique" class="family-card">
-      <div class="family-num">05 — Geographic</div>
-      <div class="family-name">Géographique</div>
-      <div class="family-tags">Guadeloupe · Haïti · Jamaïque</div>
-    </a>
-    <a href="families.html#sociohistorique" class="family-card">
-      <div class="family-num">06 — Socio-Historical</div>
-      <div class="family-name">Socio-historique</div>
-      <div class="family-tags">Créolisation · Migration · Mémoire</div>
-    </a>
-  </div>
-  <div class="families-cta"><a href="families.html" class="btn-outline" data-i18n="fam-cta">Explorer les 6 familles →</a></div>
-</section>
-
-<!-- DÉCLARATION -->
-<section class="declaration-section">
-  <div class="declaration-inner">
-    <div class="declaration-text">
-      <div class="section-eyebrow">Acte fondateur</div>
-      <h2 class="section-title">La Déclaration Fondatrice</h2>
-      <p>Un texte solennel, poétique et institutionnel — l'acte de naissance numérique du Caribbean Metadata Standard et la proclamation de la souveraineté culturelle caribéenne.</p>
-      <a href="declaration.html" class="btn-declaration" data-i18n="decl-btn">Lire la Déclaration fondatrice →</a>
-      <div class="declaration-articles">
-        <span class="decl-pill">Art. 1 — Raison d'être</span>
-        <span class="decl-pill">Art. 4 — La Caraïbe comme matrice</span>
-        <span class="decl-pill">Art. 6 — Droit d'exister en lumière</span>
-        <span class="decl-pill">Art. 7 — Entrée en vigueur</span>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- POURQUOI UN STANDARD ?                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="sec-inner">
+    <div class="s-ey">Pourquoi un standard ?</div>
+    <h2 class="s-title">Les algorithmes ne voient pas<br>la Caraïbe</h2>
+    <p class="s-sub">Sans métadonnées structurées en termes caribéens, les plateformes mondiales ne peuvent pas identifier, catégoriser ni recommander les œuvres culturelles caribéennes. Le CMS résout ce problème.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wc-icon" style="background:#E6F1FB">👁️</div>
+        <div class="wc-title">Invisibilité algorithmique</div>
+        <div class="wc-body">Le gwoka devient "world music". Le konpa devient "latin". Les algorithmes de recommandation ne connectent pas le contenu caribéen à ses audiences naturelles.</div>
       </div>
-    </div>
-    <div class="declaration-quote">
-      <blockquote>"La Caraïbe n'est pas un fragment du monde : elle est un monde entier."</blockquote>
-      <blockquote>"La Caraïbe se définit elle-même. Le CMS est son alphabet."</blockquote>
-      <p class="quote-source">— Déclaration Fondatrice du CMS, 2026</p>
-    </div>
-  </div>
-</section>
-
-<!-- VALIDATOR CTA -->
-<section class="validator-cta-section">
-  <div class="validator-cta-inner">
-    <div class="validator-cta-text">
-      <div class="section-eyebrow">Outils officiels</div>
-      <h2 class="section-title">Certifiez votre contenu caribéen</h2>
-      <p>Le CMS Builder vous guide pas à pas pour créer votre fiche CMS et obtenir votre certification officielle — CMS-Compliant — selon votre indice de visibilité algorithmique.</p>
-      <a href="index.html#tagger" class="btn-validate-cta" data-i18n="val-btn">Créer une fiche CMS →</a>
-    </div>
-    <div class="validator-cta-preview">
-      <div class="vcp-header">
-        <svg class="vcp-logo" viewBox="0 0 52 52" fill="none">
-          <path d="M38 26C38 19.373 32.627 14 26 14C19.373 14 14 19.373 14 26" stroke="#00C2C7" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="38" cy="26" r="3" fill="#FFC93C"/>
-          <circle cx="14" cy="26" r="2.5" fill="#FF6F61"/>
-        </svg>
-        <div class="vcp-header-text">
-          <p>Validateur CMS officiel</p>
-          <p>CARIBBEAN METADATA STANDARD v2.0</p>
-        </div>
+      <div class="why-card">
+        <div class="wc-icon" style="background:#E1F5EE">📖</div>
+        <div class="wc-title">Absence de vocabulaire</div>
+        <div class="wc-body">Dublin Core, ISRC et les systèmes de bibliothèques existants ne contiennent aucun marqueur caribéen. Le créole guadeloupéen n'y existe pas comme langue de contenu.</div>
       </div>
-      <div class="vcp-steps">
-        <div class="vcp-step a">1 · Identité</div>
-        <div class="vcp-step">2 · Origine</div>
-        <div class="vcp-step">3 · Langue</div>
-        <div class="vcp-step">4 · Marqueurs</div>
-        <div class="vcp-step">5 · Résultat</div>
-      </div>
-      <div class="vcp-body">
-        <div class="vcp-field">
-          <div class="vcp-label">TITRE ORIGINAL</div>
-          <div class="vcp-input">Ex : Anba Dlo, Morne Bleu…</div>
-        </div>
-        <div class="vcp-field">
-          <div class="vcp-label">TYPE DE CONTENU</div>
-          <div class="vcp-input">Audiovisuel · Musical · Littéraire · Patrimonial</div>
-        </div>
-        <div class="vcp-levels">
-          <div class="vcp-level bronze">BRONZE<br>≥ 20</div>
-          <div class="vcp-level silver">SILVER<br>≥ 40</div>
-          <div class="vcp-level gold">GOLD<br>≥ 65</div>
-          <div class="vcp-level plat">PLATINUM<br>≥ 85</div>
-        </div>
+      <div class="why-card">
+        <div class="wc-icon" style="background:#FAEEDA">⚖️</div>
+        <div class="wc-title">Levier réglementaire</div>
+        <div class="wc-body">Une norme CROSQ-CARICOM fournit la base légale pour obliger les plateformes mondiales à identifier et promouvoir le contenu caribéen — comme l'AVMSD en Europe.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TAGGER -->
-<section id="tagger" style="background:#f7f9fb;padding:88px 6%;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="section-eyebrow" data-i18n="tagger-eyebrow">CMS Tagger</div>
-    <h2 class="section-title" data-i18n="tagger-title">Générez vos métadonnées maintenant</h2>
-    <p style="font-size:16px;color:#6B6059;max-width:600px;margin-bottom:40px;line-height:1.75;" data-i18n="tagger-sub">Remplissez les 6 familles — votre JSON-LD schema.org se génère en temps réel. Copiez-le ou exportez le fichier <code style="font-size:14px;color:#003E6B;">.json</code> directement.</p>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 6 FAMILLES                                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-inner">
+    <div class="s-ey">Architecture du standard</div>
+    <h2 class="s-title">6 familles de métadonnées</h2>
+    <p class="s-sub">Chaque famille couvre une dimension de l'identité culturelle caribéenne. Ensemble elles forment un profil complet exploitable par les algorithmes de recommandation.</p>
+    <div class="fam-grid">
+      <div class="fam-card">
+        <div class="fc-bar" style="background:#00C2C7"></div>
+        <div class="fc-num">Famille 01</div>
+        <div class="fc-name">Linguistique</div>
+        <div class="fc-desc">Langue principale, code-switching, oralité caribéenne. 10 langues avec codes ISO 639-3.</div>
+        <div class="fc-tags"><span class="fc-tag">gcf</span><span class="fc-tag">hat</span><span class="fc-tag">jam</span><span class="fc-tag">pap</span><span class="fc-tag">+6</span></div>
+      </div>
+      <div class="fam-card">
+        <div class="fc-bar" style="background:#FFC93C"></div>
+        <div class="fc-num">Famille 02</div>
+        <div class="fc-name">Culturelle</div>
+        <div class="fc-desc">27 marqueurs officiels — genres musicaux, danses, traditions, pratiques spirituelles.</div>
+        <div class="fc-tags"><span class="fc-tag">Gwo Ka</span><span class="fc-tag">Konpa</span><span class="fc-tag">Zouk</span><span class="fc-tag">+24</span></div>
+      </div>
+      <div class="fam-card">
+        <div class="fc-bar" style="background:#FF6F61"></div>
+        <div class="fc-num">Famille 03</div>
+        <div class="fc-name">Narrative</div>
+        <div class="fc-desc">Domaine culturel, titre en langue originale, description sémantique riche.</div>
+        <div class="fc-tags"><span class="fc-tag">musique</span><span class="fc-tag">patrimoine</span><span class="fc-tag">danse</span></div>
+      </div>
+      <div class="fam-card">
+        <div class="fc-bar" style="background:#7B3FA6"></div>
+        <div class="fc-num">Famille 04</div>
+        <div class="fc-name">Rythmique</div>
+        <div class="fc-desc">Style rythmique, tempo insulaire, signature sonore spécifique à la Caraïbe.</div>
+        <div class="fc-tags"><span class="fc-tag">syncopé</span><span class="fc-tag">appel-réponse</span><span class="fc-tag">+10</span></div>
+      </div>
+      <div class="fam-card">
+        <div class="fc-bar" style="background:#3FA66B"></div>
+        <div class="fc-num">Famille 05</div>
+        <div class="fc-name">Géographique</div>
+        <div class="fc-desc">Territoire d'origine, ancrage insulaire précis, diaspora caribéenne.</div>
+        <div class="fc-tags"><span class="fc-tag">Guadeloupe</span><span class="fc-tag">Haïti</span><span class="fc-tag">+18</span></div>
+      </div>
+      <div class="fam-card">
+        <div class="fc-bar" style="background:#185FA5"></div>
+        <div class="fc-num">Famille 06</div>
+        <div class="fc-name">Socio-historique</div>
+        <div class="fc-desc">Période historique, mémoire collective, créolisation, résistance culturelle.</div>
+        <div class="fc-tags"><span class="fc-tag">Marronage</span><span class="fc-tag">Abolition</span><span class="fc-tag">+15</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start;">
-
-      <!-- FORMULAIRE -->
-      <div style="border:1px solid #E0D8D0;border-radius:10px;overflow:hidden;">
-        <div style="background:#003E6B;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-size:13px;font-weight:500;color:#fff;">&#9998; Métadonnées du contenu</span>
-          <span style="font-size:10px;font-weight:600;background:rgba(201,132,58,0.25);color:#F5C87A;border:1px solid rgba(201,132,58,0.4);padding:2px 8px;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;">v0.1</span>
-        </div>
-        <div style="padding:20px;display:flex;flex-direction:column;gap:18px;background:#fff;">
-
-          <!-- Identité -->
-          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-              <div style="width:26px;height:26px;background:#E8F4F8;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#128196;</div>
-              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Identité du contenu</h4>
-            </div>
-            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-title-label">Titre *</label><input type="text" id="tf-title" placeholder="ex: Anba Dlo" oninput="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;"></div>
-            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-type-label">Type de contenu</label>
-              <select id="tf-type" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
-                <option value="CreativeWork">CreativeWork (générique)</option>
-                <option value="Movie">Film</option>
-                <option value="MusicRecording">Musique</option>
-                <option value="TVSeries">Série TV</option>
-                <option value="Podcast">Podcast</option>
-                <option value="Book">Livre / Texte</option>
-              </select>
-            </div>
-            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-creator-label">Créateur</label><input type="text" id="tf-creator" placeholder="ex: Marie-Sophie Jourdain" oninput="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;"></div>
-            <div><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-date-label">Date de publication</label><input type="text" id="tf-date" placeholder="AAAA-MM-JJ" oninput="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;"></div>
-          </div>
-
-          <!-- Linguistique -->
-          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-              <div style="width:26px;height:26px;background:#E1F5EE;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#128172;</div>
-              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Linguistique</h4>
-              <span style="font-size:11px;color:#6B6059;font-style:italic;margin-left:auto;">BCP 47</span>
-            </div>
-            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-lang-label">Langue principale</label>
-              <select id="tf-lang" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
-                <option value="">— sélectionner —</option>
-                <option value="ht">Créole haïtien (ht)</option>
-                <option value="gcf">Créole guadeloupéen (gcf)</option>
-                <option value="mart1259">Créole martiniquais</option>
-                <option value="jam">Patois jamaïcain (jam)</option>
-                <option value="fr">Français (fr)</option>
-                <option value="en">Anglais (en)</option>
-                <option value="es">Espagnol (es)</option>
-                <option value="pap">Papiamento (pap)</option>
-              </select>
-            </div>
-            <div><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-codesw-label">Code-switching</label>
-              <select id="tf-codesw" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
-                <option value="">— aucun —</option>
-                <option value="FR/Kreyol">FR / Kreyol</option>
-                <option value="EN/Patois">EN / Patois</option>
-                <option value="ES/Creole">ES / Creole</option>
-                <option value="Multilingual">Multilingue</option>
-              </select>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CMS BUILDER                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="sec-inner">
+    <div class="builder-layout">
+      <div>
+        <div class="s-ey">Outil de documentation</div>
+        <h2 class="s-title">CMS Builder<br>+ AI layer</h2>
+        <p class="s-sub">Décrivez votre œuvre en texte libre. Claude analyse et génère automatiquement la fiche structurée avec l'Indice de Visibilité Algorithmique.</p>
+        <div class="builder-feats">
+          <div class="bf-row">
+            <div class="bf-ico" style="background:#E1F5EE">🤖</div>
+            <div>
+              <div class="bf-title">AI layer — Claude</div>
+              <div class="bf-body">Décrivez en créole, en français, en anglais. Claude détecte les marqueurs culturels et complète la fiche automatiquement.</div>
             </div>
           </div>
-
-          <!-- Géographique -->
-          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-              <div style="width:26px;height:26px;background:#FAEEDA;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#128205;</div>
-              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Géographique</h4>
-            </div>
-            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-territory-label">Territoire</label>
-              <select id="tf-territory" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
-                <option value="">— sélectionner —</option>
-                <option value="Guadeloupe">Guadeloupe</option>
-                <option value="Martinique">Martinique</option>
-                <option value="Haiti">Haïti</option>
-                <option value="Jamaica">Jamaïque</option>
-                <option value="Trinidad and Tobago">Trinidad &amp; Tobago</option>
-                <option value="Barbados">Barbade</option>
-                <option value="Dominican Republic">République Dominicaine</option>
-                <option value="Cuba">Cuba</option>
-                <option value="Puerto Rico">Porto Rico</option>
-                <option value="Caribbean Diaspora">Diaspora caribéenne</option>
-                <option value="Caribbean (multi-territory)">Multi-territoire</option>
-              </select>
-            </div>
-            <div><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-env-label">Environnement</label>
-              <select id="tf-env" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
-                <option value="">— sélectionner —</option>
-                <option value="Urban">Urbain</option>
-                <option value="Rural">Rural</option>
-                <option value="Coastal">Côtier</option>
-                <option value="Island">Île</option>
-                <option value="Diaspora">Diaspora</option>
-              </select>
+          <div class="bf-row">
+            <div class="bf-ico" style="background:#E6F1FB">📊</div>
+            <div>
+              <div class="bf-title">Indice de Visibilité Algorithmique (IVA)</div>
+              <div class="bf-body">Score 0–100 calculé en temps réel. Mesure les signaux exploitables par YouTube, Spotify et Netflix — pas la valeur culturelle.</div>
             </div>
           </div>
-
-          <!-- Narrative & Culturelle -->
-          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-              <div style="width:26px;height:26px;background:#EEEDFE;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#127914;</div>
-              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Narrative &amp; Culturelle</h4>
+          <div class="bf-row">
+            <div class="bf-ico" style="background:#FAEEDA">🌍</div>
+            <div>
+              <div class="bf-title">Multilingue et mobile-first</div>
+              <div class="bf-body">FR · EN · ES. Objectif v3.0 : créole guadeloupéen et haïtien. Accessible depuis tout appareil connecté.</div>
             </div>
-            <div style="margin-bottom:8px;"><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-genre-label">Genre narratif</label>
-              <select id="tf-genre" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
-                <option value="">— sélectionner —</option>
-                <option value="Magical realism">Réalisme magique</option>
-                <option value="Social drama">Drame social</option>
-                <option value="Family saga">Saga familiale</option>
-                <option value="Tropical thriller">Thriller tropical</option>
-                <option value="Documentary">Documentaire</option>
-                <option value="Comedy">Comédie</option>
-                <option value="Coming-of-age">Coming-of-age</option>
-                <option value="Historical fiction">Fiction historique</option>
-              </select>
+          </div>
+          <div class="bf-row">
+            <div class="bf-ico" style="background:#E1F5EE">🔓</div>
+            <div>
+              <div class="bf-title">Gratuit — toujours</div>
+              <div class="bf-body">Soumission gratuite. Code open source CC-BY 4.0. Aucun frais de certification ne sera jamais introduit sans vote du Comité Technique.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px">
+          <a href="cms-builder.html" style="display:inline-block;padding:13px 28px;background:var(--navy);color:#fff;text-decoration:none;border-radius:4px;font-size:14px;font-weight:600;margin-right:12px;transition:background .2s">Accéder au Builder →</a>
+          <a href="submit.html" style="display:inline-block;padding:13px 24px;border:1px solid var(--border);color:var(--navy);text-decoration:none;border-radius:4px;font-size:14px;transition:all .2s">Soumettre une œuvre</a>
+        </div>
+      </div>
+
+      <!-- Mockup IVA -->
+      <div class="iva-mock">
+        <div class="iva-bar">
+          <div class="iva-dot" style="background:#FF5F56"></div>
+          <div class="iva-dot" style="background:#FFBD2E"></div>
+          <div class="iva-dot" style="background:#27C93F"></div>
+          <span class="iva-title-bar">CMS Builder — Indice de Visibilité Algorithmique</span>
+        </div>
+        <div class="iva-body">
+          <div class="iva-score-row">
+            <div>
+              <span class="iva-num">78</span>
+              <span class="iva-denom"> / 100</span>
             </div>
             <div>
-              <label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-cultural-label">Marqueurs culturels</label>
-              <div style="display:flex;gap:6px;">
-                <input type="text" id="tf-cult-in" placeholder="ex: Carnaval, Vodou, Konpa…" onkeydown="if(event.key==='Enter'){event.preventDefault();taggerAddTag('cult')}" style="flex:1;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;">
-                <button onclick="taggerAddTag('cult')" style="padding:8px 14px;background:#003E6B;color:#fff;border:none;border-radius:4px;font-size:18px;line-height:1;cursor:pointer;">+</button>
-              </div>
-              <div id="cult-pills" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;"></div>
+              <div class="iva-pill">BON NIVEAU</div>
+              <div class="iva-sub-lbl">YouTube · Spotify · Netflix</div>
             </div>
           </div>
-
-          <!-- Rythmique -->
-          <div style="padding-bottom:16px;border-bottom:1px solid #E0D8D0;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-              <div style="width:26px;height:26px;background:#FAECE7;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#127925;</div>
-              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Rythmique</h4>
-            </div>
-            <div><label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-tempo-label">Tempo du dialogue</label>
-              <select id="tf-tempo" onchange="taggerRender()" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;appearance:none;">
-                <option value="">— sélectionner —</option>
-                <option value="syncopated">Syncopé</option>
-                <option value="fast-paced urban">Rapide urbain</option>
-                <option value="slow contemplative island">Lent contemplatif</option>
-                <option value="mixed">Mixte</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Socio-historique -->
-          <div>
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-              <div style="width:26px;height:26px;background:#EAF3DE;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;">&#9878;&#65039;</div>
-              <h4 style="font-size:12px;font-weight:500;color:#003E6B;text-transform:uppercase;letter-spacing:0.08em;">Socio-historique</h4>
-            </div>
-            <div>
-              <label style="display:block;font-size:12px;color:#6B6059;margin-bottom:4px;" data-i18n="tf-socio-label">Marqueurs historiques</label>
-              <div style="display:flex;gap:6px;">
-                <input type="text" id="tf-socio-in" placeholder="ex: Postcolonial, Créolisation…" onkeydown="if(event.key==='Enter'){event.preventDefault();taggerAddTag('socio')}" style="flex:1;padding:8px 10px;font-size:13px;border:1px solid #E0D8D0;border-radius:4px;font-family:inherit;outline:none;">
-                <button onclick="taggerAddTag('socio')" style="padding:8px 14px;background:#003E6B;color:#fff;border:none;border-radius:4px;font-size:18px;line-height:1;cursor:pointer;">+</button>
-              </div>
-              <div id="socio-pills" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;"></div>
-            </div>
-          </div>
-
+          <div class="iva-bar-row"><div class="iva-bar-head"><span>Linguistique</span><span style="color:#00C2C7">20/20</span></div><div class="iva-track"><div class="iva-fill" style="width:100%;background:#00C2C7"></div></div></div>
+          <div class="iva-bar-row"><div class="iva-bar-head"><span>Culturelle</span><span style="color:#FFC93C">16/20</span></div><div class="iva-track"><div class="iva-fill" style="width:80%;background:#FFC93C"></div></div></div>
+          <div class="iva-bar-row"><div class="iva-bar-head"><span>Géographique</span><span style="color:#3FA66B">15/15</span></div><div class="iva-track"><div class="iva-fill" style="width:100%;background:#3FA66B"></div></div></div>
+          <div class="iva-bar-row"><div class="iva-bar-head"><span>Narrative</span><span style="color:#FF6F61">15/20</span></div><div class="iva-track"><div class="iva-fill" style="width:75%;background:#FF6F61"></div></div></div>
+          <div class="iva-bar-row"><div class="iva-bar-head"><span>Rythmique</span><span style="color:#7B3FA6">6/6</span></div><div class="iva-track"><div class="iva-fill" style="width:100%;background:#7B3FA6"></div></div></div>
+          <div class="iva-bar-row"><div class="iva-bar-head"><span>Socio-hist.</span><span style="color:#aaa">0/6 ← à améliorer</span></div><div class="iva-track"><div class="iva-fill" style="width:0%;background:#185FA5"></div></div></div>
+          <div class="iva-tip">✦ Claude suggère : ajouter "Créolisation" et "Mémoire collective" → <strong>+6 pts IVA</strong></div>
         </div>
       </div>
-
-      <!-- OUTPUT JSON-LD -->
-      <div style="border:1px solid #E0D8D0;border-radius:10px;overflow:hidden;position:sticky;top:88px;">
-        <div style="background:#0D1117;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-family:monospace;font-size:12px;font-weight:500;color:#8B949E;letter-spacing:0.05em;">JSON-LD OUTPUT</span>
-          <div style="display:flex;gap:6px;">
-            <button onclick="taggerCopy()" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:5px 12px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.12);border-radius:4px;cursor:pointer;font-family:inherit;">&#10697; Copier</button>
-            <button onclick="taggerExport()" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:5px 12px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.12);border-radius:4px;cursor:pointer;font-family:inherit;">&#8595; Export .json</button>
-          </div>
-        </div>
-        <div id="tf-json-out" style="background:#0D1117;padding:20px;font-family:monospace;font-size:12px;line-height:1.8;color:#C9D1D9;white-space:pre;overflow-x:auto;min-height:340px;" aria-live="polite"></div>
-        <div style="background:#0D1117;border-top:1px solid #21262D;padding:10px 18px;display:flex;align-items:center;gap:8px;font-size:11px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:#3FB950;flex-shrink:0;"></div>
-          <span style="color:#3FB950;">Valid schema.org · CMS v2.0 compliant</span>
-          <span id="tf-flash" style="margin-left:auto;color:#3FB950;font-size:11px;opacity:0;transition:opacity 0.2s;">&#10003; Copié !</span>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<script>
-(function(){
-  const tS = { cult: [], socio: [] };
-
-  function tV(id){ return document.getElementById(id).value.trim(); }
-
-  function tBuild(){
-    const o = {};
-    o['@context'] = { '@vocab': 'https://schema.org/', 'cms': 'https://caribbeanmetadata.org/ns/' };
-    o['@type'] = tV('tf-type') || 'CreativeWork';
-    if(tV('tf-title'))   o['name'] = tV('tf-title');
-    if(tV('tf-creator')) o['creator'] = { '@type': 'Person', 'name': tV('tf-creator') };
-    if(tV('tf-date'))    o['datePublished'] = tV('tf-date');
-    if(tV('tf-lang'))    o['inLanguage'] = tV('tf-lang');
-    const kw = [];
-    if(tV('tf-territory')) kw.push(tV('tf-territory').toLowerCase());
-    if(tV('tf-genre'))     kw.push(tV('tf-genre').toLowerCase().replace(/ /g,'-'));
-    tS.cult.forEach(t => kw.push(t.toLowerCase().replace(/ /g,'-')));
-    if(kw.length) o['keywords'] = kw;
-    if(tV('tf-territory')) o['cms:territory'] = tV('tf-territory');
-    if(tV('tf-env'))       o['cms:environment'] = tV('tf-env');
-    if(tV('tf-codesw'))    o['cms:code_switching'] = tV('tf-codesw');
-    if(tV('tf-genre'))     o['cms:narrative_genre'] = tV('tf-genre');
-    if(tS.cult.length)     o['cms:cultural_markers'] = [...tS.cult];
-    if(tV('tf-tempo'))     o['cms:rhythmic_tempo'] = tV('tf-tempo');
-    if(tS.socio.length)    o['cms:sociohistorical_markers'] = [...tS.socio];
-    o['cms:standard_version'] = 'CMS-2.0';
-    return o;
-  }
-
-  function tHL(str){
-    return str
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/"(cms:[^"]+)"(\s*:)/g,'<span style="color:#F0C040">"$1"</span>$2')
-      .replace(/"([^"]+)"(\s*:)/g,'<span style="color:#79C0FF">"$1"</span>$2')
-      .replace(/:\s*"([^"]+)"/g,': <span style="color:#A5D6FF">"$1"</span>');
-  }
-
-  window.taggerRender = function(){
-    document.getElementById('tf-json-out').innerHTML = tHL(JSON.stringify(tBuild(),null,2));
-  };
-
-  window.taggerAddTag = function(fam){
-    const inp = document.getElementById('tf-'+fam+'-in');
-    const v = inp.value.trim();
-    if(!v || tS[fam].includes(v)) return;
-    tS[fam].push(v);
-    inp.value = '';
-    tRenderPills(fam);
-    taggerRender();
-  };
-
-  function tRenderPills(fam){
-    document.getElementById(fam+'-pills').innerHTML =
-      tS[fam].map((t,i) =>
-        `<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 8px;background:#E8F4F8;color:#003E6B;border-radius:2px;">${t}<button onclick="taggerRemove('${fam}',${i})" style="background:none;border:none;cursor:pointer;color:#1A7A9A;font-size:14px;line-height:1;padding:0;" aria-label="supprimer ${t}">&times;</button></span>`
-      ).join('');
-  }
-
-  window.taggerRemove = function(fam,i){
-    tS[fam].splice(i,1);
-    tRenderPills(fam);
-    taggerRender();
-  };
-
-  window.taggerCopy = function(){
-    navigator.clipboard.writeText(JSON.stringify(tBuild(),null,2)).then(()=>{
-      const f = document.getElementById('tf-flash');
-      f.style.opacity = '1';
-      setTimeout(()=>{ f.style.opacity='0'; }, 2000);
-    });
-  };
-
-  window.taggerExport = function(){
-    const title = (document.getElementById('tf-title').value.trim().replace(/[^a-z0-9]/gi,'_').toLowerCase()) || 'cms_metadata';
-    const blob = new Blob([JSON.stringify(tBuild(),null,2)],{type:'application/json'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = title+'_cms.json';
-    a.click();
-  };
-
-  taggerRender();
-})();
-</script>
-
-<!-- ==========================================
-     OPEN DATA — SECTION NOUVELLE
-     ========================================== -->
-<section class="opendata-section" id="open-data">
-  <div class="opendata-inner">
-    <div class="opendata-grid">
-
-      <div class="opendata-text">
-        <div class="section-eyebrow">Open Data</div>
-        <h2 class="section-title">Premier corpus culturel caribéen — open source</h2>
-        <p>Le CMS publie en open source le premier corpus de données culturelles caribéen structuré selon le standard CMS v2.0 — librement téléchargeable, citable dans les publications académiques, et ouvert aux contributions de toute la communauté caribéenne.</p>
-        <div class="opendata-badges">
-          <span class="opendata-badge badge-cc">CC-BY 4.0</span>
-          <span class="opendata-badge badge-cms">CMS v2.0</span>
-          <span class="opendata-badge badge-ifla">IFLA METATEC · En cours</span>
-          <span class="opendata-badge badge-crosq">CROSQ · NWIP Soumis</span>
-        </div>
-        <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" rel="noopener" class="btn-github">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          Accéder au corpus sur GitHub
-        </a>
-      </div>
-
-      <div class="corpus-card">
-        <div class="corpus-card-header">
-          <div class="corpus-card-header-left">
-            <div class="corpus-dot"></div>
-            <div>
-              <div class="corpus-card-title">cms-nlp-corpus</div>
-              <div class="corpus-card-sub">heso73 / caribbeanmetadata.org</div>
-            </div>
-          </div>
-          <div class="corpus-version">v2.0</div>
-        </div>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CORPUS                                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-inner">
+    <div class="corpus-layout">
+      <div>
+        <div class="s-ey">Open Data · CC-BY 4.0</div>
+        <h2 class="s-title">Corpus fondateur<br>CMS v2.0</h2>
+        <p class="s-sub">Premier corpus structuré de contenus culturels caribéens. Téléchargeable, citable, intégrable dans n'importe quel pipeline de données ou système de recommandation.</p>
         <div class="corpus-stats">
-          <div class="corpus-stat">
-            <div class="corpus-stat-value">110</div>
-            <div class="corpus-stat-label">Enregistrements</div>
-          </div>
-          <div class="corpus-stat">
-            <div class="corpus-stat-value">10</div>
-            <div class="corpus-stat-label">Langues</div>
-          </div>
-          <div class="corpus-stat">
-            <div class="corpus-stat-value">27</div>
-            <div class="corpus-stat-label">Marqueurs</div>
-          </div>
+          <div class="cs-card"><div class="cs-num">110</div><div class="cs-lbl">Enregistrements</div></div>
+          <div class="cs-card"><div class="cs-num">10</div><div class="cs-lbl">Langues ISO</div></div>
+          <div class="cs-card"><div class="cs-num">17</div><div class="cs-lbl">Territoires</div></div>
+          <div class="cs-card"><div class="cs-num">27</div><div class="cs-lbl">Marqueurs</div></div>
         </div>
-        <div class="corpus-languages">
-          <div class="corpus-lang-title">Langues couvertes</div>
-          <div class="corpus-lang-tags">
-            <span class="lang-tag">hat</span>
-            <span class="lang-tag">gcf</span>
-            <span class="lang-tag">acf</span>
-            <span class="lang-tag">jam</span>
-            <span class="lang-tag">pap</span>
-            <span class="lang-tag">fra</span>
-            <span class="lang-tag">spa</span>
-            <span class="lang-tag">eng</span>
-            <span class="lang-tag">nld</span>
-            <span class="lang-tag">srn</span>
-          </div>
-        </div>
-        <div class="corpus-markers">
-          <div class="corpus-marker-title">Marqueurs culturels</div>
-          <div class="corpus-marker-tags">
-            <span class="marker-tag">gwo ka</span>
-            <span class="marker-tag">bèlè</span>
-            <span class="marker-tag">konpa</span>
-            <span class="marker-tag">zouk</span>
-            <span class="marker-tag">calypso</span>
-            <span class="marker-tag">reggae</span>
-            <span class="marker-tag">ska</span>
-            <span class="marker-tag">dancehall</span>
-            <span class="marker-tag">tumba</span>
-            <span class="marker-tag">soca</span>
-            <span class="marker-tag">son cubano</span>
-            <span class="marker-tag">salsa</span>
-            <span class="marker-tag">bachata</span>
-            <span class="marker-tag">merengue</span>
-            <span class="marker-tag">carnival</span>
-            <span class="marker-tag">mas</span>
-            <span class="marker-tag">rara</span>
-            <span class="marker-tag">vodou</span>
-            <span class="marker-tag">orisha</span>
-            <span class="marker-tag">rastafari</span>
-            <span class="marker-tag">kadans</span>
-            <span class="marker-tag">bouyon</span>
-            <span class="marker-tag">kaseko</span>
-            <span class="marker-tag">quadrille créole</span>
-            <span class="marker-tag">danmyé</span>
-            <span class="marker-tag">kalenda</span>
-            <span class="marker-tag">chanté Noël</span>
-          </div>
+        <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="catalogue.html" style="display:inline-block;padding:11px 24px;background:var(--navy);color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600">Explorer le catalogue →</a>
+          <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" style="display:inline-block;padding:11px 20px;border:1px solid var(--border);color:var(--navy);text-decoration:none;border-radius:4px;font-size:13px">↗ GitHub</a>
         </div>
       </div>
 
-    </div>
-
-    <div class="opendata-stats-row">
-      <div class="opendata-stat-box">
-        <div class="opendata-stat-num">17</div>
-        <div class="opendata-stat-lbl">Champs schéma</div>
-      </div>
-      <div class="opendata-stat-box">
-        <div class="opendata-stat-num">9</div>
-        <div class="opendata-stat-lbl">Institutions contactées</div>
-      </div>
-      <div class="opendata-stat-box">
-        <div class="opendata-stat-num">CC</div>
-        <div class="opendata-stat-lbl">Licence BY 4.0</div>
-      </div>
-      <div class="opendata-stat-box">
-        <div class="opendata-stat-num">v2.0</div>
-        <div class="opendata-stat-lbl">Standard CMS</div>
+      <!-- Fenêtre API -->
+      <div class="api-window">
+        <div class="api-win-bar">
+          <div class="api-win-dot" style="background:#FF5F56"></div>
+          <div class="api-win-dot" style="background:#FFBD2E"></div>
+          <div class="api-win-dot" style="background:#27C93F"></div>
+          <span class="api-win-url">cms-api.small-disk-3275.workers.dev/api/v2/stats</span>
+        </div>
+        <div style="padding:20px">
+          <div class="api-line"><span class="api-key">"cms_version":</span> <span class="api-val-teal">"2.0"</span>,</div>
+          <div class="api-line"><span class="api-key">"last_updated":</span> <span class="api-val-teal">"2026-06-09"</span>,</div>
+          <div class="api-line"><span class="api-key">"works":</span> {</div>
+          <div class="api-line" style="padding-left:16px"><span class="api-key">"total":</span> <span class="api-val-num">111</span>,</div>
+          <div class="api-line" style="padding-left:16px"><span class="api-key">"languages_covered":</span> <span class="api-val-num">10</span>,</div>
+          <div class="api-line" style="padding-left:16px"><span class="api-key">"territories_covered":</span> <span class="api-val-num">16</span></div>
+          <div class="api-line">},</div>
+          <div class="api-line"><span class="api-key">"vocabulary":</span> {</div>
+          <div class="api-line" style="padding-left:16px"><span class="api-key">"cultural_markers":</span> <span class="api-val-num">27</span>,</div>
+          <div class="api-line" style="padding-left:16px"><span class="api-key">"languages":</span> <span class="api-val-num">10</span>,</div>
+          <div class="api-line" style="padding-left:16px"><span class="api-key">"territories":</span> <span class="api-val-num">20</span></div>
+          <div class="api-line">},</div>
+          <div class="api-line"><span class="api-key">"corpus":</span> {</div>
+          <div class="api-line" style="padding-left:16px"><span class="api-key">"records":</span> <span class="api-val-num">110</span>,</div>
+          <div class="api-line" style="padding-left:16px"><span class="api-key">"licence":</span> <span class="api-val-teal">"CC-BY 4.0"</span></div>
+          <div class="api-line">}</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<!-- FIN OPEN DATA -->
 
-
-<!-- STANDARD TECHNIQUE — VISIBLE PAR LES IA ET CRAWLERS -->
-<section style="background:#f0f7ff;padding:48px 6%;border-top:3px solid #003E6B;border-bottom:1px solid rgba(0,62,107,0.1)">
-  <div style="max-width:1100px;margin:0 auto">
-    <div style="font-family:'Courier New',monospace;font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px">SPÉCIFICATION TECHNIQUE OFFICIELLE</div>
-    <h2 style="font-size:clamp(20px,3vw,30px);color:#003E6B;margin-bottom:12px;font-weight:700">Caribbean Metadata Standard v2.0 — Standard technique opérationnel</h2>
-    <p style="font-size:15px;color:#555;max-width:700px;line-height:1.8;margin-bottom:28px">
-      Le CMS v2.0 est un standard numérique complet — schéma JSON public, vocabulaires contrôlés, validateur officiel, corpus open data et API publique. Tous les fichiers techniques sont librement accessibles.
-    </p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:28px">
-
-      <a href="spec.html" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #00C2C7;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#00C2C7;margin-bottom:6px">SPÉCIFICATION</div>
-        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">spec.html — Page technique</div>
-        <div style="font-size:12px;color:#888">17 champs, vocabulaires contrôlés, alignements Dublin Core / schema.org / EBUCore</div>
-      </a>
-
-      <a href="spec/cms-v2.json" target="_blank" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #FFC93C;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#FFC93C;margin-bottom:6px">MACHINE-READABLE</div>
-        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">spec/cms-v2.json</div>
-        <div style="font-size:12px;color:#888">Schéma JSON officiel — lisible par une machine — URL stable et persistante</div>
-      </a>
-
-      <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_v2_unified.jsonl" target="_blank" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #3FA66B;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#3FA66B;margin-bottom:6px">OPEN DATA · CC-BY 4.0</div>
-        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">Corpus JSONL — 110 enreg.</div>
-        <div style="font-size:12px;color:#888">110 enregistrements validés · 10 langues · 27 marqueurs · 17 territoires</div>
-      </a>
-
-      <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/scripts/validate_corpus.py" target="_blank" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #FF6F61;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#FF6F61;margin-bottom:6px">VALIDATEUR OFFICIEL</div>
-        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">validate_corpus.py</div>
-        <div style="font-size:12px;color:#888">Script Python — vérifie conformité CMS v2.0 — 110/110 enreg. validés</div>
-      </a>
-
-      <a href="https://cms-api.small-disk-3275.workers.dev/api/v1" target="_blank" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #7B3FA6;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#7B3FA6;margin-bottom:6px">API PUBLIQUE</div>
-        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">API REST — /api/v1</div>
-        <div style="font-size:12px;color:#888">Vérification certifications · marqueurs · stats du registre · gratuit</div>
-      </a>
-
-      <a href="certification.html" style="display:block;background:#fff;border:1px solid rgba(0,62,107,0.15);border-left:4px solid #003E6B;border-radius:6px;padding:18px 20px;text-decoration:none;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,62,107,0.1)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:2px;color:#003E6B;margin-bottom:6px">REGISTRE PUBLIC</div>
-        <div style="font-size:14px;font-weight:700;color:#003E6B;margin-bottom:4px">Registre certifications CMS</div>
-        <div style="font-size:12px;color:#888">Vérifiez l'authenticité d'une certification — Bronze · Silver · Gold · Platinum</div>
-      </a>
-
-    </div>
-
-    <div style="background:#003E6B;border-radius:6px;padding:14px 20px;display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <div style="font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1px">NAMESPACE PERSISTANT</div>
-      <div style="font-family:'Courier New',monospace;font-size:13px;color:#00C2C7;font-weight:500">https://caribbeanmetadata.org/ns/</div>
-      <div style="font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,0.3)">Identifiant unique du standard</div>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- GOUVERNANCE                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="sec-inner">
+    <div class="s-ey">Vers une norme régionale</div>
+    <h2 class="s-title">De l'infrastructure à l'obligation légale</h2>
+    <p class="s-sub">Le CMS est conçu pour devenir une norme CROSQ-CARICOM — la base légale pour obliger les plateformes mondiales à identifier et valoriser le contenu caribéen.</p>
+    <div class="gouv-steps">
+      <div class="gs-card">
+        <div class="gs-step">01</div>
+        <div class="gs-title">Phase fondatrice</div>
+        <div class="gs-body">Caribwood Language Lab. Standard documenté, API opérationnelle, corpus validé.</div>
+      </div>
+      <div class="gs-card">
+        <div class="gs-step">02</div>
+        <div class="gs-title">5 institutions adoptantes</div>
+        <div class="gs-body">Transfert automatique au Comité Technique caribéen indépendant. 1 siège créateurs.</div>
+      </div>
+      <div class="gs-card">
+        <div class="gs-step">03</div>
+        <div class="gs-title">Norme CROSQ</div>
+        <div class="gs-body">NWIP soumis. Standard régional officiel CARICOM pour les 15 États membres.</div>
+      </div>
+      <div class="gs-card">
+        <div class="gs-step">04</div>
+        <div class="gs-title">Obligation légale</div>
+        <div class="gs-body">Plateformes mondiales contraintes à identifier et promouvoir le contenu caribéen.</div>
+      </div>
     </div>
   </div>
 </section>
-<!-- FIN STANDARD TECHNIQUE -->
 
-<!-- BÉNÉFICIAIRES -->
-<section class="benefits-section">
-  <div class="section-eyebrow">Pourquoi rejoindre</div>
-  <h2 class="section-title">Un standard qui bénéficie à tout l'écosystème</h2>
-  <div class="benefits-grid">
-    <div class="benefit-card">
-      <div class="benefit-type">CRÉATEURS</div>
-      <h3>Visibilité &amp; exportabilité</h3>
-      <ul class="benefit-list">
-        <li>Meilleure classification sur les plateformes</li>
-        <li>Accès à de nouveaux marchés</li>
-        <li>Opportunités d'exportation élargies</li>
-      </ul>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- REJOINDRE                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-inner">
+    <div class="s-ey">Contribuer au standard</div>
+    <h2 class="s-title">Rejoindre le CMS</h2>
+    <p class="s-sub">Quatre façons de participer à l'infrastructure de visibilité culturelle caribéenne.</p>
+    <div class="join-grid">
+      <div class="jc">
+        <div class="jc-ico" style="background:#E6F1FB">✏️</div>
+        <div>
+          <div class="jc-title">Soumettre une œuvre</div>
+          <div class="jc-body">Enregistrez votre film, musique, livre ou patrimoine. Gratuit. Toujours. Pour tout créateur caribéen.</div>
+          <a href="submit.html" class="jc-link">Accéder au formulaire →</a>
+        </div>
+      </div>
+      <div class="jc">
+        <div class="jc-ico" style="background:#E1F5EE">🏛️</div>
+        <div>
+          <div class="jc-title">Institution partenaire</div>
+          <div class="jc-body">Bibliothèque, université, centre culturel, festival. Signez la convention d'adhésion.</div>
+          <a href="collaborate.html" class="jc-link">Voir la convention →</a>
+        </div>
+      </div>
+      <div class="jc">
+        <div class="jc-ico" style="background:#FAEEDA">💻</div>
+        <div>
+          <div class="jc-title">Intégrer l'API</div>
+          <div class="jc-body">API publique v2.0, sans clé, CC-BY 4.0. Corpus téléchargeable. Documentation complète.</div>
+          <a href="developers.html" class="jc-link">Voir la documentation →</a>
+        </div>
+      </div>
+      <div class="jc">
+        <div class="jc-ico" style="background:#EEEDFE">🤝</div>
+        <div>
+          <div class="jc-title">Médiateur culturel</div>
+          <div class="jc-body">Accompagnez les créateurs indépendants dans votre territoire à documenter leurs œuvres.</div>
+          <a href="contact.html" class="jc-link">Nous contacter →</a>
+        </div>
+      </div>
     </div>
-    <div class="benefit-card">
-      <div class="benefit-type">PLATEFORMES</div>
-      <h3>Indexation &amp; recommandation</h3>
-      <ul class="benefit-list">
-        <li>Indexation plus précise des contenus</li>
-        <li>Recommandations améliorées</li>
-        <li>Accès à de nouveaux marchés culturels</li>
-      </ul>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-type">INSTITUTIONS</div>
-      <h3>Préservation &amp; leadership</h3>
-      <ul class="benefit-list">
-        <li>Préservation du patrimoine numérique</li>
-        <li>Standardisation régionale Caraïbe</li>
-        <li>Souveraineté culturelle</li>
-      </ul>
-    </div>
-  </div>
-  <div style="text-align:center;margin-top:36px;">
-    <a href="collaborate.html" class="btn-outline" data-i18n="ben-cta">Voir comment collaborer →</a>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="final-cta">
-  <div class="section-eyebrow" style="justify-content:center;">Rejoindre l'initiative</div>
-  <h2 class="section-title">Construisons le premier standard numérique caribéen ensemble.</h2>
-  <p>Créateur, institution, plateforme ou chercheur — votre contribution est essentielle.</p>
-  <div class="final-cta-actions">
-    <a href="collaborate.html" class="btn-solid" data-i18n="cta-btn1">Collaborer avec nous</a>
-    <a href="validator.html" class="btn-outline" data-i18n="cta-btn2">Valider un contenu</a>
-    <a href="contact.html" class="btn-outline" data-i18n="cta-btn3">Nous contacter</a>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CTA FINAL                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="cta-block">
+  <div class="cta-grid"></div>
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">Ce standard appartient<br>à la Caraïbe entière</h2>
+    <p class="cta-sub">Pas aux institutions les mieux équipées. Pas aux créateurs les plus connectés. À la Caraïbe — dans toute sa diversité, ses langues, ses îles et sa diaspora.</p>
+    <div class="cta-btns">
+      <button class="btn-hero-primary" onclick="window.location='submit.html'">Soumettre une œuvre →</button>
+      <button class="btn-hero-outline" onclick="window.location='equity.html'">Lire la déclaration d'équité</button>
+      <button class="btn-hero-outline" onclick="window.location='collaborate.html'">Devenir partenaire</button>
+    </div>
   </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="index.html" class="footer-logo">CMS</a>
-      <p>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab.</p>
+  <div class="foot-grid">
+    <div>
+      <a href="/" class="foot-logo">CMS<span>.</span></a>
+      <p class="foot-desc">Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab, Guadeloupe.</p>
     </div>
-    <div class="footer-col">
+    <div class="foot-col">
       <h4>Le Standard</h4>
       <ul>
         <li><a href="about.html">À propos</a></li>
         <li><a href="families.html">Les 6 familles</a></li>
-        <li><a href="resources.html">Documentation</a></li>
-        <li><a href="declaration.html" class="highlight">Déclaration fondatrice</a></li>
+        <li><a href="spec.html">Spécification v2.0</a></li>
+        <li><a href="catalogue.html">Catalogue CMS</a></li>
+        <li><a href="equity.html">Équité & Accès</a></li>
+        <li><a href="declaration.html">Déclaration fondatrice</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="foot-col">
+      <h4>Outils</h4>
+      <ul>
+        <li><a href="submit.html">Soumettre une œuvre</a></li>
+        <li><a href="cms-builder.html">CMS Builder</a></li>
+        <li><a href="certification.html">Vérifier une certification</a></li>
+        <li><a href="developers.html">API v2.0</a></li>
+        <li><a href="glossaire.html">Glossaire</a></li>
+        <li><a href="kit.html">Kit Média</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
       <h4>Écosystème</h4>
       <ul>
-        <li><a href="lab.html">Language Lab</a></li>
-        <li><a href="collaborate.html">Collaborer</a></li>
+        <li><a href="collaborate.html">Devenir partenaire</a></li>
+        <li><a href="roadmap.html">Roadmap 2026–2028</a></li>
+        <li><a href="https://github.com/heso73/cms-nlp-corpus" target="_blank">↗ GitHub corpus</a></li>
+        <li><a href="press-fr.html">Presse</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Ressources</h4>
-      <ul>
-        <li><a href="resources.html">White Paper</a></li>
-        <li><a href="developers.html">Developers / API</a></li>
-        <li><a href="resources.html#glossaire">Glossaire</a></li>
-        <li><a href="resources.html#faq">FAQ</a></li>
-        <li><a href="#open-data" class="highlight">→ Open Data / Corpus</a></li>
-        <li><a href="validator.html" class="highlight">→ Valider un contenu</a></li>
-      </ul>
-    </div>
   </div>
-  <div class="footer-bottom">
-    caribbeanmetadata.org &nbsp;·&nbsp; CMS v2.0 &nbsp;·&nbsp; Caribwood Language Lab — Guadeloupe
+  <div class="foot-bot">
+    <span>caribbeanmetadata.org · CMS v2.0 · Caribwood Language Lab — Guadeloupe</span>
+    <span>CC-BY 4.0 · Open Source</span>
   </div>
 </footer>
 
-<script>
-// Hamburger
-function toggleMenu() {
-  const burger = document.getElementById('burger');
-  const menu   = document.getElementById('navMobile');
-  const open   = menu.classList.toggle('open');
-  burger.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-function closeMenu() {
-  document.getElementById('burger').classList.remove('open');
-  document.getElementById('navMobile').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('click', e => {
-  const menu   = document.getElementById('navMobile');
-  const burger = document.getElementById('burger');
-  if (menu && menu.classList.contains('open') &&
-      !menu.contains(e.target) && !burger.contains(e.target)) {
-    closeMenu();
-  }
-});
-
-// Langue switcher
-const T = {
-  fr: {
-    'hero-eyebrow': 'Premier standard numérique caribéen — v2.0',
-    'hero-desc':    'Le premier cadre unifié pour classifier, décrire et indexer les contenus audiovisuels caribéens — pour que les algorithmes comprennent enfin nos cultures.',
-    'btn-discover': 'Découvrir le standard',
-    'btn-join':     "Rejoindre l'initiative",
-  },
-  en: {
-    'hero-eyebrow': 'First Caribbean digital standard — v2.0',
-    'hero-desc':    'The first unified framework to classify, describe and index Caribbean audiovisual content — so algorithms finally understand our cultures.',
-    'btn-discover': 'Discover the standard',
-    'btn-join':     'Join the initiative',
-  },
-  es: {
-    'hero-eyebrow': 'Primer estándar digital caribeño — v2.0',
-    'hero-desc':    'El primer marco unificado para clasificar, describir e indexar contenidos audiovisuales caribeños — para que los algoritmos entiendan nuestras culturas.',
-    'btn-discover': 'Descubrir el estándar',
-    'btn-join':     'Unirse a la iniciativa',
-  }
-};
-
-function setLang(lang) {
-  document.querySelectorAll('[data-lang]').forEach(b =>
-    b.classList.toggle('active', b.dataset.lang === lang));
-  const t = T[lang]; if (!t) return;
-  Object.entries(t).forEach(([id, txt]) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = txt;
-  });
-  document.documentElement.lang = lang;
-  localStorage.setItem('cms-lang', lang);
-  closeMenu();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  setLang(localStorage.getItem('cms-lang') || 'fr');
-});
-</script>
-
+<script src="nav-fix.js"></script>
 </body>
 </html>
