@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Équité & Accès — Caribbean Metadata Standard</title>
+  <meta name="description" content="Position officielle du Caribbean Metadata Standard sur l'équité d'accès à la documentation culturelle caribéenne. Engagements envers les créateurs indépendants.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#0a0a0b;--navy:#003E6B;--teal:#00C2C7;--gold:#FFC93C;
+  --coral:#FF6F61;--green:#3FA66B;--white:#fff;--muted:#888;
+  --border:rgba(0,62,107,0.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
+
+/* ── HERO ── */
+.hero{background:var(--dark);padding:120px 6% 80px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,194,199,0.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,201,60,0.03) 40px)}
+.hero-glow{position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,194,199,0.08),transparent 70%);pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:820px}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--teal);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--teal)}
+.hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(32px,5vw,60px);color:#fff;line-height:1.05;margin-bottom:20px;letter-spacing:-1px}
+.hero h1 em{font-style:italic;color:var(--teal)}
+.hero-desc{font-size:17px;color:rgba(255,255,255,0.6);max-width:580px;line-height:1.85;margin-bottom:32px}
+.hero-meta{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px}
+
+/* ── MAIN ── */
+main{max-width:820px;margin:0 auto;padding:72px 6% 100px}
+
+/* ── SECTIONS ── */
+.section{margin-bottom:72px}
+.s-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.s-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--teal)}
+.s-title{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,3vw,36px);color:var(--navy);margin-bottom:16px;line-height:1.2;letter-spacing:-.5px}
+.s-body{font-size:16px;color:#333;line-height:1.9;margin-bottom:20px}
+.s-body p{margin-bottom:16px}
+.s-body p:last-child{margin-bottom:0}
+.s-body strong{color:var(--navy)}
+
+/* ── CITATION ── */
+.citation{border-left:3px solid var(--teal);padding:20px 24px;margin:28px 0;background:#f7f9fb;border-radius:0 8px 8px 0}
+.citation p{font-family:'DM Serif Display',Georgia,serif;font-size:18px;color:var(--navy);line-height:1.6;font-style:italic;margin:0}
+.citation-source{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:10px}
+
+/* ── CONSTAT ── */
+.constat-block{background:var(--navy);border-radius:10px;padding:36px;margin:28px 0;position:relative;overflow:hidden}
+.constat-block::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.04) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.03) 24px)}
+.constat-inner{position:relative;z-index:1}
+.constat-block p{font-size:15px;color:rgba(255,255,255,0.75);line-height:1.9;margin-bottom:12px}
+.constat-block p:last-child{margin-bottom:0}
+.constat-block strong{color:#fff}
+
+/* ── ENGAGEMENTS ── */
+.engagements-list{display:grid;gap:16px;margin:28px 0}
+.engagement-item{border:1px solid var(--border);border-radius:8px;padding:24px;display:flex;gap:18px;transition:box-shadow .2s}
+.engagement-item:hover{box-shadow:0 4px 16px rgba(0,62,107,0.08)}
+.ei-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);font-weight:700;flex-shrink:0;margin-top:3px;letter-spacing:1px}
+.ei-content{}
+.ei-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.ei-body{font-size:14px;color:#555;line-height:1.75}
+
+/* ── MÉCANISMES ── */
+.mecanismes-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+.mec-card{border-radius:8px;padding:22px;border:1px solid var(--border)}
+.mec-icon{font-size:24px;margin-bottom:10px}
+.mec-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.mec-body{font-size:13px;color:#555;line-height:1.75}
+
+/* ── ALERTE ── */
+.alerte{background:#f0fdf4;border:1px solid rgba(63,166,107,0.25);border-radius:8px;padding:20px 24px;margin:28px 0}
+.alerte p{font-size:14px;color:#166534;line-height:1.8;margin:0}
+
+/* ── GOUVERNANCE ── */
+.gouvernance-schema{background:#f7f9fb;border-radius:10px;padding:32px;margin:28px 0}
+.gs-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:20px}
+.gs-steps{display:flex;flex-direction:column;gap:0}
+.gs-step{display:flex;gap:16px;position:relative}
+.gs-step:not(:last-child)::after{content:'';position:absolute;left:18px;top:36px;bottom:-16px;width:1px;background:rgba(0,62,107,0.1)}
+.gs-dot{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+.gs-content{padding:6px 0 28px}
+.gs-step-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.gs-step-body{font-size:13px;color:#555;line-height:1.7}
+
+/* ── APPEL ── */
+.appel{background:var(--dark);border-radius:12px;padding:48px;margin:28px 0;position:relative;overflow:hidden;text-align:center}
+.appel::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.04) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.03) 24px)}
+.appel-inner{position:relative;z-index:1}
+.appel h2{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,3vw,32px);color:#fff;margin-bottom:14px}
+.appel p{font-size:15px;color:rgba(255,255,255,0.55);max-width:540px;margin:0 auto 28px;line-height:1.8}
+.appel-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn-primary{display:inline-block;padding:13px 28px;background:var(--teal);color:var(--dark);font-weight:700;font-size:14px;border-radius:3px;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .2s}
+.btn-primary:hover{background:#00a8ae}
+.btn-outline{display:inline-block;padding:13px 24px;border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:14px;border-radius:3px;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.06)}
+
+/* ── SIGNATURE ── */
+.signature{margin-top:64px;padding-top:40px;border-top:1px solid var(--border);display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.sig-logo{font-family:'DM Mono',monospace;font-size:28px;color:var(--navy);font-weight:500;letter-spacing:2px;flex-shrink:0}
+.sig-content{}
+.sig-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.sig-role{font-size:13px;color:var(--muted);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:.5px}
+.sig-date{font-size:12px;color:#ccc;font-family:'DM Mono',monospace;letter-spacing:1px}
+
+@media(max-width:700px){
+  .mecanismes-grid{grid-template-columns:1fr}
+  .appel{padding:32px}
+}
+</style>
+</head>
+<body>
+
+<nav><!-- nav-fix.js --></nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Position officielle</div>
+    <h1>Équité & Accès<br/><em>à la documentation<br/>culturelle caribéenne</em></h1>
+    <p class="hero-desc">Le Caribbean Metadata Standard ne peut atteindre son objectif que s'il est accessible à tous les créateurs caribéens — indépendamment de leurs ressources, de leur territoire ou de leur niveau de formation technique.</p>
+    <div class="hero-meta">CARIBWOOD LANGUAGE LAB · GUADELOUPE · CMS v2.0 · 2026</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── 1. LE CONSTAT ── -->
+  <div class="section">
+    <div class="s-eyebrow">01 — Le constat</div>
+    <h2 class="s-title">Les standards culturels ont historiquement exclu ceux qu'ils prétendaient représenter</h2>
+
+    <div class="s-body">
+      <p>Les grandes infrastructures de métadonnées culturelles — Dublin Core, EBUCore, ISAN, ISRC — ont été conçues par et pour des institutions dotées de ressources techniques importantes. Elles supposent des équipes de documentation, des logiciels spécialisés, des budgets de catalogage. Elles supposent aussi, le plus souvent, la maîtrise de l'anglais ou du français standardisé comme langue de travail.</p>
+      <p>La Caraïbe en a payé le prix. Des milliers d'œuvres musicales, cinématographiques, littéraires et patrimoniales caribéennes sont aujourd'hui <strong>invisibles sur les plateformes mondiales</strong> — non pas parce qu'elles n'existent pas, mais parce qu'elles ne correspondent à aucune case dans les systèmes de classification dominants. Le gwoka n'est pas du "world music". Le konpa n'est pas de la "latin music". Le vodou haïtien n'est pas une "religion afro-américaine".</p>
+      <p>Le Caribbean Metadata Standard est né de ce constat. Mais un standard ouvert peut lui-même reproduire les inégalités qu'il prétend combattre — si on ne le conçoit pas explicitement pour les éviter.</p>
+    </div>
+
+    <div class="constat-block">
+      <div class="constat-inner">
+        <p><strong>Le risque est réel et nous le reconnaissons.</strong> Une fiche CMS exhaustive (6/6 familles documentées) demande du temps, du vocabulaire technique et une familiarité avec les outils numériques. Un musicien de Jacmel qui enregistre dans sa chambre avec un téléphone n'a pas nécessairement ces ressources — même si son œuvre incarne dix marqueurs culturels caribéens fondamentaux.</p>
+        <p>Si la complétude technique devient implicitement un critère de crédibilité ou de visibilité, nous reproduirons exactement le mécanisme d'exclusion que le CMS est censé combattre. Cette page est notre engagement public à ne pas laisser cela se produire.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. PRINCIPE FONDATEUR ── -->
+  <div class="section">
+    <div class="s-eyebrow">02 — Principe fondateur</div>
+    <h2 class="s-title">La valeur d'une œuvre n'est pas sa complétude technique</h2>
+
+    <div class="citation">
+      <p>Une fiche CMS 1/6 d'un griot surinamais qui ne parle pas français a autant de légitimité dans le registre caribéen qu'une fiche 6/6 produite par un label international disposant d'une équipe de métadonnées.</p>
+      <div class="citation-source">PRINCIPE D'ÉQUITÉ — CMS v2.0 · CARIBWOOD LANGUAGE LAB</div>
+    </div>
+
+    <div class="s-body">
+      <p>La complétude CMS est un indicateur technique. Elle mesure l'exhaustivité d'une fiche de métadonnées — pas la valeur culturelle, l'importance historique ou la qualité artistique d'une œuvre. Ces deux dimensions sont radicalement distinctes et doivent le rester.</p>
+      <p>Une œuvre peut être <strong>culturellement fondamentale et techniquement peu documentée</strong>. L'objectif du CMS est précisément de réduire cet écart — pas de le transformer en critère d'exclusion.</p>
+    </div>
+  </div>
+
+  <!-- ── 3. ENGAGEMENTS ── -->
+  <div class="section">
+    <div class="s-eyebrow">03 — Engagements concrets</div>
+    <h2 class="s-title">Ce que le CMS s'engage à faire</h2>
+
+    <div class="engagements-list">
+      <div class="engagement-item">
+        <div class="ei-num">01</div>
+        <div class="ei-content">
+          <div class="ei-title">La documentation peut être collaborative</div>
+          <div class="ei-body">Une fiche CMS peut être remplie par un tiers — médiateur culturel, bibliothèque nationale, institution partenaire, association — avec l'accord explicite du créateur. La propriété intellectuelle et la paternité de l'œuvre restent entièrement au créateur. Le CMS n'est pas un contrat de cession, c'est un outil de description.</div>
+        </div>
+      </div>
+
+      <div class="engagement-item">
+        <div class="ei-num">02</div>
+        <div class="ei-content">
+          <div class="ei-title">L'IA est au service des créateurs sans équipe technique</div>
+          <div class="ei-body">Le CMS Builder intègre une couche d'analyse AI (Claude) qui permet à n'importe quel créateur de décrire son œuvre en texte libre — dans sa langue, avec ses mots — et d'obtenir une suggestion de fiche structurée. Ce n'est pas un luxe technique : c'est une infrastructure d'équité. Elle sera maintenue et améliorée en priorité.</div>
+        </div>
+      </div>
+
+      <div class="engagement-item">
+        <div class="ei-num">03</div>
+        <div class="ei-content">
+          <div class="ei-title">La soumission est gratuite et le restera</div>
+          <div class="ei-body">Soumettre une œuvre au registre CMS ne coûte rien et ne coûtera jamais rien. Aucun modèle de certification payante ne sera introduit sans vote du Comité Technique caribéen et consultation explicite des communautés de créateurs indépendants. Ce point est non négociable.</div>
+        </div>
+      </div>
+
+      <div class="engagement-item">
+        <div class="ei-num">04</div>
+        <div class="ei-content">
+          <div class="ei-title">Le multilingue est une obligation, pas une option</div>
+          <div class="ei-body">Le CMS Builder fonctionne en français, anglais et espagnol. L'objectif à moyen terme est de le rendre opérationnel en créole guadeloupéen, créole haïtien et jamaican patois — les trois langues créoles les plus parlées dans la Caraïbe. Un créateur ne devrait pas avoir besoin d'une langue coloniale pour documenter son patrimoine culturel.</div>
+        </div>
+      </div>
+
+      <div class="engagement-item">
+        <div class="ei-num">05</div>
+        <div class="ei-content">
+          <div class="ei-title">Le registre ne hiérarchise pas les œuvres</div>
+          <div class="ei-body">Le registre CMS public affiche toutes les œuvres enregistrées sans ordre de mérite basé sur la complétude. Une fiche 2/6 et une fiche 6/6 ont la même légitimité d'existence dans le registre. La complétude est une information disponible — pas un filtre d'accès.</div>
+        </div>
+      </div>
+
+      <div class="engagement-item">
+        <div class="ei-num">06</div>
+        <div class="ei-content">
+          <div class="ei-title">Les œuvres orphelines ont leur place</div>
+          <div class="ei-body">Des milliers d'œuvres caribéennes existent sans créateur identifiable ou joignable — enregistrements anciens, traditions orales, œuvres du domaine public. Le CMS prévoit un mécanisme de documentation institutionnelle pour ces œuvres, sans appropriation : la documentation est publique, la paternité reste indéterminée ou collective.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. MÉCANISMES ── -->
+  <div class="section">
+    <div class="s-eyebrow">04 — Mécanismes opérationnels</div>
+    <h2 class="s-title">Comment ces engagements se traduisent concrètement</h2>
+
+    <div class="mecanismes-grid">
+      <div class="mec-card">
+        <div class="mec-icon">🤖</div>
+        <div class="mec-title">CMS Builder + AI layer</div>
+        <div class="mec-body">Description en texte libre → suggestion automatique de marqueurs, territoire, langue. Accessible depuis n'importe quel appareil connecté, sans installation.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">🤝</div>
+        <div class="mec-title">Réseau de médiateurs culturels</div>
+        <div class="mec-body">À constituer avec les institutions partenaires — des personnes formées au CMS et présentes dans les territoires pour accompagner les créateurs indépendants.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">📚</div>
+        <div class="mec-title">Partenariats bibliothèques</div>
+        <div class="mec-body">Les bibliothèques nationales et municipales caribéennes peuvent devenir des points de documentation CMS — lieux physiques d'accès au registre pour les créateurs sans équipement.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">🌐</div>
+        <div class="mec-title">API ouverte sans clé</div>
+        <div class="mec-body">L'API CMS v2.0 est publique et sans authentification pour les requêtes en lecture. N'importe quelle institution peut intégrer le registre dans ses propres outils.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">📋</div>
+        <div class="mec-title">Documentation partielle valorisée</div>
+        <div class="mec-body">Une fiche incomplète est toujours meilleure que pas de fiche. Le registre accepte et affiche les fiches partielles — elles peuvent être complétées progressivement.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">🔓</div>
+        <div class="mec-title">Code source ouvert</div>
+        <div class="mec-body">Le CMS Builder, le validateur et les outils de documentation sont open source. N'importe quelle institution peut les déployer localement, les adapter, les traduire.</div>
+      </div>
+    </div>
+
+    <div class="alerte">
+      <p><strong>Ce qui reste à construire :</strong> le réseau de médiateurs culturels caribéens n'existe pas encore. C'est la pièce manquante la plus importante. Si vous êtes une institution — bibliothèque, centre culturel, école des arts, association — et souhaitez devenir un point d'accès CMS dans votre territoire, <a href="contact.html" style="color:#166534;font-weight:600">contactez-nous</a>.</p>
+    </div>
+  </div>
+
+  <!-- ── 5. GOUVERNANCE ── -->
+  <div class="section">
+    <div class="s-eyebrow">05 — Gouvernance comme garantie</div>
+    <h2 class="s-title">L'équité ne peut pas reposer sur une seule personne</h2>
+
+    <div class="s-body">
+      <p>Ces engagements sont aujourd'hui portés par le Caribwood Language Lab et son fondateur. C'est une réalité transitoire. Un standard d'intérêt général caribéen ne peut pas dépendre de la bonne volonté d'un individu ou d'une institution unique — aussi bien intentionnés soient-ils.</p>
+      <p>C'est pourquoi la gouvernance du CMS est conçue pour se <strong>transférer automatiquement</strong> à un Comité Technique caribéen indépendant dès que 5 institutions de territoires différents auront signé la Convention d'adhésion.</p>
+    </div>
+
+    <div class="gouvernance-schema">
+      <div class="gs-title">CHEMIN VERS UNE GOUVERNANCE DISTRIBUÉE</div>
+      <div class="gs-steps">
+        <div class="gs-step">
+          <div class="gs-dot">1</div>
+          <div class="gs-content">
+            <div class="gs-step-title">Phase fondatrice — aujourd'hui</div>
+            <div class="gs-step-body">Caribwood Language Lab porte seul le standard. Les engagements d'équité sont inscrits dans le code, la documentation et cette déclaration publique.</div>
+          </div>
+        </div>
+        <div class="gs-step">
+          <div class="gs-dot">2</div>
+          <div class="gs-content">
+            <div class="gs-step-title">5 institutions adoptantes</div>
+            <div class="gs-step-body">Déclenchement automatique du transfert de gouvernance. Le Comité Technique caribéen est constitué — au moins un représentant par territoire adoptant, mandat de 2 ans.</div>
+          </div>
+        </div>
+        <div class="gs-step">
+          <div class="gs-dot">3</div>
+          <div class="gs-content">
+            <div class="gs-step-title">Représentation des créateurs indépendants</div>
+            <div class="gs-step-body">Le Comité Technique devra inclure au moins un siège réservé aux représentants de créateurs indépendants — pas seulement des institutions. C'est un engagement de gouvernance, pas une intention.</div>
+          </div>
+        </div>
+        <div class="gs-step">
+          <div class="gs-dot">4</div>
+          <div class="gs-content">
+            <div class="gs-step-title">CMS v3.0 — standard collectif</div>
+            <div class="gs-step-body">La prochaine version majeure du standard sera élaborée collectivement par le Comité, avec consultation publique des communautés caribéennes. Les questions d'équité d'accès seront au cœur du processus.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── APPEL ── -->
+  <div class="appel">
+    <div class="appel-inner">
+      <h2>Ce standard appartient à la Caraïbe entière</h2>
+      <p>Pas aux institutions les mieux équipées. Pas aux créateurs les plus connectés. Pas au territoire le plus riche. À la Caraïbe — dans toute sa diversité, ses langues, ses îles et sa diaspora.</p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.35);max-width:480px;margin:0 auto 28px;line-height:1.7">Si vous partagez cette vision et souhaitez contribuer — comme institution partenaire, médiateur culturel, développeur ou créateur — toutes les portes sont ouvertes.</p>
+      <div class="appel-btns">
+        <a href="collaborate.html" class="btn-primary">Devenir partenaire →</a>
+        <a href="submit.html" class="btn-outline">Soumettre une œuvre</a>
+        <a href="contact.html" class="btn-outline">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SIGNATURE ── -->
+  <div class="signature">
+    <div class="sig-logo">CMS<span style="color:var(--teal)">.</span></div>
+    <div class="sig-content">
+      <div class="sig-name">Caribwood Language Lab</div>
+      <div class="sig-role">FONDATEUR DU CARIBBEAN METADATA STANDARD</div>
+      <div class="sig-role" style="margin-top:2px">Guadeloupe, Caraïbe française</div>
+      <div class="sig-date" style="margin-top:8px">Déclaration publiée le 9 juin 2026 · CMS v2.0 · CC-BY 4.0</div>
+    </div>
+  </div>
+
+</main>
+
+<footer><!-- nav-fix.js --></footer>
+<script src="nav-fix.js"></script>
+</body>
+</html>
