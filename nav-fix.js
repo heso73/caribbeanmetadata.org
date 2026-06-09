@@ -85,6 +85,7 @@
           { href: 'catalogue.html',    label: 'Catalogue CMS' },
           { href: 'kit.html',          label: 'Kit Média' },
           { href: 'declaration.html',  label: 'Déclaration fondatrice' },
+          { href: 'equity.html',         label: 'Équité & Accès' },
           { href: 'roadmap.html',      label: 'Roadmap 2026–2028' },
         ]},
         { title: 'Écosystème', links: [
@@ -114,6 +115,7 @@
           { href: 'catalogue.html',      label: 'CMS Catalogue' },
           { href: 'kit.html',            label: 'Media Kit' },
           { href: 'declaration-en.html', label: 'Founding Declaration' },
+          { href: 'equity.html',           label: 'Equity & Access' },
           { href: 'roadmap.html',        label: 'Roadmap 2026–2028' },
         ]},
         { title: 'Ecosystem', links: [
@@ -143,6 +145,7 @@
           { href: 'catalogue.html',      label: 'Catálogo CMS' },
           { href: 'kit.html',            label: 'Kit de Medios' },
           { href: 'declaration-es.html', label: 'Declaración Fundadora' },
+          { href: 'equity.html',           label: 'Equidad & Acceso' },
           { href: 'roadmap.html',        label: 'Roadmap 2026–2028' },
         ]},
         { title: 'Ecosistema', links: [
