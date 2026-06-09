@@ -468,17 +468,15 @@ tr:hover td{background:#f8fafc}
 
     <div class="modal-section">
       <div class="modal-section-title">DÉCISION DE CERTIFICATION</div>
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
-        <div>
-
+      <div style="margin-bottom:16px">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:8px">COMPLÉTUDE CMS — FAMILLES RENSEIGNÉES (0–6)</div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <input type="number" class="score-input" id="mr-score" min="0" max="6" value="0" oninput="updateModalLevel()" style="width:64px;font-size:24px;text-align:center;padding:8px;border:1.5px solid var(--border);border-radius:6px;font-family:'DM Mono',monospace;color:var(--navy);outline:none">
+          <span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--muted)">/6 familles</span>
+          <span id="mr-completeness-label" style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 12px;border-radius:20px;background:#f0f4f8;color:#888">—</span>
         </div>
-        <div>
-
-          <select class="level-select" id="mr-level">
-            <option value="">Non certifié</option>
-
-          </select>
-        </div>
+        <div style="font-size:12px;color:#aaa;margin-top:10px;line-height:1.7">Familles CMS : <strong style="color:var(--navy)">Linguistique · Culturelle · Narrative · Rythmique · Géographique · Socio-historique</strong></div>
+        <input type="hidden" id="mr-level" value="">
       </div>
       <div>
         <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px">NOTE DU VALIDATEUR (optionnel)</div>
@@ -725,19 +723,25 @@ function openReview(id, title, creator, family, territory, languages, year, desc
 }
 
 function updateModalLevel() {
-  const score = parseInt(document.getElementById('mr-score').value) || 0;
-
-  document.getElementById('mr-level').value = level;
+  const val = parseInt(document.getElementById('mr-score').value) || 0;
+  const label = document.getElementById('mr-completeness-label');
+  const levelInput = document.getElementById('mr-level');
+  if (val === 6) { label.textContent='FICHE COMPLÈTE'; label.style.background='rgba(0,194,199,0.12)'; label.style.color='#0e7490'; levelInput.value='complete'; }
+  else if (val>=4) { label.textContent=val+'/6 FAMILLES'; label.style.background='rgba(63,166,107,0.12)'; label.style.color='#166534'; levelInput.value='good'; }
+  else if (val>=2) { label.textContent=val+'/6 FAMILLES'; label.style.background='rgba(255,201,60,0.12)'; label.style.color='#b45309'; levelInput.value='partial'; }
+  else if (val>=1) { label.textContent=val+'/6 FAMILLES'; label.style.background='rgba(205,127,50,0.12)'; label.style.color='#92400e'; levelInput.value='minimal'; }
+  else { label.textContent='NON RENSEIGNÉ'; label.style.background='#f0f4f8'; label.style.color='#aaa'; levelInput.value=''; }
 }
 
 function closeModal() { document.getElementById('modal-review').classList.remove('show'); }
 
 async function certifyWork() {
-  const score = parseInt(document.getElementById('mr-score').value) || 0;
-  const level = document.getElementById('mr-level').value;
+  const completeness = parseInt(document.getElementById('mr-score').value) || 0;
+  const score = Math.round(completeness / 6 * 100); // score technique pour compatibilité API
+  const level = completeness === 6 ? 'complete' : completeness >= 4 ? 'good' : completeness >= 2 ? 'partial' : 'minimal';
   const note = document.getElementById('mr-note').value.trim();
 
-  if (!level) { showToast('⚠️ Le score doit être ≥ 20 pour certifier'); return; }
+  // Pas de score minimum requis — complétude technique uniquement
   if (!currentWorkId) return;
 
   // Vérifier que l'admin est connecté localement
