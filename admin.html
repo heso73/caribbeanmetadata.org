@@ -84,10 +84,7 @@ tr:hover td{background:#f8fafc}
 
 /* CERT LEVEL */
 .cert-level{display:inline-block;padding:3px 10px;border-radius:10px;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px}
-.cert-level.platinum{background:rgba(0,194,199,0.12);color:#0e7490}
-.cert-level.gold{background:rgba(255,201,60,0.12);color:#b45309}
-.cert-level.silver{background:rgba(192,192,192,0.12);color:#64748b}
-.cert-level.bronze{background:rgba(205,127,50,0.12);color:#92400e}
+
 
 /* ACTIONS */
 .btn-action{padding:5px 12px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;border:none;transition:all .2s}
@@ -111,8 +108,7 @@ tr:hover td{background:#f8fafc}
 .modal-field{display:flex;gap:8px;margin-bottom:8px;font-size:13px}
 .mf-label{color:var(--muted);min-width:120px;font-family:'DM Mono',monospace;font-size:11px;flex-shrink:0}
 .mf-value{color:#333;font-weight:500}
-.score-input{width:80px;padding:8px 12px;border:1.5px solid var(--border);border-radius:6px;font-size:20px;font-weight:700;text-align:center;color:var(--navy);font-family:'DM Mono',monospace;outline:none}
-.score-input:focus{border-color:var(--teal)}
+
 .level-select{padding:8px 14px;border:1.5px solid var(--border);border-radius:6px;font-size:14px;outline:none;font-family:'DM Mono',monospace;color:var(--navy)}
 .level-select:focus{border-color:var(--teal)}
 .note-input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;min-height:80px;resize:vertical}
@@ -230,15 +226,12 @@ tr:hover td{background:#f8fafc}
           <div class="table-filters">
             <select class="filter-select" onchange="filterByLevel(this.value)">
               <option value="">Tous niveaux</option>
-              <option value="platinum">Platinum</option>
-              <option value="gold">Gold</option>
-              <option value="silver">Silver</option>
-              <option value="bronze">Bronze</option>
+
             </select>
             <input class="search-input-sm" placeholder="Rechercher..." oninput="filterTable('validated-body', this.value)">
           </div>
         </div>
-        <table><thead><tr><th>CMS ID</th><th>TITRE</th><th>TERRITOIRE</th><th>SCORE</th><th>NIVEAU</th><th>ÉMIS LE</th><th>ACTIONS</th></tr></thead>
+        <table><thead><tr><th>CMS ID</th><th>TITRE</th><th>TERRITOIRE</th><th>COMPLÉTUDE</th><th>ÉMIS LE</th><th>ACTIONS</th></tr></thead>
         <tbody id="validated-body"><tr class="empty-row"><td colspan="7">Chargement...</td></tr></tbody></table>
       </div>
     </div>
@@ -248,7 +241,7 @@ tr:hover td{background:#f8fafc}
       <div class="page-header"><div class="page-title">Toutes les certifications</div></div>
       <div class="table-card">
         <div class="table-header"><div class="table-title">REGISTRE COMPLET</div></div>
-        <table><thead><tr><th>CMS ID</th><th>TITRE</th><th>SCORE</th><th>NIVEAU</th><th>ÉMIS LE</th><th>RÉVOQUÉ</th></tr></thead>
+        <table><thead><tr><th>CMS ID</th><th>TITRE</th><th>COMPLÉTUDE</th><th>ÉMIS LE</th><th>RÉVOQUÉ</th></tr></thead>
         <tbody id="all-certs-body"><tr class="empty-row"><td colspan="6">Chargement...</td></tr></tbody>
       </div>
     </div>
@@ -403,9 +396,9 @@ tr:hover td{background:#f8fafc}
           <div class="table-card" style="margin-bottom:16px">
             <div class="table-header"><div class="table-title">RÔLES DÉFINIS</div></div>
             <div style="padding:16px 20px">
-              <div style="margin-bottom:12px"><span class="cert-level gold" style="margin-right:8px">ADMIN</span><span style="font-size:12px;color:#555">Accès total · toi seul actuellement</span></div>
-              <div style="margin-bottom:12px"><span class="cert-level silver" style="margin-right:8px">COMMITTEE</span><span style="font-size:12px;color:#555">Vote sur évolutions du standard</span></div>
-              <div><span class="cert-level bronze" style="margin-right:8px">VALIDATOR</span><span style="font-size:12px;color:#555">Valide les soumissions créateurs</span></div>
+              <div style="margin-bottom:12px"><span class="cert-level" style="background:rgba(0,194,199,0.12);color:#0e7490;margin-right:8px">ADMIN</span><span style="font-size:12px;color:#555">Accès total · toi seul actuellement</span></div>
+              <div style="margin-bottom:12px"><span class="cert-level" style="background:rgba(0,62,107,0.08);color:#003E6B;margin-right:8px">COMMITTEE</span><span style="font-size:12px;color:#555">Vote sur évolutions du standard</span></div>
+              <div><span class="cert-level" style="background:rgba(63,166,107,0.1);color:#166534;margin-right:8px">VALIDATOR</span><span style="font-size:12px;color:#555">Valide les soumissions créateurs</span></div>
             </div>
           </div>
           <div class="table-card">
@@ -477,17 +470,13 @@ tr:hover td{background:#f8fafc}
       <div class="modal-section-title">DÉCISION DE CERTIFICATION</div>
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
         <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px">SCORE (0-100)</div>
-          <input type="number" class="score-input" id="mr-score" min="0" max="100" value="0" oninput="updateModalLevel()">
+
         </div>
         <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px">NIVEAU</div>
+
           <select class="level-select" id="mr-level">
             <option value="">Non certifié</option>
-            <option value="bronze">Bronze (≥20)</option>
-            <option value="silver">Silver (≥40)</option>
-            <option value="gold">Gold (≥65)</option>
-            <option value="platinum">Platinum (≥85)</option>
+
           </select>
         </div>
       </div>
@@ -696,7 +685,7 @@ function renderCertsTable(tbodyId, certs) {
       <td>${c.works?.title||'—'}</td>
       <td>${c.works?.territory||'—'}</td>
       <td style="font-family:'DM Mono',monospace;font-weight:700;color:var(--navy)">${c.score}</td>
-      <td><span class="cert-level ${c.level}">${(c.level||'').toUpperCase()}</span></td>
+      <td><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--teal)">${c.metadata_json?.completude_pct !== undefined ? c.metadata_json.completude_pct + '%' : '—'}</span></td>
       <td style="color:#888;font-size:11px">${c.issued_at ? new Date(c.issued_at).toLocaleDateString('fr-FR') : '—'}</td>
       <td><button class="btn-action btn-review" onclick="window.open('certification.html?id=${c.cms_id}')">Voir →</button></td>
     </tr>
@@ -737,7 +726,7 @@ function openReview(id, title, creator, family, territory, languages, year, desc
 
 function updateModalLevel() {
   const score = parseInt(document.getElementById('mr-score').value) || 0;
-  const level = score >= 85 ? 'platinum' : score >= 65 ? 'gold' : score >= 40 ? 'silver' : score >= 20 ? 'bronze' : '';
+
   document.getElementById('mr-level').value = level;
 }
 
@@ -1116,7 +1105,7 @@ async function loadValidators() {
         <td style="font-size:11px;color:#888">${v.email}</td>
         <td>${v.institution||'—'}</td>
         <td>${v.territory||'—'}</td>
-        <td><span class="cert-level ${v.role==='admin'?'gold':v.role==='committee'?'silver':'bronze'}">${(v.role||'').toUpperCase()}</span></td>
+        <td><span class="cert-level">${(v.role||'').toUpperCase()}</span></td>
         <td>${v.active ? '<span style="color:var(--green)">✓</span>' : '<span style="color:#ccc">✗</span>'}</td>
         <td style="font-size:11px;color:#888">${v.appointed_at ? new Date(v.appointed_at).toLocaleDateString('fr-FR') : '—'}</td>
       </tr>
