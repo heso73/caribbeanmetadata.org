@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soumettre une œuvre — CMS Certification</title>
+  <title>Soumettre une œuvre — Caribbean Metadata Standard</title>
   <meta name="description" content="Soumettez votre œuvre caribéenne pour obtenir une certification Caribbean Metadata Standard officielle.">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,10 +76,7 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
 .sw-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted)}
 .sw-level{text-align:center;margin-bottom:20px}
 .sw-pill{display:inline-block;padding:5px 16px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1px;background:#f0f4f8;color:#aaa}
-.sw-pill.platinum{background:rgba(0,194,199,0.12);color:#0e7490}
-.sw-pill.gold{background:rgba(255,201,60,0.12);color:#b45309}
-.sw-pill.silver{background:rgba(192,192,192,0.12);color:#64748b}
-.sw-pill.bronze{background:rgba(205,127,50,0.12);color:#92400e}
+
 .sw-bars{margin-bottom:20px}
 .swb-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
 .swb-lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);width:72px;letter-spacing:.3px}
@@ -140,10 +137,7 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
 .air-score-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .air-score-num{font-family:'DM Serif Display',Georgia,serif;font-size:36px;color:#fff;line-height:1}
 .air-level{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:20px}
-.air-level.platinum{background:rgba(0,194,199,0.2);color:var(--teal)}
-.air-level.gold{background:rgba(255,201,60,0.2);color:var(--gold)}
-.air-level.silver{background:rgba(192,192,192,0.2);color:#C0C0C0}
-.air-level.bronze{background:rgba(205,127,50,0.2);color:#CD7F32}
+
 .air-justification{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7;font-style:italic;margin-top:8px}
 .air-tags-wrap{display:flex;flex-wrap:wrap;gap:6px}
 .ai-tag-suggest{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid rgba(0,194,199,0.3);background:rgba(0,194,199,0.08);color:rgba(255,255,255,0.8);transition:all .2s;font-family:'DM Sans',sans-serif}
@@ -329,12 +323,8 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
 
           <div class="ai-results" id="ai-results">
             <div class="air-section">
-              <div class="air-label">SCORE PRÉLIMINAIRE ESTIMÉ</div>
-              <div class="air-score-row">
-                <div class="air-score-num" id="air-score">—</div>
-                <div class="air-level" id="air-level">—</div>
-              </div>
-              <div class="air-justification" id="air-justification">—</div>
+              <div class="air-label">ANALYSE CULTURELLE</div>
+              <div class="air-justification" id="air-justification" style="margin-top:0">—</div>
             </div>
             <div class="air-section">
               <div class="air-label">LANGUE DÉTECTÉE</div>
@@ -359,7 +349,7 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
     <!-- STEP 3 : MÉTADONNÉES -->
     <div class="panel" id="step-3">
       <div class="panel-title">Marqueurs culturels</div>
-      <div class="panel-sub">Sélectionnez les marqueurs qui décrivent votre œuvre dans les 6 familles CMS. Plus vous en sélectionnez avec précision, plus votre score d'ancrage caribéen sera élevé.</div>
+      <div class="panel-sub">Sélectionnez les marqueurs qui décrivent votre œuvre dans les 6 familles CMS. Plus votre fiche est complète, plus elle sera visible et recommandable par les algorithmes des plateformes.</div>
       <div id="families-container"></div>
       <div class="btn-row">
         <button class="btn-secondary" onclick="goStep(2)">← Retour</button>
@@ -394,14 +384,14 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="score-widget">
-      <div class="sw-title">SCORE PRÉLIMINAIRE</div>
+      <div class="sw-title">COMPLÉTUDE DE LA FICHE</div>
       <div class="sw-circle" id="sw-circle">
         <div class="sw-num" id="sw-num">0</div>
-        <div class="sw-sub">/ 100</div>
+        <div class="sw-sub">/ 6 FAM.</div>
       </div>
-      <div class="sw-level"><span class="sw-pill" id="sw-pill">— NON CERTIFIÉ —</span></div>
+      <div class="sw-level" style="margin-bottom:8px"><span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)" id="sw-pct-label">0% CMS v2.0</span></div>
       <div class="sw-bars" id="sw-bars"></div>
-      <div class="sw-tags">MARQUEURS</div>
+      <div class="sw-tags">MARQUEURS SÉLECTIONNÉS</div>
       <div class="sw-tags-list" id="sw-tags-list"><span style="font-size:11px;color:#ccc">Aucun tag</span></div>
       <button class="btn-submit-cta" onclick="goStep(4)">Voir le récapitulatif →</button>
     </div>
@@ -580,53 +570,30 @@ function buildFamiliesUI() {
   });
 }
 
-// SCORE
-function getLevel(s) { if(s>=85) return'platinum'; if(s>=65) return'gold'; if(s>=40) return'silver'; if(s>=20) return'bronze'; return null; }
-function getLevelColor(l) { return{platinum:'#0e7490',gold:'#b45309',silver:'#64748b',bronze:'#92400e'}[l]||'#aaa'; }
-
+// COMPLÉTUDE — indicateur purement technique basé sur les 6 familles CMS
 function updateScore() {
-  const name = document.getElementById('c-name').value.trim();
-  const email = document.getElementById('c-email').value.trim();
-  const type = document.getElementById('c-type').value;
-  const territory = document.getElementById('c-territory').value;
-  const title = document.getElementById('w-title').value.trim();
-  const family = document.getElementById('w-family').value;
-  const year = document.getElementById('w-year').value;
-  const wterritory = document.getElementById('w-territory').value;
-  const language = document.getElementById('w-language').value;
+  // Compter les familles renseignées (au moins 1 tag)
+  const filledFamilies = FAMILIES.filter(f => selectedTags[f.id].length > 0).length;
+  const pct = Math.round((filledFamilies / FAMILIES.length) * 100);
 
-  let id = 0;
-  if(title) id+=2; if(family) id+=2; if(year) id+=1; if(wterritory) id+=2; if(language) id+=2; if(name) id+=1;
-
-  const famScores = {};
-  FAMILIES.forEach(fam => {
-    const count = selectedTags[fam.id].length;
-    famScores[fam.id] = Math.min(fam.weight, Math.round((Math.min(count, Math.ceil(fam.tags.length*0.4)) / (fam.tags.length*0.4)) * fam.weight));
-  });
-
-  const total = Math.min(100, id + Object.values(famScores).reduce((a,b) => a+b, 0));
-  const level = getLevel(total);
-
-  document.getElementById('sw-num').textContent = total;
+  document.getElementById('sw-num').textContent = filledFamilies;
   const circle = document.getElementById('sw-circle');
-  circle.style.borderColor = level ? getLevelColor(level) : '#f0f4f8';
+  circle.style.borderColor = pct === 100 ? '#3FA66B' : pct >= 50 ? '#00C2C7' : '#f0f4f8';
 
-  const pill = document.getElementById('sw-pill');
-  pill.className = 'sw-pill' + (level ? ' ' + level : '');
-  pill.textContent = level ? level.toUpperCase() : '— NON CERTIFIÉ —';
+  const pctLabel = document.getElementById('sw-pct-label');
+  if (pctLabel) pctLabel.textContent = pct + '% CMS v2.0';
 
-  // Bars
+  // Barres par famille
   const swBars = document.getElementById('sw-bars');
-  swBars.innerHTML = [
-    {id:'identity', label:'Identité', color:'#003E6B', score:id, max:10},
-    ...FAMILIES.map(f => ({id:f.id, label:f.label.split('—')[1].trim(), color:f.color, score:famScores[f.id], max:f.weight}))
-  ].map(b => `
-    <div class="swb-row">
-      <span class="swb-lbl">${b.label.substring(0,10)}</span>
-      <div class="swb-track"><div class="swb-fill" style="width:${Math.round(b.score/b.max*100)}%;background:${b.color}"></div></div>
-      <span class="swb-val">${b.score}</span>
-    </div>
-  `).join('');
+  swBars.innerHTML = FAMILIES.map(f => {
+    const count = selectedTags[f.id].length;
+    const filled = count > 0;
+    return `<div class="swb-row">
+      <span class="swb-lbl">${f.label.split('—')[1].trim().substring(0,10)}</span>
+      <div class="swb-track"><div class="swb-fill" style="width:${filled ? 100 : 0}%;background:${f.color}"></div></div>
+      <span class="swb-val">${filled ? '✓' : '○'}</span>
+    </div>`;
+  }).join('');
 
   // Tags list
   const allTags = Object.values(selectedTags).flat();
@@ -635,7 +602,7 @@ function updateScore() {
     ? allTags.slice(0,8).map(t => `<span class="sw-mini-tag">${t}</span>`).join('') + (allTags.length > 8 ? `<span class="sw-mini-tag">+${allTags.length-8}</span>` : '')
     : '<span style="font-size:11px;color:#ccc">Aucun tag</span>';
 
-  return { total, level, famScores, id };
+  return { filledFamilies, pct };
 }
 
 // STEPS
@@ -653,7 +620,7 @@ function goStep(n) {
 }
 
 function buildRecap() {
-  const { total, level } = updateScore();
+  const { filledFamilies, pct } = updateScore();
   const fields = [
     ['Créateur', document.getElementById('c-name').value || '—'],
     ['Email', document.getElementById('c-email').value || '—'],
@@ -664,7 +631,7 @@ function buildRecap() {
     ['Année', document.getElementById('w-year').value || '—'],
     ['Territoire œuvre', document.getElementById('w-territory').value || '—'],
     ['Langue', document.getElementById('w-language').value || '—'],
-    ['Score préliminaire', `${total}/100 — ${level ? level.toUpperCase() : 'NON CERTIFIÉ'}`],
+    ['Complétude CMS', `${filledFamilies}/6 familles renseignées (${pct}%)`],
     ['Tags sélectionnés', Object.values(selectedTags).flat().join(', ') || '—'],
   ];
   document.getElementById('recap-content').innerHTML = fields.map(([l,v]) =>
@@ -703,9 +670,10 @@ async function submitWork() {
     }
 
     // 2. Créer l'œuvre
-    const { total, level } = updateScore();
+    const { filledFamilies, pct } = updateScore();
     const allTags = {};
     FAMILIES.forEach(f => { if(selectedTags[f.id].length) allTags[f.id] = selectedTags[f.id]; });
+    const metadataJson = { metadata_tags: allTags, completude_pct: pct, families_filled: filledFamilies };
 
     const newWork = await sbInsert('works', {
       creator_id: creatorId,
@@ -811,9 +779,7 @@ Langues disponibles : ${Object.entries(LANG_MAP).map(([k,v]) => k + ' (' + v + '
 
 Réponds avec ce JSON exact :
 {
-  "score": <entier 0-100 basé sur l'ancrage caribéen>,
-  "level": <"platinum"|"gold"|"silver"|"bronze"|null>,
-  "justification": <string 1-2 phrases expliquant le score>,
+  "justification": <string 1-2 phrases sur l'ancrage culturel caribéen détecté>,
   "detected_language_code": <code ISO 639-3 parmi les langues disponibles>,
   "detected_language_name": <nom de la langue>,
   "suggested_markers": <array de 3-8 marqueurs parmi ceux disponibles, les plus pertinents>,
@@ -854,13 +820,7 @@ function renderAIResults(r) {
   document.getElementById('btn-ai').disabled = false;
   document.getElementById('ai-results').classList.add('show');
 
-  // Score
-  document.getElementById('air-score').textContent = r.score || 0;
-  const levelEl = document.getElementById('air-level');
-  levelEl.textContent = (r.level || 'NON CERTIFIÉ').toUpperCase();
-  levelEl.className = 'air-level' + (r.level ? ' ' + r.level : '');
-
-  // Justification
+  // Analyse culturelle
   document.getElementById('air-justification').textContent = r.justification || '';
 
   // Langue
