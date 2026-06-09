@@ -384,15 +384,16 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="score-widget">
-      <div class="sw-title">COMPLÉTUDE DE LA FICHE</div>
+      <div class="sw-title">INDICE DE VISIBILITÉ</div>
       <div class="sw-circle" id="sw-circle">
         <div class="sw-num" id="sw-num">0</div>
-        <div class="sw-sub">/ 6 FAM.</div>
+        <div class="sw-sub">/ 100</div>
       </div>
       <div class="sw-level" style="margin-bottom:8px"><span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)" id="sw-pct-label">0% CMS v2.0</span></div>
       <div class="sw-bars" id="sw-bars"></div>
       <div class="sw-tags">MARQUEURS SÉLECTIONNÉS</div>
       <div class="sw-tags-list" id="sw-tags-list"><span style="font-size:11px;color:#ccc">Aucun tag</span></div>
+      <div style="font-size:10px;color:#aaa;text-align:center;margin-bottom:10px;font-family:'DM Mono',monospace;line-height:1.6">Signaux exploitables par<br>YouTube · Spotify · Netflix</div>
       <button class="btn-submit-cta" onclick="goStep(4)">Voir le récapitulatif →</button>
     </div>
   </div>
@@ -571,334 +572,114 @@ function buildFamiliesUI() {
 }
 
 // COMPLÉTUDE — indicateur purement technique basé sur les 6 familles CMS
+function calcIVA() {
+  // INDICE DE VISIBILITÉ ALGORITHMIQUE CMS v2.0
+  // Mesure la capacité d'une fiche à être exploitée par les algorithmes
+  // de recommandation (YouTube, Spotify, Netflix, TikTok)
+
+  const title      = document.getElementById('w-title').value.trim();
+  const titleOrig  = document.getElementById('w-title-orig').value.trim();
+  const family     = document.getElementById('w-family').value;
+  const year       = document.getElementById('w-year').value;
+  const territory  = document.getElementById('w-territory').value;
+  const language   = document.getElementById('w-language').value;
+  const desc       = document.getElementById('w-desc').value.trim();
+
+  const allTags    = Object.values(selectedTags).flat();
+  const markerCount = selectedTags['cultural']?.length || 0;
+  const rhythmicCount = selectedTags['rhythmic']?.length || 0;
+  const historicalCount = selectedTags['sociohistorical']?.length || 0;
+
+  // Langues caribéennes endogènes (codes ISO non-coloniaux)
+  const ENDOGENOUS = ['gcf','acf','hat','jam','pap','srn'];
+  const isEndogenous = ENDOGENOUS.includes(language);
+
+  // Territoires spécifiques (non "diaspora" ou "général")
+  const SPECIFIC_TERR = ['Guadeloupe','Martinique','Haiti','Guyane','Jamaica',
+    'Trinidad','Barbados','Cuba','Dominican Republic','Puerto Rico',
+    'Aruba','Curacao','Suriname','Dominica','St Lucia','St Vincent','Grenada','Antigua'];
+  const isSpecificTerr = SPECIFIC_TERR.includes(territory);
+
+  let score = 0;
+  const details = [];
+
+  // Linguistique (20pts)
+  if (language)       { score += 15; details.push({label:'Code langue ISO 639-3', pts:15, done:true}); }
+  else                { details.push({label:'Code langue ISO 639-3', pts:15, done:false}); }
+  if (isEndogenous)   { score += 5;  details.push({label:'Langue caribéenne endogène', pts:5, done:true}); }
+  else if (language)  { details.push({label:'Langue caribéenne endogène', pts:5, done:false}); }
+
+  // Culturelle (20pts)
+  if (markerCount >= 1) { score += 8;  details.push({label:'1+ marqueur culturel CMS', pts:8, done:true}); }
+  else                  { details.push({label:'Marqueurs culturels CMS', pts:20, done:false}); }
+  if (markerCount >= 3) { score += 7;  details.push({label:'3+ marqueurs culturels', pts:7, done:true}); }
+  if (markerCount >= 5) { score += 5;  details.push({label:'5+ marqueurs culturels', pts:5, done:true}); }
+
+  // Narrative (20pts)
+  if (family)      { score += 8;  details.push({label:'Domaine culturel identifié', pts:8, done:true}); }
+  else             { details.push({label:'Domaine culturel', pts:8, done:false}); }
+  if (title)       { score += 4;  details.push({label:'Titre renseigné', pts:4, done:true}); }
+  else             { details.push({label:'Titre', pts:4, done:false}); }
+  if (titleOrig)   { score += 3;  details.push({label:'Titre en langue originale', pts:3, done:true}); }
+  if (desc.split(' ').length >= 50) { score += 5; details.push({label:'Description (50+ mots)', pts:5, done:true}); }
+  else if (desc)   { details.push({label:'Description (50+ mots)', pts:5, done:false}); }
+
+  // Rythmique (6pts)
+  if (rhythmicCount >= 1) { score += 6; details.push({label:'Tag rythmique identifié', pts:6, done:true}); }
+  else                    { details.push({label:'Tag rythmique', pts:6, done:false}); }
+
+  // Géographique (15pts)
+  if (territory)       { score += 12; details.push({label:'Territoire caribéen', pts:12, done:true}); }
+  else                 { details.push({label:'Territoire caribéen', pts:12, done:false}); }
+  if (isSpecificTerr)  { score += 3;  details.push({label:'Territoire spécifique', pts:3, done:true}); }
+
+  // Socio-historique (6pts)
+  if (historicalCount >= 1) { score += 6; details.push({label:'Contexte historique', pts:6, done:true}); }
+  else                      { details.push({label:'Contexte historique', pts:6, done:false}); }
+
+  // Technique (13pts)
+  if (year)    { score += 4; details.push({label:'Année de création', pts:4, done:true}); }
+  else         { details.push({label:'Année de création', pts:4, done:false}); }
+  if (family)  { score += 5; } // déjà compté dans narrative
+  score = Math.min(100, score);
+
+  return { score, details };
+}
+
 function updateScore() {
-  // Compter les familles renseignées (au moins 1 tag)
-  const filledFamilies = FAMILIES.filter(f => selectedTags[f.id].length > 0).length;
-  const pct = Math.round((filledFamilies / FAMILIES.length) * 100);
+  const { score, details } = calcIVA();
 
-  document.getElementById('sw-num').textContent = filledFamilies;
+  document.getElementById('sw-num').textContent = score;
   const circle = document.getElementById('sw-circle');
-  circle.style.borderColor = pct === 100 ? '#3FA66B' : pct >= 50 ? '#00C2C7' : '#f0f4f8';
+  circle.style.borderColor = score >= 80 ? '#00C2C7' : score >= 60 ? '#3FA66B' : score >= 40 ? '#FFC93C' : '#f0f4f8';
 
-  const pctLabel = document.getElementById('sw-pct-label');
-  if (pctLabel) pctLabel.textContent = pct + '% CMS v2.0';
+  // Pill label
+  const pill = document.getElementById('sw-pill');
+  if (score >= 80) { pill.className='sw-pill complete'; pill.textContent='EXCELLENT'; }
+  else if (score >= 60) { pill.className='sw-pill good'; pill.textContent='BON NIVEAU'; }
+  else if (score >= 40) { pill.className='sw-pill partial'; pill.textContent='À AMÉLIORER'; }
+  else { pill.className='sw-pill'; pill.textContent='INCOMPLET'; }
 
-  // Barres par famille
+  // Barres — signaux manquants en priorité
+  const missing = details.filter(d => !d.done).slice(0,4);
   const swBars = document.getElementById('sw-bars');
-  swBars.innerHTML = FAMILIES.map(f => {
-    const count = selectedTags[f.id].length;
-    const filled = count > 0;
-    return `<div class="swb-row">
-      <span class="swb-lbl">${f.label.split('—')[1].trim().substring(0,10)}</span>
-      <div class="swb-track"><div class="swb-fill" style="width:${filled ? 100 : 0}%;background:${f.color}"></div></div>
-      <span class="swb-val">${filled ? '✓' : '○'}</span>
-    </div>`;
-  }).join('');
+  swBars.innerHTML = missing.length ? missing.map(d => `
+    <div class="swb-row">
+      <span class="swb-lbl" style="color:#FF6F61;font-size:9px">+${d.pts}pts</span>
+      <div class="swb-track"><div class="swb-fill" style="width:0%;background:#FF6F61"></div></div>
+      <span class="swb-val" style="color:#ccc;font-size:9px">${d.label.substring(0,12)}</span>
+    </div>
+  `).join('') : '<div style="text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:#00C2C7;padding:8px">✓ FICHE OPTIMALE</div>';
 
-  // Tags list
+  // Tags
   const allTags = Object.values(selectedTags).flat();
-  const tagsList = document.getElementById('sw-tags-list');
-  tagsList.innerHTML = allTags.length
-    ? allTags.slice(0,8).map(t => `<span class="sw-mini-tag">${t}</span>`).join('') + (allTags.length > 8 ? `<span class="sw-mini-tag">+${allTags.length-8}</span>` : '')
-    : '<span style="font-size:11px;color:#ccc">Aucun tag</span>';
+  document.getElementById('sw-tags-list').innerHTML = allTags.length
+    ? allTags.slice(0,8).map(t => `<span class="sw-mini-tag">${t}</span>`).join('')
+      + (allTags.length > 8 ? `<span class="sw-mini-tag">+${allTags.length-8}</span>` : '')
+    : '<span style="font-size:11px;color:#ccc">Aucun signal</span>';
 
-  return { filledFamilies, pct };
+  return { score, details };
 }
-
-// STEPS
-function goStep(n) {
-  currentStep = n;
-  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i+1 === n));
-  document.querySelectorAll('.step-btn').forEach((b,i) => {
-    b.classList.remove('active','done');
-    if(i+1 === n) b.classList.add('active');
-    else if(i+1 < n) b.classList.add('done');
-  });
-  if(n === 4) buildRecap();
-  const m = document.querySelector('main');
-  if(m) window.scrollTo({top: m.getBoundingClientRect().top + window.pageYOffset - 100, behavior:'smooth'});
-}
-
-function buildRecap() {
-  const { filledFamilies, pct } = updateScore();
-  const fields = [
-    ['Créateur', document.getElementById('c-name').value || '—'],
-    ['Email', document.getElementById('c-email').value || '—'],
-    ['Type', document.getElementById('c-type').value || '—'],
-    ['Territoire créateur', document.getElementById('c-territory').value || '—'],
-    ['Titre', document.getElementById('w-title').value || '—'],
-    ['Famille', document.getElementById('w-family').value || '—'],
-    ['Année', document.getElementById('w-year').value || '—'],
-    ['Territoire œuvre', document.getElementById('w-territory').value || '—'],
-    ['Langue', document.getElementById('w-language').value || '—'],
-    ['Complétude CMS', `${filledFamilies}/6 familles renseignées (${pct}%)`],
-    ['Tags sélectionnés', Object.values(selectedTags).flat().join(', ') || '—'],
-  ];
-  document.getElementById('recap-content').innerHTML = fields.map(([l,v]) =>
-    `<div><strong style="color:#003E6B;display:inline-block;width:160px">${l} :</strong> ${v}</div>`
-  ).join('');
-}
-
-// SUBMIT
-async function submitWork() {
-  const btn = document.getElementById('btn-submit');
-  btn.textContent = '⏳ Envoi en cours...'; btn.disabled = true;
-
-  const name = document.getElementById('c-name').value.trim();
-  const email = document.getElementById('c-email').value.trim();
-
-  if (!name || !email || !document.getElementById('w-title').value.trim()) {
-    showToast('⚠️ Remplissez les champs obligatoires');
-    btn.textContent = 'Soumettre ma demande →'; btn.disabled = false;
-    return;
-  }
-
-  try {
-    // 1. Créer ou récupérer le créateur
-    let creatorId;
-    const existingCreators = await sbFetch('creators', `?email=eq.${encodeURIComponent(email)}&select=id&limit=1`);
-    if (existingCreators && existingCreators.length) {
-      creatorId = existingCreators[0].id;
-    } else {
-      const newCreator = await sbInsert('creators', {
-        email, name,
-        type: document.getElementById('c-type').value || 'individual',
-        territory: document.getElementById('c-territory').value,
-        website: document.getElementById('c-website').value || null,
-      });
-      creatorId = newCreator[0].id;
-    }
-
-    // 2. Créer l'œuvre
-    const { filledFamilies, pct } = updateScore();
-    const allTags = {};
-    FAMILIES.forEach(f => { if(selectedTags[f.id].length) allTags[f.id] = selectedTags[f.id]; });
-    const metadataJson = { metadata_tags: allTags, completude_pct: pct, families_filled: filledFamilies };
-
-    const newWork = await sbInsert('works', {
-      creator_id: creatorId,
-      title: document.getElementById('w-title').value.trim(),
-      title_original: document.getElementById('w-title-orig').value.trim() || null,
-      family: document.getElementById('w-family').value || null,
-      year: parseInt(document.getElementById('w-year').value) || null,
-      territory: document.getElementById('w-territory').value || null,
-      languages: [document.getElementById('w-language').value].filter(Boolean),
-      description: document.getElementById('w-desc').value.trim() || null,
-      status: 'pending',
-    });
-
-    const workId = newWork[0].id;
-    document.getElementById('success-work-id').textContent = `Référence : ${workId.substring(0,8).toUpperCase()}`;
-
-    // 3. Succès
-    document.querySelector('.steps-nav').style.display = 'none';
-    document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
-    document.getElementById('success-panel').classList.add('show');
-    showToast('✅ Demande soumise avec succès !');
-
-  } catch(e) {
-    showToast('❌ Erreur : ' + e.message);
-    btn.textContent = 'Soumettre ma demande →'; btn.disabled = false;
-  }
-}
-
-async function sbFetch(path, params='') {
-  const { data: { session } } = await sb.auth.getSession();
-  const token = session ? session.access_token : SUPABASE_KEY;
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}${params}`, {
-    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${token}` }
-  });
-  if (!r.ok) throw new Error(`API ${r.status}`);
-  return r.json();
-}
-
-async function sbInsert(table, data) {
-  const { data: result, error } = await sb.from(table).insert(data).select();
-  if (error) throw new Error(error.message);
-  return result;
-}
-
-let _tt;
-function showToast(msg) {
-  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(_tt); _tt = setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-
-// ── AI LAYER — CLAUDE API ─────────────────────────────────────────────────────
-
-const LANG_MAP = {
-  'gcf': 'Créole guadeloupéen', 'acf': 'Créole antillais', 'hat': 'Créole haïtien',
-  'jam': 'Jamaican Patois', 'pap': 'Papiamentu', 'srn': 'Sranan Tongo',
-  'nld': 'Nederlands Caribisch', 'fra': 'Français caribéen',
-  'eng': 'English Caribbean', 'spa': 'Español caribeño'
-};
-
-const ALL_MARKERS = [
-  'Gwo Ka','Bèlè','Konpa','Zouk','Calypso','Soca','Reggae','Ska','Dancehall',
-  'Tumba','Son Cubano','Salsa','Bachata','Merengue','Kaseko','Kadans','Bouyon',
-  'Carnival','Mas','Rara','Vodou','Orisha','Rastafari','Maroon Culture',
-  'Quadrille créole','Danmyé','Kalenda','Chanté Noël',
-  'Créolisation',"Mémoire de l'esclavage",'Négritude','Antillanité','Postcolonialité'
-];
-
-let aiSuggestions = {};
-
-async function analyzeWithAI() {
-  const input = document.getElementById('ai-input').value.trim();
-  const title = document.getElementById('w-title').value.trim();
-  const territory = document.getElementById('w-territory').value;
-  const family = document.getElementById('w-family').value;
-
-  if (!input && !title) {
-    showToast('⚠️ Décrivez votre œuvre ou remplissez le titre d\'abord');
-    return;
-  }
-
-  const btn = document.getElementById('btn-ai');
-  btn.disabled = true;
-  document.getElementById('ai-loading').classList.add('show');
-  document.getElementById('ai-results').classList.remove('show');
-
-  const context = [
-    title ? `Titre : ${title}` : '',
-    family ? `Famille : ${family}` : '',
-    territory ? `Territoire : ${territory}` : '',
-    input ? `Description : ${input}` : '',
-  ].filter(Boolean).join('\n');
-
-  const prompt = `Tu es un expert du Caribbean Metadata Standard (CMS v2.0) et de la culture caribéenne.
-
-Analyse ce contenu culturel caribéen et réponds UNIQUEMENT en JSON valide, sans markdown, sans commentaire :
-
-${context}
-
-Marqueurs disponibles : ${ALL_MARKERS.join(', ')}
-
-Langues disponibles : ${Object.entries(LANG_MAP).map(([k,v]) => k + ' (' + v + ')').join(', ')}
-
-Réponds avec ce JSON exact :
-{
-  "justification": <string 1-2 phrases sur l'ancrage culturel caribéen détecté>,
-  "detected_language_code": <code ISO 639-3 parmi les langues disponibles>,
-  "detected_language_name": <nom de la langue>,
-  "suggested_markers": <array de 3-8 marqueurs parmi ceux disponibles, les plus pertinents>,
-  "suggested_territory": <territoire caribéen si détectable, sinon null>,
-  "suggested_language_select": <valeur exacte du select parmi : gcf,acf,hat,jam,pap,srn,nld,fra,eng,spa>
-}`;
-
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-
-    const data = await response.json();
-    const text = data.content?.[0]?.text || '';
-
-    // Parser le JSON
-    const clean = text.replace(/```json|```/g, '').trim();
-    const result = JSON.parse(clean);
-
-    aiSuggestions = result;
-    renderAIResults(result);
-
-  } catch(e) {
-    showToast('❌ Erreur analyse AI : ' + e.message);
-    document.getElementById('ai-loading').classList.remove('show');
-    btn.disabled = false;
-  }
-}
-
-function renderAIResults(r) {
-  document.getElementById('ai-loading').classList.remove('show');
-  document.getElementById('btn-ai').disabled = false;
-  document.getElementById('ai-results').classList.add('show');
-
-  // Analyse culturelle
-  document.getElementById('air-justification').textContent = r.justification || '';
-
-  // Langue
-  document.getElementById('air-lang').textContent = r.detected_language_name || '—';
-  document.getElementById('air-lang-code').textContent = r.detected_language_code ? '[' + r.detected_language_code + ']' : '';
-
-  // Tags suggérés
-  const tagsWrap = document.getElementById('air-tags');
-  tagsWrap.innerHTML = (r.suggested_markers || []).map(tag => `
-    <span class="ai-tag-suggest" onclick="toggleAITag(this,'${tag.replace(/'/g, "\'")}','${tag.replace(/'/g, "\'")}')">${tag}</span>
-  `).join('');
-
-  showToast('✅ Analyse AI terminée !');
-}
-
-function toggleAITag(el, tag, displayTag) {
-  el.classList.toggle('applied');
-  // Trouver et cliquer le tag dans les familles
-  document.querySelectorAll('.tag-chip').forEach(chip => {
-    if (chip.textContent.trim() === tag || chip.textContent.includes(tag.split(' ')[0])) {
-      const isSelected = chip.classList.contains('selected');
-      const shouldSelect = el.classList.contains('applied');
-      if (shouldSelect && !isSelected) chip.click();
-      else if (!shouldSelect && isSelected) chip.click();
-    }
-  });
-}
-
-function applyAllAISuggestions() {
-  if (!aiSuggestions) return;
-
-  // Appliquer la langue
-  if (aiSuggestions.suggested_language_select) {
-    const langSelect = document.getElementById('w-language');
-    if (langSelect) {
-      langSelect.value = aiSuggestions.suggested_language_select;
-      updateScore();
-    }
-  }
-
-  // Appliquer le territoire si non rempli
-  if (aiSuggestions.suggested_territory) {
-    const terrSelect = document.getElementById('w-territory');
-    if (terrSelect && !terrSelect.value) {
-      // Chercher correspondance approx
-      Array.from(terrSelect.options).forEach(opt => {
-        if (opt.value.toLowerCase().includes(aiSuggestions.suggested_territory.toLowerCase()) ||
-            aiSuggestions.suggested_territory.toLowerCase().includes(opt.value.toLowerCase())) {
-          terrSelect.value = opt.value;
-        }
-      });
-      updateScore();
-    }
-  }
-
-  // Appliquer tous les tags
-  document.querySelectorAll('.ai-tag-suggest').forEach(el => {
-    if (!el.classList.contains('applied')) {
-      el.classList.add('applied');
-      const tag = el.textContent.trim();
-      document.querySelectorAll('.tag-chip').forEach(chip => {
-        if (chip.textContent.trim() === tag || chip.textContent.includes(tag.split(' ')[0])) {
-          if (!chip.classList.contains('selected')) chip.click();
-        }
-      });
-    }
-  });
-
-  // Copier le texte AI dans la description si vide
-  const desc = document.getElementById('w-desc');
-  if (desc && !desc.value.trim()) {
-    desc.value = document.getElementById('ai-input').value;
-    updateScore();
-  }
-
-  showToast('✅ Toutes les suggestions appliquées !');
-}
-
 // INIT
 buildFamiliesUI();
 updateScore();
