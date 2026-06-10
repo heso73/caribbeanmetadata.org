@@ -1,179 +1,748 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://caribbeanmetadata.org/families.html" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Les 6 familles de métadonnées — Caribbean Metadata Standard</title>
+  <title>Les 6 familles de métadonnées — Caribbean Metadata Standard</title>
+  <meta name="description" content="Les 6 familles de métadonnées du CMS : Linguistique, Culturelle, Narrative, Rythmique, Géographique, Socio-historique. Architecture complète du standard caribéen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bd:#0b1e30;--bc:#0f6fa6;--tq:#00b7c7;--tq2:#009aaa;
+  --gl:#f3f5f7;--gm:#9aa3b1;--tx:#1f2933;--wh:#ffffff;
+  --rsm:6px;--rmd:12px;--rlg:20px;
+  --sh:0 8px 24px rgba(0,0,0,0.07);--sh2:0 16px 48px rgba(0,0,0,0.1);
+  --f:'DM Sans',system-ui,sans-serif;
+  --fm:'DM Mono',monospace;
+  --fd:'DM Serif Display',Georgia,serif;
+  --f1:#00b7c7;--f2:#ffc93c;--f3:#ff6f61;--f4:#7b3fa6;--f5:#3fa66b;--f6:#185fa5;
+}
 html{scroll-behavior:smooth}
-body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
-.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
-.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
-.nav-links a:hover,.nav-links a.active{color:#003E6B}
-.nav-links a.active{font-weight:700}
-.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:0.5px}
-.nav-validate:hover{background:#00A8AE !important}
-.ph{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
-.ph::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
-.phi{position:relative;z-index:1;max-width:760px}
-.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
-.ph h1{font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
-.ph p{font-size:17px;color:rgba(255,255,255,0.88);max-width:560px;line-height:1.75}
-main{padding:72px 6%;max-width:1100px;margin:0 auto}
-.sl{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.sl::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
-.st{font-size:clamp(22px,3vw,36px);font-weight:700;color:#003E6B;margin-bottom:40px;line-height:1.2}
-.card{background:#fff;border:1px solid rgba(0,62,107,0.12);border-radius:8px;padding:28px}
-.card-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:12px;background:#003E6B;color:#00C2C7}
-.card h3{font-size:17px;font-weight:700;color:#003E6B;margin-bottom:10px}
-.card p{font-size:14px;color:#444;line-height:1.75}
-.cta-block{background:#003E6B;border-radius:12px;padding:48px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-.cta-block h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
-.cta-block p{font-size:15px;color:rgba(255,255,255,0.88)}
-.btn-t{display:inline-block;padding:12px 24px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s}
-.btn-t:hover{background:#00A8AE}
-.btn-ow{display:inline-block;padding:12px 24px;background:transparent;color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.5);transition:all .2s}
-footer{background:#003E6B;padding:56px 6% 32px}
-.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
-.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
-.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
-.fc ul{list-style:none}
-.fc li{margin-bottom:8px}
-.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
-.fc a:hover{color:#fff}
-.fc a.hl{color:#00C2C7;font-weight:600}
-.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
-@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-.fam-nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
-.fam-nav a{padding:8px 18px;border:1px solid rgba(0,62,107,0.2);border-radius:20px;font-size:13px;color:#003E6B;text-decoration:none;font-weight:500;transition:all .2s}
-.fam-nav a:hover{background:#003E6B;color:#fff;border-color:#003E6B}
-.fam-block{margin-bottom:80px;scroll-margin-top:88px}
-.fam-num{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.fam-num::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
-.fam-block h2{font-size:clamp(22px,3vw,34px);font-weight:700;color:#003E6B;margin-bottom:12px}
-.fam-desc{font-size:16px;color:#333;max-width:680px;line-height:1.8;margin-bottom:16px}
-.usage-block{background:#f7f9fb;border-left:3px solid #00C2C7;padding:16px 20px;border-radius:0 6px 6px 0;margin-bottom:28px;font-size:14px;color:#333;line-height:1.7}
-.usage-label{font-size:10px;letter-spacing:2px;color:#00C2C7;font-weight:700;margin-bottom:6px}
-.tags-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.tag-col h4{font-size:10px;letter-spacing:2px;color:#888;font-weight:700;margin-bottom:10px;text-transform:uppercase}
-.tag-list{list-style:none}
-.tag-list li{font-size:13px;color:#333;padding:4px 0;border-bottom:1px solid rgba(0,62,107,0.06)}
-.tag-list li:last-child{border-bottom:none}
-.fam-divider{height:1px;background:rgba(0,62,107,0.08);margin-bottom:80px}
-@media(max-width:768px){.tags-grid{grid-template-columns:1fr 1fr}}
+body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow-x:hidden}
+
+/* ── NAV ── */
+.cms-header{background:var(--wh);box-shadow:var(--sh);position:sticky;top:0;z-index:1000}
+.cms-nav{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:var(--fm);font-size:18px;font-weight:500;color:var(--bd);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--tq)}
+.nav-links{list-style:none;display:flex;gap:.25rem;margin:0;padding:0}
+.nav-links a{text-decoration:none;color:var(--tx);font-size:13px;padding:.35rem .7rem;border-radius:var(--rsm);transition:all .2s}
+.nav-links a:hover,.nav-links a.active{background:var(--gl);color:var(--bd)}
+.cta-nav{background:var(--tq) !important;color:var(--bd) !important;font-weight:600 !important}
+.lang-sw{display:flex;gap:4px}
+.lang-sw button{border:1px solid var(--gm);background:var(--wh);color:var(--tx);padding:.25rem .6rem;border-radius:var(--rsm);font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:var(--f);transition:all .2s}
+.lang-sw button:hover,.lang-sw button.active{border-color:var(--bc);color:var(--bd)}
+
+/* ── HERO PAGE ── */
+.hero-page{background:linear-gradient(135deg,#0b1e30 0%,#0f3d6b 55%,#0f6fa6 100%);padding:72px 6% 60px;position:relative;overflow:hidden}
+.hp-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.02) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.015) 48px)}
+.hp-glow{position:absolute;top:-80px;right:10%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(0,183,199,.15),transparent 65%);pointer-events:none}
+.hp-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hp-tag{font-family:var(--fm);font-size:10px;letter-spacing:4px;color:var(--tq);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hp-tag::before{content:'';display:block;width:24px;height:1px;background:var(--tq)}
+.hp-h1{font-family:var(--fd);font-size:clamp(30px,5vw,54px);color:#fff;line-height:1.05;margin-bottom:14px;letter-spacing:-.5px}
+.hp-h1 em{font-style:italic;color:var(--tq)}
+.hp-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:560px;line-height:1.8;margin-bottom:28px}
+/* Ancres rapides */
+.hp-anchors{display:flex;flex-wrap:wrap;gap:10px}
+.anchor-pill{font-family:var(--fm);font-size:10px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.anchor-pill:hover{border-color:var(--tq);color:var(--tq);background:rgba(0,183,199,.08)}
+.anchor-pill span{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ── SECTIONS ── */
+.sec{padding:72px 6%}
+.sec-a{background:var(--wh)}
+.sec-b{background:var(--gl)}
+.sec-in{max-width:1200px;margin:0 auto}
+.sec-ey{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-ey::before{content:'';display:block;width:20px;height:1px;background:var(--tq)}
+.sec-h2{font-family:var(--fd);font-size:clamp(22px,3vw,36px);color:var(--bd);margin-bottom:10px;letter-spacing:-.5px}
+.sec-p{font-size:15px;color:#666;max-width:600px;line-height:1.8;margin-bottom:40px}
+
+/* ── FAMILLE CARD DÉTAILLÉE ── */
+.fam-section{margin-bottom:48px;border-radius:var(--rlg);overflow:hidden;box-shadow:var(--sh2);background:var(--wh)}
+.fam-header{padding:28px 32px;display:flex;align-items:center;gap:20px;position:relative;overflow:hidden}
+.fh-glow{position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;opacity:.12;pointer-events:none}
+.fh-ico{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0;position:relative;z-index:1}
+.fh-meta{position:relative;z-index:1}
+.fh-num{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.6);margin-bottom:4px}
+.fh-name{font-family:var(--fd);font-size:26px;color:#fff;line-height:1;margin-bottom:6px}
+.fh-desc{font-size:14px;color:rgba(255,255,255,.7);max-width:500px;line-height:1.65}
+.fam-body{padding:28px 32px}
+.fam-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.fb-block h4{font-size:13px;font-weight:600;color:var(--bd);margin-bottom:10px;font-family:var(--fm);letter-spacing:.5px;text-transform:uppercase;font-size:11px}
+.fb-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.fb-tag{font-size:11px;font-family:var(--fm);padding:4px 10px;border-radius:20px;background:var(--gl);color:#555;border:1px solid rgba(0,0,0,.06)}
+.fb-tag-main{background:rgba(0,183,199,.08);border-color:rgba(0,183,199,.3);color:var(--bd);font-weight:500}
+.fb-list{list-style:none;padding:0}
+.fb-list li{font-size:13px;color:#555;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.04);display:flex;align-items:flex-start;gap:8px;line-height:1.55}
+.fb-list li::before{content:'→';color:var(--tq);flex-shrink:0;margin-top:1px}
+.fb-list li:last-child{border-bottom:none}
+.fb-example{background:var(--gl);border-radius:var(--rsm);padding:12px 14px;font-family:var(--fm);font-size:11px;color:#555;line-height:1.7;border-left:3px solid var(--tq)}
+.fb-example strong{color:var(--bd)}
+.fam-footer{padding:16px 32px;background:var(--gl);display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,0,0,.05)}
+.ff-weight{font-family:var(--fm);font-size:10px;color:var(--gm);letter-spacing:1px}
+.ff-weight strong{color:var(--bd);font-size:14px}
+
+/* Bouton */
+.btn-p{padding:10px 22px;background:var(--tq);color:var(--bd);border:none;border-radius:var(--rsm);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--f);transition:background .2s;text-decoration:none;display:inline-block}
+.btn-p:hover{background:var(--tq2)}
+.btn-bd{padding:10px 22px;background:var(--bd);color:#fff;border:none;border-radius:var(--rsm);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:background .2s}
+.btn-bd:hover{background:#0a2840}
+
+/* ── DIAGRAMME ── */
+.diagram-wrap{background:var(--wh);border-radius:var(--rlg);box-shadow:var(--sh2);padding:36px;margin-bottom:48px}
+.dw-title{text-align:center;font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--gm);margin-bottom:28px}
+.dw-sub{text-align:center;font-size:14px;color:#888;margin-top:16px;line-height:1.6}
+
+/* ── IVA SECTION ── */
+.iva-section{background:linear-gradient(135deg,var(--bd),#0f3d6b);border-radius:var(--rlg);padding:40px;margin-bottom:48px;color:#fff;position:relative;overflow:hidden}
+.iva-grid-bg{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(0,183,199,.03) 28px),repeating-linear-gradient(90deg,transparent,transparent 27px,rgba(0,183,199,.02) 28px)}
+.iva-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.iva-text h3{font-family:var(--fd);font-size:28px;color:#fff;margin-bottom:10px}
+.iva-text p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:20px}
+.iva-formula{background:rgba(0,183,199,.1);border:1px solid rgba(0,183,199,.25);border-radius:var(--rsm);padding:14px 18px;font-family:var(--fm);font-size:13px;color:var(--tq);line-height:1.7}
+.iva-poids{display:flex;flex-direction:column;gap:8px}
+.ip-row{display:flex;align-items:center;gap:12px}
+.ip-bar-bg{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.ip-bar-fill{height:100%;border-radius:3px}
+.ip-label{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,.65);width:120px;flex-shrink:0}
+.ip-pts{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,.5);width:36px;text-align:right;flex-shrink:0}
+
+/* ── VOCAB TABLE ── */
+.vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.vg-card{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:20px}
+.vg-title{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--tq);margin-bottom:12px;text-transform:uppercase}
+.vg-items{display:flex;flex-wrap:wrap;gap:5px}
+.vg-item{font-size:11px;font-family:var(--fm);padding:3px 8px;border-radius:10px;background:var(--gl);color:#555}
+
+/* ── CTA ── */
+.cta-block{background:linear-gradient(135deg,#0b1e30,#0f3d6b);padding:64px 6%;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:250px;background:radial-gradient(ellipse,rgba(0,183,199,.1),transparent 65%);pointer-events:none}
+.cta-in{position:relative;z-index:1;max-width:540px;margin:0 auto}
+.cta-h{font-family:var(--fd);font-size:clamp(24px,4vw,40px);color:#fff;margin-bottom:10px;letter-spacing:-.5px}
+.cta-p{font-size:15px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:24px}
+.cta-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.btn-o{padding:10px 22px;background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.25);border-radius:var(--rsm);font-size:13px;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:all .2s}
+.btn-o:hover{border-color:rgba(255,255,255,.6)}
+
+/* ── FOOTER ── */
+.cms-footer{background:var(--bd);color:#fff;padding:48px 6% 28px}
+.foot-in{max-width:1200px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:var(--fm);font-size:20px;color:#fff;letter-spacing:2px;display:block;margin-bottom:12px;text-decoration:none}
+.foot-logo span{color:var(--tq)}
+.foot-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.75}
+.foot-col h4{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--tq);margin-bottom:14px;text-transform:uppercase}
+.foot-col ul{list-style:none;padding:0}
+.foot-col li{margin-bottom:8px}
+.foot-col a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.3);font-family:var(--fm);flex-wrap:wrap;gap:8px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .fam-grid-2,.iva-inner{grid-template-columns:1fr}
+  .vocab-grid{grid-template-columns:1fr 1fr}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .vocab-grid{grid-template-columns:1fr}
+  .hp-anchors{gap:6px}
+}
 </style>
 </head>
 <body>
-<nav><!-- nav-fix.js --></nav>
-<div class="ph">
-  <div class="phi">
-    <div class="ey">Taxonomie</div>
-    <h1>Les 6 familles de métadonnées</h1>
-    <p>Chaque famille structure un aspect distinct de l'identité caribéenne. Ensemble, elles forment un système complet de classification culturelle.</p>
+
+<!-- HEADER -->
+<header class="cms-header">
+  <nav class="cms-nav">
+    <a href="/" class="logo">CMS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Standard</a></li>
+      <li><a href="families.html" class="active">6 Familles</a></li>
+      <li><a href="cms-builder.html">CMS Builder</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="developers.html">API</a></li>
+      <li><a href="collaborate.html">Partenariats</a></li>
+      <li><a href="equity.html">Équité</a></li>
+      <li><a href="submit.html" class="cta-nav">Soumettre une œuvre</a></li>
+    </ul>
+    <div class="lang-sw">
+      <button class="active" onclick="location='families.html'">FR</button>
+      <button onclick="location='families-en.html'">EN</button>
+      <button onclick="location='families-es.html'">ES</button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO PAGE -->
+<div class="hero-page">
+  <div class="hp-grid"></div>
+  <div class="hp-glow"></div>
+  <div class="hp-inner">
+    <div class="hp-tag">Architecture du standard</div>
+    <h1 class="hp-h1">Les 6 familles<br><em>de métadonnées</em></h1>
+    <p class="hp-sub">Une architecture unifiée pour décrire la culture caribéenne dans toutes ses dimensions — linguistique, culturelle, narrative, rythmique, géographique et socio-historique.</p>
+    <div class="hp-anchors">
+      <a href="#f1" class="anchor-pill"><span style="background:var(--f1)"></span>F1 — Linguistique</a>
+      <a href="#f2" class="anchor-pill"><span style="background:var(--f2)"></span>F2 — Culturelle</a>
+      <a href="#f3" class="anchor-pill"><span style="background:var(--f3)"></span>F3 — Narrative</a>
+      <a href="#f4" class="anchor-pill"><span style="background:var(--f4)"></span>F4 — Rythmique</a>
+      <a href="#f5" class="anchor-pill"><span style="background:var(--f5)"></span>F5 — Géographique</a>
+      <a href="#f6" class="anchor-pill"><span style="background:var(--f6)"></span>F6 — Socio-historique</a>
+    </div>
   </div>
 </div>
-<main>
-  <div class="fam-nav">
-    <a href="#linguistique">01 · Linguistique</a>
-    <a href="#culturelle">02 · Culturelle</a>
-    <a href="#narrative">03 · Narrative</a>
-    <a href="#rythmique">04 · Rythmique</a>
-    <a href="#geographique">05 · Géographique</a>
-    <a href="#sociohistorique">06 · Socio-historique</a>
-  </div>
-  <div id="linguistique" class="fam-block">
-    <div class="fam-num">Famille 01</div>
-    <h2>Métadonnées linguistiques</h2>
-    <p class="fam-desc">Décrit les langues, dialectes, registres et pratiques langagières présents dans un contenu audiovisuel caribéen.</p>
-    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Indexer un film tourné en créole guadeloupéen avec passages en français et en anglais, intégrant des proverbes oraux traditionnels.</div>
-    <div class="tags-grid">
-      <div><h4>Créoles</h4><ul class="tag-list"><li>Créole guadeloupéen</li><li>Créole martiniquais</li><li>Créole haïtien</li><li>Créole réunionnais</li></ul></div>
-      <div><h4>Dialectes</h4><ul class="tag-list"><li>Jamaican Patois</li><li>Trinidadian English</li><li>Papiamento</li><li>Sranan Tongo</li></ul></div>
-      <div><h4>Pratiques</h4><ul class="tag-list"><li>Code-switching</li><li>Alternance codique</li><li>Oralité rythmée</li></ul></div>
-      <div><h4>Formes orales</h4><ul class="tag-list"><li>Proverbes créoles</li><li>Contes oraux</li><li>Joute verbale</li><li>Griot caribéen</li></ul></div>
+
+<!-- ═══ DIAGRAMME GLOBAL ══════════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="diagram-wrap">
+      <div class="dw-title">ARCHITECTURE DU CARIBBEAN METADATA STANDARD v2.0</div>
+      <svg width="100%" height="220" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .ar{stroke:#c5cdd9;stroke-width:2;marker-end:url(#ah2);animation:pulse 2.5s infinite ease-in-out}
+          @keyframes pulse{0%{stroke-opacity:.25}50%{stroke-opacity:.85}100%{stroke-opacity:.25}}
+          .ci2{cursor:pointer;transition:filter .25s}
+          .ci2:hover{filter:brightness(1.15) drop-shadow(0 4px 8px rgba(0,0,0,.2))}
+          .ct2{font-family:'DM Sans',system-ui,sans-serif;font-size:13px;font-weight:700;fill:#0b1e30}
+          .cn2{font-family:'DM Mono',monospace;font-size:9px;fill:rgba(255,255,255,.8)}
+          .cl2{font-family:'DM Mono',monospace;font-size:8px;fill:#9aa3b1}
+        </style>
+        <defs>
+          <marker id="ah2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#c5cdd9"/>
+          </marker>
+          <radialGradient id="rg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d4db"/><stop offset="100%" stop-color="#00b7c7"/></radialGradient>
+          <radialGradient id="rg2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffd84d"/><stop offset="100%" stop-color="#ffc93c"/></radialGradient>
+          <radialGradient id="rg3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ff8577"/><stop offset="100%" stop-color="#ff6f61"/></radialGradient>
+          <radialGradient id="rg4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#9b5fc4"/><stop offset="100%" stop-color="#7b3fa6"/></radialGradient>
+          <radialGradient id="rg5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#52c47e"/><stop offset="100%" stop-color="#3fa66b"/></radialGradient>
+          <radialGradient id="rg6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2577c8"/><stop offset="100%" stop-color="#185fa5"/></radialGradient>
+        </defs>
+        <!-- Lignes -->
+        <line x1="130" y1="110" x2="210" y2="110" class="ar"/>
+        <line x1="290" y1="110" x2="370" y2="110" class="ar"/>
+        <line x1="450" y1="110" x2="530" y2="110" class="ar"/>
+        <line x1="610" y1="110" x2="690" y2="110" class="ar"/>
+        <line x1="770" y1="110" x2="840" y2="110" class="ar" style="opacity:.4"/>
+        <!-- Cercles -->
+        <a href="#f1"><circle cx="75" cy="110" r="54" fill="url(#rg1)" class="ci2"/><text x="75" y="105" text-anchor="middle" class="ct2">F1</text><text x="75" y="120" text-anchor="middle" class="cn2">Linguistique</text></a>
+        <a href="#f2"><circle cx="250" cy="110" r="54" fill="url(#rg2)" class="ci2"/><text x="250" y="105" text-anchor="middle" class="ct2">F2</text><text x="250" y="120" text-anchor="middle" class="cn2">Culturelle</text></a>
+        <a href="#f3"><circle cx="415" cy="110" r="54" fill="url(#rg3)" class="ci2"/><text x="415" y="105" text-anchor="middle" class="ct2">F3</text><text x="415" y="120" text-anchor="middle" class="cn2">Narrative</text></a>
+        <a href="#f4"><circle cx="575" cy="110" r="54" fill="url(#rg4)" class="ci2"/><text x="575" y="105" text-anchor="middle" class="ct2" style="fill:#fff">F4</text><text x="575" y="120" text-anchor="middle" class="cn2">Rythmique</text></a>
+        <a href="#f5"><circle cx="735" cy="110" r="54" fill="url(#rg5)" class="ci2"/><text x="735" y="105" text-anchor="middle" class="ct2">F5</text><text x="735" y="120" text-anchor="middle" class="cn2">Géographique</text></a>
+        <!-- F6 partiel -->
+        <text x="862" y="102" font-family="DM Mono,monospace" font-size="13" font-weight="700" fill="#185fa5">F6</text>
+        <text x="862" y="118" font-family="DM Mono,monospace" font-size="8" fill="#9aa3b1">Socio-</text>
+        <text x="862" y="130" font-family="DM Mono,monospace" font-size="8" fill="#9aa3b1">historique</text>
+        <!-- Labels IVA sous chaque cercle -->
+        <text x="75" y="178" text-anchor="middle" class="cl2">20 pts IVA</text>
+        <text x="250" y="178" text-anchor="middle" class="cl2">20 pts IVA</text>
+        <text x="415" y="178" text-anchor="middle" class="cl2">20 pts IVA</text>
+        <text x="575" y="178" text-anchor="middle" class="cl2">6 pts IVA</text>
+        <text x="735" y="178" text-anchor="middle" class="cl2">15 pts IVA</text>
+      </svg>
+      <p class="dw-sub">Cliquez sur une famille pour accéder à sa fiche détaillée · Les flèches représentent les connexions entre familles dans le schéma CMS</p>
     </div>
   </div>
-  <div class="fam-divider"></div>
-  <div id="culturelle" class="fam-block">
-    <div class="fam-num">Famille 02</div>
-    <h2>Métadonnées culturelles</h2>
-    <p class="fam-desc">Décrit les pratiques culturelles, traditions, héritages spirituels, musicaux et gastronomiques propres à la Caraïbe.</p>
-    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Classifier une série documentaire sur le carnaval de Guadeloupe intégrant des rites religieux syncrétiques et de la musique gwoka.</div>
-    <div class="tags-grid">
-      <div><h4>Spiritualités</h4><ul class="tag-list"><li>Vodou haïtien</li><li>Santería</li><li>Rastafari</li><li>Syncrétisme afro-caribéen</li></ul></div>
-      <div><h4>Traditions</h4><ul class="tag-list"><li>Carnaval</li><li>Mas traditionnel</li><li>Léwoz / Gwoka</li><li>Bèlè</li></ul></div>
-      <div><h4>Musiques</h4><ul class="tag-list"><li>Reggae</li><li>Zouk</li><li>Kompa</li><li>Calypso</li><li>Dancehall</li></ul></div>
-      <div><h4>Diaspora &amp; Identité</h4><ul class="tag-list"><li>Identité diasporique</li><li>Héritage africain</li><li>Métissage culturel</li></ul></div>
+</section>
+
+<!-- ═══ 6 FAMILLES DÉTAILLÉES ═════════════════════════════ -->
+<section class="sec sec-b" id="familles">
+  <div class="sec-in">
+    <div class="sec-ey">Familles de métadonnées</div>
+    <h2 class="sec-h2">Architecture détaillée</h2>
+    <p class="sec-p">Chaque famille couvre une dimension de l'identité culturelle caribéenne avec ses champs, ses vocabulaires contrôlés et sa contribution à l'Indice de Visibilité Algorithmique.</p>
+
+    <!-- F1 — LINGUISTIQUE -->
+    <div class="fam-section" id="f1">
+      <div class="fam-header" style="background:linear-gradient(135deg,#006e75,#00b7c7)">
+        <div class="fh-glow" style="background:#00e5f0"></div>
+        <div class="fh-ico" style="background:rgba(255,255,255,.15)">🌐</div>
+        <div class="fh-meta">
+          <div class="fh-num">Famille 01</div>
+          <div class="fh-name">Linguistique</div>
+          <div class="fh-desc">Décrit les langues, dialectes, registres et pratiques langagières présents dans le contenu caribéen.</div>
+        </div>
+      </div>
+      <div class="fam-body">
+        <div class="fam-grid-2">
+          <div>
+            <div class="fb-block">
+              <h4>Langues officielles CMS (10)</h4>
+              <div class="fb-tags">
+                <span class="fb-tag fb-tag-main">gcf — Créole guadeloupéen</span>
+                <span class="fb-tag fb-tag-main">hat — Créole haïtien</span>
+                <span class="fb-tag fb-tag-main">acf — Créole antillais</span>
+                <span class="fb-tag fb-tag-main">jam — Jamaican Patois</span>
+                <span class="fb-tag fb-tag-main">pap — Papiamentu</span>
+                <span class="fb-tag fb-tag-main">srn — Sranan Tongo</span>
+                <span class="fb-tag">fra — Français caribéen</span>
+                <span class="fb-tag">eng — English Caribbean</span>
+                <span class="fb-tag">spa — Español caribeño</span>
+                <span class="fb-tag">nld — Nederlands Caribisch</span>
+              </div>
+            </div>
+            <div class="fb-block">
+              <h4>Signaux algorithmiques</h4>
+              <ul class="fb-list">
+                <li>Code langue ISO 639-3 — identifie un cluster d'audience précis <strong>(+15 pts IVA)</strong></li>
+                <li>Langue endogène caribéenne — signal de niche culturelle <strong>(+5 pts IVA)</strong></li>
+                <li>Code-switching documenté — richesse linguistique caribéenne</li>
+                <li>Registre oral vs écrit — indexation différenciée</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="fb-block">
+              <h4>Exemple de fiche</h4>
+              <div class="fb-example">
+                <strong>"lang_code":</strong> "gcf",<br>
+                <strong>"lang_endogenous":</strong> true,<br>
+                <strong>"lang_codeswitching":</strong> ["gcf", "fra"],<br>
+                <strong>"lang_register":</strong> "oral",<br>
+                <strong>"lang_script":</strong> "Latin"
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:16px">
+              <h4>Pourquoi c'est crucial</h4>
+              <ul class="fb-list">
+                <li>Le créole guadeloupéen est parlé par 400 000 personnes — c'est un marché d'audience réel</li>
+                <li>Les plateformes utilisent le code langue pour cibler les recommandations géographiques</li>
+                <li>Sans code ISO 639-3, le contenu créolophone est invisible</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fam-footer">
+        <span class="ff-weight">Contribution IVA : <strong>20 pts / 100</strong></span>
+        <a href="spec.html" class="btn-p" style="font-size:12px;padding:7px 16px">Voir la spécification →</a>
+      </div>
+    </div>
+
+    <!-- F2 — CULTURELLE -->
+    <div class="fam-section" id="f2">
+      <div class="fam-header" style="background:linear-gradient(135deg,#b08800,#ffc93c)">
+        <div class="fh-glow" style="background:#ffe566"></div>
+        <div class="fh-ico" style="background:rgba(255,255,255,.15)">🎵</div>
+        <div class="fh-meta">
+          <div class="fh-num">Famille 02</div>
+          <div class="fh-name">Culturelle</div>
+          <div class="fh-desc">27 marqueurs culturels officiels — genres musicaux, danses, traditions, pratiques spirituelles caribéennes.</div>
+        </div>
+      </div>
+      <div class="fam-body">
+        <div class="fam-grid-2">
+          <div>
+            <div class="fb-block">
+              <h4>Marqueurs musicaux</h4>
+              <div class="fb-tags">
+                <span class="fb-tag fb-tag-main">Gwo Ka</span><span class="fb-tag fb-tag-main">Konpa</span><span class="fb-tag fb-tag-main">Zouk</span><span class="fb-tag fb-tag-main">Calypso</span><span class="fb-tag fb-tag-main">Soca</span><span class="fb-tag fb-tag-main">Reggae</span><span class="fb-tag fb-tag-main">Ska</span><span class="fb-tag fb-tag-main">Dancehall</span><span class="fb-tag">Tumba</span><span class="fb-tag">Son Cubano</span><span class="fb-tag">Salsa</span><span class="fb-tag">Bachata</span><span class="fb-tag">Kaseko</span><span class="fb-tag">Bouyon</span><span class="fb-tag">Kadans</span>
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:14px">
+              <h4>Marqueurs danse & carnaval</h4>
+              <div class="fb-tags">
+                <span class="fb-tag fb-tag-main">Bèlè</span><span class="fb-tag fb-tag-main">Danmyé</span><span class="fb-tag fb-tag-main">Quadrille créole</span><span class="fb-tag">Carnival</span><span class="fb-tag">Mas</span><span class="fb-tag">Rara</span>
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:14px">
+              <h4>Marqueurs patrimoine & spirituel</h4>
+              <div class="fb-tags">
+                <span class="fb-tag">Vodou</span><span class="fb-tag">Orisha</span><span class="fb-tag">Rastafari</span><span class="fb-tag">Maroon Culture</span><span class="fb-tag">Chanté Noël</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="fb-block">
+              <h4>Exemple de fiche</h4>
+              <div class="fb-example">
+                <strong>"cms_cultural_markers":</strong> [<br>
+                &nbsp;&nbsp;"gwo_ka",<br>
+                &nbsp;&nbsp;"bele",<br>
+                &nbsp;&nbsp;"carnival"<br>
+                ],<br>
+                <strong>"cms_domain":</strong> "music",<br>
+                <strong>"cms_marker_count":</strong> 3
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:16px">
+              <h4>Signaux algorithmiques</h4>
+              <ul class="fb-list">
+                <li>1+ marqueur — connexion à une communauté d'audience <strong>(+8 pts IVA)</strong></li>
+                <li>3+ marqueurs — enrichissement du graphe de similarité <strong>(+7 pts)</strong></li>
+                <li>5+ marqueurs — signal de richesse culturelle maximale <strong>(+5 pts)</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fam-footer">
+        <span class="ff-weight">Contribution IVA : <strong>20 pts / 100</strong></span>
+        <a href="glossaire.html" class="btn-p" style="font-size:12px;padding:7px 16px">Glossaire des 27 marqueurs →</a>
+      </div>
+    </div>
+
+    <!-- F3 — NARRATIVE -->
+    <div class="fam-section" id="f3">
+      <div class="fam-header" style="background:linear-gradient(135deg,#c0392b,#ff6f61)">
+        <div class="fh-glow" style="background:#ff8577"></div>
+        <div class="fh-ico" style="background:rgba(255,255,255,.15)">📝</div>
+        <div class="fh-meta">
+          <div class="fh-num">Famille 03</div>
+          <div class="fh-name">Narrative</div>
+          <div class="fh-desc">Domaine culturel, titre en langue originale, description sémantique — le récit de l'œuvre en ses propres termes.</div>
+        </div>
+      </div>
+      <div class="fam-body">
+        <div class="fam-grid-2">
+          <div>
+            <div class="fb-block">
+              <h4>14 domaines culturels</h4>
+              <div class="fb-tags">
+                <span class="fb-tag fb-tag-main">Musique</span><span class="fb-tag fb-tag-main">Tradition orale</span><span class="fb-tag fb-tag-main">Arts visuels</span><span class="fb-tag fb-tag-main">Littérature</span><span class="fb-tag fb-tag-main">Théâtre</span><span class="fb-tag">Gastronomie</span><span class="fb-tag">Éducation</span><span class="fb-tag">Carnaval</span><span class="fb-tag">Danse</span><span class="fb-tag">Patrimoine immatériel</span><span class="fb-tag">Religion</span><span class="fb-tag">Actualités</span><span class="fb-tag">Réseaux sociaux</span><span class="fb-tag">Général</span>
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:14px">
+              <h4>Signaux algorithmiques</h4>
+              <ul class="fb-list">
+                <li>Domaine culturel — catégorisation des contenus <strong>(+8 pts IVA)</strong></li>
+                <li>Titre renseigné — indexation moteurs de recherche <strong>(+4 pts)</strong></li>
+                <li>Titre en langue originale — recherche multilingue <strong>(+3 pts)</strong></li>
+                <li>Description 50+ mots — analyse NLP algorithmique <strong>(+5 pts)</strong></li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="fb-block">
+              <h4>Exemple de fiche</h4>
+              <div class="fb-example">
+                <strong>"title":</strong> "Tambours de Guadeloupe",<br>
+                <strong>"title_original":</strong> "Tanbou Gwadloup",<br>
+                <strong>"cms_domain":</strong> "music",<br>
+                <strong>"description":</strong> "Documentaire sur la pratique du Gwo Ka à Sainte-Anne, suivi de trois maîtres tambouyers...",<br>
+                <strong>"description_lang":</strong> "gcf"
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fam-footer">
+        <span class="ff-weight">Contribution IVA : <strong>20 pts / 100</strong></span>
+        <a href="cms-builder.html" class="btn-p" style="font-size:12px;padding:7px 16px">Générer une fiche →</a>
+      </div>
+    </div>
+
+    <!-- F4 — RYTHMIQUE -->
+    <div class="fam-section" id="f4">
+      <div class="fam-header" style="background:linear-gradient(135deg,#4a1a6e,#7b3fa6)">
+        <div class="fh-glow" style="background:#9b5fc4"></div>
+        <div class="fh-ico" style="background:rgba(255,255,255,.15)">🥁</div>
+        <div class="fh-meta">
+          <div class="fh-num">Famille 04</div>
+          <div class="fh-name">Rythmique</div>
+          <div class="fh-desc">Signature sonore caribéenne — tempo, style rythmique, patterns spécifiques aux cultures des îles.</div>
+        </div>
+      </div>
+      <div class="fam-body">
+        <div class="fam-grid-2">
+          <div>
+            <div class="fb-block">
+              <h4>Tags rythmiques</h4>
+              <div class="fb-tags">
+                <span class="fb-tag fb-tag-main">syncopé</span><span class="fb-tag fb-tag-main">appel-réponse</span><span class="fb-tag fb-tag-main">polyrythmie</span><span class="fb-tag fb-tag-main">ostinato</span><span class="fb-tag">akiyo</span><span class="fb-tag">lewoz</span><span class="fb-tag">toumblak</span><span class="fb-tag">boula</span><span class="fb-tag">makè</span><span class="fb-tag">kaladja</span><span class="fb-tag">groove</span><span class="fb-tag">riddim</span>
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:14px">
+              <h4>Signaux algorithmiques</h4>
+              <ul class="fb-list">
+                <li>Tag rythmique identifié — signal de style pour Spotify, YouTube Music <strong>(+6 pts IVA)</strong></li>
+                <li>Permet le regroupement par style sonore dans les playlists algorithmiques</li>
+                <li>Signal de découverte pour les algorithmes de similarité musicale</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="fb-block">
+              <h4>Exemple de fiche</h4>
+              <div class="fb-example">
+                <strong>"cms_rhythmic_tags":</strong> [<br>
+                &nbsp;&nbsp;"syncopé",<br>
+                &nbsp;&nbsp;"appel-réponse",<br>
+                &nbsp;&nbsp;"lewoz"<br>
+                ],<br>
+                <strong>"cms_tempo":</strong> "modéré",<br>
+                <strong>"cms_meter":</strong> "6/8"
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fam-footer">
+        <span class="ff-weight">Contribution IVA : <strong>6 pts / 100</strong></span>
+        <a href="spec.html" class="btn-p" style="font-size:12px;padding:7px 16px">Voir la spécification →</a>
+      </div>
+    </div>
+
+    <!-- F5 — GÉOGRAPHIQUE -->
+    <div class="fam-section" id="f5">
+      <div class="fam-header" style="background:linear-gradient(135deg,#1a6640,#3fa66b)">
+        <div class="fh-glow" style="background:#52c47e"></div>
+        <div class="fh-ico" style="background:rgba(255,255,255,.15)">📍</div>
+        <div class="fh-meta">
+          <div class="fh-num">Famille 05</div>
+          <div class="fh-name">Géographique</div>
+          <div class="fh-desc">Ancrage territorial précis — les 20 territoires caribéens et la diaspora mondiale.</div>
+        </div>
+      </div>
+      <div class="fam-body">
+        <div class="fam-grid-2">
+          <div>
+            <div class="fb-block">
+              <h4>20 territoires officiels CMS</h4>
+              <div class="fb-tags">
+                <span class="fb-tag fb-tag-main">Guadeloupe</span><span class="fb-tag fb-tag-main">Martinique</span><span class="fb-tag fb-tag-main">Haïti</span><span class="fb-tag fb-tag-main">Jamaica</span><span class="fb-tag fb-tag-main">Trinidad</span><span class="fb-tag fb-tag-main">Cuba</span><span class="fb-tag">Barbados</span><span class="fb-tag">Dominican Republic</span><span class="fb-tag">Puerto Rico</span><span class="fb-tag">Aruba</span><span class="fb-tag">Curaçao</span><span class="fb-tag">Suriname</span><span class="fb-tag">Dominica</span><span class="fb-tag">St Lucia</span><span class="fb-tag">St Vincent</span><span class="fb-tag">Grenada</span><span class="fb-tag">Antigua</span><span class="fb-tag">Guyane</span><span class="fb-tag">Diaspora caribéenne</span><span class="fb-tag">Caribbean (général)</span>
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:14px">
+              <h4>Signaux algorithmiques</h4>
+              <ul class="fb-list">
+                <li>Territoire caribéen identifié — géolocalisation audience <strong>(+12 pts IVA)</strong></li>
+                <li>Territoire spécifique (non diaspora) — niche géographique précise <strong>(+3 pts)</strong></li>
+                <li>Signal direct pour les recommandations géolocalisées des plateformes</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="fb-block">
+              <h4>Exemple de fiche</h4>
+              <div class="fb-example">
+                <strong>"cms_territory":</strong> "Guadeloupe",<br>
+                <strong>"cms_territory_type":</strong> "specific",<br>
+                <strong>"cms_production_territory":</strong> "Guadeloupe",<br>
+                <strong>"cms_diaspora":</strong> false,<br>
+                <strong>"cms_region":</strong> "Antilles françaises"
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:16px">
+              <h4>Note sur la diaspora</h4>
+              <ul class="fb-list">
+                <li>La catégorie "Diaspora caribéenne" est disponible pour les œuvres sans territoire unique</li>
+                <li>La v3.0 prévoit un tableau de territoires pour les œuvres transnationales</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fam-footer">
+        <span class="ff-weight">Contribution IVA : <strong>15 pts / 100</strong></span>
+        <a href="catalogue.html" class="btn-p" style="font-size:12px;padding:7px 16px">Voir le registre →</a>
+      </div>
+    </div>
+
+    <!-- F6 — SOCIO-HISTORIQUE -->
+    <div class="fam-section" id="f6">
+      <div class="fam-header" style="background:linear-gradient(135deg,#0a3a70,#185fa5)">
+        <div class="fh-glow" style="background:#2577c8"></div>
+        <div class="fh-ico" style="background:rgba(255,255,255,.15)">🏛️</div>
+        <div class="fh-meta">
+          <div class="fh-num">Famille 06</div>
+          <div class="fh-name">Socio-historique</div>
+          <div class="fh-desc">Mémoire collective caribéenne — périodes historiques, contextes de créolisation et résistance culturelle.</div>
+        </div>
+      </div>
+      <div class="fam-body">
+        <div class="fam-grid-2">
+          <div>
+            <div class="fb-block">
+              <h4>Marqueurs historiques</h4>
+              <div class="fb-tags">
+                <span class="fb-tag fb-tag-main">Créolisation</span><span class="fb-tag fb-tag-main">Mémoire collective</span><span class="fb-tag fb-tag-main">Marronage</span><span class="fb-tag fb-tag-main">Abolition de l'esclavage</span><span class="fb-tag fb-tag-main">Colonisation</span><span class="fb-tag fb-tag-main">Décolonisation</span><span class="fb-tag">Résistance culturelle</span><span class="fb-tag">Migration caribéenne</span><span class="fb-tag">Indépendance</span><span class="fb-tag">Héritage africain</span><span class="fb-tag">Héritage amérindien</span><span class="fb-tag">Période précolombienne</span>
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:14px">
+              <h4>Signaux algorithmiques</h4>
+              <ul class="fb-list">
+                <li>Contexte historique identifié — pertinence culturelle <strong>(+6 pts IVA)</strong></li>
+                <li>Signal de profondeur pour les algorithmes de recommandation thématique</li>
+                <li>Connexion aux corpus de recherche universitaire caribéen</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="fb-block">
+              <h4>Exemple de fiche</h4>
+              <div class="fb-example">
+                <strong>"cms_historical_period":</strong> [<br>
+                &nbsp;&nbsp;"créolisation",<br>
+                &nbsp;&nbsp;"mémoire collective"<br>
+                ],<br>
+                <strong>"cms_cultural_context":</strong> "post-colonial",<br>
+                <strong>"cms_heritage":</strong> ["africain", "amérindien"]
+              </div>
+            </div>
+            <div class="fb-block" style="margin-top:16px">
+              <h4>Candidats v3.0</h4>
+              <ul class="fb-list">
+                <li>Famille 07 — Spirituelle & Religieuse (Vodou · Orisha · Rastafari · Quimbois · Winti) — soumis au futur Comité Technique</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fam-footer">
+        <span class="ff-weight">Contribution IVA : <strong>6 pts / 100</strong></span>
+        <a href="equity.html" class="btn-p" style="font-size:12px;padding:7px 16px">Déclaration d'équité →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ IVA PAR FAMILLE ══════════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="iva-section">
+      <div class="iva-grid-bg"></div>
+      <div class="iva-inner">
+        <div class="iva-text">
+          <h3>Indice de Visibilité Algorithmique</h3>
+          <p>L'IVA mesure la capacité d'une fiche CMS à être exploitée par les algorithmes de recommandation des plateformes mondiales. Chaque famille contribue différemment selon l'importance algorithmique de ses signaux.</p>
+          <div class="iva-formula">
+            IVA = Σ (signaux renseignés × poids) / 100<br>
+            <span style="font-size:10px;opacity:.6">16 signaux · 6 familles + technique · CC-BY 4.0</span>
+          </div>
+        </div>
+        <div class="iva-poids">
+          <div class="ip-row">
+            <span class="ip-label">F1 Linguistique</span>
+            <div class="ip-bar-bg"><div class="ip-bar-fill" style="width:100%;background:var(--f1)"></div></div>
+            <span class="ip-pts">20 pts</span>
+          </div>
+          <div class="ip-row">
+            <span class="ip-label">F2 Culturelle</span>
+            <div class="ip-bar-bg"><div class="ip-bar-fill" style="width:100%;background:var(--f2)"></div></div>
+            <span class="ip-pts">20 pts</span>
+          </div>
+          <div class="ip-row">
+            <span class="ip-label">F3 Narrative</span>
+            <div class="ip-bar-bg"><div class="ip-bar-fill" style="width:100%;background:var(--f3)"></div></div>
+            <span class="ip-pts">20 pts</span>
+          </div>
+          <div class="ip-row">
+            <span class="ip-label">F5 Géographique</span>
+            <div class="ip-bar-bg"><div class="ip-bar-fill" style="width:75%;background:var(--f5)"></div></div>
+            <span class="ip-pts">15 pts</span>
+          </div>
+          <div class="ip-row">
+            <span class="ip-label">Technique</span>
+            <div class="ip-bar-bg"><div class="ip-bar-fill" style="width:65%;background:#6366f1"></div></div>
+            <span class="ip-pts">13 pts</span>
+          </div>
+          <div class="ip-row">
+            <span class="ip-label">F4 Rythmique</span>
+            <div class="ip-bar-bg"><div class="ip-bar-fill" style="width:30%;background:var(--f4)"></div></div>
+            <span class="ip-pts">6 pts</span>
+          </div>
+          <div class="ip-row">
+            <span class="ip-label">F6 Socio-hist.</span>
+            <div class="ip-bar-bg"><div class="ip-bar-fill" style="width:30%;background:var(--f6)"></div></div>
+            <span class="ip-pts">6 pts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vocabulaires résumés -->
+    <div class="vocab-grid">
+      <div class="vg-card">
+        <div class="vg-title">10 langues ISO 639-3</div>
+        <div class="vg-items">
+          <span class="vg-item">gcf</span><span class="vg-item">hat</span><span class="vg-item">acf</span><span class="vg-item">jam</span><span class="vg-item">pap</span><span class="vg-item">srn</span><span class="vg-item">nld</span><span class="vg-item">fra</span><span class="vg-item">eng</span><span class="vg-item">spa</span>
+        </div>
+      </div>
+      <div class="vg-card">
+        <div class="vg-title">27 marqueurs culturels</div>
+        <div class="vg-items">
+          <span class="vg-item">Gwo Ka</span><span class="vg-item">Bèlè</span><span class="vg-item">Konpa</span><span class="vg-item">Zouk</span><span class="vg-item">Calypso</span><span class="vg-item">Soca</span><span class="vg-item">Reggae</span><span class="vg-item">Ska</span><span class="vg-item">Dancehall</span><span class="vg-item">+18</span>
+        </div>
+      </div>
+      <div class="vg-card">
+        <div class="vg-title">20 territoires</div>
+        <div class="vg-items">
+          <span class="vg-item">Guadeloupe</span><span class="vg-item">Haïti</span><span class="vg-item">Martinique</span><span class="vg-item">Jamaica</span><span class="vg-item">Trinidad</span><span class="vg-item">Cuba</span><span class="vg-item">+14</span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="fam-divider"></div>
-  <div id="narrative" class="fam-block">
-    <div class="fam-num">Famille 03</div>
-    <h2>Métadonnées narratives</h2>
-    <p class="fam-desc">Décrit les genres, structures dramatiques et archétypes narratifs propres à la tradition storytelling caribéenne.</p>
-    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Indexer un long-métrage de fiction mêlant réalisme magique caribéen, thriller politique postcolonial et saga familiale intergénérationnelle.</div>
-    <div class="tags-grid">
-      <div><h4>Genres</h4><ul class="tag-list"><li>Réalisme magique caribéen</li><li>Thriller tropical</li><li>Drame social</li><li>Comédie créole</li></ul></div>
-      <div><h4>Structures</h4><ul class="tag-list"><li>Saga familiale</li><li>Chroniques urbaines</li><li>Récit initiatique</li><li>Narration circulaire</li></ul></div>
-      <div><h4>Archétypes</h4><ul class="tag-list"><li>Figure du conteur</li><li>Héros de la rue</li><li>Ancêtre guide</li><li>Exilé de retour</li></ul></div>
-      <div><h4>Thèmes</h4><ul class="tag-list"><li>Mémoire collective</li><li>Résistance</li><li>Affranchissement</li></ul></div>
+</section>
+
+<!-- ═══ CTA ════════════════════════════════════════════════ -->
+<div class="cta-block">
+  <div class="cta-glow"></div>
+  <div class="cta-in">
+    <h2 class="cta-h">Documentez votre œuvre<br>dans les 6 familles</h2>
+    <p class="cta-p">Le CMS Builder avec AI layer analyse votre œuvre et remplit automatiquement les 6 familles. Gratuit. En 5 minutes.</p>
+    <div class="cta-btns">
+      <a href="submit.html" class="btn-p">Soumettre une œuvre →</a>
+      <a href="cms-builder.html" class="btn-o">Accéder au Builder</a>
+      <a href="spec.html" class="btn-o">Lire la spécification</a>
     </div>
   </div>
-  <div class="fam-divider"></div>
-  <div id="rythmique" class="fam-block">
-    <div class="fam-num">Famille 04</div>
-    <h2>Métadonnées rythmiques</h2>
-    <p class="fam-desc">Décrit le tempo, la cadence, la musicalité du dialogue et les patterns sonores qui caractérisent les contenus caribéens.</p>
-    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Qualifier le rythme d'un documentaire musical où les interventions parlées suivent une cadence percussive issue de la tradition gwoka.</div>
-    <div class="tags-grid">
-      <div><h4>Tempo</h4><ul class="tag-list"><li>Tempo insulaire lent</li><li>Tempo urbain rapide</li><li>Tempo contemplatif</li></ul></div>
-      <div><h4>Cadence</h4><ul class="tag-list"><li>Dialogue syncopé</li><li>Parole percussive</li><li>Rythme call &amp; response</li></ul></div>
-      <div><h4>Musicalité</h4><ul class="tag-list"><li>Intonation chantée</li><li>Oralité musicale</li><li>Silence signifiant</li></ul></div>
-      <div><h4>Patterns sonores</h4><ul class="tag-list"><li>Ambiance tropicale</li><li>Soundscape urbain</li><li>Nature sonore insulaire</li></ul></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="cms-footer">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div>
+        <a href="/" class="foot-logo">CMS<span>.</span></a>
+        <p class="foot-desc">Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Caribwood Language Lab, Guadeloupe.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Le Standard</h4>
+        <ul>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="families.html">Les 6 familles</a></li>
+          <li><a href="spec.html">Spécification v2.0</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="equity.html">Équité & Accès</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="submit.html">Soumettre une œuvre</a></li>
+          <li><a href="cms-builder.html">CMS Builder</a></li>
+          <li><a href="certification.html">Vérifier</a></li>
+          <li><a href="developers.html">API v2.0</a></li>
+          <li><a href="glossaire.html">Glossaire</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Écosystème</h4>
+        <ul>
+          <li><a href="collaborate.html">Partenaires</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="https://github.com/heso73/cms-nlp-corpus" target="_blank">↗ GitHub</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>caribbeanmetadata.org · CMS v2.0 · Caribwood Language Lab — Guadeloupe</span>
+      <span>CC-BY 4.0 · Open Source</span>
     </div>
   </div>
-  <div class="fam-divider"></div>
-  <div id="geographique" class="fam-block">
-    <div class="fam-num">Famille 05</div>
-    <h2>Métadonnées géographiques</h2>
-    <p class="fam-desc">Localise les contenus dans l'espace caribéen — territoire, milieu, paysage — avec une précision culturelle et non seulement cartographique.</p>
-    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Situer une web-série tournée dans les quartiers populaires de Pointe-à-Pitre, en milieu urbain côtier guadeloupéen.</div>
-    <div class="tags-grid">
-      <div><h4>Territoires</h4><ul class="tag-list"><li>Guadeloupe</li><li>Martinique</li><li>Haïti</li><li>Jamaïque</li><li>Trinidad &amp; Tobago</li><li>Cuba</li></ul></div>
-      <div><h4>Milieux</h4><ul class="tag-list"><li>Urbain caribéen</li><li>Rural tropical</li><li>Littoral insulaire</li><li>Forêt tropicale</li></ul></div>
-      <div><h4>Espaces culturels</h4><ul class="tag-list"><li>Grand Caraïbe</li><li>Petites Antilles</li><li>Diaspora caribéenne</li></ul></div>
-      <div><h4>Paysages symboliques</h4><ul class="tag-list"><li>La mer comme frontière</li><li>La plantation</li><li>Le morne</li></ul></div>
-    </div>
-  </div>
-  <div class="fam-divider"></div>
-  <div id="sociohistorique" class="fam-block">
-    <div class="fam-num">Famille 06</div>
-    <h2>Métadonnées socio-historiques</h2>
-    <p class="fam-desc">Contextualise les contenus dans les dynamiques sociales, historiques et politiques qui ont façonné la Caraïbe et ses habitants.</p>
-    <div class="usage-block"><div class="usage-label">USAGE TYPE</div>Classifier un film traitant des tensions intergénérationnelles entre une famille haïtienne de la diaspora new-yorkaise et ses racines.</div>
-    <div class="tags-grid">
-      <div><h4>Histoire</h4><ul class="tag-list"><li>Mémoire de l'esclavage</li><li>Colonisation</li><li>Abolition</li><li>Indépendance</li></ul></div>
-      <div><h4>Identité</h4><ul class="tag-list"><li>Créolisation</li><li>Postcolonialité</li><li>Négritude</li><li>Antillanité</li></ul></div>
-      <div><h4>Migration</h4><ul class="tag-list"><li>Exil volontaire</li><li>Retour au pays</li><li>Tensions diaspora/île</li></ul></div>
-      <div><h4>Dynamiques sociales</h4><ul class="tag-list"><li>Tensions intergénérationnelles</li><li>Classe sociale</li><li>Genre &amp; pouvoir</li></ul></div>
-    </div>
-  </div>
-  <div class="cta-block">
-    <div><h2>Prêt à utiliser le CMS ?</h2><p>Téléchargez la documentation et commencez à tagger vos contenus selon le standard officiel.</p></div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="resources.html" class="btn-t">Télécharger la documentation</a>
-      <a href="validator.html" class="btn-t" style="background:#FFC93C;color:#003E6B">Valider un contenu</a>
-      <a href="collaborate.html" class="btn-ow">Collaborer avec nous</a>
-    </div>
-  </div>
-</main>
-<footer><!-- nav-fix.js --></footer>
+</footer>
+
 <script src="nav-fix.js"></script>
 </body>
 </html>
