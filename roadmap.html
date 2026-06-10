@@ -1,259 +1,516 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Roadmap — Caribbean Metadata Standard</title>
-  <style>
-    :root {
-      --purple-d: #2d1b69;
-      --purple: #4f35a3;
-      --purple-l: #ede9fc;
-      --teal: #0d9488;
-      --teal-l: #ccfbf1;
-      --coral: #e05252;
-      --coral-l: #fde8e8;
-      --amber: #d97706;
-      --amber-l: #fef3c7;
-      --gray-d: #1f2937;
-      --gray-m: #6b7280;
-      --gray-l: #f3f4f6;
-      --white: #ffffff;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--gray-d); background: var(--white); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://caribbeanmetadata.org/roadmap.html" />
+  <title>Roadmap 2026–2028 — Caribbean Metadata Standard</title>
+  <meta name="description" content="Plan de déploiement du Caribbean Metadata Standard — 4 phases, 18 mois, du standard caribéen à la norme CROSQ et l'intégration sur les plateformes mondiales.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bd:#0b1e30;--bc:#0f6fa6;--tq:#00b7c7;--tq2:#009aaa;
+  --gl:#f3f5f7;--gm:#9aa3b1;--tx:#1f2933;--wh:#ffffff;
+  --rsm:6px;--rmd:12px;--rlg:20px;
+  --sh:0 8px 24px rgba(0,0,0,.07);--sh2:0 16px 48px rgba(0,0,0,.1);
+  --f:'DM Sans',system-ui,sans-serif;--fm:'DM Mono',monospace;--fd:'DM Serif Display',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow-x:hidden}
 
-    /* NAV */
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2rem; border-bottom: 1px solid #e5e7eb;
-      position: sticky; top: 0; background: white; z-index: 100;
-    }
-    .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--purple-d); text-decoration: none; }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--gray-m); font-size: 0.875rem; }
-    .nav-links a:hover { color: var(--purple); }
+/* NAV */
+.cms-header{background:var(--wh);box-shadow:var(--sh);position:sticky;top:0;z-index:1000}
+.cms-nav{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:var(--fm);font-size:18px;font-weight:500;color:var(--bd);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--tq)}
+.nav-links{list-style:none;display:flex;gap:.25rem;margin:0;padding:0}
+.nav-links a{text-decoration:none;color:var(--tx);font-size:13px;padding:.35rem .7rem;border-radius:var(--rsm);transition:all .2s}
+.nav-links a:hover{background:var(--gl);color:var(--bd)}
+.cta-nav{background:var(--tq) !important;color:var(--bd) !important;font-weight:600 !important}
+.lang-sw{display:flex;gap:4px}
+.lang-sw button{border:1px solid var(--gm);background:var(--wh);color:var(--tx);padding:.25rem .6rem;border-radius:var(--rsm);font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:var(--f);transition:all .2s}
+.lang-sw button:hover,.lang-sw button.active{border-color:var(--bc);color:var(--bd)}
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, var(--purple-d) 0%, var(--purple) 100%);
-      color: white; text-align: center; padding: 5rem 2rem 4rem;
-    }
-    .eyebrow {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
-      text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 1rem;
-    }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1.5rem; line-height: 1.15; }
-    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 640px; margin: 0 auto; }
+/* HERO */
+.page-hero{background:linear-gradient(135deg,#0b1e30 0%,#0f3d6b 55%,#0f6fa6 100%);padding:72px 6% 56px;position:relative;overflow:hidden}
+.ph-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.02) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.015) 48px)}
+.ph-glow{position:absolute;top:-80px;right:5%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(0,183,199,.12),transparent 65%);pointer-events:none}
+.ph-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.ph-bc{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.ph-bc a{color:rgba(255,255,255,.4);text-decoration:none}
+.ph-bc span{color:var(--tq)}
+.ph-tag{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.ph-tag::before{content:'';display:block;width:24px;height:1px;background:var(--tq)}
+.ph-h1{font-family:var(--fd);font-size:clamp(32px,4.5vw,56px);color:#fff;line-height:1.05;margin-bottom:14px;letter-spacing:-.5px}
+.ph-h1 em{font-style:italic;color:var(--tq)}
+.ph-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:560px;line-height:1.85;margin-bottom:24px}
+.ph-pills{display:flex;flex-wrap:wrap;gap:8px}
+.ph-pill{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 14px;letter-spacing:1px}
+.ph-pill strong{color:rgba(255,255,255,.8)}
 
-    /* SECTION */
-    .section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
-    .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.5rem; }
-    .section h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--purple-d); margin-bottom: 2rem; }
+/* Mini progress hero */
+.ph-progress{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--rmd);padding:20px 28px;min-width:200px;text-align:center}
+.php-phase{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--tq);margin-bottom:8px}
+.php-n{font-family:var(--fd);font-size:42px;color:#fff;line-height:1}
+.php-d{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.35);letter-spacing:1px;margin-top:2px}
+.php-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:12px;overflow:hidden}
+.php-fill{height:100%;background:linear-gradient(90deg,var(--tq),var(--bc));border-radius:2px}
 
-    /* TIMELINE */
-    .timeline { position: relative; padding-left: 2.5rem; }
-    .timeline::before {
-      content: ''; position: absolute; left: 0.75rem; top: 0; bottom: 0;
-      width: 2px; background: var(--purple-l);
-    }
-    .phase { position: relative; margin-bottom: 2.5rem; }
-    .phase-dot {
-      position: absolute; left: -2.5rem; top: 1.5rem;
-      width: 1.5rem; height: 1.5rem; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.65rem; font-weight: 800; color: white;
-    }
-    .phase-card {
-      border-radius: 12px; padding: 2rem;
-      border-left: 4px solid;
-    }
-    .phase-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-    .phase-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.25rem; }
-    .phase-title { font-size: 1.2rem; font-weight: 800; color: var(--purple-d); }
-    .phase-date { font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; white-space: nowrap; }
-    .phase-desc { font-size: 0.9rem; color: var(--gray-m); margin-bottom: 1rem; line-height: 1.6; }
-    .milestones { display: flex; flex-direction: column; gap: 0.4rem; }
-    .milestone { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--gray-d); }
-    .milestone::before { content: '→'; font-weight: 700; flex-shrink: 0; }
+/* STATS */
+.stats-strip{background:#0a1929;border-bottom:1px solid rgba(0,183,199,.1)}
+.stats-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.sb-col{padding:20px 0;text-align:center;border-right:1px solid rgba(255,255,255,.04)}
+.sb-col:last-child{border-right:none}
+.sb-n{font-family:var(--fd);font-size:30px;color:var(--tq);line-height:1}
+.sb-l{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.3);margin-top:4px}
 
-    /* Phase colors */
-    .p1 .phase-card { background: var(--purple-l); border-color: var(--purple); }
-    .p1 .phase-dot { background: var(--purple); }
-    .p1 .phase-label { color: var(--purple); }
-    .p1 .phase-date { background: var(--purple); color: white; }
+/* SECTIONS */
+.sec{padding:72px 6%}
+.sec-a{background:var(--wh)}
+.sec-b{background:var(--gl)}
+.sec-in{max-width:1200px;margin:0 auto}
+.sec-ey{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-ey::before{content:'';display:block;width:20px;height:1px;background:var(--tq)}
+.sec-h2{font-family:var(--fd);font-size:clamp(24px,3vw,38px);color:var(--bd);margin-bottom:10px;letter-spacing:-.5px}
+.sec-p{font-size:15px;color:#666;max-width:600px;line-height:1.8;margin-bottom:40px}
 
-    .p2 .phase-card { background: var(--teal-l); border-color: var(--teal); }
-    .p2 .phase-dot { background: var(--teal); }
-    .p2 .phase-label { color: var(--teal); }
-    .p2 .phase-date { background: var(--teal); color: white; }
+/* ROADMAP VISUEL — ligne horizontale */
+.roadmap-track{position:relative;padding:40px 0}
+.roadmap-line{position:absolute;top:50px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tq),rgba(0,183,199,.2));border-radius:2px}
+.roadmap-phases{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.rp-card{background:var(--wh);border-radius:var(--rmd);padding:28px 24px;border:1px solid rgba(0,0,0,.06);box-shadow:var(--sh);position:relative;transition:all .25s}
+.rp-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.rp-card.active{border-color:var(--tq);box-shadow:0 8px 32px rgba(0,183,199,.12)}
+.rp-card.active::before{content:'';position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid var(--tq)}
+.rp-status{font-family:var(--fm);font-size:9px;letter-spacing:2px;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:12px}
+.rp-status.live{background:rgba(0,183,199,.12);color:#0e7490}
+.rp-status.progress{background:rgba(63,166,107,.12);color:#166534}
+.rp-status.planned{background:rgba(0,0,0,.05);color:var(--gm)}
+.rp-num{font-family:var(--fd);font-size:48px;color:rgba(0,0,0,.04);line-height:1;position:absolute;top:16px;right:18px}
+.rp-phase{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--gm);margin-bottom:6px}
+.rp-h{font-size:16px;font-weight:600;color:var(--bd);margin-bottom:4px}
+.rp-period{font-family:var(--fm);font-size:10px;color:var(--tq);margin-bottom:14px}
+.rp-p{font-size:13px;color:#666;line-height:1.65;margin-bottom:16px}
+.rp-dot{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;border:3px solid var(--wh)}
 
-    .p3 .phase-card { background: var(--coral-l); border-color: var(--coral); }
-    .p3 .phase-dot { background: var(--coral); }
-    .p3 .phase-label { color: var(--coral); }
-    .p3 .phase-date { background: var(--coral); color: white; }
+/* PHASES DÉTAILLÉES */
+.phase-detail{margin-bottom:48px;position:relative}
+.pd-header{border-radius:var(--rmd);padding:32px 36px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;margin-bottom:20px}
+.pd-num{font-family:var(--fd);font-size:64px;color:rgba(255,255,255,.15);line-height:1;flex-shrink:0}
+.pd-tag{font-family:var(--fm);font-size:9px;letter-spacing:2px;margin-bottom:6px}
+.pd-h{font-family:var(--fd);font-size:clamp(20px,2.5vw,28px);color:#fff;margin-bottom:4px}
+.pd-period{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,.55);letter-spacing:1px}
+.pd-status-badge{font-family:var(--fm);font-size:10px;padding:6px 16px;border-radius:20px;font-weight:700;white-space:nowrap}
+.pd-items{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.pd-item{background:var(--wh);border-radius:var(--rsm);padding:14px 16px;display:flex;align-items:center;gap:10px;border:1px solid rgba(0,0,0,.04);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.pdi-check{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px}
+.pdi-text{font-size:13px;color:var(--tx);line-height:1.4}
 
-    .p4 .phase-card { background: var(--amber-l); border-color: var(--amber); }
-    .p4 .phase-dot { background: var(--amber); }
-    .p4 .phase-label { color: var(--amber); }
-    .p4 .phase-date { background: var(--amber); color: white; }
+/* CHEMIN CROSQ */
+.crosq-path{background:linear-gradient(135deg,#0b1e30,#0f3d6b);border-radius:var(--rlg);padding:48px;position:relative;overflow:hidden}
+.cp-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(0,183,199,.025) 48px)}
+.cp-inner{position:relative;z-index:1}
+.cp-ey{font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--tq);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.cp-ey::before{content:'';display:block;width:16px;height:1px;background:var(--tq)}
+.cp-h{font-family:var(--fd);font-size:clamp(20px,2.5vw,32px);color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cp-p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.8;max-width:560px;margin-bottom:32px}
+.cp-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cps-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--rmd);padding:20px;text-align:center;transition:all .2s}
+.cps-card:hover{background:rgba(255,255,255,.1)}
+.cps-n{font-family:var(--fd);font-size:32px;color:var(--tq);opacity:.5;line-height:1;margin-bottom:8px}
+.cps-h{font-size:13px;font-weight:600;color:#fff;margin-bottom:6px}
+.cps-p{font-size:11px;color:rgba(255,255,255,.45);line-height:1.6}
+.cps-date{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:1px;margin-top:10px}
 
-    /* STATUS BADGE */
-    .status-current {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.72rem; font-weight: 700; color: #16a34a;
-      background: #dcfce7; padding: 0.2rem 0.6rem; border-radius: 20px;
-    }
-    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #16a34a; animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+/* JALONS TABLE */
+.jalons-table{width:100%;border-collapse:collapse}
+.jalons-table thead tr{border-bottom:2px solid rgba(0,62,107,.1)}
+.jalons-table th{text-align:left;padding:12px 16px;font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--gm)}
+.jalons-table tbody tr{border-bottom:1px solid rgba(0,0,0,.04);transition:background .15s}
+.jalons-table tbody tr:hover{background:rgba(0,183,199,.03)}
+.jalons-table td{padding:14px 16px;font-size:13px}
+.jt-date{font-family:var(--fm);font-size:11px;color:var(--bc);white-space:nowrap}
+.jt-event{font-weight:500;color:var(--bd)}
+.jt-phase{font-family:var(--fm);font-size:10px;padding:3px 8px;border-radius:20px}
+.jt-status{font-family:var(--fm);font-size:9px;padding:3px 10px;border-radius:20px;letter-spacing:.5px;white-space:nowrap}
 
-    /* CTA */
-    .cta-band {
-      background: var(--purple-d); color: white; text-align: center;
-      padding: 4rem 2rem;
-    }
-    .cta-band h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
-    .cta-band p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; }
-    .btn { display: inline-block; padding: 0.85rem 2rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; text-decoration: none; margin: 0.4rem; }
-    .btn-white { background: white; color: var(--purple-d); }
-    .btn-outline { border: 2px solid rgba(255,255,255,0.4); color: white; }
+/* CTA */
+.cta-sec{background:var(--bd);padding:72px 6%;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:250px;background:radial-gradient(ellipse,rgba(0,183,199,.1),transparent 65%);pointer-events:none}
+.cta-in{position:relative;z-index:1;max-width:600px;margin:0 auto}
+.cta-h{font-family:var(--fd);font-size:clamp(24px,3.5vw,40px);color:#fff;margin-bottom:12px;letter-spacing:-.5px}
+.cta-p{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.8}
+.cta-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.btn-p{padding:13px 28px;background:var(--tq);color:var(--bd);border:none;border-radius:var(--rsm);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:background .2s}
+.btn-p:hover{background:var(--tq2)}
+.btn-o{padding:12px 24px;background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);border-radius:var(--rsm);font-size:14px;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:all .2s}
+.btn-o:hover{border-color:rgba(255,255,255,.5)}
 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid #e5e7eb; padding: 2rem; text-align: center;
-      font-size: 0.8rem; color: var(--gray-m);
-    }
-  </style>
+/* FOOTER */
+.cms-footer{background:var(--bd);color:#fff;padding:48px 6% 28px}
+.foot-in{max-width:1200px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:var(--fm);font-size:20px;color:#fff;letter-spacing:2px;display:block;margin-bottom:12px;text-decoration:none}
+.foot-logo span{color:var(--tq)}
+.foot-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.75}
+.foot-col h4{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--tq);margin-bottom:14px}
+.foot-col ul{list-style:none;padding:0}
+.foot-col li{margin-bottom:8px}
+.foot-col a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.3);font-family:var(--fm);flex-wrap:wrap;gap:8px}
+
+@media(max-width:1024px){
+  .roadmap-phases,.cp-steps{grid-template-columns:repeat(2,1fr)}
+  .ph-in{grid-template-columns:1fr}
+  .ph-progress{display:none}
+  .foot-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .pd-header{grid-template-columns:1fr}
+  .pd-num{display:none}
+  .pd-items{grid-template-columns:1fr}
+  .roadmap-phases,.cp-steps{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .stats-in{grid-template-columns:repeat(2,1fr)}
+}
+</style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="https://caribbeanmetadata.org/index.html">CMS</a>
-  <ul class="nav-links">
-    <li><a href="https://caribbeanmetadata.org/about.html">À propos</a></li>
-    <li><a href="https://caribbeanmetadata.org/families.html">Les 6 familles</a></li>
-    <li><a href="https://caribbeanmetadata.org/resources.html">Ressources</a></li>
-    <li><a href="https://caribbeanmetadata.org/collaborate.html">Collaborer</a></li>
-    <li><a href="https://caribbeanmetadata.org/contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-<header class="hero">
-  <p class="eyebrow">Déploiement · 2026–2028</p>
-  <h1>Roadmap du Caribbean Metadata Standard</h1>
-  <p>Un plan structuré sur 18 mois pour déployer le premier standard numérique caribéen — de la publication du White Paper à l'intégration sur les plateformes mondiales.</p>
+<!-- HEADER -->
+<header class="cms-header">
+  <nav class="cms-nav">
+    <a href="/" class="logo">CMS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Standard</a></li>
+      <li><a href="families.html">6 Familles</a></li>
+      <li><a href="cms-builder.html">CMS Builder</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="developers.html">API</a></li>
+      <li><a href="collaborate.html">Partenariats</a></li>
+      <li><a href="equity.html">Équité</a></li>
+      <li><a href="submit.html" class="cta-nav">Soumettre une œuvre</a></li>
+    </ul>
+    <div class="lang-sw">
+      <button class="active" onclick="location='roadmap.html'">FR</button>
+      <button onclick="location='roadmap-en.html'">EN</button>
+      <button onclick="location='roadmap-es.html'">ES</button>
+    </div>
+  </nav>
 </header>
 
-<section class="section">
-  <p class="section-eyebrow">Plan de déploiement</p>
-  <h2>4 phases · 18 mois · 1 standard caribéen</h2>
+<!-- HERO -->
+<div class="page-hero">
+  <div class="ph-grid"></div>
+  <div class="ph-glow"></div>
+  <div class="ph-in">
+    <div>
+      <div class="ph-bc"><a href="index.html">Accueil</a> › <span>Roadmap</span></div>
+      <div class="ph-tag">Plan de déploiement 2026–2028</div>
+      <h1 class="ph-h1">De la fondation<br>à la <em>norme</em><br>CROSQ</h1>
+      <p class="ph-sub">Le chemin du Caribbean Metadata Standard vers son adoption comme norme régionale CARICOM — et l'obligation légale pour les plateformes mondiales de respecter la culture caribéenne.</p>
+      <div class="ph-pills">
+        <span class="ph-pill"><strong>4</strong> phases</span>
+        <span class="ph-pill"><strong>18</strong> mois</span>
+        <span class="ph-pill">Phase 1 · En cours</span>
+        <span class="ph-pill">NWIP CROSQ · 2026</span>
+      </div>
+    </div>
+    <div class="ph-progress">
+      <div class="php-phase">PHASE ACTUELLE</div>
+      <div class="php-n">1</div>
+      <div class="php-d">FONDATION · EN COURS</div>
+      <div class="php-bar"><div class="php-fill" style="width:75%"></div></div>
+      <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:8px;font-family:var(--fm)">75% complété</div>
+    </div>
+  </div>
+</div>
 
-  <div class="timeline">
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-in">
+    <div class="sb-col"><div class="sb-n">4</div><div class="sb-l">Phases</div></div>
+    <div class="sb-col"><div class="sb-n">18</div><div class="sb-l">Mois de déploiement</div></div>
+    <div class="sb-col"><div class="sb-n">5</div><div class="sb-l">Adoptants pour gouvernance</div></div>
+    <div class="sb-col"><div class="sb-n">2027</div><div class="sb-l">Norme CROSQ cible</div></div>
+  </div>
+</div>
+
+<!-- ═══ VUE D'ENSEMBLE ════════════════════════════════════ -->
+<section class="sec sec-b">
+  <div class="sec-in">
+    <div class="sec-ey">Vue d'ensemble</div>
+    <h2 class="sec-h2">4 phases · 1 standard caribéen</h2>
+    <p class="sec-p">Chaque phase construit sur la précédente — de l'infrastructure technique à l'obligation légale pour les plateformes mondiales.</p>
+    <div class="roadmap-phases">
+      <div class="rp-card active">
+        <div class="rp-dot" style="background:var(--tq)"></div>
+        <div class="rp-num">1</div>
+        <div class="rp-status live">● EN COURS</div>
+        <div class="rp-phase">Phase 1</div>
+        <div class="rp-h">Fondation</div>
+        <div class="rp-period">2026</div>
+        <div class="rp-p">Standard v2.0 déployé. API publique. Corpus 110 enregistrements. Plateforme de certification.</div>
+      </div>
+      <div class="rp-card">
+        <div class="rp-dot" style="background:#ffc93c"></div>
+        <div class="rp-num">2</div>
+        <div class="rp-status progress">→ PROCHAIN</div>
+        <div class="rp-phase">Phase 2</div>
+        <div class="rp-h">Ancrage caribéen</div>
+        <div class="rp-period">2026–2027</div>
+        <div class="rp-p">5 institutions adoptantes. Transfert de gouvernance. Dossier NWIP CROSQ co-signé.</div>
+      </div>
+      <div class="rp-card">
+        <div class="rp-dot" style="background:#9aa3b1"></div>
+        <div class="rp-num">3</div>
+        <div class="rp-status planned">○ PLANIFIÉ</div>
+        <div class="rp-phase">Phase 3</div>
+        <div class="rp-h">Extension régionale</div>
+        <div class="rp-period">2027</div>
+        <div class="rp-p">Caraïbe hispanophone et néerlandophone. CMS v2.0 ES + NL. Corpus 500+ contenus.</div>
+      </div>
+      <div class="rp-card">
+        <div class="rp-dot" style="background:#9aa3b1"></div>
+        <div class="rp-num">4</div>
+        <div class="rp-status planned">○ PLANIFIÉ</div>
+        <div class="rp-phase">Phase 4</div>
+        <div class="rp-h">IA & Plateformes</div>
+        <div class="rp-period">2027–2028</div>
+        <div class="rp-p">Moteur NLP caribéen. API intégrée sur Netflix, Spotify, Amazon. Obligation légale CARICOM.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHASES DÉTAILLÉES ═════════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="sec-ey">Détail des phases</div>
+    <h2 class="sec-h2">Ce qui est fait. Ce qui reste.</h2>
+    <p class="sec-p" style="margin-bottom:48px">Chaque livrable est concret, vérifiable et documenté. Pas d'intentions — des actes.</p>
 
     <!-- PHASE 1 -->
-    <div class="phase p1">
-      <div class="phase-dot">1</div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div>
-            <div class="phase-label">Phase 1 — Fondation</div>
-            <div class="phase-title">Lancement CMS v2.0</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;">
-            <span class="phase-date">2026</span>
-            <span class="status-current"><span class="status-dot"></span>En cours</span>
-          </div>
+    <div class="phase-detail">
+      <div class="pd-header" style="background:linear-gradient(135deg,#006e75,#00b7c7)">
+        <div class="pd-num">1</div>
+        <div>
+          <div class="pd-tag" style="color:rgba(255,255,255,.6);font-family:var(--fm);font-size:9px;letter-spacing:2px;margin-bottom:6px">PHASE 1 — FONDATION</div>
+          <div class="pd-h">Lancement CMS v2.0 — Infrastructure complète</div>
+          <div class="pd-period">2026 · Caribwood Language Lab · Guadeloupe</div>
         </div>
-        <p class="phase-desc">Acte de naissance officiel du Caribbean Metadata Standard. Publication des documents fondateurs, ouverture des outils publics et constitution du registre des signataires fondateurs.</p>
-        <div class="milestones">
-          <div class="milestone">Publication du White Paper CMS v2.0</div>
-          <div class="milestone">Ouverture du registre des 100 Premiers signataires</div>
-          <div class="milestone">Lancement du Validateur CMS & système de certification</div>
-          <div class="milestone">Mise en ligne du CMS Builder (outil de création de fiches)</div>
-          <div class="milestone">Publication de la Bible des métadonnées (50+ tags)</div>
-        </div>
+        <div class="pd-status-badge" style="background:rgba(255,255,255,.2);color:#fff">✓ EN COURS</div>
+      </div>
+      <div class="pd-items">
+        <div class="pd-item"><div class="pdi-check" style="background:#dcfce7;color:#16a34a">✓</div><div class="pdi-text">Standard CMS v2.0 verrouillé — schéma JSON public</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#dcfce7;color:#16a34a">✓</div><div class="pdi-text">Corpus 110 enregistrements validés CC-BY 4.0</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#dcfce7;color:#16a34a">✓</div><div class="pdi-text">API publique v2.0 — 11 endpoints Cloudflare Workers</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#dcfce7;color:#16a34a">✓</div><div class="pdi-text">CMS Builder avec AI layer Claude intégré</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#dcfce7;color:#16a34a">✓</div><div class="pdi-text">Indice de Visibilité Algorithmique (IVA) publié</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#dcfce7;color:#16a34a">✓</div><div class="pdi-text">Déclaration d'équité publiée — caribbeanmetadata.org/equity.html</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#dcfce7;color:#16a34a">✓</div><div class="pdi-text">Plateforme de certification Supabase opérationnelle</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#fef9c3;color:#b45309">→</div><div class="pdi-text">Première certification officielle CMS émise</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#fef9c3;color:#b45309">→</div><div class="pdi-text">Dossier NWIP CROSQ finalisé et soumis</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#fef9c3;color:#b45309">→</div><div class="pdi-text">Premier Bureau de Standards CARICOM co-signataire identifié</div></div>
       </div>
     </div>
 
     <!-- PHASE 2 -->
-    <div class="phase p2">
-      <div class="phase-dot">2</div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div>
-            <div class="phase-label">Phase 2 — Déploiement régional</div>
-            <div class="phase-title">Ancrage caribéen francophone</div>
-          </div>
-          <span class="phase-date">2026 – 2027</span>
+    <div class="phase-detail">
+      <div class="pd-header" style="background:linear-gradient(135deg,#b08800,#ffc93c)">
+        <div class="pd-num">2</div>
+        <div>
+          <div class="pd-tag" style="color:rgba(255,255,255,.7);font-family:var(--fm);font-size:9px;letter-spacing:2px;margin-bottom:6px">PHASE 2 — ANCRAGE CARIBÉEN</div>
+          <div class="pd-h">Déploiement régional francophone + CROSQ</div>
+          <div class="pd-period">2026–2027 · 5 institutions adoptantes requises</div>
         </div>
-        <p class="phase-desc">Extension du standard aux institutions et créateurs caribéens francophones. Construction de la gouvernance collective et premiers contenus certifiés CMS-Compliant.</p>
-        <div class="milestones">
-          <div class="milestone">Partenariats avec institutions culturelles caribéennes (Guadeloupe, Martinique, Guyane, Haïti)</div>
-          <div class="milestone">Ateliers de formation au tagging CMS pour les créateurs</div>
-          <div class="milestone">Premiers contenus audiovisuels certifiés CMS-Compliant</div>
-          <div class="milestone">Lancement du comité de gouvernance du standard</div>
-          <div class="milestone">Guide d'implémentation pour studios et institutions</div>
-        </div>
+        <div class="pd-status-badge" style="background:rgba(255,255,255,.2);color:#fff">→ PROCHAIN</div>
+      </div>
+      <div class="pd-items">
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">5 institutions adoptantes de territoires différents</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Transfert automatique de gouvernance au Comité Technique caribéen</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Partenariats : Guadeloupe, Martinique, Guyane, Haïti</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">NWIP accepté par le TMC CROSQ</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Ateliers de formation CMS pour créateurs caribéens</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Premiers contenus audiovisuels certifiés CMS-Compliant</div></div>
       </div>
     </div>
 
     <!-- PHASE 3 -->
-    <div class="phase p3">
-      <div class="phase-dot">3</div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div>
-            <div class="phase-label">Phase 3 — Extension linguistique</div>
-            <div class="phase-title">Caraïbe hispanophone & néerlandophone</div>
-          </div>
-          <span class="phase-date">2027</span>
+    <div class="phase-detail">
+      <div class="pd-header" style="background:linear-gradient(135deg,#1a6640,#3fa66b)">
+        <div class="pd-num">3</div>
+        <div>
+          <div class="pd-tag" style="color:rgba(255,255,255,.7);font-family:var(--fm);font-size:9px;letter-spacing:2px;margin-bottom:6px">PHASE 3 — EXTENSION RÉGIONALE</div>
+          <div class="pd-h">Caraïbe hispanophone, anglophone & néerlandophone</div>
+          <div class="pd-period">2027 · Comité Technique caribéen</div>
         </div>
-        <p class="phase-desc">Ouverture du CMS à l'ensemble de l'espace caribéen. Intégration des territoires hispanophones et néerlandophones, et publication des versions multilingues du standard.</p>
-        <div class="milestones">
-          <div class="milestone">Intégration Cuba, Porto Rico, République Dominicaine</div>
-          <div class="milestone">Intégration Curaçao, Aruba, Suriname</div>
-          <div class="milestone">Publication CMS v2.0 — version ES et NL complètes</div>
-          <div class="milestone">Partenariats avec universités régionales (UWI, UNAM, UA)</div>
-          <div class="milestone">Corpus caribéen multilingue — 500+ contenus indexés</div>
-        </div>
+        <div class="pd-status-badge" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.7)">○ PLANIFIÉ</div>
+      </div>
+      <div class="pd-items">
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Intégration Cuba, Porto Rico, République Dominicaine</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Intégration Curaçao, Aruba, Suriname</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">CMS v2.0 versions ES et NL complètes</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Partenariats UWI, UNAM, Université des Antilles</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Corpus caribéen multilingue — 500+ contenus indexés</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Draft Regional Standard soumis aux 15 NSBs CARICOM</div></div>
       </div>
     </div>
 
     <!-- PHASE 4 -->
-    <div class="phase p4">
-      <div class="phase-dot">4</div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div>
-            <div class="phase-label">Phase 4 — Intelligence artificielle</div>
-            <div class="phase-title">CMS AI Engine & intégrations plateformes</div>
-          </div>
-          <span class="phase-date">2027 – 2028</span>
+    <div class="phase-detail" style="margin-bottom:0">
+      <div class="pd-header" style="background:linear-gradient(135deg,#4a1a6e,#7b3fa6)">
+        <div class="pd-num">4</div>
+        <div>
+          <div class="pd-tag" style="color:rgba(255,255,255,.7);font-family:var(--fm);font-size:9px;letter-spacing:2px;margin-bottom:6px">PHASE 4 — IA & PLATEFORMES</div>
+          <div class="pd-h">CMS AI Engine + Intégration plateformes mondiales</div>
+          <div class="pd-period">2027–2028 · Standard CARICOM publié</div>
         </div>
-        <p class="phase-desc">Développement d'un moteur d'intelligence artificielle entraîné sur les corpus caribéens. Déploiement de l'API CMS pour intégration directe sur les grandes plateformes mondiales.</p>
-        <div class="milestones">
-          <div class="milestone">Modèle NLP caribéen — reconnaissance automatique des marqueurs culturels</div>
-          <div class="milestone">Tagging automatique des contenus via CMS AI Engine</div>
-          <div class="milestone">API CMS ouverte — documentation technique complète</div>
-          <div class="milestone">Démarches d'intégration auprès de Netflix, Spotify, Amazon, YouTube</div>
-          <div class="milestone">Ouverture du processus de certification CMS-Compliant aux plateformes</div>
-        </div>
+        <div class="pd-status-badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6)">○ PLANIFIÉ</div>
+      </div>
+      <div class="pd-items">
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Modèle NLP caribéen — reconnaissance automatique des marqueurs</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">CMS AI Engine — tagging automatique des contenus</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Démarches d'intégration Netflix, Spotify, Amazon, YouTube</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Publication CARICOM Regional Standard — CRS officiel</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">Base légale pour obligation de conformité des plateformes</div></div>
+        <div class="pd-item"><div class="pdi-check" style="background:#f0f4f8;color:#888">○</div><div class="pdi-text">CMS Builder en créole guadeloupéen et créole haïtien</div></div>
       </div>
     </div>
-
   </div>
 </section>
 
-<div class="cta-band">
-  <h2>Rejoignez l'initiative maintenant.</h2>
-  <p>Créateur, institution, plateforme ou chercheur — votre contribution à la Phase 1 est essentielle pour que le standard prenne racine.</p>
-  <a class="btn btn-white" href="https://caribbeanmetadata.org/founders.html">Devenir signataire fondateur</a>
-  <a class="btn btn-outline" href="https://caribbeanmetadata.org/collaborate.html">Collaborer avec nous</a>
-</div>
+<!-- ═══ CHEMIN CROSQ ══════════════════════════════════════ -->
+<section class="sec sec-b">
+  <div class="sec-in">
+    <div class="crosq-path">
+      <div class="cp-grid"></div>
+      <div class="cp-inner">
+        <div class="cp-ey">Voie réglementaire</div>
+        <h2 class="cp-h">Le chemin vers l'obligation légale</h2>
+        <p class="cp-p">Le modèle AVMSD européen a prouvé qu'une norme régionale peut contraindre les plateformes mondiales. Le CROSQ est le CARICOM équivalent de l'Union Européenne pour la standardisation.</p>
+        <div class="cp-steps">
+          <div class="cps-card">
+            <div class="cps-n">1</div>
+            <div class="cps-h">NWIP CROSQ</div>
+            <div class="cps-p">Soumission du New Work Item Proposal via un Bureau de Standards CARICOM co-signataire</div>
+            <div class="cps-date">Q3 2026</div>
+          </div>
+          <div class="cps-card">
+            <div class="cps-n">2</div>
+            <div class="cps-h">Norme régionale</div>
+            <div class="cps-p">Processus TMC → Working Draft → Draft Regional Standard → CRS publié</div>
+            <div class="cps-date">2026–2027</div>
+          </div>
+          <div class="cps-card">
+            <div class="cps-n">3</div>
+            <div class="cps-h">Transposition nationale</div>
+            <div class="cps-p">Les 15 États membres CARICOM transposent la norme dans leur législation nationale</div>
+            <div class="cps-date">2027–2028</div>
+          </div>
+          <div class="cps-card">
+            <div class="cps-n">4</div>
+            <div class="cps-h">Obligation plateformes</div>
+            <div class="cps-p">Netflix, Spotify, Amazon opérant dans la Caraïbe sont contraints à la conformité CMS</div>
+            <div class="cps-date">2028</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<footer>
-  <strong>caribbeanmetadata.org</strong> · CMS v2.0 · Caribwood Language Lab — Guadeloupe
+<!-- ═══ JALONS TABLE ══════════════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="sec-ey">Calendrier précis</div>
+    <h2 class="sec-h2">Jalons et livrables</h2>
+    <p class="sec-p" style="margin-bottom:32px">Les dates clés du plan de déploiement CMS 2026–2028.</p>
+    <div style="background:var(--gl);border-radius:var(--rmd);overflow:hidden;border:1px solid rgba(0,0,0,.05)">
+      <table class="jalons-table">
+        <thead><tr>
+          <th>DATE</th><th>JALON</th><th>PHASE</th><th>STATUT</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="jt-date">Mai 2026</td><td class="jt-event">CMS v2.0 verrouillé — schéma, corpus, API</td><td><span class="jt-phase" style="background:#e0f2fe;color:#0f6fa6">Phase 1</span></td><td><span class="jt-status" style="background:#dcfce7;color:#16a34a">✓ Complété</span></td></tr>
+          <tr><td class="jt-date">Juin 2026</td><td class="jt-event">Plateforme certification + IVA + déclaration équité</td><td><span class="jt-phase" style="background:#e0f2fe;color:#0f6fa6">Phase 1</span></td><td><span class="jt-status" style="background:#dcfce7;color:#16a34a">✓ Complété</span></td></tr>
+          <tr><td class="jt-date">Juin 2026</td><td class="jt-event">Dossier NWIP CROSQ rédigé et prêt</td><td><span class="jt-phase" style="background:#e0f2fe;color:#0f6fa6">Phase 1</span></td><td><span class="jt-status" style="background:#dcfce7;color:#16a34a">✓ Complété</span></td></tr>
+          <tr><td class="jt-date">Q3 2026</td><td class="jt-event">Soumission NWIP au CROSQ — co-signataire NSB CARICOM</td><td><span class="jt-phase" style="background:#fef9c3;color:#b45309">Phase 1→2</span></td><td><span class="jt-status" style="background:#fef9c3;color:#b45309">→ En cours</span></td></tr>
+          <tr><td class="jt-date">Q4 2026</td><td class="jt-event">5 institutions adoptantes — transfert de gouvernance</td><td><span class="jt-phase" style="background:#fef9c3;color:#b45309">Phase 2</span></td><td><span class="jt-status" style="background:#f0f4f8;color:#888">○ Planifié</span></td></tr>
+          <tr><td class="jt-date">Q1 2027</td><td class="jt-event">Working Draft CROSQ — revue Comité Technique</td><td><span class="jt-phase" style="background:#fef9c3;color:#b45309">Phase 2</span></td><td><span class="jt-status" style="background:#f0f4f8;color:#888">○ Planifié</span></td></tr>
+          <tr><td class="jt-date">Q2 2027</td><td class="jt-event">Consultation publique régionale — 60 jours</td><td><span class="jt-phase" style="background:#dcfce7;color:#166534">Phase 3</span></td><td><span class="jt-status" style="background:#f0f4f8;color:#888">○ Planifié</span></td></tr>
+          <tr><td class="jt-date">Q3 2027</td><td class="jt-event">Draft Regional Standard soumis aux 15 NSBs</td><td><span class="jt-phase" style="background:#dcfce7;color:#166534">Phase 3</span></td><td><span class="jt-status" style="background:#f0f4f8;color:#888">○ Planifié</span></td></tr>
+          <tr><td class="jt-date">Q4 2027</td><td class="jt-event">Publication CARICOM Regional Standard (CRS)</td><td><span class="jt-phase" style="background:#f3e8ff;color:#6b21a8">Phase 4</span></td><td><span class="jt-status" style="background:#f0f4f8;color:#888">○ Planifié</span></td></tr>
+          <tr><td class="jt-date">2028</td><td class="jt-event">Obligations légales plateformes — conformité CMS</td><td><span class="jt-phase" style="background:#f3e8ff;color:#6b21a8">Phase 4</span></td><td><span class="jt-status" style="background:#f0f4f8;color:#888">○ Planifié</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-glow"></div>
+  <div class="cta-in">
+    <h2 class="cta-h">La Phase 2 commence<br>avec vous</h2>
+    <p class="cta-p">5 institutions de territoires différents déclenchent le transfert de gouvernance et l'entrée en phase CROSQ. Soyez l'une d'elles.</p>
+    <div class="cta-btns">
+      <a href="collaborate.html" class="btn-p">Devenir partenaire →</a>
+      <a href="contact.html" class="btn-o">Nous contacter</a>
+      <a href="about.html" class="btn-o">En savoir plus</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="cms-footer">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div>
+        <a href="/" class="foot-logo">CMS<span>.</span></a>
+        <p class="foot-desc">Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Caribwood Language Lab, Guadeloupe.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Le Standard</h4>
+        <ul>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="families.html">Les 6 familles</a></li>
+          <li><a href="spec.html">Spécification v2.0</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="equity.html">Équité & Accès</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="submit.html">Soumettre une œuvre</a></li>
+          <li><a href="cms-builder.html">CMS Builder</a></li>
+          <li><a href="developers.html">API v2.0</a></li>
+          <li><a href="glossaire.html">Glossaire</a></li>
+          <li><a href="kit.html">Kit Média</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Écosystème</h4>
+        <ul>
+          <li><a href="collaborate.html">Partenaires</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="https://github.com/heso73/cms-nlp-corpus" target="_blank">↗ GitHub</a></li>
+          <li><a href="press-fr.html">Presse</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>caribbeanmetadata.org · CMS v2.0 · Caribwood Language Lab — Guadeloupe</span>
+      <span>CC-BY 4.0 · Open Source</span>
+    </div>
+  </div>
 </footer>
 
+<script src="nav-fix.js"></script>
 </body>
 </html>
