@@ -1,736 +1,555 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Developers — Caribbean Metadata Standard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0a0e1a;
-      --surface: #111827;
-      --surface2: #1a2236;
-      --border: #1e3a5f;
-      --accent: #00c9a7;
-      --accent2: #0ea5e9;
-      --accent3: #f59e0b;
-      --text: #e2e8f0;
-      --muted: #64748b;
-      --code-bg: #0d1b2a;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,201,167,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,201,167,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10,14,26,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-
-    .nav-logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--accent);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a.active { color: var(--text); }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      z-index: 1;
-      padding: 5rem 2rem 3rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .hero-tag::before {
-      content: '';
-      display: inline-block;
-      width: 2rem;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 span { color: var(--accent); }
-
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 600px;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .badge {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 2px;
-      letter-spacing: 0.05em;
-    }
-
-    .badge-green { background: rgba(0,201,167,0.12); color: var(--accent); border: 1px solid rgba(0,201,167,0.3); }
-    .badge-blue  { background: rgba(14,165,233,0.12); color: var(--accent2); border: 1px solid rgba(14,165,233,0.3); }
-    .badge-amber { background: rgba(245,158,11,0.12); color: var(--accent3); border: 1px solid rgba(245,158,11,0.3); }
-
-    /* MAIN CONTENT */
-    main {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 6rem;
-    }
-
-    /* SECTION */
-    .section {
-      margin-bottom: 4rem;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      opacity: 0.6;
-    }
-
-    h2 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin-bottom: 2rem;
-    }
-
-    /* ENDPOINT CARDS */
-    .endpoint-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .endpoint-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.25rem 1.5rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: start;
-      gap: 1rem;
-      transition: border-color 0.2s, background 0.2s;
-      text-decoration: none;
-    }
-
-    .endpoint-card:hover {
-      border-color: var(--accent);
-      background: var(--surface2);
-    }
-
-    .method {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.25rem 0.6rem;
-      border-radius: 2px;
-      letter-spacing: 0.05em;
-      margin-top: 2px;
-    }
-
-    .method-get { background: rgba(0,201,167,0.15); color: var(--accent); }
-
-    .endpoint-info {}
-    .endpoint-url {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.82rem;
-      color: var(--text);
-      margin-bottom: 0.35rem;
-      word-break: break-all;
-    }
-
-    .endpoint-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .endpoint-arrow {
-      color: var(--muted);
-      font-size: 1rem;
-      margin-top: 2px;
-    }
-
-    .endpoint-card:hover .endpoint-arrow { color: var(--accent); }
-
-    /* EXAMPLE CARDS */
-    .examples-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-
-    .example-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.5rem;
-      text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
-      display: block;
-    }
-
-    .example-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .example-icon {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .example-type {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    .example-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-
-    .example-meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .example-score {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .score-bar {
-      flex: 1;
-      height: 3px;
-      background: var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .score-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-      border-radius: 2px;
-    }
-
-    .score-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent);
-    }
-
-    /* CODE BLOCK */
-    .code-block {
-      background: var(--code-bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .code-header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 0.6rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .code-lang {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .copy-btn {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-      background: none;
-      border: 1px solid var(--border);
-      padding: 0.25rem 0.6rem;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
-
-    pre {
-      padding: 1.5rem;
-      overflow-x: auto;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
-      line-height: 1.7;
-      color: #a8d8b9;
-    }
-
-    .token-key    { color: #7dd3fc; }
-    .token-str    { color: #a8d8b9; }
-    .token-num    { color: #f59e0b; }
-    .token-bool   { color: #c084fc; }
-    .token-null   { color: var(--muted); }
-    .token-comment{ color: #4a5568; font-style: italic; }
-
-    /* COMPLIANCE TABLE */
-    .compliance-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-    }
-
-    .compliance-table th {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-    }
-
-    .compliance-table td {
-      padding: 0.85rem 1rem;
-      border-bottom: 1px solid rgba(30,58,95,0.5);
-      vertical-align: middle;
-    }
-
-    .level-badge {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
-      font-weight: 700;
-    }
-
-    .level-bronze   { background: rgba(180,120,60,0.15); color: #cd7f32; border: 1px solid rgba(180,120,60,0.3); }
-    .level-silver   { background: rgba(160,160,180,0.15); color: #c0c0c0; border: 1px solid rgba(160,160,180,0.3); }
-    .level-gold     { background: rgba(212,175,55,0.15); color: #d4af37; border: 1px solid rgba(212,175,55,0.3); }
-    .level-platinum { background: rgba(0,201,167,0.15); color: var(--accent); border: 1px solid rgba(0,201,167,0.3); }
-
-    /* CTA */
-    .cta-block {
-      background: linear-gradient(135deg, rgba(0,201,167,0.08), rgba(14,165,233,0.08));
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2.5rem;
-      text-align: center;
-    }
-
-    .cta-block h3 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
-    .cta-block p {
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .btn {
-      display: inline-block;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      padding: 0.75rem 1.75rem;
-      border-radius: 2px;
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: all 0.2s;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #0a0e1a;
-      font-weight: 700;
-    }
-
-    .btn-primary:hover { background: #00b096; transform: translateY(-1px); }
-
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--muted);
-      margin-left: 1rem;
-    }
-
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* FOOTER */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-    }
-
-    footer a { color: var(--accent); text-decoration: none; }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero, .section { animation: fadeUp 0.5s ease both; }
-    .section:nth-child(2) { animation-delay: 0.1s; }
-    .section:nth-child(3) { animation-delay: 0.2s; }
-    .section:nth-child(4) { animation-delay: 0.3s; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://caribbeanmetadata.org/developers.html" />
+  <title>API & Documentation — Caribbean Metadata Standard</title>
+  <meta name="description" content="API publique CMS v2.0 — 11 endpoints, sans clé, CORS ouvert. Exemples cURL, JavaScript, Python. Corpus téléchargeable CC-BY 4.0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bd:#0b1e30;--bc:#0f6fa6;--tq:#00b7c7;--tq2:#009aaa;
+  --gl:#f3f5f7;--gm:#9aa3b1;--tx:#1f2933;--wh:#ffffff;
+  --rsm:6px;--rmd:12px;--rlg:20px;
+  --sh:0 8px 24px rgba(0,0,0,.07);--sh2:0 16px 48px rgba(0,0,0,.1);
+  --f:'DM Sans',system-ui,sans-serif;--fm:'DM Mono',monospace;--fd:'DM Serif Display',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow-x:hidden}
+.cms-header{background:var(--wh);box-shadow:var(--sh);position:sticky;top:0;z-index:1000}
+.cms-nav{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:var(--fm);font-size:18px;font-weight:500;color:var(--bd);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--tq)}
+.nav-links{list-style:none;display:flex;gap:.25rem;margin:0;padding:0}
+.nav-links a{text-decoration:none;color:var(--tx);font-size:13px;padding:.35rem .7rem;border-radius:var(--rsm);transition:all .2s}
+.nav-links a:hover,.nav-links a.active{background:var(--gl);color:var(--bd)}
+.cta-nav{background:var(--tq) !important;color:var(--bd) !important;font-weight:600 !important}
+.lang-sw{display:flex;gap:4px}
+.lang-sw button{border:1px solid var(--gm);background:var(--wh);color:var(--tx);padding:.25rem .6rem;border-radius:var(--rsm);font-size:11px;font-weight:700;cursor:pointer;font-family:var(--f);transition:all .2s}
+.lang-sw button:hover,.lang-sw button.active{border-color:var(--bc);color:var(--bd)}
+
+/* HERO */
+.page-hero{background:linear-gradient(135deg,#0b1e30 0%,#0f3d6b 55%,#0f6fa6 100%);padding:64px 6% 48px;position:relative;overflow:hidden}
+.ph-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.02) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.015) 48px)}
+.ph-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.ph-bc{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:14px}
+.ph-bc a{color:rgba(255,255,255,.4);text-decoration:none}
+.ph-bc span{color:var(--tq)}
+.ph-tag{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.ph-tag::before{content:'';display:block;width:24px;height:1px;background:var(--tq)}
+.ph-h1{font-family:var(--fd);font-size:clamp(28px,4vw,48px);color:#fff;line-height:1.08;margin-bottom:12px;letter-spacing:-.5px}
+.ph-h1 em{font-style:italic;color:var(--tq)}
+.ph-sub{font-size:15px;color:rgba(255,255,255,.6);max-width:520px;line-height:1.8;margin-bottom:20px}
+.ph-pills{display:flex;flex-wrap:wrap;gap:8px}
+.ph-pill{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 14px;letter-spacing:1px}
+
+/* API Status badge */
+.api-status{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--rmd);padding:20px 24px;min-width:220px}
+.as-tag{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:8px}
+.as-url{font-family:var(--fm);font-size:11px;color:var(--tq);margin-bottom:10px;word-break:break-all}
+.as-indicators{display:flex;flex-direction:column;gap:6px}
+.as-row{display:flex;justify-content:space-between;font-size:11px}
+.as-label{color:rgba(255,255,255,.4)}
+.as-val{color:rgba(255,255,255,.75);font-family:var(--fm)}
+.as-live{display:flex;align-items:center;gap:6px;margin-top:10px}
+.as-dot{width:8px;height:8px;border-radius:50%;background:#27c93f;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.as-live-txt{font-family:var(--fm);font-size:10px;color:#27c93f;letter-spacing:1px}
+
+/* LAYOUT */
+.dev-layout{display:grid;grid-template-columns:240px 1fr;gap:0;max-width:1200px;margin:0 auto}
+.dev-sidebar{background:var(--wh);border-right:1px solid rgba(0,0,0,.06);padding:32px 0;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto}
+.ds-section{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--gm);padding:12px 20px 6px;text-transform:uppercase}
+.ds-link{display:block;padding:9px 20px;font-size:13px;color:#555;text-decoration:none;transition:all .15s;border-right:2px solid transparent}
+.ds-link:hover{background:var(--gl);color:var(--bd)}
+.ds-link.active{color:var(--bc);font-weight:600;border-right-color:var(--tq);background:rgba(0,183,199,.04)}
+.dev-content{padding:40px 48px;background:var(--gl)}
+
+/* SECTIONS DOC */
+.doc-section{margin-bottom:56px;scroll-margin-top:80px}
+.ds-ey{font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--tq);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.ds-ey::before{content:'';display:block;width:16px;height:1px;background:var(--tq)}
+.ds-h2{font-family:var(--fd);font-size:clamp(20px,2.5vw,30px);color:var(--bd);margin-bottom:8px;letter-spacing:-.3px}
+.ds-p{font-size:14px;color:#555;line-height:1.8;margin-bottom:20px;max-width:640px}
+
+/* CODE BLOCKS */
+.code-block{background:var(--bd);border-radius:var(--rmd);overflow:hidden;margin-bottom:16px}
+.cb-top{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between}
+.cb-dots{display:flex;gap:5px}
+.cb-dot{width:7px;height:7px;border-radius:50%}
+.cb-lang{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:2px}
+.cb-copy{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.35);cursor:pointer;padding:2px 8px;border:1px solid rgba(255,255,255,.1);border-radius:3px;transition:all .2s;background:none}
+.cb-copy:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.cb-body{padding:20px;overflow-x:auto}
+.cb-body pre{font-family:var(--fm);font-size:12px;line-height:1.9;color:rgba(255,255,255,.75);margin:0;white-space:pre-wrap}
+.ck{color:rgba(255,255,255,.4)}
+.cv{color:var(--tq)}
+.cn{color:#a8d8ff}
+.cs{color:#ffc93c}
+.cc{color:#a8d8ff}
+.cm{color:rgba(255,255,255,.3);font-style:italic}
+
+/* ENDPOINTS TABLE */
+.ep-table{width:100%;border-collapse:collapse;background:var(--wh);border-radius:var(--rmd);overflow:hidden;box-shadow:var(--sh);margin-bottom:16px}
+.ep-table thead tr{background:var(--bd)}
+.ep-table th{padding:12px 14px;font-family:var(--fm);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.5);text-align:left}
+.ep-table tbody tr{border-bottom:1px solid rgba(0,0,0,.04)}
+.ep-table tbody tr:hover{background:rgba(0,183,199,.03)}
+.ep-table td{padding:12px 14px}
+.ep-method{font-family:var(--fm);font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px}
+.ep-method.get{background:rgba(63,166,107,.12);color:#166534}
+.ep-method.post{background:rgba(255,111,97,.12);color:#b91c1c}
+.ep-path{font-family:var(--fm);font-size:12px;color:var(--bd)}
+.ep-desc{font-size:12px;color:#555}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:2px solid rgba(0,0,0,.06);margin-bottom:0}
+.tab-btn{padding:10px 16px;background:none;border:none;font-size:12px;font-family:var(--f);color:var(--gm);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tab-btn:hover{color:var(--bd)}
+.tab-btn.active{color:var(--bc);font-weight:600;border-bottom-color:var(--tq)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* INTERACTIVE TEST */
+.api-tester{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);overflow:hidden;margin-bottom:16px}
+.at-header{background:rgba(0,183,199,.06);border-bottom:1px solid rgba(0,183,199,.12);padding:14px 18px;display:flex;align-items:center;gap:10px}
+.at-method{font-family:var(--fm);font-size:11px;font-weight:700;background:#dcfce7;color:#166534;padding:3px 10px;border-radius:4px}
+.at-url-in{flex:1;font-family:var(--fm);font-size:12px;padding:6px 10px;border:1px solid rgba(0,0,0,.08);border-radius:4px;color:var(--bd);background:var(--wh)}
+.at-btn{padding:7px 18px;background:var(--tq);color:var(--bd);border:none;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--f);transition:background .2s}
+.at-btn:hover{background:var(--tq2)}
+.at-response{padding:16px 18px;font-family:var(--fm);font-size:11px;color:#555;min-height:60px;line-height:1.8;background:#fafbfc;max-height:280px;overflow-y:auto}
+
+/* CTA */
+.cta-sec{background:var(--bd);padding:64px 6%;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:200px;background:radial-gradient(ellipse,rgba(0,183,199,.1),transparent 65%);pointer-events:none}
+.cta-in{position:relative;z-index:1;max-width:560px;margin:0 auto}
+.cta-h{font-family:var(--fd);font-size:clamp(22px,3vw,36px);color:#fff;margin-bottom:10px;letter-spacing:-.5px}
+.cta-p{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:22px;line-height:1.8}
+.cta-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.btn-p{padding:12px 26px;background:var(--tq);color:var(--bd);border:none;border-radius:var(--rsm);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:background .2s}
+.btn-p:hover{background:var(--tq2)}
+.btn-o{padding:11px 22px;background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);border-radius:var(--rsm);font-size:13px;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-o:hover{border-color:rgba(255,255,255,.5)}
+
+.cms-footer{background:var(--bd);color:#fff;padding:48px 6% 28px}
+.foot-in{max-width:1200px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:var(--fm);font-size:20px;color:#fff;letter-spacing:2px;display:block;margin-bottom:12px;text-decoration:none}
+.foot-logo span{color:var(--tq)}
+.foot-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.75}
+.foot-col h4{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--tq);margin-bottom:14px}
+.foot-col ul{list-style:none;padding:0}
+.foot-col li{margin-bottom:8px}
+.foot-col a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.3);font-family:var(--fm);flex-wrap:wrap;gap:8px}
+
+@media(max-width:1024px){
+  .dev-layout{grid-template-columns:1fr}
+  .dev-sidebar{display:none}
+  .dev-content{padding:32px 6%}
+  .ph-in{grid-template-columns:1fr}
+  .api-status{display:none}
+  .foot-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){.nav-links{display:none}}
+</style>
 </head>
 <body>
 
-<nav><!-- nav-fix.js --></nav>
+<header class="cms-header">
+  <nav class="cms-nav">
+    <a href="/" class="logo">CMS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Standard</a></li>
+      <li><a href="families.html">6 Familles</a></li>
+      <li><a href="cms-builder.html">CMS Builder</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="developers.html" class="active">API</a></li>
+      <li><a href="collaborate.html">Partenariats</a></li>
+      <li><a href="equity.html">Équité</a></li>
+      <li><a href="submit.html" class="cta-nav">Soumettre une œuvre</a></li>
+    </ul>
+    <div class="lang-sw">
+      <button class="active">FR</button>
+      <button onclick="location='developers-en.html'">EN</button>
+      <button onclick="location='developers-es.html'">ES</button>
+    </div>
+  </nav>
+</header>
 
-<div class="hero">
-  <div class="hero-tag">Documentation technique</div>
-  <h1>Intégrer le <span>CMS</span><br/>dans votre pipeline</h1>
-  <p class="hero-desc">Tous les fichiers, endpoints et exemples dont vous avez besoin pour intégrer le Caribbean Metadata Standard dans vos plateformes et outils.</p>
-  <div class="hero-badges">
-    <span class="badge badge-green">JSON Schema 2020-12</span>
-    <span class="badge badge-blue">XSD 1.1</span>
-    <span class="badge badge-amber">v2.0 — 2026-06-09 · Live</span>
+<div class="page-hero">
+  <div class="ph-grid"></div>
+  <div class="ph-in">
+    <div>
+      <div class="ph-bc"><a href="index.html">Accueil</a> › <span>API & Documentation</span></div>
+      <div class="ph-tag">CMS API v2.0 · LIVE</div>
+      <h1 class="ph-h1">API publique<br><em>Caribbean</em><br>Metadata</h1>
+      <p class="ph-sub">11 endpoints · Sans clé d'authentification · CORS ouvert · Données réelles en temps réel · CC-BY 4.0. Intégrez le standard caribéen dans votre pipeline.</p>
+      <div class="ph-pills">
+        <span class="ph-pill">Sans clé</span>
+        <span class="ph-pill">CORS *</span>
+        <span class="ph-pill">JSON</span>
+        <span class="ph-pill">Cloudflare Workers</span>
+        <span class="ph-pill">Supabase</span>
+      </div>
+    </div>
+    <div class="api-status">
+      <div class="as-tag">BASE URL</div>
+      <div class="as-url">cms-api.small-disk-3275.workers.dev</div>
+      <div class="as-indicators">
+        <div class="as-row"><span class="as-label">Version</span><span class="as-val">v2.0</span></div>
+        <div class="as-row"><span class="as-label">Format</span><span class="as-val">JSON</span></div>
+        <div class="as-row"><span class="as-label">Auth</span><span class="as-val">None (GET)</span></div>
+        <div class="as-row"><span class="as-label">Corpus</span><span class="as-val">110 records</span></div>
+      </div>
+      <div class="as-live"><div class="as-dot"></div><div class="as-live-txt">API OPÉRATIONNELLE</div></div>
+    </div>
   </div>
 </div>
 
-<main>
-
-  <!-- SCHEMA OFFICIEL -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>Schéma officiel</h2>
+<!-- LAYOUT DEUX COLONNES -->
+<div style="background:var(--gl)">
+  <div class="dev-layout">
+    <!-- SIDEBAR -->
+    <div class="dev-sidebar">
+      <div class="ds-section">Démarrage</div>
+      <a href="#quickstart" class="ds-link active">Démarrage rapide</a>
+      <a href="#base-url" class="ds-link">URL de base</a>
+      <div class="ds-section">Endpoints</div>
+      <a href="#stats" class="ds-link">GET /stats</a>
+      <a href="#works" class="ds-link">GET /works</a>
+      <a href="#works-id" class="ds-link">GET /works/:id</a>
+      <a href="#post-works" class="ds-link">POST /works</a>
+      <a href="#certifications" class="ds-link">GET /certifications</a>
+      <a href="#certifications-id" class="ds-link">GET /certifications/:id</a>
+      <div class="ds-section">Vocabulaire</div>
+      <a href="#markers" class="ds-link">GET /vocabulary/markers</a>
+      <a href="#languages" class="ds-link">GET /vocabulary/languages</a>
+      <a href="#territories" class="ds-link">GET /vocabulary/territories</a>
+      <div class="ds-section">Exemples</div>
+      <a href="#exemples-curl" class="ds-link">cURL</a>
+      <a href="#exemples-js" class="ds-link">JavaScript</a>
+      <a href="#exemples-python" class="ds-link">Python</a>
+      <div class="ds-section">Schéma</div>
+      <a href="#schema" class="ds-link">Schéma CMS JSON</a>
+      <a href="#corpus-dl" class="ds-link">Corpus download</a>
     </div>
-    <div class="divider"></div>
-    <div class="endpoint-grid">
-      <a class="endpoint-card" href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json" target="_blank">
-        <span class="method method-get">GET</span>
-        <div class="endpoint-info">
-          <div class="endpoint-url">https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json</div>
-          <div class="endpoint-desc">Schéma JSON officiel — Caribbean Metadata Standard v1.0 (JSON Schema Draft 2020-12)</div>
+
+    <!-- CONTENU -->
+    <div class="dev-content">
+
+      <!-- QUICKSTART -->
+      <div class="doc-section" id="quickstart">
+        <div class="ds-ey">Démarrage rapide</div>
+        <h2 class="ds-h2">En 30 secondes</h2>
+        <p class="ds-p">Aucune inscription, aucune clé API. Copiez, collez, exécutez.</p>
+        <div class="code-block">
+          <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL</span><button class="cb-copy" onclick="copy(this,'curl https://cms-api.small-disk-3275.workers.dev/api/v2/stats')">Copier</button></div>
+          <div class="cb-body"><pre>curl https://cms-api.small-disk-3275.workers.dev/api/v2/stats</pre></div>
         </div>
-        <span class="endpoint-arrow">↗</span>
-      </a>
-      <a class="endpoint-card" href="https://github.com/heso73/cms-nlp-corpus/tree/main/data" target="_blank">
-        <span class="method method-get">GET</span>
-        <div class="endpoint-info">
-          <div class="endpoint-url">https://github.com/heso73/cms-nlp-corpus/tree/main/data</div>
-          <div class="endpoint-desc">Schéma XSD — Version XML Schema 1.1 pour intégrations XML/XSLT</div>
+        <div class="code-block">
+          <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">RÉPONSE</span></div>
+          <div class="cb-body"><pre>{
+  <span class="ck">"cms_version":</span> <span class="cs">"2.0"</span>,
+  <span class="ck">"works":</span> {
+    <span class="ck">"total":</span> <span class="cn">111</span>,
+    <span class="ck">"languages_covered":</span> <span class="cn">10</span>,
+    <span class="ck">"territories_covered":</span> <span class="cn">16</span>
+  },
+  <span class="ck">"vocabulary":</span> {
+    <span class="ck">"cultural_markers":</span> <span class="cn">27</span>,
+    <span class="ck">"languages":</span> <span class="cn">10</span>,
+    <span class="ck">"territories":</span> <span class="cn">20</span>
+  },
+  <span class="ck">"corpus":</span> {
+    <span class="ck">"records":</span> <span class="cn">110</span>,
+    <span class="ck">"licence":</span> <span class="cs">"CC-BY 4.0"</span>
+  }
+}</pre></div>
         </div>
-        <span class="endpoint-arrow">↗</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- EXEMPLES -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>Exemples par famille</h2>
-    </div>
-    <div class="divider"></div>
-    <div class="examples-grid">
-      <a class="example-card" href="https://caribbeanmetadata.org/examples/audiovisual/" target="_blank">
-        <div class="example-icon">🎬</div>
-        <div class="example-type">Audiovisuel</div>
-        <div class="example-title">Anba Dlo</div>
-        <div class="example-meta">Film · Guadeloupe · 2026</div>
-        <div class="example-score">
-          <div class="score-bar"><div class="score-fill" style="width:88%"></div></div>
-          <span class="score-label">88/100</span>
-        </div>
-      </a>
-      <a class="example-card" href="https://caribbeanmetadata.org/examples/musical/" target="_blank">
-        <div class="example-icon">🎵</div>
-        <div class="example-type">Musical</div>
-        <div class="example-title">Rasin Vivan</div>
-        <div class="example-meta">Album · Gwo-Ka · 2026</div>
-        <div class="example-score">
-          <div class="score-bar"><div class="score-fill" style="width:94%"></div></div>
-          <span class="score-label">94/100</span>
-        </div>
-      </a>
-      <a class="example-card" href="https://caribbeanmetadata.org/examples/literary/" target="_blank">
-        <div class="example-icon">📖</div>
-        <div class="example-type">Littéraire</div>
-        <div class="example-title">La Terre qui Parle</div>
-        <div class="example-meta">Roman · Martinique · 2025</div>
-        <div class="example-score">
-          <div class="score-bar"><div class="score-fill" style="width:90%"></div></div>
-          <span class="score-label">90/100</span>
-        </div>
-      </a>
-      <a class="example-card" href="https://caribbeanmetadata.org/examples/heritage/" target="_blank">
-        <div class="example-icon">🎙️</div>
-        <div class="example-type">Patrimoine</div>
-        <div class="example-title">Kont Matinik</div>
-        <div class="example-meta">Tradition orale · 1987/2026</div>
-        <div class="example-score">
-          <div class="score-bar"><div class="score-fill" style="width:98%"></div></div>
-          <span class="score-label">98/100</span>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <!-- VALIDATION RAPIDE -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>Valider un fichier CMS</h2>
-    </div>
-    <div class="divider"></div>
-    <div class="code-block">
-      <div class="code-header">
-        <span class="code-lang">Python</span>
-        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
-      </div>
-      <pre><span class="token-comment"># pip install jsonschema requests</span>
-<span class="token-key">import</span> requests, jsonschema, json
-
-<span class="token-comment"># 1. Charger le schéma CMS officiel</span>
-schema_url = <span class="token-str">"https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json"</span>
-schema = requests.get(schema_url).json()
-
-<span class="token-comment"># 2. Charger votre fichier œuvre</span>
-with open(<span class="token-str">"mon_oeuvre.json"</span>) as f:
-    oeuvre = json.load(f)
-
-<span class="token-comment"># 3. Valider</span>
-try:
-    jsonschema.validate(instance=oeuvre, schema=schema)
-    print(<span class="token-str">"✅ Fichier conforme au standard CMS v2.0"</span>)
-except jsonschema.ValidationError as e:
-    print(<span class="token-str">f"❌ Erreur : {e.message}"</span>)</pre>
-    </div>
-  </div>
-
-  <!-- NIVEAUX DE CONFORMITE -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      
-      <!-- API PUBLIQUE -->
-      <h2>API publique officielle <span style="font-size:13px;background:rgba(0,194,199,0.12);color:#0e7490;padding:3px 10px;border-radius:20px;font-family:'Space Mono',monospace;font-weight:400;letter-spacing:1px;margin-left:8px">v2.0 LIVE</span></h2>
-      <p>L'API CMS v2.0 est publique, gratuite et connectée en temps réel à Supabase. Aucune clé requise pour les requêtes en lecture. Données réelles : 110 enregistrements corpus, vocabulaire complet v2.0.</p>
-
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:16px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#00C2C7;margin-bottom:8px;letter-spacing:2px">BASE URL — v2.0</div>
-        <div style="font-family:'Space Mono',monospace;font-size:15px;color:#fff;margin-bottom:8px">https://cms-api.small-disk-3275.workers.dev</div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.35)">v1 → redirigée vers v2 · CORS: * · Format: JSON</div>
       </div>
 
-      <!-- ENDPOINTS TABLE -->
-      <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:13px">
-        <thead><tr>
-          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">MÉTHODE + ENDPOINT</th>
-          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">DESCRIPTION</th>
-        </tr></thead>
-        <tbody>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Index — endpoints, version, licence</td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/stats</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Statistiques en temps réel — œuvres, certifications, langues, territoires</td></tr>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/works</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Liste des œuvres — filtres: <code>territory</code>, <code>family</code>, <code>language</code>, <code>status</code>, <code>limit</code>, <code>offset</code></td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/works/:id</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Détail d'une œuvre par UUID — avec créateur</td></tr>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#FF6F61;margin-right:6px">POST</span>/api/v2/works</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Soumettre une œuvre pour enregistrement CMS — body JSON requis</td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/certifications</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Registre public des certifications CMS</td></tr>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/certifications/:cms_id</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">Vérifier une certification par CMS ID — <code>valid</code>, <code>cms_id</code>, <code>work</code>, <code>completeness</code></td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/vocabulary/markers</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">27 marqueurs culturels officiels CMS — id, name, category, territory</td></tr>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/vocabulary/languages</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">10 langues caribéennes ISO 639-3</td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/vocabulary/territories</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">20 territoires caribéens</td></tr>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;color:#00C2C7;border-bottom:1px solid rgba(0,62,107,0.06)"><span style="color:#3FA66B;margin-right:6px">GET</span>/api/v2/vocabulary/domains</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06)">14 domaines culturels</td></tr>
-        </tbody>
-      </table>
+      <!-- BASE URL -->
+      <div class="doc-section" id="base-url">
+        <div class="ds-ey">Configuration</div>
+        <h2 class="ds-h2">URL de base & Headers</h2>
+        <div style="background:var(--wh);border-radius:var(--rmd);padding:20px 24px;box-shadow:var(--sh);margin-bottom:16px">
+          <table style="width:100%;font-size:13px;border-collapse:collapse">
+            <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd);width:160px">Base URL</td><td style="font-family:var(--fm);font-size:12px;color:var(--tq)">https://cms-api.small-disk-3275.workers.dev</td></tr>
+            <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd)">Préfixe API</td><td style="font-family:var(--fm);font-size:12px">/api/v2</td></tr>
+            <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd)">Format</td><td style="font-size:13px">JSON · UTF-8</td></tr>
+            <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd)">CORS</td><td style="font-size:13px">Access-Control-Allow-Origin: *</td></tr>
+            <tr><td style="padding:10px 0;font-weight:600;color:var(--bd)">Auth GET</td><td style="font-size:13px;color:#3fa66b">Aucune — accès libre</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ENDPOINTS -->
+      <div class="doc-section" id="stats">
+        <div class="ds-ey">Endpoints</div>
+        <h2 class="ds-h2">Tous les endpoints v2.0</h2>
+        <table class="ep-table">
+          <thead><tr><th>MÉTHODE</th><th>ENDPOINT</th><th>DESCRIPTION</th></tr></thead>
+          <tbody>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2</td><td class="ep-desc">Index — endpoints, version, licence</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/stats</td><td class="ep-desc">Statistiques temps réel — œuvres, certifications, langues</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/works</td><td class="ep-desc">Liste des œuvres — filtres: territory, family, language, status, limit, offset</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/works/:id</td><td class="ep-desc">Détail d'une œuvre par UUID</td></tr>
+            <tr><td><span class="ep-method post">POST</span></td><td class="ep-path">/api/v2/works</td><td class="ep-desc">Soumettre une œuvre — body JSON</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/certifications</td><td class="ep-desc">Registre public des certifications CMS</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/certifications/:cms_id</td><td class="ep-desc">Vérifier une certification par CMS-ID</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/vocabulary/markers</td><td class="ep-desc">27 marqueurs culturels officiels CMS</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/vocabulary/languages</td><td class="ep-desc">10 langues caribéennes ISO 639-3</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/vocabulary/territories</td><td class="ep-desc">20 territoires caribéens</td></tr>
+            <tr><td><span class="ep-method get">GET</span></td><td class="ep-path">/api/v2/vocabulary/domains</td><td class="ep-desc">14 domaines culturels</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TESTEUR INTERACTIF -->
+      <div class="doc-section" id="works">
+        <div class="ds-ey">Test interactif</div>
+        <h2 class="ds-h2">Essayez l'API en direct</h2>
+        <p class="ds-p">Modifiez l'URL et cliquez sur Envoyer pour tester directement depuis cette page.</p>
+        <div class="api-tester">
+          <div class="at-header">
+            <span class="at-method">GET</span>
+            <input class="at-url-in" id="api-test-url" value="https://cms-api.small-disk-3275.workers.dev/api/v2/stats">
+            <button class="at-btn" onclick="testAPI()">Envoyer →</button>
+          </div>
+          <div class="at-response" id="api-response">Cliquez sur Envoyer pour tester l'API en direct.</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
+          <button class="cb-copy" style="padding:6px 14px;font-size:11px" onclick="setUrl('/api/v2/stats')">/stats</button>
+          <button class="cb-copy" style="padding:6px 14px;font-size:11px" onclick="setUrl('/api/v2/works?limit=5')">/works?limit=5</button>
+          <button class="cb-copy" style="padding:6px 14px;font-size:11px" onclick="setUrl('/api/v2/works?territory=Guadeloupe')">/works?territory=Guadeloupe</button>
+          <button class="cb-copy" style="padding:6px 14px;font-size:11px" onclick="setUrl('/api/v2/vocabulary/markers')">/vocabulary/markers</button>
+          <button class="cb-copy" style="padding:6px 14px;font-size:11px" onclick="setUrl('/api/v2/vocabulary/languages')">/vocabulary/languages</button>
+        </div>
+      </div>
 
       <!-- EXEMPLES -->
-      <h3 style="font-size:16px;color:#003E6B;margin:24px 0 12px">Exemples de requêtes</h3>
+      <div class="doc-section" id="exemples-curl">
+        <div class="ds-ey">Exemples de code</div>
+        <h2 class="ds-h2">Intégrer l'API</h2>
+        <div class="tabs" id="code-tabs">
+          <button class="tab-btn active" onclick="switchTab('curl')">cURL</button>
+          <button class="tab-btn" onclick="switchTab('js')">JavaScript</button>
+          <button class="tab-btn" onclick="switchTab('python')">Python</button>
+        </div>
 
-      <!-- cURL -->
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFC93C;margin-bottom:12px;letter-spacing:2px">CURL — Stats en temps réel</div>
-        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">curl https://cms-api.small-disk-3275.workers.dev/api/v2/stats</pre>
-      </div>
-
-      <!-- cURL works -->
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFC93C;margin-bottom:12px;letter-spacing:2px">CURL — Œuvres par territoire</div>
-        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">curl "https://cms-api.small-disk-3275.workers.dev/api/v2/works?territory=Guadeloupe&limit=10"</pre>
-      </div>
-
-      <!-- JavaScript -->
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFC93C;margin-bottom:12px;letter-spacing:2px">JAVASCRIPT — Vérifier une certification</div>
-        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">const res = await fetch(
-  'https://cms-api.small-disk-3275.workers.dev/api/v2/certifications/CMS-GUA-2026-XXXXXXXX'
-);
-const cert = await res.json();
-console.log(cert.valid, cert.work.title);</pre>
-      </div>
-
-      <!-- Python -->
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFC93C;margin-bottom:12px;letter-spacing:2px">PYTHON — Lister les marqueurs</div>
-        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">import requests
-r = requests.get('https://cms-api.small-disk-3275.workers.dev/api/v2/vocabulary/markers')
-markers = r.json()['markers']
-for m in markers:
-    print(m['id'], '-', m['name'], '(', m['category'], ')')</pre>
-      </div>
-
-      <!-- POST works -->
-      <div style="background:#001830;border-radius:8px;padding:20px;margin:12px 0">
-        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FF6F61;margin-bottom:12px;letter-spacing:2px">POST — Soumettre une œuvre</div>
-        <pre style="font-family:'Space Mono',monospace;font-size:12px;color:#e8e4d0;white-space:pre-wrap;margin:0">curl -X POST https://cms-api.small-disk-3275.workers.dev/api/v2/works \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Gwo Ka — Tambours de Guadeloupe",
+        <div class="tab-content active" id="tab-curl">
+          <div class="code-block" style="border-radius:0 var(--rmd) var(--rmd) var(--rmd)">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL — Œuvres par territoire</span></div>
+            <div class="cb-body"><pre>curl "https://cms-api.small-disk-3275.workers.dev/api/v2/works?territory=Guadeloupe&limit=10"</pre></div>
+          </div>
+          <div class="code-block">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL — Vérifier une certification</span></div>
+            <div class="cb-body"><pre>curl "https://cms-api.small-disk-3275.workers.dev/api/v2/certifications/CMS-GUA-2026-XXXXXXXX"</pre></div>
+          </div>
+          <div class="code-block">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL — Soumettre une œuvre (POST)</span></div>
+            <div class="cb-body"><pre>curl -X POST https://cms-api.small-disk-3275.workers.dev/api/v2/works \
+  -H <span class="cs">"Content-Type: application/json"</span> \
+  -d <span class="cs">'{
+    "title": "Tambou a nou",
     "territory": "Guadeloupe",
     "languages": ["gcf"],
-    "family": "musical",
-    "year": 2026,
-    "description": "Documentaire sur la pratique du Gwo Ka..."
-  }'</pre>
+    "family": "music",
+    "year": 2026
+  }'</span></pre></div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-js">
+          <div class="code-block" style="border-radius:0 var(--rmd) var(--rmd) var(--rmd)">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">JAVASCRIPT — Fetch stats</span></div>
+            <div class="cb-body"><pre><span class="cm">// Récupérer les statistiques CMS en temps réel</span>
+const res = await fetch(
+  <span class="cs">'https://cms-api.small-disk-3275.workers.dev/api/v2/stats'</span>
+);
+const stats = await res.json();
+console.log(<span class="cs">`${stats.works.total} œuvres · ${stats.vocabulary.cultural_markers} marqueurs`</span>);</pre></div>
+          </div>
+          <div class="code-block">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">JAVASCRIPT — Filtrer par territoire et langue</span></div>
+            <div class="cb-body"><pre>const params = new URLSearchParams({
+  territory: <span class="cs">'Guadeloupe'</span>,
+  language: <span class="cs">'gcf'</span>,
+  limit: <span class="cn">20</span>
+});
+const res = await fetch(
+  <span class="cs">`https://cms-api.small-disk-3275.workers.dev/api/v2/works?${params}`</span>
+);
+const { data } = await res.json();
+data.forEach(work => console.log(work.title, work.territory));</pre></div>
+          </div>
+          <div class="code-block">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">JAVASCRIPT — Vérifier une certification</span></div>
+            <div class="cb-body"><pre>const cmsId = <span class="cs">'CMS-GUA-2026-XXXXXXXX'</span>;
+const res = await fetch(
+  <span class="cs">`https://cms-api.small-disk-3275.workers.dev/api/v2/certifications/${cmsId}`</span>
+);
+const cert = await res.json();
+if (cert.valid) {
+  console.log(<span class="cs">`✓ ${cert.work.title} — ${cert.work.territory}`</span>);
+}</pre></div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-python">
+          <div class="code-block" style="border-radius:0 var(--rmd) var(--rmd) var(--rmd)">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">PYTHON — Lister les marqueurs culturels</span></div>
+            <div class="cb-body"><pre>import requests
+
+<span class="cm"># Récupérer tous les marqueurs CMS officiels</span>
+r = requests.get(
+  <span class="cs">'https://cms-api.small-disk-3275.workers.dev/api/v2/vocabulary/markers'</span>
+)
+markers = r.json()[<span class="cs">'markers'</span>]
+for m in markers:
+    print(f<span class="cs">"{m['id']} — {m['name']} ({m['category']})"</span>)</pre></div>
+          </div>
+          <div class="code-block">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">PYTHON — Valider un fichier CMS</span></div>
+            <div class="cb-body"><pre>import requests, jsonschema, json
+
+<span class="cm"># Charger le schéma CMS officiel</span>
+schema_url = <span class="cs">"https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json"</span>
+schema = requests.get(schema_url).json()
+
+<span class="cm"># Valider votre fichier œuvre</span>
+with open(<span class="cs">"mon_oeuvre.json"</span>) as f:
+    oeuvre = json.load(f)
+
+try:
+    jsonschema.validate(instance=oeuvre, schema=schema)
+    print(<span class="cs">"✅ Fichier conforme au standard CMS v2.0"</span>)
+except jsonschema.ValidationError as e:
+    print(f<span class="cs">"❌ Erreur : {e.message}"</span>)</pre></div>
+          </div>
+          <div class="code-block">
+            <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">PYTHON — Filtrer le corpus par langue</span></div>
+            <div class="cb-body"><pre>import requests, pandas as pd
+
+r = requests.get(
+  <span class="cs">'https://cms-api.small-disk-3275.workers.dev/api/v2/works'</span>,
+  params={<span class="cs">'language'</span>: <span class="cs">'gcf'</span>, <span class="cs">'limit'</span>: <span class="cn">100</span>}
+)
+works = r.json()[<span class="cs">'data'</span>]
+df = pd.DataFrame(works)
+print(df[[<span class="cs">'title'</span>, <span class="cs">'territory'</span>, <span class="cs">'family'</span>]])</pre></div>
+          </div>
+        </div>
       </div>
 
-      <!-- Niveaux conformité -->
-      <h3 style="font-size:16px;color:#003E6B;margin:24px 0 12px">Niveaux de conformité CMS</h3>
-      <p style="font-size:14px;color:#555;margin-bottom:16px">La complétude d'une fiche CMS se mesure par le nombre de familles de métadonnées renseignées sur 6.</p>
-      <table style="width:100%;border-collapse:collapse;margin:0 0 16px;font-size:13px">
-        <thead><tr>
-          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">FAMILLES</th>
-          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">NIVEAU</th>
-          <th style="text-align:left;padding:10px 14px;font-size:10px;letter-spacing:2px;color:#888;border-bottom:2px solid rgba(0,62,107,0.1);font-family:'Space Mono',monospace">DESCRIPTION</th>
-        </tr></thead>
-        <tbody>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;border-bottom:1px solid rgba(0,62,107,0.06)">1–2 / 6</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-weight:600;color:#003E6B">Partielle</td><td style="padding:10px 14px;font-size:12px;color:#555;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche démarrée — langue ou territoire identifié</td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;border-bottom:1px solid rgba(0,62,107,0.06)">3–4 / 6</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-weight:600;color:#003E6B">Avancée</td><td style="padding:10px 14px;font-size:12px;color:#555;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche substantielle — langue + territoire + marqueurs documentés</td></tr>
-          <tr><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;border-bottom:1px solid rgba(0,62,107,0.06)">5–6 / 6</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-weight:600;color:#00C2C7">Complète</td><td style="padding:10px 14px;font-size:12px;color:#555;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche CMS complète — toutes les dimensions caribéennes documentées</td></tr>
-          <tr style="background:#fafbfc"><td style="padding:10px 14px;font-family:'Space Mono',monospace;font-size:12px;border-bottom:1px solid rgba(0,62,107,0.06)">6 / 6</td><td style="padding:10px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-weight:600;color:#0e7490">Exhaustive</td><td style="padding:10px 14px;font-size:12px;color:#555;border-bottom:1px solid rgba(0,62,107,0.06)">Fiche de référence — standard maximal CMS v2.0</td></tr>
-        </tbody>
-      </table>
+      <!-- SCHÉMA -->
+      <div class="doc-section" id="schema">
+        <div class="ds-ey">Schéma officiel</div>
+        <h2 class="ds-h2">Schéma CMS JSON</h2>
+        <p class="ds-p">Le schéma JSON officiel du CMS v2.0 est public, téléchargeable et citable sous CC-BY 4.0.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+          <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json" target="_blank" class="btn-p" style="font-size:12px;padding:10px 20px">↗ Schéma JSON v2.0</a>
+          <a href="https://cms-api.small-disk-3275.workers.dev/api/v2" target="_blank" class="btn-o" style="border-color:rgba(0,0,0,.12);color:var(--bd);font-size:12px;padding:9px 18px">API Index /api/v2</a>
+        </div>
+      </div>
 
-    <a href="collaborate.html" class="btn btn-primary">Devenir partenaire</a>
-    <a href="contact.html" class="btn btn-outline">Nous contacter</a>
+      <!-- CORPUS DOWNLOAD -->
+      <div class="doc-section" id="corpus-dl">
+        <div class="ds-ey">Corpus Open Data</div>
+        <h2 class="ds-h2">Télécharger le corpus</h2>
+        <p class="ds-p">Corpus fondateur CMS v2.0 — 110 enregistrements JSONL validés. CC-BY 4.0. Citable et intégrable librement.</p>
+        <div style="background:var(--bd);border-radius:var(--rmd);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <div>
+            <div style="font-family:var(--fm);font-size:11px;color:var(--tq);letter-spacing:1px;margin-bottom:4px">CORPUS CMS v2.0 · JSONL · CC-BY 4.0</div>
+            <div style="font-family:var(--fm);font-size:11px;color:rgba(255,255,255,.4)">110 enregistrements · 10 langues · 27 marqueurs</div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_v2_unified.jsonl" target="_blank" class="btn-p" style="font-size:12px;padding:10px 18px">↓ JSONL</a>
+            <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" style="padding:10px 18px;background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);border-radius:var(--rsm);font-size:12px;text-decoration:none;transition:all .2s">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dev-content -->
+  </div><!-- /dev-layout -->
+</div>
+
+<section class="cta-sec">
+  <div class="cta-glow"></div>
+  <div class="cta-in">
+    <h2 class="cta-h">Prêt à intégrer<br>le standard caribéen ?</h2>
+    <p class="cta-p">L'API est opérationnelle. Le corpus est téléchargeable. Le schéma est public. Il ne reste qu'à coder.</p>
+    <div class="cta-btns">
+      <a href="https://cms-api.small-disk-3275.workers.dev/api/v2" target="_blank" class="btn-p">Tester l'API →</a>
+      <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" class="btn-o">↗ GitHub corpus</a>
+      <a href="contact.html" class="btn-o">Nous contacter</a>
+    </div>
   </div>
+</section>
 
-</main>
-
-<footer><!-- nav-fix.js --></footer>
+<footer class="cms-footer">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div><a href="/" class="foot-logo">CMS<span>.</span></a><p class="foot-desc">Caribbean Metadata Standard — Caribwood Language Lab, Guadeloupe.</p></div>
+      <div class="foot-col"><h4>Le Standard</h4><ul><li><a href="about.html">À propos</a></li><li><a href="families.html">6 familles</a></li><li><a href="spec.html">Spécification</a></li><li><a href="equity.html">Équité</a></li></ul></div>
+      <div class="foot-col"><h4>Outils</h4><ul><li><a href="submit.html">Soumettre</a></li><li><a href="cms-builder.html">CMS Builder</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="glossaire.html">Glossaire</a></li></ul></div>
+      <div class="foot-col"><h4>Écosystème</h4><ul><li><a href="collaborate.html">Partenaires</a></li><li><a href="roadmap.html">Roadmap</a></li><li><a href="https://github.com/heso73/cms-nlp-corpus" target="_blank">↗ GitHub</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="foot-bot"><span>caribbeanmetadata.org · CMS v2.0 · Caribwood Language Lab</span><span>CC-BY 4.0</span></div>
+  </div>
+</footer>
 
 <script>
-  function copyCode(btn) {
-    const pre = btn.closest('.code-block').querySelector('pre');
-    navigator.clipboard.writeText(pre.innerText);
-    btn.textContent = 'Copié !';
-    btn.style.color = 'var(--accent)';
-    setTimeout(() => { btn.textContent = 'Copier'; btn.style.color = ''; }, 2000);
-  }
-</script>
+const BASE = 'https://cms-api.small-disk-3275.workers.dev';
 
+function setUrl(path) {
+  document.getElementById('api-test-url').value = BASE + path;
+}
+
+async function testAPI() {
+  const url = document.getElementById('api-test-url').value;
+  const resp = document.getElementById('api-response');
+  resp.textContent = 'Envoi de la requête...';
+  try {
+    const r = await fetch(url);
+    const json = await r.json();
+    resp.textContent = JSON.stringify(json, null, 2);
+  } catch(e) {
+    resp.textContent = '❌ Erreur : ' + e.message;
+  }
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+function copy(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copié ✓';
+    setTimeout(() => btn.textContent = 'Copier', 2000);
+  });
+}
+
+// Sidebar scroll spy
+const sections = document.querySelectorAll('.doc-section');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  document.querySelectorAll('.ds-link').forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+});
+</script>
 <script src="nav-fix.js"></script>
 </body>
 </html>
