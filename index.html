@@ -1,748 +1,722 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="canonical" href="https://caribbeanmetadata.org/" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://caribbeanmetadata.org/" />
   <title>Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne</title>
-  <meta name="description" content="Le premier standard ouvert de métadonnées pour les contenus culturels caribéens. 27 marqueurs culturels, 10 langues ISO, 20 territoires. API publique. CC-BY 4.0.">
+  <meta name="description" content="Le premier standard ouvert de métadonnées pour les contenus culturels caribéens. 27 marqueurs, 10 langues ISO, 20 territoires. API publique. CC-BY 4.0.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --dark:#05111F;
-  --navy:#003E6B;
-  --teal:#00C2C7;
-  --teal2:#00A8AE;
-  --gold:#FFC93C;
-  --coral:#FF6F61;
-  --green:#3FA66B;
-  --white:#fff;
-  --muted:#888;
-  --border:rgba(0,62,107,0.1);
+  --bd:#0b1e30;
+  --bc:#0f6fa6;
+  --tq:#00b7c7;
+  --tq2:#009aaa;
+  --gl:#f3f5f7;
+  --gm:#9aa3b1;
+  --tx:#1f2933;
+  --wh:#ffffff;
+  --rsm:6px;
+  --rmd:12px;
+  --rlg:20px;
+  --sh:0 8px 24px rgba(0,0,0,0.07);
+  --sh2:0 16px 48px rgba(0,0,0,0.1);
+  --f:'DM Sans',system-ui,sans-serif;
+  --fm:'DM Mono',monospace;
+  --fd:'DM Serif Display',Georgia,serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6;overflow-x:hidden}
+body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow-x:hidden}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.07);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:20px;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:2px;font-family:'DM Mono',monospace}
-.nav-logo span{color:var(--teal)}
-.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
-.nav-links a{font-size:13px;color:#444;text-decoration:none;transition:color .2s;font-weight:400}
-.nav-links a:hover{color:var(--navy)}
-.nav-cta{padding:8px 18px;background:var(--teal);color:var(--dark) !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:.5px;transition:background .2s}
-.nav-cta:hover{background:var(--teal2) !important}
-.nav-lang{display:flex;align-items:center;gap:4px;margin-left:16px}
-.nav-lang button{background:none;border:none;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:1px;color:#bbb;padding:3px 7px;border-radius:3px;transition:all .2s;font-family:inherit}
-.nav-lang button:hover,.nav-lang button.active{color:var(--navy);background:rgba(0,62,107,0.08)}
+.cms-header{background:var(--wh);box-shadow:var(--sh);position:sticky;top:0;z-index:1000}
+.cms-nav{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:var(--fm);font-size:18px;font-weight:500;color:var(--bd);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--tq)}
+.nav-links{list-style:none;display:flex;gap:.25rem;margin:0;padding:0}
+.nav-links a{text-decoration:none;color:var(--tx);font-size:13px;padding:.35rem .7rem;border-radius:var(--rsm);transition:all .2s}
+.nav-links a:hover{background:var(--gl);color:var(--bd)}
+.cta-nav{background:var(--tq) !important;color:var(--bd) !important;font-weight:600 !important}
+.cta-nav:hover{background:var(--tq2) !important}
+.lang-sw{display:flex;gap:4px}
+.lang-sw button{border:1px solid var(--gm);background:var(--wh);color:var(--tx);padding:.25rem .6rem;border-radius:var(--rsm);font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:var(--f);transition:all .2s}
+.lang-sw button:hover,.lang-sw button.active{border-color:var(--bc);color:var(--bd);background:rgba(15,111,166,.06)}
 
 /* ── HERO ── */
-.hero{min-height:100vh;background:var(--dark);position:relative;overflow:hidden;display:flex;align-items:center;padding:100px 6% 60px}
+.hero{background:linear-gradient(135deg,#0b1e30 0%,#0f3d6b 50%,#0f6fa6 100%);padding:80px 6% 70px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,0.025) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,0.015) 48px)}
+.hero-glow{position:absolute;top:-100px;right:0;width:500px;height:500px;background:radial-gradient(ellipse,rgba(0,183,199,.15) 0%,transparent 65%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-tag{font-family:var(--fm);font-size:10px;letter-spacing:4px;color:var(--tq);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.hero-tag::before{content:'';display:block;width:28px;height:1px;background:var(--tq)}
+.hero h1{font-family:var(--fd);font-size:clamp(38px,5.5vw,68px);color:#fff;line-height:1.02;margin-bottom:16px;letter-spacing:-1px}
+.hero h1 em{font-style:italic;color:var(--tq)}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.6);line-height:1.8;max-width:500px;margin-bottom:28px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
+.btn-p{padding:13px 28px;background:var(--tq);color:var(--bd);border:none;border-radius:var(--rsm);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--f);transition:background .2s;text-decoration:none;display:inline-block}
+.btn-p:hover{background:var(--tq2)}
+.btn-o{padding:12px 24px;background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.25);border-radius:var(--rsm);font-size:14px;cursor:pointer;font-family:var(--f);transition:all .2s;text-decoration:none;display:inline-block}
+.btn-o:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.05)}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+.hpill{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:4px 12px;letter-spacing:1px}
+.hpill strong{color:rgba(255,255,255,.7)}
 
-/* Grille de fond */
-.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(0,194,199,0.04) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(0,194,199,0.025) 48px)}
-
-/* Halos lumineux */
-.hero-glow-1{position:absolute;top:-120px;right:10%;width:600px;height:600px;background:radial-gradient(ellipse at center,rgba(0,194,199,0.12) 0%,transparent 65%);pointer-events:none}
-.hero-glow-2{position:absolute;bottom:-80px;left:5%;width:400px;height:400px;background:radial-gradient(ellipse at center,rgba(0,62,107,0.18) 0%,transparent 65%);pointer-events:none}
-.hero-glow-3{position:absolute;top:30%;right:5%;width:300px;height:300px;background:radial-gradient(ellipse at center,rgba(255,201,60,0.06) 0%,transparent 65%);pointer-events:none}
-
-.hero-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 480px;gap:48px;align-items:center}
-
-/* Texte hero */
-.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--teal);margin-bottom:20px;display:flex;align-items:center;gap:12px}
-.hero-eyebrow::before{content:'';display:block;width:36px;height:1px;background:var(--teal)}
-.hero-h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(40px,6vw,72px);color:#fff;line-height:1.02;margin-bottom:20px;letter-spacing:-1.5px}
-.hero-h1 em{font-style:italic;color:var(--teal)}
-.hero-sub{font-size:17px;color:rgba(255,255,255,0.55);max-width:520px;line-height:1.85;margin-bottom:36px}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px}
-.btn-hero-primary{padding:14px 32px;background:var(--teal);color:var(--dark);font-weight:700;font-size:14px;border:none;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;letter-spacing:.3px}
-.btn-hero-primary:hover{background:var(--teal2)}
-.btn-hero-outline{padding:14px 28px;background:transparent;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);font-size:14px;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-hero-outline:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.04)}
-.btn-hero-ghost{padding:14px 20px;background:transparent;border:none;color:rgba(255,255,255,0.35);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px}
-
-/* Mini-stats sous les boutons */
-.hero-pills{display:flex;flex-wrap:wrap;gap:10px}
-.hero-pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);padding:5px 12px;border:1px solid rgba(255,255,255,0.08);border-radius:20px}
-.hero-pill strong{color:rgba(255,255,255,0.7)}
-
-/* ── CARTE CARAÏBE ── */
+/* ── CARTE SVG ── */
 .hero-map{position:relative}
-.map-container{position:relative;width:100%;aspect-ratio:1/0.85}
-.map-svg{width:100%;height:100%}
+.hero-map svg{width:100%;filter:drop-shadow(0 0 20px rgba(0,183,199,.15))}
 
-/* ── BARRE DE STATS ── */
-.stats-strip{background:rgba(0,20,40,0.95);border-top:1px solid rgba(0,194,199,0.12);border-bottom:1px solid rgba(0,194,199,0.08)}
-.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
-.stat-col{padding:20px 0;text-align:center;border-right:1px solid rgba(255,255,255,0.05)}
-.stat-col:last-child{border-right:none}
-.stat-n{font-family:'DM Serif Display',Georgia,serif;font-size:32px;color:var(--teal);line-height:1}
-.stat-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.35);margin-top:4px}
+/* ── STATS BAR ── */
+.stats-bar{background:#0a1929;border-bottom:1px solid rgba(0,183,199,.1)}
+.stats-bar-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.sb-col{padding:18px 0;text-align:center;border-right:1px solid rgba(255,255,255,.04)}
+.sb-col:last-child{border-right:none}
+.sb-n{font-family:var(--fd);font-size:30px;color:var(--tq);line-height:1}
+.sb-l{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.3);margin-top:4px}
 
-/* ── SECTIONS COMMUNES ── */
-.section{padding:80px 6%}
-.section-alt{background:#f7f9fb}
-.sec-inner{max-width:1200px;margin:0 auto}
-.s-ey{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.s-ey::before{content:'';display:block;width:24px;height:1px;background:var(--teal)}
-.s-title{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(26px,3.5vw,42px);color:var(--navy);margin-bottom:12px;letter-spacing:-.5px;line-height:1.15}
-.s-sub{font-size:16px;color:#555;max-width:580px;line-height:1.8;margin-bottom:48px}
+/* ── SECTIONS ── */
+.sec{padding:72px 6%}
+.sec-a{background:var(--wh)}
+.sec-b{background:var(--gl)}
+.sec-c{background:linear-gradient(135deg,var(--tq) 0%,var(--bc) 100%);color:#fff}
+.sec-in{max-width:1200px;margin:0 auto}
+.sec-head{text-align:center;margin-bottom:48px}
+.sec-ey{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.sec-ey::before,.sec-ey::after{content:'';display:block;width:20px;height:1px;background:var(--tq)}
+.sec-ey-wh{color:#fff}
+.sec-ey-wh::before,.sec-ey-wh::after{background:#fff}
+.sec-h2{font-family:var(--fd);font-size:clamp(24px,3vw,38px);color:var(--bd);margin-bottom:10px;letter-spacing:-.5px}
+.sec-h2-wh{color:#fff}
+.sec-p{font-size:15px;color:#666;max-width:560px;margin:0 auto;line-height:1.8}
+.sec-p-wh{color:rgba(255,255,255,.75)}
 
-/* ── POURQUOI ── */
+/* ── POURQUOI GRID ── */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.why-card{border:1px solid var(--border);border-radius:12px;padding:28px;background:#fff;transition:box-shadow .2s}
-.why-card:hover{box-shadow:0 8px 32px rgba(0,62,107,0.08)}
-.wc-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px}
-.wc-title{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:8px}
-.wc-body{font-size:14px;color:#666;line-height:1.75}
+.why-card{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:28px;transition:all .25s}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.wc-ico{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:24px}
+.wc-h{font-size:16px;font-weight:600;color:var(--bd);margin-bottom:8px}
+.wc-p{font-size:14px;color:#666;line-height:1.75}
 
-/* ── FAMILLES ── */
-.fam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.fam-card{border-radius:10px;padding:24px;border:1px solid var(--border);background:#fff;transition:all .2s;cursor:default}
-.fam-card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,194,199,0.08)}
-.fc-bar{height:3px;border-radius:2px;margin-bottom:16px}
-.fc-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:6px}
-.fc-name{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px}
-.fc-desc{font-size:13px;color:#666;line-height:1.65;margin-bottom:12px}
-.fc-tags{display:flex;flex-wrap:wrap;gap:5px}
-.fc-tag{font-size:10px;padding:3px 8px;border-radius:10px;background:#f0f4f8;color:#555;font-family:'DM Mono',monospace}
+/* ── 6 FAMILLES ── */
+.fam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.fam-card{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:28px 24px;text-align:center;transition:all .25s;cursor:default;position:relative;overflow:hidden}
+.fam-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.fam-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.fam-ico{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px}
+.fam-num{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--gm);margin-bottom:6px}
+.fam-h{font-size:17px;font-weight:600;color:var(--bd);margin-bottom:8px}
+.fam-p{font-size:13px;color:#666;line-height:1.65;margin-bottom:12px}
+.fam-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.ftag{font-size:10px;font-family:var(--fm);padding:3px 9px;border-radius:20px;background:var(--gl);color:#555}
+.fam-btn{display:inline-block;margin-top:14px;padding:8px 20px;background:var(--bc);color:#fff;border-radius:var(--rsm);font-size:12px;font-weight:600;text-decoration:none;transition:background .2s}
+.fam-btn:hover{background:var(--bd)}
+
+/* ── DIAGRAMME SVG FAMILLES ── */
+.diagram-wrap{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:32px;margin-top:8px}
+.diagram-title{text-align:center;font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--gm);margin-bottom:24px}
 
 /* ── CMS BUILDER ── */
 .builder-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.builder-feats{display:flex;flex-direction:column;gap:20px}
-.bf-row{display:flex;gap:16px;align-items:flex-start}
-.bf-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
-.bf-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:4px}
-.bf-body{font-size:13px;color:#666;line-height:1.7}
+.bl-feats{display:flex;flex-direction:column;gap:18px}
+.bl-item{display:flex;gap:14px;align-items:flex-start}
+.bl-ico{width:44px;height:44px;border-radius:var(--rsm);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.bl-h{font-size:15px;font-weight:600;color:var(--bd);margin-bottom:4px}
+.bl-p{font-size:13px;color:#666;line-height:1.7}
+.bl-btns{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.btn-bd{padding:12px 24px;background:var(--bd);color:#fff;border:none;border-radius:var(--rsm);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:background .2s}
+.btn-bd:hover{background:#0a2840}
+.btn-gl{padding:12px 20px;background:transparent;border:1px solid rgba(11,28,48,.15);color:var(--bd);border-radius:var(--rsm);font-size:13px;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-gl:hover{border-color:var(--bc);color:var(--bc)}
 
-/* Mockup IVA */
-.iva-mock{border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 48px rgba(0,62,107,0.1)}
-.iva-bar{background:var(--dark);padding:10px 16px;display:flex;align-items:center;gap:8px}
+/* ── MOCKUP IVA ── */
+.iva-mock{border-radius:var(--rmd);overflow:hidden;border:1px solid rgba(0,0,0,.08);box-shadow:var(--sh2)}
+.iva-topbar{background:#0b1e30;padding:10px 16px;display:flex;align-items:center;gap:7px}
 .iva-dot{width:8px;height:8px;border-radius:50%}
-.iva-title-bar{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);margin-left:8px;letter-spacing:1px}
+.iva-label{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.3);margin-left:8px;letter-spacing:1px}
 .iva-body{padding:20px;background:#fff}
-.iva-score-row{display:flex;align-items:center;gap:16px;background:#f7f9fb;border-radius:10px;padding:14px 16px;margin-bottom:16px}
-.iva-num{font-family:'DM Serif Display',Georgia,serif;font-size:42px;color:var(--navy);line-height:1}
-.iva-denom{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted)}
-.iva-pill{font-family:'DM Mono',monospace;font-size:10px;padding:4px 12px;background:#E1F5EE;color:#0F6E56;border-radius:20px;font-weight:500;letter-spacing:.5px}
-.iva-sub-lbl{font-size:11px;color:var(--muted);margin-top:4px;font-family:'DM Mono',monospace}
-.iva-bar-row{margin-bottom:8px}
-.iva-bar-head{display:flex;justify-content:space-between;font-size:11px;color:#666;margin-bottom:4px;font-family:'DM Mono',monospace}
-.iva-track{height:5px;background:#f0f4f8;border-radius:3px;overflow:hidden}
-.iva-fill{height:100%;border-radius:3px;transition:width 1s ease}
-.iva-tip{margin-top:12px;background:#f0fdf4;border-left:3px solid var(--teal);padding:10px 14px;border-radius:0 6px 6px 0;font-size:12px;color:#555;line-height:1.65}
+.iva-score{display:flex;align-items:center;gap:16px;background:var(--gl);border-radius:var(--rsm);padding:14px 16px;margin-bottom:16px}
+.iva-num{font-family:var(--fd);font-size:44px;color:var(--bd);line-height:1}
+.iva-den{font-family:var(--fm);font-size:14px;color:var(--gm)}
+.iva-badge{font-family:var(--fm);font-size:10px;padding:4px 12px;background:#dcfce7;color:#166534;border-radius:20px;font-weight:500;letter-spacing:.5px}
+.iva-sub{font-size:11px;color:var(--gm);margin-top:4px;font-family:var(--fm)}
+.ibar{margin-bottom:9px}
+.ibar-h{display:flex;justify-content:space-between;font-size:11px;color:#666;margin-bottom:3px;font-family:var(--fm)}
+.ibar-t{height:6px;background:var(--gl);border-radius:3px;overflow:hidden}
+.ibar-f{height:100%;border-radius:3px}
+.iva-tip{margin-top:14px;background:#f0fdf4;border-left:3px solid var(--tq);padding:10px 14px;border-radius:0 6px 6px 0;font-size:12px;color:#444;line-height:1.65}
 
 /* ── CORPUS ── */
 .corpus-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.corpus-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
-.cs-card{border:1px solid var(--border);border-radius:10px;padding:20px;background:#fff;text-align:center}
-.cs-num{font-family:'DM Serif Display',Georgia,serif;font-size:36px;color:var(--navy);line-height:1;margin-bottom:4px}
-.cs-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted)}
-.api-window{background:var(--dark);border-radius:12px;overflow:hidden}
-.api-win-bar{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px}
-.api-win-dot{width:7px;height:7px;border-radius:50%}
-.api-win-url{font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);margin-left:10px}
-.api-win-body{padding:16px}
-.api-line{font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);line-height:1.8}
-.api-key{color:rgba(255,255,255,0.35)}
-.api-val-teal{color:var(--teal)}
-.api-val-gold{color:var(--gold)}
-.api-val-num{color:#a8d8ff}
+.corpus-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cs{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:22px;text-align:center}
+.cs-n{font-family:var(--fd);font-size:38px;color:var(--bd);line-height:1;margin-bottom:4px}
+.cs-l{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--gm)}
+.api-win{background:#0b1e30;border-radius:var(--rmd);overflow:hidden;margin-top:16px}
+.api-top{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:7px}
+.api-url{font-family:var(--fm);font-size:11px;color:var(--tq);margin-left:10px}
+.api-body{padding:20px}
+.al{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,.45);line-height:1.9}
+.ak{color:rgba(255,255,255,.3)}
+.av{color:var(--tq)}
+.an{color:#a8d8ff}
 
 /* ── GOUVERNANCE ── */
-.gouv-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.gs-card{border-radius:12px;padding:24px;border:1px solid var(--border);background:#fff;text-align:center;position:relative;overflow:hidden;transition:box-shadow .2s}
-.gs-card:hover{box-shadow:0 8px 24px rgba(0,62,107,0.08)}
-.gs-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal)}
-.gs-step{font-family:'DM Serif Display',Georgia,serif;font-size:36px;color:var(--teal);opacity:.25;line-height:1;margin-bottom:10px}
-.gs-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px}
-.gs-body{font-size:12px;color:#666;line-height:1.7}
+.gouv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.gc{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:24px;text-align:center;transition:all .25s;position:relative;overflow:hidden}
+.gc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tq),var(--bc))}
+.gc:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
+.gc-ico{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:24px}
+.gc-h{font-size:14px;font-weight:600;color:var(--bd);margin-bottom:6px}
+.gc-p{font-size:12px;color:#666;line-height:1.6}
+
+/* Timeline processus */
+.timeline{display:flex;align-items:center;background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:24px 32px;gap:0}
+.tl-step{flex:1;text-align:center;position:relative}
+.tl-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--tq);font-size:18px;font-weight:700}
+.tl-circle{width:44px;height:44px;border-radius:50%;background:var(--bc);color:#fff;font-family:var(--fm);font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;transition:all .2s}
+.tl-step:hover .tl-circle{background:var(--tq);transform:scale(1.1)}
+.tl-h{font-size:13px;font-weight:600;color:var(--bd);margin-bottom:3px}
+.tl-p{font-size:11px;color:#888;line-height:1.5}
 
 /* ── REJOINDRE ── */
 .join-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.jc{border:1px solid var(--border);border-radius:12px;padding:24px;background:#fff;display:flex;gap:16px;transition:all .2s}
-.jc:hover{border-color:var(--teal);box-shadow:0 6px 20px rgba(0,194,199,0.06)}
-.jc-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
-.jc-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:4px}
-.jc-body{font-size:13px;color:#666;line-height:1.65;margin-bottom:8px}
-.jc-link{font-size:12px;color:var(--navy);font-weight:600;font-family:'DM Mono',monospace;letter-spacing:.5px}
+.jc{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--rmd);padding:24px;display:flex;gap:14px;transition:all .2s}
+.jc:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.jc-ico{width:44px;height:44px;border-radius:var(--rsm);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;background:rgba(255,255,255,.15)}
+.jc-h{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px}
+.jc-p{font-size:12px;color:rgba(255,255,255,.7);line-height:1.65;margin-bottom:8px}
+.jc-l{font-size:12px;color:#fff;font-weight:600;font-family:var(--fm);letter-spacing:.5px}
 
-/* ── CTA FINAL ── */
-.cta-block{background:var(--dark);position:relative;overflow:hidden;padding:96px 6%;text-align:center}
-.cta-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(0,194,199,0.035) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(0,194,199,0.025) 48px)}
-.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(0,194,199,0.1) 0%,transparent 65%);pointer-events:none}
-.cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
-.cta-title{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(28px,4vw,48px);color:#fff;margin-bottom:14px;letter-spacing:-.5px;line-height:1.15}
-.cta-sub{font-size:16px;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:32px}
+/* ── CTA ── */
+.cta-block{background:linear-gradient(135deg,#0b1e30,#0f3d6b);padding:80px 6%;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(0,183,199,.1),transparent 65%);pointer-events:none}
+.cta-in{position:relative;z-index:1;max-width:600px;margin:0 auto}
+.cta-h{font-family:var(--fd);font-size:clamp(26px,4vw,44px);color:#fff;margin-bottom:12px;letter-spacing:-.5px;line-height:1.15}
+.cta-p{font-size:16px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:28px}
 .cta-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
 
 /* ── FOOTER ── */
-footer{background:var(--navy);color:#fff;padding:48px 6% 32px}
-.foot-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.foot-logo{font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:#fff;letter-spacing:2px;display:block;margin-bottom:12px;text-decoration:none}
-.foot-logo span{color:var(--teal)}
-.foot-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75}
-.foot-col h4{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:16px;text-transform:uppercase}
-.foot-col ul{list-style:none}
+.cms-footer{background:var(--bd);color:#fff;padding:48px 6% 28px}
+.foot-in{max-width:1200px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:var(--fm);font-size:20px;color:#fff;letter-spacing:2px;display:block;margin-bottom:12px;text-decoration:none}
+.foot-logo span{color:var(--tq)}
+.foot-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.75}
+.foot-col h4{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--tq);margin-bottom:14px;text-transform:uppercase}
+.foot-col ul{list-style:none;padding:0}
 .foot-col li{margin-bottom:8px}
-.foot-col a{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;transition:color .2s}
+.foot-col a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
 .foot-col a:hover{color:#fff}
-.foot-bot{max-width:1200px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;flex-wrap:wrap;gap:8px}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.3);font-family:var(--fm);flex-wrap:wrap;gap:8px}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:32px}
+  .hero-inner,.builder-layout,.corpus-layout{grid-template-columns:1fr;gap:32px}
   .hero-map{display:none}
-  .builder-layout,.corpus-layout{grid-template-columns:1fr}
-  .gouv-steps{grid-template-columns:repeat(2,1fr)}
-  .foot-grid{grid-template-columns:1fr 1fr}
+  .gouv-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-top{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
   .why-grid,.fam-grid{grid-template-columns:1fr}
   .join-grid{grid-template-columns:1fr}
-  .corpus-stats{grid-template-columns:1fr 1fr}
-  .stats-inner{grid-template-columns:repeat(3,1fr)}
-  .stat-col:nth-child(4),.stat-col:nth-child(5){display:none}
+  .stats-bar-in{grid-template-columns:repeat(3,1fr)}
+  .sb-col:nth-child(4),.sb-col:nth-child(5){display:none}
   .nav-links{display:none}
+  .timeline{flex-direction:column;gap:12px}
+  .tl-step:not(:last-child)::after{content:'↓';right:auto;top:auto;bottom:-14px;left:50%;transform:translateX(-50%)}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="/">CMS<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="about.html">Standard</a></li>
-    <li><a href="families.html">6 Familles</a></li>
-    <li><a href="catalogue.html">Catalogue</a></li>
-    <li><a href="developers.html">API</a></li>
-    <li><a href="equity.html">Équité</a></li>
-    <li><a href="submit.html" class="nav-cta">Soumettre une œuvre</a></li>
-    <li>
-      <div class="nav-lang">
-        <button class="active" onclick="window.location='index.html'">FR</button>
-        <span style="color:rgba(0,62,107,0.2);font-size:11px">|</span>
-        <button onclick="window.location='index-en.html'">EN</button>
-        <span style="color:rgba(0,62,107,0.2);font-size:11px">|</span>
-        <button onclick="window.location='index-es.html'">ES</button>
-      </div>
-    </li>
-  </ul>
-</nav>
+<!-- HEADER -->
+<header class="cms-header">
+  <nav class="cms-nav">
+    <a href="/" class="logo">CMS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Standard</a></li>
+      <li><a href="families.html">6 Familles</a></li>
+      <li><a href="cms-builder.html">CMS Builder</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="developers.html">API</a></li>
+      <li><a href="collaborate.html">Partenariats</a></li>
+      <li><a href="equity.html">Équité</a></li>
+      <li><a href="submit.html" class="cta-nav">Soumettre une œuvre</a></li>
+    </ul>
+    <div class="lang-sw">
+      <button class="active" onclick="location='index.html'">FR</button>
+      <button onclick="location='index-en.html'">EN</button>
+      <button onclick="location='index-es.html'">ES</button>
+    </div>
+  </nav>
+</header>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- HERO                                                    -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="hero-glow-1"></div>
-  <div class="hero-glow-2"></div>
-  <div class="hero-glow-3"></div>
-
+  <div class="hero-glow"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">Standard régional caribéen open source</div>
-      <h1 class="hero-h1">Caribbean<br><em>Metadata</em><br>Standard</h1>
+      <div class="hero-tag">Standard régional caribéen · Open Source · CC-BY 4.0</div>
+      <h1>Caribbean<br><em>Metadata</em><br>Standard</h1>
       <p class="hero-sub">La première infrastructure de métadonnées culturelles caribéennes — pour que les œuvres de la Caraïbe soient reconnues, recommandées et valorisées par les plateformes mondiales.</p>
       <div class="hero-btns">
-        <button class="btn-hero-primary" onclick="window.location='submit.html'">Soumettre une œuvre →</button>
-        <button class="btn-hero-outline" onclick="window.location='about.html'">Explorer le standard</button>
-        <button class="btn-hero-ghost" onclick="window.location='spec.html'">Lire la spec v2.0</button>
+        <a href="submit.html" class="btn-p">Soumettre une œuvre →</a>
+        <a href="about.html" class="btn-o">Explorer le standard</a>
+        <a href="spec.html" class="btn-o" style="border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.5)">Spec v2.0</a>
       </div>
       <div class="hero-pills">
-        <span class="hero-pill"><strong>27</strong> marqueurs culturels</span>
-        <span class="hero-pill"><strong>10</strong> langues ISO 639-3</span>
-        <span class="hero-pill"><strong>20</strong> territoires</span>
-        <span class="hero-pill">CC-BY 4.0</span>
+        <span class="hpill"><strong>27</strong> marqueurs</span>
+        <span class="hpill"><strong>10</strong> langues ISO</span>
+        <span class="hpill"><strong>20</strong> territoires</span>
+        <span class="hpill">API publique</span>
+        <span class="hpill">CC-BY 4.0</span>
       </div>
     </div>
 
-    <!-- CARTE CARAÏBE SVG -->
+    <!-- CARTE CARAÏBE -->
     <div class="hero-map">
-      <svg class="map-svg" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="glo1" cx="50%" cy="40%" r="55%">
-            <stop offset="0%" stop-color="#00C2C7" stop-opacity="0.15"/>
-            <stop offset="100%" stop-color="#00C2C7" stop-opacity="0"/>
+          <radialGradient id="g1" cx="50%" cy="45%" r="55%">
+            <stop offset="0%" stop-color="#00b7c7" stop-opacity=".18"/>
+            <stop offset="100%" stop-color="#00b7c7" stop-opacity="0"/>
           </radialGradient>
-          <radialGradient id="glo2" cx="30%" cy="60%" r="45%">
-            <stop offset="0%" stop-color="#003E6B" stop-opacity="0.2"/>
-            <stop offset="100%" stop-color="#003E6B" stop-opacity="0"/>
+          <radialGradient id="g2" cx="30%" cy="65%" r="45%">
+            <stop offset="0%" stop-color="#0f6fa6" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#0f6fa6" stop-opacity="0"/>
           </radialGradient>
         </defs>
-
-        <!-- Halos -->
-        <ellipse cx="240" cy="160" rx="200" ry="160" fill="url(#glo1)"/>
-        <ellipse cx="140" cy="240" rx="160" ry="120" fill="url(#glo2)"/>
-
-        <!-- Cercles concentriques de référence -->
-        <circle cx="240" cy="180" r="140" fill="none" stroke="rgba(0,194,199,0.06)" stroke-width="1"/>
-        <circle cx="240" cy="180" r="100" fill="none" stroke="rgba(0,194,199,0.08)" stroke-width="1"/>
-        <circle cx="240" cy="180" r="60" fill="none" stroke="rgba(0,194,199,0.1)" stroke-width="0.5"/>
-
+        <ellipse cx="240" cy="170" rx="210" ry="170" fill="url(#g1)"/>
+        <ellipse cx="140" cy="230" rx="170" ry="130" fill="url(#g2)"/>
+        <circle cx="240" cy="170" r="150" fill="none" stroke="rgba(0,183,199,.06)" stroke-width="1"/>
+        <circle cx="240" cy="170" r="110" fill="none" stroke="rgba(0,183,199,.08)" stroke-width="1"/>
+        <circle cx="240" cy="170" r="70" fill="none" stroke="rgba(0,183,199,.1)" stroke-width="0.5"/>
         <!-- CUBA -->
-        <g>
-          <ellipse cx="130" cy="120" rx="55" ry="16" fill="rgba(0,194,199,0.3)" stroke="rgba(0,194,199,0.6)" stroke-width="1" transform="rotate(-8,130,120)"/>
-          <text x="130" y="104" font-family="DM Mono,monospace" font-size="9" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="1">CUBA</text>
-        </g>
-
-        <!-- HISPANIOLA (Haïti + RD) -->
-        <g>
-          <ellipse cx="220" cy="138" rx="30" ry="12" fill="rgba(255,201,60,0.3)" stroke="rgba(255,201,60,0.6)" stroke-width="1" transform="rotate(-5,220,138)"/>
-          <text x="200" y="128" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,201,60,0.8)" text-anchor="middle" letter-spacing="1">HAÏTI</text>
-        </g>
-
-        <!-- PUERTO RICO -->
-        <g>
-          <ellipse cx="272" cy="140" rx="14" ry="8" fill="rgba(0,194,199,0.25)" stroke="rgba(0,194,199,0.5)" stroke-width="1"/>
-          <text x="272" y="130" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.55)" text-anchor="middle">PR</text>
-        </g>
-
+        <ellipse cx="120" cy="112" rx="62" ry="17" fill="rgba(0,183,199,.32)" stroke="rgba(0,183,199,.65)" stroke-width="1.2" transform="rotate(-8,120,112)"/>
+        <text x="120" y="95" font-family="DM Mono,monospace" font-size="10" fill="rgba(255,255,255,.75)" text-anchor="middle" letter-spacing="1.5">CUBA</text>
+        <!-- HISPANIOLA -->
+        <ellipse cx="218" cy="130" rx="32" ry="12" fill="rgba(255,201,60,.3)" stroke="rgba(255,201,60,.65)" stroke-width="1" transform="rotate(-5,218,130)"/>
+        <text x="200" y="120" font-family="DM Mono,monospace" font-size="9" fill="rgba(255,201,60,.85)" text-anchor="middle" letter-spacing="1">HAÏTI</text>
+        <!-- PORTO RICO -->
+        <ellipse cx="270" cy="133" rx="14" ry="7" fill="rgba(0,183,199,.25)" stroke="rgba(0,183,199,.5)" stroke-width="1"/>
+        <text x="270" y="122" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,.55)" text-anchor="middle">PR</text>
         <!-- JAMAÏQUE -->
-        <g>
-          <ellipse cx="168" cy="152" rx="18" ry="9" fill="rgba(63,166,107,0.3)" stroke="rgba(63,166,107,0.6)" stroke-width="1" transform="rotate(-5,168,152)"/>
-          <text x="168" y="142" font-family="DM Mono,monospace" font-size="7" fill="rgba(63,166,107,0.9)" text-anchor="middle">JAMAICA</text>
-        </g>
-
-        <!-- PETITES ANTILLES — chaîne verticale -->
-        <!-- Guadeloupe -->
-        <g>
-          <ellipse cx="310" cy="162" rx="9" ry="6" fill="rgba(0,194,199,0.4)" stroke="rgba(0,194,199,0.8)" stroke-width="1.2"/>
-          <text x="327" y="164" font-family="DM Mono,monospace" font-size="8" fill="rgba(0,194,199,0.9)" letter-spacing="0.5">GUA</text>
-        </g>
-        <!-- Martinique -->
-        <g>
-          <ellipse cx="313" cy="182" rx="7" ry="5" fill="rgba(255,111,97,0.35)" stroke="rgba(255,111,97,0.7)" stroke-width="1"/>
-          <text x="328" y="184" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,111,97,0.85)" letter-spacing="0.5">MTQ</text>
-        </g>
-        <!-- Dominique -->
-        <ellipse cx="311" cy="172" rx="4" ry="3" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <!-- St Lucia -->
-        <ellipse cx="315" cy="192" rx="4" ry="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-        <!-- Barbade -->
-        <g>
-          <circle cx="330" cy="196" r="4" fill="rgba(255,201,60,0.3)" stroke="rgba(255,201,60,0.6)" stroke-width="1"/>
-          <text x="338" y="198" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,201,60,0.7)">BRB</text>
-        </g>
-        <!-- Trinidad -->
-        <g>
-          <ellipse cx="306" cy="218" rx="10" ry="6" fill="rgba(255,201,60,0.3)" stroke="rgba(255,201,60,0.6)" stroke-width="1" transform="rotate(-10,306,218)"/>
-          <text x="295" y="230" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,201,60,0.85)" text-anchor="middle" letter-spacing="0.5">TTO</text>
-        </g>
-
-        <!-- ARUBA / CURAÇAO -->
-        <g>
-          <ellipse cx="238" cy="195" rx="8" ry="4" fill="rgba(123,63,166,0.3)" stroke="rgba(123,63,166,0.6)" stroke-width="1" transform="rotate(-15,238,195)"/>
-          <ellipse cx="255" cy="192" rx="9" ry="4" fill="rgba(123,63,166,0.3)" stroke="rgba(123,63,166,0.6)" stroke-width="1" transform="rotate(-15,255,192)"/>
-          <text x="246" y="184" font-family="DM Mono,monospace" font-size="7" fill="rgba(123,63,166,0.85)" text-anchor="middle">CUW/ARU</text>
-        </g>
-
-        <!-- SURINAME (continent) -->
-        <g>
-          <ellipse cx="340" cy="230" rx="22" ry="14" fill="rgba(63,166,107,0.2)" stroke="rgba(63,166,107,0.45)" stroke-width="1"/>
-          <text x="340" y="232" font-family="DM Mono,monospace" font-size="8" fill="rgba(63,166,107,0.8)" text-anchor="middle" letter-spacing="0.5">SUR</text>
-        </g>
-
+        <ellipse cx="163" cy="146" rx="19" ry="9" fill="rgba(63,166,107,.35)" stroke="rgba(63,166,107,.7)" stroke-width="1" transform="rotate(-5,163,146)"/>
+        <text x="163" y="135" font-family="DM Mono,monospace" font-size="8" fill="rgba(63,166,107,.9)" text-anchor="middle">JAMAICA</text>
+        <!-- GUADELOUPE -->
+        <ellipse cx="308" cy="158" rx="9" ry="6" fill="rgba(0,183,199,.5)" stroke="rgba(0,183,199,.9)" stroke-width="1.5"/>
+        <text x="326" y="160" font-family="DM Mono,monospace" font-size="8" fill="rgba(0,183,199,.95)" letter-spacing=".5">GUA</text>
+        <!-- MARTINIQUE -->
+        <ellipse cx="311" cy="176" rx="7" ry="5" fill="rgba(255,111,97,.4)" stroke="rgba(255,111,97,.75)" stroke-width="1"/>
+        <text x="328" y="178" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,111,97,.9)" letter-spacing=".5">MTQ</text>
+        <!-- Petites Antilles chain -->
+        <ellipse cx="309" cy="167" rx="4" ry="3" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.25)" stroke-width=".8"/>
+        <ellipse cx="313" cy="185" rx="4" ry="3" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+        <!-- TRINIDAD -->
+        <ellipse cx="305" cy="212" rx="11" ry="6" fill="rgba(255,201,60,.32)" stroke="rgba(255,201,60,.65)" stroke-width="1" transform="rotate(-10,305,212)"/>
+        <text x="292" y="225" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,201,60,.85)" text-anchor="middle" letter-spacing=".5">TTO</text>
+        <!-- CURAÇAO / ARUBA -->
+        <ellipse cx="230" cy="188" rx="8" ry="4" fill="rgba(123,63,166,.3)" stroke="rgba(123,63,166,.6)" stroke-width="1" transform="rotate(-15,230,188)"/>
+        <ellipse cx="247" cy="185" rx="9" ry="4" fill="rgba(123,63,166,.3)" stroke="rgba(123,63,166,.6)" stroke-width="1" transform="rotate(-15,247,185)"/>
+        <text x="238" y="177" font-family="DM Mono,monospace" font-size="7" fill="rgba(123,63,166,.85)" text-anchor="middle">CUW · ARU</text>
+        <!-- SURINAME -->
+        <ellipse cx="338" cy="222" rx="22" ry="13" fill="rgba(63,166,107,.2)" stroke="rgba(63,166,107,.45)" stroke-width="1"/>
+        <text x="338" y="224" font-family="DM Mono,monospace" font-size="8" fill="rgba(63,166,107,.8)" text-anchor="middle" letter-spacing=".5">SUR</text>
         <!-- GUYANE -->
-        <g>
-          <ellipse cx="378" cy="222" rx="18" ry="13" fill="rgba(0,194,199,0.15)" stroke="rgba(0,194,199,0.4)" stroke-width="1"/>
-          <text x="378" y="224" font-family="DM Mono,monospace" font-size="8" fill="rgba(0,194,199,0.65)" text-anchor="middle" letter-spacing="0.5">GUF</text>
-        </g>
-
-        <!-- Ligne de connexion réseau -->
-        <line x1="310" y1="162" x2="220" y2="138" stroke="rgba(0,194,199,0.15)" stroke-width="0.8" stroke-dasharray="4,4"/>
-        <line x1="310" y1="162" x2="313" y2="182" stroke="rgba(0,194,199,0.2)" stroke-width="0.8"/>
-        <line x1="168" y1="152" x2="220" y2="138" stroke="rgba(63,166,107,0.15)" stroke-width="0.8" stroke-dasharray="4,4"/>
-        <line x1="130" y1="120" x2="220" y2="138" stroke="rgba(0,194,199,0.1)" stroke-width="0.8" stroke-dasharray="4,4"/>
-        <line x1="306" y1="218" x2="313" y2="182" stroke="rgba(255,201,60,0.15)" stroke-width="0.8"/>
-
-        <!-- Noeud central CMS -->
-        <circle cx="240" cy="180" r="16" fill="none" stroke="rgba(0,194,199,0.3)" stroke-width="1.5"/>
-        <circle cx="240" cy="180" r="8" fill="rgba(0,62,107,0.8)" stroke="rgba(0,194,199,0.6)" stroke-width="1.5"/>
-        <circle cx="240" cy="180" r="3" fill="#00C2C7"/>
-        <text x="240" y="210" font-family="DM Mono,monospace" font-size="10" fill="rgba(0,194,199,0.6)" text-anchor="middle" letter-spacing="2">CMS v2.0</text>
-
-        <!-- Points flottants diaspora -->
-        <circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.15)"/>
-        <circle cx="420" cy="110" r="3" fill="rgba(255,255,255,0.12)"/>
-        <circle cx="60" cy="200" r="2" fill="rgba(255,255,255,0.1)"/>
-        <circle cx="440" cy="270" r="2.5" fill="rgba(255,255,255,0.1)"/>
-
-        <!-- Label diaspora -->
-        <text x="60" y="270" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.2)" text-anchor="middle" letter-spacing="1.5">DIASPORA</text>
-        <text x="60" y="280" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.2)" text-anchor="middle" letter-spacing="1.5">CARIBÉENNE</text>
+        <ellipse cx="376" cy="214" rx="18" ry="12" fill="rgba(0,183,199,.15)" stroke="rgba(0,183,199,.4)" stroke-width="1"/>
+        <text x="376" y="216" font-family="DM Mono,monospace" font-size="8" fill="rgba(0,183,199,.65)" text-anchor="middle" letter-spacing=".5">GUF</text>
+        <!-- Network lines -->
+        <line x1="308" y1="158" x2="218" y2="130" stroke="rgba(0,183,199,.15)" stroke-width=".8" stroke-dasharray="4,4"/>
+        <line x1="308" y1="158" x2="311" y2="176" stroke="rgba(0,183,199,.22)" stroke-width=".8"/>
+        <line x1="163" y1="146" x2="218" y2="130" stroke="rgba(63,166,107,.15)" stroke-width=".8" stroke-dasharray="4,4"/>
+        <line x1="120" y1="112" x2="218" y2="130" stroke="rgba(0,183,199,.1)" stroke-width=".8" stroke-dasharray="4,4"/>
+        <line x1="305" y1="212" x2="311" y2="176" stroke="rgba(255,201,60,.15)" stroke-width=".8"/>
+        <!-- CMS node -->
+        <circle cx="240" cy="170" r="18" fill="none" stroke="rgba(0,183,199,.35)" stroke-width="1.5"/>
+        <circle cx="240" cy="170" r="9" fill="rgba(11,30,48,.85)" stroke="rgba(0,183,199,.65)" stroke-width="1.5"/>
+        <circle cx="240" cy="170" r="3.5" fill="#00b7c7"/>
+        <text x="240" y="202" font-family="DM Mono,monospace" font-size="10" fill="rgba(0,183,199,.55)" text-anchor="middle" letter-spacing="2">CMS v2.0</text>
       </svg>
     </div>
   </div>
 </section>
 
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="stats-inner">
-    <div class="stat-col"><div class="stat-n">110</div><div class="stat-l">Enregistrements</div></div>
-    <div class="stat-col"><div class="stat-n">10</div><div class="stat-l">Langues ISO</div></div>
-    <div class="stat-col"><div class="stat-n">27</div><div class="stat-l">Marqueurs culturels</div></div>
-    <div class="stat-col"><div class="stat-n">20</div><div class="stat-l">Territoires</div></div>
-    <div class="stat-col"><div class="stat-n">v2.0</div><div class="stat-l">Standard verrouillé</div></div>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-in">
+    <div class="sb-col"><div class="sb-n">110</div><div class="sb-l">Enregistrements</div></div>
+    <div class="sb-col"><div class="sb-n">10</div><div class="sb-l">Langues ISO</div></div>
+    <div class="sb-col"><div class="sb-n">27</div><div class="sb-l">Marqueurs culturels</div></div>
+    <div class="sb-col"><div class="sb-n">20</div><div class="sb-l">Territoires</div></div>
+    <div class="sb-col"><div class="sb-n">v2.0</div><div class="sb-l">Standard verrouillé</div></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- POURQUOI UN STANDARD ?                                 -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="sec-inner">
-    <div class="s-ey">Pourquoi un standard ?</div>
-    <h2 class="s-title">Les algorithmes ne voient pas<br>la Caraïbe</h2>
-    <p class="s-sub">Sans métadonnées structurées en termes caribéens, les plateformes mondiales ne peuvent pas identifier, catégoriser ni recommander les œuvres culturelles caribéennes. Le CMS résout ce problème.</p>
+<!-- ═══ POURQUOI ══════════════════════════════════════════ -->
+<section class="sec sec-b">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="sec-ey">Pourquoi un standard ?</div>
+      <h2 class="sec-h2">Les algorithmes ne voient pas la Caraïbe</h2>
+      <p class="sec-p">Sans métadonnées structurées en termes caribéens, les plateformes mondiales ne peuvent pas identifier, catégoriser ni recommander les œuvres culturelles caribéennes.</p>
+    </div>
     <div class="why-grid">
       <div class="why-card">
-        <div class="wc-icon" style="background:#E6F1FB">👁️</div>
-        <div class="wc-title">Invisibilité algorithmique</div>
-        <div class="wc-body">Le gwoka devient "world music". Le konpa devient "latin". Les algorithmes de recommandation ne connectent pas le contenu caribéen à ses audiences naturelles.</div>
+        <div class="wc-ico" style="background:#e0f2fe">👁️</div>
+        <div class="wc-h">Invisibilité algorithmique</div>
+        <div class="wc-p">Le gwoka devient "world music". Le konpa devient "latin". Les algorithmes ne connectent pas le contenu caribéen à ses audiences naturelles.</div>
       </div>
       <div class="why-card">
-        <div class="wc-icon" style="background:#E1F5EE">📖</div>
-        <div class="wc-title">Absence de vocabulaire</div>
-        <div class="wc-body">Dublin Core, ISRC et les systèmes de bibliothèques existants ne contiennent aucun marqueur caribéen. Le créole guadeloupéen n'y existe pas comme langue de contenu.</div>
+        <div class="wc-ico" style="background:#dcfce7">📖</div>
+        <div class="wc-h">Absence de vocabulaire</div>
+        <div class="wc-p">Dublin Core, ISRC et les bibliothèques existantes ne contiennent aucun marqueur caribéen. Le créole guadeloupéen n'y existe pas comme langue de contenu.</div>
       </div>
       <div class="why-card">
-        <div class="wc-icon" style="background:#FAEEDA">⚖️</div>
-        <div class="wc-title">Levier réglementaire</div>
-        <div class="wc-body">Une norme CROSQ-CARICOM fournit la base légale pour obliger les plateformes mondiales à identifier et promouvoir le contenu caribéen — comme l'AVMSD en Europe.</div>
+        <div class="wc-ico" style="background:#fef9c3">⚖️</div>
+        <div class="wc-h">Levier réglementaire</div>
+        <div class="wc-p">Une norme CROSQ-CARICOM fournit la base légale pour obliger les plateformes mondiales à identifier et promouvoir le contenu caribéen.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- 6 FAMILLES                                             -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="sec-inner">
-    <div class="s-ey">Architecture du standard</div>
-    <h2 class="s-title">6 familles de métadonnées</h2>
-    <p class="s-sub">Chaque famille couvre une dimension de l'identité culturelle caribéenne. Ensemble elles forment un profil complet exploitable par les algorithmes de recommandation.</p>
+<!-- ═══ 6 FAMILLES ════════════════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="sec-ey">Architecture du standard</div>
+      <h2 class="sec-h2">Les 6 familles de métadonnées</h2>
+      <p class="sec-p">Une architecture unifiée pour décrire la culture caribéenne dans toutes ses dimensions.</p>
+    </div>
     <div class="fam-grid">
-      <div class="fam-card">
-        <div class="fc-bar" style="background:#00C2C7"></div>
-        <div class="fc-num">Famille 01</div>
-        <div class="fc-name">Linguistique</div>
-        <div class="fc-desc">Langue principale, code-switching, oralité caribéenne. 10 langues avec codes ISO 639-3.</div>
-        <div class="fc-tags"><span class="fc-tag">gcf</span><span class="fc-tag">hat</span><span class="fc-tag">jam</span><span class="fc-tag">pap</span><span class="fc-tag">+6</span></div>
+      <div class="fam-card" style="--c:#00b7c7">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#00b7c7"></div>
+        <div class="fam-ico" style="background:#e0f2fe">🌐</div>
+        <div class="fam-num">Famille 01</div>
+        <div class="fam-h">Linguistique</div>
+        <div class="fam-p">Langue principale, code-switching, oralité caribéenne. 10 langues avec codes ISO 639-3.</div>
+        <div class="fam-tags"><span class="ftag">gcf</span><span class="ftag">hat</span><span class="ftag">jam</span><span class="ftag">pap</span><span class="ftag">+6</span></div>
+        <a href="families.html" class="fam-btn">Voir la famille →</a>
       </div>
       <div class="fam-card">
-        <div class="fc-bar" style="background:#FFC93C"></div>
-        <div class="fc-num">Famille 02</div>
-        <div class="fc-name">Culturelle</div>
-        <div class="fc-desc">27 marqueurs officiels — genres musicaux, danses, traditions, pratiques spirituelles.</div>
-        <div class="fc-tags"><span class="fc-tag">Gwo Ka</span><span class="fc-tag">Konpa</span><span class="fc-tag">Zouk</span><span class="fc-tag">+24</span></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#ffc93c"></div>
+        <div class="fam-ico" style="background:#fef9c3">🎵</div>
+        <div class="fam-num">Famille 02</div>
+        <div class="fam-h">Culturelle</div>
+        <div class="fam-p">27 marqueurs officiels — genres musicaux, danses, traditions, pratiques spirituelles.</div>
+        <div class="fam-tags"><span class="ftag">Gwo Ka</span><span class="ftag">Konpa</span><span class="ftag">Zouk</span><span class="ftag">+24</span></div>
+        <a href="families.html" class="fam-btn">Voir la famille →</a>
       </div>
       <div class="fam-card">
-        <div class="fc-bar" style="background:#FF6F61"></div>
-        <div class="fc-num">Famille 03</div>
-        <div class="fc-name">Narrative</div>
-        <div class="fc-desc">Domaine culturel, titre en langue originale, description sémantique riche.</div>
-        <div class="fc-tags"><span class="fc-tag">musique</span><span class="fc-tag">patrimoine</span><span class="fc-tag">danse</span></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#ff6f61"></div>
+        <div class="fam-ico" style="background:#fee2e2">📝</div>
+        <div class="fam-num">Famille 03</div>
+        <div class="fam-h">Narrative</div>
+        <div class="fam-p">Domaine culturel, titre en langue originale, description sémantique riche.</div>
+        <div class="fam-tags"><span class="ftag">musique</span><span class="ftag">patrimoine</span><span class="ftag">danse</span></div>
+        <a href="families.html" class="fam-btn">Voir la famille →</a>
       </div>
       <div class="fam-card">
-        <div class="fc-bar" style="background:#7B3FA6"></div>
-        <div class="fc-num">Famille 04</div>
-        <div class="fc-name">Rythmique</div>
-        <div class="fc-desc">Style rythmique, tempo insulaire, signature sonore spécifique à la Caraïbe.</div>
-        <div class="fc-tags"><span class="fc-tag">syncopé</span><span class="fc-tag">appel-réponse</span><span class="fc-tag">+10</span></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#7b3fa6"></div>
+        <div class="fam-ico" style="background:#f3e8ff">🥁</div>
+        <div class="fam-num">Famille 04</div>
+        <div class="fam-h">Rythmique</div>
+        <div class="fam-p">Style rythmique, tempo insulaire, signature sonore spécifique à la Caraïbe.</div>
+        <div class="fam-tags"><span class="ftag">syncopé</span><span class="ftag">appel-réponse</span><span class="ftag">+10</span></div>
+        <a href="families.html" class="fam-btn">Voir la famille →</a>
       </div>
       <div class="fam-card">
-        <div class="fc-bar" style="background:#3FA66B"></div>
-        <div class="fc-num">Famille 05</div>
-        <div class="fc-name">Géographique</div>
-        <div class="fc-desc">Territoire d'origine, ancrage insulaire précis, diaspora caribéenne.</div>
-        <div class="fc-tags"><span class="fc-tag">Guadeloupe</span><span class="fc-tag">Haïti</span><span class="fc-tag">+18</span></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#3fa66b"></div>
+        <div class="fam-ico" style="background:#dcfce7">📍</div>
+        <div class="fam-num">Famille 05</div>
+        <div class="fam-h">Géographique</div>
+        <div class="fam-p">Territoire d'origine, ancrage insulaire précis, diaspora caribéenne.</div>
+        <div class="fam-tags"><span class="ftag">Guadeloupe</span><span class="ftag">Haïti</span><span class="ftag">+18</span></div>
+        <a href="families.html" class="fam-btn">Voir la famille →</a>
       </div>
       <div class="fam-card">
-        <div class="fc-bar" style="background:#185FA5"></div>
-        <div class="fc-num">Famille 06</div>
-        <div class="fc-name">Socio-historique</div>
-        <div class="fc-desc">Période historique, mémoire collective, créolisation, résistance culturelle.</div>
-        <div class="fc-tags"><span class="fc-tag">Marronage</span><span class="fc-tag">Abolition</span><span class="fc-tag">+15</span></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#185fa5"></div>
+        <div class="fam-ico" style="background:#dbeafe">🏛️</div>
+        <div class="fam-num">Famille 06</div>
+        <div class="fam-h">Socio-historique</div>
+        <div class="fam-p">Période historique, mémoire collective, créolisation, résistance culturelle.</div>
+        <div class="fam-tags"><span class="ftag">Marronage</span><span class="ftag">Abolition</span><span class="ftag">+15</span></div>
+        <a href="families.html" class="fam-btn">Voir la famille →</a>
       </div>
+    </div>
+
+    <!-- DIAGRAMME SVG ANIMÉ -->
+    <div class="diagram-wrap">
+      <div class="diagram-title">ARCHITECTURE DU CARIBBEAN METADATA STANDARD</div>
+      <svg width="100%" height="200" viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .ar{stroke:#9aa3b1;stroke-width:1.5;marker-end:url(#ah);animation:pulse 2.5s infinite ease-in-out}
+          @keyframes pulse{0%{stroke-opacity:.3}50%{stroke-opacity:.9}100%{stroke-opacity:.3}}
+          .ci{cursor:pointer;transition:filter .25s}
+          .ci:hover{filter:brightness(1.2) drop-shadow(0 0 6px rgba(0,0,0,.2))}
+          .ct{font-family:'Segoe UI',system-ui,sans-serif;font-size:12px;font-weight:600;fill:#0b1e30}
+          .cn{font-family:'Segoe UI',system-ui,sans-serif;font-size:9px;fill:rgba(255,255,255,.7)}
+        </style>
+        <defs>
+          <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#9aa3b1"/>
+          </marker>
+        </defs>
+        <!-- Flèches -->
+        <line x1="118" y1="100" x2="198" y2="100" class="ar"/>
+        <line x1="278" y1="100" x2="358" y2="100" class="ar"/>
+        <line x1="438" y1="100" x2="518" y2="100" class="ar"/>
+        <line x1="598" y1="100" x2="678" y2="100" class="ar"/>
+        <line x1="758" y1="100" x2="810" y2="100" class="ar" style="opacity:.4"/>
+        <!-- Cercles familles -->
+        <circle cx="65" cy="100" r="52" fill="#00b7c7" class="ci"/>
+        <text x="65" y="95" text-anchor="middle" class="ct">F1</text>
+        <text x="65" y="110" text-anchor="middle" class="cn">Linguistique</text>
+
+        <circle cx="238" cy="100" r="52" fill="#ffc93c" class="ci"/>
+        <text x="238" y="95" text-anchor="middle" class="ct">F2</text>
+        <text x="238" y="110" text-anchor="middle" class="cn">Culturelle</text>
+
+        <circle cx="398" cy="100" r="52" fill="#ff6f61" class="ci"/>
+        <text x="398" y="95" text-anchor="middle" class="ct">F3</text>
+        <text x="398" y="110" text-anchor="middle" class="cn">Narrative</text>
+
+        <circle cx="558" cy="100" r="52" fill="#7b3fa6" class="ci"/>
+        <text x="558" y="95" text-anchor="middle" class="ct" fill="#fff">F4</text>
+        <text x="558" y="110" text-anchor="middle" class="cn">Rythmique</text>
+
+        <circle cx="718" cy="100" r="52" fill="#3fa66b" class="ci"/>
+        <text x="718" y="95" text-anchor="middle" class="ct">F5</text>
+        <text x="718" y="110" text-anchor="middle" class="cn">Géographique</text>
+
+        <text x="830" y="96" font-family="monospace" font-size="11" fill="#9aa3b1">F6</text>
+        <text x="830" y="108" font-family="monospace" font-size="8" fill="#aaa">Socio-hist.</text>
+      </svg>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- CMS BUILDER                                            -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="sec-inner">
+<!-- ═══ CMS BUILDER ═══════════════════════════════════════ -->
+<section class="sec sec-b">
+  <div class="sec-in">
     <div class="builder-layout">
       <div>
-        <div class="s-ey">Outil de documentation</div>
-        <h2 class="s-title">CMS Builder<br>+ AI layer</h2>
-        <p class="s-sub">Décrivez votre œuvre en texte libre. Claude analyse et génère automatiquement la fiche structurée avec l'Indice de Visibilité Algorithmique.</p>
-        <div class="builder-feats">
-          <div class="bf-row">
-            <div class="bf-ico" style="background:#E1F5EE">🤖</div>
-            <div>
-              <div class="bf-title">AI layer — Claude</div>
-              <div class="bf-body">Décrivez en créole, en français, en anglais. Claude détecte les marqueurs culturels et complète la fiche automatiquement.</div>
-            </div>
-          </div>
-          <div class="bf-row">
-            <div class="bf-ico" style="background:#E6F1FB">📊</div>
-            <div>
-              <div class="bf-title">Indice de Visibilité Algorithmique (IVA)</div>
-              <div class="bf-body">Score 0–100 calculé en temps réel. Mesure les signaux exploitables par YouTube, Spotify et Netflix — pas la valeur culturelle.</div>
-            </div>
-          </div>
-          <div class="bf-row">
-            <div class="bf-ico" style="background:#FAEEDA">🌍</div>
-            <div>
-              <div class="bf-title">Multilingue et mobile-first</div>
-              <div class="bf-body">FR · EN · ES. Objectif v3.0 : créole guadeloupéen et haïtien. Accessible depuis tout appareil connecté.</div>
-            </div>
-          </div>
-          <div class="bf-row">
-            <div class="bf-ico" style="background:#E1F5EE">🔓</div>
-            <div>
-              <div class="bf-title">Gratuit — toujours</div>
-              <div class="bf-body">Soumission gratuite. Code open source CC-BY 4.0. Aucun frais de certification ne sera jamais introduit sans vote du Comité Technique.</div>
-            </div>
-          </div>
+        <div class="sec-ey" style="justify-content:flex-start">Outil de documentation</div>
+        <h2 class="sec-h2" style="text-align:left">CMS Builder<br>+ AI layer</h2>
+        <p class="sec-p" style="margin:0 0 28px;max-width:none;text-align:left">Décrivez votre œuvre en texte libre. Claude analyse et génère automatiquement la fiche structurée avec l'Indice de Visibilité Algorithmique (IVA 0–100).</p>
+        <div class="bl-feats">
+          <div class="bl-item"><div class="bl-ico" style="background:#dcfce7">🤖</div><div><div class="bl-h">AI layer — Claude</div><div class="bl-p">Décrivez en créole, en français, en anglais. Claude détecte les marqueurs culturels et complète la fiche.</div></div></div>
+          <div class="bl-item"><div class="bl-ico" style="background:#e0f2fe">📊</div><div><div class="bl-h">Indice de Visibilité Algorithmique</div><div class="bl-p">Score 0–100 en temps réel. Mesure les signaux exploitables par YouTube, Spotify et Netflix.</div></div></div>
+          <div class="bl-item"><div class="bl-ico" style="background:#fef9c3">🌍</div><div><div class="bl-h">Multilingue · Mobile-first</div><div class="bl-p">FR · EN · ES. Objectif v3.0 : créole guadeloupéen et haïtien. Accessible depuis tout appareil.</div></div></div>
+          <div class="bl-item"><div class="bl-ico" style="background:#f3e8ff">🔓</div><div><div class="bl-h">Gratuit — toujours</div><div class="bl-p">Soumission gratuite. Open source CC-BY 4.0. Aucun frais ne sera jamais introduit sans vote du Comité.</div></div></div>
         </div>
-        <div style="margin-top:32px">
-          <a href="cms-builder.html" style="display:inline-block;padding:13px 28px;background:var(--navy);color:#fff;text-decoration:none;border-radius:4px;font-size:14px;font-weight:600;margin-right:12px;transition:background .2s">Accéder au Builder →</a>
-          <a href="submit.html" style="display:inline-block;padding:13px 24px;border:1px solid var(--border);color:var(--navy);text-decoration:none;border-radius:4px;font-size:14px;transition:all .2s">Soumettre une œuvre</a>
+        <div class="bl-btns">
+          <a href="cms-builder.html" class="btn-bd">Accéder au Builder →</a>
+          <a href="submit.html" class="btn-gl">Soumettre une œuvre</a>
         </div>
       </div>
-
-      <!-- Mockup IVA -->
+      <!-- MOCKUP IVA -->
       <div class="iva-mock">
-        <div class="iva-bar">
-          <div class="iva-dot" style="background:#FF5F56"></div>
-          <div class="iva-dot" style="background:#FFBD2E"></div>
-          <div class="iva-dot" style="background:#27C93F"></div>
-          <span class="iva-title-bar">CMS Builder — Indice de Visibilité Algorithmique</span>
+        <div class="iva-topbar">
+          <div class="iva-dot" style="background:#ff5f56"></div>
+          <div class="iva-dot" style="background:#ffbd2e"></div>
+          <div class="iva-dot" style="background:#27c93f"></div>
+          <span class="iva-label">CMS Builder — Indice de Visibilité Algorithmique</span>
         </div>
         <div class="iva-body">
-          <div class="iva-score-row">
-            <div>
-              <span class="iva-num">78</span>
-              <span class="iva-denom"> / 100</span>
-            </div>
-            <div>
-              <div class="iva-pill">BON NIVEAU</div>
-              <div class="iva-sub-lbl">YouTube · Spotify · Netflix</div>
-            </div>
+          <div class="iva-score">
+            <div><span class="iva-num">78</span><span class="iva-den"> / 100</span></div>
+            <div><div class="iva-badge">BON NIVEAU</div><div class="iva-sub">YouTube · Spotify · Netflix</div></div>
           </div>
-          <div class="iva-bar-row"><div class="iva-bar-head"><span>Linguistique</span><span style="color:#00C2C7">20/20</span></div><div class="iva-track"><div class="iva-fill" style="width:100%;background:#00C2C7"></div></div></div>
-          <div class="iva-bar-row"><div class="iva-bar-head"><span>Culturelle</span><span style="color:#FFC93C">16/20</span></div><div class="iva-track"><div class="iva-fill" style="width:80%;background:#FFC93C"></div></div></div>
-          <div class="iva-bar-row"><div class="iva-bar-head"><span>Géographique</span><span style="color:#3FA66B">15/15</span></div><div class="iva-track"><div class="iva-fill" style="width:100%;background:#3FA66B"></div></div></div>
-          <div class="iva-bar-row"><div class="iva-bar-head"><span>Narrative</span><span style="color:#FF6F61">15/20</span></div><div class="iva-track"><div class="iva-fill" style="width:75%;background:#FF6F61"></div></div></div>
-          <div class="iva-bar-row"><div class="iva-bar-head"><span>Rythmique</span><span style="color:#7B3FA6">6/6</span></div><div class="iva-track"><div class="iva-fill" style="width:100%;background:#7B3FA6"></div></div></div>
-          <div class="iva-bar-row"><div class="iva-bar-head"><span>Socio-hist.</span><span style="color:#aaa">0/6 ← à améliorer</span></div><div class="iva-track"><div class="iva-fill" style="width:0%;background:#185FA5"></div></div></div>
-          <div class="iva-tip">✦ Claude suggère : ajouter "Créolisation" et "Mémoire collective" → <strong>+6 pts IVA</strong></div>
+          <div class="ibar"><div class="ibar-h"><span>Linguistique</span><span style="color:#00b7c7">20/20</span></div><div class="ibar-t"><div class="ibar-f" style="width:100%;background:#00b7c7"></div></div></div>
+          <div class="ibar"><div class="ibar-h"><span>Culturelle</span><span style="color:#ffc93c">16/20</span></div><div class="ibar-t"><div class="ibar-f" style="width:80%;background:#ffc93c"></div></div></div>
+          <div class="ibar"><div class="ibar-h"><span>Géographique</span><span style="color:#3fa66b">15/15</span></div><div class="ibar-t"><div class="ibar-f" style="width:100%;background:#3fa66b"></div></div></div>
+          <div class="ibar"><div class="ibar-h"><span>Narrative</span><span style="color:#ff6f61">15/20</span></div><div class="ibar-t"><div class="ibar-f" style="width:75%;background:#ff6f61"></div></div></div>
+          <div class="ibar"><div class="ibar-h"><span>Rythmique</span><span style="color:#7b3fa6">6/6</span></div><div class="ibar-t"><div class="ibar-f" style="width:100%;background:#7b3fa6"></div></div></div>
+          <div class="ibar"><div class="ibar-h"><span>Socio-hist.</span><span style="color:#aaa">0/6</span></div><div class="ibar-t"><div class="ibar-f" style="width:0%;background:#185fa5"></div></div></div>
+          <div class="iva-tip">✦ Claude suggère : "Créolisation" + "Mémoire collective" → <strong>+6 pts IVA</strong></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- CORPUS                                                 -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="sec-inner">
+<!-- ═══ CORPUS ════════════════════════════════════════════ -->
+<section class="sec sec-c">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="sec-ey sec-ey-wh">Open Data · CC-BY 4.0</div>
+      <h2 class="sec-h2 sec-h2-wh">Corpus fondateur CMS v2.0</h2>
+      <p class="sec-p sec-p-wh">Premier corpus structuré de contenus culturels caribéens. Téléchargeable, citable, intégrable dans n'importe quel pipeline de données.</p>
+    </div>
     <div class="corpus-layout">
       <div>
-        <div class="s-ey">Open Data · CC-BY 4.0</div>
-        <h2 class="s-title">Corpus fondateur<br>CMS v2.0</h2>
-        <p class="s-sub">Premier corpus structuré de contenus culturels caribéens. Téléchargeable, citable, intégrable dans n'importe quel pipeline de données ou système de recommandation.</p>
         <div class="corpus-stats">
-          <div class="cs-card"><div class="cs-num">110</div><div class="cs-lbl">Enregistrements</div></div>
-          <div class="cs-card"><div class="cs-num">10</div><div class="cs-lbl">Langues ISO</div></div>
-          <div class="cs-card"><div class="cs-num">17</div><div class="cs-lbl">Territoires</div></div>
-          <div class="cs-card"><div class="cs-num">27</div><div class="cs-lbl">Marqueurs</div></div>
+          <div class="cs"><div class="cs-n">110</div><div class="cs-l">Enregistrements</div></div>
+          <div class="cs"><div class="cs-n">10</div><div class="cs-l">Langues ISO</div></div>
+          <div class="cs"><div class="cs-n">17</div><div class="cs-l">Territoires</div></div>
+          <div class="cs"><div class="cs-n">27</div><div class="cs-l">Marqueurs</div></div>
         </div>
-        <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
-          <a href="catalogue.html" style="display:inline-block;padding:11px 24px;background:var(--navy);color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600">Explorer le catalogue →</a>
-          <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" style="display:inline-block;padding:11px 20px;border:1px solid var(--border);color:var(--navy);text-decoration:none;border-radius:4px;font-size:13px">↗ GitHub</a>
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="catalogue.html" class="btn-p">Explorer le catalogue →</a>
+          <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" class="btn-o" style="border-color:rgba(255,255,255,.3)">↗ GitHub</a>
         </div>
       </div>
-
-      <!-- Fenêtre API -->
-      <div class="api-window">
-        <div class="api-win-bar">
-          <div class="api-win-dot" style="background:#FF5F56"></div>
-          <div class="api-win-dot" style="background:#FFBD2E"></div>
-          <div class="api-win-dot" style="background:#27C93F"></div>
-          <span class="api-win-url">cms-api.small-disk-3275.workers.dev/api/v2/stats</span>
+      <div class="api-win">
+        <div class="api-top">
+          <div class="iva-dot" style="background:#ff5f56"></div>
+          <div class="iva-dot" style="background:#ffbd2e"></div>
+          <div class="iva-dot" style="background:#27c93f"></div>
+          <span class="api-url">cms-api.small-disk-3275.workers.dev/api/v2/stats</span>
         </div>
-        <div style="padding:20px">
-          <div class="api-line"><span class="api-key">"cms_version":</span> <span class="api-val-teal">"2.0"</span>,</div>
-          <div class="api-line"><span class="api-key">"last_updated":</span> <span class="api-val-teal">"2026-06-09"</span>,</div>
-          <div class="api-line"><span class="api-key">"works":</span> {</div>
-          <div class="api-line" style="padding-left:16px"><span class="api-key">"total":</span> <span class="api-val-num">111</span>,</div>
-          <div class="api-line" style="padding-left:16px"><span class="api-key">"languages_covered":</span> <span class="api-val-num">10</span>,</div>
-          <div class="api-line" style="padding-left:16px"><span class="api-key">"territories_covered":</span> <span class="api-val-num">16</span></div>
-          <div class="api-line">},</div>
-          <div class="api-line"><span class="api-key">"vocabulary":</span> {</div>
-          <div class="api-line" style="padding-left:16px"><span class="api-key">"cultural_markers":</span> <span class="api-val-num">27</span>,</div>
-          <div class="api-line" style="padding-left:16px"><span class="api-key">"languages":</span> <span class="api-val-num">10</span>,</div>
-          <div class="api-line" style="padding-left:16px"><span class="api-key">"territories":</span> <span class="api-val-num">20</span></div>
-          <div class="api-line">},</div>
-          <div class="api-line"><span class="api-key">"corpus":</span> {</div>
-          <div class="api-line" style="padding-left:16px"><span class="api-key">"records":</span> <span class="api-val-num">110</span>,</div>
-          <div class="api-line" style="padding-left:16px"><span class="api-key">"licence":</span> <span class="api-val-teal">"CC-BY 4.0"</span></div>
-          <div class="api-line">}</div>
+        <div class="api-body">
+          <div class="al"><span class="ak">"cms_version":</span> <span class="av">"2.0"</span>,</div>
+          <div class="al"><span class="ak">"works":</span> { <span class="ak">"total":</span> <span class="an">111</span>, <span class="ak">"languages":</span> <span class="an">10</span> },</div>
+          <div class="al"><span class="ak">"vocabulary":</span> {</div>
+          <div class="al" style="padding-left:16px"><span class="ak">"cultural_markers":</span> <span class="an">27</span>,</div>
+          <div class="al" style="padding-left:16px"><span class="ak">"territories":</span> <span class="an">20</span>,</div>
+          <div class="al" style="padding-left:16px"><span class="ak">"languages":</span> <span class="an">10</span></div>
+          <div class="al">},</div>
+          <div class="al"><span class="ak">"corpus":</span> { <span class="ak">"records":</span> <span class="an">110</span>, <span class="ak">"licence":</span> <span class="av">"CC-BY 4.0"</span> }</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- GOUVERNANCE                                            -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="sec-inner">
-    <div class="s-ey">Vers une norme régionale</div>
-    <h2 class="s-title">De l'infrastructure à l'obligation légale</h2>
-    <p class="s-sub">Le CMS est conçu pour devenir une norme CROSQ-CARICOM — la base légale pour obliger les plateformes mondiales à identifier et valoriser le contenu caribéen.</p>
-    <div class="gouv-steps">
-      <div class="gs-card">
-        <div class="gs-step">01</div>
-        <div class="gs-title">Phase fondatrice</div>
-        <div class="gs-body">Caribwood Language Lab. Standard documenté, API opérationnelle, corpus validé.</div>
+<!-- ═══ GOUVERNANCE ═══════════════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="sec-ey">Vers une norme régionale</div>
+      <h2 class="sec-h2">Gouvernance & Accréditation</h2>
+      <p class="sec-p">Le CMS est conçu pour devenir une norme CROSQ-CARICOM — base légale pour obliger les plateformes mondiales à valoriser le contenu caribéen.</p>
+    </div>
+    <div class="gouv-grid">
+      <div class="gc">
+        <div class="gc-ico" style="background:#e0f2fe">🔬</div>
+        <div class="gc-h">Comité scientifique</div>
+        <div class="gc-p">Experts & chercheurs caribéens. Valident les marqueurs culturels et le schéma.</div>
       </div>
-      <div class="gs-card">
-        <div class="gs-step">02</div>
-        <div class="gs-title">5 institutions adoptantes</div>
-        <div class="gs-body">Transfert automatique au Comité Technique caribéen indépendant. 1 siège créateurs.</div>
+      <div class="gc">
+        <div class="gc-ico" style="background:#fef9c3">🎭</div>
+        <div class="gc-h">Comité culturel</div>
+        <div class="gc-p">Institutions & créateurs. Représentent les communautés de l'ensemble des territoires.</div>
       </div>
-      <div class="gs-card">
-        <div class="gs-step">03</div>
-        <div class="gs-title">Norme CROSQ</div>
-        <div class="gs-body">NWIP soumis. Standard régional officiel CARICOM pour les 15 États membres.</div>
+      <div class="gc">
+        <div class="gc-ico" style="background:#f3e8ff">⚙️</div>
+        <div class="gc-h">Comité technique</div>
+        <div class="gc-p">Spécialistes IT & données. Maintiennent l'API, le corpus et les outils numériques.</div>
       </div>
-      <div class="gs-card">
-        <div class="gs-step">04</div>
-        <div class="gs-title">Obligation légale</div>
-        <div class="gs-body">Plateformes mondiales contraintes à identifier et promouvoir le contenu caribéen.</div>
+      <div class="gc">
+        <div class="gc-ico" style="background:#dcfce7">🏛️</div>
+        <div class="gc-h">Comité exécutif</div>
+        <div class="gc-p">Coordination générale. Transfère automatiquement à 5 institutions adoptantes.</div>
       </div>
+    </div>
+    <!-- Timeline processus -->
+    <h3 style="text-align:center;font-size:16px;font-weight:600;color:var(--bd);margin-bottom:20px;font-family:var(--f)">Processus d'accréditation</h3>
+    <div class="timeline">
+      <div class="tl-step"><div class="tl-circle">1</div><div class="tl-h">Soumission</div><div class="tl-p">Formulaire en ligne · gratuit</div></div>
+      <div class="tl-step"><div class="tl-circle">2</div><div class="tl-h">Évaluation</div><div class="tl-p">Analyse IVA · vérification</div></div>
+      <div class="tl-step"><div class="tl-circle">3</div><div class="tl-h">Validation</div><div class="tl-p">Comité technique</div></div>
+      <div class="tl-step"><div class="tl-circle">4</div><div class="tl-h">Publication</div><div class="tl-p">Registre public · CMS ID</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- REJOINDRE                                              -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="sec-inner">
-    <div class="s-ey">Contribuer au standard</div>
-    <h2 class="s-title">Rejoindre le CMS</h2>
-    <p class="s-sub">Quatre façons de participer à l'infrastructure de visibilité culturelle caribéenne.</p>
+<!-- ═══ REJOINDRE ═════════════════════════════════════════ -->
+<section class="sec" style="background:linear-gradient(135deg,#0f6fa6,#00b7c7);padding:72px 6%">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="sec-ey sec-ey-wh">Contribuer</div>
+      <h2 class="sec-h2 sec-h2-wh">Rejoindre le standard</h2>
+      <p class="sec-p sec-p-wh">Quatre façons de participer à l'infrastructure de visibilité culturelle caribéenne.</p>
+    </div>
     <div class="join-grid">
       <div class="jc">
-        <div class="jc-ico" style="background:#E6F1FB">✏️</div>
-        <div>
-          <div class="jc-title">Soumettre une œuvre</div>
-          <div class="jc-body">Enregistrez votre film, musique, livre ou patrimoine. Gratuit. Toujours. Pour tout créateur caribéen.</div>
-          <a href="submit.html" class="jc-link">Accéder au formulaire →</a>
-        </div>
+        <div class="jc-ico">✏️</div>
+        <div><div class="jc-h">Soumettre une œuvre</div><div class="jc-p">Enregistrez votre film, musique, livre ou patrimoine. Gratuit. Toujours.</div><a href="submit.html" class="jc-l">Accéder au formulaire →</a></div>
       </div>
       <div class="jc">
-        <div class="jc-ico" style="background:#E1F5EE">🏛️</div>
-        <div>
-          <div class="jc-title">Institution partenaire</div>
-          <div class="jc-body">Bibliothèque, université, centre culturel, festival. Signez la convention d'adhésion.</div>
-          <a href="collaborate.html" class="jc-link">Voir la convention →</a>
-        </div>
+        <div class="jc-ico">🏛️</div>
+        <div><div class="jc-h">Institution partenaire</div><div class="jc-p">Bibliothèque, université, centre culturel. Signez la convention d'adhésion.</div><a href="collaborate.html" class="jc-l">Voir la convention →</a></div>
       </div>
       <div class="jc">
-        <div class="jc-ico" style="background:#FAEEDA">💻</div>
-        <div>
-          <div class="jc-title">Intégrer l'API</div>
-          <div class="jc-body">API publique v2.0, sans clé, CC-BY 4.0. Corpus téléchargeable. Documentation complète.</div>
-          <a href="developers.html" class="jc-link">Voir la documentation →</a>
-        </div>
+        <div class="jc-ico">💻</div>
+        <div><div class="jc-h">Développeur · Intégrer l'API</div><div class="jc-p">API publique v2.0, sans clé, CC-BY 4.0. Documentation complète sur GitHub.</div><a href="developers.html" class="jc-l">Documentation →</a></div>
       </div>
       <div class="jc">
-        <div class="jc-ico" style="background:#EEEDFE">🤝</div>
-        <div>
-          <div class="jc-title">Médiateur culturel</div>
-          <div class="jc-body">Accompagnez les créateurs indépendants dans votre territoire à documenter leurs œuvres.</div>
-          <a href="contact.html" class="jc-link">Nous contacter →</a>
-        </div>
+        <div class="jc-ico">🤝</div>
+        <div><div class="jc-h">Médiateur culturel</div><div class="jc-p">Accompagnez les créateurs indépendants de votre territoire à documenter leurs œuvres.</div><a href="contact.html" class="jc-l">Nous contacter →</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- CTA FINAL                                              -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ CTA FINAL ══════════════════════════════════════════ -->
 <div class="cta-block">
-  <div class="cta-grid"></div>
   <div class="cta-glow"></div>
-  <div class="cta-inner">
-    <h2 class="cta-title">Ce standard appartient<br>à la Caraïbe entière</h2>
-    <p class="cta-sub">Pas aux institutions les mieux équipées. Pas aux créateurs les plus connectés. À la Caraïbe — dans toute sa diversité, ses langues, ses îles et sa diaspora.</p>
+  <div class="cta-in">
+    <h2 class="cta-h">Ce standard appartient<br>à la Caraïbe entière</h2>
+    <p class="cta-p">Pas aux institutions les mieux équipées. Pas aux créateurs les plus connectés. À la Caraïbe — dans toute sa diversité, ses langues, ses îles et sa diaspora.</p>
     <div class="cta-btns">
-      <button class="btn-hero-primary" onclick="window.location='submit.html'">Soumettre une œuvre →</button>
-      <button class="btn-hero-outline" onclick="window.location='equity.html'">Lire la déclaration d'équité</button>
-      <button class="btn-hero-outline" onclick="window.location='collaborate.html'">Devenir partenaire</button>
+      <a href="submit.html" class="btn-p">Soumettre une œuvre →</a>
+      <a href="equity.html" class="btn-o">Déclaration d'équité</a>
+      <a href="collaborate.html" class="btn-o">Devenir partenaire</a>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="foot-grid">
-    <div>
-      <a href="/" class="foot-logo">CMS<span>.</span></a>
-      <p class="foot-desc">Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab, Guadeloupe.</p>
+<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer class="cms-footer">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div>
+        <a href="/" class="foot-logo">CMS<span>.</span></a>
+        <p class="foot-desc">Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Un projet du Caribwood Language Lab, Guadeloupe.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Le Standard</h4>
+        <ul>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="families.html">Les 6 familles</a></li>
+          <li><a href="spec.html">Spécification v2.0</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="equity.html">Équité & Accès</a></li>
+          <li><a href="declaration.html">Déclaration</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="submit.html">Soumettre une œuvre</a></li>
+          <li><a href="cms-builder.html">CMS Builder</a></li>
+          <li><a href="certification.html">Vérifier</a></li>
+          <li><a href="developers.html">API v2.0</a></li>
+          <li><a href="glossaire.html">Glossaire</a></li>
+          <li><a href="kit.html">Kit Média</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Écosystème</h4>
+        <ul>
+          <li><a href="collaborate.html">Partenaires</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="https://github.com/heso73/cms-nlp-corpus" target="_blank">↗ GitHub corpus</a></li>
+          <li><a href="press-fr.html">Presse</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="foot-col">
-      <h4>Le Standard</h4>
-      <ul>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="families.html">Les 6 familles</a></li>
-        <li><a href="spec.html">Spécification v2.0</a></li>
-        <li><a href="catalogue.html">Catalogue CMS</a></li>
-        <li><a href="equity.html">Équité & Accès</a></li>
-        <li><a href="declaration.html">Déclaration fondatrice</a></li>
-      </ul>
+    <div class="foot-bot">
+      <span>caribbeanmetadata.org · CMS v2.0 · Caribwood Language Lab — Guadeloupe</span>
+      <span>CC-BY 4.0 · Open Source</span>
     </div>
-    <div class="foot-col">
-      <h4>Outils</h4>
-      <ul>
-        <li><a href="submit.html">Soumettre une œuvre</a></li>
-        <li><a href="cms-builder.html">CMS Builder</a></li>
-        <li><a href="certification.html">Vérifier une certification</a></li>
-        <li><a href="developers.html">API v2.0</a></li>
-        <li><a href="glossaire.html">Glossaire</a></li>
-        <li><a href="kit.html">Kit Média</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h4>Écosystème</h4>
-      <ul>
-        <li><a href="collaborate.html">Devenir partenaire</a></li>
-        <li><a href="roadmap.html">Roadmap 2026–2028</a></li>
-        <li><a href="https://github.com/heso73/cms-nlp-corpus" target="_blank">↗ GitHub corpus</a></li>
-        <li><a href="press-fr.html">Presse</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="foot-bot">
-    <span>caribbeanmetadata.org · CMS v2.0 · Caribwood Language Lab — Guadeloupe</span>
-    <span>CC-BY 4.0 · Open Source</span>
   </div>
 </footer>
 
