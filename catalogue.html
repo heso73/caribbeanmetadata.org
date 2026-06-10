@@ -1,621 +1,536 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="canonical" href="https://caribbeanmetadata.org/catalogue.html" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalogue CMS — Caribbean Metadata Standard</title>
-  <meta name="description" content="Explorez le vocabulaire caribéen du CMS : 27 marqueurs culturels, 10 langues, 20 territoires, 14 domaines. Corpus open data de 110 enregistrements.">
+  <link rel="canonical" href="https://caribbeanmetadata.org/catalogue.html" />
+  <title>Catalogue CMS — Vocabulaire, Corpus & Certification</title>
+  <meta name="description" content="Catalogue complet du Caribbean Metadata Standard : 27 marqueurs culturels, 10 langues ISO, 20 territoires, corpus 110 enregistrements CC-BY 4.0 et certification CMS-Compliant.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bd:#0b1e30;--bc:#0f6fa6;--tq:#00b7c7;--tq2:#009aaa;
+  --gl:#f3f5f7;--gm:#9aa3b1;--tx:#1f2933;--wh:#ffffff;
+  --rsm:6px;--rmd:12px;--rlg:20px;
+  --sh:0 8px 24px rgba(0,0,0,.07);--sh2:0 16px 48px rgba(0,0,0,.1);
+  --f:'DM Sans',system-ui,sans-serif;--fm:'DM Mono',monospace;--fd:'DM Serif Display',Georgia,serif;
+}
 html{scroll-behavior:smooth}
-body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
+body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow-x:hidden}
+.cms-header{background:var(--wh);box-shadow:var(--sh);position:sticky;top:0;z-index:1000}
+.cms-nav{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:var(--fm);font-size:18px;font-weight:500;color:var(--bd);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--tq)}
+.nav-links{list-style:none;display:flex;gap:.25rem;margin:0;padding:0}
+.nav-links a{text-decoration:none;color:var(--tx);font-size:13px;padding:.35rem .7rem;border-radius:var(--rsm);transition:all .2s}
+.nav-links a:hover,.nav-links a.active{background:var(--gl);color:var(--bd)}
+.cta-nav{background:var(--tq) !important;color:var(--bd) !important;font-weight:600 !important}
+.lang-sw{display:flex;gap:4px}
+.lang-sw button{border:1px solid var(--gm);background:var(--wh);color:var(--tx);padding:.25rem .6rem;border-radius:var(--rsm);font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:var(--f);transition:all .2s}
+.lang-sw button:hover,.lang-sw button.active{border-color:var(--bc);color:var(--bd)}
+.page-hero{background:linear-gradient(135deg,#0b1e30 0%,#0f3d6b 55%,#0f6fa6 100%);padding:64px 6% 48px;position:relative;overflow:hidden}
+.ph-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.02) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.015) 48px)}
+.ph-in{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.ph-bc{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:14px}
+.ph-bc a{color:rgba(255,255,255,.4);text-decoration:none}
+.ph-bc span{color:var(--tq)}
+.ph-tag{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.ph-tag::before{content:'';display:block;width:24px;height:1px;background:var(--tq)}
+.ph-h1{font-family:var(--fd);font-size:clamp(28px,4vw,48px);color:#fff;line-height:1.08;margin-bottom:12px;letter-spacing:-.5px}
+.ph-h1 em{font-style:italic;color:var(--tq)}
+.ph-sub{font-size:15px;color:rgba(255,255,255,.6);max-width:560px;line-height:1.8;margin-bottom:20px}
+.ph-nav{display:flex;gap:8px;flex-wrap:wrap}
+.ph-nav a{font-family:var(--fm);font-size:10px;letter-spacing:1px;padding:6px 14px;border:1px solid rgba(255,255,255,.15);border-radius:20px;color:rgba(255,255,255,.65);text-decoration:none;transition:all .2s}
+.ph-nav a:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)}
 
-/* PAGE HEADER */
-.ph{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
-.ph::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
-.phi{position:relative;z-index:1;max-width:820px}
-.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
-.ph h1{font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
-.ph p{font-size:17px;color:rgba(255,255,255,0.75);max-width:600px;line-height:1.75}
+/* STATS */
+.stats-strip{background:#0a1929;border-bottom:1px solid rgba(0,183,199,.1)}
+.stats-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.sb-col{padding:18px 0;text-align:center;border-right:1px solid rgba(255,255,255,.04)}
+.sb-col:last-child{border-right:none}
+.sb-n{font-family:var(--fd);font-size:28px;color:var(--tq);line-height:1}
+.sb-l{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.3);margin-top:3px}
 
-/* STATS BAR */
-.stats-bar{background:#002B4D;border-bottom:1px solid rgba(0,194,199,0.2);padding:0 6%}
-.stats-inner{display:flex;align-items:stretch;gap:0;max-width:1100px;margin:0 auto}
-.stat-item{padding:22px 40px 22px 0;display:flex;flex-direction:column;gap:2px;border-right:1px solid rgba(255,255,255,0.07);margin-right:40px}
-.stat-item:last-child{border-right:none;margin-right:0}
-.stat-num{font-size:28px;font-weight:700;color:#00C2C7;line-height:1}
-.stat-lbl{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase}
+/* SECTIONS */
+.sec{padding:64px 6%}
+.sec-a{background:var(--wh)}
+.sec-b{background:var(--gl)}
+.sec-in{max-width:1200px;margin:0 auto}
+.sec-ey{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sec-ey::before{content:'';display:block;width:20px;height:1px;background:var(--tq)}
+.sec-h2{font-family:var(--fd);font-size:clamp(22px,3vw,34px);color:var(--bd);margin-bottom:8px;letter-spacing:-.5px}
+.sec-p{font-size:14px;color:#666;max-width:580px;line-height:1.8;margin-bottom:28px}
 
-/* TABS */
-.tabs-bar{background:#fff;border-bottom:2px solid rgba(0,62,107,0.08);position:sticky;top:68px;z-index:90;padding:0 6%}
-.tabs-inner{display:flex;gap:0;max-width:1100px;margin:0 auto}
-.tab-btn{padding:18px 28px;font-size:13px;font-weight:600;color:#888;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .2s;letter-spacing:.3px}
-.tab-btn:hover{color:#003E6B}
-.tab-btn.active{color:#003E6B;border-bottom-color:#00C2C7}
+/* MARQUEURS */
+.markers-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.mf-btn{font-family:var(--fm);font-size:10px;letter-spacing:1px;padding:7px 16px;border:1px solid rgba(0,0,0,.08);border-radius:20px;background:var(--wh);color:var(--gm);cursor:pointer;transition:all .2s}
+.mf-btn:hover,.mf-btn.active{background:var(--bd);color:#fff;border-color:var(--bd)}
+.markers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.mk-card{background:var(--wh);border-radius:var(--rsm);padding:14px 16px;border:1px solid rgba(0,0,0,.05);box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .2s;cursor:default}
+.mk-card:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.mk-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mk-ico{font-size:18px}
+.mk-name{font-size:13px;font-weight:600;color:var(--bd)}
+.mk-tag{font-family:var(--fm);font-size:9px;padding:2px 8px;border-radius:10px}
+.mk-terr{font-size:11px;color:var(--gm);font-family:var(--fm)}
 
-/* MAIN */
-main{padding:56px 6%;max-width:1100px;margin:0 auto}
-.tab-panel{display:none}
-.tab-panel.active{display:block}
+/* LANGUES */
+.langs-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.lang-card{background:var(--wh);border-radius:var(--rmd);padding:18px;border:1px solid rgba(0,0,0,.05);box-shadow:var(--sh);text-align:center;transition:all .2s}
+.lang-card:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.lang-code{font-family:var(--fm);font-size:20px;font-weight:700;color:var(--tq);margin-bottom:4px}
+.lang-name{font-size:12px;font-weight:600;color:var(--bd);margin-bottom:4px}
+.lang-terr{font-size:11px;color:var(--gm)}
 
-/* SECTION LABELS */
-.sl{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.sl::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
-.st{font-size:clamp(20px,2.5vw,30px);font-weight:700;color:#003E6B;margin-bottom:8px;line-height:1.2}
-.sub{font-size:15px;color:#666;margin-bottom:36px;max-width:640px;line-height:1.7}
+/* TERRITOIRES */
+.terr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.terr-card{background:var(--wh);border-radius:var(--rsm);padding:12px 14px;border:1px solid rgba(0,0,0,.05);box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;align-items:center;gap:10px;transition:all .2s}
+.terr-card:hover{transform:translateY(-2px)}
+.terr-flag{font-size:22px}
+.terr-name{font-size:12px;font-weight:600;color:var(--bd)}
 
-/* FILTERS */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
-.filter-btn{padding:6px 16px;border-radius:20px;border:1px solid rgba(0,62,107,0.18);font-size:12px;font-weight:600;color:#555;background:#fff;cursor:pointer;transition:all .2s}
-.filter-btn:hover{border-color:#003E6B;color:#003E6B}
-.filter-btn.active{background:#003E6B;color:#fff;border-color:#003E6B}
+/* CORPUS */
+.corpus-header{background:linear-gradient(135deg,var(--tq),var(--bc));border-radius:var(--rmd);padding:32px 36px;margin-bottom:24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.ch-h{font-family:var(--fd);font-size:clamp(20px,2.5vw,28px);color:#fff;margin-bottom:6px}
+.ch-p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.7}
+.ch-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cs-stat{text-align:center}
+.cs-n{font-family:var(--fd);font-size:28px;color:#fff;line-height:1}
+.cs-l{font-family:var(--fm);font-size:8px;color:rgba(255,255,255,.55);letter-spacing:1px;margin-top:2px}
 
-/* MARQUEURS GRID */
-.markers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:64px}
-.marker-card{border:1px solid rgba(0,62,107,0.1);border-radius:8px;padding:20px;transition:box-shadow .2s;background:#fff}
-.marker-card:hover{box-shadow:0 4px 16px rgba(0,62,107,0.08)}
-.marker-card.hidden{display:none}
-.mc-cat{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;padding:3px 8px;border-radius:20px;display:inline-block}
-.mc-cat.music{background:#e8f4fd;color:#1565C0}
-.mc-cat.dance{background:#f3e8fd;color:#6A1B9A}
-.mc-cat.carnival{background:#fff3e0;color:#E65100}
-.mc-cat.religion{background:#e8f5e9;color:#1B5E20}
-.mc-cat.heritage{background:#fce4ec;color:#880E4F}
-.mc-name{font-size:16px;font-weight:700;color:#003E6B;margin-bottom:6px;font-family:'Helvetica Neue',Arial,sans-serif}
-.mc-orig{font-size:12px;color:#00C2C7;font-weight:600;margin-bottom:8px}
-.mc-desc{font-size:13px;color:#555;line-height:1.65}
-.mc-terr{display:flex;flex-wrap:wrap;gap:4px;margin-top:12px}
-.mc-terr span{font-size:10px;padding:2px 8px;background:#f0f4f8;color:#444;border-radius:10px}
+.corpus-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.cf-select{padding:8px 14px;border:1px solid rgba(0,0,0,.08);border-radius:var(--rsm);background:var(--wh);font-size:13px;font-family:var(--f);color:var(--tx);cursor:pointer}
 
-/* LANGUES GRID */
-.langs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:48px}
-.lang-card{border:1px solid rgba(0,62,107,0.1);border-radius:8px;padding:20px;background:#fff;transition:box-shadow .2s}
-.lang-card:hover{box-shadow:0 4px 16px rgba(0,62,107,0.08)}
-.lc-code{font-size:22px;font-weight:700;color:#00C2C7;font-family:monospace;margin-bottom:6px}
-.lc-name{font-size:15px;font-weight:700;color:#003E6B;margin-bottom:4px}
-.lc-terr{font-size:12px;color:#888;margin-bottom:12px}
-.lc-bar{height:4px;background:#f0f4f8;border-radius:2px;overflow:hidden}
-.lc-fill{height:100%;background:linear-gradient(90deg,#003E6B,#00C2C7);border-radius:2px;transition:width .8s ease}
-.lc-count{font-size:11px;color:#aaa;margin-top:6px}
+.corpus-table{width:100%;border-collapse:collapse;background:var(--wh);border-radius:var(--rmd);overflow:hidden;box-shadow:var(--sh)}
+.corpus-table thead tr{background:var(--bd)}
+.corpus-table th{padding:12px 14px;font-family:var(--fm);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.55);text-align:left}
+.corpus-table tbody tr{border-bottom:1px solid rgba(0,0,0,.04);transition:background .15s}
+.corpus-table tbody tr:hover{background:rgba(0,183,199,.03)}
+.corpus-table td{padding:12px 14px;font-size:12px}
+.ct-id{font-family:var(--fm);color:var(--tq);font-size:10px}
+.ct-lang{font-family:var(--fm);font-size:11px;padding:2px 8px;border-radius:10px;background:var(--gl);color:var(--bd)}
+.ct-terr{font-size:12px;color:#555}
+.ct-domain{font-size:11px;color:var(--gm)}
+.ct-extract{font-size:12px;color:#444;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ct-markers{display:flex;flex-wrap:wrap;gap:3px}
+.ct-marker{font-size:9px;font-family:var(--fm);padding:2px 6px;border-radius:8px;background:rgba(0,183,199,.08);color:var(--bc)}
 
-/* TERRITOIRES GRID */
-.terr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:48px}
-.terr-card{border:1px solid rgba(0,62,107,0.1);border-radius:6px;padding:16px;background:#fff;display:flex;align-items:center;gap:14px;transition:box-shadow .2s}
-.terr-card:hover{box-shadow:0 4px 12px rgba(0,62,107,0.07)}
-.tc-flag{font-size:28px;line-height:1}
-.tc-info{}
-.tc-name{font-size:13px;font-weight:700;color:#003E6B}
-.tc-count{font-size:11px;color:#aaa}
+.corpus-download{background:var(--bd);border-radius:var(--rmd);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
+.cd-text{font-size:13px;color:rgba(255,255,255,.7)}
+.cd-text strong{color:#fff}
+.cd-btns{display:flex;gap:10px;flex-shrink:0}
+.btn-t{padding:10px 20px;background:var(--tq);color:var(--bd);border-radius:var(--rsm);font-size:12px;font-weight:600;text-decoration:none;font-family:var(--f);transition:background .2s}
+.btn-t:hover{background:var(--tq2)}
+.btn-g{padding:10px 18px;background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);border-radius:var(--rsm);font-size:12px;text-decoration:none;font-family:var(--f);transition:all .2s}
+.btn-g:hover{color:#fff;border-color:rgba(255,255,255,.5)}
 
-/* DOMAINES GRID */
-.domains-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:48px}
-.domain-card{border:1px solid rgba(0,62,107,0.1);border-radius:6px;padding:16px 20px;background:#fff;transition:all .2s;cursor:default}
-.domain-card:hover{border-color:#00C2C7;background:#f8fdfd}
-.dc-icon{font-size:24px;margin-bottom:8px}
-.dc-name{font-size:13px;font-weight:700;color:#003E6B;text-transform:capitalize}
-.dc-count{font-size:11px;color:#aaa;margin-top:2px}
-
-/* CORPUS SECTION */
-.corpus-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px}
-.corpus-search{flex:1;min-width:200px;padding:10px 16px;border:1px solid rgba(0,62,107,0.18);border-radius:6px;font-size:14px;outline:none;transition:border .2s}
-.corpus-search:focus{border-color:#003E6B}
-.corpus-select{padding:10px 14px;border:1px solid rgba(0,62,107,0.18);border-radius:6px;font-size:13px;background:#fff;color:#333;outline:none;cursor:pointer}
-.corpus-count{font-size:13px;color:#888;white-space:nowrap}
-
-.corpus-table{width:100%;border-collapse:collapse;margin-bottom:16px}
-.corpus-table th{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;padding:10px 14px;border-bottom:2px solid rgba(0,62,107,0.1);text-align:left;white-space:nowrap}
-.corpus-table td{padding:12px 14px;border-bottom:1px solid rgba(0,62,107,0.06);font-size:13px;color:#333;vertical-align:top}
-.corpus-table tr:hover td{background:#f8fafc}
-.corpus-table tr.hidden{display:none}
-.lang-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;font-family:monospace;background:#e8f4fd;color:#1565C0}
-.marker-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;background:#f0fdf4;color:#166534;margin:1px}
-.cert-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
-.cert-badge.bronze{background:rgba(180,120,60,0.12);color:#92400e}
-.cert-badge.silver{background:rgba(160,160,180,0.15);color:#64748b}
-.cert-badge.gold{background:rgba(212,175,55,0.15);color:#b45309}
-.cert-badge.platinum{background:rgba(0,194,199,0.12);color:#0e7490}
-.text-preview{color:#666;font-style:italic;max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.no-results{text-align:center;padding:48px 24px;color:#aaa;font-size:15px}
-
-/* PAGINATION */
-.pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;margin-bottom:48px}
-.page-btn{padding:8px 14px;border:1px solid rgba(0,62,107,0.18);border-radius:4px;font-size:13px;font-weight:600;color:#555;background:#fff;cursor:pointer;transition:all .2s}
-.page-btn:hover{border-color:#003E6B;color:#003E6B}
-.page-btn.active{background:#003E6B;color:#fff;border-color:#003E6B}
-.page-btn:disabled{opacity:.35;cursor:default}
+/* CERTIFICATION */
+.cert-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.cert-steps{display:flex;flex-direction:column;gap:14px}
+.cert-step{background:var(--wh);border-radius:var(--rmd);padding:20px;display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(0,0,0,.05);box-shadow:var(--sh)}
+.cs-num{width:36px;height:36px;border-radius:8px;background:var(--bc);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:13px;font-weight:700;flex-shrink:0}
+.cs-h{font-size:14px;font-weight:600;color:var(--bd);margin-bottom:4px}
+.cs-p{font-size:12px;color:#666;line-height:1.65}
+.cert-niveaux{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cn-card{background:var(--wh);border-radius:var(--rmd);padding:18px;border:1px solid rgba(0,0,0,.05);box-shadow:var(--sh);text-align:center}
+.cn-fams{font-family:var(--fd);font-size:28px;color:var(--bd);line-height:1;margin-bottom:4px}
+.cn-label{font-size:13px;font-weight:600;color:var(--bd);margin-bottom:4px}
+.cn-desc{font-size:11px;color:var(--gm);line-height:1.5}
+.cn-bar{height:3px;border-radius:2px;margin-top:10px}
 
 /* CTA */
-.cta-block{background:#003E6B;border-radius:12px;padding:48px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-.cta-block h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
-.cta-block p{font-size:15px;color:rgba(255,255,255,0.6);max-width:480px}
-.cta-btns{display:flex;flex-wrap:wrap;gap:12px;flex-shrink:0}
-.btn-primary{display:inline-block;padding:12px 28px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:14px;font-weight:700;white-space:nowrap;transition:background .2s}
-.btn-primary:hover{background:#00A8AE}
-.btn-outline{display:inline-block;padding:12px 28px;border:1px solid rgba(255,255,255,0.35);color:#fff;text-decoration:none;border-radius:4px;font-size:14px;font-weight:600;white-space:nowrap;transition:all .2s}
-.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.08)}
+.cta-sec{background:var(--bd);padding:64px 6%;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:200px;background:radial-gradient(ellipse,rgba(0,183,199,.1),transparent 65%);pointer-events:none}
+.cta-in{position:relative;z-index:1;max-width:560px;margin:0 auto}
+.cta-h{font-family:var(--fd);font-size:clamp(22px,3vw,36px);color:#fff;margin-bottom:10px;letter-spacing:-.5px}
+.cta-p{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:22px;line-height:1.8}
+.cta-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.btn-p{padding:12px 26px;background:var(--tq);color:var(--bd);border:none;border-radius:var(--rsm);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:background .2s}
+.btn-p:hover{background:var(--tq2)}
+.btn-o{padding:11px 22px;background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);border-radius:var(--rsm);font-size:13px;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-o:hover{border-color:rgba(255,255,255,.5)}
 
+.cms-footer{background:var(--bd);color:#fff;padding:48px 6% 28px}
+.foot-in{max-width:1200px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:var(--fm);font-size:20px;color:#fff;letter-spacing:2px;display:block;margin-bottom:12px;text-decoration:none}
+.foot-logo span{color:var(--tq)}
+.foot-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.75}
+.foot-col h4{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--tq);margin-bottom:14px}
+.foot-col ul{list-style:none;padding:0}
+.foot-col li{margin-bottom:8px}
+.foot-col a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.3);font-family:var(--fm);flex-wrap:wrap;gap:8px}
+
+@media(max-width:1024px){
+  .langs-grid{grid-template-columns:repeat(3,1fr)}
+  .cert-layout{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr}
+}
 @media(max-width:768px){
-  .stats-inner{flex-wrap:wrap;gap:0}
-  .stat-item{padding:16px 20px 16px 0;margin-right:20px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.07)}
-  .corpus-table{font-size:12px}
-  .corpus-table td:nth-child(4),.corpus-table th:nth-child(4){display:none}
-  .cta-block{padding:32px}
+  .nav-links{display:none}
+  .stats-in,.langs-grid{grid-template-columns:repeat(2,1fr)}
+  .corpus-header{grid-template-columns:1fr}
+  .ch-stats{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 <body>
 
-<nav><!-- nav-fix.js --></nav>
+<header class="cms-header">
+  <nav class="cms-nav">
+    <a href="/" class="logo">CMS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Standard</a></li>
+      <li><a href="families.html">6 Familles</a></li>
+      <li><a href="cms-builder.html">CMS Builder</a></li>
+      <li><a href="catalogue.html" class="active">Catalogue</a></li>
+      <li><a href="developers.html">API</a></li>
+      <li><a href="collaborate.html">Partenariats</a></li>
+      <li><a href="equity.html">Équité</a></li>
+      <li><a href="submit.html" class="cta-nav">Soumettre une œuvre</a></li>
+    </ul>
+    <div class="lang-sw">
+      <button class="active">FR</button>
+      <button onclick="location='catalogue.html'">EN</button>
+      <button onclick="location='catalogue.html'">ES</button>
+    </div>
+  </nav>
+</header>
 
-<!-- PAGE HEADER -->
-<div class="ph">
-  <div class="phi">
-    <div class="ey">Vocabulaire & Données</div>
-    <h1>Catalogue CMS</h1>
-    <p>Explorez le vocabulaire culturel caribéen du standard — marqueurs, langues, territoires et domaines — et consultez les 110 enregistrements du corpus open data.</p>
+<div class="page-hero">
+  <div class="ph-grid"></div>
+  <div class="ph-in">
+    <div class="ph-bc"><a href="index.html">Accueil</a> › <span>Catalogue</span></div>
+    <div class="ph-tag">Vocabulaire · Corpus · Certification</div>
+    <h1 class="ph-h1">Catalogue <em>CMS v2.0</em></h1>
+    <p class="ph-sub">Vocabulaire contrôlé complet, corpus open data de 110 enregistrements et certification CMS-Compliant — tout le contenu structuré du standard caribéen.</p>
+    <div class="ph-nav">
+      <a href="#marqueurs">27 Marqueurs</a>
+      <a href="#langues">10 Langues</a>
+      <a href="#territoires">20 Territoires</a>
+      <a href="#corpus">Corpus Open Data</a>
+      <a href="#certification">Certification</a>
+    </div>
   </div>
 </div>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item"><span class="stat-num">27</span><span class="stat-lbl">Marqueurs culturels</span></div>
-    <div class="stat-item"><span class="stat-num">10</span><span class="stat-lbl">Langues couvertes</span></div>
-    <div class="stat-item"><span class="stat-num">20</span><span class="stat-lbl">Territoires</span></div>
-    <div class="stat-item"><span class="stat-num">14</span><span class="stat-lbl">Domaines culturels</span></div>
-    <div class="stat-item"><span class="stat-num">110</span><span class="stat-lbl">Enregistrements corpus</span></div>
+<div class="stats-strip">
+  <div class="stats-in">
+    <div class="sb-col"><div class="sb-n">27</div><div class="sb-l">Marqueurs culturels</div></div>
+    <div class="sb-col"><div class="sb-n">10</div><div class="sb-l">Langues ISO 639-3</div></div>
+    <div class="sb-col"><div class="sb-n">110</div><div class="sb-l">Enregistrements corpus</div></div>
+    <div class="sb-col"><div class="sb-n">14</div><div class="sb-l">Domaines culturels</div></div>
   </div>
 </div>
 
-<!-- TABS -->
-<div class="tabs-bar">
-  <div class="tabs-inner">
-    <button class="tab-btn active" onclick="showTab('vocabulaire')">Vocabulaire CMS</button>
-    <button class="tab-btn" onclick="showTab('corpus')">Corpus open data</button>
-    <button class="tab-btn" onclick="showTab('certifier')">Certifier mon contenu</button>
-  </div>
-</div>
-
-<main>
-
-<!-- ═══════════════ TAB 1 — VOCABULAIRE ═══════════════ -->
-<div id="tab-vocabulaire" class="tab-panel active">
-
-  <!-- MARQUEURS CULTURELS -->
-  <div class="sl">Vocabulaire CMS</div>
-  <h2 class="st">27 marqueurs culturels caribéens</h2>
-  <p class="sub">Chaque marqueur est défini, territorialisé et documenté. Ils constituent le cœur sémantique du standard CMS.</p>
-
-  <div class="filters" id="marker-filters">
-    <button class="filter-btn active" onclick="filterMarkers('all',this)">Tous (27)</button>
-    <button class="filter-btn" onclick="filterMarkers('music',this)">🎵 Musique</button>
-    <button class="filter-btn" onclick="filterMarkers('dance',this)">💃 Danse & Arts</button>
-    <button class="filter-btn" onclick="filterMarkers('carnival',this)">🎭 Carnaval</button>
-    <button class="filter-btn" onclick="filterMarkers('religion',this)">🕊️ Religion & Spiritualité</button>
-    <button class="filter-btn" onclick="filterMarkers('heritage',this)">🏛️ Patrimoine</button>
-  </div>
-
-  <div class="markers-grid" id="markers-grid"></div>
-
-  <!-- LANGUES -->
-  <div class="sl">Familles linguistiques</div>
-  <h2 class="st">10 langues caribéennes</h2>
-  <p class="sub">Codes ISO 639-3 — base de la famille Linguistique du CMS.</p>
-  <div class="langs-grid" id="langs-grid"></div>
-
-  <!-- TERRITOIRES -->
-  <div class="sl">Ancrage géographique</div>
-  <h2 class="st">20 territoires caribéens</h2>
-  <p class="sub">Vocabulaire contrôlé de la famille Géographique du CMS.</p>
-  <div class="terr-grid" id="terr-grid"></div>
-
-  <!-- DOMAINES -->
-  <div class="sl">Domaines culturels</div>
-  <h2 class="st">14 domaines</h2>
-  <p class="sub">Vocabulaire contrôlé de la famille Narrative du CMS.</p>
-  <div class="domains-grid" id="domains-grid"></div>
-
-</div>
-
-<!-- ═══════════════ TAB 2 — CORPUS ═══════════════ -->
-<div id="tab-corpus" class="tab-panel">
-
-  <div class="sl">Open Data · CC-BY 4.0</div>
-  <h2 class="st">110 enregistrements — corpus CMS v2.0</h2>
-  <p class="sub">Premier corpus structuré de contenus culturels caribéens, validé selon le standard CMS v2.0. Librement téléchargeable et citable.</p>
-
-  <div class="corpus-controls">
-    <input class="corpus-search" id="corpus-search" type="text" placeholder="Rechercher dans le corpus…" oninput="filterCorpus()">
-    <select class="corpus-select" id="filter-lang" onchange="filterCorpus()">
-      <option value="">Toutes les langues</option>
-      <option value="hat">hat — Créole haïtien</option>
-      <option value="gcf">gcf — Créole guadeloupéen</option>
-      <option value="acf">acf — Créole antillais</option>
-      <option value="fra">fra — Français caribéen</option>
-      <option value="eng">eng — English Caribbean</option>
-      <option value="spa">spa — Español caribeño</option>
-      <option value="jam">jam — Jamaican Patois</option>
-      <option value="pap">pap — Papiamentu</option>
-      <option value="nld">nld — Nederlands Caribisch</option>
-      <option value="srn">srn — Sranan Tongo</option>
-    </select>
-    <select class="corpus-select" id="filter-domain" onchange="filterCorpus()">
-      <option value="">Tous les domaines</option>
-      <option value="music">Musique</option>
-      <option value="dance">Danse</option>
-      <option value="theatre">Théâtre</option>
-      <option value="literature">Littérature</option>
-      <option value="oral_tradition">Tradition orale</option>
-      <option value="intangible_heritage">Patrimoine immatériel</option>
-      <option value="religion">Religion</option>
-      <option value="gastronomy">Gastronomie</option>
-      <option value="carnival">Carnaval</option>
-      <option value="visual_arts">Arts visuels</option>
-      <option value="education">Éducation</option>
-      <option value="general">Général</option>
-      <option value="news">Actualités</option>
-      <option value="social_media">Réseaux sociaux</option>
-    </select>
-    <select class="corpus-select" id="filter-terr" onchange="filterCorpus()">
-      <option value="">Tous les territoires</option>
-    </select>
-    <span class="corpus-count" id="corpus-count">110 enregistrements</span>
-  </div>
-
-  <table class="corpus-table" id="corpus-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Langue</th>
-        <th>Territoire</th>
-        <th>Domaine</th>
-        <th>Marqueurs</th>
-        <th>Extrait</th>
-      </tr>
-    </thead>
-    <tbody id="corpus-tbody"></tbody>
-  </table>
-  <div class="no-results" id="no-results" style="display:none">Aucun enregistrement ne correspond à votre recherche.</div>
-
-  <div class="pagination" id="pagination"></div>
-
-  <div style="text-align:center;margin-bottom:48px">
-    <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" class="btn-primary" style="margin:4px">Télécharger le corpus complet →</a>
-    <span style="font-size:13px;color:#aaa;display:block;margin-top:8px">JSONL · CC-BY 4.0 · github.com/heso73/cms-nlp-corpus</span>
-  </div>
-
-</div>
-
-<!-- ═══════════════ TAB 3 — CERTIFIER ═══════════════ -->
-<div id="tab-certifier" class="tab-panel">
-
-  <div class="sl">Certification CMS v2.0</div>
-  <h2 class="st">Certifiez votre contenu caribéen</h2>
-  <p class="sub">Obtenez une certification CMS officielle pour votre œuvre — film, musique, livre, podcast ou contenu numérique. La certification atteste de son ancrage culturel caribéen.</p>
-
-  <!-- Complétude CMS -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:48px">
-    <div style="border:1px solid rgba(0,62,107,0.1);border-radius:8px;padding:24px;background:#f7f9fb">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#003E6B;margin-bottom:8px">1–2 FAMILLES</div>
-      <div style="font-size:28px;font-weight:700;color:#003E6B;margin-bottom:8px">Partielle</div>
-      <div style="font-size:13px;color:#555">Fiche démarrée. Au moins une famille linguistique ou géographique documentée.</div>
+<!-- ═══ MARQUEURS ════════════════════════════════════════ -->
+<section class="sec sec-b" id="marqueurs">
+  <div class="sec-in">
+    <div class="sec-ey">Famille Culturelle</div>
+    <h2 class="sec-h2">27 marqueurs culturels officiels</h2>
+    <p class="sec-p">Vocabulaire contrôlé CMS v2.0 — chaque marqueur est défini, territorialisé et documenté. Ils constituent le cœur sémantique du standard.</p>
+    <div class="markers-filters">
+      <button class="mf-btn active" onclick="filterMarkers('all',this)">Tous (27)</button>
+      <button class="mf-btn" onclick="filterMarkers('music',this)">🎵 Musique</button>
+      <button class="mf-btn" onclick="filterMarkers('dance',this)">💃 Danse</button>
+      <button class="mf-btn" onclick="filterMarkers('carnival',this)">🎭 Carnaval</button>
+      <button class="mf-btn" onclick="filterMarkers('religion',this)">🕊️ Religion</button>
+      <button class="mf-btn" onclick="filterMarkers('heritage',this)">🏛️ Patrimoine</button>
     </div>
-    <div style="border:1px solid rgba(0,62,107,0.12);border-radius:8px;padding:24px;background:#f4f7fb">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#003E6B;margin-bottom:8px">3–4 FAMILLES</div>
-      <div style="font-size:28px;font-weight:700;color:#003E6B;margin-bottom:8px">Avancée</div>
-      <div style="font-size:13px;color:#555">Fiche substantielle. Langue, territoire et marqueurs culturels documentés.</div>
-    </div>
-    <div style="border:1px solid rgba(0,62,107,0.15);border-radius:8px;padding:24px;background:#f0f5fb">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#003E6B;margin-bottom:8px">5–6 FAMILLES</div>
-      <div style="font-size:28px;font-weight:700;color:#00C2C7;margin-bottom:8px">Complète</div>
-      <div style="font-size:13px;color:#555">Fiche CMS complète. Toutes les dimensions culturelles caribéennes documentées.</div>
-    </div>
-    <div style="border:1px solid rgba(0,194,199,0.25);border-radius:8px;padding:24px;background:#f0fdfd">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#0e7490;margin-bottom:8px">6/6 FAMILLES</div>
-      <div style="font-size:28px;font-weight:700;color:#0e7490;margin-bottom:8px">Exhaustive</div>
-      <div style="font-size:13px;color:#555">Fiche de référence. Toutes les 6 familles CMS renseignées — standard maximal.</div>
+    <div class="markers-grid" id="markers-grid">
+      <!-- JS génère les cartes -->
     </div>
   </div>
+</section>
 
-  <div class="cta-block">
-    <div>
-      <h2>Prêt à certifier votre contenu ?</h2>
-      <p>Le CMS Builder guide pas à pas la création de votre fiche métadonnées structurée. Gratuit. En 5 minutes.</p>
+<!-- ═══ LANGUES ══════════════════════════════════════════ -->
+<section class="sec sec-a" id="langues">
+  <div class="sec-in">
+    <div class="sec-ey">Famille Linguistique</div>
+    <h2 class="sec-h2">10 langues caribéennes</h2>
+    <p class="sec-p">Codes ISO 639-3 — base de la famille Linguistique du CMS. Signal algorithmique le plus fort : 20 pts IVA.</p>
+    <div class="langs-grid">
+      <div class="lang-card"><div class="lang-code">gcf</div><div class="lang-name">Créole guadeloupéen</div><div class="lang-terr">Guadeloupe</div></div>
+      <div class="lang-card"><div class="lang-code">hat</div><div class="lang-name">Créole haïtien</div><div class="lang-terr">Haïti</div></div>
+      <div class="lang-card"><div class="lang-code">acf</div><div class="lang-name">Créole antillais</div><div class="lang-terr">Martinique</div></div>
+      <div class="lang-card"><div class="lang-code">jam</div><div class="lang-name">Jamaican Patois</div><div class="lang-terr">Jamaica</div></div>
+      <div class="lang-card"><div class="lang-code">pap</div><div class="lang-name">Papiamentu</div><div class="lang-terr">Aruba · Curaçao</div></div>
+      <div class="lang-card"><div class="lang-code">srn</div><div class="lang-name">Sranan Tongo</div><div class="lang-terr">Suriname</div></div>
+      <div class="lang-card"><div class="lang-code">nld</div><div class="lang-name">Nederlands Caribisch</div><div class="lang-terr">Antilles NL</div></div>
+      <div class="lang-card"><div class="lang-code">fra</div><div class="lang-name">Français caribéen</div><div class="lang-terr">Antilles FR</div></div>
+      <div class="lang-card"><div class="lang-code">eng</div><div class="lang-name">English Caribbean</div><div class="lang-terr">Trinidad · Barbados</div></div>
+      <div class="lang-card"><div class="lang-code">spa</div><div class="lang-name">Español caribeño</div><div class="lang-terr">Cuba · RD · PR</div></div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ TERRITOIRES ══════════════════════════════════════ -->
+<section class="sec sec-b" id="territoires">
+  <div class="sec-in">
+    <div class="sec-ey">Famille Géographique</div>
+    <h2 class="sec-h2">20 territoires caribéens</h2>
+    <p class="sec-p">Vocabulaire contrôlé de la famille Géographique du CMS. Ancrage territorial précis — 15 pts IVA.</p>
+    <div class="terr-grid">
+      <div class="terr-card"><div class="terr-flag">🇬🇵</div><div class="terr-name">Guadeloupe</div></div>
+      <div class="terr-card"><div class="terr-flag">🇭🇹</div><div class="terr-name">Haïti</div></div>
+      <div class="terr-card"><div class="terr-flag">🇲🇶</div><div class="terr-name">Martinique</div></div>
+      <div class="terr-card"><div class="terr-flag">🇯🇲</div><div class="terr-name">Jamaica</div></div>
+      <div class="terr-card"><div class="terr-flag">🇹🇹</div><div class="terr-name">Trinidad</div></div>
+      <div class="terr-card"><div class="terr-flag">🇨🇺</div><div class="terr-name">Cuba</div></div>
+      <div class="terr-card"><div class="terr-flag">🇩🇴</div><div class="terr-name">Dominican Republic</div></div>
+      <div class="terr-card"><div class="terr-flag">🇵🇷</div><div class="terr-name">Puerto Rico</div></div>
+      <div class="terr-card"><div class="terr-flag">🇸🇷</div><div class="terr-name">Suriname</div></div>
+      <div class="terr-card"><div class="terr-flag">🇨🇼</div><div class="terr-name">Curaçao</div></div>
+      <div class="terr-card"><div class="terr-flag">🇦🇼</div><div class="terr-name">Aruba</div></div>
+      <div class="terr-card"><div class="terr-flag">🇧🇧</div><div class="terr-name">Barbados</div></div>
+      <div class="terr-card"><div class="terr-flag">🇬🇫</div><div class="terr-name">Guyane</div></div>
+      <div class="terr-card"><div class="terr-flag">🇩🇲</div><div class="terr-name">Dominica</div></div>
+      <div class="terr-card"><div class="terr-flag">🇱🇨</div><div class="terr-name">St Lucia</div></div>
+      <div class="terr-card"><div class="terr-flag">🇻🇨</div><div class="terr-name">St Vincent</div></div>
+      <div class="terr-card"><div class="terr-flag">🇬🇩</div><div class="terr-name">Grenada</div></div>
+      <div class="terr-card"><div class="terr-flag">🇦🇬</div><div class="terr-name">Antigua</div></div>
+      <div class="terr-card"><div class="terr-flag">🌍</div><div class="terr-name">Diaspora caribéenne</div></div>
+      <div class="terr-card"><div class="terr-flag">🌊</div><div class="terr-name">Caribbean (général)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CORPUS ════════════════════════════════════════════ -->
+<section class="sec sec-a" id="corpus">
+  <div class="sec-in">
+    <div class="corpus-header">
+      <div>
+        <div class="ch-h">Corpus fondateur CMS v2.0</div>
+        <div class="ch-p">Premier corpus structuré de contenus culturels caribéens. Librement téléchargeable, citable et intégrable. Licence CC-BY 4.0.</div>
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" class="btn-t">↗ Accéder au corpus GitHub</a>
+          <a href="https://cms-api.small-disk-3275.workers.dev/api/v2/works" target="_blank" class="btn-g">API /works →</a>
+        </div>
+      </div>
+      <div class="ch-stats">
+        <div class="cs-stat"><div class="cs-n">110</div><div class="cs-l">Enregistrements</div></div>
+        <div class="cs-stat"><div class="cs-n">10</div><div class="cs-l">Langues</div></div>
+        <div class="cs-stat"><div class="cs-n">17</div><div class="cs-l">Territoires</div></div>
+        <div class="cs-stat"><div class="cs-n">27</div><div class="cs-l">Marqueurs</div></div>
+      </div>
+    </div>
+    <div class="corpus-filters">
+      <select class="cf-select" id="filter-lang" onchange="loadCorpus()">
+        <option value="">Toutes les langues</option>
+        <option value="gcf">gcf — Créole guadeloupéen</option>
+        <option value="hat">hat — Créole haïtien</option>
+        <option value="fra">fra — Français caribéen</option>
+        <option value="eng">eng — English Caribbean</option>
+        <option value="spa">spa — Español caribeño</option>
+        <option value="jam">jam — Jamaican Patois</option>
+        <option value="pap">pap — Papiamentu</option>
+        <option value="nld">nld — Nederlands Caribisch</option>
+        <option value="srn">srn — Sranan Tongo</option>
+        <option value="acf">acf — Créole antillais</option>
+      </select>
+      <select class="cf-select" id="filter-domain" onchange="loadCorpus()">
+        <option value="">Tous les domaines</option>
+        <option value="music">Musique</option>
+        <option value="dance">Danse</option>
+        <option value="literature">Littérature</option>
+        <option value="oral_tradition">Tradition orale</option>
+        <option value="intangible_heritage">Patrimoine immatériel</option>
+        <option value="carnival">Carnaval</option>
+        <option value="religion">Religion</option>
+      </select>
+      <select class="cf-select" id="filter-territory" onchange="loadCorpus()">
+        <option value="">Tous les territoires</option>
+        <option value="Guadeloupe">Guadeloupe</option>
+        <option value="Haiti">Haïti</option>
+        <option value="Martinique">Martinique</option>
+        <option value="Jamaica">Jamaica</option>
+        <option value="Trinidad">Trinidad</option>
+        <option value="Cuba">Cuba</option>
+        <option value="Suriname">Suriname</option>
+      </select>
+    </div>
+    <div style="overflow-x:auto;border-radius:var(--rmd)">
+      <table class="corpus-table">
+        <thead><tr>
+          <th>LANGUE</th><th>TERRITOIRE</th><th>DOMAINE</th><th>MARQUEURS</th><th>EXTRAIT</th>
+        </tr></thead>
+        <tbody id="corpus-tbody">
+          <tr><td colspan="5" style="text-align:center;padding:32px;color:var(--gm);font-family:var(--fm);font-size:12px">Chargement du corpus...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="corpus-download">
+      <div class="cd-text"><strong>Corpus complet</strong> · JSONL · CC-BY 4.0 · 110 enregistrements validés · <strong>github.com/heso73/cms-nlp-corpus</strong></div>
+      <div class="cd-btns">
+        <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_v2_unified.jsonl" target="_blank" class="btn-t">↓ Télécharger JSONL</a>
+        <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json" target="_blank" class="btn-g">↓ Schéma JSON</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIFICATION ════════════════════════════════════ -->
+<section class="sec sec-b" id="certification">
+  <div class="sec-in">
+    <div class="sec-ey">Registre officiel</div>
+    <h2 class="sec-h2">Certification CMS-Compliant</h2>
+    <p class="sec-p">La certification atteste qu'une œuvre a été documentée selon le standard CMS v2.0. Elle mesure la complétude technique — pas la valeur culturelle.</p>
+    <div class="cert-layout">
+      <div>
+        <h3 style="font-size:16px;font-weight:600;color:var(--bd);margin-bottom:16px;font-family:var(--f)">Processus de certification</h3>
+        <div class="cert-steps">
+          <div class="cert-step"><div class="cs-num">1</div><div><div class="cs-h">Soumission</div><div class="cs-p">Remplissez la fiche CMS via le Builder ou l'API. L'IA analyse et suggère les marqueurs.</div></div></div>
+          <div class="cert-step"><div class="cs-num">2</div><div><div class="cs-h">Validation</div><div class="cs-p">Le Comité Technique vérifie la cohérence des métadonnées avec l'œuvre soumise.</div></div></div>
+          <div class="cert-step"><div class="cs-num">3</div><div><div class="cs-h">Publication</div><div class="cs-p">L'œuvre reçoit un identifiant CMS unique (ex: CMS-GUA-2026-XXXXXXXX) et entre dans le registre public.</div></div></div>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="submit.html" class="btn-p">Soumettre une œuvre →</a>
+          <a href="certification.html" class="btn-o" style="border-color:rgba(0,0,0,.12);color:var(--bd)">Vérifier un CMS-ID</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:16px;font-weight:600;color:var(--bd);margin-bottom:16px;font-family:var(--f)">Niveaux de complétude</h3>
+        <div class="cert-niveaux">
+          <div class="cn-card"><div class="cn-fams">1–2</div><div class="cn-label">Partielle</div><div class="cn-desc">Fiche démarrée — langue ou territoire identifié</div><div class="cn-bar" style="background:rgba(0,62,107,.15)"><div style="height:100%;width:33%;background:#003E6B;border-radius:2px"></div></div></div>
+          <div class="cn-card"><div class="cn-fams">3–4</div><div class="cn-label">Avancée</div><div class="cn-desc">Langue + territoire + marqueurs documentés</div><div class="cn-bar" style="background:rgba(63,166,107,.15)"><div style="height:100%;width:66%;background:#3FA66B;border-radius:2px"></div></div></div>
+          <div class="cn-card"><div class="cn-fams">5</div><div class="cn-label">Complète</div><div class="cn-desc">Toutes les dimensions caribéennes documentées</div><div class="cn-bar" style="background:rgba(0,183,199,.15)"><div style="height:100%;width:83%;background:var(--tq);border-radius:2px"></div></div></div>
+          <div class="cn-card" style="border-color:var(--tq)"><div class="cn-fams" style="color:var(--tq)">6/6</div><div class="cn-label" style="color:var(--tq)">Exhaustive</div><div class="cn-desc">Fiche de référence — standard maximal CMS</div><div class="cn-bar" style="background:rgba(0,183,199,.15)"><div style="height:100%;width:100%;background:var(--tq);border-radius:2px"></div></div></div>
+        </div>
+        <div style="margin-top:16px;background:var(--gl);border-radius:var(--rsm);padding:14px;font-size:12px;color:#555;line-height:1.7;border-left:3px solid var(--tq)">
+          Une fiche 1/6 a autant de légitimité dans le registre qu'une fiche 6/6. La complétude est un objectif, pas une barrière d'accès.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <div class="cta-glow"></div>
+  <div class="cta-in">
+    <h2 class="cta-h">Votre œuvre mérite d'être visible</h2>
+    <p class="cta-p">Enregistrez-la dans le registre CMS. Gratuit. 5 minutes. Claude complète la fiche à votre place.</p>
     <div class="cta-btns">
-      <a href="validator.html" class="btn-primary">Accéder au validateur →</a>
-      <a href="cms-builder.html" class="btn-outline">CMS Builder</a>
+      <a href="submit.html" class="btn-p">Soumettre une œuvre →</a>
+      <a href="cms-builder.html" class="btn-o">CMS Builder</a>
     </div>
   </div>
+</section>
 
-  <div style="margin-top:32px;padding:32px;background:#f7f9fb;border-radius:8px;border:1px solid rgba(0,62,107,0.08)">
-    <div class="sl">Note importante</div>
-    <p style="font-size:14px;color:#555;line-height:1.8">Le catalogue des œuvres enregistrées sera ouvert dès les premières soumissions validées. Vous serez parmi les premiers créateurs caribéens à disposer d'une fiche CMS officielle. <a href="contact.html" style="color:#003E6B;font-weight:600">Contactez-nous</a> pour toute question.</p>
+<footer class="cms-footer">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div><a href="/" class="foot-logo">CMS<span>.</span></a><p class="foot-desc">Caribbean Metadata Standard — Caribwood Language Lab, Guadeloupe.</p></div>
+      <div class="foot-col"><h4>Le Standard</h4><ul><li><a href="about.html">À propos</a></li><li><a href="families.html">Les 6 familles</a></li><li><a href="spec.html">Spécification</a></li><li><a href="equity.html">Équité</a></li></ul></div>
+      <div class="foot-col"><h4>Outils</h4><ul><li><a href="submit.html">Soumettre</a></li><li><a href="cms-builder.html">CMS Builder</a></li><li><a href="developers.html">API v2.0</a></li><li><a href="glossaire.html">Glossaire</a></li></ul></div>
+      <div class="foot-col"><h4>Écosystème</h4><ul><li><a href="collaborate.html">Partenaires</a></li><li><a href="roadmap.html">Roadmap</a></li><li><a href="https://github.com/heso73/cms-nlp-corpus" target="_blank">↗ GitHub</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="foot-bot"><span>caribbeanmetadata.org · CMS v2.0 · Caribwood Language Lab</span><span>CC-BY 4.0</span></div>
   </div>
-
-</div>
-
-</main>
-
-<footer><!-- nav-fix.js --></footer>
+</footer>
 
 <script>
-// ══════════════════════════════════════════════
-// DONNÉES
-// ══════════════════════════════════════════════
-
 const MARKERS = [
-  { id:'gwo_ka',        name:'Gwo Ka',          cat:'music',    orig:'Guadeloupe',         desc:'Musique et danse afro-guadeloupéenne, tambour à peau. Classé UNESCO 2014.' },
-  { id:'bele',          name:'Bèlè',             cat:'dance',    orig:'Martinique',         desc:'Danse et musique traditionnelle martiniquaise d\'origine africaine.' },
-  { id:'konpa',         name:'Konpa',            cat:'music',    orig:'Haïti',              desc:'Genre haïtien à tempo modéré, créé par Nemours Jean-Baptiste (1955).' },
-  { id:'zouk',          name:'Zouk',             cat:'music',    orig:'Antilles françaises',desc:'Genre antillais né au sein du groupe Kassav\' dans les années 1980.' },
-  { id:'calypso',       name:'Calypso',          cat:'music',    orig:'Trinidad & Tobago',  desc:'Musique traditionnelle de Trinidad, vecteur de commentaire social.' },
-  { id:'soca',          name:'Soca',             cat:'music',    orig:'Trinidad & Tobago',  desc:'Évolution moderne du calypso, Trinidad, années 1970.' },
-  { id:'reggae',        name:'Reggae',           cat:'music',    orig:'Jamaïque',           desc:'Musique jamaïcaine née dans les années 1960, mouvement Rastafari.' },
-  { id:'ska',           name:'Ska',              cat:'music',    orig:'Jamaïque',           desc:'Précurseur du reggae, Jamaïque, années 1950–1960.' },
-  { id:'dancehall',     name:'Dancehall',        cat:'music',    orig:'Jamaïque',           desc:'Genre jamaïcain issu du reggae, années 1970, tempo rapide.' },
-  { id:'tumba',         name:'Tumba',            cat:'music',    orig:'Aruba · Curaçao',    desc:'Genre des îles ABC (Aruba, Bonaire, Curaçao), lié au Carnaval.' },
-  { id:'son_cubano',    name:'Son Cubano',       cat:'music',    orig:'Cuba',               desc:'Genre cubain fondateur, synthèse africaine et espagnole.' },
-  { id:'salsa',         name:'Salsa',            cat:'music',    orig:'Caraïbe / Diaspora', desc:'Genre dansant issu du son cubain, diaspora caribéenne de New York.' },
-  { id:'bachata',       name:'Bachata',          cat:'music',    orig:'République Dom.',    desc:'Genre dominicain né dans les années 1960, cordes et romantisme.' },
-  { id:'merengue',      name:'Merengue',         cat:'music',    orig:'République Dom.',    desc:'Genre national dominicain, rythme binaire rapide.' },
-  { id:'kaseko',        name:'Kaseko',           cat:'music',    orig:'Suriname',           desc:'Musique afro-surinamaise mêlant jazz, calypso et percussions africaines.' },
-  { id:'kadans',        name:'Kadans',           cat:'music',    orig:'Antilles françaises',desc:'Genre antillais des années 1970, précurseur du zouk.' },
-  { id:'bouyon',        name:'Bouyon',           cat:'music',    orig:'Dominique',          desc:'Genre dominicain contemporain, fusion calypso-soca.' },
-  { id:'quadrille_creole',name:'Quadrille créole',cat:'dance',  orig:'Antilles françaises',desc:'Danse quadrille créolisée, héritage européen transformé aux Antilles.' },
-  { id:'danmye',        name:'Danmyé',           cat:'dance',    orig:'Martinique',         desc:'Art martial et danse martiniquaise d\'origine africaine.' },
-  { id:'kalenda',       name:'Kalenda',          cat:'dance',    orig:'Caraïbe',            desc:'Danse de combat caribéenne d\'origine africaine.' },
-  { id:'carnival',      name:'Carnival',         cat:'carnival', orig:'Pan-caribéenne',     desc:'Carnaval caribéen — fête populaire pan-caribéenne.' },
-  { id:'mas',           name:'Mas',              cat:'carnival', orig:'Trinidad & Tobago',  desc:'Tradition de mascarade carnavalesque, Trinidad & Tobago.' },
-  { id:'rara',          name:'Rara',             cat:'carnival', orig:'Haïti',              desc:'Musique processionnelle haïtienne liée au calendrier vodou.' },
-  { id:'vodou',         name:'Vodou',            cat:'religion', orig:'Haïti',              desc:'Système religieux afro-haïtien syncrétique.' },
-  { id:'orisha',        name:'Orisha',           cat:'religion', orig:'Caraïbe anglophone', desc:'Divinités du panthéon yoruba, pratique afro-caribéenne.' },
-  { id:'rastafari',     name:'Rastafari',        cat:'religion', orig:'Jamaïque',           desc:'Mouvement religieux et culturel jamaïcain.' },
-  { id:'maroon_culture',name:'Culture Marron',   cat:'heritage', orig:'Caraïbe',            desc:'Culture des communautés marronnes — résistance et autonomie.' },
-  { id:'chante_noel',   name:'Chanté Noël',      cat:'heritage', orig:'Antilles françaises',desc:'Chants de Noël créoles, tradition des Antilles françaises.' },
+  {id:'gwo_ka',name:'Gwo Ka',cat:'music',ico:'🥁',terr:'Guadeloupe'},
+  {id:'bele',name:'Bèlè',cat:'dance',ico:'💃',terr:'Martinique'},
+  {id:'konpa',name:'Konpa',cat:'music',ico:'🎵',terr:'Haïti'},
+  {id:'zouk',name:'Zouk',cat:'music',ico:'🎶',terr:'Antilles FR'},
+  {id:'calypso',name:'Calypso',cat:'music',ico:'🎸',terr:'Trinidad'},
+  {id:'soca',name:'Soca',cat:'music',ico:'🎺',terr:'Trinidad'},
+  {id:'reggae',name:'Reggae',cat:'music',ico:'🎵',terr:'Jamaica'},
+  {id:'ska',name:'Ska',cat:'music',ico:'🎷',terr:'Jamaica'},
+  {id:'dancehall',name:'Dancehall',cat:'music',ico:'🎤',terr:'Jamaica'},
+  {id:'tumba',name:'Tumba',cat:'music',ico:'🥁',terr:'Curaçao'},
+  {id:'son_cubano',name:'Son Cubano',cat:'music',ico:'🎵',terr:'Cuba'},
+  {id:'salsa',name:'Salsa',cat:'dance',ico:'💃',terr:'Caraïbe'},
+  {id:'bachata',name:'Bachata',cat:'music',ico:'🎵',terr:'Dom. Rep.'},
+  {id:'merengue',name:'Merengue',cat:'music',ico:'🎺',terr:'Dom. Rep.'},
+  {id:'kaseko',name:'Kaseko',cat:'music',ico:'🎵',terr:'Suriname'},
+  {id:'kadans',name:'Kadans',cat:'music',ico:'🎶',terr:'Antilles FR'},
+  {id:'bouyon',name:'Bouyon',cat:'music',ico:'🎵',terr:'Dominique'},
+  {id:'carnival',name:'Carnival',cat:'carnival',ico:'🎭',terr:'Pan-caribéenne'},
+  {id:'mas',name:'Mas',cat:'carnival',ico:'🎪',terr:'Trinidad'},
+  {id:'rara',name:'Rara',cat:'carnival',ico:'🎉',terr:'Haïti'},
+  {id:'vodou',name:'Vodou',cat:'religion',ico:'🕊️',terr:'Haïti'},
+  {id:'orisha',name:'Orisha',cat:'religion',ico:'✨',terr:'Caraïbe'},
+  {id:'rastafari',name:'Rastafari',cat:'religion',ico:'🌿',terr:'Jamaica'},
+  {id:'maroon',name:'Maroon Culture',cat:'heritage',ico:'🏛️',terr:'Caraïbe'},
+  {id:'quadrille',name:'Quadrille créole',cat:'dance',ico:'👗',terr:'Antilles FR'},
+  {id:'danmye',name:'Danmyé',cat:'dance',ico:'🥊',terr:'Martinique'},
+  {id:'chante_noel',name:'Chanté Noël',cat:'heritage',ico:'🎄',terr:'Antilles FR'},
 ];
 
-const LANGS = [
-  { code:'hat', name:'Créole haïtien',         terr:'Haïti',                  count:14 },
-  { code:'gcf', name:'Créole guadeloupéen',    terr:'Guadeloupe',             count:14 },
-  { code:'acf', name:'Créole antillais',       terr:'Martinique',             count:8  },
-  { code:'fra', name:'Français caribéen',      terr:'Antilles françaises',    count:14 },
-  { code:'eng', name:'English Caribbean',      terr:'Trinidad · Barbados',    count:21 },
-  { code:'spa', name:'Español caribeño',       terr:'Cuba · RD · Puerto Rico',count:13 },
-  { code:'jam', name:'Jamaican Patois',        terr:'Jamaïque',               count:8  },
-  { code:'pap', name:'Papiamentu',            terr:'Aruba · Curaçao',        count:6  },
-  { code:'nld', name:'Nederlands Caribisch',  terr:'Suriname · Antilles NL', count:6  },
-  { code:'srn', name:'Sranan Tongo',          terr:'Suriname',               count:6  },
-];
+const CAT_COLORS = {
+  music:   {bg:'#e0f2fe',color:'#0f6fa6',label:'Musique'},
+  dance:   {bg:'#f3e8ff',color:'#6b21a8',label:'Danse'},
+  carnival:{bg:'#fef9c3',color:'#854d0e',label:'Carnaval'},
+  religion:{bg:'#dcfce7',color:'#166534',label:'Religion'},
+  heritage:{bg:'#fee2e2',color:'#b91c1c',label:'Patrimoine'},
+};
 
-const TERRITORIES = [
-  { name:'Guadeloupe',         flag:'🇬🇵', count:17 },
-  { name:'Haïti',              flag:'🇭🇹', count:15 },
-  { name:'Martinique',         flag:'🇲🇶', count:11 },
-  { name:'Curaçao',            flag:'🇨🇼', count:7  },
-  { name:'Suriname',           flag:'🇸🇷', count:7  },
-  { name:'Trinidad',           flag:'🇹🇹', count:6  },
-  { name:'Cuba',               flag:'🇨🇺', count:6  },
-  { name:'Aruba',              flag:'🇦🇼', count:4  },
-  { name:'Dominican Republic', flag:'🇩🇴', count:4  },
-  { name:'Diaspora caribéenne',flag:'🌍', count:4  },
-  { name:'St Lucia',           flag:'🇱🇨', count:3  },
-  { name:'Jamaica',            flag:'🇯🇲', count:2  },
-  { name:'Barbados',           flag:'🇧🇧', count:2  },
-  { name:'Puerto Rico',        flag:'🇵🇷', count:2  },
-  { name:'Dominica',           flag:'🇩🇲', count:1  },
-  { name:'Guyane',             flag:'🇬🇫', count:0  },
-  { name:'St Vincent',         flag:'🇻🇨', count:0  },
-  { name:'Grenada',            flag:'🇬🇩', count:0  },
-  { name:'Antigua',            flag:'🇦🇬', count:0  },
-  { name:'Caribbean (général)',flag:'🌊', count:12 },
-];
-
-const DOMAINS = [
-  { id:'music',             icon:'🎵', label:'Musique',              count:20 },
-  { id:'oral_tradition',    icon:'🗣️', label:'Tradition orale',      count:12 },
-  { id:'Caribbean (général)',icon:'🌊',label:'Général',              count:11 },
-  { id:'visual_arts',       icon:'🎨', label:'Arts visuels',         count:10 },
-  { id:'literature',        icon:'📖', label:'Littérature',          count:9  },
-  { id:'social_media',      icon:'📱', label:'Réseaux sociaux',      count:8  },
-  { id:'gastronomy',        icon:'🍽️', label:'Gastronomie',          count:8  },
-  { id:'education',         icon:'🎓', label:'Éducation',            count:6  },
-  { id:'theatre',           icon:'🎭', label:'Théâtre',              count:6  },
-  { id:'religion',          icon:'🕊️', label:'Religion',             count:5  },
-  { id:'carnival',          icon:'🎪', label:'Carnaval',             count:4  },
-  { id:'news',              icon:'📰', label:'Actualités',           count:4  },
-  { id:'intangible_heritage',icon:'🏛️',label:'Patrimoine immatériel',count:4 },
-  { id:'dance',             icon:'💃', label:'Danse',                count:3  },
-];
-
-// ══════════════════════════════════════════════
-// RENDU VOCABULAIRE
-// ══════════════════════════════════════════════
-
-function renderMarkers() {
+function renderMarkers(filter='all') {
   const grid = document.getElementById('markers-grid');
-  grid.innerHTML = MARKERS.map(m => `
-    <div class="marker-card" data-cat="${m.cat}">
-      <span class="mc-cat ${m.cat}">${m.cat === 'music' ? '🎵 Musique' : m.cat === 'dance' ? '💃 Danse & Arts' : m.cat === 'carnival' ? '🎭 Carnaval' : m.cat === 'religion' ? '🕊️ Spiritualité' : '🏛️ Patrimoine'}</span>
-      <div class="mc-name">${m.name}</div>
-      <div class="mc-orig">${m.orig}</div>
-      <div class="mc-desc">${m.desc}</div>
-      <div class="mc-terr"><span>${m.id}</span></div>
-    </div>
-  `).join('');
+  const data = filter === 'all' ? MARKERS : MARKERS.filter(m => m.cat === filter);
+  grid.innerHTML = data.map(m => {
+    const c = CAT_COLORS[m.cat];
+    return `<div class="mk-card">
+      <div class="mk-top">
+        <span class="mk-ico">${m.ico}</span>
+        <span class="mk-name">${m.name}</span>
+      </div>
+      <span class="mk-tag" style="background:${c.bg};color:${c.color}">${c.label}</span>
+      <div class="mk-terr">${m.terr}</div>
+    </div>`;
+  }).join('');
 }
 
 function filterMarkers(cat, btn) {
-  document.querySelectorAll('#marker-filters .filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.mf-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.marker-card').forEach(card => {
-    card.classList.toggle('hidden', cat !== 'all' && card.dataset.cat !== cat);
-  });
+  renderMarkers(cat);
 }
-
-function renderLangs() {
-  const max = Math.max(...LANGS.map(l => l.count));
-  document.getElementById('langs-grid').innerHTML = LANGS.map(l => `
-    <div class="lang-card">
-      <div class="lc-code">${l.code}</div>
-      <div class="lc-name">${l.name}</div>
-      <div class="lc-terr">${l.terr}</div>
-      <div class="lc-bar"><div class="lc-fill" style="width:${Math.round(l.count/max*100)}%"></div></div>
-      <div class="lc-count">${l.count} enregistrements</div>
-    </div>
-  `).join('');
-}
-
-function renderTerritories() {
-  document.getElementById('terr-grid').innerHTML = TERRITORIES.map(t => `
-    <div class="terr-card">
-      <div class="tc-flag">${t.flag}</div>
-      <div class="tc-info">
-        <div class="tc-name">${t.name}</div>
-        <div class="tc-count">${t.count > 0 ? t.count + ' enreg.' : 'Vocabulaire défini'}</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderDomains() {
-  document.getElementById('domains-grid').innerHTML = DOMAINS.map(d => `
-    <div class="domain-card">
-      <div class="dc-icon">${d.icon}</div>
-      <div class="dc-name">${d.label}</div>
-      <div class="dc-count">${d.count} enreg.</div>
-    </div>
-  `).join('');
-}
-
-// ══════════════════════════════════════════════
-// CORPUS TABLE
-// ══════════════════════════════════════════════
-
-let allRecords = [];
-let filtered = [];
-const PAGE_SIZE = 20;
-let currentPage = 1;
 
 async function loadCorpus() {
-  try {
-    const url = 'https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_v2_unified.jsonl';
-    const resp = await fetch(url);
-    const text = await resp.text();
-    allRecords = text.trim().split('\n').filter(l => l.trim()).map(l => JSON.parse(l));
-    populateTerrFilter();
-    filtered = [...allRecords];
-    renderTable();
-  } catch(e) {
-    document.getElementById('corpus-tbody').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:32px;color:#aaa">Impossible de charger le corpus. <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" style="color:#003E6B">Télécharger sur GitHub →</a></td></tr>';
-  }
-}
-
-function populateTerrFilter() {
-  const terrs = [...new Set(allRecords.map(r => r.cms_territory))].sort();
-  const sel = document.getElementById('filter-terr');
-  terrs.forEach(t => {
-    const opt = document.createElement('option');
-    opt.value = t; opt.textContent = t;
-    sel.appendChild(opt);
-  });
-}
-
-function filterCorpus() {
-  const q = document.getElementById('corpus-search').value.toLowerCase();
+  const tbody = document.getElementById('corpus-tbody');
   const lang = document.getElementById('filter-lang').value;
   const domain = document.getElementById('filter-domain').value;
-  const terr = document.getElementById('filter-terr').value;
+  const territory = document.getElementById('filter-territory').value;
 
-  filtered = allRecords.filter(r => {
-    if (lang && r.lang_code !== lang) return false;
-    if (domain && r.cms_domain !== domain) return false;
-    if (terr && r.cms_territory !== terr) return false;
-    if (q) {
-      const hay = [r.cms_id, r.lang_code, r.cms_territory, r.cms_domain,
-                   (r.cms_cultural_markers||[]).join(' '), r.text].join(' ').toLowerCase();
-      if (!hay.includes(q)) return false;
+  let url = 'https://cms-api.small-disk-3275.workers.dev/api/v2/works?limit=20';
+  if (lang) url += `&language=${lang}`;
+  if (domain) url += `&family=${domain}`;
+  if (territory) url += `&territory=${encodeURIComponent(territory)}`;
+
+  tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--gm);font-family:var(--fm);font-size:12px">Chargement...</td></tr>';
+
+  try {
+    const r = await fetch(url);
+    const json = await r.json();
+    const works = json.data || [];
+    if (!works.length) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--gm);font-family:var(--fm);font-size:12px">Aucun enregistrement</td></tr>';
+      return;
     }
-    return true;
-  });
-  currentPage = 1;
-  renderTable();
-}
-
-function renderTable() {
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const page = filtered.slice(start, start + PAGE_SIZE);
-  const tbody = document.getElementById('corpus-tbody');
-  document.getElementById('corpus-count').textContent = filtered.length + ' enregistrement' + (filtered.length !== 1 ? 's' : '');
-  document.getElementById('no-results').style.display = filtered.length === 0 ? 'block' : 'none';
-  document.getElementById('corpus-table').style.display = filtered.length === 0 ? 'none' : '';
-
-  tbody.innerHTML = page.map(r => {
-    const markers = (r.cms_cultural_markers||[]).slice(0,3).map(m => `<span class="marker-tag">${m}</span>`).join('') + (r.cms_cultural_markers?.length > 3 ? `<span class="marker-tag">+${r.cms_cultural_markers.length-3}</span>` : '');
-    const preview = (r.text||'').slice(0,80) + ((r.text||'').length > 80 ? '…' : '');
-    return `<tr>
-      <td style="font-family:monospace;font-size:11px;color:#aaa">${r.cms_id?.slice(-8)||'—'}</td>
-      <td><span class="lang-tag">${r.lang_code||'—'}</span></td>
-      <td style="white-space:nowrap">${r.cms_territory||'—'}</td>
-      <td style="white-space:nowrap">${r.cms_domain||'—'}</td>
-      <td>${markers||'—'}</td>
-      <td class="text-preview" title="${(r.text||'').replace(/"/g,'&quot;')}">${preview}</td>
-    </tr>`;
-  }).join('');
-
-  renderPagination();
-}
-
-function renderPagination() {
-  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-  const pag = document.getElementById('pagination');
-  if (totalPages <= 1) { pag.innerHTML = ''; return; }
-
-  let html = `<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>← Préc.</button>`;
-  const range = [];
-  for (let i = 1; i <= totalPages; i++) {
-    if (i===1 || i===totalPages || (i>=currentPage-2 && i<=currentPage+2)) range.push(i);
-    else if (range[range.length-1] !== '…') range.push('…');
+    tbody.innerHTML = works.map(w => `
+      <tr>
+        <td><span class="ct-lang">${(w.languages||[]).join(', ')}</span></td>
+        <td class="ct-terr">${w.territory||'—'}</td>
+        <td class="ct-domain">${w.family||'—'}</td>
+        <td><div class="ct-markers">${['cms','caribéen'].map(t=>`<span class="ct-marker">${t}</span>`).join('')}</div></td>
+        <td class="ct-extract">${(w.title||'').substring(0,60)}</td>
+      </tr>
+    `).join('');
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--gm);font-size:12px">Connexion à l\'API en cours...</td></tr>';
   }
-  range.forEach(p => {
-    if (p === '…') html += `<span style="padding:8px 4px;color:#aaa">…</span>`;
-    else html += `<button class="page-btn ${p===currentPage?'active':''}" onclick="goPage(${p})">${p}</button>`;
-  });
-  html += `<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Suiv. →</button>`;
-  pag.innerHTML = html;
 }
-
-function goPage(p) {
-  if (p < 1 || p > Math.ceil(filtered.length / PAGE_SIZE)) return;
-  currentPage = p;
-  renderTable();
-  document.getElementById('tab-corpus').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-// ══════════════════════════════════════════════
-// TABS
-// ══════════════════════════════════════════════
-
-function showTab(name) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  event.currentTarget.classList.add('active');
-  if (name === 'corpus' && allRecords.length === 0) loadCorpus();
-}
-
-// ══════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════
 
 renderMarkers();
-renderLangs();
-renderTerritories();
-renderDomains();
+loadCorpus();
 </script>
-
 <script src="nav-fix.js"></script>
 </body>
 </html>
