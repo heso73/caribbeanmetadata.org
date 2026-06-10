@@ -1,94 +1,582 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://caribbeanmetadata.org/collaborate.html" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collaborer — Caribbean Metadata Standard</title>
+  <title>Partenariats & Réseau — Caribbean Metadata Standard</title>
+  <meta name="description" content="Rejoignez le réseau du Caribbean Metadata Standard — institutions, créateurs, plateformes, chercheurs. Convention d'adhésion, gouvernance, transfert vers le Comité Technique caribéen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bd:#0b1e30;--bc:#0f6fa6;--tq:#00b7c7;--tq2:#009aaa;
+  --gl:#f3f5f7;--gm:#9aa3b1;--tx:#1f2933;--wh:#ffffff;
+  --rsm:6px;--rmd:12px;--rlg:20px;
+  --sh:0 8px 24px rgba(0,0,0,.07);--sh2:0 16px 48px rgba(0,0,0,.1);
+  --f:'DM Sans',system-ui,sans-serif;--fm:'DM Mono',monospace;--fd:'DM Serif Display',Georgia,serif;
+}
 html{scroll-behavior:smooth}
-body{font-family:'Helvetica Neue',Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.6}
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.98);border-bottom:1px solid rgba(0,0,0,0.1);padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:20px;font-weight:700;color:#003E6B;text-decoration:none;letter-spacing:2px}
-.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
-.nav-links a{font-size:13px;color:#2a2a2a;text-decoration:none;transition:color .2s;font-weight:500}
-.nav-links a:hover,.nav-links a.active{color:#003E6B}
-.nav-links a.active{font-weight:700}
-.nav-validate{padding:7px 16px;background:#00C2C7;color:#003E6B !important;border-radius:4px;font-weight:700 !important;font-size:12px;letter-spacing:0.5px}
-.nav-validate:hover{background:#00A8AE !important}
-.ph{background:#003E6B;padding:120px 6% 64px;position:relative;overflow:hidden}
-.ph::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(0,194,199,0.07) 24px),repeating-linear-gradient(90deg,transparent,transparent 23px,rgba(255,201,60,0.05) 24px)}
-.phi{position:relative;z-index:1;max-width:760px}
-.ey{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.ey::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
-.ph h1{font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px}
-.ph p{font-size:17px;color:rgba(255,255,255,0.88);max-width:560px;line-height:1.75}
-main{padding:72px 6%;max-width:1100px;margin:0 auto}
-.sl{font-size:11px;letter-spacing:3px;color:#00C2C7;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.sl::before{content:'';display:block;width:28px;height:1px;background:#00C2C7}
-.st{font-size:clamp(22px,3vw,36px);font-weight:700;color:#003E6B;margin-bottom:40px;line-height:1.2}
-.card{background:#fff;border:1px solid rgba(0,62,107,0.12);border-radius:8px;padding:28px}
-.card-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:12px;background:#003E6B;color:#00C2C7}
-.card h3{font-size:17px;font-weight:700;color:#003E6B;margin-bottom:10px}
-.card p{font-size:14px;color:#444;line-height:1.75}
-.cta-block{background:#003E6B;border-radius:12px;padding:48px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-.cta-block h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
-.cta-block p{font-size:15px;color:rgba(255,255,255,0.88)}
-.btn-t{display:inline-block;padding:12px 24px;background:#00C2C7;color:#003E6B;text-decoration:none;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s}
-.btn-t:hover{background:#00A8AE}
-.btn-ow{display:inline-block;padding:12px 24px;background:transparent;color:#fff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.5);transition:all .2s}
-footer{background:#003E6B;padding:56px 6% 32px}
-.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.fl{font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;text-decoration:none;display:block;margin-bottom:12px}
-.fb p{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
-.fc h4{font-size:11px;font-weight:700;color:#00C2C7;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
-.fc ul{list-style:none}
-.fc li{margin-bottom:8px}
-.fc a{font-size:13px;color:rgba(255,255,255,0.82);text-decoration:none;transition:color .2s}
-.fc a:hover{color:#fff}
-.fc a.hl{color:#00C2C7;font-weight:600}
-.fb-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.72);text-align:center}
-@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow-x:hidden}
 
+/* NAV */
+.cms-header{background:var(--wh);box-shadow:var(--sh);position:sticky;top:0;z-index:1000}
+.cms-nav{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:var(--fm);font-size:18px;font-weight:500;color:var(--bd);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--tq)}
+.nav-links{list-style:none;display:flex;gap:.25rem;margin:0;padding:0}
+.nav-links a{text-decoration:none;color:var(--tx);font-size:13px;padding:.35rem .7rem;border-radius:var(--rsm);transition:all .2s}
+.nav-links a:hover{background:var(--gl);color:var(--bd)}
+.cta-nav{background:var(--tq) !important;color:var(--bd) !important;font-weight:600 !important}
+.lang-sw{display:flex;gap:4px}
+.lang-sw button{border:1px solid var(--gm);background:var(--wh);color:var(--tx);padding:.25rem .6rem;border-radius:var(--rsm);font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:var(--f);transition:all .2s}
+.lang-sw button:hover,.lang-sw button.active{border-color:var(--bc);color:var(--bd);background:rgba(15,111,166,.06)}
+
+/* HERO */
+.page-hero{background:linear-gradient(135deg,#0b1e30 0%,#0f3d6b 55%,#0f6fa6 100%);padding:72px 6% 56px;position:relative;overflow:hidden}
+.ph-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.02) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.015) 48px)}
+.ph-glow{position:absolute;top:-80px;right:5%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(0,183,199,.12),transparent 65%);pointer-events:none}
+.ph-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.ph-bc{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.ph-bc a{color:rgba(255,255,255,.4);text-decoration:none}
+.ph-bc span{color:var(--tq)}
+.ph-tag{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.ph-tag::before{content:'';display:block;width:24px;height:1px;background:var(--tq)}
+.ph-h1{font-family:var(--fd);font-size:clamp(32px,4.5vw,56px);color:#fff;line-height:1.05;margin-bottom:14px;letter-spacing:-.5px}
+.ph-h1 em{font-style:italic;color:var(--tq)}
+.ph-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:560px;line-height:1.8;margin-bottom:24px}
+.ph-pills{display:flex;flex-wrap:wrap;gap:8px}
+.ph-pill{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 14px;letter-spacing:1px}
+.ph-pill strong{color:rgba(255,255,255,.8)}
+
+/* Compteur adoptants hero */
+.ph-counter{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--rmd);padding:24px 32px;text-align:center;min-width:180px}
+.ph-counter-n{font-family:var(--fd);font-size:48px;color:var(--tq);line-height:1}
+.ph-counter-d{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,.45);letter-spacing:2px;margin-top:4px}
+.ph-counter-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:12px;overflow:hidden}
+.ph-counter-fill{height:100%;background:var(--tq);border-radius:2px;width:0%}
+.ph-counter-note{font-size:11px;color:rgba(255,255,255,.35);margin-top:8px;font-family:var(--fm)}
+
+/* SECTIONS */
+.sec{padding:72px 6%}
+.sec-a{background:var(--wh)}
+.sec-b{background:var(--gl)}
+.sec-in{max-width:1200px;margin:0 auto}
+.sec-ey{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--tq);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-ey::before{content:'';display:block;width:20px;height:1px;background:var(--tq)}
+.sec-h2{font-family:var(--fd);font-size:clamp(24px,3vw,38px);color:var(--bd);margin-bottom:10px;letter-spacing:-.5px}
+.sec-p{font-size:15px;color:#666;max-width:580px;line-height:1.8;margin-bottom:40px}
+
+/* PROFILS PARTENAIRES */
+.profils-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.profil-card{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:28px;transition:all .25s;position:relative;overflow:hidden;border:1px solid rgba(0,0,0,.04)}
+.profil-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.profil-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.pc-tag{font-family:var(--fm);font-size:9px;letter-spacing:2px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:14px}
+.pc-ico{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px}
+.pc-h{font-size:16px;font-weight:600;color:var(--bd);margin-bottom:8px}
+.pc-p{font-size:13px;color:#666;line-height:1.75;margin-bottom:16px}
+.pc-avantages{border-top:1px solid var(--gl);padding-top:14px}
+.pc-av-title{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--gm);margin-bottom:10px}
+.pc-av-list{list-style:none;padding:0}
+.pc-av-list li{font-size:12px;color:#555;padding:4px 0;display:flex;align-items:center;gap:8px}
+.pc-av-list li::before{content:'✓';color:var(--tq);font-weight:700;font-size:13px;flex-shrink:0}
+
+/* NIVEAUX D'INTÉGRATION */
+.niveaux-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.niv-card{border-radius:var(--rmd);padding:28px;text-align:center;border:1px solid rgba(0,0,0,.06);background:var(--wh);box-shadow:var(--sh);position:relative;transition:all .25s}
+.niv-card:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
+.niv-card.featured{border-color:var(--tq);box-shadow:0 8px 32px rgba(0,183,199,.12)}
+.niv-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:9px;letter-spacing:1px;padding:4px 14px;border-radius:20px;background:var(--tq);color:var(--bd);font-weight:700;white-space:nowrap}
+.niv-ico{font-size:36px;margin-bottom:14px;display:block}
+.niv-h{font-size:18px;font-weight:600;color:var(--bd);margin-bottom:8px}
+.niv-price{font-family:var(--fd);font-size:28px;color:var(--tq);margin-bottom:4px}
+.niv-price-note{font-size:11px;color:var(--gm);margin-bottom:16px;font-family:var(--fm)}
+.niv-list{list-style:none;padding:0;text-align:left;margin-bottom:20px}
+.niv-list li{font-size:13px;color:#555;padding:6px 0;border-bottom:1px solid var(--gl);display:flex;align-items:center;gap:8px}
+.niv-list li:last-child{border:none}
+.niv-list li::before{content:'✓';color:var(--tq);font-weight:700;font-size:12px;flex-shrink:0}
+.niv-btn{display:block;padding:11px 20px;background:var(--bc);color:#fff;border-radius:var(--rsm);font-size:13px;font-weight:600;text-decoration:none;text-align:center;transition:background .2s;font-family:var(--f)}
+.niv-btn:hover{background:var(--bd)}
+.niv-btn.featured-btn{background:var(--tq);color:var(--bd)}
+.niv-btn.featured-btn:hover{background:var(--tq2)}
+
+/* PROCESSUS */
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ps-card{background:var(--wh);border-radius:var(--rmd);box-shadow:var(--sh);padding:24px;text-align:center;position:relative}
+.ps-card::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--tq);font-weight:700}
+.ps-card:last-child::after{display:none}
+.ps-num{font-family:var(--fd);font-size:40px;color:var(--tq);opacity:.25;line-height:1;margin-bottom:8px}
+.ps-ico{font-size:28px;margin-bottom:10px;display:block}
+.ps-h{font-size:14px;font-weight:600;color:var(--bd);margin-bottom:6px}
+.ps-p{font-size:12px;color:#666;line-height:1.65}
+.ps-duration{font-family:var(--fm);font-size:9px;color:var(--gm);margin-top:8px;letter-spacing:1px}
+
+/* GOUVERNANCE TRANSFER */
+.gouv-transfer{background:linear-gradient(135deg,#0b1e30,#0f3d6b);border-radius:var(--rlg);padding:48px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.gt-text{}
+.gt-ey{font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--tq);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.gt-ey::before{content:'';display:block;width:16px;height:1px;background:var(--tq)}
+.gt-h{font-family:var(--fd);font-size:clamp(20px,2.5vw,30px);color:#fff;margin-bottom:10px;letter-spacing:-.3px}
+.gt-p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.8;max-width:480px}
+.gt-visual{text-align:center}
+.gt-progress{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--rmd);padding:24px 28px;min-width:200px}
+.gt-prog-n{font-family:var(--fd);font-size:52px;color:var(--tq);line-height:1}
+.gt-prog-d{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:4px}
+.gt-prog-bar{height:6px;background:rgba(255,255,255,.08);border-radius:3px;margin:14px 0 8px;overflow:hidden}
+.gt-prog-fill{height:100%;background:var(--tq);border-radius:3px}
+.gt-prog-note{font-size:11px;color:rgba(255,255,255,.3);font-family:var(--fm);line-height:1.6}
+
+/* ENGAGEMENTS */
+.eng-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.eng-card{background:var(--wh);border-radius:var(--rmd);padding:24px;border:1px solid rgba(0,0,0,.05);box-shadow:var(--sh);display:flex;gap:16px;align-items:flex-start;transition:all .2s}
+.eng-card:hover{box-shadow:var(--sh2);transform:translateY(-2px)}
+.eng-num{font-family:var(--fm);font-size:11px;color:var(--tq);font-weight:700;letter-spacing:1px;flex-shrink:0;margin-top:3px}
+.eng-h{font-size:14px;font-weight:600;color:var(--bd);margin-bottom:5px}
+.eng-p{font-size:13px;color:#666;line-height:1.7}
+
+/* TEMOIGNAGES placeholder */
+.quote-block{background:linear-gradient(135deg,var(--tq),var(--bc));border-radius:var(--rmd);padding:36px 40px;position:relative;overflow:hidden}
+.qb-glow{position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.1),transparent 65%);pointer-events:none}
+.qb-mark{font-family:var(--fd);font-size:80px;color:rgba(255,255,255,.15);line-height:.8;margin-bottom:12px}
+.qb-text{font-family:var(--fd);font-size:clamp(16px,2vw,22px);color:#fff;line-height:1.6;font-style:italic;margin-bottom:16px;position:relative;z-index:1}
+.qb-source{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.55);letter-spacing:2px;position:relative;z-index:1}
+
+/* CTA CONTACT */
+.cta-block{background:var(--bd);border-radius:var(--rlg);padding:48px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.cb-h{font-family:var(--fd);font-size:clamp(20px,2.5vw,30px);color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cb-p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.75;max-width:480px}
+.cb-btns{display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0}
+.btn-p{padding:13px 28px;background:var(--tq);color:var(--bd);border:none;border-radius:var(--rsm);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:background .2s;white-space:nowrap}
+.btn-p:hover{background:var(--tq2)}
+.btn-o{padding:12px 22px;background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);border-radius:var(--rsm);font-size:13px;cursor:pointer;font-family:var(--f);text-decoration:none;display:inline-block;transition:all .2s;white-space:nowrap}
+.btn-o:hover{border-color:rgba(255,255,255,.5)}
+
+/* FOOTER */
+.cms-footer{background:var(--bd);color:#fff;padding:48px 6% 28px}
+.foot-in{max-width:1200px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:var(--fm);font-size:20px;color:#fff;letter-spacing:2px;display:block;margin-bottom:12px;text-decoration:none}
+.foot-logo span{color:var(--tq)}
+.foot-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.75}
+.foot-col h4{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--tq);margin-bottom:14px}
+.foot-col ul{list-style:none;padding:0}
+.foot-col li{margin-bottom:8px}
+.foot-col a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.3);font-family:var(--fm);flex-wrap:wrap;gap:8px}
+
+@media(max-width:1024px){
+  .ph-in,.cta-block,.gouv-transfer{grid-template-columns:1fr}
+  .ph-counter,.gt-visual{display:none}
+  .profils-grid,.niveaux-grid{grid-template-columns:repeat(2,1fr)}
+  .process-steps{grid-template-columns:repeat(2,1fr)}
+  .ps-card::after{display:none}
+  .foot-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .profils-grid,.niveaux-grid,.eng-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
 </style>
 </head>
 <body>
-<nav><!-- nav-fix.js --></nav>
-<div class="ph">
-  <div class="phi">
-    <div class="ey">Partenariats</div>
-    <h1>Construisons-le ensemble</h1>
-    <p>Le CMS est un standard collaboratif. Sa force dépend de la diversité et de la qualité de ceux qui le portent — créateurs, plateformes, institutions, chercheurs.</p>
+
+<!-- HEADER -->
+<header class="cms-header">
+  <nav class="cms-nav">
+    <a href="/" class="logo">CMS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Standard</a></li>
+      <li><a href="families.html">6 Familles</a></li>
+      <li><a href="cms-builder.html">CMS Builder</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="developers.html">API</a></li>
+      <li><a href="collaborate.html" style="color:var(--bc);font-weight:600">Partenariats</a></li>
+      <li><a href="equity.html">Équité</a></li>
+      <li><a href="submit.html" class="cta-nav">Soumettre une œuvre</a></li>
+    </ul>
+    <div class="lang-sw">
+      <button class="active" onclick="location='collaborate.html'">FR</button>
+      <button onclick="location='collaborate-en.html'">EN</button>
+      <button onclick="location='collaborate-es.html'">ES</button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="ph-grid"></div>
+  <div class="ph-glow"></div>
+  <div class="ph-in">
+    <div>
+      <div class="ph-bc"><a href="index.html">Accueil</a> › <span>Partenariats & Réseau</span></div>
+      <div class="ph-tag">Construisons-le ensemble</div>
+      <h1 class="ph-h1">Rejoindre le<br><em>réseau CMS</em></h1>
+      <p class="ph-sub">Le CMS est un standard collaboratif. Sa force dépend de la diversité de ceux qui le portent — créateurs, institutions, plateformes, chercheurs. 5 adoptants déclenchent le transfert de gouvernance au Comité Technique caribéen.</p>
+      <div class="ph-pills">
+        <span class="ph-pill">Convention CC-BY 4.0</span>
+        <span class="ph-pill">Gratuit pour les créateurs</span>
+        <span class="ph-pill">Gouvernance partagée</span>
+        <span class="ph-pill"><strong>0</strong> / 5 adoptants</span>
+      </div>
+    </div>
+    <div class="ph-counter">
+      <div class="ph-counter-n">0</div>
+      <div class="ph-counter-d">ADOPTANTS / 5</div>
+      <div class="ph-counter-bar"><div class="ph-counter-fill"></div></div>
+      <div class="ph-counter-note">Transfert automatique<br>de gouvernance à 5</div>
+    </div>
   </div>
 </div>
-<main>
-  <div class="sl">Pour qui</div>
-  <h2 class="st">À qui s'adresse cette collaboration ?</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:64px">
-    <div class="card"><div class="card-tag">Plateformes</div><h3>Netflix · Amazon · Disney+</h3><p>Intégrez le CMS dans vos systèmes d'indexation pour améliorer la découvrabilité des contenus caribéens et accéder à de nouveaux marchés culturels.</p></div>
-    <div class="card"><div class="card-tag">Institutions</div><h3>Ministères · Collectivités · ONGs</h3><p>Participez à la gouvernance du standard et contribuez à l'ancrage institutionnel du CMS dans la politique culturelle caribéenne.</p></div>
-    <div class="card"><div class="card-tag">Universités</div><h3>Recherche &amp; Académie</h3><p>Apportez la rigueur académique nécessaire à la validation linguistique et culturelle des familles de métadonnées CMS.</p></div>
-    <div class="card"><div class="card-tag">Studios</div><h3>Studios · Producteurs · Créateurs</h3><p>Taguez vos contenus selon le standard CMS pour améliorer leur visibilité sur les plateformes mondiales et obtenir la certification.</p></div>
-    <div class="card"><div class="card-tag">Linguistes</div><h3>Linguistes · Traducteurs</h3><p>Contribuez à l'extension multilingue du standard — espagnol, néerlandais, anglais — et à la précision des définitions culturelles.</p></div>
-    <div class="card"><div class="card-tag">Chercheurs</div><h3>Chercheurs · Data Scientists</h3><p>Travaillez sur les corpus caribéens, participez au développement du CMS AI Engine et publiez des travaux sur la souveraineté culturelle numérique.</p></div>
+
+<!-- ═══ PROFILS PARTENAIRES ══════════════════════════════ -->
+<section class="sec sec-b">
+  <div class="sec-in">
+    <div class="sec-ey">Pour qui</div>
+    <h2 class="sec-h2">À qui s'adresse cette collaboration ?</h2>
+    <p class="sec-p">Six profils de partenaires — chacun contribue différemment à l'infrastructure de visibilité culturelle caribéenne.</p>
+    <div class="profils-grid">
+
+      <div class="profil-card">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#0f6fa6"></div>
+        <div class="pc-tag" style="background:#e0f2fe;color:#0f6fa6">Plateformes</div>
+        <div class="pc-ico" style="background:#e0f2fe">🎬</div>
+        <div class="pc-h">Netflix · Amazon · Spotify · YouTube</div>
+        <div class="pc-p">Intégrez le CMS dans vos pipelines d'indexation pour améliorer la découvrabilité des contenus caribéens et accéder à de nouveaux marchés culturels.</div>
+        <div class="pc-avantages">
+          <div class="pc-av-title">Bénéfices concrets</div>
+          <ul class="pc-av-list">
+            <li>API publique v2.0 prête à l'intégration</li>
+            <li>110+ enregistrements corpus validés</li>
+            <li>Conformité anticipée aux futures normes CARICOM</li>
+            <li>Accès à 20 marchés caribéens documentés</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profil-card">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#3fa66b"></div>
+        <div class="pc-tag" style="background:#dcfce7;color:#166534">Institutions</div>
+        <div class="pc-ico" style="background:#dcfce7">🏛️</div>
+        <div class="pc-h">Ministères · Collectivités · ONGs</div>
+        <div class="pc-p">Participez à la gouvernance du standard et contribuez à l'ancrage institutionnel du CMS dans la politique culturelle caribéenne.</div>
+        <div class="pc-avantages">
+          <div class="pc-av-title">Bénéfices concrets</div>
+          <ul class="pc-av-list">
+            <li>Siège au Comité Technique caribéen</li>
+            <li>Co-signature du dossier NWIP CROSQ</li>
+            <li>Badge partenaire officiel CMS</li>
+            <li>Influence sur les évolutions v3.0</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profil-card">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#7b3fa6"></div>
+        <div class="pc-tag" style="background:#f3e8ff;color:#6b21a8">Universités</div>
+        <div class="pc-ico" style="background:#f3e8ff">🎓</div>
+        <div class="pc-h">Recherche & Académie caribéenne</div>
+        <div class="pc-p">Apportez la rigueur académique à la validation linguistique et culturelle des familles de métadonnées CMS.</div>
+        <div class="pc-avantages">
+          <div class="pc-av-title">Bénéfices concrets</div>
+          <ul class="pc-av-list">
+            <li>Corpus open data CC-BY 4.0 citable</li>
+            <li>API pour recherche et NLP</li>
+            <li>Contribution au vocabulaire contrôlé</li>
+            <li>Réseau de chercheurs caribéens</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profil-card">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#ffc93c"></div>
+        <div class="pc-tag" style="background:#fef9c3;color:#854d0e">Studios & Créateurs</div>
+        <div class="pc-ico" style="background:#fef9c3">🎵</div>
+        <div class="pc-h">Studios · Producteurs · Artistes</div>
+        <div class="pc-p">Taguez vos contenus selon le standard CMS pour améliorer leur visibilité sur les plateformes mondiales et entrer dans le registre officiel.</div>
+        <div class="pc-avantages">
+          <div class="pc-av-title">Bénéfices concrets</div>
+          <ul class="pc-av-list">
+            <li>Enregistrement gratuit dans le registre</li>
+            <li>Identifiant CMS unique (CMS-ID)</li>
+            <li>IVA — Indice de Visibilité Algorithmique</li>
+            <li>Badge CMS-Compliant téléchargeable</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profil-card">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#00b7c7"></div>
+        <div class="pc-tag" style="background:#e0f2fe;color:#0e7490">Bibliothèques</div>
+        <div class="pc-ico" style="background:#e0f2fe">📚</div>
+        <div class="pc-h">Bibliothèques nationales & municipales</div>
+        <div class="pc-p">Devenez un point d'accès CMS dans votre territoire — accompagnez les créateurs indépendants à documenter leurs œuvres.</div>
+        <div class="pc-avantages">
+          <div class="pc-av-title">Bénéfices concrets</div>
+          <ul class="pc-av-list">
+            <li>Formation CMS pour vos équipes</li>
+            <li>Outils de documentation open source</li>
+            <li>Accès au réseau de médiateurs</li>
+            <li>Corpus partagé avec votre fonds</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profil-card">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#ff6f61"></div>
+        <div class="pc-tag" style="background:#fee2e2;color:#b91c1c">Développeurs</div>
+        <div class="pc-ico" style="background:#fee2e2">💻</div>
+        <div class="pc-h">Développeurs & Intégrateurs</div>
+        <div class="pc-p">Construisez des outils sur l'API CMS ouverte — plateformes culturelles, moteurs de recherche, applications mobiles.</div>
+        <div class="pc-avantages">
+          <div class="pc-av-title">Bénéfices concrets</div>
+          <ul class="pc-av-list">
+            <li>API v2.0 publique sans clé</li>
+            <li>Corpus JSONL téléchargeable</li>
+            <li>Schéma JSON ouvert CC-BY 4.0</li>
+            <li>Support technique Caribwood</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
   </div>
-  <div class="sl">Ce que vous obtenez</div>
-  <h2 class="st">Les bénéfices d'une collaboration CMS</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:64px">
-    <div style="padding:24px;border:1px solid rgba(0,62,107,0.1);border-radius:8px"><div style="font-size:20px;color:#00C2C7;margin-bottom:10px">→</div><h4 style="font-size:15px;font-weight:700;color:#003E6B;margin-bottom:8px">Accès anticipé au standard</h4><p style="font-size:13px;color:#444;line-height:1.7">Les partenaires fondateurs ont accès aux versions de travail du CMS avant publication officielle.</p></div>
-    <div style="padding:24px;border:1px solid rgba(0,62,107,0.1);border-radius:8px"><div style="font-size:20px;color:#00C2C7;margin-bottom:10px">→</div><h4 style="font-size:15px;font-weight:700;color:#003E6B;margin-bottom:8px">Mention officielle</h4><p style="font-size:13px;color:#444;line-height:1.7">Votre organisation est citée dans le White Paper et sur le site officiel du CMS.</p></div>
-    <div style="padding:24px;border:1px solid rgba(0,62,107,0.1);border-radius:8px"><div style="font-size:20px;color:#00C2C7;margin-bottom:10px">→</div><h4 style="font-size:15px;font-weight:700;color:#003E6B;margin-bottom:8px">Participation à la gouvernance</h4><p style="font-size:13px;color:#444;line-height:1.7">Les partenaires institutionnels participent au comité de validation du standard.</p></div>
-    <div style="padding:24px;border:1px solid rgba(0,62,107,0.1);border-radius:8px"><div style="font-size:20px;color:#00C2C7;margin-bottom:10px">→</div><h4 style="font-size:15px;font-weight:700;color:#003E6B;margin-bottom:8px">Support à l'implémentation</h4><p style="font-size:13px;color:#444;line-height:1.7">Le Language Lab accompagne les partenaires dans l'intégration du CMS dans leurs workflows.</p></div>
-    <div style="padding:24px;border:1px solid rgba(0,62,107,0.1);border-radius:8px"><div style="font-size:20px;color:#00C2C7;margin-bottom:10px">→</div><h4 style="font-size:15px;font-weight:700;color:#003E6B;margin-bottom:8px">Accès aux datasets</h4><p style="font-size:13px;color:#444;line-height:1.7">Les partenaires de recherche ont accès aux corpus caribéens construits par le Language Lab.</p></div>
-    <div style="padding:24px;border:1px solid rgba(0,62,107,0.1);border-radius:8px"><div style="font-size:20px;color:#00C2C7;margin-bottom:10px">→</div><h4 style="font-size:15px;font-weight:700;color:#003E6B;margin-bottom:8px">Label CMS‑Compliant</h4><p style="font-size:13px;color:#444;line-height:1.7">Les contenus certifiés affichent le sceau officiel du Caribbean Metadata Standard.</p></div>
+</section>
+
+<!-- ═══ NIVEAUX D'INTÉGRATION ════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="sec-ey">Convention d'adhésion</div>
+    <h2 class="sec-h2">3 niveaux d'intégration</h2>
+    <p class="sec-p">Chaque niveau correspond à un degré d'implication dans le réseau CMS. La convention est gratuite et ouverte à toute institution caribéenne.</p>
+    <div class="niveaux-grid">
+
+      <div class="niv-card">
+        <span class="niv-ico">🤝</span>
+        <div class="niv-h">Partenaire Basic</div>
+        <div class="niv-price">Gratuit</div>
+        <div class="niv-price-note">Pour les créateurs indépendants et petites structures</div>
+        <ul class="niv-list">
+          <li>Enregistrement dans le registre CMS</li>
+          <li>Accès au CMS Builder et à l'API</li>
+          <li>Badge CMS-Compliant téléchargeable</li>
+          <li>Newsletter partenaires</li>
+        </ul>
+        <a href="submit.html" class="niv-btn">Soumettre une œuvre →</a>
+      </div>
+
+      <div class="niv-card featured">
+        <span class="niv-badge">Recommandé</span>
+        <span class="niv-ico">⭐</span>
+        <div class="niv-h">Partenaire Structuré</div>
+        <div class="niv-price">Gratuit</div>
+        <div class="niv-price-note">Pour les institutions, bibliothèques, universités</div>
+        <ul class="niv-list">
+          <li>Convention d'adhésion officielle</li>
+          <li>Mention dans le registre des adoptants</li>
+          <li>Accès aux sessions de travail du Comité</li>
+          <li>Co-signature du dossier CROSQ</li>
+          <li>Influence sur les évolutions v3.0</li>
+        </ul>
+        <a href="contact.html" class="niv-btn featured-btn">Demander la convention →</a>
+      </div>
+
+      <div class="niv-card">
+        <span class="niv-ico">🏛️</span>
+        <div class="niv-h">Partenaire Natif</div>
+        <div class="niv-price">Gratuit</div>
+        <div class="niv-price-note">Pour les plateformes et grandes institutions régionales</div>
+        <ul class="niv-list">
+          <li>Intégration API dans les systèmes internes</li>
+          <li>Siège au Comité Technique caribéen</li>
+          <li>Co-développement des extensions v3.0</li>
+          <li>Reconnaissance CROSQ comme adoptant</li>
+          <li>Rapport annuel sur l'impact CMS</li>
+        </ul>
+        <a href="contact.html" class="niv-btn">Nous contacter →</a>
+      </div>
+
+    </div>
   </div>
-  <div class="cta-block">
-    <div><h2>Prenez contact avec le Language Lab</h2><p>Décrivez votre profil et vos objectifs — nous reviendrons vers vous dans les 48 heures.</p></div>
-    <a href="contact.html" class="btn-t">Nous contacter →</a>
+</section>
+
+<!-- ═══ PROCESSUS D'ADHÉSION ═════════════════════════════ -->
+<section class="sec sec-b">
+  <div class="sec-in">
+    <div class="sec-ey">Comment rejoindre</div>
+    <h2 class="sec-h2">Processus d'adhésion</h2>
+    <p class="sec-p">4 étapes simples pour devenir partenaire officiel du Caribbean Metadata Standard.</p>
+    <div class="process-steps">
+      <div class="ps-card">
+        <div class="ps-num">01</div>
+        <span class="ps-ico">📬</span>
+        <div class="ps-h">Contact</div>
+        <div class="ps-p">Envoyez un email à contact@caribbeanmetadata.org avec votre profil et territoire.</div>
+        <div class="ps-duration">Réponse sous 72h</div>
+      </div>
+      <div class="ps-card">
+        <div class="ps-num">02</div>
+        <span class="ps-ico">📋</span>
+        <div class="ps-h">Évaluation</div>
+        <div class="ps-p">Appel de 30 minutes pour comprendre vos besoins et identifier le niveau d'intégration adapté.</div>
+        <div class="ps-duration">1 semaine</div>
+      </div>
+      <div class="ps-card">
+        <div class="ps-num">03</div>
+        <span class="ps-ico">✍️</span>
+        <div class="ps-h">Convention</div>
+        <div class="ps-p">Signature de la convention d'adhésion CMS — document CC-BY 4.0, aucune exclusivité.</div>
+        <div class="ps-duration">2 semaines</div>
+      </div>
+      <div class="ps-card">
+        <div class="ps-num">04</div>
+        <span class="ps-ico">🚀</span>
+        <div class="ps-h">Intégration</div>
+        <div class="ps-p">Publication dans le registre, accès aux outils, et entrée dans le réseau caribéen.</div>
+        <div class="ps-duration">Immédiat</div>
+      </div>
+    </div>
   </div>
-</main>
-<footer><!-- nav-fix.js --></footer>
+</section>
+
+<!-- ═══ GOUVERNANCE TRANSFER ═════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="gouv-transfer">
+      <div class="gt-text">
+        <div class="gt-ey">Transfert de gouvernance</div>
+        <h2 class="gt-h">Pourquoi 5 adoptants<br>changent tout</h2>
+        <p class="gt-p">La convention d'adhésion (Article 9) prévoit un transfert automatique de gouvernance au Comité Technique caribéen indépendant dès que 5 institutions de territoires différents auront signé. Ce n'est pas une intention — c'est un mécanisme contractuel.</p>
+        <p class="gt-p" style="margin-top:12px">À ce moment, le CMS cesse d'appartenir à une seule organisation. Il appartient à la Caraïbe.</p>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="contact.html" class="btn-p">Devenir le 1er adoptant →</a>
+          <a href="declaration.html" class="btn-o" style="border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)">Lire la déclaration</a>
+        </div>
+      </div>
+      <div class="gt-visual">
+        <div class="gt-progress">
+          <div class="gt-prog-n">0</div>
+          <div class="gt-prog-d">ADOPTANTS</div>
+          <div class="gt-prog-bar"><div class="gt-prog-fill" style="width:0%"></div></div>
+          <div class="gt-prog-note">5 requis pour le<br>transfert de gouvernance<br><br>Soyez le premier.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ENGAGEMENTS DU CMS ════════════════════════════════ -->
+<section class="sec sec-b">
+  <div class="sec-in">
+    <div class="sec-ey">Nos engagements</div>
+    <h2 class="sec-h2">Ce que le CMS vous garantit</h2>
+    <p class="sec-p">Rejoindre le CMS ne crée aucune dépendance. Voici nos engagements envers chaque partenaire.</p>
+    <div class="eng-grid">
+      <div class="eng-card">
+        <div class="eng-num">01</div>
+        <div><div class="eng-h">Gratuité permanente</div><div class="eng-p">La soumission au registre et l'accès à l'API ne coûtent rien et ne coûteront jamais rien sans vote du Comité Technique.</div></div>
+      </div>
+      <div class="eng-card">
+        <div class="eng-num">02</div>
+        <div><div class="eng-h">Aucune exclusivité</div><div class="eng-p">Le CMS est CC-BY 4.0. Vous pouvez l'utiliser, le modifier et le distribuer sans restriction. Aucun lock-in.</div></div>
+      </div>
+      <div class="eng-card">
+        <div class="eng-num">03</div>
+        <div><div class="eng-h">Souveraineté des données</div><div class="eng-p">Vos métadonnées vous appartiennent. Le registre CMS ne cède aucune donnée à des tiers commerciaux.</div></div>
+      </div>
+      <div class="eng-card">
+        <div class="eng-num">04</div>
+        <div><div class="eng-h">Gouvernance démocratique</div><div class="eng-p">Dès 5 adoptants, un Comité Technique caribéen indépendant prend le contrôle. Le fondateur n'a pas de veto.</div></div>
+      </div>
+      <div class="eng-card">
+        <div class="eng-num">05</div>
+        <div><div class="eng-h">Équité d'accès</div><div class="eng-p">Un créateur indépendant de Jacmel a les mêmes droits dans le registre qu'un studio international. Sans hiérarchie.</div></div>
+      </div>
+      <div class="eng-card">
+        <div class="eng-num">06</div>
+        <div><div class="eng-h">Transparence totale</div><div class="eng-p">La formule IVA, le schéma, le corpus, le code source — tout est public, documenté et citable sous CC-BY 4.0.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CITATION ══════════════════════════════════════════ -->
+<section class="sec sec-a">
+  <div class="sec-in">
+    <div class="quote-block">
+      <div class="qb-glow"></div>
+      <div class="qb-mark">"</div>
+      <div class="qb-text">Ce standard appartient à la Caraïbe entière. Pas aux institutions les mieux équipées. Pas aux créateurs les plus connectés. À la Caraïbe — dans toute sa diversité, ses langues, ses îles et sa diaspora.</div>
+      <div class="qb-source">DÉCLARATION D'ÉQUITÉ — CARIBWOOD LANGUAGE LAB · JUIN 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA CONTACT ═══════════════════════════════════════ -->
+<section class="sec sec-b">
+  <div class="sec-in">
+    <div class="cta-block">
+      <div>
+        <div class="cb-h">Prêt à rejoindre le réseau ?</div>
+        <p class="cb-p">Envoyez-nous un email à contact@caribbeanmetadata.org. Nous répondons sous 72 heures. Aucun engagement initial requis — juste une conversation.</p>
+      </div>
+      <div class="cb-btns">
+        <a href="contact.html" class="btn-p">Nous contacter →</a>
+        <a href="submit.html" class="btn-o">Soumettre une œuvre</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="cms-footer">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div>
+        <a href="/" class="foot-logo">CMS<span>.</span></a>
+        <p class="foot-desc">Caribbean Metadata Standard — Structurer la visibilité culturelle caribéenne. Caribwood Language Lab, Guadeloupe.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Le Standard</h4>
+        <ul>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="families.html">Les 6 familles</a></li>
+          <li><a href="spec.html">Spécification v2.0</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="equity.html">Équité & Accès</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="submit.html">Soumettre une œuvre</a></li>
+          <li><a href="cms-builder.html">CMS Builder</a></li>
+          <li><a href="developers.html">API v2.0</a></li>
+          <li><a href="glossaire.html">Glossaire</a></li>
+          <li><a href="kit.html">Kit Média</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Écosystème</h4>
+        <ul>
+          <li><a href="collaborate.html">Partenaires</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="https://github.com/heso73/cms-nlp-corpus" target="_blank">↗ GitHub</a></li>
+          <li><a href="press-fr.html">Presse</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>caribbeanmetadata.org · CMS v2.0 · Caribwood Language Lab — Guadeloupe</span>
+      <span>CC-BY 4.0 · Open Source</span>
+    </div>
+  </div>
+</footer>
+
 <script src="nav-fix.js"></script>
 </body>
 </html>
