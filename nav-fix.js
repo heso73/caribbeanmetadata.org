@@ -347,10 +347,17 @@
     style.textContent = CSS;
     document.head.appendChild(style);
 
-    const existingNav = document.querySelector('nav');
+    // Replace entire header if present, otherwise just the nav
     const newNav = buildNav();
-    if (existingNav) existingNav.parentNode.replaceChild(newNav, existingNav);
-    else document.body.insertBefore(newNav, document.body.firstChild);
+    const existingHeader = document.querySelector('header');
+    const existingNav = document.querySelector('nav');
+    if (existingHeader) {
+      existingHeader.parentNode.replaceChild(newNav, existingHeader);
+    } else if (existingNav) {
+      existingNav.parentNode.replaceChild(newNav, existingNav);
+    } else {
+      document.body.insertBefore(newNav, document.body.firstChild);
+    }
 
     const existingFooter = document.querySelector('footer');
     const newFooter = buildFooter();
