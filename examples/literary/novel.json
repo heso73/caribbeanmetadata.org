@@ -1,1 +1,54 @@
-
+{
+  "cms_version": "2.0",
+  "cms_id": "CMS-GLP-2023-NVL7X4K1",
+  "standard": "Caribbean Metadata Standard",
+  "title": "Les Racines du Souffle",
+  "original_title": "Les Racines du Souffle",
+  "type": "novel",
+  "year": 2023,
+  "territory": "GLP",
+  "territory_name": "Guadeloupe",
+  "language_primary": "fr-GP",
+  "languages": ["fr-GP", "gcf"],
+  "page_count": 287,
+  "families": {
+    "F01_linguistique": {
+      "language_primary": "fr-GP",
+      "code_switching": true,
+      "dialect": "Créole guadeloupéen",
+      "languages_secondary": ["gcf"],
+      "oral_tradition_elements": true
+    },
+    "F02_culturelle": {
+      "cultural_markers": ["Gwo ka", "Quimbois", "Mémoire de l'esclavage"],
+      "cultural_region": "Antilles françaises"
+    },
+    "F03_narrative": {
+      "narrative_genre": "Magical realism",
+      "themes": ["Mémoire ancestrale", "Résistance", "Féminité caribéenne"],
+      "narrative_structure": "Polyphonic"
+    },
+    "F04_rythmique": {
+      "rhythmic_tempo": "Lyrical",
+      "sonic_markers": ["Tambour ka", "Chants de travail"],
+      "oral_rhythm": true
+    },
+    "F05_geographique": {
+      "locations": ["Basse-Terre", "Pointe-à-Pitre", "Marie-Galante"],
+      "diaspora_context": false,
+      "geographic_scope": "local"
+    },
+    "F06_sociohistorique": {
+      "historical_period": "Post-slavery to contemporary",
+      "social_themes": ["Mémoire de l'esclavage", "Résistance culturelle", "Identité féminine"],
+      "heritage_markers": ["Patrimoine oral guadeloupéen", "Gwo ka UNESCO"]
+    }
+  },
+  "iva_score": 78,
+  "cms_compliance": true,
+  "schema_org_type": "Book",
+  "dublin_core_type": "Text",
+  "license": "All rights reserved",
+  "created_at": "2023-09-01",
+  "cms_certified_at": "2026-06-12"
+}
