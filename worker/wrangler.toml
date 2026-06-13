@@ -5,3 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 ENVIRONMENT = "production"
+
+routes = [
+  { pattern = "api.caribbeanmetadata.org/*", custom_domain = true }
+]
