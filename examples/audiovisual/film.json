@@ -1,1 +1,53 @@
-
+{
+  "cms_version": "2.0",
+  "cms_id": "CMS-MTQ-2024-BMKL9F2A",
+  "standard": "Caribbean Metadata Standard",
+  "title": "Chroniques de la Caraïbe",
+  "original_title": "Chroniques de la Caraïbe",
+  "type": "film",
+  "year": 2024,
+  "territory": "MTQ",
+  "territory_name": "Martinique",
+  "language_primary": "fr-MQ",
+  "languages": ["fr-MQ", "ht"],
+  "duration_minutes": 94,
+  "families": {
+    "F01_linguistique": {
+      "language_primary": "fr-MQ",
+      "code_switching": true,
+      "dialect": "Créole martiniquais",
+      "languages_secondary": ["ht"]
+    },
+    "F02_culturelle": {
+      "cultural_markers": ["Carnaval", "Mas traditional", "Diaspora identity"],
+      "cultural_region": "Antilles françaises"
+    },
+    "F03_narrative": {
+      "narrative_genre": "Social drama",
+      "themes": ["Migration", "Identité caribéenne", "Mémoire coloniale"],
+      "narrative_structure": "Non-linear"
+    },
+    "F04_rythmique": {
+      "rhythmic_tempo": "Syncopated",
+      "music_genres": ["Biguine", "Zouk"],
+      "sonic_markers": ["Tambour ka", "Steel pan"]
+    },
+    "F05_geographique": {
+      "filming_locations": ["Fort-de-France", "Le Marin"],
+      "diaspora_context": false,
+      "geographic_scope": "local"
+    },
+    "F06_sociohistorique": {
+      "historical_period": "Contemporary",
+      "social_themes": ["Post-colonial identity", "Urban Caribbean life"],
+      "heritage_markers": ["Patrimoine immatériel martiniquais"]
+    }
+  },
+  "iva_score": 82,
+  "cms_compliance": true,
+  "schema_org_type": "Movie",
+  "dublin_core_type": "MovingImage",
+  "license": "All rights reserved",
+  "created_at": "2024-03-15",
+  "cms_certified_at": "2026-06-12"
+}
