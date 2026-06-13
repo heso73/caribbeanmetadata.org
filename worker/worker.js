@@ -9,7 +9,7 @@ const SUPABASE_KEY = 'sb_publishable_cZc3a7kaK3M7ZcHRsoTI8w_NQz4Xy0z';
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   'Content-Type': 'application/json; charset=utf-8',
 };
@@ -67,8 +67,15 @@ export default {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
 
-    if (method !== 'GET') {
+    if (method !== 'GET' && method !== 'POST') {
       return json({ error: 'Method not allowed' }, 405);
+    }
+    // POST only allowed on /api/v1/works with valid admin token
+    if (method === 'POST') {
+      const authHeader = request.headers.get('X-CMS-Admin') || '';
+      if (authHeader !== (env.CMS_ADMIN_TOKEN || 'cms2026caribwood')) {
+        return json({ error: 'Unauthorized' }, 401);
+      }
     }
 
     // Routes
@@ -184,7 +191,7 @@ async function handleWorks(url) {
   const limit = Math.min(parseInt(params.get('limit') || '20'), 100);
   const offset = parseInt(params.get('offset') || '0');
 
-  let query = `works?select=id,title,title_original,family,year,territory,languages,description,status,created_at,creators(name,type,territory)&status=eq.pending&order=created_at.desc&limit=${limit}&offset=${offset}`;
+  let query = `works?select=id,title,title_original,family,year,territory,languages,description,status,created_at,creators(name,type,territory)&order=created_at.desc&limit=${limit}&offset=${offset}`;
 
   if (territory) query += `&territory=eq.${encodeURIComponent(territory)}`;
   if (family) query += `&family=eq.${encodeURIComponent(family)}`;
@@ -252,7 +259,7 @@ async function handleWork(cmsId) {
 async function handleStats() {
   try {
     const [works, certs] = await Promise.all([
-      sbFetch('works?select=territory,family,languages&status=eq.pending'),
+      sbFetch('works?select=territory,family,languages'),
       sbFetch('certifications?select=metadata_json,issued_at&revoked=eq.false'),
     ]);
 
