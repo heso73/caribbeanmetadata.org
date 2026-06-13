@@ -680,6 +680,219 @@ function updateScore() {
 
   return { score, details };
 }
+
+// ── NAVIGATION ÉTAPES ─────────────────────────────────────────────────────────
+function goStep(n) {
+  // Validation avant avancer
+  if (n === 2) {
+    const name = document.getElementById('c-name').value.trim();
+    const email = document.getElementById('c-email').value.trim();
+    const type = document.getElementById('c-type').value;
+    const territory = document.getElementById('c-territory').value;
+    if (!name || !email || !type || !territory) {
+      showToast('⚠️ Veuillez remplir tous les champs obligatoires.'); return;
+    }
+  }
+  if (n === 3) {
+    const title = document.getElementById('w-title').value.trim();
+    const family = document.getElementById('w-family').value;
+    const year = document.getElementById('w-year').value;
+    const territory = document.getElementById('w-territory').value;
+    const language = document.getElementById('w-language').value;
+    if (!title || !family || !year || !territory || !language) {
+      showToast('⚠️ Veuillez remplir tous les champs obligatoires.'); return;
+    }
+  }
+  if (n === 4) { buildRecap(); }
+
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('step-' + n);
+  if (panel) panel.classList.add('active');
+
+  document.querySelectorAll('.step-btn').forEach((b, i) => {
+    b.classList.remove('active', 'done');
+    if (i + 1 < n) b.classList.add('done');
+    if (i + 1 === n) b.classList.add('active');
+  });
+  currentStep = n;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── RÉCAPITULATIF ─────────────────────────────────────────────────────────────
+function buildRecap() {
+  const name     = document.getElementById('c-name').value.trim();
+  const email    = document.getElementById('c-email').value.trim();
+  const cType    = document.getElementById('c-type').value;
+  const cTerritory = document.getElementById('c-territory').value;
+  const website  = document.getElementById('c-website')?.value.trim() || '';
+  const title    = document.getElementById('w-title').value.trim();
+  const titleOrig= document.getElementById('w-title-orig').value.trim();
+  const family   = document.getElementById('w-family').value;
+  const year     = document.getElementById('w-year').value;
+  const territory= document.getElementById('w-territory').value;
+  const language = document.getElementById('w-language').value;
+  const desc     = document.getElementById('w-desc').value.trim();
+  const { score } = calcIVA();
+  const allTags  = Object.values(selectedTags).flat();
+
+  const familyLabels = {
+    audiovisual:'Audiovisuel', musical:'Musical', literary:'Littéraire',
+    heritage:'Patrimoine', visual_arts:'Arts visuels', performing_arts:'Arts vivants'
+  };
+
+  document.getElementById('recap-content').innerHTML = `
+    <div style="margin-bottom:16px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#888;margin-bottom:8px">CRÉATEUR</div>
+      <div><strong>${name}</strong> · ${cType === 'individual' ? 'Créateur individuel' : 'Institution'}</div>
+      <div style="color:#666;font-size:13px">${email} · ${cTerritory}${website ? ' · ' + website : ''}</div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#888;margin-bottom:8px">L'ŒUVRE</div>
+      <div><strong>${title}</strong>${titleOrig ? ' · <em>' + titleOrig + '</em>' : ''}</div>
+      <div style="color:#666;font-size:13px">${familyLabels[family] || family} · ${year} · ${territory} · ${language.toUpperCase()}</div>
+      ${desc ? '<div style="color:#666;font-size:12px;margin-top:6px;line-height:1.5">' + desc.substring(0,200) + (desc.length > 200 ? '…' : '') + '</div>' : ''}
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#888;margin-bottom:8px">MARQUEURS CMS (${allTags.length})</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        ${allTags.length ? allTags.map(t => `<span style="background:#e8f4fd;color:#003E6B;font-size:11px;padding:3px 8px;border-radius:4px;font-family:'DM Mono',monospace">${t}</span>`).join('') : '<span style="color:#aaa;font-size:12px">Aucun marqueur sélectionné</span>'}
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#fff;border-radius:6px;border:1px solid rgba(0,62,107,0.1)">
+      <div style="font-family:'DM Mono',monospace;font-size:24px;font-weight:700;color:${score >= 80 ? '#00C2C7' : score >= 60 ? '#3FA66B' : '#FFC93C'}">${score}</div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#888">INDICE DE VISIBILITÉ ALGORITHMIQUE</div>
+        <div style="font-size:12px;color:#666">${score >= 80 ? 'Excellent — fiche optimisée' : score >= 60 ? 'Bon niveau' : 'À améliorer avant soumission'}</div>
+      </div>
+    </div>
+  `;
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ── SUBMIT WORK ───────────────────────────────────────────────────────────────
+async function submitWork() {
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+
+  try {
+    // Collect form data
+    const name      = document.getElementById('c-name').value.trim();
+    const email     = document.getElementById('c-email').value.trim();
+    const cType     = document.getElementById('c-type').value;
+    const cTerritory= document.getElementById('c-territory').value;
+    const website   = document.getElementById('c-website')?.value.trim() || null;
+    const title     = document.getElementById('w-title').value.trim();
+    const titleOrig = document.getElementById('w-title-orig').value.trim() || null;
+    const family    = document.getElementById('w-family').value;
+    const year      = parseInt(document.getElementById('w-year').value);
+    const territory = document.getElementById('w-territory').value;
+    const language  = document.getElementById('w-language').value;
+    const desc      = document.getElementById('w-desc').value.trim() || null;
+    const allTags   = Object.values(selectedTags).flat();
+    const { score } = calcIVA();
+
+    // Validation finale
+    if (!name || !email || !title || !family || !year || !territory || !language) {
+      showToast('⚠️ Informations manquantes — vérifiez les étapes 1 et 2.');
+      btn.disabled = false; btn.textContent = 'Soumettre ma demande →';
+      return;
+    }
+
+    // 1. Upsert creator
+    const { data: crData, error: crErr } = await sb
+      .from('creators')
+      .upsert({ name, email, type: cType, territory: cTerritory, website }, { onConflict: 'email' })
+      .select('id').single();
+    if (crErr) throw new Error('Erreur créateur : ' + crErr.message);
+    const creatorId = crData.id;
+
+    // 2. Insert work
+    const { data: wkData, error: wkErr } = await sb
+      .from('works')
+      .insert({
+        title, title_original: titleOrig, family, year,
+        territory, languages: [language], description: desc,
+        creator_id: creatorId, status: 'pending',
+      })
+      .select('id').single();
+    if (wkErr) throw new Error('Erreur œuvre : ' + wkErr.message);
+    const workId = wkData.id;
+
+    // 3. Insert metadata tags
+    const familiesFilled = Object.values(selectedTags).filter(v => v.length > 0).length
+      + (language ? 1 : 0) + (territory ? 1 : 0);
+    const fFilled = Math.min(6, familiesFilled);
+
+    if (allTags.length > 0) {
+      const tagRows = allTags.map(tag => ({
+        work_id: workId, tag_value: tag, tag_type: 'cultural_marker'
+      }));
+      await sb.from('metadata_tags').insert(tagRows);
+    }
+
+    // 4. Generate CMS ID
+    const terrCodes = {
+      Haiti:'HTI', Martinique:'MTQ', Guadeloupe:'GLP', Guyane:'GUF',
+      Jamaica:'JAM', Trinidad:'TTO', Barbados:'BRB', Cuba:'CUB',
+      'Dominican Republic':'DOM', 'Puerto Rico':'PRI', Aruba:'ABW',
+      Curacao:'CUW', Suriname:'SUR', Dominica:'DMA', 'St Lucia':'LCA',
+      'St Vincent':'VCT', Grenada:'GRD', Antigua:'ATG',
+      'Diaspora caribéenne':'DIA', 'Caribbean (général)':'CAR',
+    };
+    const terrCode = terrCodes[territory] || 'CAR';
+    const randPart = Math.random().toString(36).substring(2, 10).toUpperCase();
+    const cmsId = `CMS-${terrCode}-${year}-${randPart}`;
+
+    // 5. Insert certification (pending review)
+    const level = fFilled === 6 ? 'complete' : fFilled >= 4 ? 'good' : fFilled >= 2 ? 'partial' : 'minimal';
+    const { error: certErr } = await sb.from('certifications').insert({
+      work_id: workId,
+      cms_id: cmsId,
+      score: fFilled,
+      level,
+      metadata_json: {
+        cms_id: cmsId,
+        families_filled: fFilled,
+        completude_pct: Math.round(fFilled / 6 * 100),
+        iva_score: score,
+        metadata_tags: {
+          F01_linguistic: { language },
+          F02_cultural: { markers: selectedTags.cultural || [] },
+          F03_narrative: { domain: family, tags: selectedTags.narrative || [] },
+          F04_rhythmic: { markers: selectedTags.rhythmic || [] },
+          F05_geographic: { territory, tags: selectedTags.geographic || [] },
+          F06_sociohistorical: { markers: selectedTags.sociohistorical || [] },
+        },
+        submitted_at: new Date().toISOString(),
+        status: 'pending_review',
+      },
+      issued_at: new Date().toISOString(),
+      revoked: false,
+    });
+    if (certErr) throw new Error('Erreur certification : ' + certErr.message);
+
+    // Success
+    document.getElementById('success-work-id').textContent = 'Référence : ' + cmsId;
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('success-panel').style.display = 'block';
+    showToast('✅ Demande soumise — ' + cmsId);
+
+  } catch(e) {
+    console.error('submitWork error:', e);
+    showToast('❌ Erreur : ' + (e.message || 'Veuillez réessayer.'));
+    btn.disabled = false;
+    btn.textContent = 'Soumettre ma demande →';
+  }
+}
+
 // INIT
 buildFamiliesUI();
 updateScore();
