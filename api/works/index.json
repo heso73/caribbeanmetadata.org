@@ -1,8 +1,12 @@
 {
-  "generated": "2026-06-09T12:00:00.000Z",
-  "standard": "CMS v2.0",
-  "api": "https://cms-api.small-disk-3275.workers.dev/api/v1/works",
-  "note": "Static index — use the live API for real-time data",
-  "total": 0,
-  "works": []
+  "standard": "Caribbean Metadata Standard v2.0",
+  "note": "Use the live API for real-time data. This file is a static pointer.",
+  "live_api": "https://cms-api.small-disk-3275.workers.dev/api/v1/works",
+  "api_docs": "https://caribbeanmetadata.org/developers.html",
+  "sample_works": [
+    "CMS-HTI-2024-CTD7X3P2",
+    "CMS-MTQ-2023-RCN4L8W1",
+    "CMS-MTQ-1977-TMN2K9F5"
+  ],
+  "updated_at": "2026-06-12"
 }
