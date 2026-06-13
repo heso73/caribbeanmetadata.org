@@ -80,4 +80,10 @@
   <!-- GLOSSAIRE -->
   <url><loc>https://caribbeanmetadata.org/glossaire.html</loc><lastmod>2026-06-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
+  <!-- PARTENAIRES -->
+  <url><loc>https://caribbeanmetadata.org/partenaires.html</loc><lastmod>2026-06-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- ÉQUITÉ ET ACCÈS -->
+  <url><loc>https://caribbeanmetadata.org/equity.html</loc><lastmod>2026-06-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
 </urlset>
