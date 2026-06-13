@@ -655,6 +655,7 @@ function updateScore() {
 
   // Pill label
   const pill = document.getElementById('sw-pill');
+  if (!pill) return { score, details };
   if (score >= 80) { pill.className='sw-pill complete'; pill.textContent='EXCELLENT'; }
   else if (score >= 60) { pill.className='sw-pill good'; pill.textContent='BON NIVEAU'; }
   else if (score >= 40) { pill.className='sw-pill partial'; pill.textContent='À AMÉLIORER'; }
@@ -707,7 +708,10 @@ function goStep(n) {
 
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   const panel = document.getElementById('step-' + n);
-  if (panel) panel.classList.add('active');
+  if (panel) {
+    panel.classList.add('active');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   document.querySelectorAll('.step-btn').forEach((b, i) => {
     b.classList.remove('active', 'done');
@@ -715,7 +719,7 @@ function goStep(n) {
     if (i + 1 === n) b.classList.add('active');
   });
   currentStep = n;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // scroll removed — stay in place
 }
 
 // ── RÉCAPITULATIF ─────────────────────────────────────────────────────────────
@@ -882,7 +886,9 @@ async function submitWork() {
     // Success
     document.getElementById('success-work-id').textContent = 'Référence : ' + cmsId;
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('success-panel').style.display = 'block';
+    const successPanel = document.getElementById('success-panel');
+    successPanel.style.display = 'block';
+    successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     showToast('✅ Demande soumise — ' + cmsId);
 
   } catch(e) {
