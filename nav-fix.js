@@ -14,7 +14,7 @@
   const basePage = page.replace(/-en\.html$/, '').replace(/-es\.html$/, '').replace(/\.html$/, '');
 
   // Pages sans version ES — restent sur la version FR
-  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue', 'kit', 'spec'];
+  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue', 'kit', 'spec', 'nlp'];
   // Pages sans version EN
   const NO_EN = ['glossaire', 'architecture', 'press'];
 
@@ -33,6 +33,7 @@
       { href: 'catalogue.html',    label: 'Catalogue' },
       { href: 'kit.html',          label: 'Kit Média' },
       { href: 'roadmap.html',      label: 'Roadmap' },
+      { href: 'nlp.html',          label: 'NLP Analytics' },
       { href: 'lab.html',          label: 'Language Lab' },
       { href: 'collaborate.html',  label: 'Collaborer' },
       { href: 'declaration.html',  label: 'Déclaration' },
