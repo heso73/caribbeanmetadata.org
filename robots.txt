@@ -11,5 +11,12 @@ Disallow: /assets/
 Disallow: /drafts/
 Disallow: /private/
 
+# Exclure les fichiers de données JSON (non indexables)
+Disallow: /examples/
+Disallow: /spec/cms-v2.json
+Disallow: /schema/
+Disallow: /worker/
+Disallow: /api/
+
 # ── Sitemap ──
 Sitemap: https://caribbeanmetadata.org/sitemap.xml
