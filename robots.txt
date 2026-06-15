@@ -18,5 +18,10 @@ Disallow: /schema/
 Disallow: /worker/
 Disallow: /api/
 
+# Exclure les fichiers binaires (docx, pptx)
+Disallow: /*.docx
+Disallow: /*.pptx
+Disallow: /*.pdf
+
 # ── Sitemap ──
 Sitemap: https://caribbeanmetadata.org/sitemap.xml
