@@ -207,7 +207,7 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
     <div class="ph-bc"><a href="index.html">Accueil</a> › <span>Catalogue</span></div>
     <div class="ph-tag">Vocabulaire · Corpus · Certification</div>
     <h1 class="ph-h1">Catalogue <em>CMS v2.0</em></h1>
-    <p class="ph-sub">Vocabulaire contrôlé complet, corpus open data de 110 enregistrements et certification CMS-Compliant — tout le contenu structuré du standard caribéen.</p>
+    <p class="ph-sub">Vocabulaire contrôlé complet, catalogue d'œuvres ouvert et certification CMS-Compliant — tout le contenu structuré du standard caribéen.</p>
     <div class="ph-nav">
       <a href="#marqueurs">27 Marqueurs</a>
       <a href="#langues">10 Langues</a>
@@ -222,7 +222,7 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
   <div class="stats-in">
     <div class="sb-col"><div class="sb-n">27</div><div class="sb-l">Marqueurs culturels</div></div>
     <div class="sb-col"><div class="sb-n">10</div><div class="sb-l">Langues ISO 639-3</div></div>
-    <div class="sb-col"><div class="sb-n">110</div><div class="sb-l">Enregistrements corpus</div></div>
+    <div class="sb-col"><div class="sb-n" data-cms-stat="totals.works">557</div><div class="sb-l">Œuvres cataloguées</div></div>
     <div class="sb-col"><div class="sb-n">14</div><div class="sb-l">Domaines culturels</div></div>
   </div>
 </div>
@@ -308,13 +308,13 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
         <div class="ch-p">Premier corpus structuré de contenus culturels caribéens. Librement téléchargeable, citable et intégrable. Licence CC-BY 4.0.</div>
         <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
           <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" class="btn-t">↗ Accéder au corpus GitHub</a>
-          <a href="https://cms-api.small-disk-3275.workers.dev/api/v2/works" target="_blank" class="btn-g">API /works →</a>
+          <a href="https://cms-api.small-disk-3275.workers.dev/api/v1/works" target="_blank" class="btn-g">API /works →</a>
         </div>
       </div>
       <div class="ch-stats">
-        <div class="cs-stat"><div class="cs-n">110</div><div class="cs-l">Enregistrements</div></div>
+        <div class="cs-stat"><div class="cs-n" data-cms-stat="totals.works">557</div><div class="cs-l">Œuvres cataloguées</div></div>
         <div class="cs-stat"><div class="cs-n">10</div><div class="cs-l">Langues</div></div>
-        <div class="cs-stat"><div class="cs-n">17</div><div class="cs-l">Territoires</div></div>
+        <div class="cs-stat"><div class="cs-n" data-cms-stat="totals.territories_represented">16</div><div class="cs-l">Territoires</div></div>
         <div class="cs-stat"><div class="cs-n">27</div><div class="cs-l">Marqueurs</div></div>
       </div>
     </div>
@@ -499,7 +499,7 @@ async function loadCorpus() {
   const domain = document.getElementById('filter-domain').value;
   const territory = document.getElementById('filter-territory').value;
 
-  let url = 'https://cms-api.small-disk-3275.workers.dev/api/v2/works?limit=20';
+  let url = 'https://cms-api.small-disk-3275.workers.dev/api/v1/works?limit=20';
   if (lang) url += `&language=${lang}`;
   if (domain) url += `&family=${domain}`;
   if (territory) url += `&territory=${encodeURIComponent(territory)}`;
@@ -532,5 +532,6 @@ renderMarkers();
 loadCorpus();
 </script>
 <script src="nav-fix.js"></script>
+<script src="/assets/cms-stats.js"></script>
 </body>
 </html>

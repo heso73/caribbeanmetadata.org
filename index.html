@@ -381,10 +381,10 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stats-bar-in">
-    <div class="sb-col"><div class="sb-n">110</div><div class="sb-l">Enregistrements</div></div>
+    <div class="sb-col"><div class="sb-n" data-cms-stat="totals.works">557</div><div class="sb-l">Œuvres cataloguées</div></div>
     <div class="sb-col"><div class="sb-n">10</div><div class="sb-l">Langues ISO</div></div>
     <div class="sb-col"><div class="sb-n">27</div><div class="sb-l">Marqueurs culturels</div></div>
-    <div class="sb-col"><div class="sb-n">20</div><div class="sb-l">Territoires</div></div>
+    <div class="sb-col"><div class="sb-n" data-cms-stat="totals.territories_represented">16</div><div class="sb-l">Territoires</div></div>
     <div class="sb-col"><div class="sb-n">v2.0</div><div class="sb-l">Standard verrouillé</div></div>
   </div>
 </div>
@@ -589,9 +589,9 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
     <div class="corpus-layout">
       <div>
         <div class="corpus-stats">
-          <div class="cs"><div class="cs-n">110</div><div class="cs-l">Enregistrements</div></div>
+          <div class="cs"><div class="cs-n" data-cms-stat="totals.works">557</div><div class="cs-l">Œuvres cataloguées</div></div>
           <div class="cs"><div class="cs-n">10</div><div class="cs-l">Langues ISO</div></div>
-          <div class="cs"><div class="cs-n">17</div><div class="cs-l">Territoires</div></div>
+          <div class="cs"><div class="cs-n" data-cms-stat="totals.territories_represented">16</div><div class="cs-l">Territoires</div></div>
           <div class="cs"><div class="cs-n">27</div><div class="cs-l">Marqueurs</div></div>
         </div>
         <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
@@ -604,17 +604,19 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
           <div class="iva-dot" style="background:#ff5f56"></div>
           <div class="iva-dot" style="background:#ffbd2e"></div>
           <div class="iva-dot" style="background:#27c93f"></div>
-          <span class="api-url">cms-api.small-disk-3275.workers.dev/api/v2/stats</span>
+          <span class="api-url">cms-api.small-disk-3275.workers.dev/api/v1/stats</span>
         </div>
         <div class="api-body">
-          <div class="al"><span class="ak">"cms_version":</span> <span class="av">"2.0"</span>,</div>
-          <div class="al"><span class="ak">"works":</span> { <span class="ak">"total":</span> <span class="an">111</span>, <span class="ak">"languages":</span> <span class="an">10</span> },</div>
+          <div class="al"><span class="ak">"version":</span> <span class="av">"2.0"</span>,</div>
+          <div class="al"><span class="ak">"totals":</span> {</div>
+          <div class="al" style="padding-left:16px"><span class="ak">"works":</span> <span class="an" data-cms-stat="totals.works">557</span>,</div>
+          <div class="al" style="padding-left:16px"><span class="ak">"territories_represented":</span> <span class="an" data-cms-stat="totals.territories_represented">16</span></div>
+          <div class="al">},</div>
           <div class="al"><span class="ak">"vocabulary":</span> {</div>
           <div class="al" style="padding-left:16px"><span class="ak">"cultural_markers":</span> <span class="an">27</span>,</div>
-          <div class="al" style="padding-left:16px"><span class="ak">"territories":</span> <span class="an">20</span>,</div>
           <div class="al" style="padding-left:16px"><span class="ak">"languages":</span> <span class="an">10</span></div>
           <div class="al">},</div>
-          <div class="al"><span class="ak">"corpus":</span> { <span class="ak">"records":</span> <span class="an">110</span>, <span class="ak">"licence":</span> <span class="av">"CC-BY 4.0"</span> }</div>
+          <div class="al"><span class="ak">"licence":</span> <span class="av">"CC-BY 4.0"</span></div>
         </div>
       </div>
     </div>
@@ -762,5 +764,6 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
     });
   }
 </script>
+<script src="/assets/cms-stats.js"></script>
 </body>
 </html>
