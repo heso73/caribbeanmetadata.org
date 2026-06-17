@@ -199,7 +199,7 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
     </div>
     <div class="api-status">
       <div class="as-tag">BASE URL</div>
-      <div class="as-url">cms-api.small-disk-3275.workers.dev</div>
+      <div class="as-url">api.caribbeanmetadata.org</div>
       <div class="as-indicators">
         <div class="as-row"><span class="as-label">Version</span><span class="as-val">v1 (API)</span></div>
         <div class="as-row"><span class="as-label">Format</span><span class="as-val">JSON</span></div>
@@ -248,8 +248,8 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
         <h2 class="ds-h2">En 30 secondes</h2>
         <p class="ds-p">Aucune inscription, aucune clé API. Copiez, collez, exécutez.</p>
         <div class="code-block">
-          <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL</span><button class="cb-copy" onclick="copy(this,'curl https://cms-api.small-disk-3275.workers.dev/api/v1/stats')">Copier</button></div>
-          <div class="cb-body"><pre>curl https://cms-api.small-disk-3275.workers.dev/api/v1/stats</pre></div>
+          <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL</span><button class="cb-copy" onclick="copy(this,'curl https://api.caribbeanmetadata.org/api/v1/stats')">Copier</button></div>
+          <div class="cb-body"><pre>curl https://api.caribbeanmetadata.org/api/v1/stats</pre></div>
         </div>
         <div class="code-block">
           <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">RÉPONSE</span></div>
@@ -276,7 +276,7 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
         <h2 class="ds-h2">URL de base & Headers</h2>
         <div style="background:var(--wh);border-radius:var(--rmd);padding:20px 24px;box-shadow:var(--sh);margin-bottom:16px">
           <table style="width:100%;font-size:13px;border-collapse:collapse">
-            <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd);width:160px">Base URL</td><td style="font-family:var(--fm);font-size:12px;color:var(--tq)">https://cms-api.small-disk-3275.workers.dev</td></tr>
+            <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd);width:160px">Base URL</td><td style="font-family:var(--fm);font-size:12px;color:var(--tq)">https://api.caribbeanmetadata.org</td></tr>
             <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd)">Préfixe API</td><td style="font-family:var(--fm);font-size:12px">/api/v1</td></tr>
             <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd)">Format</td><td style="font-size:13px">JSON · UTF-8</td></tr>
             <tr style="border-bottom:1px solid var(--gl)"><td style="padding:10px 0;font-weight:600;color:var(--bd)">CORS</td><td style="font-size:13px">Access-Control-Allow-Origin: *</td></tr>
@@ -315,7 +315,7 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
         <div class="api-tester">
           <div class="at-header">
             <span class="at-method">GET</span>
-            <input class="at-url-in" id="api-test-url" value="https://cms-api.small-disk-3275.workers.dev/api/v1/stats">
+            <input class="at-url-in" id="api-test-url" value="https://api.caribbeanmetadata.org/api/v1/stats">
             <button class="at-btn" onclick="testAPI()">Envoyer →</button>
           </div>
           <div class="at-response" id="api-response">Cliquez sur Envoyer pour tester l'API en direct.</div>
@@ -342,15 +342,15 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
         <div class="tab-content active" id="tab-curl">
           <div class="code-block" style="border-radius:0 var(--rmd) var(--rmd) var(--rmd)">
             <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL — Œuvres par territoire</span></div>
-            <div class="cb-body"><pre>curl "https://cms-api.small-disk-3275.workers.dev/api/v1/works?territory=Guadeloupe&limit=10"</pre></div>
+            <div class="cb-body"><pre>curl "https://api.caribbeanmetadata.org/api/v1/works?territory=Guadeloupe&limit=10"</pre></div>
           </div>
           <div class="code-block">
             <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL — Vérifier une certification</span></div>
-            <div class="cb-body"><pre>curl "https://cms-api.small-disk-3275.workers.dev/api/v1/certifications/CMS-GUA-2026-XXXXXXXX"</pre></div>
+            <div class="cb-body"><pre>curl "https://api.caribbeanmetadata.org/api/v1/certifications/CMS-GUA-2026-XXXXXXXX"</pre></div>
           </div>
           <div class="code-block">
             <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">CURL — Soumettre une œuvre (POST)</span></div>
-            <div class="cb-body"><pre>curl -X POST https://cms-api.small-disk-3275.workers.dev/api/v1/works \
+            <div class="cb-body"><pre>curl -X POST https://api.caribbeanmetadata.org/api/v1/works \
   -H <span class="cs">"Content-Type: application/json"</span> \
   -d <span class="cs">'{
     "title": "Tambou a nou",
@@ -367,7 +367,7 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
             <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">JAVASCRIPT — Fetch stats</span></div>
             <div class="cb-body"><pre><span class="cm">// Récupérer les statistiques CMS en temps réel</span>
 const res = await fetch(
-  <span class="cs">'https://cms-api.small-disk-3275.workers.dev/api/v1/stats'</span>
+  <span class="cs">'https://api.caribbeanmetadata.org/api/v1/stats'</span>
 );
 const stats = await res.json();
 console.log(<span class="cs">`${stats.works.total} œuvres · ${stats.vocabulary.cultural_markers} marqueurs`</span>);</pre></div>
@@ -380,7 +380,7 @@ console.log(<span class="cs">`${stats.works.total} œuvres · ${stats.vocabulary
   limit: <span class="cn">20</span>
 });
 const res = await fetch(
-  <span class="cs">`https://cms-api.small-disk-3275.workers.dev/api/v1/works?${params}`</span>
+  <span class="cs">`https://api.caribbeanmetadata.org/api/v1/works?${params}`</span>
 );
 const { data } = await res.json();
 data.forEach(work => console.log(work.title, work.territory));</pre></div>
@@ -389,7 +389,7 @@ data.forEach(work => console.log(work.title, work.territory));</pre></div>
             <div class="cb-top"><div class="cb-dots"><div class="cb-dot" style="background:#ff5f56"></div><div class="cb-dot" style="background:#ffbd2e"></div><div class="cb-dot" style="background:#27c93f"></div></div><span class="cb-lang">JAVASCRIPT — Vérifier une certification</span></div>
             <div class="cb-body"><pre>const cmsId = <span class="cs">'CMS-GUA-2026-XXXXXXXX'</span>;
 const res = await fetch(
-  <span class="cs">`https://cms-api.small-disk-3275.workers.dev/api/v1/certifications/${cmsId}`</span>
+  <span class="cs">`https://api.caribbeanmetadata.org/api/v1/certifications/${cmsId}`</span>
 );
 const cert = await res.json();
 if (cert.valid) {
@@ -405,7 +405,7 @@ if (cert.valid) {
 
 <span class="cm"># Récupérer tous les marqueurs CMS officiels</span>
 r = requests.get(
-  <span class="cs">'https://cms-api.small-disk-3275.workers.dev/api/v1/vocabularies/markers'</span>
+  <span class="cs">'https://api.caribbeanmetadata.org/api/v1/vocabularies/markers'</span>
 )
 markers = r.json()[<span class="cs">'markers'</span>]
 for m in markers:
@@ -434,7 +434,7 @@ except jsonschema.ValidationError as e:
             <div class="cb-body"><pre>import requests, pandas as pd
 
 r = requests.get(
-  <span class="cs">'https://cms-api.small-disk-3275.workers.dev/api/v1/works'</span>,
+  <span class="cs">'https://api.caribbeanmetadata.org/api/v1/works'</span>,
   params={<span class="cs">'language'</span>: <span class="cs">'gcf'</span>, <span class="cs">'limit'</span>: <span class="cn">100</span>}
 )
 works = r.json()[<span class="cs">'data'</span>]
@@ -451,7 +451,7 @@ print(df[[<span class="cs">'title'</span>, <span class="cs">'territory'</span>, 
         <p class="ds-p">Le schéma JSON officiel du CMS v2.0 est public, téléchargeable et citable sous CC-BY 4.0.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
           <a href="https://raw.githubusercontent.com/heso73/cms-nlp-corpus/main/data/CMS_corpus_schema_v2.json" target="_blank" class="btn-p" style="font-size:12px;padding:10px 20px">↗ Schéma JSON v2.0</a>
-          <a href="https://cms-api.small-disk-3275.workers.dev/api/v1" target="_blank" class="btn-o" style="border-color:rgba(0,0,0,.12);color:var(--bd);font-size:12px;padding:9px 18px">API Index /api/v1</a>
+          <a href="https://api.caribbeanmetadata.org/api/v1" target="_blank" class="btn-o" style="border-color:rgba(0,0,0,.12);color:var(--bd);font-size:12px;padding:9px 18px">API Index /api/v1</a>
         </div>
       </div>
 
@@ -482,7 +482,7 @@ print(df[[<span class="cs">'title'</span>, <span class="cs">'territory'</span>, 
     <h2 class="cta-h">Prêt à intégrer<br>le standard caribéen ?</h2>
     <p class="cta-p">L'API est opérationnelle. Le corpus est téléchargeable. Le schéma est public. Il ne reste qu'à coder.</p>
     <div class="cta-btns">
-      <a href="https://cms-api.small-disk-3275.workers.dev/api/v1" target="_blank" class="btn-p">Tester l'API →</a>
+      <a href="https://api.caribbeanmetadata.org/api/v1" target="_blank" class="btn-p">Tester l'API →</a>
       <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" class="btn-o">↗ GitHub corpus</a>
       <a href="contact.html" class="btn-o">Nous contacter</a>
     </div>
@@ -502,7 +502,7 @@ print(df[[<span class="cs">'title'</span>, <span class="cs">'territory'</span>, 
 </footer>
 
 <script>
-const BASE = 'https://cms-api.small-disk-3275.workers.dev';
+const BASE = 'https://api.caribbeanmetadata.org';
 
 function setUrl(path) {
   document.getElementById('api-test-url').value = BASE + path;
