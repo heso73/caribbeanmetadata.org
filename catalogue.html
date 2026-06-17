@@ -308,7 +308,7 @@ body{font-family:var(--f);color:var(--tx);background:var(--gl);margin:0;overflow
         <div class="ch-p">Premier corpus structuré de contenus culturels caribéens. Librement téléchargeable, citable et intégrable. Licence CC-BY 4.0.</div>
         <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
           <a href="https://github.com/heso73/cms-nlp-corpus" target="_blank" class="btn-t">↗ Accéder au corpus GitHub</a>
-          <a href="https://cms-api.small-disk-3275.workers.dev/api/v1/works" target="_blank" class="btn-g">API /works →</a>
+          <a href="https://api.caribbeanmetadata.org/api/v1/works" target="_blank" class="btn-g">API /works →</a>
         </div>
       </div>
       <div class="ch-stats">
@@ -499,7 +499,7 @@ async function loadCorpus() {
   const domain = document.getElementById('filter-domain').value;
   const territory = document.getElementById('filter-territory').value;
 
-  let url = 'https://cms-api.small-disk-3275.workers.dev/api/v1/works?limit=20';
+  let url = 'https://api.caribbeanmetadata.org/api/v1/works?limit=20';
   if (lang) url += `&language=${lang}`;
   if (domain) url += `&family=${domain}`;
   if (territory) url += `&territory=${encodeURIComponent(territory)}`;
