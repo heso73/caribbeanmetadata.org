@@ -17,7 +17,7 @@
  * is unreachable, so the site never shows a broken/empty number.
  */
 (function () {
-  const STATS_ENDPOINT = "https://cms-api.small-disk-3275.workers.dev/api/v1/stats";
+  const STATS_ENDPOINT = "https://api.caribbeanmetadata.org/api/v1/stats";
   const CACHE_KEY = "cms_stats_cache_v1";
   const CACHE_TTL_MS = 1000 * 60 * 30; // 30 minutes — avoids hammering the API on every page view
 
