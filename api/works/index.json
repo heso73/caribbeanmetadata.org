@@ -1,7 +1,7 @@
 {
   "standard": "Caribbean Metadata Standard v2.0",
   "note": "Use the live API for real-time data.",
-  "live_api": "https://cms-api.small-disk-3275.workers.dev/api/v1/works",
+  "live_api": "https://api.caribbeanmetadata.org/api/v1/works",
   "api_docs": "https://caribbeanmetadata.org/developers.html",
   "showcase_works": [
     "CMS-HTI-2024-CTD7X3P2",
