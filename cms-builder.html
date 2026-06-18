@@ -702,8 +702,10 @@ function updateGhUI(){
   mt.textContent=connected?`Connecté — ${cfg.owner}/${cfg.repo}`:'Non configuré';
   // Nav indicator
   const ni=document.getElementById('gh-nav-indicator');
-  ni.className='gh-nav-indicator '+(connected?'':'off');
-  ni.innerHTML=`<span class="gh-nav-dot"></span>${connected?'GitHub ✓':'GitHub'}`;
+  if(ni){
+    ni.className='gh-nav-indicator '+(connected?'':'off');
+    ni.innerHTML=`<span class="gh-nav-dot"></span>${connected?'GitHub ✓':'GitHub'}`;
+  }
   // Tab count
   document.getElementById('gh-tab-count').textContent=connected?'✓':'—';
   // Publish button in builder
