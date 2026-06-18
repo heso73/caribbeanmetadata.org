@@ -291,33 +291,44 @@ pre{white-space:pre-wrap;margin:0}
 
     <!-- CONFIG PANEL -->
     <div class="gh-config-panel show" id="gh-config-panel">
-      <div class="gh-config-title">🔑 Configuration du Personal Access Token</div>
+      <div class="gh-config-title">🔗 Connexion à GitHub</div>
       <div class="gh-config-sub">
-        Créez un token sur <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> avec la permission <strong>repo → Contents (write)</strong>. Il ne sera stocké que dans votre navigateur.
+        Connectez-vous avec votre compte GitHub en un clic — aucun token à créer ni à copier-coller.
       </div>
-      <div class="gh-fields">
-        <div class="gh-field">
-          <label>Owner / Organisation</label>
-          <input id="gh-owner" type="text" placeholder="heso73" value="heso73">
-        </div>
-        <div class="gh-field">
-          <label>Nom du repo</label>
-          <input id="gh-repo" type="text" placeholder="caribbeanmetadata.org" value="caribbeanmetadata.org">
-        </div>
-        <div class="gh-field">
-          <label>Branche</label>
-          <input id="gh-branch" type="text" placeholder="main" value="main">
-        </div>
-        <div class="gh-field">
-          <label>Personal Access Token</label>
-          <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-        </div>
+      <div class="gh-actions" style="margin-bottom:20px">
+        <button class="btn-gh-save" onclick="connectGithubOAuth()">🔗 Se connecter avec GitHub</button>
+        <button class="btn-gh-clear" onclick="clearGhConfig()">✕ Déconnecter</button>
       </div>
-      <div class="gh-actions">
-        <button class="btn-gh-save" onclick="saveGhConfig()">💾 Enregistrer</button>
-        <button class="btn-gh-test" onclick="testGhConnection()">🔌 Tester la connexion</button>
-        <button class="btn-gh-clear" onclick="clearGhConfig()">✕ Effacer</button>
-      </div>
+
+      <details>
+        <summary style="cursor:pointer;color:#888;font-size:13px;font-weight:600;margin-bottom:8px">⚙️ Méthode avancée (Personal Access Token)</summary>
+        <div class="gh-config-sub" style="margin-top:12px">
+          Créez un token sur <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> avec la permission <strong>repo → Contents (write)</strong>. Il ne sera stocké que dans votre navigateur.
+        </div>
+        <div class="gh-fields">
+          <div class="gh-field">
+            <label>Owner / Organisation</label>
+            <input id="gh-owner" type="text" placeholder="heso73" value="heso73">
+          </div>
+          <div class="gh-field">
+            <label>Nom du repo</label>
+            <input id="gh-repo" type="text" placeholder="caribbeanmetadata.org" value="caribbeanmetadata.org">
+          </div>
+          <div class="gh-field">
+            <label>Branche</label>
+            <input id="gh-branch" type="text" placeholder="main" value="main">
+          </div>
+          <div class="gh-field">
+            <label>Personal Access Token</label>
+            <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+          </div>
+        </div>
+        <div class="gh-actions">
+          <button class="btn-gh-save" onclick="saveGhConfig()">💾 Enregistrer</button>
+          <button class="btn-gh-test" onclick="testGhConnection()">🔌 Tester la connexion</button>
+          <button class="btn-gh-clear" onclick="clearGhConfig()">✕ Effacer</button>
+        </div>
+      </details>
       <div class="sync-log" id="gh-test-log"></div>
     </div>
 
@@ -628,6 +639,55 @@ function clearGhConfig(){
   localStorage.removeItem(GH_KEY);
   document.getElementById('gh-token').value='';
   updateGhUI();showToast('Configuration GitHub effacée');
+}
+
+// ── OAuth GitHub ────────────────────────────────────────────────────────────
+const GH_OAUTH_CLIENT_ID = 'Ov23liUAL8hHWOnbXPwf';
+const GH_OAUTH_REDIRECT_URI = 'https://caribbeanmetadata.org/cms-builder.html';
+const GH_OAUTH_TOKEN_ENDPOINT = 'https://api.caribbeanmetadata.org/api/v1/auth/github/callback';
+
+function connectGithubOAuth(){
+  const state = Math.random().toString(36).slice(2)+Date.now().toString(36);
+  sessionStorage.setItem('cms_oauth_state', state);
+  const authUrl = `https://github.com/login/oauth/authorize?client_id=${GH_OAUTH_CLIENT_ID}&redirect_uri=${encodeURIComponent(GH_OAUTH_REDIRECT_URI)}&scope=repo&state=${state}`;
+  window.location.href = authUrl;
+}
+
+async function handleGithubOAuthCallback(){
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const state = params.get('state');
+  if (!code) return;
+  // Nettoyer l'URL tout de suite (un code OAuth est à usage unique)
+  window.history.replaceState({}, document.title, window.location.pathname);
+  const savedState = sessionStorage.getItem('cms_oauth_state');
+  sessionStorage.removeItem('cms_oauth_state');
+  if (!state || state !== savedState) {
+    showToast('❌ État OAuth invalide — réessayez la connexion');
+    return;
+  }
+  showToast('🔗 Connexion à GitHub en cours…');
+  try {
+    const r = await fetch(`${GH_OAUTH_TOKEN_ENDPOINT}?code=${encodeURIComponent(code)}`);
+    const data = await r.json();
+    if (!r.ok || data.error) {
+      showToast('❌ Erreur GitHub : ' + (data.error_description || data.error || r.status));
+      return;
+    }
+    const cfg = loadGhConfig();
+    cfg.owner = cfg.owner || 'heso73';
+    cfg.repo = cfg.repo || 'caribbeanmetadata.org';
+    cfg.branch = cfg.branch || 'main';
+    cfg.token = data.access_token;
+    localStorage.setItem(GH_KEY, JSON.stringify(cfg));
+    const tokenField = document.getElementById('gh-token');
+    if (tokenField) tokenField.value = cfg.token;
+    updateGhUI();
+    switchView('github');
+    showToast('✅ Connecté à GitHub !');
+  } catch(e) {
+    showToast('❌ Erreur de connexion : ' + e.message);
+  }
 }
 
 function updateGhUI(){
@@ -1146,6 +1206,7 @@ if(_ghcfg.owner)document.getElementById('gh-owner').value=_ghcfg.owner;
 if(_ghcfg.repo)document.getElementById('gh-repo').value=_ghcfg.repo;
 if(_ghcfg.branch)document.getElementById('gh-branch').value=_ghcfg.branch;
 if(_ghcfg.token)document.getElementById('gh-token').value=_ghcfg.token;
+handleGithubOAuthCallback();
 // Restaurer le brouillon si pas d'édition en cours
 const _draft=loadDraft();
 if(_draft){fillForm(_draft);buildFamiliesUI();updateScore();document.getElementById('autosave-text').textContent='Brouillon restauré automatiquement';}
