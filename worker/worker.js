@@ -7,6 +7,9 @@
 const SUPABASE_URL = 'https://vtbaqvjxfgseykjcinpu.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_cZc3a7kaK3M7ZcHRsoTI8w_NQz4Xy0z';
 
+// Client ID OAuth GitHub (public, sans risque — le secret reste dans env.GITHUB_CLIENT_SECRET)
+const GITHUB_OAUTH_CLIENT_ID = 'Ov23liUAL8hHWOnbXPwf';
+
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
@@ -109,6 +112,9 @@ export default {
     }
     if (path === '/api/v1/stats') {
       return handleStats();
+    }
+    if (path === '/api/v1/auth/github/callback') {
+      return handleGithubOAuthCallback(url, env);
     }
 
     return json({ error: 'Not found', available_endpoints: [
@@ -295,6 +301,35 @@ async function handleStats() {
     });
   } catch (e) {
     return json({ error: 'Database error', message: e.message }, 500);
+  }
+}
+
+// ── OAuth GitHub (CMS Builder) ────────────────────────────────────────────
+async function handleGithubOAuthCallback(url, env) {
+  const code = url.searchParams.get('code');
+  if (!code) return json({ error: 'missing_code', error_description: 'Paramètre code manquant' }, 400);
+
+  if (!env.GITHUB_CLIENT_SECRET) {
+    return json({ error: 'server_misconfigured', error_description: 'GITHUB_CLIENT_SECRET non configuré sur le Worker' }, 500);
+  }
+
+  try {
+    const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        client_id: GITHUB_OAUTH_CLIENT_ID,
+        client_secret: env.GITHUB_CLIENT_SECRET,
+        code,
+      }),
+    });
+    const data = await tokenRes.json();
+    if (data.error) {
+      return json({ error: data.error, error_description: data.error_description || null }, 400);
+    }
+    return json({ access_token: data.access_token, token_type: data.token_type, scope: data.scope });
+  } catch (e) {
+    return json({ error: 'oauth_exchange_failed', message: e.message }, 500);
   }
 }
 
