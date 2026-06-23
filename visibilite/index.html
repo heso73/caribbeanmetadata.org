@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit Visibilité Numérique — Caribwood Language Lab</title>
+  <meta name="description" content="Votre contenu caribéen est invisible sur les algorithmes. Découvrez pourquoi et recevez un plan d'action concret en 72h." />
+  <meta property="og:title" content="Audit Visibilité Numérique Caraïbe" />
+  <meta property="og:description" content="Score IVA : découvrez pourquoi votre contenu n'est pas recommandé par les plateformes." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #0b1e30;
+      --ink-mid:  #1a3a52;
+      --ocean:    #0f6fa6;
+      --cyan:     #00b7c7;
+      --sand:     #f4f0e6;
+      --sand-dark:#e8e2d4;
+      --muted:    #6b7f8e;
+      --white:    #ffffff;
+      --radius:   4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--sand);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 56px;
+    }
+    .nav-brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; letter-spacing: 0.08em;
+      color: var(--cyan); text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-cta {
+      font-size: 13px; font-weight: 500;
+      color: var(--white); text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 16px; border-radius: var(--radius);
+      transition: border-color 0.2s;
+    }
+    .nav-cta:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 100px 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: -10%; bottom: 0;
+      width: 55%;
+      background: linear-gradient(135deg, #0f3a5a 0%, #0b1e30 60%);
+      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 620px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.12em;
+      color: var(--cyan); text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 32px; height: 1px;
+      background: var(--cyan);
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--cyan);
+    }
+
+    .hero-lead {
+      font-size: 1.05rem; font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .score-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(0,183,199,0.12);
+      border: 1px solid rgba(0,183,199,0.3);
+      border-radius: 2px;
+      padding: 10px 18px;
+      margin-bottom: 2.5rem;
+    }
+    .score-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 2rem; font-weight: 400;
+      color: var(--cyan); line-height: 1;
+    }
+    .score-label {
+      font-size: 12px; color: rgba(255,255,255,0.55);
+      line-height: 1.4;
+    }
+    .score-label strong { color: rgba(255,255,255,0.85); display: block; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--cyan); color: var(--ink);
+      font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--radius);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #00cfe0; transform: translateY(-1px); }
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    /* ── PROBLÈME ── */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.1em;
+      color: var(--ocean); text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .section p {
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+
+    /* ── PROBLÈME CARDS ── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--sand-dark);
+      border: 1px solid var(--sand-dark);
+      margin-top: 3rem;
+    }
+    .problem-card {
+      background: var(--white);
+      padding: 2rem;
+    }
+    .problem-icon {
+      font-size: 1.5rem; margin-bottom: 1rem;
+      display: block;
+    }
+    .problem-card h3 {
+      font-size: 15px; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.5rem;
+    }
+    .problem-card p {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.65; margin: 0;
+    }
+
+    /* ── CE QU'ON LIVRE ── */
+    .deliverable-section {
+      background: var(--ink);
+      padding: 5rem 2rem;
+    }
+    .deliverable-inner {
+      max-width: 960px; margin: 0 auto;
+    }
+    .deliverable-inner .section-label { color: var(--cyan); }
+    .deliverable-inner h2 { color: var(--white); }
+
+    .deliverable-list {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .deliverable-item {
+      border-left: 2px solid var(--ocean);
+      padding-left: 1.25rem;
+    }
+    .deliverable-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; color: var(--cyan);
+      letter-spacing: 0.08em; margin-bottom: 0.4rem;
+    }
+    .deliverable-item h3 {
+      font-size: 15px; font-weight: 500;
+      color: var(--white); margin-bottom: 0.4rem;
+    }
+    .deliverable-item p {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      line-height: 1.6; margin: 0; max-width: none;
+    }
+
+    /* ── EXEMPLE DE SCORE ── */
+    .score-section {
+      padding: 5rem 2rem;
+      background: var(--white);
+    }
+    .score-inner {
+      max-width: 960px; margin: 0 auto;
+    }
+
+    .iva-demo {
+      margin-top: 3rem;
+      border: 1px solid var(--sand-dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .iva-header {
+      background: var(--ink);
+      padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .iva-header-left h3 {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px; color: var(--cyan);
+      font-weight: 400; margin-bottom: 2px;
+    }
+    .iva-header-left p {
+      font-size: 12px; color: rgba(255,255,255,0.4);
+      margin: 0; max-width: none;
+    }
+    .iva-score-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 2.5rem; color: var(--cyan);
+      line-height: 1;
+    }
+    .iva-score-badge span {
+      font-size: 14px; color: rgba(255,255,255,0.4);
+    }
+
+    .iva-bars {
+      padding: 2rem;
+      display: grid; gap: 1rem;
+    }
+    .iva-signal {
+      display: grid;
+      grid-template-columns: 180px 1fr 36px;
+      align-items: center; gap: 1rem;
+    }
+    .iva-signal-name {
+      font-size: 13px; color: var(--muted);
+    }
+    .iva-bar-bg {
+      height: 6px; background: var(--sand-dark);
+      border-radius: 3px; overflow: hidden;
+    }
+    .iva-bar-fill {
+      height: 100%; border-radius: 3px;
+      background: var(--ocean);
+      transition: width 1s ease;
+    }
+    .iva-bar-fill.low { background: #c0392b; }
+    .iva-bar-fill.mid { background: var(--ocean); }
+    .iva-bar-fill.high { background: #27ae60; }
+    .iva-signal-score {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; color: var(--muted);
+      text-align: right;
+    }
+
+    /* ── TARIFS ── */
+    .pricing-section {
+      padding: 5rem 2rem;
+      background: var(--sand);
+    }
+    .pricing-inner { max-width: 960px; margin: 0 auto; }
+
+    .pricing-grid {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--sand-dark);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+    .pricing-card.featured {
+      border-color: var(--ocean);
+      border-width: 2px;
+    }
+    .pricing-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ocean);
+      margin-bottom: 1rem; display: block;
+    }
+    .pricing-tag.featured-tag { color: var(--cyan); }
+    .pricing-card h3 {
+      font-size: 17px; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.5rem;
+    }
+    .pricing-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--ink);
+      margin-bottom: 1.25rem; line-height: 1;
+    }
+    .pricing-price small {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--muted); font-weight: 400;
+    }
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .pricing-features li {
+      font-size: 13px; color: var(--muted);
+      padding: 5px 0;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .pricing-features li::before {
+      content: '→';
+      color: var(--ocean); flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .btn-outline {
+      display: block; text-align: center;
+      border: 1px solid var(--ink);
+      color: var(--ink); font-weight: 500;
+      font-size: 14px; padding: 10px 20px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--white); }
+    .btn-outline.featured {
+      background: var(--ocean); border-color: var(--ocean); color: var(--white);
+    }
+    .btn-outline.featured:hover { background: var(--ink); border-color: var(--ink); }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--ink);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .contact-inner { max-width: 560px; margin: 0 auto; }
+    .contact-inner .section-label { color: var(--cyan); text-align: center; }
+    .contact-inner h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--white); margin-bottom: 1rem;
+    }
+    .contact-inner p {
+      color: rgba(255,255,255,0.55); margin-bottom: 2.5rem;
+      max-width: none;
+    }
+    .contact-email {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px; color: var(--cyan);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid rgba(0,183,199,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .contact-email:hover { border-color: var(--cyan); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060f18;
+      padding: 2rem;
+      text-align: center;
+    }
+    footer p {
+      font-size: 12px; color: rgba(255,255,255,0.25);
+      font-family: 'DM Mono', monospace;
+      max-width: none; margin: 0;
+    }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    footer a:hover { color: var(--cyan); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .hero { padding: 88px 1.25rem 3rem; }
+      .hero::before { display: none; }
+      .section, .deliverable-inner, .score-inner,
+      .pricing-inner, .contact-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .iva-signal { grid-template-columns: 130px 1fr 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://caribbeanmetadata.org">Caribbean Metadata Standard</a>
+  <a class="nav-cta" href="mailto:contact@caribbeanmetadata.org">Demander un audit</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Caribwood Language Lab</div>
+    <h1>Votre contenu caribéen<br><em>mérite d'être trouvé.</em></h1>
+    <p class="hero-lead">
+      Les algorithmes de YouTube, Spotify et Booking ne recommandent pas votre contenu — non par manque de qualité, mais par manque de métadonnées. Nous diagnostiquons le problème et le corrigeons.
+    </p>
+
+    <div class="score-pill">
+      <div class="score-number">IVA</div>
+      <div class="score-label">
+        <strong>Indice de Visibilité Algorithmique</strong>
+        Score sur 100 — livré en 72h
+      </div>
+    </div>
+
+    <a href="mailto:contact@caribbeanmetadata.org?subject=Demande%20d%27audit%20IVA&body=Bonjour%2C%0A%0AJe%20souhaite%20recevoir%20un%20audit%20de%20visibilit%C3%A9%20pour%20mon%20h%C3%A9bergement%20%2F%20mon%20contenu.%0A%0ANom%20de%20l%27%C3%A9tablissement%20%3A%0AURL%20Airbnb%20%2F%20Booking%20%2F%20Spotify%20%3A%0A%0AMerci." class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Demander mon audit gratuit
+    </a>
+  </div>
+</section>
+
+<!-- PROBLÈME -->
+<section class="section">
+  <div class="section-label">Le problème</div>
+  <h2>Pourquoi votre gîte reste invisible<br>sur Booking et Airbnb</h2>
+  <p>Les plateformes utilisent des métadonnées pour décider quoi recommander. Un hébergement sans description en anglais, sans catégories correctes, sans balises culturelles — n'existe pas pour l'algorithme.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <span class="problem-icon">🌐</span>
+      <h3>Pas de version anglaise</h3>
+      <p>70% des voyageurs anglophones ne verront jamais votre annonce si elle n'existe qu'en français.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">🏷️</span>
+      <h3>Catégories incomplètes</h3>
+      <p>Sans les bons tags (éco-lodge, créole, randonnée, plongée…), l'algorithme ne sait pas à qui vous recommander.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">📊</span>
+      <h3>Description non optimisée</h3>
+      <p>Une liste d'équipements n'est pas une description. Les algorithmes et les voyageurs cherchent une expérience.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">📍</span>
+      <h3>Contexte géographique absent</h3>
+      <p>Réserve Cousteau, Soufrière, Fonds Blancs — ces références génèrent du trafic. Elles doivent apparaître dans vos métadonnées.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CE QU'ON LIVRE -->
+<section class="deliverable-section">
+  <div class="deliverable-inner">
+    <div class="section-label">Ce que vous recevez</div>
+    <h2 style="color:var(--white);">Un rapport concret,<br>pas un conseil théorique.</h2>
+
+    <div class="deliverable-list">
+      <div class="deliverable-item">
+        <div class="deliverable-num">01</div>
+        <h3>Score IVA détaillé</h3>
+        <p>Votre indice de visibilité algorithmique sur 100, signal par signal — avec comparaison à la médiane caribéenne.</p>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-num">02</div>
+        <h3>Diagnostic des lacunes</h3>
+        <p>Identification précise de ce qui manque : langue, balises, description, métadonnées géographiques et culturelles.</p>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-num">03</div>
+        <h3>Contenu corrigé prêt à publier</h3>
+        <p>Description Booking / Airbnb réécrite en français et en anglais, optimisée pour les algorithmes de recommandation.</p>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-num">04</div>
+        <h3>Plan d'action prioritaire</h3>
+        <p>3 corrections à appliquer immédiatement pour un impact maximal sur votre visibilité.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXEMPLE SCORE -->
+<section class="score-section">
+  <div class="score-inner">
+    <div class="section-label">Exemple réel</div>
+    <h2>À quoi ressemble un rapport IVA</h2>
+    <p>Exemple anonymisé d'un hébergement en Guadeloupe audité en juin 2026.</p>
+
+    <div class="iva-demo">
+      <div class="iva-header">
+        <div class="iva-header-left">
+          <h3>CMS-GP-2026-XXXXXXXX</h3>
+          <p>Gîte · Guadeloupe · Audité juin 2026</p>
+        </div>
+        <div>
+          <div class="iva-score-badge">28<span> / 100</span></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);text-align:right;margin-top:2px;font-family:'DM Mono',monospace;">Incomplet</div>
+        </div>
+      </div>
+      <div class="iva-bars">
+        <div class="iva-signal">
+          <div class="iva-signal-name">Description FR</div>
+          <div class="iva-bar-bg"><div class="iva-bar-fill mid" style="width:55%"></div></div>
+          <div class="iva-signal-score">55%</div>
+        </div>
+        <div class="iva-signal">
+          <div class="iva-signal-name">Description EN</div>
+          <div class="iva-bar-bg"><div class="iva-bar-fill low" style="width:0%"></div></div>
+          <div class="iva-signal-score">0%</div>
+        </div>
+        <div class="iva-signal">
+          <div class="iva-signal-name">Balises culturelles</div>
+          <div class="iva-bar-bg"><div class="iva-bar-fill low" style="width:12%"></div></div>
+          <div class="iva-signal-score">12%</div>
+        </div>
+        <div class="iva-signal">
+          <div class="iva-signal-name">Contexte géographique</div>
+          <div class="iva-bar-bg"><div class="iva-bar-fill low" style="width:20%"></div></div>
+          <div class="iva-signal-score">20%</div>
+        </div>
+        <div class="iva-signal">
+          <div class="iva-signal-name">Photos (alt tags)</div>
+          <div class="iva-bar-bg"><div class="iva-bar-fill low" style="width:0%"></div></div>
+          <div class="iva-signal-score">0%</div>
+        </div>
+        <div class="iva-signal">
+          <div class="iva-signal-name">Cohérence inter-plateformes</div>
+          <div class="iva-bar-bg"><div class="iva-bar-fill low" style="width:15%"></div></div>
+          <div class="iva-signal-score">15%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="pricing-section">
+  <div class="pricing-inner">
+    <div class="section-label">Tarifs</div>
+    <h2>Simple et transparent</h2>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <span class="pricing-tag">Diagnostic</span>
+        <h3>Audit IVA</h3>
+        <div class="pricing-price">89€ <small>une fois</small></div>
+        <ul class="pricing-features">
+          <li>Score IVA complet sur 100</li>
+          <li>Rapport PDF 3 pages</li>
+          <li>Analyse de 15 signaux</li>
+          <li>Comparaison corpus caribéen</li>
+          <li>Plan d'action prioritaire</li>
+        </ul>
+        <a href="mailto:contact@caribbeanmetadata.org?subject=Demande%20Audit%20IVA%2089%E2%82%AC" class="btn-outline">Demander l'audit</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <span class="pricing-tag featured-tag">Recommandé</span>
+        <h3>Audit + Contenu</h3>
+        <div class="pricing-price">179€ <small>une fois</small></div>
+        <ul class="pricing-features">
+          <li>Tout l'audit IVA</li>
+          <li>Description Booking / Airbnb réécrite</li>
+          <li>Version française + anglaise</li>
+          <li>Caption Instagram prête à publier</li>
+          <li>Livraison en 72h</li>
+        </ul>
+        <a href="mailto:contact@caribbeanmetadata.org?subject=Demande%20Audit%20%2B%20Contenu%20179%E2%82%AC" class="btn-outline featured">Démarrer maintenant</a>
+      </div>
+
+      <div class="pricing-card">
+        <span class="pricing-tag">Sur mesure</span>
+        <h3>Pack Saison</h3>
+        <div class="pricing-price">Sur devis</div>
+        <ul class="pricing-features">
+          <li>Audit + contenu complet</li>
+          <li>Suivi mensuel des scores</li>
+          <li>Mise à jour contenu haute saison</li>
+          <li>Rapport de performance</li>
+          <li>Accompagnement personnalisé</li>
+        </ul>
+        <a href="mailto:contact@caribbeanmetadata.org?subject=Pack%20Saison%20-%20Demande%20de%20devis" class="btn-outline">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-inner">
+    <div class="section-label">Contact</div>
+    <h2>Première réponse sous 24h</h2>
+    <p>Envoyez-nous l'URL de votre annonce Airbnb, Booking ou votre profil Spotify. Nous vous répondons avec une première analyse gratuite.</p>
+    <a href="mailto:contact@caribbeanmetadata.org?subject=Demande%20d%27audit%20IVA&body=Bonjour%2C%0A%0AJe%20souhaite%20recevoir%20un%20audit%20de%20visibilit%C3%A9%20pour%20%3A%0A%0AURL%20de%20mon%20annonce%20%3A%0A%0AMerci." class="contact-email">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+      contact@caribbeanmetadata.org
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    © 2026 Caribwood Language Lab · <a href="https://caribbeanmetadata.org">Caribbean Metadata Standard</a> ·
+    Standard ouvert pour le contenu caribéen
+  </p>
+</footer>
+
+</body>
+</html>
