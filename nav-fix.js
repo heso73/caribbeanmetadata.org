@@ -38,6 +38,7 @@
       { href: 'collaborate.html',  label: 'Collaborer' },
       { href: 'declaration.html',  label: 'Déclaration' },
       { href: 'contact.html',      label: 'Contact' },
+      { href: 'articles.html',     label: 'Articles' },
       { href: 'founders.html',     label: 'Les 100 Premiers' },
       { href: 'validator.html',    label: 'Valider', cta: false },
       { href: 'cms-builder.html',  label: 'CMS Builder', cta: true },
