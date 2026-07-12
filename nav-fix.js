@@ -94,6 +94,7 @@
           { href: 'lab.html',          label: 'Language Lab' },
           { href: 'collaborate.html',  label: 'Collaborer' },
           { href: 'contact.html',      label: 'Contact' },
+          { href: 'articles.html',     label: 'Articles' },
         ]},
         { title: 'Ressources', links: [
           { href: 'resources.html',    label: 'White Paper' },
