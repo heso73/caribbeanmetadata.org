@@ -40,6 +40,8 @@
       { href: 'contact.html',      label: 'Contact' },
       { href: 'articles.html',     label: 'Articles' },
       { href: 'founders.html',     label: 'Les 100 Premiers' },
+      { href: 'certification.html', label: 'Certification' },
+      { href: 'submit.html',         label: 'Soumettre une œuvre' },
       { href: 'validator.html',    label: 'Valider', cta: false },
       { href: 'cms-builder.html',  label: 'CMS Builder', cta: true },
     ],
