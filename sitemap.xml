@@ -39,6 +39,9 @@
   <url><loc>https://caribbeanmetadata.org/roadmap-en.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://caribbeanmetadata.org/roadmap-es.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
+  <!-- NLP ANALYTICS -->
+  <url><loc>https://caribbeanmetadata.org/nlp.html</loc><lastmod>2026-07-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
   <!-- LANGUAGE LAB -->
   <url><loc>https://caribbeanmetadata.org/lab.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://caribbeanmetadata.org/lab-en.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -80,6 +83,7 @@
   <url><loc>https://caribbeanmetadata.org/glossaire.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- PARTENAIRES -->
+  <url><loc>https://caribbeanmetadata.org/partenaires.html</loc><lastmod>2026-07-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- ÉQUITÉ ET ACCÈS -->
   <url><loc>https://caribbeanmetadata.org/equity.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
