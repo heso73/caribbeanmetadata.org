@@ -14,9 +14,9 @@
   const basePage = page.replace(/-en\.html$/, '').replace(/-es\.html$/, '').replace(/\.html$/, '');
 
   // Pages sans version ES — restent sur la version FR
-  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue', 'kit', 'spec', 'nlp', 'submit', 'certification'];
+  const STAY_FR = ['resources', 'glossaire', 'developers', 'architecture', 'validator', 'cms-builder', 'press', 'catalogue', 'kit', 'spec', 'nlp', 'submit', 'certification', 'partenaires'];
   // Pages sans version EN
-  const NO_EN = ['glossaire', 'architecture', 'press', 'submit', 'certification'];
+  const NO_EN = ['glossaire', 'architecture', 'press', 'submit', 'certification', 'validator', 'nlp', 'catalogue', 'kit', 'spec', 'cms-builder', 'partenaires'];
 
   function pageFor(l) {
     if (l === 'fr') return basePage + '.html';
