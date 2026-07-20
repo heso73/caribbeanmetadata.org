@@ -10,6 +10,7 @@ Allow: /
 Disallow: /assets/
 Disallow: /drafts/
 Disallow: /private/
+Disallow: /cdn-cgi/
 
 # Exclure les fichiers de données JSON (non indexables)
 Disallow: /examples/
