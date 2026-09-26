@@ -1,0 +1,22 @@
+# Caribbean Metadata Standard (CMS)
+
+> Premier standard ouvert de métadonnées pour les œuvres audiovisuelles et culturelles caribéennes : 27 champs, 10 langues ISO, 20 territoires. Publié par Caribwood Language Lab (Les Abymes, Guadeloupe). Métadonnées sous licence CC-BY 4.0.
+
+## Essentiel
+- [Accueil (FR)](https://caribbeanmetadata.org/): présentation du standard
+- [Home (EN)](https://caribbeanmetadata.org/index-en.html): overview of the standard
+- [Inicio (ES)](https://caribbeanmetadata.org/index-es.html): presentación del estándar
+- [Spécification v2.0](https://caribbeanmetadata.org/spec.html): champs, vocabulaires contrôlés, règles de validation
+- [Les 6 familles de métadonnées](https://caribbeanmetadata.org/families.html)
+- [Glossaire](https://caribbeanmetadata.org/glossaire.html)
+
+## Données
+- [Œuvres validées](https://caribbeanmetadata.org/oeuvres/): une fiche par œuvre avec données structurées Schema.org
+- [Catalogue](https://caribbeanmetadata.org/catalogue.html)
+- [API publique (JSON)](https://api.caribbeanmetadata.org/api/v1/works)
+- [Documentation développeurs](https://caribbeanmetadata.org/developers.html)
+- [Corpus NLP sur GitHub](https://github.com/heso73/cms-nlp-corpus)
+
+## Contact et gouvernance
+- [Partenariats et gouvernance](https://caribbeanmetadata.org/collaborate.html)
+- [Contact](https://caribbeanmetadata.org/contact.html)
