@@ -179,9 +179,9 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Certification officielle</div>
+    <div class="eyebrow">Enregistrement CMS</div>
     <h1>Soumettre une œuvre caribéenne</h1>
-    <p>Obtenez une certification CMS officielle pour votre film, musique, livre ou contenu culturel caribéen. Gratuit. Sans engagement commercial.</p>
+    <p>Enregistrez votre film, musique, livre ou contenu culturel caribéen dans le registre CMS. Gratuit. Sans engagement commercial.</p>
     <div style="margin-top:24px">
     <button onclick="showAuth()" id="btn-show-auth" style="padding:10px 22px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);border-radius:4px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s">
       🔑 Se connecter / Créer un compte
@@ -252,7 +252,7 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
     <!-- STEP 2 : L'ŒUVRE -->
     <div class="panel" id="step-2">
       <div class="panel-title">Votre œuvre</div>
-      <div class="panel-sub">Décrivez l'œuvre pour laquelle vous demandez une certification CMS.</div>
+      <div class="panel-sub">Décrivez l'œuvre que vous enregistrez dans le CMS.</div>
       <div class="fg">
         <div class="form-group"><label>Titre <span class="req">*</span></label><input id="w-title" type="text" placeholder="Titre de l'œuvre" oninput="updateScore()"></div>
         <div class="form-group"><label>Titre original</label><input id="w-title-orig" type="text" placeholder="Titre en langue d'origine" oninput="updateScore()"></div>
@@ -363,24 +363,24 @@ main{max-width:900px;margin:0 auto;padding:48px 6% 80px;display:grid;grid-templa
     <!-- STEP 4 : RÉCAPITULATIF -->
     <div class="panel" id="step-4">
       <div class="panel-title">Récapitulatif & soumission</div>
-      <div class="panel-sub">Vérifiez vos informations avant de soumettre votre demande de certification.</div>
+      <div class="panel-sub">Vérifiez vos informations avant de soumettre votre fiche.</div>
       <div id="recap-content" style="background:#f7f9fb;border-radius:8px;padding:20px;margin-bottom:24px;font-size:14px;line-height:2;color:#333"></div>
       <div style="background:#f0fdf4;border:1px solid rgba(63,166,107,0.25);border-radius:8px;padding:16px 20px;font-size:13px;color:#166634;margin-bottom:24px;line-height:1.7">
-        <strong>Engagement :</strong> Je certifie que cette œuvre est une création caribéenne authentique et que les informations fournies sont exactes. Je comprends que la certification CMS est gratuite et sans contrepartie commerciale.
+        <strong>Engagement :</strong> Je confirme que les informations fournies sont exactes et que cette œuvre est liée à la Caraïbe. Je comprends que l'enregistrement CMS est gratuit et sans contrepartie commerciale.
       </div>
       <div class="btn-row">
         <button class="btn-secondary" onclick="goStep(3)">← Retour</button>
-        <button class="btn-primary" onclick="submitWork()" id="btn-submit">Soumettre ma demande →</button>
+        <button class="btn-primary" onclick="submitWork()" id="btn-submit">Soumettre ma fiche →</button>
       </div>
     </div>
 
     <!-- SUCCESS -->
     <div class="success-panel" id="success-panel">
       <div class="success-icon">🎉</div>
-      <div class="success-title">Demande soumise !</div>
-      <div class="success-sub">Votre œuvre a été enregistrée dans le registre CMS. Vous recevrez une notification par email dans les 7 jours ouvrés.</div>
+      <div class="success-title">Fiche enregistrée !</div>
+      <div class="success-sub">Votre œuvre a été enregistrée dans le registre CMS. Conservez votre référence pour retrouver votre fiche à tout moment.</div>
       <div class="success-id" id="success-work-id">Référence : —</div>
-      <a href="certification.html" style="display:inline-block;padding:12px 28px;background:var(--navy);color:#fff;text-decoration:none;border-radius:6px;font-weight:700;font-size:14px">Vérifier une certification →</a>
+      <a href="certification.html" style="display:inline-block;padding:12px 28px;background:var(--navy);color:#fff;text-decoration:none;border-radius:6px;font-weight:700;font-size:14px">Vérifier une fiche →</a>
     </div>
   </div>
 
@@ -809,7 +809,7 @@ async function submitWork() {
     // Validation finale
     if (!name || !email || !title || !family || !year || !territory || !language) {
       showToast('⚠️ Informations manquantes — vérifiez les étapes 1 et 2.');
-      btn.disabled = false; btn.textContent = 'Soumettre ma demande →';
+      btn.disabled = false; btn.textContent = 'Soumettre ma fiche →';
       return;
     }
 
@@ -892,13 +892,13 @@ async function submitWork() {
     const successPanel = document.getElementById('success-panel');
     successPanel.style.display = 'block';
     successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    showToast('✅ Demande soumise — ' + cmsId);
+    showToast('✅ Fiche enregistrée — ' + cmsId);
 
   } catch(e) {
     console.error('submitWork error:', e);
     showToast('❌ Erreur : ' + (e.message || 'Veuillez réessayer.'));
     btn.disabled = false;
-    btn.textContent = 'Soumettre ma demande →';
+    btn.textContent = 'Soumettre ma fiche →';
   }
 }
 

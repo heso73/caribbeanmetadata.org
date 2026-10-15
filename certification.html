@@ -6,7 +6,7 @@
   <title>Vérification CMS — Caribbean Metadata Standard</title>
     <link rel="canonical" href="https://caribbeanmetadata.org/certification.html" />
 
-  <meta name="description" content="Vérifiez qu'une œuvre a été décrite selon le Caribbean Metadata Standard v2.0. Registre public officiel.">
+  <meta name="description" content="Vérifiez qu'une œuvre a été décrite selon le Caribbean Metadata Standard v2.0. Registre public.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -140,7 +140,7 @@ main{max-width:860px;margin:0 auto;padding:48px 6% 80px}
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">REGISTRE PUBLIC OFFICIEL</div>
+    <div class="hero-eyebrow">REGISTRE PUBLIC</div>
     <h1>Vérifier une<br/><em>fiche CMS</em></h1>
     <p class="hero-desc">Entrez un identifiant CMS pour vérifier qu'une œuvre a été décrite selon le Caribbean Metadata Standard v2.0.</p>
 
@@ -186,7 +186,7 @@ main{max-width:860px;margin:0 auto;padding:48px 6% 80px}
     <div class="error-wrap">
       <div class="error-icon">🔍</div>
       <div class="error-title" id="error-title">Fiche introuvable</div>
-      <div class="error-sub" id="error-sub">L'identifiant CMS saisi ne correspond à aucune fiche dans le registre officiel. Vérifiez l'identifiant et réessayez.</div>
+      <div class="error-sub" id="error-sub">L'identifiant CMS saisi ne correspond à aucune fiche dans le registre CMS. Vérifiez l'identifiant et réessayez.</div>
     </div>
   </div>
 
@@ -197,7 +197,7 @@ main{max-width:860px;margin:0 auto;padding:48px 6% 80px}
       <div class="valid-banner" id="valid-banner">
         <div class="valid-icon">✅</div>
         <div>
-          <div class="valid-text" id="valid-text">Fiche authentique — Registre CMS officiel</div>
+          <div class="valid-text" id="valid-text">Fiche trouvée — Registre CMS</div>
           <div class="valid-sub" id="valid-sub">Émise par le Caribwood Language Lab · caribbeanmetadata.org</div>
         </div>
       </div>
@@ -231,7 +231,7 @@ main{max-width:860px;margin:0 auto;padding:48px 6% 80px}
 
       <div class="cms-id-section">
         <div>
-          <div class="cms-id-label">IDENTIFIANT CMS OFFICIEL</div>
+          <div class="cms-id-label">IDENTIFIANT CMS</div>
           <div class="cms-id-value" id="cms-id-display">—</div>
         </div>
         <button class="copy-id" onclick="copyId()">⎘ Copier</button>
@@ -301,7 +301,7 @@ async function verify() {
     if (!certs || certs.length === 0) {
       showState('error');
       document.getElementById('error-title').textContent = 'Fiche introuvable';
-      document.getElementById('error-sub').textContent = `Aucune fiche "${raw}" dans le registre officiel CMS. Vérifiez l'identifiant ou contactez l'émetteur.`;
+      document.getElementById('error-sub').textContent = `Aucune fiche "${raw}" dans le registre CMS. Vérifiez l'identifiant ou contactez l'émetteur.`;
       return;
     }
 
@@ -328,7 +328,7 @@ function renderResult(cert) {
   document.getElementById('valid-text').className = 'valid-text' + (isRevoked ? ' invalid' : '');
   document.getElementById('valid-text').textContent = isRevoked
     ? '⚠️ Fiche révoquée — non valide'
-    : '✅ Fiche authentique — Registre CMS officiel';
+    : '✅ Fiche trouvée — Registre CMS';
   document.getElementById('valid-sub').textContent = isRevoked
     ? `Révoquée le ${new Date(cert.revoked_at).toLocaleDateString('fr-FR')} — ${cert.revoked_reason || ''}`
     : `Enregistrée le ${new Date(cert.issued_at).toLocaleDateString('fr-FR')} · Caribwood Language Lab · caribbeanmetadata.org`;
