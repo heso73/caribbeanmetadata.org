@@ -129,8 +129,9 @@ footer{background:#003E6B;padding:56px 6% 32px}
 @media(max-width:900px){.profile-grid{grid-template-columns:repeat(3,1fr)}.ins-inner{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hero-counter{gap:20px}}
 @media(max-width:600px){.profile-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="/assets/cms-redesign.css">
 </head>
-<body>
+<body class="cms-v3-inner">
 
 <nav>
   <a class="nav-logo" href="index-en.html">CMS</a>
@@ -574,7 +575,8 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;background:#FFFDF5;display:fl
   <div style="background:#003E6B"></div><div style="background:#00C2C7"></div>
   <div style="background:#FFC93C"></div><div style="background:#FF6F61"></div><div style="background:#3FA66B"></div>
 </div>
-</div></body></html>`;
+</div><script src="/assets/cms-redesign.js" defer></script>
+</body></html>`;
   const blob = new Blob([html], {type:'text/html'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);

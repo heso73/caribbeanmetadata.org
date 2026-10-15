@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Caribbean Metadata Standard — couche de design v3 (octobre 2026)
+   Chargée APRÈS le <style> de chaque page : elle surcharge sans toucher
+   au contenu, aux balises SEO ni au JavaScript existant.
+   - .cms-v3        : page d'accueil FR / EN / ES (traitement complet)
+   - .cms-v3-inner  : pages intérieures (en-tête, héros, pied de page)
+   ========================================================================== */
+
+:root{
+  --v3-navy:#071a3f;
+  --v3-blue:#0a3a8e;
+  --v3-sky:#0f6fa6;
+  --v3-cyan:#19c3d6;
+  --v3-line:#d9e1ef;
+  --v3-ease:cubic-bezier(.22,.7,.2,1);
+}
+
+/* ── EN-TÊTE (toutes pages) ───────────────────────────────────────────── */
+.cms-v3 .cms-header,.cms-v3-inner .cms-header{
+  background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:saturate(1.4) blur(12px);
+  backdrop-filter:saturate(1.4) blur(12px);
+  box-shadow:0 1px 0 rgba(10,58,142,.08),0 8px 24px rgba(10,42,107,.06);
+}
+.cms-v3 .logo,.cms-v3-inner .logo{
+  background:linear-gradient(90deg,#071a3f,#0f6fa6 70%,#19c3d6);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.cms-v3 .nav-links a,.cms-v3-inner .nav-links a{position:relative}
+.cms-v3 .nav-links a:not(.cta-nav)::after,
+.cms-v3-inner .nav-links a:not(.cta-nav)::after{
+  content:"";position:absolute;left:.7rem;right:.7rem;bottom:2px;height:2px;border-radius:2px;
+  background:var(--v3-cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--v3-ease);
+}
+.cms-v3 .nav-links a:not(.cta-nav):hover::after,
+.cms-v3-inner .nav-links a:not(.cta-nav):hover::after{transform:scaleX(1)}
+
+/* ── HÉROS ────────────────────────────────────────────────────────────── */
+.cms-v3 .hero,.cms-v3-inner .hero,.cms-v3-inner .page-hero,.cms-v3-inner .hero-page{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 85% 0%,rgba(25,195,214,.28) 0%,transparent 55%),
+    linear-gradient(118deg,#06163a 0%,#0a3a8e 52%,#0e78b4 100%);
+  isolation:isolate;
+}
+.cms-v3 .hero::after,.cms-v3-inner .hero::after,.cms-v3-inner .page-hero::after,.cms-v3-inner .hero-page::after{
+  content:"";position:absolute;left:-10%;right:-10%;bottom:-70px;height:150px;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0,rgba(25,195,214,.55),transparent 70%);
+}
+.cms-net{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.9}
+.cms-v3 .hero h1{text-shadow:0 6px 30px rgba(0,0,0,.25)}
+.cms-v3 .hero h1 em{
+  background:linear-gradient(90deg,#19c3d6,#7be7f0);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+}
+.cms-v3 .btn-p{
+  background:linear-gradient(135deg,#19c3d6,#14a9ca);color:#05264a;
+  box-shadow:0 8px 22px rgba(25,195,214,.35);
+  transition:transform .2s var(--v3-ease),box-shadow .2s var(--v3-ease),filter .2s;
+}
+.cms-v3 .btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(25,195,214,.45);filter:brightness(1.05)}
+.cms-v3 .btn-o{backdrop-filter:blur(4px);transition:all .2s var(--v3-ease)}
+.cms-v3 .btn-o:hover{transform:translateY(-2px)}
+.cms-v3 .hpill{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.7)}
+.cms-v3 .hero-map svg{animation:cmsFloat 9s ease-in-out infinite}
+@keyframes cmsFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ── BANDE DE CHIFFRES ────────────────────────────────────────────────── */
+.cms-v3 .stats-bar{
+  background:linear-gradient(110deg,#0a3f95,#0f7fbd 60%,#13a9c8);
+  border:0;box-shadow:0 10px 30px rgba(10,58,142,.25);position:relative;z-index:2;
+}
+.cms-v3 .sb-col{border-right:1px dashed rgba(255,255,255,.3);padding:24px 0}
+.cms-v3 .sb-n{color:#fff;font-size:clamp(28px,3.4vw,40px);text-shadow:0 2px 12px rgba(0,0,0,.18)}
+.cms-v3 .sb-l{color:rgba(255,255,255,.85)}
+
+/* ── TITRES DE SECTION ────────────────────────────────────────────────── */
+.cms-v3 .sec{padding:84px 6%}
+.cms-v3 .sec-h2{
+  display:flex;align-items:center;gap:22px;justify-content:center;text-align:center;
+  color:var(--v3-blue);
+}
+.cms-v3 .sec-h2::before,.cms-v3 .sec-h2::after{content:"";flex:1;max-width:160px;height:1px;background:var(--v3-line)}
+.cms-v3 .sec-h2-wh{color:#fff}
+.cms-v3 .sec-h2-wh::before,.cms-v3 .sec-h2-wh::after{background:rgba(255,255,255,.3)}
+@media(max-width:640px){.cms-v3 .sec-h2::before,.cms-v3 .sec-h2::after{display:none}}
+
+/* ── CARTES ───────────────────────────────────────────────────────────── */
+.cms-v3 .why-card,.cms-v3 .fam-card,.cms-v3 .gc,.cms-v3 .cs{
+  border:1px solid rgba(10,58,142,.06);
+  box-shadow:0 10px 28px rgba(10,42,107,.08);
+  transition:transform .3s var(--v3-ease),box-shadow .3s var(--v3-ease),border-color .3s;
+}
+.cms-v3 .why-card:hover,.cms-v3 .fam-card:hover,.cms-v3 .gc:hover,.cms-v3 .cs:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 48px rgba(10,42,107,.16);
+  border-color:rgba(25,195,214,.45);
+}
+.cms-v3 .fam-ico,.cms-v3 .wc-ico,.cms-v3 .gc-ico{box-shadow:0 8px 18px rgba(10,42,107,.14);transition:transform .35s var(--v3-ease)}
+.cms-v3 .fam-card:hover .fam-ico,.cms-v3 .why-card:hover .wc-ico,.cms-v3 .gc:hover .gc-ico{transform:scale(1.08) rotate(-4deg)}
+.cms-v3 .fam-btn{background:linear-gradient(135deg,#0a3a8e,#0f6fa6);border-radius:8px;transition:transform .2s var(--v3-ease),box-shadow .2s}
+.cms-v3 .fam-btn:hover{background:linear-gradient(135deg,#0a3a8e,#19c3d6);transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,111,166,.3)}
+.cms-v3 .ftag{background:rgba(15,111,166,.08);color:#0a3a8e}
+
+/* ── CMS BUILDER ──────────────────────────────────────────────────────── */
+.cms-v3 .iva-mock{
+  transform:perspective(1000px) rotateY(-5deg) rotateX(1.5deg);
+  transition:transform .5s var(--v3-ease);
+  box-shadow:0 30px 70px rgba(7,26,63,.28);
+}
+.cms-v3 .iva-mock:hover{transform:perspective(1000px) rotateY(0) rotateX(0)}
+.cms-v3 .ibar-f{transition:width 1.1s var(--v3-ease)}
+.cms-v3 .btn-bd{background:linear-gradient(135deg,#0a3a8e,#0f6fa6);border-radius:8px;box-shadow:0 8px 20px rgba(10,58,142,.25)}
+.cms-v3 .btn-bd:hover{background:linear-gradient(135deg,#0a3a8e,#19c3d6)}
+.cms-v3 .btn-gl{border-radius:8px}
+
+/* ── GOUVERNANCE / PROCESSUS ──────────────────────────────────────────── */
+.cms-v3 .gc::before{background:linear-gradient(90deg,#0a3a8e,#19c3d6)}
+.cms-v3 .timeline{border:1px solid rgba(10,58,142,.06);box-shadow:0 10px 28px rgba(10,42,107,.08)}
+.cms-v3 .tl-circle{background:linear-gradient(135deg,#0a3a8e,#19c3d6);box-shadow:0 8px 18px rgba(15,111,166,.3)}
+
+/* ── REJOINDRE / CTA ──────────────────────────────────────────────────── */
+.cms-v3 .jc{backdrop-filter:blur(6px)}
+.cms-v3 .cta-block{
+  background:
+    radial-gradient(70% 120% at 50% 0%,rgba(25,195,214,.2),transparent 65%),
+    linear-gradient(120deg,#06163a,#0a3a8e);
+}
+
+/* ── PIED DE PAGE ─────────────────────────────────────────────────────── */
+.cms-v3 .cms-footer,.cms-v3-inner .cms-footer{background:linear-gradient(180deg,#071a3f,#050f2b)}
+
+/* ── APPARITION AU DÉFILEMENT ─────────────────────────────────────────── */
+.cms-js .cms-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--v3-ease),transform .7s var(--v3-ease)}
+.cms-js .cms-reveal.cms-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .cms-js .cms-reveal{opacity:1;transform:none;transition:none}
+  .cms-v3 .hero-map svg{animation:none}
+  .cms-v3 .iva-mock{transform:none}
+}
+@media(max-width:900px){.cms-v3 .iva-mock{transform:none}}

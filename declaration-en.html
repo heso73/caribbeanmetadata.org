@@ -115,8 +115,9 @@ footer{background:#050508;padding:48px 6% 32px;border-top:1px solid rgba(201,168
 .footer-bottom{padding-top:24px;border-top:1px solid rgba(248,245,238,0.08);font-family:var(--sans);font-size:11px;color:rgba(248,245,238,0.35);text-align:center;letter-spacing:1px}
 @media(max-width:900px){.article-block{grid-template-columns:1fr;min-height:auto}.article-sidebar{position:static;padding:40px 6% 0;border-right:none;border-bottom:1px solid rgba(0,62,107,0.1)}.article-content{padding:32px 6% 64px}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
 </style>
+<link rel="stylesheet" href="/assets/cms-redesign.css">
 </head>
-<body>
+<body class="cms-v3-inner">
 
 <nav>
   <a class="nav-logo" href="index-en.html">CMS</a>
@@ -463,5 +464,6 @@ const conclusionLines = document.getElementById('conclusion-lines');
 if (conclusionLines) conclusionObserver.observe(conclusionLines);
 </script>
 <script src="nav-fix.js"></script>
+<script src="/assets/cms-redesign.js" defer></script>
 </body>
 </html>
