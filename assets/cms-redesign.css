@@ -162,3 +162,7 @@
 .ba-cta{display:inline-block;margin-left:10px;padding:10px 20px;border-radius:8px;background:linear-gradient(135deg,#0a3a8e,#0f6fa6);color:#fff;font-weight:600;text-decoration:none}
 .ba-cta:hover{filter:brightness(1.1)}
 @media(max-width:720px){.ba-grid{grid-template-columns:1fr}.ba-cta{margin:10px 0 0}}
+
+/* ── PHRASE « EN CLAIR » (héros des accueils) ─────────────────────────── */
+.hero-plain{margin:-6px 0 22px;max-width:520px;font-size:14px;line-height:1.6;color:#bfeff5;border-left:3px solid #19c3d6;padding-left:12px}
+.cms-v3 .hero-content .hero-plain{color:#bfeff5}
