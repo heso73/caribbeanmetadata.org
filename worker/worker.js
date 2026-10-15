@@ -75,8 +75,13 @@ export default {
     }
     // POST only allowed on /api/v1/works with valid admin token
     if (method === 'POST') {
+      // Le jeton vient uniquement de la variable secrète Cloudflare CMS_ADMIN_TOKEN.
+      // Aucune valeur par défaut : sans variable configurée, les écritures sont refusées.
+      if (!env.CMS_ADMIN_TOKEN) {
+        return json({ error: 'server_misconfigured', error_description: 'CMS_ADMIN_TOKEN non configuré sur le Worker' }, 500);
+      }
       const authHeader = request.headers.get('X-CMS-Admin') || '';
-      if (authHeader !== (env.CMS_ADMIN_TOKEN || 'cms2026caribwood')) {
+      if (authHeader !== env.CMS_ADMIN_TOKEN) {
         return json({ error: 'Unauthorized' }, 401);
       }
     }
