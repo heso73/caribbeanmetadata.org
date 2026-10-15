@@ -166,3 +166,35 @@
 /* ── PHRASE « EN CLAIR » (héros des accueils) ─────────────────────────── */
 .hero-plain{margin:-6px 0 22px;max-width:520px;font-size:14px;line-height:1.6;color:#bfeff5;border-left:3px solid #19c3d6;padding-left:12px}
 .cms-v3 .hero-content .hero-plain{color:#bfeff5}
+
+/* ── MOBILE : empêche tout débordement horizontal des pages intérieures ── */
+@media(max-width:900px){
+  .cms-v3-inner,.cms-v3{overflow-x:clip}
+  .cms-v3-inner [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;gap:28px !important}
+  .cms-v3-inner .team-card{padding:28px 22px;gap:24px}
+  .cms-v3-inner .problem-section{margin-left:0;margin-right:0}
+}
+
+/* ── MOBILE : grilles, tableaux et code qui dépassaient de l'écran ────── */
+@media(max-width:768px){
+  .cms-v3-inner [class*="grid"]:not([class*="hero-grid"]),
+  .cms-v3-inner [class*="pillars"],
+  .cms-v3-inner [style*="repeat(2"],
+  .cms-v3-inner [style*="repeat(3"],
+  .cms-v3-inner [style*="repeat(4"]{grid-template-columns:1fr !important}
+  .cms-v3-inner [class*="layout"] > *,.cms-v3-inner [class*="grid"] > *{min-width:0}
+  .cms-v3-inner table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cms-v3-inner pre{max-width:100%;overflow-x:auto}
+  .cms-v3-inner code,.cms-v3-inner .term-ex{overflow-wrap:anywhere}
+  .cms-v3-inner nav .nav-links{flex-wrap:wrap;justify-content:center;row-gap:4px}
+}
+@media(max-width:768px){
+  .cms-v3-inner [class*="btns"],.cms-v3-inner [class*="actions"],.cms-v3-inner [class*="pills"],.cms-v3-inner [class*="tags"]{flex-wrap:wrap}
+}
+@media(max-width:768px){
+  .cms-v3-inner .corpus-download{flex-direction:column;align-items:flex-start}
+  .cms-v3-inner .cd-btns{flex-shrink:1;flex-wrap:wrap}
+}
+
+/* Bande pleine largeur (marges négatives) : jamais de défilement horizontal sur ordinateur */
+.cms-v3-inner{overflow-x:clip}
